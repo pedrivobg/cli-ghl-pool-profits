@@ -23,3 +23,6 @@ dist/
 dump/
 backup/
 reports/
+
+# Token de acesso em cache (segredo)
+.token-cache.json

@@ -31,11 +31,15 @@ Só entrou aqui o que não deu para resolver daqui depois de tentar.
    e rode `pp_forms.py --only "<conta>" --apply` (o Landing Page passa para o Website Form Fill).
    - Na Pool Shack, o AdWords Form escuta uma cópia do Landing Page que nenhuma página usa,
      então a conversão nunca disparou.
-6. **Pool Keepers**: tudo em draft. Para ir ao ar (depois do A2P):
-   `pp_mirror.py --target "The Pool Keepers" --apply` (sem `--no-publish`).
-7. **Stay Fresh** não é do snapshot V9. Recebeu só as correções básicas; trazer para o
-   modelo exige instalar o snapshot. Há um draft "Pool Smart OC Customers - SMS" com nome de
-   outro cliente: revisar antes de usar.
+6. **A2P da Stay Fresh e da Pool Keepers**: as duas agora têm os workflows de SMS
+   publicados (igual à Southern), mas nenhuma tem histórico de SMS enviado, então não deu
+   para confirmar daqui que o A2P está aprovado. Conferir em Settings → Phone System →
+   Trust Center.
+7. **Stay Fresh**: há um draft antigo "Pool Smart OC Customers - SMS", com o nome de outro
+   cliente. Revisar antes de usar ou apagar. Os outros workflows antigos dela estão em draft.
+7b. **Sequential Call Routing** (veio do snapshot): toca usuários de outra conta e grava
+   recado "you've reached BluVantage Pool Service". Não dispara em nenhuma conta (os números
+   do gatilho não são delas), mas deve ser apagado ou refeito no snapshot.
 
 ## Manual no GHL (sem API)
 

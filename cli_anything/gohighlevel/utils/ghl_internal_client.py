@@ -47,19 +47,48 @@ class TokenManager:
         self._token: Optional[str] = None
         self._token_time: float = 0
 
+    # Google rate-limits token exchanges per minute, and every script run used to do
+    # one; the ID token is shared between runs through this gitignored file.
+    CACHE = os.path.join(os.path.dirname(__file__), "..", "..", "..", ".token-cache.json")
+
+    def _read_cache(self) -> None:
+        try:
+            with open(self.CACHE) as fh:
+                cached = json.load(fh)
+            if time.time() - cached["time"] < 3000:
+                self._token, self._token_time = cached["token"], cached["time"]
+        except (OSError, ValueError, KeyError):
+            pass
+
+    def _write_cache(self) -> None:
+        try:
+            fd = os.open(self.CACHE, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+            with os.fdopen(fd, "w") as fh:
+                json.dump({"token": self._token, "time": self._token_time}, fh)
+        except OSError:
+            pass
+
     def get_token(self) -> str:
         """Get a valid Firebase JWT token."""
-        # 1. Check if current token is still fresh (< 50 min)
+        # 1. Check if current token is still fresh (< 50 min), here or in the cache file
+        if not self._token:
+            self._read_cache()
         if self._token and (time.time() - self._token_time) < 3000:
             return self._token
 
         # 2. Try Firebase refresh token
         refresh_token = os.environ.get("GHL_FIREBASE_REFRESH_TOKEN", "").strip()
         if refresh_token:
-            token = self._refresh_firebase(refresh_token)
+            token = None
+            for wait in (0, 20, 40):  # quota is per minute: wait it out
+                time.sleep(wait)
+                token = self._refresh_firebase(refresh_token)
+                if token:
+                    break
             if token:
                 self._token = token
                 self._token_time = time.time()
+                self._write_cache()
                 return token
             print(
                 "Error: Firebase refresh token is set but token refresh failed.\n"
@@ -88,6 +117,10 @@ class TokenManager:
         """Force token refresh (called on 401)."""
         self._token = None
         self._token_time = 0
+        try:
+            os.remove(self.CACHE)  # the cached token is the one that was just refused
+        except OSError:
+            pass
         return self.get_token()
 
     def _refresh_firebase(self, refresh_token: str) -> Optional[str]:

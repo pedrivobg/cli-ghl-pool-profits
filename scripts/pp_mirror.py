@@ -58,8 +58,21 @@ STEPS_ONLY = ["Website Form Fill To Pipeline"]
 ALIASES = {
     "Missed Incoming Call To Pipeline": ["Incoming Call To Pipeline"],
     "Missed New Lead - Initial SMS Follow-up": ["New Lead - Initial SMS Follow-up"],
+    "SMS Customer Reply to pipeline": ["SMS Customer Reply"],
 }
-STAGE_ALIASES = {"🏆 Won - Weekly Pool Service": ["🏆 Won"]}
+# target stage names that are the same stage as the model's (older/custom pipelines)
+STAGE_ALIASES = {
+    "🆕 New Lead": ["🚨 New Lead", "New Lead"],
+    "💬 In Communication": ["In Communications", "In Communication"],
+    "📅 Scheduled": ["Booked Inspection", "Scheduled"],
+    "🏆 Won - Weekly Pool Service": ["🏆 Won", "🎉 Won Customer", "Won Customer"],
+    "🔄 Recurring Customer": ["Current Customer", "Recurring Customer"],
+    "❌ Lost": ["Lost Customer", "Lost"],
+    "🚫 Spam": ["SPAM", "Spam"],
+}
+# never published by the mirror — it rings the model account's users and greets
+# callers with another business's voicemail (see docs/TODO.md)
+FORCE_DRAFT = {"Sequential Call Routing"}
 SKIP_STATUS_FOLDERS = ("08 Paid Ads",)
 TRIGGER_DROP = ("id", "_id", "date_added", "date_updated", "deleted", "origin_id",
                 "company_id", "company_age", "last_conditions_change_at", "belongs_to")
@@ -96,9 +109,11 @@ class Side:
 
 
 class Mirror:
-    def __init__(self, agency: Agency | None, model: Side, target: Side, apply: bool, publish: bool):
+    def __init__(self, agency: Agency | None, model: Side, target: Side, apply: bool, publish: bool,
+                 full: bool = False):
         self.agency, self.m, self.t = agency, model, target
-        self.apply, self.publish = apply, publish
+        self.apply, self.publish, self.full = apply, publish, full
+        self.folders: dict[str, str] = {}
         self.ids: dict[str, str] = {model.loc: target.loc}
         self.log: list[str] = []
         self.problems: list[str] = []
@@ -136,7 +151,7 @@ class Mirror:
         live = self.agency.workflow(self.t.loc, wid)
         self.backup("workflow", wid, live)
         body = {"name": name, "version": live.get("version", 1), "status": status,
-                "parentId": live.get("parentId"),
+                "parentId": getattr(self, "move_to", None) or live.get("parentId"),
                 "workflowData": {"templates": steps if steps is not None
                                  else (live.get("workflowData") or {}).get("templates") or []}}
         self.agency.call("PUT", BACKEND, f"/workflow/{self.t.loc}/{wid}", body=body)
@@ -181,8 +196,15 @@ class Mirror:
             else:
                 stage = {k: ms[k] for k in keep if k in ms and k != "id"}
             new.append(stage)
-        # stages only the target has stay, right after Recurring Customer
+        # stages only the target has stay, right after Recurring Customer — except in
+        # --full, where an empty one is dropped so the funnel is exactly the model's
         extras = [{k: s[k] for k in keep if k in s} for s in tp["stages"] if s["id"] not in used]
+        if self.full and extras:
+            busy = self.stage_counts(tp["id"])
+            dropped = [e["name"] for e in extras if not busy.get(e["id"])]
+            extras = [e for e in extras if busy.get(e["id"])]
+            if dropped:
+                self.say(f"    etapas só do alvo, vazias → removidas: {dropped}")
         if extras:
             at = next((i + 1 for i, s in enumerate(new) if "recurring" in norm(s["name"])), len(new))
             new[at:at] = extras
@@ -190,13 +212,14 @@ class Mirror:
             s["position"] = i
         before = [s["name"] for s in tp["stages"]]
         after = [s["name"] for s in new]
-        if before != after:
+        new_name = mp["name"] if self.full else tp["name"]
+        if before != after or new_name != tp["name"]:
             self.say("\n[2] Pipeline Pool Leads\n    antes:  " + " | ".join(before) + "\n    depois: " + " | ".join(after))
             if self.apply:
                 live = next(p for p in self.agency.pipelines(self.t.loc) if p["id"] == tp["id"])
                 self.backup("pipeline", tp["id"], live)
                 self.agency.call("PUT", SERVICES, f"/opportunities/pipelines/{tp['id']}",
-                                 body={"name": live["name"], "stages": new})
+                                 body={"name": new_name, "stages": new})
                 for _ in range(10):  # GHL reads lag a few seconds behind the write
                     tp = next(p for p in self.agency.pipelines(self.t.loc) if p["id"] == tp["id"])
                     if [s["name"] for s in tp["stages"]] == after:
@@ -211,6 +234,58 @@ class Mirror:
                 self.ids[ms["id"]] = f"<nova etapa {ms['name']}>"
             else:
                 self.problems.append(f"etapa '{ms['name']}' não apareceu no alvo")
+
+    def stage_counts(self, pipeline_id: str) -> Counter:
+        counts, page = Counter(), 1
+        while True:
+            r = self.agency.get(SERVICES, "/opportunities/search", {
+                "location_id": self.t.loc, "pipeline_id": pipeline_id, "limit": 100, "page": page})
+            rows = r.get("opportunities", [])
+            counts.update(o["pipelineStageId"] for o in rows)
+            if len(rows) < 100:
+                return counts
+            page += 1
+
+    # ── --full: folders and custom fields the model's workflows need ──────────
+
+    def folder_for(self, mw: dict) -> str | None:
+        name = mw.get("folder") or ""
+        if not name:
+            return None
+        if name in self.folders:
+            return self.folders[name]
+        for w in self.t.index:
+            if w.get("folder") == name:
+                self.folders[name] = self.t.wf(w["id"]).get("parentId")
+                return self.folders[name]
+        self.say(f"    cria pasta '{name}'")
+        if self.apply:
+            res = self.agency.call("POST", BACKEND, f"/workflow/{self.t.loc}", body={"name": name, "type": "directory"})
+            self.folders[name] = res.get("id") or res.get("_id")
+        else:
+            self.folders[name] = f"<pasta {name}>"
+        return self.folders[name]
+
+    def custom_fields(self, names: list[str]) -> None:
+        raw = "".join(json.dumps(self.m.wf(w["id"])) for w in self.m.index if w["name"] in names)
+        have = {norm(c.get("fieldKey") or c["name"]) for c in self.t.custom_fields}
+        for c in self.m.custom_fields:
+            if c["id"] not in raw or norm(c.get("fieldKey") or c["name"]) in have:
+                continue
+            self.say(f"    cria campo '{c['name']}' ({c['dataType']})")
+            if not self.apply:
+                self.ids[c["id"]] = f"<campo {c['name']}>"
+                continue
+            body = {"name": c["name"], "dataType": c["dataType"], "placeholder": c.get("placeholder", ""),
+                    "position": c.get("position", 0), "model": c.get("model", "contact")}
+            if c.get("picklistOptions"):
+                body["options"] = c["picklistOptions"]
+            res = self.agency.call("POST", SERVICES, f"/locations/{self.t.loc}/customFields", body=body)
+            made = res.get("customField") or res
+            if made.get("fieldKey") != c.get("fieldKey"):
+                self.problems.append(f"campo '{c['name']}' criado com fieldKey {made.get('fieldKey')} (modelo {c.get('fieldKey')})")
+            self.ids[c["id"]] = made.get("id")
+            self.t.custom_fields.append(made)
 
     # ── id maps ────────────────────────────────────────────────────────────
 
@@ -316,17 +391,24 @@ class Mirror:
 
     # ── 4/5. workflows ─────────────────────────────────────────────────────
 
+    def names(self) -> list[str]:
+        return [w["name"] for w in self.m.index] if self.full else CONTENT + STEPS_ONLY
+
     def ensure_created(self) -> None:
-        for name in CONTENT + STEPS_ONLY:
+        for name in self.names():
             if self.target_wf(name):
                 continue
             mw = next((w for w in self.m.index if w["name"] == name), None)
             if not mw:
                 continue
-            sibling = next((w for w in self.t.index if w.get("folder") == mw.get("folder")), None) \
-                or self.target_wf("Missed Incoming Call To Pipeline") or {}
-            parent = self.t.wf(sibling["id"]).get("parentId") if sibling else None
-            self.say(f"\n[4] cria workflow '{name}' (pasta {sibling.get('folder', '—')})")
+            if self.full:
+                parent, where = self.folder_for(mw), mw.get("folder", "—")
+            else:
+                sibling = next((w for w in self.t.index if w.get("folder") == mw.get("folder")), None) \
+                    or self.target_wf("Missed Incoming Call To Pipeline") or {}
+                parent = self.t.wf(sibling["id"]).get("parentId") if sibling else None
+                where = sibling.get("folder", "—")
+            self.say(f"\n[4] cria workflow '{name}' (pasta {where})")
             if self.apply:
                 res = self.agency.call("POST", BACKEND, f"/workflow/{self.t.loc}",
                                        body={"name": name, "parentId": parent, "status": "draft"})
@@ -375,7 +457,7 @@ class Mirror:
     def trigger_tags(self) -> None:
         have = {norm(t.get("name")) for t in load(self.t.dir / "tags.json", [])}
         want = set()
-        for name in CONTENT:
+        for name in self.names():
             mw = next((w for w in self.m.index if w["name"] == name), None)
             for tr in (self.m.wf(mw["id"]).get("triggers") or []) if mw else []:
                 for c in tr.get("conditions") or []:
@@ -392,7 +474,7 @@ class Mirror:
     def content(self) -> None:
         self.trigger_tags()
         self.say("\n[4] Workflows copiados do modelo (passos + gatilhos)")
-        for name in CONTENT + STEPS_ONLY:
+        for name in self.names():
             mw = next((w for w in self.m.index if w["name"] == name), None)
             tw = self.target_wf(name)
             if not mw or not tw:
@@ -405,10 +487,15 @@ class Mirror:
                 self.problems.append(f"{name}: passos com ids do modelo sem par no alvo {left} — não copiado")
                 continue
             status = mw["status"] if (self.publish or mw["status"] == "draft") else tw.get("status", "draft")
+            if self.full and name in FORCE_DRAFT:
+                status = "draft"
+            if self.full and mw.get("folder"):
+                self.move_to = self.folder_for(mw)
             rename = f" (renomeado de '{tw['name']}')" if tw["name"] != name else ""
             self.say(f"    {name}{rename}: {len(steps)} passos, status → {status}")
             if self.apply:
                 self.put_workflow(tw["id"], name, status, steps)
+            self.move_to = None
             if name in STEPS_ONLY:
                 # Which forms feed this workflow depends on the account's own
                 # forms and on who else listens to them: scripts/pp_forms.py.
@@ -421,7 +508,7 @@ class Mirror:
     def statuses(self) -> None:
         header = False
         for mw in self.m.index:
-            if mw["name"] in CONTENT + STEPS_ONLY:
+            if mw["name"] in self.names():  # already set by content()
                 continue
             tw = self.target_wf(mw["name"])
             if not tw:
@@ -429,7 +516,7 @@ class Mirror:
             if mw.get("folder", "").startswith(SKIP_STATUS_FOLDERS):
                 continue
             want = mw["status"]
-            if want == "published" and not self.publish:
+            if want == "published" and (not self.publish or mw["name"] in FORCE_DRAFT):
                 continue
             if tw["status"] == want:
                 continue
@@ -438,18 +525,37 @@ class Mirror:
                 header = True
             self.say(f"    {mw['name']}: {tw['status']} → {want}")
             if self.apply:
-                self.put_workflow(tw["id"], tw["name"], want)
+                try:
+                    self.put_workflow(tw["id"], tw["name"], want)
+                except GHLError as exc:
+                    self.problems.append(f"{mw['name']}: GHL recusou mudar para {want} — {exc.body[:160]}")
+
+    def draft_target_only(self) -> None:
+        model_keys = {norm(n) for w in self.m.index for n in [w["name"], *ALIASES.get(w["name"], [])]}
+        live_only = [w for w in self.t.index if w["status"] == "published" and norm(w["name"]) not in model_keys
+                     and w["id"] not in {x["id"] for x in self.t_by_name.values() if norm(x["name"]) in model_keys}]
+        if not live_only:
+            return
+        self.say("\n[7] Publicados que só existem no alvo → draft (o modelo não tem)")
+        for w in live_only:
+            self.say(f"    {w['name']}")
+            if self.apply:
+                self.put_workflow(w["id"], w["name"], "draft")
 
     def run(self) -> None:
         print(f"\n===== {self.t.name}  ←  modelo {self.m.name}  ({'APLICANDO' if self.apply else 'plano'})")
         self.dedupe()
         self.pipeline()
         self.map_assets()
+        if self.full:
+            self.custom_fields(self.names())
         self.ensure_created()
         self.map_workflows()
-        self.templates(CONTENT + STEPS_ONLY)
+        self.templates(self.names())
         self.content()
         self.statuses()
+        if self.full:
+            self.draft_target_only()
         untouched = [w["name"] for w in self.t.index if not any(
             norm(w["name"]) in (norm(n), *map(norm, ALIASES.get(n, []))) for n in [x["name"] for x in self.m.index])]
         if untouched:
@@ -466,14 +572,17 @@ def main() -> int:
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--no-publish", action="store_true",
                         help="never publish anything (only content, and drafts where the model is draft)")
+    parser.add_argument("--full", action="store_true",
+                        help="account NOT built from the snapshot: create every model workflow, folder "
+                             "and custom field, make the funnel exactly the model's, draft target-only workflows")
     args = parser.parse_args()
     load_dotenv()
     model = Side(location_dirs([args.model])[0])
-    agency = Agency() if args.apply else None
+    agency = Agency() if (args.apply or args.full) else None
     for d in location_dirs(args.target):
         if d == model.dir:
             continue
-        Mirror(agency, model, Side(d), args.apply, not args.no_publish).run()
+        Mirror(agency, model, Side(d), args.apply, not args.no_publish, args.full).run()
     return 0
 
 
