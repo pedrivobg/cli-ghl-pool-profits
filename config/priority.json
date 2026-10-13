@@ -1,0 +1,12 @@
+{
+  "_comment": "Sub-contas por nome (resolvidas pelo nome no GHL). 'model' é a referência; 'priority' recebe o espelhamento primeiro.",
+  "model": "Southern Pool + Outdoors",
+  "priority": [
+    "Passion Pool Care",
+    "Stay Fresh Pools",
+    "Bahama Blue Pool & Spa",
+    "The Pool Shack",
+    "The Pool Keepers"
+  ],
+  "snapshot": "V9"
+}
