@@ -9,10 +9,32 @@
 - Sub-conta **modelo**: Southern Pool + Outdoors. Prioritárias (calls com clientes):
   Passion Pool Care, Stay Fresh Pools, Bahama Blue Pool & Spa, The Pool Shack, The Pool Keepers
   (`config/priority.json`). Estado-alvo: `docs/modelo-southern.md`.
-- Fluxo: `pp_dump.py --priority` → `pp_audit.py` → `pp_compare.py` → revisar → aplicar.
+- Fluxo: `pp_dump.py --priority` → `pp_audit.py` → `pp_compare.py` → revisar → aplicar
+  (`pp_mirror` → `pp_forms` → `pp_fix --drop-booking`). Histórico: `docs/execucao-*.md`;
+  pendências do Pedro: `docs/TODO.md`.
 - Regras de escrita no GHL: sempre GET + backup em `backup/<slug>/<id>.json` antes de PUT;
   testar em 1 sub-conta e revisar o diff antes de aplicar no resto; não mudar lógica sem
   pedido — correções básicas (nome de outra empresa, custom value vazio, link morto,
   usuário faltando) e status draft/published conforme o modelo.
 - Endpoints com mais de um caminho conhecido passam por `Agency.first_ok`; o caminho que
   funcionou aparece no fim do `pp_dump.py` — atualizar a ordem em `agency.py` se mudar.
+
+## Comportamento da API do GHL (verificado ao vivo)
+
+- Workflow PUT valida assets: id de pipeline/etapa/campo de outra location → 400
+  `ASSET_VALIDATION_FAILED`. Leituras logo após escrita podem vir defasadas (pipeline,
+  listagem pública de workflows, busca de contatos): reler com espera.
+- Gatilho: `active` segue o status do workflow (draft → inativo); PUT não liga/desliga.
+  Para tirar um gatilho: `DELETE /workflow/{loc}/trigger/{id}` (com backup).
+- Pipeline: `PUT services /opportunities/pipelines/{id}` com `{name, stages}` (sem
+  `locationId`); etapa sem `id` é criada; ids existentes preservados.
+- Inbound webhook: gatilho `type: inbound_webhook`; URL
+  `https://services.leadconnectorhq.com/hooks/{loc}/webhook-trigger/{triggerId}`; passo
+  `create_update_contact` com `fields` em camelCase (`firstName`, `email`, `phone`,
+  `address1`) e valores `{{inboundWebhookRequest.<campo>}}`.
+- Missed-call text back nativo: `enableMissedCallText` via `PUT services /locations/{id}`.
+- Submissão de form não automatizável (Turnstile no `/forms/submit`); testar gatilhos por
+  tag/etapa (`pp_e2e.py`) e conferir submissões reais em `/forms/submissions`.
+- SMS de workflow usam o template (`attributes.template_id`) — o texto vive no template;
+  e-mail guarda cópia do html no passo **e** no template (corrigir os dois).
+- Nunca rodar `pp_e2e.py` em conta de cliente (dispara mensagens e notificações reais).

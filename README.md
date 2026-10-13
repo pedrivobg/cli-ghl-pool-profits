@@ -36,7 +36,21 @@ $P scripts/pp_audit.py                       # erros básicos nos workflows publ
 $P scripts/pp_compare.py                     # cada prioritária vs modelo Southern → reports/
 ```
 
-`dump/` e `reports/` contêm dados de clientes e são gitignored.
+Escrita (sempre plano primeiro; `--apply` grava com backup em `backup/`):
+
+```bash
+$P scripts/pp_mirror.py --target "Bahama Blue" [--apply] [--no-publish]  # espelha a Southern
+$P scripts/pp_forms.py  --only "Bahama Blue" [--apply]   # todo form de lead → 1 workflow
+$P scripts/pp_fix.py    --only "Bahama Blue" --drop-booking [--include-drafts] [--apply]
+$P scripts/pp_e2e.py    --only "Test Snapshot"           # testes reais (só conta de teste)
+$P scripts/pp_restore.py --list "Bahama Blue" | --file backup/... [--apply]
+```
+
+Sequência para uma conta: `pp_dump` → `pp_mirror --apply` → `pp_dump` → `pp_forms --apply`
+→ `pp_fix --drop-booking --apply` → `pp_dump` → `pp_audit` / `pp_compare`.
+O que já foi feito: `docs/execucao-2026-10-13.md`. Pendências: `docs/TODO.md`.
+
+`dump/`, `reports/` e `backup/` contêm dados de clientes e são gitignored.
 
 | Arquivo | O que é |
 |---|---|
@@ -45,6 +59,11 @@ $P scripts/pp_compare.py                     # cada prioritária vs modelo South
 | `scripts/pp_dump.py` | inventário read-only: workflows completos + gatilhos, custom values, pipelines, forms, calendários, usuários, templates |
 | `scripts/pp_audit.py` | auditoria offline: nome de outra empresa, custom value vazio, link de calendário, notificação sem usuário, gatilho duplicado/quebrado |
 | `scripts/pp_compare.py` | diff por workflow (status, gatilhos, textos, esperas) e pipeline contra o modelo |
+| `scripts/pp_mirror.py` | espelha o modelo numa conta do snapshot (pipeline, templates, workflows, gatilhos, status) |
+| `scripts/pp_forms.py` | garante que cada form de lead tem exatamente um workflow publicado escutando |
+| `scripts/pp_fix.py` | correções básicas (merge field quebrado, link de calendário, nome de outra empresa, tarefa/notificação sem usuário, pipeline inexistente) |
+| `scripts/pp_e2e.py` | testes reais de gatilho → efeito numa sub-conta de teste |
+| `scripts/pp_restore.py` | desfaz qualquer alteração a partir de `backup/` |
 | `./ghl ...` | CLI original, para uma sub-conta (precisa `GHL_API_KEY` + `GHL_LOCATION_ID`) |
 
 ## Segurança

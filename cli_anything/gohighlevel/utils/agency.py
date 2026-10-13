@@ -94,7 +94,12 @@ class Agency:
             raise GHLError(resp.status_code, url, resp.text)
         if self.sleep:
             time.sleep(self.sleep)
-        return resp.json() if resp.text else {}
+        if not resp.text:
+            return {}
+        try:
+            return resp.json()
+        except ValueError:
+            return {"_text": resp.text[:500]}
 
     def get(self, host: str, path: str, params: dict | None = None) -> Any:
         return self.call("GET", host, path, params=params)

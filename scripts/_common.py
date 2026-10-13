@@ -54,6 +54,5 @@ def location_dirs(names: list[str] | None = None) -> list[Path]:
     dirs = sorted(p for p in DUMP.iterdir() if (p / "location.json").exists()) if DUMP.exists() else []
     if not names:
         return dirs
-    wanted = {slugify(n) for n in names}
-    return [d for d in dirs if d.name in wanted
-            or slugify(json.loads((d / "location.json").read_text()).get("name", "")) in wanted]
+    wanted = [slugify(n) for n in names]
+    return [d for d in dirs if any(w == d.name or w in d.name or d.name in w for w in wanted)]

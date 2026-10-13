@@ -31,6 +31,9 @@ from pathlib import Path
 from _common import REPORTS, location_dirs, slugify
 
 CV_RE = re.compile(r"\{\{\s*custom_values\.([a-zA-Z0-9_]+)\s*\}\}")
+# The email editor auto-links "values.booking" inside {{custom_values.booking_link}},
+# which splits the merge field: the lead gets the raw braces and a dead link.
+BROKEN_MERGE_RE = re.compile(r"\{\{\s*[a-z_]*<a[^>]*>|href=\"https?://values\.[a-z_]+\"", re.I)
 URL_RE = re.compile(r"https?://[^\s\"'<>)]+")
 TAG_RE = re.compile(r"<[^>]+>")
 
@@ -54,7 +57,7 @@ MESSAGE_TYPES = {"sms", "email", "internal_notification", "gmb", "messenger",
                  "instagram-dm", "review_request", "voicemail"}
 USER_STEP_TYPES = {"internal_notification", "task-notification", "assign_user"}
 USER_KEYS = ("users", "userIds", "user_ids", "assignedTo", "assigned_to", "userId",
-             "user_id", "selectedUsers", "toUsers", "assignTo")
+             "user_id", "selectedUsers", "toUsers", "assignTo", "assignedOwners", "user_list", "selectedUser", "to")
 TEXT_KEYS = ("body", "html", "message", "subject", "text", "title", "description", "content")
 
 
@@ -96,6 +99,21 @@ def id_leaves(node):
             yield from id_leaves(item)
 
 
+def trigger_refs(trig: dict) -> tuple[list[str], list[str]]:
+    """(referenced ids, referenced tags) of a trigger's conditions."""
+    ids, tags = [], []
+    for cond in trig.get("conditions") or []:
+        field = str(cond.get("field") or "")
+        values = cond.get("value")
+        values = values if isinstance(values, list) else [values]
+        values = [v for v in values if isinstance(v, str) and v]
+        if field.lower().startswith("tag"):
+            tags += values
+        elif field.lower().endswith("id"):
+            ids += values
+    return sorted(ids), sorted(tags)
+
+
 def steps_of(workflow: dict) -> list[dict]:
     return (workflow.get("workflowData") or {}).get("templates") or []
 
@@ -116,8 +134,9 @@ def snippets_map(loc_dir: Path) -> dict[str, str]:
     """Template id → plain text, so steps that point at a template are checked too."""
     out = {}
     for sn in load(loc_dir / "snippets.json", []):
-        body = sn.get("body") or sn.get("text") or sn.get("html") or sn.get("template") or ""
-        out[sn.get("id") or sn.get("_id")] = TAG_RE.sub(" ", str(body))
+        tpl = sn.get("template") if isinstance(sn.get("template"), dict) else sn
+        body = " ".join(str(tpl.get(k) or "") for k in ("subject", "body", "html", "text"))
+        out[sn.get("id") or sn.get("_id")] = TAG_RE.sub(" ", body)
     return out
 
 
@@ -130,7 +149,7 @@ def has_user(step: dict) -> bool:
                 if key in USER_KEYS and value not in (None, "", [], {}):
                     return True
                 if key in ("userType", "user_type", "sendTo") and value in (
-                        "all", "account", "assigned", "assigned_user", "admins", "all_users"):
+                        "all", "account", "admins", "all_users", "assign"):
                     return True
                 if scan(value):
                     return True
@@ -187,6 +206,7 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
         for s in p.get("stages") or []:
             stages[s.get("id")] = f"{p.get('name')} → {s.get('name')}"
     calendars = {c.get("id"): c.get("name", "") for c in load(loc_dir / "calendars.json", [])}
+    location_tags = {str(t.get("name", "")).lower() for t in load(loc_dir / "tags.json", [])}
     index = load(loc_dir / "workflows" / "_index.json", [])
     wf_by_id = {w["id"]: w for w in index}
     known_ids = {**forms, **stages, **pipelines, **calendars,
@@ -209,25 +229,27 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
         for trig in wf.get("triggers") or []:
             if trig.get("deleted"):
                 continue
-            refs = sorted(v for _, v in id_leaves(trig.get("conditions") or trig.get("filters") or [])
-                          if isinstance(v, str) and len(v) >= 15 and " " not in v)
+            refs, trig_tags = trigger_refs(trig)
             label = trig.get("name") or trig.get("type")
             ttype = trig.get("type", "?")
             if trig.get("active") is False:
                 add("INFO", wname, label, "trigger inativo")
             named = [known_ids.get(r, f"⚠ id inexistente {r}") for r in refs]
             for r in refs:
-                if r not in known_ids and ttype in (
-                        "form_submission", "pipeline_stage_updated", "opportunity_status_changed",
-                        "appointment", "customer_booked_appointment", "survey_submission"):
+                if r not in known_ids:
                     add("ALTA", wname, label, f"trigger aponta para id que não existe nesta sub-conta: {r}")
+            for t in trig_tags:
+                if t.lower() not in location_tags:
+                    add("MÉDIA", wname, label, f"trigger usa a tag '{t}', que não existe na sub-conta "
+                                               "(nada vai disparar)")
             for n in named:
-                if "landing page" in n.lower() and "ads" not in (meta["name"] + meta.get("folder", "")).lower() \
-                        and "adwords" not in meta["name"].lower() and "facebook" not in meta["name"].lower():
+                if "landing page" in n.lower() and not re.search(r"ads|adword|facebook", meta["name"] + meta.get("folder", ""), re.I):
                     add("MÉDIA", wname, label, f"trigger no form '{n}' (form das campanhas de Ads) "
                                                "num workflow que não é de Ads")
             if meta["status"] == "published" and trig.get("active", True):
-                trigger_keys[f"{ttype} | " + ", ".join(named)].append(meta["name"])
+                extra = [json.dumps(c.get("value"), ensure_ascii=False) for c in trig.get("conditions") or []
+                         if not str(c.get("field", "")).lower().endswith("id") and "tag" not in str(c.get("field", "")).lower()]
+                trigger_keys[f"{ttype} | " + ", ".join(named + trig_tags + extra)].append(meta["name"])
 
         for step in steps_of(wf):
             stype = step.get("type", "")
@@ -236,8 +258,14 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
             text = step_text(step, snippets)
             plain = norm(TAG_RE.sub(" ", text))
 
+            raw = json.dumps(attrs, ensure_ascii=False).replace('\\"', '"')
+            if BROKEN_MERGE_RE.search(raw):
+                add("ALTA", wname, sname, "merge field quebrado pelo autolink do editor "
+                                          "(ex.: {{custom_<a href=http://values.booking>…) — lead recebe as chaves cruas")
             if stype in MESSAGE_TYPES or stype in ("sms", "email"):
                 for name, rx in foreign_res:
+                    if stype == "internal_notification" and norm(name) == "pool profits":
+                        continue  # the agency's name in a note to the owner is fine
                     if rx.search(plain):
                         add("ALTA", wname, sname, f"menciona outro negócio: “{name}”")
                 for key in sorted(set(CV_RE.findall(text))):
@@ -249,10 +277,13 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
                         add("MÉDIA", wname, sname, f"envia link de calendário ({key} = {cv_map[key][:60]}) — "
                                                   "confirmar se o cliente usa o calendário do GHL")
                 for url in URL_RE.findall(text):
-                    links[url].add(meta["name"])
+                    if not re.match(r"https?://values\.", url):
+                        links[url].add(meta["name"])
                 if stype in ("sms", "email") and not text.strip():
                     add("ALTA", wname, sname, "mensagem sem corpo")
 
+            if step.get("incompleteData"):
+                add("MÉDIA", wname, sname, "GHL marca este passo como incompleto — abrir no builder e conferir")
             if stype in USER_STEP_TYPES and not has_user(step):
                 add("ALTA", wname, sname, "nenhum usuário selecionado (notificação/tarefa não chega a ninguém)")
 
@@ -273,9 +304,9 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
                     add("ALTA", wname, sname, f"usa calendário inexistente ({ref})")
 
     for key, names in trigger_keys.items():
-        if len(names) > 1 and not key.startswith(("contact_tag | ", "manual")):
-            add("MÉDIA", " + ".join(sorted(names)), key,
-                "mesmo gatilho em mais de um workflow publicado — o lead pode receber em dobro")
+        if len(names) > 1:
+            add("INFO" if key.startswith("contact_tag | ") else "MÉDIA", " + ".join(sorted(names)), key,
+                "mesmo gatilho em mais de um workflow publicado — confirmar que não gera envio em dobro")
 
     empty_cvs = [k for k in GUIDE_VALUES if not cv_map.get(k)]
     order = {"ALTA": 0, "MÉDIA": 1, "INFO": 2}

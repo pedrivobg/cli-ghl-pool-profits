@@ -52,7 +52,7 @@ class Account:
         self.by_key = {wf_key(w["name"]): w for w in self.index}
         self.ids = {}
         for f in load(d / "forms.json", []):
-            self.ids[f.get("id")] = f"form:{f.get('name')}"
+            self.ids[f.get("id") or f.get("_id")] = f"form:{f.get('name')}"
         for p in load(d / "pipelines.json", []):
             for s in p.get("stages") or []:
                 self.ids[s.get("id")] = f"stage:{s.get('name')}"

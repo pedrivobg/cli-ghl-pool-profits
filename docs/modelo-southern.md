@@ -3,7 +3,7 @@
 Fonte: transcrição da call Edmund / Frank / Val / Pedro (outubro/2026), feita ao vivo
 na sub-conta **Southern Pool + Outdoors** sobre o snapshot **V9**. Esta lista é o
 "estado-alvo" que `scripts/pp_compare.py` usa para medir as outras sub-contas.
-Onde a call deixou algo em aberto, está marcado **[confirmar no dump]**.
+Os pontos que a call deixou em aberto foram conferidos ao vivo na Southern em 13/10.
 
 Princípios decididos na call:
 
@@ -41,10 +41,9 @@ Textos do *New Lead - Initial SMS Follow-up*:
    ("…When is a good time to chat?"). A versão com link fica como opcional para quem
    configurar calendário.
 
-Separado do workflow: o **missed-call text back nativo** do telefone do GHL (Phone settings)
-manda um SMS próprio — é o que aparece sem o ícone roxo. Na call ficou "já desliguei"
-**[confirmar no dump / nas configurações de telefone de cada sub-conta]**, para não
-duplicar com o SMS 1 acima.
+Separado do workflow: o **missed-call text back nativo** do GHL (`enableMissedCallText`
+da location) manda um SMS próprio — o que aparece sem o ícone roxo. Desligado na Southern
+na call e, em 13/10, também na Bahama, Passion, Pool Shack e Pool Keepers.
 
 ## 02 — Lead Nurturing
 
@@ -72,27 +71,37 @@ lembrete **em draft**; calendários continuam existindo como opção. A etapa **
 
 ## Pipeline **Pool Leads** — ordem final
 
-New Lead → In Communication → **No Response / Follow-up** (nova) → **Scheduled** →
-**Quote Sent** (Scheduled e Quote Sent trocaram de posição) → No-Show → **Won** (variantes
-por tipo, todas com 🏆 e a mesma cor) → Recurring Customer → Not Qualified → Lost → Spam.
+Confirmado ao vivo na Southern (13/10):
 
-Won por tipo de serviço: foram criadas variantes de Won para **Weekly Service**,
-**One-time Repair / Install** e **Pool Construction / Remodel** (Edmund citou uma quarta,
-*New Construction*). Frank preferia tag/dropdown em vez de etapas; o que ficou salvo
-**[confirmar no dump]**. Motivo: tempo do pedido de review e copy de boas-vindas mudam
-por tipo.
+🆕 New Lead → **No Response - Follow Up** → 💬 In Communication → 📅 Scheduled → 💰 Quote Sent →
+**No Show** → 🏆 Won - Weekly Pool Service → 🏆 Won - One Time Repair or Install →
+🏆 Won - Pool Construction or Remodeling → 🔄 Recurring Customer → ❄ Not Qualified Stage → ❌ Lost → 🚫 Spam
+
+Won por tipo de serviço: ficaram **3 etapas** (Weekly, One Time Repair or Install, Pool
+Construction or Remodeling). O *Review Request* tem um gatilho por etapa e espera
+30 / 7-8 / 45 dias conforme o tipo. O *Won Stage* (boas-vindas) só dispara em Weekly.
 
 Como o dono usa (explicar nas calls): ligou e não falou → No Response; falou → In
 Communication (nada é enviado); agendou visita → Scheduled (nada é enviado); mandou
 orçamento → Quote Sent (follow-up sai); fechou → Won; cliente não estava → No-Show.
 
+## Forms → pipeline (regra aplicada em todas as contas, `scripts/pp_forms.py`)
+
+Todo form de lead tem **exatamente um** workflow publicado escutando. O que nenhum outro
+escuta vai para o *Website Form Fill To Pipeline*. O Landing Page (form do site `go.*` e
+das campanhas) fica com o *AdWords Form* onde ele está publicado; onde o AdWords está em
+draft (Southern, Pool Shack para a cópia usada no site) vai para o Website Form Fill.
+
 ## 05 — Customer Reviews
 
 - **Review Request**: condição por tipo de cliente (Won) com esperas diferentes —
   manutenção semanal ~**30 dias**, reparo/instalação ~**1 semana**, construção/reforma
-  ~**6 semanas**. Valores finais definidos com cada cliente. Estava sendo montado no fim
-  da call **[confirmar no dump]**.
-- Review Response – Negative / Positive: OK.
+  ~**6 semanas**. Valores finais definidos com cada cliente. Confirmado ao vivo: 3 gatilhos
+  (um por etapa Won) com esperas de 30 / 7-8 / 45 dias.
+- Review Response – Negative: a tarefa vinha com vencimento em 1970 (`{{right_now.hour}}`);
+  corrigido para "vence agora" em todas as contas (13/10).
+- Review Response – Positive: o SMS promete *"every referral earns you a free month of
+  service"* — confirmar com cada cliente (ver docs/TODO.md).
 - **Reputation → Settings → e-mail de review**: o default trazia **logo de outra empresa**.
   Já corrigido no snapshot (usa `{{custom_values.logo_url}}` ou fica em branco), mas contas
   criadas antes (como a Southern) precisam da correção manual.
