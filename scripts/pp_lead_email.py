@@ -21,6 +21,7 @@ import uuid
 
 from _common import ROOT, load_dotenv, location_dirs
 from pp_audit import load
+from pp_won_stage import DROP
 
 from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency
 
@@ -115,7 +116,60 @@ def apply(a: Agency, do: bool) -> int:
             and len(after["workflowData"]["templates"]) == len(tpl) + 1
         bad += not ok
         print(f"      {'✓' if ok else '✗ VERIFICAR'} {after['status']} · {len(after['workflowData']['templates'])} passos")
+    for name in FLOWS:  # notifications after the card, so tags/card land in ~2 s (Val, 14/10)
+        wid = flows[name]
+        live = a.workflow(loc, wid)
+        tpl = live["workflowData"]["templates"]
+        new = notify_after_card(tpl)
+        if [s["id"] for s in chain_of(new)] == [s["id"] for s in chain_of(tpl)]:
+            continue
+        print(f"   {name}: {' → '.join(s['name'] for s in chain_of(new))}")
+        if not do:
+            continue
+        trs = [t for t in a.triggers(loc, wid) if not t.get("deleted")]
+        (bdir / f"workflow-{wid}-{stamp}-order.json").write_text(json.dumps({"workflow": live, "triggers": trs}))
+        put(a, loc, wid, live, new)
+        for t in trs:
+            body = {k: v for k, v in t.items() if k not in DROP}
+            body.update(workflowId=wid, workflow_id=wid, location_id=loc, targetActionId=chain_of(new)[0]["id"],
+                        actions=[{"workflow_id": wid, "type": "add_to_workflow"}])
+            a.call("PUT", BACKEND, f"/workflow/{loc}/trigger/{t['id']}", body=body)
+        time.sleep(4)
+        after = a.workflow(loc, wid)["workflowData"]["templates"]
+        ok = [s["id"] for s in chain_of(after)] == [s["id"] for s in chain_of(new)] and len(chain_of(after)) == len(after)
+        bad += not ok
+        print(f"      {'✓' if ok else '✗ VERIFICAR'} ordem nova")
     return bad
+
+
+def chain_of(templates: list[dict]) -> list[dict]:
+    by_id = {s["id"]: s for s in templates}
+    chain = [next(s for s in templates if not s.get("parentKey"))]
+    while chain[-1].get("next"):
+        chain.append(by_id[chain[-1]["next"]])
+    return chain
+
+
+def notify_after_card(templates: list[dict]) -> list[dict]:
+    """Move internal notifications that run before 'Create Or Update Opportunity' to right after it."""
+    chain = json.loads(json.dumps(chain_of(templates)))
+    if len(chain) != len(templates) or any(s["type"] == "if_else" for s in chain):
+        return templates
+    card = next((i for i, s in enumerate(chain) if s["type"] == "create_opportunity"), None)
+    early = [s for s in chain[:card or 0] if s["type"] == "internal_notification"]
+    if not early:
+        return templates
+    rest = [s for s in chain if s not in early]
+    at = rest.index(next(s for s in rest if s["type"] == "create_opportunity")) + 1
+    chain = rest[:at] + early + rest[at:]
+    for i, s in enumerate(chain):
+        s["order"] = i
+        s.pop("parentKey", None)
+        s.pop("next", None)
+        if i:
+            s["parentKey"] = chain[i - 1]["id"]
+            chain[i - 1]["next"] = s["id"]
+    return chain
 
 
 def run_test(a: Agency, to: str) -> int:
