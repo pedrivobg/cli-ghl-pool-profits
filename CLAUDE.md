@@ -50,7 +50,13 @@
 - IVR: gatilho `ivr_incoming_call` publicado liga o número ao workflow (`inboundCallService`). Com IVR,
   toda ligação de entrada vira "completed" → gatilhos de chamada perdida param; marcar `missed call`
   dentro do IVR (`scripts/pp_ivr.py`). Número externo em `ivr_connect_call.customNumbers`:
-  `{country, phone (E.164), displayValue, isValid}`.
+  `{country, phone (E.164), displayValue, isValid}`. Não ligar o IVR para um número que é do próprio
+  IVR (loop): usar o número para onde a linha encaminhava.
+- Templates (snippets): a leitura atrasa ~10-20 s depois do PUT (`pp_snippet_replace.py` espera).
+- If/else por gatilho: `conditionType: "trigger"`, `conditionValue: <id do gatilho>` (Won Stage e
+  Review Request ramificam assim pelas 3 etapas Won). Gatilho novo precisa de `workflowId`,
+  `workflow_id`, `location_id`, `actions` no corpo — sem isso o PUT dá "Workflow not found".
+- Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
 
 ## Outra agência: Pool Duck
 

@@ -5,6 +5,10 @@
     ./.venv/bin/python scripts/pp_ivr.py --only "Southern Pool" --apply      # creates it as DRAFT
     ./.venv/bin/python scripts/pp_ivr.py --only "Southern Pool" --apply --publish
 
+LIVE IN SOUTHERN (14/10): Pedro replaced the spoken menu with a recording (WhatsApp audio) and
+Ed set 1 → Brett's cell (214) 893-2315, 2 / no key → company line (214) 308-1744. Do NOT rerun
+--apply there: it rebuilds from scratch and drops both. Edit the live version instead.
+
 Menu: 1 = new service, repairs or construction quotes; 2 = existing customers; no key = same
 as 1 (a real caller is never dropped). Every branch rings the line the number forwards to
 today and, if nobody answers, tags "missed call" and takes a voicemail.
