@@ -47,3 +47,11 @@
 - Merge fields em link de SMS: `{{contact.phone}}` sai "(480) 555-1234" (espaço quebra o link);
   usar `{{contact.phone_raw}}`. Filtros liquid (`| url_encode`) fazem o GHL não enviar o SMS.
 - Link de review do Google: `writereview?placeid=<location.googlePlacesId>` da própria conta.
+
+## Outra agência: Pool Duck
+
+- Token Firebase próprio, **fora do repo** (arquivo de env carregado com `set -a; . <arquivo>`); o
+  cache de token é por refresh token (`.token-cache-<hash>.json`), então as duas agências não se
+  misturam. `GHL_DUMP_DIR=dump/poolduck` mantém os dumps fora do alcance dos scripts `pp_*`.
+- Scripts `pd_*` (Lakewood Ranch); registro e pendências em `docs/poolduck-lakewood-ranch.md`,
+  incluindo a API de funis (clone entre sub-contas, salvar página com `pageType: "live"`).

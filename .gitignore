@@ -25,4 +25,4 @@ backup/
 reports/
 
 # Token de acesso em cache (segredo)
-.token-cache.json
+.token-cache*.json

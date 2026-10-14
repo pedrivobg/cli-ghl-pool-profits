@@ -11,7 +11,9 @@ sys.path.insert(0, str(ROOT))
 
 from cli_anything.gohighlevel.utils.agency import Agency, match_location, slugify  # noqa: E402,F401
 
-DUMP = ROOT / "dump"
+# Another agency's dumps go elsewhere (e.g. GHL_DUMP_DIR=dump/poolduck) so the Pool Profits
+# scripts, which scan every folder in dump/, never pick them up.
+DUMP = Path(os.environ.get("GHL_DUMP_DIR") or ROOT / "dump").resolve()
 REPORTS = ROOT / "reports"
 PRIORITY = json.loads((ROOT / "config" / "priority.json").read_text())
 

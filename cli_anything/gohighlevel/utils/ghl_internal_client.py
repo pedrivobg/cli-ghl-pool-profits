@@ -7,6 +7,7 @@ EXPERIMENTAL: Gated behind --experimental flag in CLI.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import ssl
@@ -48,8 +49,12 @@ class TokenManager:
         self._token_time: float = 0
 
     # Google rate-limits token exchanges per minute, and every script run used to do
-    # one; the ID token is shared between runs through this gitignored file.
-    CACHE = os.path.join(os.path.dirname(__file__), "..", "..", "..", ".token-cache.json")
+    # one; the ID token is shared between runs through this gitignored file — one per
+    # refresh token, so two agencies never pick up each other's token.
+    @property
+    def CACHE(self) -> str:
+        key = hashlib.sha256(os.environ.get("GHL_FIREBASE_REFRESH_TOKEN", "").strip().encode()).hexdigest()[:12]
+        return os.path.join(os.path.dirname(__file__), "..", "..", "..", f".token-cache-{key}.json")
 
     def _read_cache(self) -> None:
         try:
