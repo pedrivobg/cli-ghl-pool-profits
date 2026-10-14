@@ -47,6 +47,10 @@
 - Merge fields em link de SMS: `{{contact.phone}}` sai "(480) 555-1234" (espaço quebra o link);
   usar `{{contact.phone_raw}}`. Filtros liquid (`| url_encode`) fazem o GHL não enviar o SMS.
 - Link de review do Google: `writereview?placeid=<location.googlePlacesId>` da própria conta.
+- IVR: gatilho `ivr_incoming_call` publicado liga o número ao workflow (`inboundCallService`). Com IVR,
+  toda ligação de entrada vira "completed" → gatilhos de chamada perdida param; marcar `missed call`
+  dentro do IVR (`scripts/pp_ivr.py`). Número externo em `ivr_connect_call.customNumbers`:
+  `{country, phone (E.164), displayValue, isValid}`.
 
 ## Outra agência: Pool Duck
 
