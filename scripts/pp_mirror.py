@@ -320,6 +320,13 @@ class Mirror:
         for u in self.m.users:
             self.ids[u["id"]] = main
         self.main_user = main
+        # the Review Request carries a hardcoded Google review link (placeid=…): it must
+        # point at the target's own Google place, never the model's
+        m_place, t_place = self.m.location.get("googlePlacesId"), self.t.location.get("googlePlacesId")
+        if m_place and t_place:
+            self.ids[m_place] = t_place
+        elif m_place:
+            self.problems.append("alvo sem googlePlacesId: o link de review copiado aponta para o Google do modelo")
 
     def map_workflows(self) -> None:
         for w in self.m.index:

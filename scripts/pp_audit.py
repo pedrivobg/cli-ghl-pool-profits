@@ -303,6 +303,12 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
                 if key.lower() in ("calendarid", "calendar_id") and ref and ref not in calendars:
                     add("ALTA", wname, sname, f"usa calendário inexistente ({ref})")
 
+            own_place = location.get("googlePlacesId")
+            for place in re.findall(r"placeid=([\w-]+)", json.dumps(attrs)):
+                if own_place and place != own_place:
+                    add("ALTA", wname, sname, f"link de review do Google aponta para OUTRO negócio (placeid={place}, "
+                                              f"o desta conta é {own_place})")
+
     for key, names in trigger_keys.items():
         if len(names) > 1:
             add("INFO" if key.startswith("contact_tag | ") else "MÉDIA", " + ".join(sorted(names)), key,

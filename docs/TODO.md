@@ -41,6 +41,14 @@ Só entrou aqui o que não deu para resolver daqui depois de tentar.
    recado "you've reached BluVantage Pool Service". Não dispara em nenhuma conta (os números
    do gatilho não são delas), mas deve ser apagado ou refeito no snapshot.
 
+## Teste manual de 1 minuto (o captcha do GHL impede automatizar)
+
+7c. **Review gate**: na Test Snapshot, abrir o link do NPS para um contato de teste,
+    responder 5 e conferir que o campo NPS Score do contato ficou 5 — prova que a nota
+    chega no contato e o gate funciona. Feito uma vez, vale para as 6 contas (mesmo form).
+7d. **Kari (Southern)**: marquei em 🏆 Won - Weekly Pool Service (ela pediu "pool service").
+    Se foi reparo/instalação, arrastar para o Won certo — com a tag nada dispara.
+
 ## Manual no GHL (sem API)
 
 8. **Reputation → Settings → e-mail de review**: conferir o logo nas contas antigas

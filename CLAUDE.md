@@ -38,3 +38,12 @@
 - SMS de workflow usam o template (`attributes.template_id`) — o texto vive no template;
   e-mail guarda cópia do html no passo **e** no template (corrigir os dois).
 - Nunca rodar `pp_e2e.py` em conta de cliente (dispara mensagens e notificações reais).
+- Filtro de gatilho por tag (formato da UI): `{"field": "contact.tags", "id": "doesnot-have-tag",
+  "title": "Doesn't Have Tag", "type": "select", "operator": "index-of-false", "value": "<tag>"}`
+  (Has Tag: `index-of-true`, id `has-tag`). Funciona em `pipeline_stage_updated`.
+- Forms: ler `GET backend /forms/{id}`; gravar `POST backend /forms/{id}` com `{name, formData}`
+  (sem `locationId`); criar `POST backend /forms/` (resposta `{"form": …}`). Campo customizado
+  no form = `fields[].tag` com o id do custom field DA CONTA (snapshot traz id da origem).
+- Merge fields em link de SMS: `{{contact.phone}}` sai "(480) 555-1234" (espaço quebra o link);
+  usar `{{contact.phone_raw}}`. Filtros liquid (`| url_encode`) fazem o GHL não enviar o SMS.
+- Link de review do Google: `writereview?placeid=<location.googlePlacesId>` da própria conta.
