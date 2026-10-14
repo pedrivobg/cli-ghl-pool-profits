@@ -85,6 +85,13 @@ Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao
 18. Chris Kelleher (lead do site de hoje, 14/10) já foi para o pipeline e a equipe recebeu o texto;
     vale confirmar que alguém ligou para ele.
 
+## Orange Tree
+
+19. **Orange Tree**: a Val reenvia o form do Facebook com dados novos e confirma o e-mail em
+    orangetreepools@gmail.com (olhar Spam/Promoções). O celular do cliente (623) 974-5300 está com
+    STOP desde 09/03: se quiserem voltar a receber os alertas por SMS, o cliente manda START para o
+    número da conta. Confira na sua caixa o e-mail de teste ("🚨 New Facebook lead: TEST lead email").
+
 ## Concluído desde a versão anterior
 
 - "Free month of service" removido do review positivo nas 16 contas do snapshot V9 (pedido do Ed).
@@ -92,7 +99,8 @@ Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao
 - IVR da Southern em todas as linhas, com o áudio; 1 → Brett, 2 → linha da empresa.
 - Clique no card da oportunidade: Labs ativado por você.
 - Duplicatas "DUPLICADO - não publicar" da Pool Shack e Pool Keepers: apagadas (conferido 14/10).
-- Orange Tree: form/número do Google Ads virou Facebook (tags, alerta, origem).
+- Orange Tree: form/número do Google Ads virou Facebook (tags, alerta, origem); e-mail de lead para o
+  cliente nos 3 caminhos (Facebook, site, chat).
 - Stay Fresh: lista de clientes ativos importada.
 - BluVantage: textos NEW LEAD sem spam/clientes; form do site ligado ao pipeline; aviso do form do
   Google Ads com destinatário; página de renovação conferida (no ar desde 12/10).
