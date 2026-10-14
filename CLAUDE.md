@@ -57,6 +57,13 @@
   Review Request ramificam assim pelas 3 etapas Won). Gatilho novo precisa de `workflowId`,
   `workflow_id`, `location_id`, `actions` no corpo — sem isso o PUT dá "Workflow not found".
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
+- Pular spam/cliente num workflow: if/else com `contact_detail` / `tags` / `index-of-false` (uma condição
+  por tag) envolvendo a cadeia, em vez de filtro de gatilho (vale para qualquer gatilho; testado).
+  Mid-chain: `parent` = branch que contém, `parentKey` = passo anterior (`scripts/pp_lead_alerts.py`).
+- Pôr um contato num workflow publicado: `POST services /contacts/{id}/workflow/{wid}` com `{}`.
+  O SMS de "internal notification" aparece na conversa do telefone do usuário (status delivered).
+- Submissões de form: `GET services /forms/submissions?locationId&startAt&endAt` (`others` traz os
+  campos e a página de origem). Aviso por e-mail do form: `formData.emailNotifications`.
 
 ## Outra agência: Pool Duck
 
