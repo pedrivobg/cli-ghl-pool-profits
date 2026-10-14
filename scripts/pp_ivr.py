@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phone menu (IVR) for a sub-account's main line, built like Nortex's "IVR SPAM Detection".
+"""Phone menu (IVR) for every line of a sub-account, built like Nortex's "IVR SPAM Detection".
 
     ./.venv/bin/python scripts/pp_ivr.py --only "Southern Pool"              # plan
     ./.venv/bin/python scripts/pp_ivr.py --only "Southern Pool" --apply      # creates it as DRAFT
@@ -147,7 +147,7 @@ def main() -> int:
     assert forward, "main line has no forwarding number to ring"
     display = f"({forward[2:5]}) {forward[5:8]}-{forward[8:]}"
     business = SPOKEN.get(loc) or load(d / "location.json", {})["name"]
-    print(f"== {business}: IVR on {main_line['phoneNumber']} ({main_line.get('friendlyName')}), rings {display}")
+    print(f"== {business}: IVR on {[n['phoneNumber'] for n in numbers]} (todas as linhas), rings {display}")
     steps = build(business, forward, display)
     for s in steps:
         print(f"   [{s['type']}] {s['name']}")
@@ -175,7 +175,7 @@ def main() -> int:
         "name": NAME, "version": version, "status": status, "parentId": parent, "allowMultiple": True,
         "workflowData": {"templates": steps}})
     trig = {"type": "ivr_incoming_call", "name": "Start IVR Trigger", "masterType": "highlevel", "schedule_config": {},
-            "conditions": [{"operator": "contains-any", "field": "inbound_number", "value": [main_line["phoneNumber"]],
+            "conditions": [{"operator": "contains-any", "field": "inbound_number", "value": [n["phoneNumber"] for n in numbers],
                             "title": "In phone number", "type": "multiselect", "id": "inbound-twilio-number"}],
             "actions": [{"workflow_id": wid, "type": "add_to_workflow"}], "workflowId": wid, "workflow_id": wid,
             "location_id": loc, "targetActionId": steps[0]["id"]}

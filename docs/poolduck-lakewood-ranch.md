@@ -79,3 +79,25 @@ SMS para o lead do FB: "Hi {{contact.first_name}}, this is Pool Duck in Lakewood
 - Imagem na mídia da conta: `POST services /medias/files/ {name, contentType, parentId, altType,
   altId, size}` → PUT no `url` assinado → `POST services /medias/files/verify {altId, altType, id}`.
 - Elementos (seção/linha/coluna/elemento) escondem com `extra.visibility.value.hideDesktop/hideMobile`.
+
+# Campanha de review — clientes "turtle rock" (14/10)
+
+Pedido do Ed (09/10): campanha de pedido de review para os clientes atuais (tag `turtle rock`, 309),
+excluindo a lista da Connie (e-mail de 07/10, 38 nomes). `scripts/pd_lwr_reviews.py`.
+
+- Exclusões: 37 contatos com a tag `exclude from reviews` (36 dos 38 nomes; lista e critério em
+  `dump/poolduck/lwr-review-exclusions.json`). Grafias diferentes aceitas: Weinstraub → AARON
+  WEINTRAUB, Clancy → WENDY CLANCEY, Brenda Callahan → BRENDAN CALLAHAN (único Callahan).
+  "Ron McQuaid" não existe: excluídas Elizabeth McQuaid e "E MCQUAID" (mesma família — confirmar).
+  Randal Briggs existe sem `turtle rock` (excluído mesmo assim). **Não estão na conta**: Carlos
+  Martinez e Chris/Penny Steinbach.
+- `public_review_link` = Google "Pool Duck of Lakewood Ranch" (writereview?placeid=ChIJd2NJ…).
+- Workflow **"Review Request Campaign - Turtle Rock"** (publicado, pasta 7. Reviews & Referrals):
+  gatilho tag `send review request` + filtro "Doesn't Have Tag: exclude from reviews" → SMS + e-mail
+  → 4 dias → SMS lembrete. Sem incentivo e sem filtro por nota (contra a política do Google); o
+  "Google Review Campaign" do snapshot (sorteio de US$150) **não** foi usado.
+- Teste real: contato com o e-mail do Pedro recebeu o e-mail (status sent, de
+  billing+lakewoodranch.poolduck.com@lc.poolduck.com); contato com a tag de exclusão não recebeu
+  nada. Contatos de teste apagados.
+- **Não enviado**: aguardando o cliente aprovar os textos. Para disparar (274 clientes):
+  `pd_lwr_reviews.py launch` (marca `send review request` em quem tem `turtle rock` e não está excluído).
