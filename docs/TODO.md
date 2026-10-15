@@ -97,6 +97,18 @@ Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao
 20. Tag `website & gbp` na linha Website & GBP está na Pool Shack (`pp_line_tag.py`). Se quiserem nas
     outras contas (e no master do snapshot), rodar com `--only "<conta>" --apply`.
 
+## 15/10
+
+21. **Pool Keepers — linha 805-262-9070 cai**: o encaminhamento está certo, mas a ligação nem chega ao
+    GHL. Conferir no painel: Pool Keepers → Settings → Phone System (aviso de trial/suspensão/verificação)
+    e Agency → Billing → carteira da Pool Keepers (Twilio rebilling ligado). Depois ligar de novo e me
+    passar hora + número de origem.
+22. **Orange Tree**: conferir na sua caixa o e-mail "🚨 New Facebook lead: TEST lead email" enviado pela
+    conta da Orange Tree. Chegou → a conta envia; o cliente procura em Spam/Promoções ou filtro do Gmail.
+    Não chegou → problema no envio de e-mail da sub-conta (Settings → Email Services).
+23. **Sunwave**: a Val reenviar o form da landing (tags agora). Decidir se ligação da linha "Adwords"
+    (407-864-6909) deve ganhar `adwords` + conversão: publicar o "AdWords Call In - New Lead" com esse número.
+
 ## Concluído desde a versão anterior
 
 - "Free month of service" removido do review positivo nas 16 contas do snapshot V9 (pedido do Ed).

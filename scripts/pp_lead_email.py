@@ -2,6 +2,7 @@
 """Orange Tree (Val, 14/10): every lead form also e-mails the client.
 
     ./.venv/bin/python scripts/pp_lead_email.py test --to pedro@poolprofits.com   # Test Snapshot
+    ./.venv/bin/python scripts/pp_lead_email.py test --to pedro@poolprofits.com --loc nptD4SfaNCSR95LjTJsb  # sent by Orange Tree
     ./.venv/bin/python scripts/pp_lead_email.py plan
     ./.venv/bin/python scripts/pp_lead_email.py apply
 
@@ -172,9 +173,9 @@ def notify_after_card(templates: list[dict]) -> list[dict]:
     return chain
 
 
-def run_test(a: Agency, to: str) -> int:
+def run_test(a: Agency, to: str, loc: str = TEST_LOC) -> int:
     """Throwaway workflow in Test Snapshot: tag → SMS-less alert chain → e-mail to `to`."""
-    loc, go = TEST_LOC, "lead email test go"
+    go = "lead email test go"
     try:
         a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": go})
     except Exception:
@@ -216,13 +217,14 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["test", "plan", "apply"])
     parser.add_argument("--to", help="test: inbox that gets the sample e-mail")
+    parser.add_argument("--loc", default=TEST_LOC, help="test: location that sends it (default Test Snapshot)")
     args = parser.parse_args()
     load_dotenv()
     a = Agency()
     if args.mode == "test":
         if not args.to:
             parser.error("--to is required for test")
-        return run_test(a, args.to)
+        return run_test(a, args.to, args.loc)
     return 1 if apply(a, args.mode == "apply") else 0
 
 
