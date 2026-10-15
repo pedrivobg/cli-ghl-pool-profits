@@ -24,7 +24,8 @@ from pp_audit import load
 from cli_anything.gohighlevel.utils.agency import BACKEND, Agency
 
 LEAD_FORM_HINTS = ("main website form", "website form", "landing page", "service page - contact",
-                   "lead gen", "contact form", "contact us", " lp", "google ads")
+                   "lead gen", "contact form", "contact us", " lp", "google ads",
+                   "quote")  # Passion's site forms "PPC - Home Quote" / "PPC - Universal Quote" (15/10)
 NOT_LEADS = ("nps", "post-visit", "onboarding", "appointment booking")
 WORKFLOW = "Website Form Fill To Pipeline"
 DROP = ("id", "_id", "date_added", "date_updated", "deleted", "origin_id", "company_id",
