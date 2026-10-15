@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Orange Tree (Val, 14/10): every lead form also e-mails the client.
+"""Lead forms also e-mail the client (Orange Tree: Val, 14/10; BluVantage: Vanessa, 15/10).
 
     ./.venv/bin/python scripts/pp_lead_email.py test --to pedro@poolprofits.com   # Test Snapshot
     ./.venv/bin/python scripts/pp_lead_email.py test --to pedro@poolprofits.com --loc nptD4SfaNCSR95LjTJsb  # sent by Orange Tree
-    ./.venv/bin/python scripts/pp_lead_email.py plan
-    ./.venv/bin/python scripts/pp_lead_email.py apply
+    ./.venv/bin/python scripts/pp_lead_email.py test --to pedro@poolprofits.com --loc KLFYmoVapqQgX3T0AnLn --only BluVantage
+    ./.venv/bin/python scripts/pp_lead_email.py plan --only "Orange Tree"
+    ./.venv/bin/python scripts/pp_lead_email.py apply --only "Orange Tree"
 
 Found live: no form and no workflow sent e-mail (forms: emailNotifications false; workflows: SMS only);
 the Facebook form's SMS went to the contact owner, which these contacts never have; and the client's
@@ -12,6 +13,11 @@ phone (623) 974-5300 answered "Stop" to an alert on 09/03, so no internal SMS re
 This adds an internal e-mail notification (custom e-mail, same format as Passion's live ones) right
 after the existing alert in each lead workflow, and points the Facebook form SMS to the account owner.
 Backup of each workflow in backup/<slug>/ first.
+
+BluVantage: Vanessa found Chris Kelleher's form only in the contact's Activity log and asked for the
+details by e-mail. One e-mail per address (custom e-mail) with every field of the form (service and
+message included), after the NEW LEAD text of the website and Google Ads forms; and the forms' own
+"show submission in the Conversations feed" option turned on, so the answers sit in the conversation.
 """
 from __future__ import annotations
 
@@ -26,23 +32,43 @@ from pp_won_stage import DROP
 
 from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency
 
-ACCOUNT = "Orange Tree"
-TO = "orangetreepools@gmail.com"
-SMS_TO = ["0ijzATNg4PxprYIhQnhz"]  # Stephen Sherman (both users share the same phone)
 P = '<p style="margin:0px;font-family:verdana,geneva,sans-serif;font-size:16px;">{}</p>'
 DETAILS = ["Name: {{contact.name}}", "Phone: {{contact.phone}}", "Email: {{contact.email}}",
            "Address: {{contact.address1}} {{contact.city}} {{contact.postal_code}}", "Source: {{contact.source}}"]
-FLOWS = {  # workflow → (subject, headline, extra lines)
-    "Facebook Form - New Lead": ("🚨 New Facebook lead: {{contact.name}}", "🚨 NEW LEAD FROM FACEBOOK 🚨", []),
-    "Website Form Fill To Pipeline": ("🚨 New website lead: {{contact.name}}", "🚨 NEW LEAD FROM YOUR WEBSITE 🚨", []),
-    "Incoming Chat To Pipeline": ("💬 New web chat: {{contact.name}}", "💬 NEW WEB CHAT REQUEST 💬",
-                                  ["Message: {{message.body}}"]),
+BV_DETAILS = ["Name: {{contact.name}}", "Phone: {{contact.phone}}", "Email: {{contact.email}}",
+              "Address: {{contact.address1}}, {{contact.city}}, {{contact.state}} {{contact.postal_code}}"]
+ACCOUNTS = {
+    "Orange Tree": {
+        "to": ["orangetreepools@gmail.com"],
+        "sms_to": ["0ijzATNg4PxprYIhQnhz"],  # Stephen Sherman (both users share the same phone)
+        "reorder": True,
+        "flows": {  # workflow → (subject, headline, lines)
+            "Facebook Form - New Lead": ("🚨 New Facebook lead: {{contact.name}}", "🚨 NEW LEAD FROM FACEBOOK 🚨", DETAILS),
+            "Website Form Fill To Pipeline": ("🚨 New website lead: {{contact.name}}", "🚨 NEW LEAD FROM YOUR WEBSITE 🚨",
+                                              DETAILS),
+            "Incoming Chat To Pipeline": ("💬 New web chat: {{contact.name}}", "💬 NEW WEB CHAT REQUEST 💬",
+                                          DETAILS + ["Message: {{message.body}}"]),
+        },
+    },
+    "BluVantage": {
+        "to": ["vanessa@bluvantagepools.com", "paul@bluvantagepools.com"],
+        "flows": {
+            "Website Form Fill To Pipeline": (
+                "🚨 New website lead: {{contact.name}}", "🚨 NEW LEAD FROM THE WEBSITE FORM 🚨",
+                BV_DETAILS + ["Service: {{contact.which_services_are_you_interested_in}}",
+                              "Message: {{contact.multi_line_409w}}", "Form: {{contact.source}}"]),
+            "AdWords Form - New Lead": (
+                "🚨 New Google Ads lead: {{contact.name}}", "🚨 NEW LEAD FROM GOOGLE ADS 🚨",
+                BV_DETAILS + ["Form: Google Ads landing page (go.bluvantagepools.com)"]),
+        },
+        "feed_forms": ["Footer Form - BluVantage", "FORM - GOOGLE ADS"],
+    },
 }
 TEST_LOC = "hmzX5j1dPhOQKX2dH4kf"  # Test Snapshot
 
 
-def email_step(subject: str, headline: str, extra: list[str], to: str) -> dict:
-    html = P.format(f"<strong>{headline}</strong>") + "<br/>" + "".join(P.format(x) for x in DETAILS + extra)
+def email_step(subject: str, headline: str, lines: list[str], to: str) -> dict:
+    html = P.format(f"<strong>{headline}</strong>") + "<br/>" + "".join(P.format(x) for x in lines)
     return {"id": str(uuid.uuid4()), "name": "New Lead Email", "type": "internal_notification",
             "attributes": {"type": "email", "email": {"isCloned": False, "html": html, "to": to,
                                                        "userType": "custom_email", "subject": subject,
@@ -50,20 +76,27 @@ def email_step(subject: str, headline: str, extra: list[str], to: str) -> dict:
 
 
 def insert_after(templates: list[dict], after_id: str, step: dict) -> list[dict]:
-    """Linear chain only: step goes between after_id and its next."""
+    """Step goes between after_id and its next, in the same chain (root or inside a branch)."""
     out = json.loads(json.dumps(templates))
-    if any(s["type"] == "if_else" for s in out):
-        raise SystemExit("workflow has branches — not inserting blindly")
     by_id = {s["id"]: s for s in out}
     prev = by_id[after_id]
+    if isinstance(prev.get("next"), list):
+        raise SystemExit("cannot insert after a condition node")
     step = dict(step, parentKey=prev["id"], order=prev["order"] + 1)
+    if prev.get("parent"):
+        step["parent"] = prev["parent"]
     if prev.get("next"):
         step["next"] = prev["next"]
         by_id[prev["next"]]["parentKey"] = step["id"]
     prev["next"] = step["id"]
-    for s in out:
-        if s["order"] > prev["order"]:
-            s["order"] += 1
+    chain, nxt = [], step.get("next")
+    while isinstance(nxt, str):  # shift the orders of what follows in this chain
+        chain.append(by_id[nxt])
+        nxt = by_id[nxt].get("next")
+    if any(isinstance(s.get("next"), list) for s in chain):
+        raise SystemExit("a condition follows the insertion point — not shifting orders blindly")
+    for s in chain:
+        s["order"] += 1
     return out + [step]
 
 
@@ -78,32 +111,41 @@ def put(a: Agency, loc: str, wid: str, live: dict, templates: list[dict]) -> Non
         "workflowData": {"templates": templates}})
 
 
-def apply(a: Agency, do: bool) -> int:
-    d = location_dirs([ACCOUNT])[0]
+def apply(a: Agency, account: str, do: bool) -> int:
+    cfg = ACCOUNTS[account]
+    d = location_dirs([account])[0]
     loc = load(d / "location.json", {})["id"]
     flows = {w["name"]: w["id"] for w in a.workflows(loc)}
     stamp = time.strftime("%Y%m%d-%H%M%S")
     bdir = ROOT / "backup" / d.name
     bdir.mkdir(parents=True, exist_ok=True)
     bad = 0
-    for name, (subject, headline, extra) in FLOWS.items():
+    print(f"== {d.name}")
+    for name, (subject, headline, lines) in cfg["flows"].items():
         wid = flows[name]
         live = a.workflow(loc, wid)
         tpl = live["workflowData"]["templates"]
-        if any(s["attributes"].get("type") == "email" and s["attributes"]["email"].get("to") == TO
-               for s in tpl if s["type"] == "internal_notification"):
-            print(f"   {name}: já manda e-mail para {TO}")
+        have = {s["attributes"]["email"].get("to") for s in tpl
+                if s["type"] == "internal_notification" and s["attributes"].get("type") == "email"}
+        missing = [to for to in cfg["to"] if to not in have]
+        if not missing:
+            print(f"   {name}: já manda e-mail para {cfg['to']}")
             continue
         alert = alert_of(tpl)
-        new = insert_after(tpl, alert["id"], email_step(subject, headline, extra, TO))
-        fix_sms = alert["attributes"]["sms"].get("userType") == "assign"
+        new, after_id = tpl, alert["id"]
+        for to in missing:
+            step = email_step(subject, headline, lines, to)
+            step["name"] = f"New Lead Email ({to.split('@')[0]})" if len(cfg["to"]) > 1 else "New Lead Email"
+            new = insert_after(new, after_id, step)
+            after_id = step["id"]
+        fix_sms = cfg.get("sms_to") and alert["attributes"]["sms"].get("userType") == "assign"
         if fix_sms:
             sms = next(s for s in new if s["id"] == alert["id"])
             sms["attributes"]["sms"].pop("assignedOwners", None)
-            sms["attributes"]["sms"].update(userType="user", selectedUser=SMS_TO)
+            sms["attributes"]["sms"].update(userType="user", selectedUser=cfg["sms_to"])
             sms.pop("incompleteData", None)
-        print(f"   {name} [{live['status']}]: + e-mail para {TO} depois de '{alert['name']}'"
-              + (" · SMS: dono do contato → Stephen" if fix_sms else ""))
+        print(f"   {name} [{live['status']}]: + e-mail para {missing} depois de '{alert['name']}'"
+              + (" · SMS: dono do contato → usuário" if fix_sms else ""))
         if not do:
             continue
         trs = [t for t in a.triggers(loc, wid) if not t.get("deleted")]
@@ -111,13 +153,15 @@ def apply(a: Agency, do: bool) -> int:
         put(a, loc, wid, live, new)
         time.sleep(4)
         after = a.workflow(loc, wid)
-        got = [s for s in after["workflowData"]["templates"] if s["type"] == "internal_notification"
-               and s["attributes"].get("type") == "email"]
-        ok = len(got) == 1 and got[0]["attributes"]["email"]["to"] == TO and after["status"] == live["status"] \
-            and len(after["workflowData"]["templates"]) == len(tpl) + 1
+        t2 = after["workflowData"]["templates"]
+        got = {s["attributes"]["email"].get("to") for s in t2
+               if s["type"] == "internal_notification" and s["attributes"].get("type") == "email"}
+        ids = {s["id"] for s in t2}
+        ok = set(cfg["to"]) <= got and after["status"] == live["status"] and len(t2) == len(tpl) + len(missing) \
+            and all(r in ids for s in t2 for r in [s.get("parentKey"), s.get("parent")] if r)
         bad += not ok
-        print(f"      {'✓' if ok else '✗ VERIFICAR'} {after['status']} · {len(after['workflowData']['templates'])} passos")
-    for name in FLOWS:  # notifications after the card, so tags/card land in ~2 s (Val, 14/10)
+        print(f"      {'✓' if ok else '✗ VERIFICAR'} {after['status']} · {len(t2)} passos")
+    for name in cfg["flows"] if cfg.get("reorder") else []:  # notifications after the card (Val, 14/10)
         wid = flows[name]
         live = a.workflow(loc, wid)
         tpl = live["workflowData"]["templates"]
@@ -140,6 +184,28 @@ def apply(a: Agency, do: bool) -> int:
         ok = [s["id"] for s in chain_of(after)] == [s["id"] for s in chain_of(new)] and len(chain_of(after)) == len(after)
         bad += not ok
         print(f"      {'✓' if ok else '✗ VERIFICAR'} ordem nova")
+    forms = {f["name"]: f.get("_id") or f.get("id") for f in a.forms(loc)} if cfg.get("feed_forms") else {}
+    for fname in cfg.get("feed_forms", []):  # the form's own "show submission in Conversations" option
+        fid = forms[fname]
+        f = a.call("GET", BACKEND, f"/forms/{fid}")
+        f = f.get("form", f)
+        if f["formData"]["form"].get("showSubmissionInConversationsFeed"):
+            print(f"   form {fname}: já mostra a submissão na conversa")
+            continue
+        print(f"   form {fname}: mostrar a submissão na conversa")
+        if not do:
+            continue
+        (bdir / f"form-{fid}-{stamp}.json").write_text(json.dumps(f))
+        fd = json.loads(json.dumps(f["formData"]))
+        fd["form"]["showSubmissionInConversationsFeed"] = True
+        a.call("POST", BACKEND, f"/forms/{fid}", body={"name": f["name"], "formData": fd})
+        time.sleep(3)
+        g = a.call("GET", BACKEND, f"/forms/{fid}")
+        g = g.get("form", g)
+        ok = g["formData"]["form"].get("showSubmissionInConversationsFeed") is True and \
+            len(g["formData"]["form"]["fields"]) == len(f["formData"]["form"]["fields"])
+        bad += not ok
+        print(f"      {'✓' if ok else '✗ VERIFICAR'}")
     return bad
 
 
@@ -173,8 +239,12 @@ def notify_after_card(templates: list[dict]) -> list[dict]:
     return chain
 
 
-def run_test(a: Agency, to: str, loc: str = TEST_LOC) -> int:
-    """Throwaway workflow in Test Snapshot: tag → SMS-less alert chain → e-mail to `to`."""
+TEST_FIELDS = {"BluVantage": [{"id": "9RVlQh3HgUqdwXG4OBEh", "field_value": "Pool Inspection"},
+                              {"id": "vrNW6tfIBG082HVZ7nPe", "field_value": "TEST message from the website form."}]}
+
+
+def run_test(a: Agency, to: str, loc: str = TEST_LOC, account: str = "Orange Tree") -> int:
+    """Throwaway workflow (Test Snapshot by default): tag → the account's first lead e-mail → `to`."""
     go = "lead email test go"
     try:
         a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": go})
@@ -184,7 +254,7 @@ def run_test(a: Agency, to: str, loc: str = TEST_LOC) -> int:
     wid = res.get("id") or res.get("_id")
     tag = {"id": str(uuid.uuid4()), "order": 0, "name": "Add Tag", "type": "add_contact_tag",
            "attributes": {"tags": ["lead email test done"], "type": "add_contact_tag"}}
-    tpl = insert_after([tag], tag["id"], email_step(*FLOWS["Facebook Form - New Lead"], to))
+    tpl = insert_after([tag], tag["id"], email_step(*next(iter(ACCOUNTS[account]["flows"].values())), to))
     a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body={"name": "TMP lead email test", "version": 1,
                                                            "status": "published", "workflowData": {"templates": tpl}})
     trig = {"type": "contact_tag", "name": "Contact Tag", "masterType": "highlevel", "schedule_config": {},
@@ -197,7 +267,8 @@ def run_test(a: Agency, to: str, loc: str = TEST_LOC) -> int:
     time.sleep(5)
     c = a.call("POST", SERVICES, "/contacts/upsert", body={
         "locationId": loc, "firstName": "TEST lead email", "lastName": "Pool Profits", "email": "lead-email-test@example.com",
-        "address1": "123 Test St", "city": "Phoenix", "postalCode": "85001", "source": "FORM - FB ADS"})
+        "address1": "123 Test St", "city": "Phoenix", "state": "AZ", "postalCode": "85001", "source": "TEST form",
+        "customFields": TEST_FIELDS.get(account, [])})
     cid = c["contact"]["id"]
     time.sleep(3)
     a.call("POST", SERVICES, f"/contacts/{cid}/tags", body={"tags": [go]})
@@ -218,14 +289,17 @@ def main() -> int:
     parser.add_argument("mode", choices=["test", "plan", "apply"])
     parser.add_argument("--to", help="test: inbox that gets the sample e-mail")
     parser.add_argument("--loc", default=TEST_LOC, help="test: location that sends it (default Test Snapshot)")
+    parser.add_argument("--only", choices=list(ACCOUNTS), help="plan/apply: account")
     args = parser.parse_args()
     load_dotenv()
     a = Agency()
     if args.mode == "test":
         if not args.to:
             parser.error("--to is required for test")
-        return run_test(a, args.to, args.loc)
-    return 1 if apply(a, args.mode == "apply") else 0
+        return run_test(a, args.to, args.loc, args.only or "Orange Tree")
+    if not args.only:
+        parser.error("--only is required for plan/apply")
+    return 1 if apply(a, args.only, args.mode == "apply") else 0
 
 
 if __name__ == "__main__":
