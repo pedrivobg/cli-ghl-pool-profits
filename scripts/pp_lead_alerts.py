@@ -20,6 +20,14 @@ What this does (backup of every workflow/trigger first):
 - FORM_ROUTE: a "Form Submitted" trigger for the website form on "Website Form Fill To Pipeline".
 - OWNER_FIX: the Google Ads form text goes to the same users as the other NEW LEAD texts.
 Branch conditions are contact tags (index-of-false), not trigger filters, so they work for any trigger.
+
+    ./.venv/bin/python scripts/pp_lead_alerts.py quiet --only "BluVantage"        # plan
+    ./.venv/bin/python scripts/pp_lead_alerts.py quiet-apply --only "BluVantage"
+
+Paul (14/10, after the filter): stop the NEW LEAD texts for calls — "we did not get these before". The
+SMS one also fired 1 h after a lead replied to the team mid-conversation. "quiet" removes the re-check
+and the text from the GUARDED workflows (back to how they were before 06/10); the spam/customer guard
+around tag/card/task stays. Form alerts are untouched.
 """
 from __future__ import annotations
 
@@ -104,6 +112,23 @@ def guard(templates: list[dict], alert=is_alert) -> list[dict]:
     last.pop("next", None)
     yb["next"] = last["id"]
     return [ca, ya, na, *body, cb, yb, nb, last]
+
+
+def drop_alert(templates: list[dict]) -> list[dict]:
+    """Remove the inner guard (cond + its branches) and the NEW LEAD text under it."""
+    inner = [s for s in templates if s.get("name") == GUARD_NAME and s.get("nodeType") == "condition-node"
+             and s.get("parentKey")]
+    if not inner:
+        return templates
+    cond = inner[0]
+    gone = {cond["id"], *cond["next"]}
+    gone |= {s["id"] for s in templates if s.get("parentKey") in gone and is_alert(s)}
+    out = [json.loads(json.dumps(s)) for s in templates if s["id"] not in gone]
+    prev = next(s for s in out if s["id"] == cond["parentKey"])
+    prev.pop("next", None)
+    if any(r in gone for s in out for r in [s.get("parentKey"), s.get("parent")] if r):
+        raise SystemExit("something still hangs off the removed nodes — not saving")
+    return out
 
 
 def put_workflow(a: Agency, loc: str, wid: str, live: dict, templates: list[dict]) -> None:
@@ -294,7 +319,7 @@ def run_test(a: Agency) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("mode", choices=["test", "plan", "apply"])
+    parser.add_argument("mode", choices=["test", "plan", "apply", "quiet", "quiet-apply"])
     parser.add_argument("--only", action="append")
     args = parser.parse_args()
     load_dotenv()
@@ -303,7 +328,41 @@ def main() -> int:
         return 1 if run_test(a) else 0
     if not args.only:
         parser.error("--only is required for plan/apply")
+    if args.mode.startswith("quiet"):
+        return 1 if sum(quiet_account(a, d, args.mode == "quiet-apply") for d in location_dirs(args.only)) else 0
     return 1 if sum(apply_account(a, d, args.mode == "apply") for d in location_dirs(args.only)) else 0
+
+
+def quiet_account(a: Agency, d, do: bool) -> int:
+    loc = load(d / "location.json", {})["id"]
+    flows = {w["name"]: w["id"] for w in a.workflows(loc)}
+    stamp = time.strftime("%Y%m%d-%H%M%S")
+    bdir = ROOT / "backup" / d.name
+    bad = 0
+    for wname in GUARDED:
+        wid = flows[wname]
+        live = a.workflow(loc, wid)
+        tpl = live["workflowData"]["templates"]
+        new = drop_alert(tpl)
+        if new is tpl:
+            print(f"   {wname}: já sem o texto NEW LEAD")
+            continue
+        print(f"   {wname} [{live['status']}]: {len(tpl)} → {len(new)} passos (sem o texto NEW LEAD)")
+        if not do:
+            continue
+        trs = [t for t in a.triggers(loc, wid) if not t.get("deleted")]
+        (bdir / f"workflow-{wid}-{stamp}.json").write_text(json.dumps({"workflow": live, "triggers": trs}))
+        put_workflow(a, loc, wid, live, new)
+        time.sleep(4)
+        after = a.workflow(loc, wid)
+        t2 = after["workflowData"]["templates"]
+        ids = {s["id"] for s in t2}
+        ok = not any(is_alert(s) for s in t2) and after["status"] == live["status"] and len(t2) == len(new) \
+            and sum(s.get("name") == GUARD_NAME and s.get("nodeType") == "condition-node" for s in t2) == 1 \
+            and all(r in ids for s in t2 for r in [s.get("parentKey"), s.get("parent")] if r)
+        bad += not ok
+        print(f"      {'✓' if ok else '✗ VERIFICAR'} {after['status']} · {len(t2)} passos")
+    return bad
 
 
 if __name__ == "__main__":

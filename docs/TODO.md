@@ -82,6 +82,7 @@ Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao
       uma ligação de teste junto;
     - **e-mail de lead** (o Paul perguntou): hoje nenhum form manda e-mail; dizer para quem mandar;
     - **"Out of Service Area"** também cancelar o texto NEW LEAD (precisa de tag nessa etapa)?
+    (15/10: a pedido do Paul, ligação e SMS não mandam mais texto NEW LEAD; só os forms.)
 18. Chris Kelleher (lead do site de hoje, 14/10) já foi para o pipeline e a equipe recebeu o texto;
     vale confirmar que alguém ligou para ele.
 
@@ -91,6 +92,11 @@ Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao
     orangetreepools@gmail.com (olhar Spam/Promoções). O celular do cliente (623) 974-5300 está com
     STOP desde 09/03: se quiserem voltar a receber os alertas por SMS, o cliente manda START para o
     número da conta. (E-mail de teste conferido por você; tag/card agora saem antes das notificações.)
+
+## Pool Shack / demais contas
+
+20. Tag `website & gbp` na linha Website & GBP está na Pool Shack (`pp_line_tag.py`). Se quiserem nas
+    outras contas (e no master do snapshot), rodar com `--only "<conta>" --apply`.
 
 ## Concluído desde a versão anterior
 
