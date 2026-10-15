@@ -11,9 +11,12 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
    Twilio rebilling. Conferir no painel: Pool Keepers → Settings → Phone System (aviso de trial,
    suspensão ou verificação) e Agency → Billing → carteira da Pool Keepers. Depois o Frank liga de
    novo e me passa hora + número de origem (a API não tem log de chamadas).
-2. **Bluewater Brokerage (Bill Burch) — parte de GHL** (Frank/Val/Vikkar, 15/10). O GHL é **do Bill**,
-   fora da nossa agência (não aparece nas 57 sub-contas). Pedir ao Bill: adicionar
-   pedro@poolprofits.com como usuário **Admin** na conta dele (Settings → My Staff). Com acesso, monto:
+2. **Bluewater Brokerage (Bill Burch) — parte de GHL** (Frank/Val/Vikkar, 15/10). **Perguntar onde fica o
+   GHL do Bill**: não está nas 57 sub-contas da Pool Profits nem nas 10 da Pool Duck. Pista: a agência
+   Pool Duck é da **Sharon Burch** (sharon@poolduck.com) e o Bill cita "os arquivos do Canva da Sharon"
+   → pode ser conta própria dele ou ligada à Sharon. Pedir: o endereço em que ele entra no GHL
+   (app.gohighlevel.com ou um white-label), o Location ID (Settings → Business Profile) e
+   pedro@poolprofits.com como usuário **Admin** (Settings → My Staff). Com acesso, monto:
    - 3 webhooks de entrada (calculadora, Seller's Guide, Buyer's Guide) → contato com tags (`route
      calculator` / `seller guide` + `opinion of value requested` / `buyer registration`, `call requested`
      quando pedir ligação), card no pipeline, e-mail para o Bill com tudo; o Vikkar troca o envio do
