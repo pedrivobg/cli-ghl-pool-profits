@@ -109,9 +109,8 @@ Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao
 23. **Sunwave**: a Val reenviar o form da landing (tags agora). Decidir se ligação da linha "Adwords"
     (407-864-6909) deve ganhar `adwords` + conversão: publicar o "AdWords Call In - New Lead" com esse número.
 
-24. **BluVantage**: conferir na sua caixa o e-mail "🚨 New website lead: TEST lead email Pool Profits" (veio
-    da BluVantage): se "Service" e "Message" aparecem preenchidos, os e-mails da Vanessa/Paul vão sair
-    completos. Na próxima submissão real, conferir se ela aparece na conversa do contato.
+24. ~~BluVantage~~: e-mail de teste chegou completo (serviço e mensagem) — conferido por você 15/10. Falta só
+    ver, na próxima submissão real, se ela aparece na conversa do contato.
 
 ## Concluído desde a versão anterior
 

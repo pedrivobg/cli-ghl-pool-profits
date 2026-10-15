@@ -63,7 +63,11 @@
 - Pôr um contato num workflow publicado: `POST services /contacts/{id}/workflow/{wid}` com `{}`.
   O SMS de "internal notification" aparece na conversa do telefone do usuário (status delivered).
 - Submissões de form: `GET services /forms/submissions?locationId&startAt&endAt` (`others` traz os
-  campos e a página de origem). Aviso por e-mail do form: `formData.emailNotifications`.
+  campos e a página de origem). Aviso por e-mail do form: `formData.emailNotifications`. Mostrar a
+  submissão na conversa: `formData.form.showSubmissionInConversationsFeed = true` (POST do form).
+- E-mail interno de lead: `internal_notification` `{type: "email", email: {userType: "custom_email", to,
+  subject, html}}`, um passo por endereço; merge de campo customizado (`{{contact.<fieldKey>}}`) sai
+  preenchido (testado). Não fica registrado nas conversas — conferir na caixa (`pp_lead_email.py test`).
 
 ## Outra agência: Pool Duck
 
