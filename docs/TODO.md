@@ -5,12 +5,15 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 
 ## Urgente
 
-1. **Pool Keepers — a linha 805-262-9070 toca 1× e cai** (Frank). O encaminhamento para 805-457-8212
-   está certo e não há IVR, mas a ligação **nem chega ao GHL** (nenhum registro, contato ou workflow).
-   Os SMS da conta falhavam em 07/10 com "Trial mode not enabled for this agency" e o telefone usa
-   Twilio rebilling. Conferir no painel: Pool Keepers → Settings → Phone System (aviso de trial,
-   suspensão ou verificação) e Agency → Billing → carteira da Pool Keepers. Depois o Frank liga de
-   novo e me passa hora + número de origem (a API não tem log de chamadas).
+1. **Pool Keepers — a linha 805-262-9070 toca 1× e cai** (Frank; 2º teste 15/10 ~21:57 UTC, igual). O
+   encaminhamento para 805-457-8212 está certo, sem IVR, e a configuração do número é igual à da Pool
+   Shack (que funciona). Mas nenhuma das 2 ligações **chegou ao GHL** (sem registro, sem contato do
+   Frank +1 346-763-6881) → o Twilio da sub-conta recusa antes. Em 07/10 os SMS falhavam com "Trial mode
+   not enabled for this agency"; telefone com rebilling (carteira). A API não mostra status nem saldo.
+   No painel: (a) dentro da Pool Keepers, fazer uma **ligação de saída** pelo discador para o seu
+   celular — a mensagem de erro do GHL diz a causa (trial/suspensa/sem saldo); (b) Settings → Phone
+   System (aviso vermelho / Upgrade); (c) Agency → Billing → carteira da Pool Keepers (saldo e recarga
+   automática). Resolvido → o Frank liga de novo e eu confiro o registro.
 2. **Bluewater Brokerage (Bill Burch) — parte de GHL** (Frank/Val/Vikkar, 15/10). **Perguntar onde fica o
    GHL do Bill**: não está nas 57 sub-contas da Pool Profits nem nas 10 da Pool Duck. Pista: a agência
    Pool Duck é da **Sharon Burch** (sharon@poolduck.com) e o Bill cita "os arquivos do Canva da Sharon"
