@@ -83,8 +83,7 @@ Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao
     - **e-mail de lead** (o Paul perguntou): hoje nenhum form manda e-mail; dizer para quem mandar;
     - **"Out of Service Area"** também cancelar o texto NEW LEAD (precisa de tag nessa etapa)?
     (15/10: a pedido do Paul, ligação e SMS não mandam mais texto NEW LEAD; só os forms.)
-18. Chris Kelleher (lead do site de hoje, 14/10) já foi para o pipeline e a equipe recebeu o texto;
-    vale confirmar que alguém ligou para ele.
+18. ~~Chris Kelleher~~: a equipe ligou e marcou a avaliação para 21/10 às 11h (conferido 15/10).
 
 ## Orange Tree
 
