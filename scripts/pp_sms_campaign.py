@@ -2,15 +2,15 @@
 """Stay Fresh — drain & wash SMS campaign to the "active client" list (Frank/Mike, 16/10).
 
     ./.venv/bin/python scripts/pp_sms_campaign.py setup            # 2 workflows in DRAFT, nothing sent
-    ./.venv/bin/python scripts/pp_sms_campaign.py setup --plain    # same, GSM-only text (4 segments, not 8)
     ./.venv/bin/python scripts/pp_sms_campaign.py launch --confirm # publish + tag the audience = SENDS
 
 Audience: contacts tagged "active client" (106 imported 14/10, 105 with phone, none DND). The campaign
 is a tag-triggered workflow, so launch = add CAMPAIGN_TAG to the audience; the SMS goes from the
 account's default number and replies land there. A second workflow catches replies from campaign
 contacts: tag "drain wash interested" + SMS and e-mail to Mike with the reply.
-Before launch: A2P 10DLC approved for Stay Fresh (Settings → Phone System → Trust Center), final OK on
-the copy, and a send time (business hours, Arizona).
+Text: exactly Mike's copy (Pedro, 16/10: no edits, whatever the length — 8 SMS segments). A2P is
+approved (Pedro). Before launch: a send time (business hours, Arizona). setup also rewrites the SMS of
+the draft if the copy here changes.
 """
 from __future__ import annotations
 
@@ -35,12 +35,7 @@ TEXT = ("Now’s the time to freshen up your pool! 💦 We recommend a drain & w
         "and surface conditions, to reduce mineral buildup, improve water chemistry, and support surface and "
         "equipment longevity.\n\nWe use Pool Wash by Plaster Logic instead of muriatic acid—a gentler approach "
         "that helps preserve your pool’s finish.\n\nPlus, there’s no better time to clean that nasty calcium "
-        "buildup off your tile!\n\nReply to schedule. Let’s get your pool Stay Fresh!\n\nReply STOP to opt out.")
-
-
-def plain(text: str) -> str:
-    """Same copy in the GSM alphabet: 4 SMS segments instead of 8 (emoji/curly quotes/dash force Unicode)."""
-    return text.replace("’", "'").replace("—", " - ").replace(" 💦", "")
+        "buildup off your tile!\n\nReply to schedule. Let’s get your pool Stay Fresh!")
 
 
 def step(name: str, type_: str, attributes: dict) -> dict:
@@ -85,7 +80,6 @@ def audience(a: Agency, loc: str) -> list[dict]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["setup", "launch"])
-    parser.add_argument("--plain", action="store_true", help="GSM-only text")
     parser.add_argument("--confirm", action="store_true", help="launch: really send")
     args = parser.parse_args()
     load_dotenv()
@@ -94,7 +88,7 @@ def main() -> int:
     loc = load(d / "location.json", {})["id"]
     flows = {w["name"]: w for w in a.workflows(loc)}
     users = {u.get("name"): u for u in a.users(loc)}
-    text = plain(TEXT) if args.plain else TEXT
+    text = TEXT
     people = [c for c in audience(a, loc) if c.get("phone") and not c.get("dnd")]
     print(f"== {d.name}: público '{AUDIENCE}' com telefone e sem DND: {len(people)}")
     if args.mode == "setup":
@@ -112,6 +106,20 @@ def main() -> int:
                            {"operator": "index-of-true", "field": "tagsAdded", "value": CAMPAIGN_TAG,
                             "title": "Tag added", "type": "select", "id": "tag-added"}]})
             print(f"   ✓ {NAME} (draft) {wid}")
+        else:  # keep the draft's SMS equal to TEXT
+            live = a.workflow(loc, flows[NAME]["id"])
+            tpl = json.loads(json.dumps(live["workflowData"]["templates"]))
+            sms = next(s for s in tpl if s["type"] == "sms")
+            if sms["attributes"].get("body") != text:
+                if live["status"] != "draft":
+                    raise SystemExit(f"{NAME} já está {live['status']} — não mexo no texto de uma campanha no ar")
+                sms["attributes"]["body"] = text
+                a.call("PUT", BACKEND, f"/workflow/{loc}/{flows[NAME]['id']}", body={
+                    "name": live["name"], "version": live.get("version", 1), "status": "draft",
+                    "parentId": live.get("parentId"), "allowMultiple": False, "workflowData": {"templates": tpl}})
+                time.sleep(3)
+                got = next(s for s in a.workflow(loc, flows[NAME]["id"])["workflowData"]["templates"] if s["type"] == "sms")
+                print(f"   {'✓' if got['attributes'].get('body') == text else '✗ VERIFICAR'} texto do SMS atualizado (draft)")
         if REPLIES not in flows:
             body = "💦 Drain & wash reply from {{contact.name}} {{contact.phone}}:\n\n{{message.body}}"
             steps = chain([

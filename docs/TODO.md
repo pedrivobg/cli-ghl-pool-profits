@@ -15,13 +15,10 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
    abrir chamado no suporte do HighLevel (LC Phone) com o número e os horários dos testes do Frank
    (15/10 ~21:57 UTC, 16/10 manhã e tarde).
 1b. **Stay Fresh — campanha de SMS "drain & wash" (Frank/Mike)**: pronta em **rascunho**, nada enviado
-   (`pp_sms_campaign.py`): "Drain & Wash Campaign - Active Clients" (texto do Mike + "Reply STOP to opt
-   out.") e "… - Replies" (resposta → tag `drain wash interested` + SMS e e-mail para o Mike). Público:
-   105 `active client` com telefone, nenhum DND. Para lançar: (a) **A2P aprovado** na Stay Fresh
-   (Settings → Phone System → Trust Center) — sem isso as operadoras bloqueiam envio em massa; a conta
-   só mandou 2 SMS na vida (entregues); (b) OK no texto: como está dá **8 segmentos por pessoa (~840)**
-   por causa de 💦, "—" e apóstrofos curvos; trocando só esses caracteres cai para **4 (~420)**
-   (`setup --plain`); (c) dia/hora (horário comercial do Arizona). Aí eu rodo `launch --confirm`.
+   (`pp_sms_campaign.py`): "Drain & Wash Campaign - Active Clients" com o **texto do Mike exatamente como
+   veio** (sem nenhuma alteração; 8 segmentos por SMS) e "… - Replies" (resposta → tag `drain wash
+   interested` + SMS e e-mail para o Mike). Público: 105 `active client` com telefone, nenhum DND. A2P
+   aprovado (você confirmou). **Falta só dia/hora** do envio → eu rodo `launch --confirm`.
 2. **Bluewater Brokerage (Bill Burch) — parte de GHL** (Frank/Val/Vikkar, 15/10). **Perguntar onde fica o
    GHL do Bill**: não está nas 57 sub-contas da Pool Profits nem nas 10 da Pool Duck. Pista: a agência
    Pool Duck é da **Sharon Burch** (sharon@poolduck.com) e o Bill cita "os arquivos do Canva da Sharon"
@@ -94,7 +91,7 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
     fazer o mesmo na Southern e nas outras? (`pp_snippet_replace.py`).
 15. **Paid Ads na Bahama, Passion e Pool Shack**: se não rodam Ads para a landing `go.*`, pôr os 08 Paid
     Ads em draft e rodar `pp_forms.py`. Na Pool Shack o AdWords Form escuta um form que não existe mais.
-16. **A2P da Pool Keepers** (a da Stay Fresh está no item 1b): Settings → Phone System → Trust Center.
+16. **A2P da Pool Keepers**: Settings → Phone System → Trust Center (o da Stay Fresh está aprovado).
 17. **Stay Fresh — "erros" nas automações (Frank)**: nada falha no envio. O que o construtor marca:
     "Add Task" como incompleto (só visual; as tarefas são criadas) e 3 drafts antigos apontando para
     uma etapa de pipeline que não existe mais ("AdWords Tracking", "AdWords Tracking - Calls", "Won
