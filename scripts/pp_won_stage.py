@@ -156,6 +156,11 @@ def main() -> int:
             res = a.call("POST", BACKEND, f"/workflow/{loc}/trigger", body=body)
             a.call("PUT", BACKEND, f"/workflow/{loc}/trigger/{res['id']}", body={**body, "id": res["id"]})
             trig[key] = res["id"]
+        for tag in ["won", *[t for _, _, t in STAGES]]:  # the builder flags tags that don't exist (16/10)
+            try:
+                a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": tag})
+            except Exception:  # noqa: BLE001 — already exists
+                pass
         templates = build(live["workflowData"]["templates"], trig, stages)
         a.call("PUT", BACKEND, f"/workflow/{loc}/{w['id']}", body={
             "name": live["name"], "version": live.get("version", 1), "status": live["status"],

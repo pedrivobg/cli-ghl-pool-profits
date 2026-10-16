@@ -57,6 +57,9 @@
   Review Request ramificam assim pelas 3 etapas Won). Gatilho novo precisa de `workflowId`,
   `workflow_id`, `location_id`, `actions` no corpo — sem isso o PUT dá "Workflow not found".
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
+- Tag usada em passo/gatilho/if-else **tem que existir na conta** (`POST backend /workflow/{loc}/tags/create
+  {tag}`): o passo funciona, mas o construtor mostra "Referenced Tag does not exist" (Frank viu no Won
+  Stage). `scripts/pp_tags_missing.py` acha e cria as que faltam.
 - Pular spam/cliente num workflow: if/else com `contact_detail` / `tags` / `index-of-false` (uma condição
   por tag) envolvendo a cadeia, em vez de filtro de gatilho (vale para qualquer gatilho; testado).
   Mid-chain: `parent` = branch que contém, `parentKey` = passo anterior (`scripts/pp_lead_alerts.py`).

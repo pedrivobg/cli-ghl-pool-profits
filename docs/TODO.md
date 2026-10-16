@@ -5,15 +5,11 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 
 ## Urgente
 
-1. **Pool Keepers — a linha 805-262-9070 não funciona** (Frank; 3º teste 16/10: agora cai na hora, nem
-   toca). O encaminhamento para 805-457-8212 está certo, sem IVR, igual à Pool Shack (que funciona), mas
-   **nenhuma ligação chega ao GHL** (sem registro, sem contato) → o telefone da sub-conta recusa antes.
-   Em 07/10 os SMS falhavam com "Trial mode not enabled for this agency"; telefone com rebilling. A API
-   não mostra status nem saldo. **Hoje, no painel**: (a) dentro da Pool Keepers, ligação de saída pelo
-   discador para o seu celular — o erro diz a causa (trial/suspensa/sem saldo); (b) Settings → Phone
-   System (aviso vermelho / Upgrade); (c) Agency → Billing → carteira da Pool Keepers. Se nada aparecer,
-   abrir chamado no suporte do HighLevel (LC Phone) com o número e os horários dos testes do Frank
-   (15/10 ~21:57 UTC, 16/10 manhã e tarde).
+1. **Pool Keepers — a linha 805-262-9070 não funciona** (Frank 15 e 16/10; você também testou em 16/10:
+   nem conecta). Encaminhamento para 805-457-8212 certo, sem IVR, igual à Pool Shack (que funciona);
+   nenhuma ligação chega ao GHL → problema no serviço de telefone da sub-conta. **Você vai abrir chamado
+   no suporte** (número, horários dos testes, e que em 07/10 os SMS da conta falhavam com "Trial mode not
+   enabled for this agency"; telefone com rebilling). Resolvido → Frank liga de novo e eu confiro o registro.
 1b. **Stay Fresh — campanha de SMS "drain & wash" (Frank/Mike)**: pronta em **rascunho**, nada enviado
    (`pp_sms_campaign.py`): "Drain & Wash Campaign - Active Clients" com o **texto do Mike exatamente como
    veio** (sem nenhuma alteração; 8 segmentos por SMS) e "… - Replies" (resposta → tag `drain wash
@@ -92,11 +88,9 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 15. **Paid Ads na Bahama, Passion e Pool Shack**: se não rodam Ads para a landing `go.*`, pôr os 08 Paid
     Ads em draft e rodar `pp_forms.py`. Na Pool Shack o AdWords Form escuta um form que não existe mais.
 16. **A2P da Pool Keepers**: Settings → Phone System → Trust Center (o da Stay Fresh está aprovado).
-17. **Stay Fresh — "erros" nas automações (Frank)**: nada falha no envio. O que o construtor marca:
-    "Add Task" como incompleto (só visual; as tarefas são criadas) e 3 drafts antigos apontando para
-    uma etapa de pipeline que não existe mais ("AdWords Tracking", "AdWords Tracking - Calls", "Won
-    Customer") — posso apagar. Se o Frank estiver vendo outra coisa, pedir o print. Também: draft "Pool
-    Smart OC Customers - SMS" (nome de outro cliente) revisar/apagar.
+17. **Stay Fresh — drafts antigos**: "AdWords Tracking", "AdWords Tracking - Calls" e "Won Customer"
+    apontam para uma etapa de pipeline que não existe mais (desligados) — posso apagar. Draft "Pool Smart
+    OC Customers - SMS" (nome de outro cliente) revisar/apagar.
 18. **"Sequential Call Routing" do snapshot**: é o IVR da BluVantage copiado (toca Vanessa/Fred/Paul);
     publicado em Southern, Passion, Bahama, Pool Shack e no master, mas não dispara (números são da
     BluVantage). Apagar das outras contas e do master.
@@ -127,6 +121,10 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 - **Pool Shack** (Frank): todos os SMS automáticos agora mostram a **linha rastreada** 480-428-0655 (10
   templates; antes 5 usavam o celular 480-798-2888, fora do rastreamento).
 - **Stay Fresh**: "Ryan Quitler" → **Quilter**; campanha de SMS montada em rascunho (item 1b).
+- **Erros de tag no construtor** (Frank viu no Won Stage da Stay Fresh): as tags novas do Won Stage
+  (`won weekly`, `won repairs and installs`, `won construction`) e outras do snapshot (`do not
+  remarket`, `review received`, `high priority`…) eram usadas sem existir na conta. Criadas em 10 contas
+  + master (`pp_tags_missing.py`); nenhuma tag usada sem existir.
 - **Orange Tree** (Vanessa): e-mail de lead também para vanessa.orangetreepools@; SMS de cliente por
   e-mail (com links das fotos) para ela e para orangetreepools@.
 
