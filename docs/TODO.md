@@ -48,11 +48,13 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
    `new lead`, `new form fill`, `adwords` + card + SMS para os Connolly. Vale avisar que 3 envios do
    "Service Page - Contact Form" de setembro (Velva Coffey 05/09, Divanshi Gupta 2× 17/09) nunca viraram
    card — esse form agora vai para o pipeline.
-6. **Orange Tree**: (a) chegou na sua caixa o e-mail de teste enviado **pela conta da Orange Tree**
-   ("🚨 New Facebook lead: TEST lead email", 15/10)? Se sim, o cliente procura em Spam/Promoções;
-   se não, problema no e-mail da sub-conta (Settings → Email Services). (b) Val/Frank reenviam o form
-   com dados novos. (c) O celular do cliente (623) 974-5300 está com STOP desde 09/03 — só ele reverte
-   (mandar START para o número da conta) se quiser os alertas por SMS.
+6. **Orange Tree**: (a) e-mails de lead agora vão também para **vanessa.orangetreepools@gmail.com** (é
+   ela quem lê) e cada **SMS de cliente** chega por e-mail com os links das fotos; conferir no próximo
+   lead/resposta real. (b) Fotos: as 2 linhas aceitam MMS e as fotos chegam no GHL (ex.: 21/09, 3 fotos
+   do Nathaniel Lopez na conversa); o aviso por SMS não leva foto (só link) e o celular (623) 974-5300
+   está com **STOP desde 09/03** — para voltar a receber os avisos por SMS, a Vanessa manda START para
+   623-343-0400 e 623-244-8621. Melhor ainda: app LeadConnector no celular (mostra as fotos + push).
+   (c) Conferir se chegou na sua caixa o teste enviado pela conta da Orange Tree em 15/10.
 7. **BluVantage**: na próxima submissão real, conferir que ela aparece na conversa do contato e que o
    e-mail chega para Vanessa e Paul.
 8. **Review gate (NPS)**: na Test Snapshot, abrir o link do NPS de um contato de teste, responder 5 e
@@ -128,6 +130,8 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 - **Pool Shack** (Frank): todos os SMS automáticos agora mostram a **linha rastreada** 480-428-0655 (10
   templates; antes 5 usavam o celular 480-798-2888, fora do rastreamento).
 - **Stay Fresh**: "Ryan Quitler" → **Quilter**; campanha de SMS montada em rascunho (item 1b).
+- **Orange Tree** (Vanessa): e-mail de lead também para vanessa.orangetreepools@; SMS de cliente por
+  e-mail (com links das fotos) para ela e para orangetreepools@.
 
 ## Concluído antes (14 → 15/10)
 

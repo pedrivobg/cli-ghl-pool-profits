@@ -39,7 +39,7 @@ BV_DETAILS = ["Name: {{contact.name}}", "Phone: {{contact.phone}}", "Email: {{co
               "Address: {{contact.address1}}, {{contact.city}}, {{contact.state}} {{contact.postal_code}}"]
 ACCOUNTS = {
     "Orange Tree": {
-        "to": ["orangetreepools@gmail.com"],
+        "to": ["orangetreepools@gmail.com", "vanessa.orangetreepools@gmail.com"],  # Vanessa reads her own (16/10)
         "sms_to": ["0ijzATNg4PxprYIhQnhz"],  # Stephen Sherman (both users share the same phone)
         "reorder": True,
         "flows": {  # workflow → (subject, headline, lines)
@@ -48,6 +48,11 @@ ACCOUNTS = {
                                               DETAILS),
             "Incoming Chat To Pipeline": ("💬 New web chat: {{contact.name}}", "💬 NEW WEB CHAT REQUEST 💬",
                                           DETAILS + ["Message: {{message.body}}"]),
+            # customer texts (photos included as links): the SMS forward can't carry pictures and the
+            # office cell has been on STOP since 09/03, so the e-mail is what reaches them (Vanessa, 16/10)
+            "SMS Reply": ("💬 {{contact.name}} texted you", "💬 CUSTOMER TEXT 💬",
+                          ["From: {{contact.name}} {{contact.phone}}", "Message: {{message.body}}",
+                           "Photos / files: {{message.attachments}}"]),
         },
     },
     "BluVantage": {
