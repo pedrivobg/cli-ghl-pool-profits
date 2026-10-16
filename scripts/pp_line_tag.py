@@ -3,6 +3,8 @@
 
     ./.venv/bin/python scripts/pp_line_tag.py --only "Pool Shack"            # plan
     ./.venv/bin/python scripts/pp_line_tag.py --only "Pool Shack" --apply
+    ./.venv/bin/python scripts/pp_line_tag.py --only "Southern" --line facebook --tag facebook \
+        --name "Facebook Ads Call - Tag" --apply          # any line, by a word of its name
 
 The snapshot's "Answered/Missed Incoming Call To Pipeline" fire for every number and tag only
 "new lead" / "inbound call" (/ "missed call"). Instead of touching them, this adds a small published
@@ -23,13 +25,18 @@ from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency
 
 NAME = "Website & GBP Call - Tag"
 TAG = "website & gbp"
+LINE = "gbp"
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--only", action="append", required=True)
+    parser.add_argument("--line", default=LINE, help="word in the number's name (default: gbp)")
+    parser.add_argument("--tag", default=TAG)
+    parser.add_argument("--name", default=NAME, help="workflow name")
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
+    NAME_, TAG_ = args.name, args.tag
     load_dotenv()
     a = Agency()
     bad = 0
@@ -37,29 +44,29 @@ def main() -> int:
         loc = load(d / "location.json", {})["id"]
         name = load(d / "location.json", {}).get("name")
         numbers = a.call("GET", SERVICES, f"/phone-system/numbers/location/{loc}")["numbers"]
-        line = [n["phoneNumber"] for n in numbers if "gbp" in (n.get("friendlyName") or "").lower()]
+        line = [n["phoneNumber"] for n in numbers if args.line.lower() in (n.get("friendlyName") or "").lower()]
         flows = {w["name"]: w for w in a.workflows(loc)}
         print(f"== {name}: linhas {[(n['phoneNumber'], n.get('friendlyName')) for n in numbers]}")
         if not line:
-            print("   sem linha com 'GBP' no nome — nada a fazer")
+            print(f"   sem linha com '{args.line}' no nome — nada a fazer")
             continue
-        if NAME in flows:
-            print(f"   {NAME} já existe")
+        if NAME_ in flows:
+            print(f"   {NAME_} já existe")
             continue
-        print(f"   + {NAME}: ligação de entrada em {line} → tag '{TAG}'")
+        print(f"   + {NAME_}: ligação de entrada em {line} → tag '{TAG_}'")
         if not args.apply:
             continue
         try:
-            a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": TAG})
+            a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": TAG_})
         except Exception:
             pass  # already exists
         parent = a.workflow(loc, flows["Answered Incoming Call To Pipeline"]["id"]).get("parentId")
-        res = a.call("POST", BACKEND, f"/workflow/{loc}", body={"name": NAME, "parentId": parent, "status": "draft"})
+        res = a.call("POST", BACKEND, f"/workflow/{loc}", body={"name": NAME_, "parentId": parent, "status": "draft"})
         wid = res.get("id") or res.get("_id")
-        step = {"id": str(uuid.uuid4()), "order": 0, "name": f"Add Tag {TAG}", "type": "add_contact_tag",
-                "attributes": {"tags": [TAG], "type": "add_contact_tag"}}
+        step = {"id": str(uuid.uuid4()), "order": 0, "name": f"Add Tag {TAG_}", "type": "add_contact_tag",
+                "attributes": {"tags": [TAG_], "type": "add_contact_tag"}}
         a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body={
-            "name": NAME, "version": 1, "status": "published", "parentId": parent, "allowMultiple": True,
+            "name": NAME_, "version": 1, "status": "published", "parentId": parent, "allowMultiple": True,
             "workflowData": {"templates": [step]}})
         trig = {"type": "call_status", "name": "Call Details", "masterType": "highlevel", "schedule_config": {},
                 "conditions": [{"field": "message.direction", "operator": "==", "value": "inbound",

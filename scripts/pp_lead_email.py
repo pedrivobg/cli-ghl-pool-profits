@@ -63,6 +63,19 @@ ACCOUNTS = {
         },
         "feed_forms": ["Footer Form - BluVantage", "FORM - GOOGLE ADS"],
     },
+    "Southern": {  # Val, 16/10: e-mail on Google Ads forms and calls (Brett is the only user)
+        "to": ["brett@southernpoolandoutdoors.com"],
+        "flows": {  # a 4th item = insert after the first step of that type (default: the SMS alert)
+            "AdWords Form - New Lead": ("🚨 New Google Ads lead: {{contact.name}}", "🚨 NEW LEAD FROM GOOGLE ADS 🚨",
+                                        BV_DETAILS + ["Form: GOOGLE ADS - FORM (service.southernpoolandoutdoors.com)"]),
+            "AdWords Call In - New Lead": ("📞 New Google Ads call: {{contact.phone}}", "📞 NEW CALL FROM GOOGLE ADS 📞",
+                                           ["Caller: {{contact.name}}", "Phone: {{contact.phone}}",
+                                            "Line: Google Ads (972-632-3259)"], "create_opportunity"),
+            "Website Form Fill To Pipeline": ("🚨 New website lead: {{contact.name}}", "🚨 NEW LEAD FROM A WEBSITE FORM 🚨",
+                                              BV_DETAILS + ["Form: {{contact.source}}"]),
+        },
+        "feed_forms": ["GOOGLE ADS - FORM"],
+    },
 }
 TEST_LOC = "hmzX5j1dPhOQKX2dH4kf"  # Test Snapshot
 
@@ -121,7 +134,7 @@ def apply(a: Agency, account: str, do: bool) -> int:
     bdir.mkdir(parents=True, exist_ok=True)
     bad = 0
     print(f"== {d.name}")
-    for name, (subject, headline, lines) in cfg["flows"].items():
+    for name, (subject, headline, lines, *anchor) in cfg["flows"].items():
         wid = flows[name]
         live = a.workflow(loc, wid)
         tpl = live["workflowData"]["templates"]
@@ -131,14 +144,15 @@ def apply(a: Agency, account: str, do: bool) -> int:
         if not missing:
             print(f"   {name}: já manda e-mail para {cfg['to']}")
             continue
-        alert = alert_of(tpl)
+        alert = next(s for s in tpl if s["type"] == anchor[0]) if anchor else alert_of(tpl)
         new, after_id = tpl, alert["id"]
         for to in missing:
             step = email_step(subject, headline, lines, to)
             step["name"] = f"New Lead Email ({to.split('@')[0]})" if len(cfg["to"]) > 1 else "New Lead Email"
             new = insert_after(new, after_id, step)
             after_id = step["id"]
-        fix_sms = cfg.get("sms_to") and alert["attributes"]["sms"].get("userType") == "assign"
+        fix_sms = cfg.get("sms_to") and alert["type"] == "internal_notification" and \
+            alert["attributes"]["sms"].get("userType") == "assign"
         if fix_sms:
             sms = next(s for s in new if s["id"] == alert["id"])
             sms["attributes"]["sms"].pop("assignedOwners", None)
@@ -254,7 +268,7 @@ def run_test(a: Agency, to: str, loc: str = TEST_LOC, account: str = "Orange Tre
     wid = res.get("id") or res.get("_id")
     tag = {"id": str(uuid.uuid4()), "order": 0, "name": "Add Tag", "type": "add_contact_tag",
            "attributes": {"tags": ["lead email test done"], "type": "add_contact_tag"}}
-    tpl = insert_after([tag], tag["id"], email_step(*next(iter(ACCOUNTS[account]["flows"].values())), to))
+    tpl = insert_after([tag], tag["id"], email_step(*next(iter(ACCOUNTS[account]["flows"].values()))[:3], to))
     a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body={"name": "TMP lead email test", "version": 1,
                                                            "status": "published", "workflowData": {"templates": tpl}})
     trig = {"type": "contact_tag", "name": "Contact Tag", "masterType": "highlevel", "schedule_config": {},

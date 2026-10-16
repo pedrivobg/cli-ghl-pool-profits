@@ -1,4 +1,4 @@
-# TODO — o que depende de você (atualizado 15/10/2026, noite)
+# TODO — o que depende de você (atualizado 16/10/2026)
 
 Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao vivo em 15/10.
 Histórico e detalhes: `docs/execucao-2026-10-13.md`.
@@ -50,6 +50,16 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 8. **Review gate (NPS)**: na Test Snapshot, abrir o link do NPS de um contato de teste, responder 5 e
    ver o campo NPS Score ficar 5 (captcha impede automatizar).
 
+9a. **Southern (Val, 16/10)**: a landing de limpeza usa o novo **GOOGLE ADS - FORM** — se o builder
+    da página estiver aberto, **recarregar antes de salvar** (senão volta o form antigo). Val instala a
+    conversão em https://service.southernpoolandoutdoors.com/ty-page-2934-3692 e testa form + ligação
+    no 972-632-3259. A landing de reforma (remodeling.…) segue com o "Appointment Booking Form", agora
+    ligado ao pipeline como lead do site — se ela também for de Google Ads, dizer.
+9b. **Sunwave**: avisar a Val que sunwavepoolpros.com redireciona para **sunwavepros.com, que não existe**
+    (www abre página vazia) — se esse endereço estiver em anúncio/GBP, está quebrado. No Zap do Google
+    Ads Lead Form, trocar a tag/origem "website form fill" por algo próprio (hoje um workflow repõe
+    `google ads lead form`).
+
 ## Decisões
 
 9. **Snapshot "daqui pra frente"** (pergunta do Frank): o master **Snapshot Pool Profits** já está sem o
@@ -62,8 +72,9 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 11. **Sunwave — ligações do anúncio**: a landing mostra 407-864-6909 (linha "Adwords"), que passa pelo
     "Marketing - IVR" deles e só ganha `new lead`/`inbound call`. Publicar o "AdWords Call In - New
     Lead" com esse número dá `adwords` + conversão, mas também manda SMS ao lead 5 min depois.
-12. **Tag da linha GBP nas outras contas**: na Pool Shack já marca `website & gbp`; para as demais (e o
-    master), `pp_line_tag.py --only "<conta>" --apply`.
+12. **Tag da linha nas outras contas**: Pool Shack e Southern já marcam `website & gbp` (Southern também
+    `facebook` na linha Facebook Ads); para as demais (e o master), `pp_line_tag.py --only "<conta>"
+    [--line facebook --tag facebook --name "Facebook Ads Call - Tag"] --apply`.
 13. **Passion — forms "PPC - Home Quote" / "PPC - Universal Quote"**: estão no site orgânico (home e
     todas as páginas internas) e foram para o Website Form Fill (sem tag/conversão de Ads). Se esse site
     também for destino de anúncio, dizer — aí entra a parte de Ads.
