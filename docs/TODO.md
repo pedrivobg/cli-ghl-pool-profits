@@ -1,19 +1,27 @@
-# TODO — o que depende de você (atualizado 16/10/2026)
+# TODO — o que depende de você (atualizado 16/10/2026, fim do dia)
 
-Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao vivo em 15/10.
+Só entra aqui o que não deu para resolver daqui depois de tentar. Conferido ao vivo em 16/10.
 Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 
 ## Urgente
 
-1. **Pool Keepers — a linha 805-262-9070 toca 1× e cai** (Frank; 2º teste 15/10 ~21:57 UTC, igual). O
-   encaminhamento para 805-457-8212 está certo, sem IVR, e a configuração do número é igual à da Pool
-   Shack (que funciona). Mas nenhuma das 2 ligações **chegou ao GHL** (sem registro, sem contato do
-   Frank +1 346-763-6881) → o Twilio da sub-conta recusa antes. Em 07/10 os SMS falhavam com "Trial mode
-   not enabled for this agency"; telefone com rebilling (carteira). A API não mostra status nem saldo.
-   No painel: (a) dentro da Pool Keepers, fazer uma **ligação de saída** pelo discador para o seu
-   celular — a mensagem de erro do GHL diz a causa (trial/suspensa/sem saldo); (b) Settings → Phone
-   System (aviso vermelho / Upgrade); (c) Agency → Billing → carteira da Pool Keepers (saldo e recarga
-   automática). Resolvido → o Frank liga de novo e eu confiro o registro.
+1. **Pool Keepers — a linha 805-262-9070 não funciona** (Frank; 3º teste 16/10: agora cai na hora, nem
+   toca). O encaminhamento para 805-457-8212 está certo, sem IVR, igual à Pool Shack (que funciona), mas
+   **nenhuma ligação chega ao GHL** (sem registro, sem contato) → o telefone da sub-conta recusa antes.
+   Em 07/10 os SMS falhavam com "Trial mode not enabled for this agency"; telefone com rebilling. A API
+   não mostra status nem saldo. **Hoje, no painel**: (a) dentro da Pool Keepers, ligação de saída pelo
+   discador para o seu celular — o erro diz a causa (trial/suspensa/sem saldo); (b) Settings → Phone
+   System (aviso vermelho / Upgrade); (c) Agency → Billing → carteira da Pool Keepers. Se nada aparecer,
+   abrir chamado no suporte do HighLevel (LC Phone) com o número e os horários dos testes do Frank
+   (15/10 ~21:57 UTC, 16/10 manhã e tarde).
+1b. **Stay Fresh — campanha de SMS "drain & wash" (Frank/Mike)**: pronta em **rascunho**, nada enviado
+   (`pp_sms_campaign.py`): "Drain & Wash Campaign - Active Clients" (texto do Mike + "Reply STOP to opt
+   out.") e "… - Replies" (resposta → tag `drain wash interested` + SMS e e-mail para o Mike). Público:
+   105 `active client` com telefone, nenhum DND. Para lançar: (a) **A2P aprovado** na Stay Fresh
+   (Settings → Phone System → Trust Center) — sem isso as operadoras bloqueiam envio em massa; a conta
+   só mandou 2 SMS na vida (entregues); (b) OK no texto: como está dá **8 segmentos por pessoa (~840)**
+   por causa de 💦, "—" e apóstrofos curvos; trocando só esses caracteres cai para **4 (~420)**
+   (`setup --plain`); (c) dia/hora (horário comercial do Arizona). Aí eu rodo `launch --confirm`.
 2. **Bluewater Brokerage (Bill Burch) — parte de GHL** (Frank/Val/Vikkar, 15/10). **Perguntar onde fica o
    GHL do Bill**: não está nas 57 sub-contas da Pool Profits nem nas 10 da Pool Duck. Pista: a agência
    Pool Duck é da **Sharon Burch** (sharon@poolduck.com) e o Bill cita "os arquivos do Canva da Sharon"
@@ -78,13 +86,18 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 13. **Passion — forms "PPC - Home Quote" / "PPC - Universal Quote"**: estão no site orgânico (home e
     todas as páginas internas) e foram para o Website Form Fill (sem tag/conversão de Ads). Se esse site
     também for destino de anúncio, dizer — aí entra a parte de Ads.
-14. **Dois telefones nas mensagens da Southern**: `business_phone` (214-308-1744) vs
-    `a2p_verification_number` (214-922-1914, agora o número do IVR). Escolher um padrão.
+14. **Dois telefones nas mensagens da Southern** (mesma questão do Frank na Pool Shack): `business_phone`
+    (214-308-1744, destino do encaminhamento, **não rastreado**) vs `a2p_verification_number`
+    (214-922-1914, linha do IVR, rastreada). Na Pool Shack os SMS passaram a usar só a linha rastreada;
+    fazer o mesmo na Southern e nas outras? (`pp_snippet_replace.py`).
 15. **Paid Ads na Bahama, Passion e Pool Shack**: se não rodam Ads para a landing `go.*`, pôr os 08 Paid
     Ads em draft e rodar `pp_forms.py`. Na Pool Shack o AdWords Form escuta um form que não existe mais.
-16. **A2P da Stay Fresh e da Pool Keepers**: conferir em Settings → Phone System → Trust Center.
-17. **Stay Fresh**: draft "Pool Smart OC Customers - SMS" (nome de outro cliente) revisar/apagar;
-    "Ryan Quitler" → **Quilter**? (aguardando o Frank).
+16. **A2P da Pool Keepers** (a da Stay Fresh está no item 1b): Settings → Phone System → Trust Center.
+17. **Stay Fresh — "erros" nas automações (Frank)**: nada falha no envio. O que o construtor marca:
+    "Add Task" como incompleto (só visual; as tarefas são criadas) e 3 drafts antigos apontando para
+    uma etapa de pipeline que não existe mais ("AdWords Tracking", "AdWords Tracking - Calls", "Won
+    Customer") — posso apagar. Se o Frank estiver vendo outra coisa, pedir o print. Também: draft "Pool
+    Smart OC Customers - SMS" (nome de outro cliente) revisar/apagar.
 18. **"Sequential Call Routing" do snapshot**: é o IVR da BluVantage copiado (toca Vanessa/Fred/Paul);
     publicado em Southern, Passion, Bahama, Pool Shack e no master, mas não dispara (números são da
     BluVantage). Apagar das outras contas e do master.
@@ -106,7 +119,17 @@ Histórico e detalhes: `docs/execucao-2026-10-13.md`.
 24. **Avisar**: alertas antigos do LWR ("… - Steve") sem destinatário; popup do WC com form de outra
     empresa ("Poolfessionals AdWords").
 
-## Concluído desde a versão anterior (14 → 15/10)
+## Concluído desde a versão anterior (16/10)
+
+- **Southern** (Val): landing de limpeza com o novo **GOOGLE ADS - FORM** (obrigado próprio, código do
+  país, endereço com busca); AdWords Form e AdWords Call In publicados com tags, SMS e e-mail para o
+  Brett; tag por linha (`facebook`, `website & gbp`); form da landing de reforma ligado ao pipeline.
+- **Sunwave**: leads do Google Ads Lead Form (via Zapier) ganham `google ads lead form` (8 já marcados).
+- **Pool Shack** (Frank): todos os SMS automáticos agora mostram a **linha rastreada** 480-428-0655 (10
+  templates; antes 5 usavam o celular 480-798-2888, fora do rastreamento).
+- **Stay Fresh**: "Ryan Quitler" → **Quilter**; campanha de SMS montada em rascunho (item 1b).
+
+## Concluído antes (14 → 15/10)
 
 - **Passion**: o site agora usa forms do GHL (o webhook para a conta de fora sumiu — antigo item urgente
   resolvido pelo site). Os 2 forms novos não iam para lugar nenhum; ligados ao Website Form Fill
