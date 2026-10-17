@@ -68,6 +68,10 @@
 - Submissões de form: `GET services /forms/submissions?locationId&startAt&endAt` (`others` traz os
   campos e a página de origem). Aviso por e-mail do form: `formData.emailNotifications`. Mostrar a
   submissão na conversa: `formData.form.showSubmissionInConversationsFeed = true` (POST do form).
+- Agendar envio: passo `wait` `{type: "time", startAfter: {type: "minutes", value: 1, when: "after"},
+  window: {condition: "when", days: [<0 = domingo>], start: "09:00", end: "09:30"}, windowCondition:
+  {field: "", operator: "", value: ""}}` segura o contato até a janela abrir (fuso da conta) e solta no
+  início dela (testado). Campanha agendada = publicar + marcar agora (`pp_sms_campaign.py`).
 - E-mail interno de lead: `internal_notification` `{type: "email", email: {userType: "custom_email", to,
   subject, html}}`, um passo por endereço; merge de campo customizado (`{{contact.<fieldKey>}}`) sai
   preenchido (testado). Não fica registrado nas conversas — conferir na caixa (`pp_lead_email.py test`).
