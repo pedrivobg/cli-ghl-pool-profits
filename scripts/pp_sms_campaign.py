@@ -4,6 +4,7 @@
     ./.venv/bin/python scripts/pp_sms_campaign.py setup            # 2 workflows in DRAFT, nothing sent
     ./.venv/bin/python scripts/pp_sms_campaign.py launch --confirm # publish + tag the audience = SENDS
     ./.venv/bin/python scripts/pp_sms_campaign.py check            # after the send: sent tag / replies
+    ./.venv/bin/python scripts/pp_sms_campaign.py setup --live     # change the published one (before any send)
 
 Audience: contacts tagged "active client" (106 imported 14/10, 105 with phone, none DND). The campaign
 is a tag-triggered workflow, so launch = add CAMPAIGN_TAG to the audience; the SMS goes from the
@@ -15,6 +16,9 @@ Send time (Frank, 16/10: "Client said Monday 9am"): the campaign's first step is
 window (SEND_DAY, SEND_WINDOW, account time zone America/Phoenix), so launch can run any day before —
 GHL holds everyone and sends when the window opens; nothing here has to run at 9am. The SMS step then
 adds SENT_TAG, and only contacts with SENT_TAG count as replies (no false alerts while they wait).
+Drip (Pedro, 17/10: "drip mode, não todos ao mesmo tempo"): a drip step after the wait releases DRIP[0]
+contacts every DRIP[1] minutes. Contacts already parked in the wait follow an edit of the published
+workflow (tested on Test Snapshot), so setup --live can add it after launch, while nothing went out.
 """
 from __future__ import annotations
 
@@ -36,6 +40,7 @@ REPLY_TAG = "drain wash interested"
 SENT_TAG = "drain wash sent"
 SEND_DAY = 1  # GHL window days: Sunday = 0 → Monday
 SEND_WINDOW = ("09:00", "09:30")
+DRIP = (10, 5)  # batch size, minutes between batches → 105 contacts from 9:00 to ~9:50
 NAME = "Drain & Wash Campaign - Active Clients"
 REPLIES = "Drain & Wash Campaign - Replies"
 NOTIFY = "Mike Redman"
@@ -67,10 +72,27 @@ def wait_window() -> dict:
         "windowCondition": {"field": "", "operator": "", "value": ""}})
 
 
-def campaign_steps(sms: dict) -> list[dict]:
-    """wait for the window → SMS → SENT_TAG (keeps the SMS step's id)."""
-    return chain([wait_window(), {k: v for k, v in sms.items() if k not in ("order", "next", "parentKey")},
-                  step("Add Tag sent", "add_contact_tag", {"tags": [SENT_TAG], "type": "add_contact_tag"})])
+def drip_step() -> dict:
+    return step(f"Drip Mode - {DRIP[0]} every {DRIP[1]} min", "drip", {
+        "batchSize": DRIP[0], "interval": {"timeUnit": "minutes", "value": DRIP[1]}, "type": "drip"})
+
+
+def campaign_steps(sms: dict, have: list[dict] | None = None) -> list[dict]:
+    """wait for the window → drip → SMS → SENT_TAG; steps already in `have` keep their ids."""
+    ids = {s["type"]: s["id"] for s in have or []}
+    out = []
+    for s in (wait_window(), drip_step(), sms,
+              step("Add Tag sent", "add_contact_tag", {"tags": [SENT_TAG], "type": "add_contact_tag"})):
+        s = {k: v for k, v in s.items() if k not in ("order", "next", "parentKey")}
+        out.append({**s, "id": ids.get(s["type"], s["id"])})
+    return chain(out)
+
+
+def shape(tpl: list[dict]) -> list[tuple]:
+    """What setup compares (GHL adds fields of its own to saved steps)."""
+    keys = ("window", "batchSize", "interval", "body", "tags")
+    return [(s["type"], s["id"], s.get("next"), json.dumps({k: (s.get("attributes") or {}).get(k) for k in keys},
+                                                         sort_keys=True)) for s in tpl]
 
 
 def reply_conditions(tag: str) -> list[dict]:
@@ -124,6 +146,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["setup", "launch", "check"])
     parser.add_argument("--confirm", action="store_true", help="launch: really send")
+    parser.add_argument("--live", action="store_true", help="setup: allow changing the published campaign "
+                                                            "while nothing was sent")
     args = parser.parse_args()
     load_dotenv()
     a = Agency()
@@ -156,29 +180,33 @@ def main() -> int:
                            {"operator": "index-of-true", "field": "tagsAdded", "value": CAMPAIGN_TAG,
                             "title": "Tag added", "type": "select", "id": "tag-added"}]})
             print(f"   ✓ {NAME} (draft) {wid}")
-        else:  # keep the draft equal to TEXT + wait window + sent tag
+        else:  # keep the workflow equal to TEXT + wait window + drip + sent tag
             wid = flows[NAME]["id"]
             live = a.workflow(loc, wid)
             tpl = json.loads(json.dumps(live["workflowData"]["templates"]))
             sms = next(s for s in tpl if s["type"] == "sms")
-            want = campaign_steps({**sms, "attributes": {**sms["attributes"], "body": text}})
-            if tpl[0]["type"] == "wait":  # already wrapped: keep its step ids
-                want = tpl
-                want[[s["id"] for s in tpl].index(sms["id"])]["attributes"]["body"] = text
-            if want != live["workflowData"]["templates"]:
-                if live["status"] != "draft":
-                    raise SystemExit(f"{NAME} já está {live['status']} — não mexo numa campanha no ar")
+            have = {s["type"]: s for s in tpl}
+            want = campaign_steps({**sms, "attributes": {**sms["attributes"], "body": text}}, tpl)
+            for s in want:  # keep what GHL added to steps that stay (configuredAt, …)
+                if s["type"] in have and s["type"] != "sms":
+                    s["attributes"] = {**have[s["type"]]["attributes"], **s["attributes"]}
+            if shape(want) != shape(tpl):
+                sent = sum(SENT_TAG in (c.get("tags") or []) for c in everyone)
+                if live["status"] != "draft" and not (args.live and sent == 0):
+                    raise SystemExit(f"{NAME} já está {live['status']} ({sent} enviados) — só com --live e antes "
+                                     "de qualquer envio")
                 backup(d.name, a, loc, wid, live)
                 a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body={
-                    "name": live["name"], "version": live.get("version", 1), "status": "draft",
+                    "name": live["name"], "version": live.get("version", 1), "status": live["status"],
                     "parentId": live.get("parentId"), "allowMultiple": False, "workflowData": {"templates": want}})
                 for t in a.triggers(loc, wid):
                     if not t.get("deleted") and t.get("targetActionId") != want[0]["id"]:
                         put_trigger(a, loc, wid, t, targetActionId=want[0]["id"])
                 time.sleep(3)
-                got = a.workflow(loc, wid)["workflowData"]["templates"]
-                ok = [s["type"] for s in got] == ["wait", "sms", "add_contact_tag"] and got[1]["attributes"]["body"] == text
-                print(f"   {'✓' if ok else '✗ VERIFICAR'} {NAME}: espera {SEND_WINDOW} dia {SEND_DAY} → SMS → '{SENT_TAG}'")
+                got = a.workflow(loc, wid)
+                ok = shape(got["workflowData"]["templates"]) == shape(want) and got["status"] == live["status"]
+                print(f"   {'✓' if ok else '✗ VERIFICAR'} {NAME} ({got['status']}): espera {SEND_WINDOW} dia {SEND_DAY}"
+                      f" → drip {DRIP[0]} a cada {DRIP[1]} min → SMS → '{SENT_TAG}'")
         if REPLIES in flows:  # replies only count after the SMS went out
             wid = flows[REPLIES]["id"]
             for t in [t for t in a.triggers(loc, wid) if not t.get("deleted")]:
@@ -207,9 +235,10 @@ def main() -> int:
         return 0
     if not args.confirm:
         raise SystemExit("launch envia SMS para o público — rode com --confirm só depois do OK")
-    first = a.workflow(loc, flows[NAME]["id"])["workflowData"]["templates"][0]
-    if first["type"] != "wait" or first["attributes"].get("window", {}).get("days") != [SEND_DAY]:
-        raise SystemExit(f"{NAME} não começa com a espera de {SEND_WINDOW} — rode setup antes (senão envia na hora)")
+    first, second = a.workflow(loc, flows[NAME]["id"])["workflowData"]["templates"][:2]
+    if first["type"] != "wait" or first["attributes"].get("window", {}).get("days") != [SEND_DAY] \
+            or second["type"] != "drip":
+        raise SystemExit(f"{NAME} não começa com espera {SEND_WINDOW} + drip — rode setup antes (senão envia na hora)")
     for name in (REPLIES, NAME):  # replies first, so no answer is missed
         live = a.workflow(loc, flows[name]["id"])
         a.call("PUT", BACKEND, f"/workflow/{loc}/{flows[name]['id']}", body={

@@ -7,8 +7,8 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 1. **Pool Keepers — linha 805-262-9070 não conecta** (Frank e você testaram). Encaminhamento certo; a
    ligação nem chega ao GHL. **Você abre chamado no suporte** (número, horários dos testes, erro "Trial
    mode not enabled for this agency" nos SMS de 07/10, telefone com rebilling). Resolvido → Frank testa.
-2. **Stay Fresh — campanha de SMS agendada**: sai **segunda 19/10 às 9h (Arizona)** para os 105 clientes
-   (já publicada e marcada; o GHL segura até a janela). Segunda depois das 9h30: `pp_sms_campaign.py check`
+2. **Stay Fresh — campanha de SMS agendada**: começa **segunda 19/10 às 9h (Arizona)** em drip, 10 a cada
+   5 min (105 clientes, até ~9h50; já publicada e marcada; o GHL segura até a janela). Segunda depois das 9h30: `pp_sms_campaign.py check`
    (tag `drain wash sent` = enviados) e avisar o Frank. Para cancelar antes: passar
    "Drain & Wash Campaign - Active Clients" para draft.
 3. **Chatbot (Atif)**: mandar para ele as 2 URLs de webhook (contas de teste "Test Snapshot" e "test

@@ -72,6 +72,9 @@
   window: {condition: "when", days: [<0 = domingo>], start: "09:00", end: "09:30"}, windowCondition:
   {field: "", operator: "", value: ""}}` segura o contato até a janela abrir (fuso da conta) e solta no
   início dela (testado). Campanha agendada = publicar + marcar agora (`pp_sms_campaign.py`).
+  Drip depois da espera: passo `drip` `{batchSize, interval: {timeUnit: "minutes", value}}` solta em lotes
+  a partir da abertura da janela. Editar o workflow publicado vale para quem já está parado na espera
+  (testado; manter o id do passo de espera).
 - E-mail interno de lead: `internal_notification` `{type: "email", email: {userType: "custom_email", to,
   subject, html}}`, um passo por endereço; merge de campo customizado (`{{contact.<fieldKey>}}`) sai
   preenchido (testado). Não fica registrado nas conversas — conferir na caixa (`pp_lead_email.py test`).
