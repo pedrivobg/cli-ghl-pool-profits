@@ -41,6 +41,9 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
     trocar a tag "website form fill".
 15. **BluVantage**: bloquear no IVR quem tem tag `spam` (precisa do OK do cliente + ligação de teste).
 16. **Passion**: os forms "PPC - … Quote" do site recebem anúncio? Se sim, entra a parte de Ads.
+    **E-mail de lead** para passionpoolcare@gmail.com só existe no caminho do Google Ads (ligação/SMS na
+    629-302-2044 e form da landing). Form do site = só SMS para o John; ligação/SMS na linha Website & GBP
+    (629-247-6255) ou Secondary = nenhum aviso. Ligar e-mail nesses também (`pp_lead_email.py`)?
 17. **Paid Ads** na Bahama, Passion e Pool Shack: rodam Ads para a landing `go.*`? Se não, draft.
 18. **Limpeza**: drafts antigos da Stay Fresh (AdWords Tracking ×2, Won Customer, Pool Smart OC) e o
     "Sequential Call Routing" (IVR da BluVantage copiado em Southern, Passion, Bahama, Pool Shack, master).
