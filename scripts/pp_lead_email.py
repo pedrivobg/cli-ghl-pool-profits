@@ -18,6 +18,12 @@ BluVantage: Vanessa found Chris Kelleher's form only in the contact's Activity l
 details by e-mail. One e-mail per address (custom e-mail) with every field of the form (service and
 message included), after the NEW LEAD text of the website and Google Ads forms; and the forms' own
 "show submission in the Conversations feed" option turned on, so the answers sit in the conversation.
+
+Passion (Frank/Pedro, 17/10): only the Google Ads path (calls/texts to 629-302-2044, Ads landing form)
+e-mailed passionpoolcare@gmail.com. Website quote forms → e-mail after the SMS to John, with the pool
+answers; and two new workflows for the Website & GBP line (629-247-6255), calls and texts: if/else
+skips spam / DND / existing customer, then the e-mail. Re-entry off = one e-mail per new number (the
+line also gets customers, and none are tagged in GHL). Same trigger shape as the Ads ones.
 """
 from __future__ import annotations
 
@@ -28,6 +34,7 @@ import uuid
 
 from _common import ROOT, load_dotenv, location_dirs
 from pp_audit import load
+from pp_lead_alerts import guard_nodes
 from pp_won_stage import DROP
 
 from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency
@@ -81,6 +88,44 @@ ACCOUNTS = {
         },
         "feed_forms": ["GOOGLE ADS - FORM"],
     },
+}
+PASSION_LINE = "+16292476255"  # "Website & GBP"
+
+
+def line_trigger(kind: str, number: str) -> dict:
+    """Same shape as Passion's live AdWords Call In / AdWords SMS triggers, for another number."""
+    first = {"call_status": {"operator": "==", "field": "message.direction", "value": "inbound",
+                             "title": "Call Direction", "type": "select"},
+             "customer_reply": {"operator": "==", "field": "message.type", "value": 2, "title": "Reply channel",
+                                "type": "select"}}[kind]
+    return {"type": kind, "name": {"call_status": "Call Details", "customer_reply": "Customer Replied"}[kind],
+            "conditions": [first, {"operator": "contains-any", "field": "inbound_number", "value": [number],
+                                   "title": "In Phone Number", "type": "multiselect", "id": "inbound-twilio-number"}]}
+
+
+ACCOUNTS["Passion"] = {
+    "to": ["passionpoolcare@gmail.com"],
+    "flows": {
+        "Website Form Fill To Pipeline": (
+            "🚨 New website lead: {{contact.name}}", "🚨 NEW LEAD FROM YOUR WEBSITE 🚨",
+            BV_DETAILS + ["Pool: {{contact.pool_type}}", "About the pool: {{contact.pool_details}}",
+                          "Form: {{contact.source}}"]),
+    },
+    "feed_forms": ["PPC - Home Quote", "PPC - Universal Quote"],
+    "new_flows": {  # new workflow → (trigger, subject, headline, lines)
+        "Website & GBP Call - Lead Email": (
+            line_trigger("call_status", PASSION_LINE), "📞 New call: {{contact.phone}}",
+            "📞 NEW CALL ON YOUR WEBSITE & GOOGLE LINE 📞",
+            ["Caller: {{contact.name}}", "Phone: {{contact.phone}}", "Line: Website & Google (629-247-6255)",
+             "The card is in Opportunities → Pool Leads → New Lead."]),
+        "Website & GBP SMS - Lead Email": (
+            line_trigger("customer_reply", PASSION_LINE), "💬 New text from {{contact.phone}}",
+            "💬 NEW TEXT ON YOUR WEBSITE & GOOGLE LINE 💬",
+            ["From: {{contact.name}} {{contact.phone}}", "Message: {{message.body}}",
+             "Photos / files: {{message.attachments}}", "Line: Website & Google (629-247-6255)"]),
+    },
+    "folder": "01 Incoming Lead",
+    "skip": ["spam", "dnd", "existing customer"],
 }
 TEST_LOC = "hmzX5j1dPhOQKX2dH4kf"  # Test Snapshot
 
@@ -225,6 +270,60 @@ def apply(a: Agency, account: str, do: bool) -> int:
             len(g["formData"]["form"]["fields"]) == len(f["formData"]["form"]["fields"])
         bad += not ok
         print(f"      {'✓' if ok else '✗ VERIFICAR'}")
+    return bad + create_flows(a, cfg, loc, flows, do)
+
+
+def guarded_emails(cfg: dict, subject: str, headline: str, lines: list[str]) -> list[dict]:
+    """if/else (none of cfg["skip"]) → one e-mail per address in the "Lead" branch."""
+    cond, yes, none = guard_nodes(None, None, 0, skip=cfg["skip"])
+    out, prev = [cond, yes, none], yes
+    for i, to in enumerate(cfg["to"]):
+        e = email_step(subject, headline, lines, to)
+        e.update(order=i, parent=yes["id"], parentKey=prev["id"])
+        prev["next"] = e["id"]
+        out.append(e)
+        prev = e
+    return out
+
+
+def create_flows(a: Agency, cfg: dict, loc: str, flows: dict, do: bool) -> int:
+    """New published workflows (trigger → guard → e-mails); existing ones are left alone."""
+    bad = 0
+    folders = {v: k for k, v in a.folders(loc).items()} if cfg.get("new_flows") else {}
+    for name, (trigger, subject, headline, lines) in cfg.get("new_flows", {}).items():
+        if name in flows:
+            print(f"   {name}: já existe")
+            continue
+        tpl = guarded_emails(cfg, subject, headline, lines)
+        print(f"   + {name} ({trigger['type']} {trigger['conditions'][-1]['value']}): pula {cfg['skip']} → "
+              f"e-mail para {cfg['to']} · 1 vez por contato")
+        if not do:
+            continue
+        parent = folders.get(cfg.get("folder"))
+        res = a.call("POST", BACKEND, f"/workflow/{loc}", body={"name": name, "parentId": parent, "status": "draft"})
+        wid = res.get("id") or res.get("_id")
+        body = {"name": name, "version": 1, "status": "draft", "parentId": parent, "allowMultiple": False,
+                "workflowData": {"templates": tpl}}
+        a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body=body)
+        trig = {**trigger, "masterType": "highlevel", "schedule_config": {}, "workflowId": wid, "workflow_id": wid,
+                "location_id": loc, "actions": [{"workflow_id": wid, "type": "add_to_workflow"}],
+                "targetActionId": tpl[0]["id"]}
+        t = a.call("POST", BACKEND, f"/workflow/{loc}/trigger", body=trig)
+        a.call("PUT", BACKEND, f"/workflow/{loc}/trigger/{t['id']}", body={**trig, "id": t["id"]})
+        live = a.workflow(loc, wid)
+        a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body={**body, "version": live.get("version", 1),
+                                                               "status": "published"})
+        time.sleep(4)
+        got = a.workflow(loc, wid)
+        t2 = got["workflowData"]["templates"]
+        ids = {s["id"] for s in t2}
+        refs = [r for s in t2 for r in ([s.get("next")] if isinstance(s.get("next"), str) else s.get("next") or [])]
+        refs += [s[k] for s in t2 for k in ("parent", "parentKey") if s.get(k)]
+        trs = [x for x in a.triggers(loc, wid) if not x.get("deleted")]
+        ok = got["status"] == "published" and len(t2) == len(tpl) and all(r in ids for r in refs) \
+            and len(trs) == 1 and trs[0]["conditions"][-1]["value"] == trigger["conditions"][-1]["value"]
+        bad += not ok
+        print(f"      {'✓' if ok else '✗ VERIFICAR'} {got['status']} · {len(t2)} passos · gatilho {trs[0]['type'] if trs else '—'}")
     return bad
 
 
@@ -262,8 +361,8 @@ TEST_FIELDS = {"BluVantage": [{"id": "9RVlQh3HgUqdwXG4OBEh", "field_value": "Poo
                               {"id": "vrNW6tfIBG082HVZ7nPe", "field_value": "TEST message from the website form."}]}
 
 
-def run_test(a: Agency, to: str, loc: str = TEST_LOC, account: str = "Orange Tree") -> int:
-    """Throwaway workflow (Test Snapshot by default): tag → the account's first lead e-mail → `to`."""
+def run_test(a: Agency, to: str, loc: str = TEST_LOC, account: str = "Orange Tree", flow: str | None = None) -> int:
+    """Throwaway workflow (Test Snapshot by default): tag → the account's lead e-mail (first, or `flow`) → `to`."""
     go = "lead email test go"
     try:
         a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": go})
@@ -273,7 +372,8 @@ def run_test(a: Agency, to: str, loc: str = TEST_LOC, account: str = "Orange Tre
     wid = res.get("id") or res.get("_id")
     tag = {"id": str(uuid.uuid4()), "order": 0, "name": "Add Tag", "type": "add_contact_tag",
            "attributes": {"tags": ["lead email test done"], "type": "add_contact_tag"}}
-    tpl = insert_after([tag], tag["id"], email_step(*next(iter(ACCOUNTS[account]["flows"].values()))[:3], to))
+    every = {**ACCOUNTS[account]["flows"], **{k: v[1:] for k, v in ACCOUNTS[account].get("new_flows", {}).items()}}
+    tpl = insert_after([tag], tag["id"], email_step(*(every[flow] if flow else next(iter(every.values())))[:3], to))
     a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body={"name": "TMP lead email test", "version": 1,
                                                            "status": "published", "workflowData": {"templates": tpl}})
     trig = {"type": "contact_tag", "name": "Contact Tag", "masterType": "highlevel", "schedule_config": {},
@@ -309,13 +409,14 @@ def main() -> int:
     parser.add_argument("--to", help="test: inbox that gets the sample e-mail")
     parser.add_argument("--loc", default=TEST_LOC, help="test: location that sends it (default Test Snapshot)")
     parser.add_argument("--only", choices=list(ACCOUNTS), help="plan/apply: account")
+    parser.add_argument("--flow", help="test: which of the account's e-mails (workflow name)")
     args = parser.parse_args()
     load_dotenv()
     a = Agency()
     if args.mode == "test":
         if not args.to:
             parser.error("--to is required for test")
-        return run_test(a, args.to, args.loc, args.only or "Orange Tree")
+        return run_test(a, args.to, args.loc, args.only or "Orange Tree", args.flow)
     if not args.only:
         parser.error("--only is required for plan/apply")
     return 1 if apply(a, args.only, args.mode == "apply") else 0

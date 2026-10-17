@@ -29,6 +29,8 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 9. **Orange Tree**: no próximo lead/SMS de cliente, a Vanessa confirmar o e-mail (com fotos). Para voltar
    a receber avisos por SMS, ela manda START para 623-343-0400 e 623-244-8621.
 10. **BluVantage**: na próxima submissão, ver se aparece na conversa e o e-mail chega para Vanessa e Paul.
+10b. **Passion**: no próximo lead do site ou da linha Website & GBP (629-247-6255), conferir se o e-mail
+    chegou em passionpoolcare@gmail.com (procurar também no spam).
 
 ## Decisões
 
@@ -40,10 +42,8 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
     Avisar a Val: sunwavepoolpros.com redireciona para um domínio que não existe; no Zap do lead form,
     trocar a tag "website form fill".
 15. **BluVantage**: bloquear no IVR quem tem tag `spam` (precisa do OK do cliente + ligação de teste).
-16. **Passion**: os forms "PPC - … Quote" do site recebem anúncio? Se sim, entra a parte de Ads.
-    **E-mail de lead** para passionpoolcare@gmail.com só existe no caminho do Google Ads (ligação/SMS na
-    629-302-2044 e form da landing). Form do site = só SMS para o John; ligação/SMS na linha Website & GBP
-    (629-247-6255) ou Secondary = nenhum aviso. Ligar e-mail nesses também (`pp_lead_email.py`)?
+16. **Passion**: os forms "PPC - … Quote" do site recebem anúncio? Se sim, entra a parte de Ads. A linha
+    "Secondary" (629-324-1486) continua sem aviso — serve para quê?
 17. **Paid Ads** na Bahama, Passion e Pool Shack: rodam Ads para a landing `go.*`? Se não, draft.
 18. **Limpeza**: drafts antigos da Stay Fresh (AdWords Tracking ×2, Won Customer, Pool Smart OC) e o
     "Sequential Call Routing" (IVR da BluVantage copiado em Southern, Passion, Bahama, Pool Shack, master).

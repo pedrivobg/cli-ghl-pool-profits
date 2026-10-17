@@ -58,13 +58,14 @@ def is_alert(s: dict) -> bool:
     return s["type"] == "internal_notification" and "NEW LEAD" in ((s["attributes"].get("sms") or {}).get("body") or "")
 
 
-def guard_nodes(prev: str | None, branch: str | None, order: int) -> tuple[dict, dict, dict]:
-    """if/else: contact has none of SKIP → "Lead" branch; otherwise the empty None branch."""
+def guard_nodes(prev: str | None, branch: str | None, order: int,
+                skip: list[str] = SKIP) -> tuple[dict, dict, dict]:
+    """if/else: contact has none of `skip` → "Lead" branch; otherwise the empty None branch."""
     cond, yes, none = nid(), nid(), nid()
     conditions = [{"conditionType": "contact_detail", "conditionSubType": "tags", "conditionOperator": "index-of-false",
                    "conditionValue": [tag], "__conditionId": nid(), "ifElseNodeId": "",
                    "__customFieldType__": "standard", "isWait": False, "nestedDropdownTypes": NEST,
-                   "allowIsOperatorTypes": IS_OPS} for tag in SKIP]
+                   "allowIsOperatorTypes": IS_OPS} for tag in skip]
     c = {"id": cond, "order": order, "name": GUARD_NAME, "type": "if_else", "cat": "conditions",
          "nodeType": "condition-node", "comments": [], "next": [yes, none],
          "attributes": {"currentRecipeType": "CUSTOM", "operator": "and", "if": True, "conditionName": GUARD_NAME,
