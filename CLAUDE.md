@@ -75,6 +75,13 @@
   Drip depois da espera: passo `drip` `{batchSize, interval: {timeUnit: "minutes", value}}` solta em lotes
   a partir da abertura da janela. Editar o workflow publicado vale para quem já está parado na espera
   (testado; manter o id do passo de espera).
+- Google Lead Form nativo: gatilho `google_lead_form_submitted` (`masterType: "internal"`), condição
+  `{field: "adAccountId", operator: "==", value: <location.googleAdwordsId>, id: "adAccountId", type: "select"}`
+  (+ opcional `formId` `is-any-of`; não há endpoint conhecido para listar os forms). Não testável daqui.
+- Ligação por IVR: a mensagem (type 24) tem `to` = nome da conta; o número discado está em
+  `meta.ivr[<callSid>].to`. Gatilho `call_status` com `inbound_number` dispara mesmo com IVR (BluVantage).
+  `meta.callStatusTriggerFired` lista os gatilhos que a ligação disparou (dá a linha quando há workflow por linha).
+- Tags de origem: `pp_source_audit.py` (contatos sem tag / leads sem origem, por linha) e `pp_source_tags.py`.
 - E-mail interno de lead: `internal_notification` `{type: "email", email: {userType: "custom_email", to,
   subject, html}}`, um passo por endereço; merge de campo customizado (`{{contact.<fieldKey>}}`) sai
   preenchido (testado). Não fica registrado nas conversas — conferir na caixa (`pp_lead_email.py test`).

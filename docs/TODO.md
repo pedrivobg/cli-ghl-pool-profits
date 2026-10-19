@@ -1,4 +1,4 @@
-# TODO — só o que está pendente (16/10/2026)
+# TODO — só o que está pendente (19/10/2026)
 
 O que já foi feito está em `docs/execucao-2026-10-13.md`.
 
@@ -7,10 +7,9 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 1. **Pool Keepers — linha 805-262-9070 não conecta** (Frank e você testaram). Encaminhamento certo; a
    ligação nem chega ao GHL. **Você abre chamado no suporte** (número, horários dos testes, erro "Trial
    mode not enabled for this agency" nos SMS de 07/10, telefone com rebilling). Resolvido → Frank testa.
-2. **Stay Fresh — campanha de SMS agendada**: começa **segunda 19/10 às 9h (Arizona)** em drip, 10 a cada
-   5 min (105 clientes, até ~9h50; já publicada e marcada; o GHL segura até a janela). Segunda depois das 9h30: `pp_sms_campaign.py check`
-   (tag `drain wash sent` = enviados) e avisar o Frank. Para cancelar antes: passar
-   "Drain & Wash Campaign - Active Clients" para draft.
+2. **Stay Fresh — campanha enviada** (19/10, 105): avisar o Frank. Respostas vão para o Mike; quem
+   responder ganha `drain wash interested` (inclui o "Stop"). Depois de alguns dias, passar os 2 workflows
+   "Drain & Wash Campaign" para draft.
 3. **Chatbot (Atif)**: mandar para ele as 2 URLs de webhook (contas de teste "Test Snapshot" e "test
    inc", já testadas) e o formato do JSON — mensagem pronta no chat de 16/10. Decidir se ele ganha
    usuário nessas 2 contas para ver os leads (hoje ele recebe por e-mail).
@@ -31,6 +30,10 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 10. **BluVantage**: na próxima submissão, ver se aparece na conversa e o e-mail chega para Vanessa e Paul.
 10b. **Passion**: no próximo lead do site ou da linha Website & GBP (629-247-6255), conferir se o e-mail
     chegou em passionpoolcare@gmail.com (procurar também no spam).
+10c. **Google Lead Form** (Val) na Reign, Damon's e Simple: mandar um lead de teste de cada form "Weekly
+    Pool Service Done Right" → conferir contato, tags `adwords`/`google lead form`, card e SMS. O mesmo
+    gatilho nativo na Sunwave nunca disparou desde 07/10 (lá os leads chegam pelo Zapier).
+10d. **Wrigley's**: primeira ligação na linha AdWords (925-489-0658) → conferir tags e card.
 
 ## Decisões
 
@@ -38,9 +41,12 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
     Snapshots — só você libera.
 12. **SMS com a linha rastreada** nas outras contas, como na Pool Shack (Southern: 214-308-1744 → 922-1914).
 13. **Tag por linha** (`website & gbp`, `facebook`) nas contas que ainda não têm (`pp_line_tag.py`).
-14. **Sunwave**: ligação da linha Adwords ganhar `adwords` + conversão (publicar AdWords Call In)?
-    Avisar a Val: sunwavepoolpros.com redireciona para um domínio que não existe; no Zap do lead form,
-    trocar a tag "website form fill".
+14. **Sunwave**: conversão do Google Ads nas ligações da linha Adwords (a tag já entra)? Avisar a Val:
+    sunwavepoolpros.com redireciona para um domínio que não existe; no Zap do lead form, trocar a tag
+    "website form fill" (aí os forms do site, hoje `website form`, podem voltar a `website form fill`).
+    Número "Angi's Leads" só recebe spam para a dona anterior — trocar o número?
+14b. **Wrigley's**: linha "Google LSA" (925-744-7750) sem workflow (ligação sem tag/card) — criar com tag
+    `google lsa`? Ligações do AdWords sem o SMS de follow-up que a GBP manda — incluir?
 15. **BluVantage**: bloquear no IVR quem tem tag `spam` (precisa do OK do cliente + ligação de teste).
 16. **Passion**: os forms "PPC - … Quote" do site recebem anúncio? Se sim, entra a parte de Ads. A linha
     "Secondary" (629-324-1486) continua sem aviso — serve para quê?
