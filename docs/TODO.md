@@ -30,10 +30,15 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 10. **BluVantage**: na próxima submissão, ver se aparece na conversa e o e-mail chega para Vanessa e Paul.
 10b. **Passion**: no próximo lead do site ou da linha Website & GBP (629-247-6255), conferir se o e-mail
     chegou em passionpoolcare@gmail.com (procurar também no spam).
-10c. **Google Lead Form** (Val) na Reign, Damon's e Simple: mandar um lead de teste de cada form "Weekly
-    Pool Service Done Right" → conferir contato, tags `adwords`/`google lead form`, card e SMS. O mesmo
-    gatilho nativo na Sunwave nunca disparou desde 07/10 (lá os leads chegam pelo Zapier).
-10d. **Wrigley's**: primeira ligação na linha AdWords (925-489-0658) → conferir tags e card.
+10c. **Teste do Google Lead Form (você, na UI)** — Reign, Damon's, Simple, form "Weekly Pool Service Done
+    Right": (1) GHL da sub-conta → Settings → Integrations → Google Ads → Manage: o form está mapeado (Map
+    Fields: nome, telefone, e-mail, CEP) e com status **Active**? Se não, Play → Map Fields → ativar.
+    (2) Google Ads → campanha → Lead form → Edit → abrir o form → **Send Data**. Me avisa → eu confiro
+    contato, tags, card e SMS e apago o contato/card de teste. O SMS "NEW LEAD" do teste chega no
+    Stephen/Damon/Nathan. A Sunwave tem o mesmo gatilho desde 07/10 e nunca disparou (form não ativo?).
+10d. **Ligações de teste (você)**: Wrigley's linha AdWords 925-489-0658 e Google LSA 925-744-7750 (toca no
+    celular do cliente — desligar no 1º toque basta); eu confiro tag/card e apago. Ou esperar o tráfego
+    real (`pp_source_check.py`). Sunwave já conferido com ligações reais (Trucks & Cards).
 
 ## Decisões
 
@@ -45,8 +50,7 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
     sunwavepoolpros.com redireciona para um domínio que não existe; no Zap do lead form, trocar a tag
     "website form fill" (aí os forms do site, hoje `website form`, podem voltar a `website form fill`).
     Número "Angi's Leads" só recebe spam para a dona anterior — trocar o número?
-14b. **Wrigley's**: linha "Google LSA" (925-744-7750) sem workflow (ligação sem tag/card) — criar com tag
-    `google lsa`? Ligações do AdWords sem o SMS de follow-up que a GBP manda — incluir?
+14b. **Wrigley's**: ligações do AdWords e do LSA sem o SMS de follow-up que a GBP manda — incluir?
 15. **BluVantage**: bloquear no IVR quem tem tag `spam` (precisa do OK do cliente + ligação de teste).
 16. **Passion**: os forms "PPC - … Quote" do site recebem anúncio? Se sim, entra a parte de Ads. A linha
     "Secondary" (629-324-1486) continua sem aviso — serve para quê?

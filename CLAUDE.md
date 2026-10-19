@@ -12,6 +12,9 @@
 - Fluxo: `pp_dump.py --priority` → `pp_audit.py` → `pp_compare.py` → revisar → aplicar
   (`pp_mirror` → `pp_forms` → `pp_fix --drop-booking`). Histórico: `docs/execucao-*.md`;
   pendências do Pedro: `docs/TODO.md`.
+- **Testes são nossos** (Pedro, 19/10): para a equipe (Frank, Val, Ed) e os clientes, Pedro e o Claude são
+  uma pessoa só. Nunca pedir a eles para testar; testar daqui e, o que precisar de mão humana (ligação,
+  UI do GHL/Google Ads), passar o passo a passo para o Pedro. Mensagens para eles só depois de testado.
 - Regras de escrita no GHL: sempre GET + backup em `backup/<slug>/<id>.json` antes de PUT;
   testar em 1 sub-conta e revisar o diff antes de aplicar no resto; não mudar lógica sem
   pedido — correções básicas (nome de outra empresa, custom value vazio, link morto,
@@ -77,7 +80,9 @@
   (testado; manter o id do passo de espera).
 - Google Lead Form nativo: gatilho `google_lead_form_submitted` (`masterType: "internal"`), condição
   `{field: "adAccountId", operator: "==", value: <location.googleAdwordsId>, id: "adAccountId", type: "select"}`
-  (+ opcional `formId` `is-any-of`; não há endpoint conhecido para listar os forms). Não testável daqui.
+  (+ opcional `formId` `is-any-of`; não há endpoint conhecido para listar os forms). O lead só entra se o form
+  estiver mapeado e **Active** em Settings → Integrations → Google Ads (botão Play/Map Fields); teste =
+  Google Ads → campanha → Lead form → Edit → abrir o form → **Send Data** (help.gohighlevel.com 48001180147).
 - Ligação por IVR: a mensagem (type 24) tem `to` = nome da conta; o número discado está em
   `meta.ivr[<callSid>].to`. Gatilho `call_status` com `inbound_number` dispara mesmo com IVR (BluVantage).
   `meta.callStatusTriggerFired` lista os gatilhos que a ligação disparou (dá a linha quando há workflow por linha).
