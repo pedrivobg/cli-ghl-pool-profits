@@ -4,18 +4,31 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 
 ## Agora
 
-1. **Pool Keepers — linha 805-262-9070 não conecta** (Frank e você testaram). Encaminhamento certo; a
-   ligação nem chega ao GHL. **Você abre chamado no suporte** (número, horários dos testes, erro "Trial
-   mode not enabled for this agency" nos SMS de 07/10, telefone com rebilling). Resolvido → Frank testa.
+1. **Pool Keepers — linha 805-262-9070 encaminha para ela mesma** (desde 10/10; por isso toca 1× e cai —
+   o registro de 15/10 estava errado: 805-457-8212 é o telefone da empresa, não o encaminhamento). Sem API:
+   Settings → Phone Numbers → 805-262-9070 → Edit → *Forward calls to* = **+1 805-457-8212** → salvar → ligar
+   para testar (me avisa que eu confiro o registro). Chamado no suporte só se continuar caindo.
 2. **Stay Fresh — campanha enviada** (19/10, 105): avisar o Frank. Respostas vão para o Mike; quem
    responder ganha `drain wash interested` (inclui o "Stop"). Depois de alguns dias, passar os 2 workflows
    "Drain & Wash Campaign" para draft.
-3. **Chatbot (Atif)**: mandar para ele as 2 URLs de webhook (contas de teste "Test Snapshot" e "test
-   inc", já testadas) e o formato do JSON — mensagem pronta no chat de 16/10. Decidir se ele ganha
-   usuário nessas 2 contas para ver os leads (hoje ele recebe por e-mail).
-4. **Bluewater (Bill)**: perguntar onde fica o GHL dele (não está na Pool Profits nem na Pool Duck —
-   pista: Sharon Burch) e pedir pedro@poolprofits.com como Admin. Com acesso: 3 webhooks (calculadora,
-   Seller's/Buyer's Guide) com tags, SMS de confirmação só com checkbox, calendário no lugar do Calendly.
+3. **Chatbot (Atif)**: as 2 URLs de webhook já foram (16/10). Agora ele pede acesso ao WordPress dos 3
+   sites (backend do chatbot + 2 fictícios): criar um usuário próprio dele em cada site (não passar o login
+   de vocês), e mandar URL + usuário; senha por canal separado.
+4. **BurchTech Solutions (GHL do Bill)** — acesso no Basecamp; lá ficam a **Bluewater** e a **Pool Keepers**
+   (decidido 19/10: o snapshot da Pool Profits vai para a BurchTech). Passos:
+   a) Acesso por API para mim: entrar com o login do Basecamp e tirar o refresh token
+      (`docs/get-firebase-token.md`, arquivo de env separado como na Pool Duck) — ou pedir pedro@poolprofits.com
+      como admin da agência BurchTech.
+   b) Snapshot (só na UI; a API de snapshots não aceita o token): Agência Pool Profits → Account Snapshots →
+      Create → a partir da sub-conta **The Pool Keepers** (tem as correções; o master V9 ainda tem os bugs
+      do item 11) → Share → link → na BurchTech: Account Snapshots → Imported → colar o link → carregar na
+      sub-conta da Pool Keepers (e o que servir na Bluewater).
+   c) Não viajam no snapshot (eu refaço/confiro com acesso): usuários nos avisos internos, número de telefone
+      + A2P (o 805-262-9070 é da Pool Profits — portar = chamado), domínio go.thepoolkeepers.company (DNS
+      para a BurchTech), integrações Google/Facebook, equipe dos calendários, custom values.
+   d) Na Pool Keepers de cá há 3 funis "… - Simple Pool Care" (cópias de outra conta) — limpar antes do snapshot.
+   e) Bluewater, com acesso: 3 webhooks (calculadora, Seller's/Buyer's Guide) com tags, SMS de confirmação
+      só com checkbox, calendário no lugar do Calendly.
 5. **Trocar os 2 refresh tokens** colados no chat (Pool Profits e Pool Duck) — `docs/get-firebase-token.md`.
 
 ## Testes da equipe
