@@ -37,7 +37,8 @@ para o cliente testar.
 
 9. **Pool Keepers**: 805-262-9070 encaminha para ela mesma. Trocar para **+1 805-457-8212** (mesmo caminho do
    item 1) e ligar para testar. A2P dela também.
-10. **BurchTech (Bluewater + Pool Keepers)**: aguardando o login/acesso que você pediu ao Ed (o projeto não estava no
+10. **BurchTech (Bluewater + Pool Keepers)** — o ClickUp "GHL Form Mapping" é isto, plano pronto em
+    `docs/bluewater-form-mapping.md`: aguardando o login/acesso que você pediu ao Ed (o projeto não estava no
     Basecamp). Com acesso:
     - **Para mim**: refresh token por API (`docs/get-firebase-token.md`) ou pedro@poolprofits.com como admin.
     - **Snapshot**: da sub-conta The Pool Keepers → Share → importar na BurchTech. É só na UI; o resto eu refaço.
