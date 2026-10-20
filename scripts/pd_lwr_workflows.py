@@ -11,8 +11,10 @@ pages (form fill + call in, Google + Facebook) into folder "Ad Landing Pages" of
 - tags get "lakewood ranch" (location) on top of WC's source + contact method tags;
 - messages name Pool Duck Lakewood Ranch;
 - "Add to Google Ads" / "Meta Conversion API" are left out until LWR sends its own ad accounts;
-- the call workflows stay draft without trigger until LWR has its Google/Facebook numbers
-  (add trigger "Call Status: inbound, In phone number = <number>" and publish).
+- the call workflows stay draft without trigger until LWR has its Google/Facebook numbers; with a number
+  in CALL_NUMBERS they get WC's trigger (Call Status: inbound, In phone number) and are published.
+
+    ./.venv/bin/python scripts/pd_lwr_workflows.py --only "Google AdWords - Qualified Lead (Call In)" --apply
 Step and trigger shapes are WC's own, so the GHL UI shows them as usual.
 """
 from __future__ import annotations
@@ -31,6 +33,7 @@ LWR = "MosKIX4oux96vchwHZ5W"
 FOLDER = "Ad Landing Pages"
 PIPELINE, LEAD_STAGE = "bBmO8YBJXxiKgEJEN3Ol", "f6512503-5228-4e2e-a9e1-c1dd7e8f232e"
 ALERT_USERS = ["Fpwm492Y2wyKFa0xJgVC", "DZkEc4SNZd1bAeBiT2LG"]  # Kenton Dashiell, Pool Duck Service
+CALL_NUMBERS = {"Google AdWords - Qualified Lead (Call In)": "+19415415942"}  # bought by Val 19/10; FB: none yet
 TAGS = ["new lead", "google adwords", "fb leads", "form fill", "call in", "lakewood ranch"]
 ALERT = ("New Lead from {src} for Pool Duck Lakewood Ranch\n\nName: {{{{contact.name}}}}\nEmail: {{{{contact.email}}}}\n"
          "Phone: {{{{contact.phone}}}}\nCity: {{{{contact.city}}}}\nZip: {{{{contact.postal_code}}}}")
@@ -99,6 +102,7 @@ def chain(wid: str, steps: list) -> list[dict]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--only", action="append", help="workflow name (default: all four)")
     args = parser.parse_args()
     load_dotenv()
     a = Agency()
@@ -124,8 +128,13 @@ def main() -> int:
     existing = {w["name"]: w for w in a.workflows(LWR)}
     bad = 0
     for name, (status, form, steps) in WORKFLOWS.items():
+        if args.only and name not in args.only:
+            continue
+        number = CALL_NUMBERS.get(name)
+        status = "published" if number else status
         w = existing.get(name)
-        print(f"{'=' if w else '+'} {name} [{status}]" + (f" ← form {form}" if form else " (sem gatilho: falta o número)"))
+        print(f"{'=' if w else '+'} {name} [{status}]" + (f" ← form {form}" if form else f" ← ligação em {number}"
+                                                          if number else " (sem gatilho: falta o número)"))
         if not args.apply:
             continue
         if w:
@@ -139,10 +148,16 @@ def main() -> int:
         a.call("PUT", BACKEND, f"/workflow/{LWR}/{wid}", body={
             "name": name, "version": version, "status": status, "parentId": parent, "allowMultiple": True,
             "workflowData": {"templates": templates}})
-        if form:
-            trig = {"type": "form_submission", "name": "Form Submitted", "masterType": "highlevel",
-                    "conditions": [{"operator": "is-any-of", "field": "form.id", "value": [form],
-                                    "title": "Form is", "type": "string"}],
+        if form or number:
+            conditions = [{"operator": "is-any-of", "field": "form.id", "value": [form], "title": "Form is",
+                           "type": "string"}] if form else [  # WC's call trigger shape
+                {"operator": "==", "field": "message.direction", "value": "inbound", "title": "Call direction",
+                 "type": "select"},
+                {"operator": "contains-any", "field": "inbound_number", "value": [number], "title": "In phone number",
+                 "type": "multiselect", "id": "inbound-twilio-number"}]
+            trig = {"type": "form_submission" if form else "call_status",
+                    "name": "Form Submitted" if form else "Call Details", "masterType": "highlevel",
+                    "conditions": conditions,
                     "actions": [{"workflow_id": wid, "type": "add_to_workflow"}], "schedule_config": {},
                     "workflowId": wid, "workflow_id": wid, "location_id": LWR, "targetActionId": templates[0]["id"]}
             current = [t for t in a.triggers(LWR, wid) if not t.get("deleted")]
@@ -161,8 +176,8 @@ def main() -> int:
             got = (after.get("workflowData") or {}).get("templates") or []
             ok = (after.get("status") == status and [s["type"] for s in got] == [s["type"] for s in templates]
                   and after.get("parentId") == parent
-                  and (not form or (len(trs) == 1 and trs[0]["conditions"][0]["value"] == [form]
-                                    and trs[0].get("active") == (status == "published"))))
+                  and (not (form or number) or (len(trs) == 1 and trs[0]["conditions"][-1]["value"] == [form or number]
+                                                and trs[0].get("active") == (status == "published"))))
             if ok:
                 break
         bad += not ok

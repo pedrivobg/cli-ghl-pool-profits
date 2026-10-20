@@ -42,7 +42,7 @@ FB_FORM = {"value": "331LWSK5w0JSbZFswx4q", "text": "Facebook Leads"}
 PAGE_FORM = {"YFcLwNp6AYdOUnJeXcWE": GOOGLE_FORM, "MDOxMUPB3e6Mm2njmFRl": GOOGLE_FORM,
              "cnsiCLgYk8DdEzZhRhwE": FB_FORM, "pMOAbr1nACLcVQ5neOUm": FB_FORM}
 # Wesley Chapel → Lakewood Ranch, applied to the whole page JSON (forms, phones, popups, buttons).
-# Phones: LWR has no Google/FB tracking numbers yet, so both pages use the main line for now.
+# Phones: WC's numbers → the LWR main line; PAGE_PHONES then puts each funnel's tracking number.
 GLOBAL = [
     ("3OeoAxL72ioduhLuXqgh", "L35gq3SnSDyoda4Kl9D4"),   # form "Google AdWords"
     ("CcwYR5GI3dyIuzRdxpzK", "331LWSK5w0JSbZFswx4q"),   # form "Facebook Leads"
@@ -55,6 +55,9 @@ GLOBAL = [
     ("Over 15+ years of experience in Pasco County pool service!", "Over 15+ years of pool service experience!"),
     ("in all of Pasco County.", "in all of Lakewood Ranch."),
 ]
+# Tracking numbers, per funnel (Val bought the Google Ads one 19/10; Facebook keeps the main line for now).
+ADS_PHONE = [("+19415882227", "+19415415942"), ("941-588-2227", "941-541-5942"), ("(941) 588-2227", "(941) 541-5942")]
+PAGE_PHONES = {"YFcLwNp6AYdOUnJeXcWE": ADS_PHONE, "MDOxMUPB3e6Mm2njmFRl": ADS_PHONE}
 AREAS = {  # "Areas We Serve" bullets, top to bottom
     "bulletList-7JeJmJW8ZM": ("Zephyrhills", "Lakewood Ranch"),
     "bulletList-RoHTy9E2Br": ("Wesley Chapel", "Bradenton"),
@@ -92,10 +95,10 @@ def nodes(data: dict):
     yield from walk(data.get("popups") or [])
 
 
-def localize(data: dict, form: dict | None = None) -> tuple[dict, list[str]]:
+def localize(data: dict, form: dict | None = None, phones: list = ()) -> tuple[dict, list[str]]:
     raw = json.dumps(data, ensure_ascii=False)
     notes = []
-    for old, new in GLOBAL:
+    for old, new in [*GLOBAL, *phones]:
         n = raw.count(json.dumps(old, ensure_ascii=False)[1:-1])
         if n:
             raw = raw.replace(json.dumps(old, ensure_ascii=False)[1:-1], json.dumps(new, ensure_ascii=False)[1:-1])
@@ -155,7 +158,7 @@ def main() -> int:
         page = a.get(BACKEND, f"/funnels/page/{pid}")
         assert page["locationId"] == LWR, page["locationId"]
         data = requests.get(page["pageDataDownloadUrl"], timeout=60).json()
-        new, notes = localize(json.loads(json.dumps(data)), PAGE_FORM[pid])
+        new, notes = localize(json.loads(json.dumps(data)), PAGE_FORM[pid], PAGE_PHONES.get(pid, []))
         meta = {**(page.get("meta") or {}), **META}
         print(f"== {label} ({pid})")
         for n in notes:
@@ -179,9 +182,10 @@ def main() -> int:
             time.sleep(3)
             after = a.get(BACKEND, f"/funnels/page/{pid}")
             saved = requests.get(after["pageDataDownloadUrl"], timeout=60).json()
-            if not localize(json.loads(json.dumps(saved)), PAGE_FORM[pid])[1] and after["meta"].get("title") == META["title"]:
+            if not localize(json.loads(json.dumps(saved)), PAGE_FORM[pid], PAGE_PHONES.get(pid, []))[1] \
+                    and after["meta"].get("title") == META["title"]:
                 break
-        left, redo = leftovers(saved), localize(json.loads(json.dumps(saved)), PAGE_FORM[pid])[1]
+        left, redo = leftovers(saved), localize(json.loads(json.dumps(saved)), PAGE_FORM[pid], PAGE_PHONES.get(pid, []))[1]
         ok = not left and not redo and after["meta"].get("title") == META["title"]
         bad += not ok
         print(f"    {'✓' if ok else '✗ VERIFICAR'} salvo (data {after['pageDataUrl'][-12:]}, title {after['meta'].get('title')!r})")

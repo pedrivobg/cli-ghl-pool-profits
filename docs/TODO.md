@@ -44,15 +44,14 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 10b. **Passion**: no próximo lead do site ou da linha Website & GBP (629-247-6255), conferir se o e-mail
     chegou em passionpoolcare@gmail.com (procurar também no spam).
 10c. **Teste do Google Lead Form (você, na UI)** — Reign, Damon's, Simple, form "Weekly Pool Service Done
-    Right": (1) GHL da sub-conta → Settings → Integrations → Google Ads → Manage: o form está mapeado (Map
-    Fields: nome, telefone, e-mail, CEP) e com status **Active**? Se não, Play → Map Fields → ativar.
-    (2) Google Ads → campanha → Lead form → Edit → abrir o form → **Send Data**. Me avisa → eu confiro
-    contato, tags, card e SMS e apago o contato/card de teste. O SMS "NEW LEAD" do teste chega no
-    Stephen/Damon/Nathan. A Sunwave tem o mesmo gatilho desde 07/10 e nunca disparou (form não ativo?).
-10d. **Ligações de teste (você)**: Wrigley's linha AdWords 925-489-0658 e Google LSA 925-744-7750 (toca no
-    celular do cliente — desligar no 1º toque basta); eu confiro tag/card e apago. Ou esperar o tráfego
-    real (`pp_source_check.py`). Sunwave já conferido com ligações reais (Trucks & Cards).
-
+    Right". Até 20/10 nenhum lead entrou (0 contatos com `google lead form`; Sunwave idem desde 07/10).
+    (1) GHL da sub-conta → Settings → Integrations → Google Ads → Manage: o form está mapeado (Map Fields:
+    nome, telefone, e-mail, CEP) e **Active**? Se não, Play → Map Fields → ativar. (2) Google Ads → campanha
+    → Lead form → Edit → abrir o form → **Send Data**. Me avisa → eu confiro contato, tags, card e SMS e apago o
+    teste. O SMS "NEW LEAD" do teste chega no Stephen/Damon/Nathan.
+10d. **Ligações de teste (você)**: Wrigley's linha LSA 925-744-7750 (a do Google Ads já foi conferida com
+    ligação real: Aaron Jones, tags + card ok) e Pool Duck LWR 941-541-5942 (ver quem atende). Sunwave e
+    Passion já conferidos com tráfego real (`pp_source_check.py`).
 ## Decisões
 
 11. **Master do snapshot**: corrigir (3 etapas Won e bugs antigos) e dar Refresh em Agency → Account
@@ -75,5 +74,7 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 ## Pool Duck — detalhes em `docs/poolduck-lakewood-ranch.md`
 
 20. Campanha de review do LWR: aprovou → `pd_lwr_reviews.py launch`; confirmar os 2 McQuaid.
+20b. Número do Google Ads do LWR (941-541-5942) já ligado ao workflow e às páginas do Google (20/10) — falta a
+    ligação de teste (10d).
 21. Landing pages LWR: teste manual do form, números de rastreamento, IDs de Ads/Pixel, Trustindex, áreas;
     apagar os 2 contatos de teste. Avisar: alertas antigos "… - Steve" sem destinatário; popup do WC.

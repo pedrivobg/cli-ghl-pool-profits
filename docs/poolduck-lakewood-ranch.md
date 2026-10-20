@@ -48,10 +48,13 @@ SMS para o lead do FB: "Hi {{contact.first_name}}, this is Pool Duck in Lakewood
 
 1. **Teste manual do form (1 min cada)**: abrir /google-landing-page e /fb-promo, enviar com dados
    de teste → deve cair no LWR com as tags, card em Lead e SMS para Kenton e 941-549-3125.
-2. **Números de rastreamento** (cliente vai comprar, um Google e um Facebook, no LWR): depois,
-   (a) nos 2 workflows "(Call In)" adicionar gatilho *Call Status → inbound, In phone number = número*
-   e publicar; (b) trocar 941-588-2227 pelos números nas páginas (rodar `pd_lwr_pages.py` com o
-   mapeamento novo); (c) ligar para cada número e conferir tags/card.
+2. **Números de rastreamento**: o do Google Ads chegou (Val, 19/10): **+1 941-541-5942** ("Google Adwords",
+   mesma configuração do número de Ads do WC: sem encaminhamento nem IVR). Feito 20/10: "Google AdWords -
+   Qualified Lead (Call In)" com gatilho de ligação nesse número e **publicado** (`pd_lwr_workflows.py
+   --only …`); páginas do funil Google (/google-landing-page e /fb-thank-you-171844) com o número novo
+   (`pd_lwr_pages.py`, PAGE_PHONES; conferido ao vivo: 0 ocorrências do 588-2227). Falta: ligação de teste
+   (Pedro) → conferir tags `google adwords`/`call in`/`lakewood ranch` + card e quem atende. Facebook: sem
+   número ainda (páginas do FB continuam com a linha principal; "(Call In)" do FB em draft).
 3. **Rastreamento de anúncios**: quando o cliente mandar Google Ads/GTM/Pixel do LWR, colocar nos
    funis e recolocar os passos de conversão nos workflows.
 4. **Reviews**: criar o widget Trustindex do LWR (Google "Pool Duck of Lakewood Ranch") e reexibir a
