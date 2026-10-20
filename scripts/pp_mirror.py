@@ -37,6 +37,7 @@ from collections import Counter, defaultdict
 
 from _common import PRIORITY, ROOT, load_dotenv, location_dirs
 from pp_audit import load
+from pp_source_tags import drop_step
 
 from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency, GHLError
 
@@ -76,6 +77,13 @@ FORCE_DRAFT = {"Sequential Call Routing"}
 SKIP_STATUS_FOLDERS = ("08 Paid Ads",)
 TRIGGER_DROP = ("id", "_id", "date_added", "date_updated", "deleted", "origin_id",
                 "company_id", "company_age", "last_conditions_change_at", "belongs_to")
+
+
+def model_only(step: dict) -> bool:
+    """Internal e-mails to a fixed address belong to the model's client (Southern → Brett): never copied."""
+    at = step.get("attributes") or {}
+    return step.get("type") == "internal_notification" and at.get("type") == "email" and \
+        (at.get("email") or {}).get("userType") == "custom_email"
 
 
 def norm(name: str) -> str:
@@ -489,6 +497,9 @@ class Mirror:
                 continue
             model_wf = self.m.wf(mw["id"])
             steps = self.remap((model_wf.get("workflowData") or {}).get("templates") or [])
+            for s in [s for s in steps if model_only(s)]:  # e.g. Southern's lead e-mail to Brett
+                steps = drop_step(steps, s["id"])
+                self.say(f"      sem o passo '{s['name']}' (e-mail para {s['attributes']['email'].get('to')}, só do modelo)")
             left = self.leftovers(steps)
             if left:
                 self.problems.append(f"{name}: passos com ids do modelo sem par no alvo {left} — não copiado")

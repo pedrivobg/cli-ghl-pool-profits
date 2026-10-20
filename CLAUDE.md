@@ -86,6 +86,9 @@
 - Ligação por IVR: a mensagem (type 24) tem `to` = nome da conta; o número discado está em
   `meta.ivr[<callSid>].to`. Gatilho `call_status` com `inbound_number` dispara mesmo com IVR (BluVantage).
   `meta.callStatusTriggerFired` lista os gatilhos que a ligação disparou (dá a linha quando há workflow por linha).
+- Onboarding de cliente: survey `efErcbOr4GAKXzZ28J4S` na sub-conta "Pool Profits" (`GET services
+  /surveys/submissions?locationId`); cria a sub-conta em **America/Sao_Paulo** — corrigir o fuso
+  (`PUT services /locations/{id} {timezone}`; `pp_timezone_fix.py`) e conferir custom values (`pp_onboarding_fill.py`).
 - Tags de origem: `pp_source_audit.py` (contatos sem tag / leads sem origem, por linha) e `pp_source_tags.py`.
 - E-mail interno de lead: `internal_notification` `{type: "email", email: {userType: "custom_email", to,
   subject, html}}`, um passo por endereço; merge de campo customizado (`{{contact.<fieldKey>}}`) sai

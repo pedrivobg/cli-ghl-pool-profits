@@ -71,6 +71,18 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
     "Sequential Call Routing" (IVR da BluVantage copiado em Southern, Passion, Bahama, Pool Shack, master).
 19. **A2P da Pool Keepers** (Settings → Phone System → Trust Center). **Kari** (Southern): Won certo?
 
+## Frank — 20/10
+
+22. **Pool Heads**: apagar a sub-conta duplicada `PeUynYCMm8e6PJMy785O` (16/10) — conferida vazia; a de
+    18/10 (`InG8k1ETTG5uVwcAByj6`) já tem os custom values e o fuso. Só falta o seu OK (irreversível).
+23. **Nortex**: (a) ligação de teste no 469-238-2660 sem atender → deve chegar o SMS de chamada perdida no seu
+    celular e criar o card; (b) Zoom com o Frank; (c) fluxo form → agenda: form do site (iframe do GHL no
+    WordPress) → redirecionar para uma página **no próprio nortexpools.com** com o calendário embutido +
+    "sticky contact" ligado no form e no calendário → a agenda abre preenchida (no link direto do calendário
+    o navegador isola os dados do iframe e não preenche). Precisa de quem mexe no WordPress criar a página.
+24. **Onboarding**: a automação do survey cria a sub-conta em São Paulo e às vezes não preenche os custom
+    values (Pool Heads 18/10) — usar `pp_onboarding_fill.py --timezone` em cada conta nova.
+
 ## Pool Duck — detalhes em `docs/poolduck-lakewood-ranch.md`
 
 20. Campanha de review do LWR: aprovou → `pd_lwr_reviews.py launch`; confirmar os 2 McQuaid.
