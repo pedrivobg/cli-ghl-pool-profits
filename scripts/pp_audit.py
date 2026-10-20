@@ -183,7 +183,8 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
     for cv in cvs:
         m = CV_RE.search(cv.get("fieldKey") or "")
         key = m.group(1) if m else slugify(cv.get("name", "")).replace("-", "_")
-        cv_map[key] = (cv.get("value") or "").strip()
+        value = (cv.get("value") or "").strip()
+        cv_map[key] = "" if value.lower() in ("null", "none") else value  # the onboarding automation writes these
 
     # friendly names of the OTHER dumped sub-accounts are foreign here too
     others_cv = {}
@@ -194,6 +195,10 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
             if "friendly_business_name" in (cv.get("fieldKey") or "") and cv.get("value"):
                 others_cv[other.name] = cv["value"]
     foreign = foreign_names(location, others_cv)
+    # Google places of the OTHER dumped sub-accounts (a review link copied from the model)
+    other_places = {load(o / "location.json", {}).get("googlePlacesId"): o.name for o in all_dirs if o != loc_dir}
+    other_places.pop(None, None)
+    other_places.pop("", None)
     foreign_res = [(n, re.compile(r"(?<![a-z0-9])" + re.escape(norm(n)) + r"(?![a-z0-9])"))
                    for n in foreign]
 
@@ -308,6 +313,8 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
                 if own_place and place != own_place:
                     add("ALTA", wname, sname, f"link de review do Google aponta para OUTRO negócio (placeid={place}, "
                                               f"o desta conta é {own_place})")
+                elif not own_place and place in other_places:
+                    add("ALTA", wname, sname, f"link de review do Google é o de {other_places[place]} (placeid={place})")
 
     for key, names in trigger_keys.items():
         if len(names) > 1:

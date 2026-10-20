@@ -34,7 +34,9 @@ import re
 import sys
 import time
 from collections import Counter, defaultdict
+from urllib.parse import unquote
 
+import requests
 from _common import PRIORITY, ROOT, load_dotenv, location_dirs
 from pp_audit import load
 from pp_source_tags import drop_step
@@ -86,6 +88,25 @@ def model_only(step: dict) -> bool:
         (at.get("email") or {}).get("userType") == "custom_email"
 
 
+def review_place(side: Side) -> str | None:
+    """Google place of an account whose profile has none (GBP not connected): from google_review_link."""
+    link = next(((c.get("value") or "").strip() for c in side.custom_values
+                 if "google_review_link" in (c.get("fieldKey") or "")), "")
+    m = re.search(r"placeid=([\w-]+)", link)
+    if m:
+        return m.group(1)
+    if not re.match(r"https?://(g\.page|goo\.gl|maps\.app\.goo\.gl)/", link):
+        return None
+    # g.page/r/…/review → …writereview?placeid=<place> behind Google's sign-in redirect
+    # (a browser user agent gets a maps URL without the placeid instead)
+    try:
+        final = requests.get(link, headers={"User-Agent": "curl/8.5.0"}, timeout=20).url
+    except requests.RequestException:
+        return None
+    m = re.search(r"placeid=([\w-]+)", unquote(final))
+    return m.group(1) if m else None
+
+
 def norm(name: str) -> str:
     return re.sub(r"\s+", " ", (name or "").strip().lower())
 
@@ -103,6 +124,7 @@ class Side:
         self.forms = load(d / "forms.json", [])
         self.pipelines = load(d / "pipelines.json", [])
         self.users = load(d / "users.json", [])
+        self.custom_values = load(d / "custom_values.json", [])
         self.calendars = load(d / "calendars.json", [])
         self.custom_fields = load(d / "custom_fields.json", [])
 
@@ -125,6 +147,7 @@ class Mirror:
         self.ids: dict[str, str] = {model.loc: target.loc}
         self.log: list[str] = []
         self.problems: list[str] = []
+        self.no_place: str | None = None  # model's Google place when the target has none
         self.stamp = time.strftime("%Y%m%d-%H%M%S")
         self.bdir = BACKUP / target.dir.name
         # canonical target workflow per name (oldest copy wins)
@@ -330,11 +353,16 @@ class Mirror:
         self.main_user = main
         # the Review Request carries a hardcoded Google review link (placeid=…): it must
         # point at the target's own Google place, never the model's
-        m_place, t_place = self.m.location.get("googlePlacesId"), self.t.location.get("googlePlacesId")
+        m_place = self.m.location.get("googlePlacesId")
+        t_place = self.t.location.get("googlePlacesId") or (review_place(self.t) if m_place else None)
         if m_place and t_place:
             self.ids[m_place] = t_place
+            if not self.t.location.get("googlePlacesId"):
+                self.say(f"    link de review: place {t_place} (do google_review_link; Google não conectado na conta)")
         elif m_place:
-            self.problems.append("alvo sem googlePlacesId: o link de review copiado aponta para o Google do modelo")
+            self.no_place = m_place
+            self.problems.append("sem Google Place (perfil nem google_review_link): Review Request fica em draft, "
+                                 "sem link de review — falta o link do cliente")
 
     def map_workflows(self) -> None:
         for w in self.m.index:
@@ -505,6 +533,11 @@ class Mirror:
                 self.problems.append(f"{name}: passos com ids do modelo sem par no alvo {left} — não copiado")
                 continue
             status = mw["status"] if (self.publish or mw["status"] == "draft") else tw.get("status", "draft")
+            if self.no_place and self.no_place in json.dumps(steps):  # never the model's Google page
+                for st in steps:
+                    if self.no_place in (st.get("attributes") or {}).get("overrideReviewLink", ""):
+                        st["attributes"]["overrideReviewLink"] = ""
+                status = "draft"
             if self.full and name in FORCE_DRAFT:
                 status = "draft"
             if self.full and mw.get("folder"):

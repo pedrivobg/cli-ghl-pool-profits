@@ -31,6 +31,12 @@ SERVICES = "https://services.leadconnectorhq.com"
 BACKEND = "https://backend.leadconnectorhq.com"
 API_VERSION = "2021-07-28"
 
+# Workflow settings the PUT resets to the default when the body leaves them out (seen 20/10: every
+# script that re-saved a workflow turned "allow re-entry" off and dropped its send window).
+WORKFLOW_PUT = re.compile(r"^/workflow/([^/]+)/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$")
+WORKFLOW_SETTINGS = ("allowMultiple", "allowMultipleOpportunity", "stopOnResponse", "removeContactFromLastStep",
+                     "autoMarkAsRead", "timezone", "window", "eventStartDate", "senderAddress")
+
 
 class GHLError(RuntimeError):
     def __init__(self, status: int, url: str, body: str):
@@ -72,6 +78,9 @@ class Agency:
              params: dict | None = None, body: dict | None = None,
              version: str = API_VERSION, _retried: bool = False) -> Any:
         url = f"{host}{path}"
+        match = WORKFLOW_PUT.match(path) if method == "PUT" and host == BACKEND and body else None
+        if match and not _retried:
+            body = self._keep_settings(match.group(1), match.group(2), body)
         headers = {
             "token-id": self.tokens.get_token(),
             "channel": "APP",
@@ -103,6 +112,17 @@ class Agency:
 
     def get(self, host: str, path: str, params: dict | None = None) -> Any:
         return self.call("GET", host, path, params=params)
+
+    def _keep_settings(self, loc: str, wf_id: str, body: dict) -> dict:
+        """Settings the caller did not send keep their live value instead of falling to the default."""
+        missing = [k for k in WORKFLOW_SETTINGS if k not in body]
+        if not missing:
+            return body
+        try:
+            live = self.workflow(loc, wf_id)
+        except GHLError:
+            return body
+        return {**body, **{k: live[k] for k in missing if live.get(k) is not None}}
 
     def first_ok(self, kind: str, attempts: Iterable[tuple[str, Callable[[], Any]]]) -> Any:
         """Run the attempts in order; return the first that answers 2xx.

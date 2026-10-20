@@ -19,7 +19,7 @@ import time
 from _common import ROOT, load_dotenv, location_dirs
 from pp_audit import load
 
-from cli_anything.gohighlevel.utils.agency import BACKEND, Agency
+from cli_anything.gohighlevel.utils.agency import BACKEND, Agency, GHLError
 
 TAG = "existing customer"
 WORKFLOWS = ("Won Stage", "Review Request", "Adword Call - Conversion", "Post-Appointment Follow-up")
@@ -44,7 +44,11 @@ def main() -> int:
         bdir = ROOT / "backup" / d.name
         bdir.mkdir(parents=True, exist_ok=True)
         if args.apply:
-            a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": TAG})
+            try:
+                a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": TAG})
+            except GHLError as exc:
+                if exc.status != 409:  # 409 = the tag already exists
+                    raise
         for w in a.workflows(loc):
             if w["name"] not in WORKFLOWS:
                 continue

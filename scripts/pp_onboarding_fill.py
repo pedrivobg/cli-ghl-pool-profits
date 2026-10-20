@@ -10,7 +10,8 @@ creates the sub-account and an automation fills its custom values. Poolheads (Fr
 twice → two sub-accounts; the one kept (18/10) came without custom values. Same mapping the automation
 used on the first one (its values = the 16/10 answers), except that unanswered fields stay empty
 instead of the literal "None" it writes. --previous: only fields that still hold the previous
-answer (or are empty / "None") change — anything edited by hand is kept. --timezone also sets the location's time zone from the
+answer (or are empty / "None" / "null") change — anything edited by hand is kept. --field limits it
+to some custom values. A value that differs from the answer only in case is kept. --timezone also sets the location's time zone from the
 survey's "Timezone" answer (sub-accounts are created in America/Sao_Paulo). Backup in backup/<slug>/.
 """
 from __future__ import annotations
@@ -25,6 +26,7 @@ from _common import ROOT, load_dotenv, slugify
 from cli_anything.gohighlevel.utils.agency import SERVICES, Agency
 
 ONBOARDING_LOC = "wohRifObKPEykgu17LJu"  # "Pool Profits"
+EMPTY = ("", "none", "null")  # what the onboarding automation writes for an unanswered field
 
 
 def phone(v: str) -> str:
@@ -54,6 +56,7 @@ MAPPING = {
                                                         o.get("postal_code")) if x),
     "Google Review Link": lambda o: o.get("uj4lNw4lBYeEnxwbZLyH"),
     "Weekly Service Price": lambda o: o.get("Tm0PIoVNLJspqISncPe7"),
+    "One-Time Clean Price": lambda o: o.get("c7XuPqeRCyMgiFkSL7lU"),
     "Chemical Only Price": lambda o: o.get("pJ890VRyYrbzGGygJeMe"),
     "Green to Clean Price": lambda o: o.get("AxCyaL12L44oWwd9eo1O"),
     "Logo URL": lambda o: logo(o.get("h7JQ7TiA6rRoZYpH1KkD")),
@@ -66,6 +69,7 @@ def main() -> int:
     parser.add_argument("--loc", required=True, help="sub-account to fill")
     parser.add_argument("--previous", help="older submission: only overwrite values still equal to its answers")
     parser.add_argument("--timezone", action="store_true", help="also set the location time zone")
+    parser.add_argument("--field", action="append", help="only this custom value (repeatable)")
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
     load_dotenv()
@@ -86,15 +90,25 @@ def main() -> int:
     print(f"== {loc['name']} ({args.loc}) ← respostas de {sub.get('createdAt')}")
     changes = []
     for name, get in MAPPING.items():
+        if args.field and name not in args.field:
+            continue
         value = (get(answers) or "").strip()
         cur = (cvs.get(name) or {}).get("value") or ""
-        if old is not None and cur not in ("", "None") and cur != (get(old) or "").strip():
+        if cur.strip().lower() in EMPTY:
+            cur = ""
+        if old is not None and cur and cur != (get(old) or "").strip():
             if cur != value:
                 print(f"   {name}: mantido {cur!r} (editado à mão; survey novo diz {value!r})")
             continue
+        raw = (cvs.get(name) or {}).get("value") or ""
+        if value and value.lower() == cur.lower():
+            continue  # same answer, only the case differs (current one is usually the tidy one)
         if value and value != cur:
-            changes.append((name, cur, value))
-            print(f"   {name}: {cur!r} → {value!r}")
+            changes.append((name, raw, value))
+            print(f"   {name}: {raw!r} → {value!r}")
+        elif not value and raw.strip().lower() in EMPTY[1:]:
+            changes.append((name, raw, ""))  # literal "null"/"None" would go out in a message
+            print(f"   {name}: {raw!r} → vazio")
     tz = (answers.get("Timezone") or "").split(" ")[0]
     if args.timezone and tz and tz != loc.get("timezone"):
         print(f"   fuso: {loc.get('timezone')} → {tz}")
@@ -114,7 +128,7 @@ def main() -> int:
         a.call("PUT", SERVICES, f"/locations/{args.loc}", body={"timezone": tz})
     time.sleep(3)
     got = {c["name"]: c.get("value") for c in a.custom_values(args.loc)}
-    bad = [n for n, _, v in changes if got.get(n) != v]
+    bad = [n for n, _, v in changes if (got.get(n) or "") != v]
     tz_now = a.location(args.loc).get("timezone")
     print(f"   {'✓' if not bad else '✗ VERIFICAR ' + str(bad)} {len(changes) - len(bad)}/{len(changes)} custom values"
           + (f" · fuso {tz_now}" if args.timezone else ""))

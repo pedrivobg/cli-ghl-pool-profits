@@ -12,6 +12,11 @@
 - Fluxo: `pp_dump.py --priority` → `pp_audit.py` → `pp_compare.py` → revisar → aplicar
   (`pp_mirror` → `pp_forms` → `pp_fix --drop-booking`). Histórico: `docs/execucao-*.md`;
   pendências do Pedro: `docs/TODO.md`.
+- Conta nova (onboarding): `pp_onboarding_fill` (+ fuso) → custom values do GHL (`a2p_verification_number` = número
+  do GHL, friendly name como no site) → `pp_mirror --apply` → `pp_forms` → `pp_nps` → `pp_fix --drop-booking
+  [--include-drafts --skip "In Communication Stage"]` → `pp_tags_missing` → `pp_skip_tag` → `pp_line_tag` →
+  missed-call nativo off → Sequential Call Routing draft → `pp_audit` + `pp_ready.py` (usuário = representante
+  do Business Profile em todo aviso/tarefa). Sem Google conectado o link de review vem do `google_review_link`.
 - **Testes são nossos** (Pedro, 19/10): para a equipe (Frank, Val, Ed) e os clientes, Pedro e o Claude são
   uma pessoa só. Nunca pedir a eles para testar; testar daqui e, o que precisar de mão humana (ligação,
   UI do GHL/Google Ads), passar o passo a passo para o Pedro. Mensagens para eles só depois de testado.
@@ -27,6 +32,9 @@
 - Workflow PUT valida assets: id de pipeline/etapa/campo de outra location → 400
   `ASSET_VALIDATION_FAILED`. Leituras logo após escrita podem vir defasadas (pipeline,
   listagem pública de workflows, busca de contatos): reler com espera.
+- Workflow PUT volta ao padrão toda configuração que o corpo não traz (`allowMultiple` = allow re-entry,
+  `allowMultipleOpportunity`, `window`, `timezone`…): `Agency.call` completa com os valores atuais (20/10; antes
+  disso 166 workflows perderam o re-entry — `pp_wf_settings.py`). Re-entry off = 2ª entrada ignorada (testado).
 - Gatilho: `active` segue o status do workflow (draft → inativo); PUT não liga/desliga.
   Para tirar um gatilho: `DELETE /workflow/{loc}/trigger/{id}` (com backup).
 - Pipeline: `PUT services /opportunities/pipelines/{id}` com `{name, stages}` (sem

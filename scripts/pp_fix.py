@@ -5,6 +5,7 @@
     ./.venv/bin/python scripts/pp_fix.py --only "Southern Pool" --apply    # backs up, writes, re-reads
     ... --drop-booking      treat booking_link as empty (baseline: no calendar link)
     ... --include-drafts    also fix drafts (account about to go live)
+    ... --skip "In Communication Stage"   leave a workflow as the model has it (repeatable)
 
 Works from dump/ (run pp_dump.py first, and again after --apply). Fixes:
 
@@ -189,6 +190,8 @@ def main() -> int:
                         help="remove the booking link from messages even when booking_link is filled")
     parser.add_argument("--include-drafts", action="store_true",
                         help="also fix draft workflows (accounts about to go live)")
+    parser.add_argument("--skip", action="append", default=[],
+                        help="leave this workflow (and its templates) as it is (repeatable)")
     args = parser.parse_args()
     load_dotenv()
     agency = Agency() if args.apply else None
@@ -219,7 +222,7 @@ def main() -> int:
         snippet_ids: set[str] = set()
         wf_changes = []
         for meta in index:
-            if meta["status"] != "published" and not args.include_drafts:
+            if meta["status"] != "published" and not args.include_drafts or meta["name"] in args.skip:
                 continue
             wf = load(d / "workflows" / f"{meta['id']}.json", {})
             steps = (wf.get("workflowData") or {}).get("templates") or []

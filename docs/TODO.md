@@ -1,96 +1,65 @@
-# TODO — só o que está pendente (19/10/2026)
+# TODO do Pedro — só o que depende de você e ainda está aberto (20/10/2026)
 
-O que já foi feito está em `docs/execucao-2026-10-13.md`.
+O que já foi feito está em `docs/execucao-2026-10-13.md`. Testes são nossos: nada aqui vai para a equipe ou
+para o cliente testar.
 
-## Agora
+## Contas novas (Poolheads, Rosebrook, Cleverblu) — automações prontas, faltam só coisas de UI
 
-1. **Pool Keepers — linha 805-262-9070 encaminha para ela mesma** (desde 10/10; por isso toca 1× e cai —
-   o registro de 15/10 estava errado: 805-457-8212 é o telefone da empresa, não o encaminhamento). Sem API:
-   Settings → Phone Numbers → 805-262-9070 → Edit → *Forward calls to* = **+1 805-457-8212** → salvar → ligar
-   para testar (me avisa que eu confiro o registro). Chamado no suporte só se continuar caindo.
-2. **Stay Fresh — campanha enviada** (19/10, 105): avisar o Frank. Respostas vão para o Mike; quem
-   responder ganha `drain wash interested` (inclui o "Stop"). Depois de alguns dias, passar os 2 workflows
-   "Drain & Wash Campaign" para draft.
-3. **Chatbot (Atif)**: do nosso lado (GHL) está pronto — 2 webhooks enviados em 16/10. Ele pediu login do
-   WordPress dos 3 sites (backend do chatbot + 2 fictícios), que não são nossos (você não tem acesso) →
-   respondido devolvendo para o Frank / quem criou os sites.
-4. **BurchTech Solutions (GHL do Bill)** — o acesso estaria no Basecamp, mas você não achou projeto BurchTech nem
-   Bluewater (20/10) → pedido ao Ed ("nosso outro e-mail") o login ou acesso ao projeto. Lá ficam a **Bluewater** e a **Pool Keepers**
-   (decidido 19/10: o snapshot da Pool Profits vai para a BurchTech). Passos:
-   a) Acesso por API para mim: entrar com o login do Basecamp e tirar o refresh token
-      (`docs/get-firebase-token.md`, arquivo de env separado como na Pool Duck) — ou pedir pedro@poolprofits.com
-      como admin da agência BurchTech.
-   b) Snapshot (só na UI; a API de snapshots não aceita o token): Agência Pool Profits → Account Snapshots →
-      Create → a partir da sub-conta **The Pool Keepers** (tem as correções; o master V9 ainda tem os bugs
-      do item 11) → Share → link → na BurchTech: Account Snapshots → Imported → colar o link → carregar na
-      sub-conta da Pool Keepers (e o que servir na Bluewater).
-   c) Não viajam no snapshot (eu refaço/confiro com acesso): usuários nos avisos internos, número de telefone
-      + A2P (o 805-262-9070 é da Pool Profits — portar = chamado), domínio go.thepoolkeepers.company (DNS
-      para a BurchTech), integrações Google/Facebook, equipe dos calendários, custom values.
-   d) Na Pool Keepers de cá há 3 funis "… - Simple Pool Care" (cópias de outra conta) — limpar antes do snapshot.
-   e) Bluewater, com acesso: 3 webhooks (calculadora, Seller's/Buyer's Guide) com tags, SMS de confirmação
-      só com checkbox, calendário no lugar do Calendly.
-5. **Trocar os 2 refresh tokens** colados no chat (Pool Profits e Pool Duck) — `docs/get-firebase-token.md`.
+1. **Encaminhamento das linhas** (sem API; hoje a ligação só toca no app web do GHL): Settings → Phone Numbers →
+   número → Edit → *Forward calls to*:
+   - Poolheads **936-301-4150 → +1 936-314-9255**
+   - Cleverblu **689-229-3738 → +1 407-922-8947**
+2. **Ligação de teste** em cada uma, depois do item 1, sem atender. Tem que chegar o SMS de chamada perdida no
+   seu celular e aparecer o card em New Lead com a tarefa. Me avisa que eu confiro tags, card e aviso.
+3. **A2P** dos dois números (Settings → Phone System → Trust Center): sem aprovação o SMS não sai.
+4. **Rosebrook**:
+   - **Número**: comprar um (nome "Website & GBP") e fazer o A2P. Sem número, nenhum SMS sai, nem o aviso de
+     lead para a Lynsey. Depois eu ponho o número no custom value, crio a tag da linha e confiro.
+   - **Link de review do Google**: pedir à Lynsey ou conectar o Google Business Profile em Settings →
+     Integrations. O Review Request fica em draft até ter o link.
 
-## Testes da equipe
+## Testes que só você faz
 
-6. **Southern** (Val): teste final do form e de uma ligação no 972-632-3259; conversão na página
-   https://service.southernpoolandoutdoors.com/ty-page-2934-3692. Se o builder da landing estiver aberto,
-   recarregar antes de salvar (o form mudou para GOOGLE ADS - FORM).
-7. **Sunwave** (Val): reenviar o form da landing e conferir tags/card/SMS dos Connolly.
-8. **IVR da Southern**: ligar no (214) 922-1914 (1 → Brett; 2 → 214-308-1744; sem resposta → caixa postal).
-9. **Orange Tree**: no próximo lead/SMS de cliente, a Vanessa confirmar o e-mail (com fotos). Para voltar
-   a receber avisos por SMS, ela manda START para 623-343-0400 e 623-244-8621.
-10. **BluVantage**: na próxima submissão, ver se aparece na conversa e o e-mail chega para Vanessa e Paul.
-10b. **Passion**: no próximo lead do site ou da linha Website & GBP (629-247-6255), conferir se o e-mail
-    chegou em passionpoolcare@gmail.com (procurar também no spam).
-10c. **Teste do Google Lead Form (você, na UI)** — Reign, Damon's, Simple, form "Weekly Pool Service Done
-    Right". Até 20/10 nenhum lead entrou (0 contatos com `google lead form`; Sunwave idem desde 07/10).
-    (1) GHL da sub-conta → Settings → Integrations → Google Ads → Manage: o form está mapeado (Map Fields:
-    nome, telefone, e-mail, CEP) e **Active**? Se não, Play → Map Fields → ativar. (2) Google Ads → campanha
-    → Lead form → Edit → abrir o form → **Send Data**. Me avisa → eu confiro contato, tags, card e SMS e apago o
-    teste. O SMS "NEW LEAD" do teste chega no Stephen/Damon/Nathan.
-10d. **Ligações de teste (você)**: Wrigley's linha LSA 925-744-7750 (a do Google Ads já foi conferida com
-    ligação real: Aaron Jones, tags + card ok) e Pool Duck LWR 941-541-5942 (ver quem atende). Sunwave e
-    Passion já conferidos com tráfego real (`pp_source_check.py`).
-## Decisões
+5. **Nortex**: ligação no 469-238-2660 sem atender (SMS de chamada perdida + card).
+6. **Ligações**: Wrigley's LSA 925-744-7750 · Pool Duck LWR 941-541-5942 · IVR da Southern (214) 922-1914
+   (1 → Brett; 2 → 214-308-1744; sem resposta → caixa postal).
+7. **Google Lead Form** (Reign, Damon's, Simple; form "Weekly Pool Service Done Right"):
+   1. Na sub-conta, Settings → Integrations → Google Ads → Manage: o form tem que estar mapeado (nome,
+      telefone, e-mail, CEP) e **Active**.
+   2. No Google Ads: campanha → Lead form → Edit → abrir o form → **Send Data**.
+   3. Me avisa e eu confiro e apago o teste.
+8. **Forms de landing** (envio não automatizável):
+   - Southern: GOOGLE ADS - FORM em service.southernpoolandoutdoors.com.
+   - Sunwave: form da landing.
+   - Me avisa depois de enviar.
 
-11. **Master do snapshot**: corrigir (3 etapas Won e bugs antigos) e dar Refresh em Agency → Account
-    Snapshots — só você libera.
-12. **SMS com a linha rastreada** nas outras contas, como na Pool Shack (Southern: 214-308-1744 → 922-1914).
-13. **Tag por linha** (`website & gbp`, `facebook`) nas contas que ainda não têm (`pp_line_tag.py`).
-14. **Sunwave**: conversão do Google Ads nas ligações da linha Adwords (a tag já entra)? Avisar a Val:
-    sunwavepoolpros.com redireciona para um domínio que não existe; no Zap do lead form, trocar a tag
-    "website form fill" (aí os forms do site, hoje `website form`, podem voltar a `website form fill`).
-    Número "Angi's Leads" só recebe spam para a dona anterior — trocar o número?
-14b. **Wrigley's**: ligações do AdWords e do LSA sem o SMS de follow-up que a GBP manda — incluir?
-15. **BluVantage**: bloquear no IVR quem tem tag `spam` (precisa do OK do cliente + ligação de teste).
-16. **Passion**: os forms "PPC - … Quote" do site recebem anúncio? Se sim, entra a parte de Ads. A linha
-    "Secondary" (629-324-1486) continua sem aviso — serve para quê?
-17. **Paid Ads** na Bahama, Passion e Pool Shack: rodam Ads para a landing `go.*`? Se não, draft.
-18. **Limpeza**: drafts antigos da Stay Fresh (AdWords Tracking ×2, Won Customer, Pool Smart OC) e o
-    "Sequential Call Routing" (IVR da BluVantage copiado em Southern, Passion, Bahama, Pool Shack, master).
-19. **A2P da Pool Keepers** (Settings → Phone System → Trust Center). **Kari** (Southern): Won certo?
+## UI do GHL / acessos
 
-## Frank — 20/10
+9. **Pool Keepers**: 805-262-9070 encaminha para ela mesma. Trocar para **+1 805-457-8212** (mesmo caminho do
+   item 1) e ligar para testar. A2P dela também.
+10. **BurchTech (Bluewater + Pool Keepers)**: aguardando o login/acesso que você pediu ao Ed (o projeto não estava no
+    Basecamp). Com acesso:
+    - **Para mim**: refresh token por API (`docs/get-firebase-token.md`) ou pedro@poolprofits.com como admin.
+    - **Snapshot**: da sub-conta The Pool Keepers → Share → importar na BurchTech. É só na UI; o resto eu refaço.
+11. **Trocar os 2 refresh tokens** (Pool Profits e Pool Duck) colados no chat (`docs/get-firebase-token.md`).
+12. **Master do snapshot**: corrigir (3 etapas Won e os bugs antigos) e dar Refresh em Agency → Account Snapshots.
 
-22. **Pool Heads**: fica a sub-conta de 16/10 (`PeUynYCMm8e6PJMy785O`, tem private token); a de 18/10
-    (`InG8k1ETTG5uVwcAByj6`) está marcada para apagar (você, 20/10). Conferido que nada se perde: a de 18/10
-    só tinha os custom values que eu pus (já passados para a de 16/10) — preços/logo do survey de 18/10, fuso
-    Chicago; campos editados à mão não foram tocados (`pp_onboarding_fill.py --previous`).
-23. **Nortex**: (a) ligação de teste no 469-238-2660 sem atender → deve chegar o SMS de chamada perdida no seu
-    celular e criar o card; (b) Zoom com o Frank; (c) fluxo form → agenda: form do site (iframe do GHL no
-    WordPress) → redirecionar para uma página **no próprio nortexpools.com** com o calendário embutido +
-    "sticky contact" ligado no form e no calendário → a agenda abre preenchida (no link direto do calendário
-    o navegador isola os dados do iframe e não preenche). Precisa de quem mexe no WordPress criar a página.
-24. **Onboarding**: a automação do survey cria a sub-conta em São Paulo e às vezes não preenche os custom
-    values (Pool Heads 18/10) — usar `pp_onboarding_fill.py --timezone` em cada conta nova.
+## Respostas e decisões
 
-## Pool Duck — detalhes em `docs/poolduck-lakewood-ranch.md`
-
-20. Campanha de review do LWR: **lançada** (271, começa ter 20/10 10:00 ET em drip) — conferir os lotes (check-in
-    agendado) e a resposta do Ed sobre o passo de feedback.
-20b. Número do Google Ads do LWR (941-541-5942) já ligado ao workflow e às páginas do Google (20/10) — falta a
-    ligação de teste (10d).
-21. Landing pages LWR: teste manual do form, números de rastreamento, IDs de Ads/Pixel, Trustindex, áreas;
-    apagar os 2 contatos de teste. Avisar: alertas antigos "… - Steve" sem destinatário; popup do WC.
+13. **Stay Fresh**:
+    - Conferir os 7 e-mails de teste com o texto do Mike em pedro@poolprofits.com.
+    - Mandar ao Frank a confirmação (texto no chat de 20/10), se ainda não mandou.
+    - Campanha drain & wash: se quiser, eu passo os 2 workflows para draft.
+14. **Nortex**: Zoom com o Frank. O fluxo form → agenda precisa de quem mexe no WordPress criar a página com o
+    calendário (proposta em `docs/execucao-2026-10-13.md`, 20/10).
+15. **Pool Duck LWR**: teste manual do form das landings, IDs de Ads/Pixel, Trustindex; avisar o WC dos alertas
+    antigos "… - Steve" sem destinatário.
+16. **Decisões em aberto** (perguntar ao Frank/Val quando der):
+    - Passion: a linha Secondary (629-324-1486) serve para quê? Os forms "PPC - … Quote" recebem anúncio?
+    - Paid Ads na Bahama, Passion e Pool Shack: rodam Ads para a landing `go.*`? Se não, draft.
+    - Sunwave: conversão do Google Ads nas ligações da Adwords? Trocar o número "Angi's Leads" (só recebe spam)?
+      Avisar a Val do redirecionamento quebrado de sunwavepoolpros.com e da tag do Zap.
+    - Wrigley's: SMS de follow-up também nas ligações do AdWords/LSA?
+    - BluVantage: bloquear no IVR quem tem tag `spam`?
+    - Tag por linha e SMS com a linha rastreada nas contas antigas que ainda não têm.
+    - Limpeza: drafts velhos da Stay Fresh e o "Sequential Call Routing" (IVR da BluVantage) nas contas antigas.
