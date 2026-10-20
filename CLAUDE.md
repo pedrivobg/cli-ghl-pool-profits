@@ -56,6 +56,8 @@
   `{country, phone (E.164), displayValue, isValid}`. Não ligar o IVR para um número que é do próprio
   IVR (loop): usar o número para onde a linha encaminhava.
 - Templates (snippets): a leitura atrasa ~10-20 s depois do PUT (`pp_snippet_replace.py` espera).
+- Texto próprio do cliente nas automações: `config/<cliente>_wording.json` + `scripts/pp_wording.py` (plan /
+  `--test <inbox>` na Test Snapshot / `--apply`). Conta com esse config é pulada pelo `pp_mirror --apply`.
 - If/else por gatilho: `conditionType: "trigger"`, `conditionValue: <id do gatilho>` (Won Stage e
   Review Request ramificam assim pelas 3 etapas Won). Gatilho novo precisa de `workflowId`,
   `workflow_id`, `location_id`, `actions` no corpo — sem isso o PUT dá "Workflow not found".

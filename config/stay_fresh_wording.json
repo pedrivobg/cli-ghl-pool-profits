@@ -1,0 +1,57 @@
+{
+  "location": "DdTE6mF11dqgoI5Cv7XN",
+  "source": "Mike (Stay Fresh Pools), Basecamp 'Automation Snapshots', 19/10/2026; Frank asked to apply it on 20/10",
+  "placeholders": {
+    "[First Name]": "{{contact.first_name}}",
+    "[Business Phone]": "{{custom_values.business_phone}}",
+    "[Business Email]": "{{custom_values.business_email}}"
+  },
+  "messages": [
+    {"workflow": "Missed New Lead - Initial SMS Follow-up", "step": "SMS 1",
+     "text": "Hi [First Name]! Mike here with Stay Fresh Pools. Thanks for reaching out! Sorry we missed you—we’ll be in touch shortly. Is this the best number to reach you? Send us a brief description of what you need so we’re ready to help get your pool Stay Fresh!"},
+    {"workflow": "Missed New Lead - Initial SMS Follow-up", "step": "SMS 2",
+     "text": "Hey [First Name]! Just following up to see how we can help get your pool Stay Fresh. Whether it’s weekly service, repairs, or a pool project, send us a brief description of what you’re looking for. Text or call us here—we’d love to help!"},
+
+    {"workflow": "No Response Follow-up", "step": "SMS 1",
+     "text": "Hey [First Name]! Mike with Stay Fresh Pools. Still looking for help with your pool? From weekly service and repairs to remodels and new builds, we’d love to hear what you have in mind. Send us a brief description or call [Business Phone]. Let’s get things moving!"},
+    {"workflow": "No Response Follow-up", "step": "SMS 2",
+     "text": "Hi [First Name]! Just checking back in—ready to get your pool Stay Fresh? Let’s find a time to discuss what you need and walk through the next steps. What day works best for a quick call?"},
+    {"workflow": "No Response Follow-up", "step": "SMS 3",
+     "text": "Hey [First Name]! We’ll leave the ball in your court for now. When the time is right, the Stay Fresh team is here to help. Quality, care, and longevity—that’s how we do pools. Save our number and reach out anytime: [Business Phone]."},
+
+    {"workflow": "Quote Sent Follow-up", "step": "SMS 1",
+     "text": "Hey [First Name]! Mike with Stay Fresh Pools. Just making sure you received your quote! We’re excited about the opportunity to bring the Stay Fresh standard to your pool. Any questions about what’s included or the next steps? Let’s go over it together!"},
+    {"workflow": "Quote Sent Follow-up", "step": "SMS 2",
+     "text": "Hey [First Name]! Have you had a chance to review your quote? At Stay Fresh, every recommendation has a purpose—quality, efficiency, and longevity. We’d love to walk through the details so you feel confident moving forward. Text us here or call [Business Phone]. Let’s get your pool Stay Fresh!"},
+
+    {"workflow": "Lost Stage", "step": "Email - Lost Customer Feedback",
+     "subject": "A quick question, [First Name]",
+     "text": "Hi [First Name],\n\nMike here with Stay Fresh Pools. We appreciate the opportunity to earn your business, even if we didn’t get to work together this time.\n\nWould you be open to sharing what influenced your decision? Whether it was budget, timing, scope, or something we could have explained better, we’d appreciate your honest feedback.\n\nWe’re always challenging ourselves to raise the standard, and your perspective helps us do that. Just hit reply—a quick response goes a long way.\n\nThank you for your time,\nMike\nStay Fresh Pools\n[Business Phone]"},
+    {"workflow": "Lost Stage", "step": "Email - 90 Day Check In",
+     "subject": "How’s everything going with your pool, [First Name]?",
+     "text": "Hi [First Name],\n\nMike with Stay Fresh Pools! It’s been a little while, and I wanted to check in. How’s everything going with your pool? Did you get the help you needed?\n\nIf you’re still exploring options or things haven’t gone as planned, we’d love to reconnect.\n\nFrom weekly maintenance and repairs to remodels and new builds, our focus stays the same: quality, clear communication, and long-term performance.\n\nFor our weekly service customers, that means consistent water testing and balancing, equipment inspections, service reports, and respect for your property every visit. That’s the Stay Fresh standard.\n\nReply and let us know how things are going. Whether you need help now or down the road, we’re here.\n\nMike\nStay Fresh Pools\n[Business Phone]\n\nWhere quality and longevity meet."},
+
+    {"workflow": "Won Stage", "step": "Welcome Email",
+     "subject": "Welcome to the Stay Fresh Family, [First Name]!",
+     "text": "Hi [First Name],\n\nWelcome to the Stay Fresh Family! We’re excited to care for your pool, and we appreciate your trust in our team.\n\nYou can expect more than a clean pool. The Stay Fresh standard means proactive care with quality, longevity, and your swimming experience in mind.\n\nHere’s what that looks like:\n\n• Consistent, dependable weekly service\n• Water testing and chemical balancing\n• Brushing, skimming, and routine cleaning\n• Equipment inspections to catch concerns early\n• Service reports so you know what was done\n• Clear communication about recommendations and next steps\n\nOur team will be in touch shortly to confirm your first service date and any access details. Have questions before then? We’re just a call, text, or email away.\n\n[Business Phone]\n[Business Email]\n\nThank you for choosing Stay Fresh. Let’s keep your pool fresh all year round!\n\nMike\nStay Fresh Pools\nWhere quality and longevity meet."},
+    {"workflow": "Won Stage", "step": "SMS",
+     "text": "Hi [First Name]! Mike here—welcome to the Stay Fresh Family! We’re excited to get started. Our team will be in touch shortly to confirm your first service date and access details. Questions? Text us here or call [Business Phone]. We’ve got you covered!"},
+
+    {"workflow": "Reactivation Campaign - Email", "step": "Email 1",
+     "subject": "Let’s get your pool Stay Fresh again, [First Name]!",
+     "text": "Hi [First Name],\n\nMike here with Stay Fresh Pools! It’s been a while, and we’d love the opportunity to welcome you back to the Stay Fresh Family.\n\nOur focus is simple: dependable service, proactive care, and helping your pool and equipment perform for the long run.\n\nTo welcome you back, we’re offering a complimentary pool inspection on your first visit back. We’ll check your water chemistry, surface condition, and equipment to identify potential issues early, help protect your investment, and give you a clear plan for keeping your pool in top shape.\n\nThis complimentary inspection is available for a limited time, so don’t wait until a small issue becomes a costly repair. Reply “STAY FRESH” today or call [Business Phone] to reserve your inspection and coordinate your return.\n\nMike\nStay Fresh Pools\nWhere quality and longevity meet."},
+    {"workflow": "Reactivation Campaign - Email", "step": "Email 2",
+     "subject": "Is your pool getting the care it deserves, [First Name]?",
+     "text": "Hi [First Name],\n\nHow’s your pool been? If you’re ready for a change, we’d love to earn your business back.\n\nThe Stay Fresh standard means showing up consistently, paying attention to the details, and keeping you informed. With our weekly service, you can expect:\n\n• Consistent water testing and chemical balancing\n• Thorough cleaning and routine equipment inspections\n• Service reports with chemical readings and updates\n• Clear communication when something needs attention\n• Respect for your pool, yard, and property\n\nYour complimentary pool inspection is available on your first visit back.\n\nReply with a good time for a quick call, or reach us at [Business Phone]. Let’s talk through what your pool needs and get you back on route!\n\nMike\nStay Fresh Pools"},
+    {"workflow": "Reactivation Campaign - Email", "step": "Email 3",
+     "subject": "The door’s always open, [First Name]",
+     "text": "Hi [First Name],\n\nOne last check-in from your Stay Fresh crew!\n\nWe’d love to have you back, but we understand timing matters. We’ll leave the next move with you.\n\nWhether you need weekly care, a repair, or a fresh start for your pool, we’re ready to help—with the quality and attention you expect from Stay Fresh.\n\nReady to reconnect? Reply “LET’S TALK” or call [Business Phone]. We’ll take it from there.\n\nThank you for being part of our story. There’s always a place for you in the Stay Fresh Family.\n\nMike\nStay Fresh Pools\n[Business Phone]"},
+
+    {"workflow": "Reactivation Campaign - SMS", "step": "SMS 1",
+     "text": "Hey [First Name]! Mike with Stay Fresh Pools. We’d love to welcome you back to the Stay Fresh Family! For a limited time, enjoy a complimentary pool inspection on your first visit back. Reply “STAY FRESH” or call [Business Phone] to get started!"},
+    {"workflow": "Reactivation Campaign - SMS", "step": "SMS 2",
+     "text": "Hey [First Name]! Ready to get your pool Stay Fresh again? Let’s get back to dependable weekly care, proactive equipment checks, and keeping you informed. Your complimentary inspection is still available on your first visit back. What’s a good time for a quick call?"},
+    {"workflow": "Reactivation Campaign - SMS", "step": "SMS 3",
+     "text": "Hey [First Name]! Our last check-in for now, but the door’s always open at Stay Fresh Pools. When you’re ready for weekly service, repairs, or a pool refresh, we’d love to help. Save our number: [Business Phone]. Reply “LET’S TALK” anytime to reconnect!"}
+  ]
+}

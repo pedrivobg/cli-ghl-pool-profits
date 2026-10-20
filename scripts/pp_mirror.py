@@ -593,14 +593,22 @@ def main() -> int:
     parser.add_argument("--full", action="store_true",
                         help="account NOT built from the snapshot: create every model workflow, folder "
                              "and custom field, make the funnel exactly the model's, draft target-only workflows")
+    parser.add_argument("--client-wording-ok", action="store_true",
+                        help="mirror even an account whose messages carry the client's own wording (config/*_wording.json)")
     args = parser.parse_args()
     load_dotenv()
     model = Side(location_dirs([args.model])[0])
     agency = Agency() if (args.apply or args.full) else None
+    wording = {json.loads(f.read_text())["location"]: f.name for f in (ROOT / "config").glob("*_wording.json")}
     for d in location_dirs(args.target):
         if d == model.dir:
             continue
-        Mirror(agency, model, Side(d), args.apply, not args.no_publish, args.full).run()
+        side = Side(d)
+        if args.apply and side.loc in wording and not args.client_wording_ok:
+            print(f"== {d.name}: SMS/e-mails com texto do próprio cliente (config/{wording[side.loc]}) — o espelho "
+                  f"voltaria o texto da {model.dir.name}. Pulado; --client-wording-ok e depois pp_wording.py --apply.")
+            continue
+        Mirror(agency, model, side, args.apply, not args.no_publish, args.full).run()
     return 0
 
 
