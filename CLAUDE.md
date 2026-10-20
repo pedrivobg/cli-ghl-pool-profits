@@ -125,3 +125,11 @@
   misturam. `GHL_DUMP_DIR=dump/poolduck` mantém os dumps fora do alcance dos scripts `pp_*`.
 - Scripts `pd_*` (Lakewood Ranch); registro e pendências em `docs/poolduck-lakewood-ranch.md`,
   incluindo a API de funis (clone entre sub-contas, salvar página com `pageType: "live"`).
+
+## Outra agência: BurchTech (GHL do Bill Burch)
+
+- my.burchtech.app, company `syjenoyGz1jZ3ndDPkCm`; token em `burchtech.env` no scratchpad (fora do repo, já traz
+  `GHL_DUMP_DIR=dump/burchtech`). Sub-contas: **Bluewater Brokerage** (`bw_forms.py`, `docs/bluewater-form-mapping.md`)
+  e **The Pool Keepers** — conta viva do cliente (1.100+ contatos, fluxos próprios publicados): nunca `pp_mirror --full`
+  nem `pp_e2e` ali; tudo que for nosso entra em draft e a publicação é combinada.
+

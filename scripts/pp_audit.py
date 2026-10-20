@@ -99,6 +99,10 @@ def id_leaves(node):
             yield from id_leaves(item)
 
 
+# ids of objects the dump does not fetch (documents/contract templates, ad accounts): not checkable here
+UNDUMPED_ID_FIELDS = {"documentCreatedByTemplateId", "adAccountId"}
+
+
 def trigger_refs(trig: dict) -> tuple[list[str], list[str]]:
     """(referenced ids, referenced tags) of a trigger's conditions."""
     ids, tags = [], []
@@ -109,7 +113,7 @@ def trigger_refs(trig: dict) -> tuple[list[str], list[str]]:
         values = [v for v in values if isinstance(v, str) and v]
         if field.lower().startswith("tag"):
             tags += values
-        elif field.lower().endswith("id"):
+        elif field.lower().endswith("id") and field not in UNDUMPED_ID_FIELDS:
             ids += values
     return sorted(ids), sorted(tags)
 
@@ -254,7 +258,8 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
             if meta["status"] == "published" and trig.get("active", True):
                 extra = [json.dumps(c.get("value"), ensure_ascii=False) for c in trig.get("conditions") or []
                          if not str(c.get("field", "")).lower().endswith("id") and "tag" not in str(c.get("field", "")).lower()]
-                trigger_keys[f"{ttype} | " + ", ".join(named + trig_tags + extra)].append(meta["name"])
+                own = [trig.get("id", "")] if ttype == "inbound_webhook" else []  # each webhook has its own URL
+                trigger_keys[f"{ttype} | " + ", ".join(named + trig_tags + extra + own)].append(meta["name"])
 
         for step in steps_of(wf):
             stype = step.get("type", "")

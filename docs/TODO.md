@@ -37,12 +37,17 @@ para o cliente testar.
 
 9. **Pool Keepers**: 805-262-9070 encaminha para ela mesma. Trocar para **+1 805-457-8212** (mesmo caminho do
    item 1) e ligar para testar. A2P dela também.
-10. **BurchTech (Bluewater + Pool Keepers)** — o ClickUp "GHL Form Mapping" é isto, plano pronto em
-    `docs/bluewater-form-mapping.md`: aguardando o login/acesso que você pediu ao Ed (o projeto não estava no
-    Basecamp). Com acesso:
-    - **Para mim**: refresh token por API (`docs/get-firebase-token.md`) ou pedro@poolprofits.com como admin.
-    - **Snapshot**: da sub-conta The Pool Keepers → Share → importar na BurchTech. É só na UI; o resto eu refaço.
-11. **Trocar os 2 refresh tokens** (Pool Profits e Pool Duck) colados no chat (`docs/get-firebase-token.md`).
+10. **BurchTech** (acesso por API desde 20/10):
+    - **Bluewater**: GHL pronto e testado (`docs/bluewater-form-mapping.md`). Mandar ao Vik as 6 URLs + contrato (texto
+      no chat de 20/10); quando ele ligar, um envio real de cada form pelo site (você) e eu confiro. ClickUp "GHL Form
+      Mapping": comentário no chat.
+    - **Pool Keepers**: a conta viva é a da BurchTech (1.147 contatos). Snapshot só pela UI: Pool Profits → Account
+      Snapshots → Create (sub-conta The Pool Keepers) → Share → copiar link; my.burchtech.app → Account Snapshots →
+      Imported → colar → Sub-Accounts → The Pool Keepers → Load Snapshot, marcar **não sobrescrever** o que já existe.
+      Me avisa: eu ajusto tudo pela API (Nathan nos avisos, números, custom values, NPS, link de review) e deixo em
+      draft. Antes de publicar: decidir com o Frank/Nathan o que substitui os fluxos deles de form/chat e a "Customer
+      Pipeline" (senão lead entra em dobro).
+11. **Trocar os 3 refresh tokens** (Pool Profits, Pool Duck e BurchTech) colados no chat (`docs/get-firebase-token.md`).
 12. **Master do snapshot**: corrigir (3 etapas Won e os bugs antigos) e dar Refresh em Agency → Account Snapshots.
 
 ## Respostas e decisões
