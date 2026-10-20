@@ -3,12 +3,14 @@
 
     ./.venv/bin/python scripts/pp_onboarding_fill.py --submission 6ad571b33f62d712d3cc45bb --loc InG8k1ETTG5uVwcAByj6
     ./.venv/bin/python scripts/pp_onboarding_fill.py --submission … --loc … --apply
+    ./.venv/bin/python scripts/pp_onboarding_fill.py --submission <new> --previous <old> --loc … --apply
 
 New clients answer the onboarding survey (efErcbOr4GAKXzZ28J4S, "Pool Profits" sub-account); the survey
 creates the sub-account and an automation fills its custom values. Poolheads (Frank, 20/10) answered
 twice → two sub-accounts; the one kept (18/10) came without custom values. Same mapping the automation
 used on the first one (its values = the 16/10 answers), except that unanswered fields stay empty
-instead of the literal "None" it writes. --timezone also sets the location's time zone from the
+instead of the literal "None" it writes. --previous: only fields that still hold the previous
+answer (or are empty / "None") change — anything edited by hand is kept. --timezone also sets the location's time zone from the
 survey's "Timezone" answer (sub-accounts are created in America/Sao_Paulo). Backup in backup/<slug>/.
 """
 from __future__ import annotations
@@ -62,6 +64,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--submission", required=True, help="survey submission id")
     parser.add_argument("--loc", required=True, help="sub-account to fill")
+    parser.add_argument("--previous", help="older submission: only overwrite values still equal to its answers")
     parser.add_argument("--timezone", action="store_true", help="also set the location time zone")
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
@@ -72,6 +75,12 @@ def main() -> int:
     if not sub:
         raise SystemExit(f"submissão {args.submission} não encontrada")
     answers = sub.get("others") or {}
+    old = None
+    if args.previous:
+        prev = next((s for s in subs.get("submissions", []) if s["id"] == args.previous), None)
+        if not prev:
+            raise SystemExit(f"submissão {args.previous} não encontrada")
+        old = prev.get("others") or {}
     loc = a.location(args.loc)
     cvs = {c["name"]: c for c in a.custom_values(args.loc)}
     print(f"== {loc['name']} ({args.loc}) ← respostas de {sub.get('createdAt')}")
@@ -79,6 +88,10 @@ def main() -> int:
     for name, get in MAPPING.items():
         value = (get(answers) or "").strip()
         cur = (cvs.get(name) or {}).get("value") or ""
+        if old is not None and cur not in ("", "None") and cur != (get(old) or "").strip():
+            if cur != value:
+                print(f"   {name}: mantido {cur!r} (editado à mão; survey novo diz {value!r})")
+            continue
         if value and value != cur:
             changes.append((name, cur, value))
             print(f"   {name}: {cur!r} → {value!r}")

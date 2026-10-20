@@ -21,7 +21,7 @@ from cli_anything.gohighlevel.utils.agency import SERVICES, Agency
 
 ONBOARDING_LOC = "wohRifObKPEykgu17LJu"
 SKIP = {"Kvdj7o189zlS3caaCNuX",  # Snapshot Pool Profits
-        "PeUynYCMm8e6PJMy785O"}  # Poolheads duplicate (first survey, 16/10) — to be deleted
+        "InG8k1ETTG5uVwcAByj6"}  # Poolheads duplicate (survey of 18/10) — marked for deletion by Pedro
 OVERRIDE = {"Sk6BacCVS1fHPfcuAmOU": "America/New_York"}  # Cleverblu: survey said Chicago; Altamonte Springs FL, 407
 STATE_TZ = {"AZ": "America/Phoenix", "ARIZONA": "America/Phoenix", "NC": "America/New_York",
             "FL": "America/New_York", "FLORIDA": "America/New_York", "TN": "America/Chicago",

@@ -73,8 +73,10 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 
 ## Frank — 20/10
 
-22. **Pool Heads**: apagar a sub-conta duplicada `PeUynYCMm8e6PJMy785O` (16/10) — conferida vazia; a de
-    18/10 (`InG8k1ETTG5uVwcAByj6`) já tem os custom values e o fuso. Só falta o seu OK (irreversível).
+22. **Pool Heads**: fica a sub-conta de 16/10 (`PeUynYCMm8e6PJMy785O`, tem private token); a de 18/10
+    (`InG8k1ETTG5uVwcAByj6`) está marcada para apagar (você, 20/10). Conferido que nada se perde: a de 18/10
+    só tinha os custom values que eu pus (já passados para a de 16/10) — preços/logo do survey de 18/10, fuso
+    Chicago; campos editados à mão não foram tocados (`pp_onboarding_fill.py --previous`).
 23. **Nortex**: (a) ligação de teste no 469-238-2660 sem atender → deve chegar o SMS de chamada perdida no seu
     celular e criar o card; (b) Zoom com o Frank; (c) fluxo form → agenda: form do site (iframe do GHL no
     WordPress) → redirecionar para uma página **no próprio nortexpools.com** com o calendário embutido +
