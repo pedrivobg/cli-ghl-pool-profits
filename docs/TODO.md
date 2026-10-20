@@ -14,7 +14,8 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 3. **Chatbot (Atif)**: do nosso lado (GHL) está pronto — 2 webhooks enviados em 16/10. Ele pediu login do
    WordPress dos 3 sites (backend do chatbot + 2 fictícios), que não são nossos (você não tem acesso) →
    respondido devolvendo para o Frank / quem criou os sites.
-4. **BurchTech Solutions (GHL do Bill)** — acesso no Basecamp; lá ficam a **Bluewater** e a **Pool Keepers**
+4. **BurchTech Solutions (GHL do Bill)** — o acesso estaria no Basecamp, mas você não achou projeto BurchTech nem
+   Bluewater (20/10) → pedido ao Ed ("nosso outro e-mail") o login ou acesso ao projeto. Lá ficam a **Bluewater** e a **Pool Keepers**
    (decidido 19/10: o snapshot da Pool Profits vai para a BurchTech). Passos:
    a) Acesso por API para mim: entrar com o login do Basecamp e tirar o refresh token
       (`docs/get-firebase-token.md`, arquivo de env separado como na Pool Duck) — ou pedir pedro@poolprofits.com
