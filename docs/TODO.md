@@ -11,9 +11,9 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 2. **Stay Fresh — campanha enviada** (19/10, 105): avisar o Frank. Respostas vão para o Mike; quem
    responder ganha `drain wash interested` (inclui o "Stop"). Depois de alguns dias, passar os 2 workflows
    "Drain & Wash Campaign" para draft.
-3. **Chatbot (Atif)**: as 2 URLs de webhook já foram (16/10). Agora ele pede acesso ao WordPress dos 3
-   sites (backend do chatbot + 2 fictícios): criar um usuário próprio dele em cada site (não passar o login
-   de vocês), e mandar URL + usuário; senha por canal separado.
+3. **Chatbot (Atif)**: do nosso lado (GHL) está pronto — 2 webhooks enviados em 16/10. Ele pediu login do
+   WordPress dos 3 sites (backend do chatbot + 2 fictícios), que não são nossos (você não tem acesso) →
+   respondido devolvendo para o Frank / quem criou os sites.
 4. **BurchTech Solutions (GHL do Bill)** — acesso no Basecamp; lá ficam a **Bluewater** e a **Pool Keepers**
    (decidido 19/10: o snapshot da Pool Profits vai para a BurchTech). Passos:
    a) Acesso por API para mim: entrar com o login do Basecamp e tirar o refresh token
