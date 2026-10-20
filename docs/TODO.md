@@ -87,7 +87,8 @@ O que já foi feito está em `docs/execucao-2026-10-13.md`.
 
 ## Pool Duck — detalhes em `docs/poolduck-lakewood-ranch.md`
 
-20. Campanha de review do LWR: aprovou → `pd_lwr_reviews.py launch`; confirmar os 2 McQuaid.
+20. Campanha de review do LWR: **lançada** (271, começa ter 20/10 10:00 ET em drip) — conferir os lotes (check-in
+    agendado) e a resposta do Ed sobre o passo de feedback.
 20b. Número do Google Ads do LWR (941-541-5942) já ligado ao workflow e às páginas do Google (20/10) — falta a
     ligação de teste (10d).
 21. Landing pages LWR: teste manual do form, números de rastreamento, IDs de Ads/Pixel, Trustindex, áreas;

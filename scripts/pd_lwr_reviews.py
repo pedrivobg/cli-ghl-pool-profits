@@ -11,6 +11,10 @@ Exclusions: dump/poolduck/lwr-review-exclusions.json (names matched to contacts;
 gitignored) → tag "exclude from reviews". The workflow only starts on tag "send review request"
 for contacts that do NOT have "exclude from reviews" (trigger filter, same shape as the GHL UI),
 and launch() also skips them, so the list is enforced twice.
+Sending (Ed, 19/10: "space out the text message campaign so opt-outs are not a problem"): the first
+step holds everyone until a weekday window (SEND_WINDOW, account time zone) and a drip releases DRIP[0]
+contacts every DRIP[1] minutes; the 4-day reminder waits for the same window and drips again, so it
+never lands on a weekend nor all at once. Launch can run any time before.
 Messages go straight to the Google review page of "Pool Duck of Lakewood Ranch" (no incentive,
 no rating gate: both are against Google's review policy). Names are mostly ALL CAPS in this
 account, so the texts do not use {{contact.first_name}}.
@@ -51,16 +55,27 @@ EMAIL_HTML = "".join([
     'font-family:helvetica;font-size:13pt;font-weight:bold">Leave a Google review</a></p>', "<br>",
     P.format("Thank you!<br>The Pool Duck Lakewood Ranch team"),
 ])
+SEND_DAYS, SEND_WINDOW = [1, 2, 3, 4, 5], ("10:00", "16:00")  # Mon–Fri (Sunday = 0), America/New_York
+DRIP = (20, 20)  # contacts per batch, minutes between batches → ~270 in about 4.5 h
+WINDOW = {"window": {"condition": "when", "days": SEND_DAYS, "start": SEND_WINDOW[0], "end": SEND_WINDOW[1]},
+          "windowCondition": {"field": "", "operator": "", "value": ""}}
+START = {"type": "time", "startAfter": {"type": "minutes", "value": 1, "when": "after"}, "name": "Wait for send window",
+         "cat": "", "isHybridAction": True, "hybridActionType": "wait", "convertToMultipath": False,
+         "transitions": [], **WINDOW}
 WAIT = {"type": "time", "startAfter": {"type": "days", "value": 4, "when": "after"}, "name": "Wait 4 days",
         "cat": "", "timePeriodInputMode": "standard", "unitInputMode": "standard", "isHybridAction": True,
-        "hybridActionType": "wait", "convertToMultipath": False, "transitions": []}
+        "hybridActionType": "wait", "convertToMultipath": False, "transitions": [], **WINDOW}
+DRIP_STEP = {"batchSize": DRIP[0], "interval": {"timeUnit": "minutes", "value": DRIP[1]}, "type": "drip"}
 
 
 def steps(wid: str) -> list[dict]:
-    chain = [("sms", "SMS - Review Request", {"body": SMS_1, "attachments": []}),
+    chain = [("wait", "Wait for send window", START),
+             ("drip", f"Drip Mode - {DRIP[0]} every {DRIP[1]} min", DRIP_STEP),
+             ("sms", "SMS - Review Request", {"body": SMS_1, "attachments": []}),
              ("email", "Email - Review Request", {"subject": EMAIL_SUBJECT, "html": EMAIL_HTML, "from_email": "",
                                                   "from_name": "", "attachments": []}),
              ("wait", "Wait 4 days", WAIT),
+             ("drip", f"Drip Mode - {DRIP[0]} every {DRIP[1]} min (reminder)", DRIP_STEP),
              ("sms", "SMS - Reminder", {"body": SMS_2, "attachments": []}),
              ("remove_from_workflow", "End", {"type": "remove_from_workflow", "workflow_id": [wid]})]
     ids = [str(uuid.uuid4()) for _ in chain]

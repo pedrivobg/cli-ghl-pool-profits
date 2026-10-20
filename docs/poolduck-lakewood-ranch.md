@@ -102,5 +102,11 @@ excluindo a lista da Connie (e-mail de 07/10, 38 nomes). `scripts/pd_lwr_reviews
 - Teste real: contato com o e-mail do Pedro recebeu o e-mail (status sent, de
   billing+lakewoodranch.poolduck.com@lc.poolduck.com); contato com a tag de exclusão não recebeu
   nada. Contatos de teste apagados.
-- **Não enviado**: aguardando o cliente aprovar os textos. Para disparar (274 clientes):
+- **Lançado 20/10 03:00 UTC** (Val: Connie aprovou; Ed: espaçar o envio): +3 exclusões (Barbara Beck, Larry &
+  Judy Fogel, Tom Bachar; os McQuaid já estavam — "Ron" não existe como contato) → 40 excluídos, **271**
+  marcados. Workflow agora: espera janela seg–sex 10:00–16:00 (America/New_York) → drip 20 a cada 20 min →
+  SMS + e-mail → 4 dias (mesma janela) → drip → lembrete. Primeiro lote ter 20/10 10:00 ET, ~4,5 h no total.
+  Pergunta do Ed sobre "feedback vs link de review": não tem filtro por nota (política do Google) — oferecido
+  um passo de feedback que avisa a equipe nas notas baixas sem tirar o link de ninguém.
+- (histórico) Não enviado até 19/10: aguardando o cliente aprovar os textos. Para disparar (274 clientes):
   `pd_lwr_reviews.py launch` (marca `send review request` em quem tem `turtle rock` e não está excluído).
