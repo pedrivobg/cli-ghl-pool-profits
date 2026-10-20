@@ -18,23 +18,37 @@ connected"). O GHL do Bill fica na agência **BurchTech Solutions** — sem aces
 Tags definidas pelo arquivo do cliente (comentário no código da calculadora): `route-calculator`; checkbox report →
 `bluewater-report`; checkbox talk → `wants-confidential-call` **com tarefa para o Bill no mesmo dia**.
 
-## No GHL do Bill (fazer com o acesso)
+## Feito no GHL do Bill (20/10, `scripts/bw_forms.py`, token da BurchTech em `burchtech.env` fora do repo)
 
-- **Campos do contato**: nome → first/last, email, phone, business → `companyName`, city → `city` (texto livre
-  "cidade, estado"). Custom fields (contato): Route Monthly Billing, Route Visits per Week, Route Quality Score,
-  Route Multiple, Route Value Low, Route Value High, Route Equipment Value, Route Inventory Value, Route Is
-  Franchise, Route Agreements, Website Message.
-- **Tags**: 1 → `route-calculator` (+ `bluewater-report` / `wants-confidential-call` pelos checkboxes); 3 →
-  `sellers-guide` (+ `wants-opinion-of-value`); 4 → `buyers-guide` (+ `buyer-registered`); 5 → `website-contact`;
-  6 → `bluewater-report`. Criar todas na conta (`pp_tags_missing`).
-- **Entrada**: 1 workflow por form com gatilho **inbound webhook** (mesmo padrão da Passion), passo
-  `create_update_contact` (casa pelo e-mail), tags, custom fields, e:
-  - `wants-confidential-call`, `wants-opinion-of-value`, contato (5): tarefa para o Bill vencendo hoje + aviso
-    interno (e-mail; SMS só com número/A2P da conta).
-  - números (2): só atualiza os campos do contato que já existe + nota com os valores.
-  - Nada de SMS automático para o lead: nenhum form tem consentimento de SMS (o telefone é "text is fine").
-- **Site (Vik)**: Elementor Pro → Actions After Submit → **Webhook** com a URL de cada workflow (forms 3–6, sem
-  código; manter o e-mail). Calculadora: o endpoint `bwb/v1/route-lead` repassa o mesmo JSON para a URL do
-  webhook (server-side), mantendo o e-mail ao Bill.
-- **Teste**: nós mandamos 1 de cada pelo webhook (sem passar pelo Turnstile/Elementor), conferimos contato, tags,
-  campos e tarefa, e apagamos; depois 1 envio real de cada form pelo site (Pedro).
+Agência BurchTech (`syjenoyGz1jZ3ndDPkCm`), sub-conta Bluewater Brokerage `M6eDjuSa3RdwukFl2rW2`. 6 workflows publicados
+("Website - …"), cada um com seu inbound webhook (URLs em `backup/bluewater-brokerage/webhook-urls.json`, fora do
+git — são a "senha" de entrada de leads). 16 campos de contato e 9 tags novos; nada existente alterado, exceto o
+"Blue Water Website Form Submitted" (antigo, form GHL que não está mais no site): SMS e tarefas iam para usuários que
+não existem mais → Bill.
+
+| Workflow | Contato | Tags | Card (Marketing Pipeline) | Bill |
+|---|---|---|---|---|
+| Route Calculator Lead | nome, e-mail, telefone, empresa, cidade | `route-calculator`, `source-website`, + `bluewater-report` / `wants-confidential-call` pelos checkboxes | New Lead - Seller | SMS; quer conversa → tarefa hoje |
+| Route Calculator Figures | 10 campos "Route …" | `route-calculator` | — (mesmo contato) | — |
+| Seller's Guide Download | nome, e-mail | `sellers-guide`, `source-website`, + `wants-opinion-of-value` | New Lead - Seller | SMS; opinião de valor → tarefa hoje |
+| Buyer's Guide Download | nome, e-mail | `buyers-guide`, `source-website`, + `buyer-registered` | New Lead - Buyer | SMS |
+| Contact Form | nome, e-mail, telefone, "Website Message" | `website-contact`, `source-website` | New Lead - Other | SMS + tarefa hoje |
+| Newsletter Signup | e-mail | `bluewater-report`, `source-website` | — | — |
+
+Testado com 1 envio por form (alertas desviados para e-mail de teste): contato, campos, tags, card na etapa certa,
+tarefa para o Bill, ramo "não" do checkbox, reenvio sem telefone não apaga o telefone nem duplica o card. Contatos de
+teste apagados; alertas de volta para SMS do Bill.
+
+## O que o Vik faz no site (contrato)
+
+POST `application/json` para a URL de cada form, **sem tirar o e-mail que já vai para o Bill**. Checkbox = `"yes"`/`"no"`;
+`first_name`/`last_name` = nome dividido no primeiro espaço; campos vazios podem ir vazios.
+
+- Calculadora (endpoint `bwb/v1/route-lead`): `type: gate` → URL "Route Calculator Lead" com `first_name, last_name, email,
+  phone, business, city, report, talk, page`; `type: figures` → URL "Route Calculator Figures" com `first_name, last_name,
+  email, monthly_billing, visits_per_week, quality_score, multiple, value_low, value_high, equipment_value,
+  inventory_value, is_franchise ("yes"/"no"), agreements, page`.
+- Seller's Guide (`bwr0009`): `first_name, last_name, email, opinion, page`. Buyer's Guide (`bwr0010`): `first_name,
+  last_name, email, register, page`. Contato (`59d31fac`): `first_name, last_name, email, phone, message, page`.
+  Newsletter (`36394603`): `email, page`. (Hook `elementor_pro/forms/new_record` no plugin dele, que já existe.)
+- Honeypot preenchido = não enviar.
