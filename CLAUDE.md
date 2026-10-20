@@ -55,6 +55,14 @@
 - Forms: ler `GET backend /forms/{id}`; gravar `POST backend /forms/{id}` com `{name, formData}`
   (sem `locationId`); criar `POST backend /forms/` (resposta `{"form": …}`). Campo customizado
   no form = `fields[].tag` com o id do custom field DA CONTA (snapshot traz id da origem).
+  O `formData` do GET fica minutos defasado depois de gravar: o conteúdo real é o arquivo da versão mais nova
+  (`versionHistory[].formDataDownloadUrl`) — ler dele antes de regravar, senão volta edição recente.
+- Form → redirecionar: `formAction.actionType "1"` (`"2"` = mensagem) com **`redirectUrl` e `redirect_url`** (o widget
+  lê `redirect_url`; só `redirectUrl` = redireciona para URL vazia = recarrega a página). A URL aceita
+  `{{contact.name}}`, `{{contact.email}}`, `{{contact.phone}}` (valores digitados) e muda a página de cima (iframe ok).
+- Calendário: link `…/widget/booking/<id>?full_name=&email=&phone=` abre o formulário já preenchido (testado).
+  Calendário sem `teamMembers` não tem horário nenhum ("No users found in the calendar"): `PUT services
+  /calendars/{id} {teamMembers}` (o PUT mexe em `slotInterval` — mandar o valor antigo junto).
 - Merge fields em link de SMS: `{{contact.phone}}` sai "(480) 555-1234" (espaço quebra o link);
   usar `{{contact.phone_raw}}`. Filtros liquid (`| url_encode`) fazem o GHL não enviar o SMS.
 - Link de review do Google: `writereview?placeid=<location.googlePlacesId>` da própria conta.
