@@ -60,6 +60,7 @@
 - Form → redirecionar: `formAction.actionType "1"` (`"2"` = mensagem) com **`redirectUrl` e `redirect_url`** (o widget
   lê `redirect_url`; só `redirectUrl` = redireciona para URL vazia = recarrega a página). A URL aceita
   `{{contact.name}}`, `{{contact.email}}`, `{{contact.phone}}` (valores digitados) e muda a página de cima (iframe ok).
+  Telefone com seletor de país (EUA por padrão; sem ele número sem código pode ir vazio): `fields[phone].enableCountryPicker: true`.
 - Calendário: link `…/widget/booking/<id>?full_name=&email=&phone=` abre o formulário já preenchido (testado).
   Calendário sem `teamMembers` não tem horário nenhum ("No users found in the calendar"): `PUT services
   /calendars/{id} {teamMembers}` (o PUT mexe em `slotInterval` — mandar o valor antigo junto).

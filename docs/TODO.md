@@ -50,11 +50,9 @@ para o cliente testar.
     - Conferir os 7 e-mails de teste com o texto do Mike em pedro@poolprofits.com.
     - Mandar ao Frank a confirmação (texto no chat de 20/10), se ainda não mandou.
     - Campanha drain & wash: se quiser, eu passo os 2 workflows para draft.
-14. **Nortex** (no lugar do Zoom): form do site → agenda já preenchida está no ar. Teste de 30 s sem afetar a
-    Nortex: abrir https://link.poolprofits.com/widget/form/cOueSjQakrkpMkwJgCpt (cópia na Test Snapshot), preencher,
-    *Get a Quote* → tem que abrir a agenda da Nortex com nome/telefone/e-mail preenchidos (não agendar). Depois
-    mandar a resposta ao Frank (texto no chat de 20/10) e me avisar para apagar a cópia. Opcional, decisão do
-    Fareed: tirar a obrigatoriedade de endereço/cidade/CEP no form de agendamento.
+14. **Nortex** (no lugar do Zoom): form do site → agenda preenchida no ar, testado por você; telefone com seletor
+    de país. Falta só mandar a resposta ao Frank (texto no chat de 20/10). Opcional, decisão do Fareed: tirar a
+    obrigatoriedade de endereço/cidade/CEP no form de agendamento.
 15. **Pool Duck LWR**: teste manual do form das landings, IDs de Ads/Pixel, Trustindex; avisar o WC dos alertas
     antigos "… - Steve" sem destinatário.
 16. **Decisões em aberto** (perguntar ao Frank/Val quando der):
