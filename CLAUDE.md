@@ -132,4 +132,7 @@
   `GHL_DUMP_DIR=dump/burchtech`). Sub-contas: **Bluewater Brokerage** (`bw_forms.py`, `docs/bluewater-form-mapping.md`)
   e **The Pool Keepers** — conta viva do cliente (1.100+ contatos, fluxos próprios publicados): nunca `pp_mirror --full`
   nem `pp_e2e` ali; tudo que for nosso entra em draft e a publicação é combinada.
+- Site da Bluewater (WordPress): nós ligamos o site ao GHL, não o web dev (Pedro, 20/10: somos o tech lead). Snippet
+  `site/bluewater/bwb-ghl.php` via Code Snippets (`bw_site.py`, Application Password em `bluewater-wp.env` fora do repo);
+  roda depois do que o site já faz (e-mail ao Bill, endpoint `bwb/v1` do Vik intocado).
 

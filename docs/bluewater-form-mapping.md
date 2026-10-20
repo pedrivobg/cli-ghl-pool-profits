@@ -12,7 +12,7 @@ connected"). O GHL do Bill fica na agência **BurchTech Solutions** — sem aces
 | 2 | Calculadora — números (tipo `figures`, ao sair da página se mexeu) | /route-calculator/ | os dados do 1 + monthly_billing, visits_per_week, quality_score, multiple, value_low, value_high, equipment_value, inventory_value, is_franchise, has_agreements | mesmo endpoint → e-mail ao Bill |
 | 3 | BWB Seller Guide (`bwr0009`) | /resources/ | name*, email*, `opinion` (checkbox "confidential opinion of value"), honeypot | Elementor → e-mail ao Bill + PDF/link ao visitante |
 | 4 | BWB Buyer Guide (`bwr0010`) | /resources/ | name*, email*, `register` (checkbox "register me as a buyer"), honeypot | idem |
-| 5 | Contato (`59d31fac`) | home, /contact/ (botões "Schedule a Confidential Call" e "Get a Free Confidential Valuation" levam aqui) | name, email*, phone, message | Elementor → e-mail |
+| 5 | Contato (`59d31fac` na home, `c6411dd` em /contact/; os botões "Schedule a Confidential Call" e "Get a Free Confidential Valuation" levam aqui) | home, /contact/ | name, email*, phone, message | Elementor → e-mail |
 | 6 | Newsletter do rodapé (`36394603`) | todas as páginas | email* ("news and insight for pool business owners") | Elementor → e-mail |
 
 Tags definidas pelo arquivo do cliente (comentário no código da calculadora): `route-calculator`; checkbox report →
@@ -39,16 +39,21 @@ Testado com 1 envio por form (alertas desviados para e-mail de teste): contato, 
 tarefa para o Bill, ramo "não" do checkbox, reenvio sem telefone não apaga o telefone nem duplica o card. Contatos de
 teste apagados; alertas de volta para SMS do Bill.
 
-## O que o Vik faz no site (contrato)
+## Lado do site: nós, não o Vik (decisão do Pedro, 20/10)
 
-POST `application/json` para a URL de cada form, **sem tirar o e-mail que já vai para o Bill**. Checkbox = `"yes"`/`"no"`;
-`first_name`/`last_name` = nome dividido no primeiro espaço; campos vazios podem ir vazios.
+O Vik não mexe com isso; quem liga o site ao GHL somos nós. Um snippet PHP (`site/bluewater/bwb-ghl.php`), instalado
+pelo plugin **Code Snippets** (`scripts/bw_site.py apply`), manda cada envio para o webhook do form **depois** do que o
+site já faz: o e-mail ao Bill, o PDF do guia e o endpoint da calculadora continuam iguais. O nome é dividido no primeiro
+espaço, checkbox vira `"yes"`/`"no"`, honeypot preenchido não manda nada.
 
-- Calculadora (endpoint `bwb/v1/route-lead`): `type: gate` → URL "Route Calculator Lead" com `first_name, last_name, email,
-  phone, business, city, report, talk, page`; `type: figures` → URL "Route Calculator Figures" com `first_name, last_name,
-  email, monthly_billing, visits_per_week, quality_score, multiple, value_low, value_high, equipment_value,
-  inventory_value, is_franchise ("yes"/"no"), agreements, page`.
-- Seller's Guide (`bwr0009`): `first_name, last_name, email, opinion, page`. Buyer's Guide (`bwr0010`): `first_name,
-  last_name, email, register, page`. Contato (`59d31fac`): `first_name, last_name, email, phone, message, page`.
-  Newsletter (`36394603`): `email, page`. (Hook `elementor_pro/forms/new_record` no plugin dele, que já existe.)
-- Honeypot preenchido = não enviar.
+- Forms do Elementor: hook `elementor_pro/forms/new_record`, pelo id do form (`bwr0009` seller, `bwr0010` buyer,
+  `59d31fac` e `c6411dd` contato, `36394603` newsletter); outro form qualquer é ignorado.
+- Calculadora: filtro `rest_request_after_callbacks` na rota `/bwb/v1/route-lead` (o plugin do Vik não é alterado);
+  `figures` com os mesmos números vai uma vez por dia (a página reenvia a cada troca de aba).
+- Rotas só para admin: `GET /wp-json/bwb-ghl/v1/status` (últimos 30 envios e o HTTP do GHL) e `POST
+  /wp-json/bwb-ghl/v1/test` (roda o mapeamento de um form; `send: true` manda ao GHL).
+- Testes: `php site/bluewater/test-bwb-ghl.php` (local, com stubs do WordPress/Elementor, 16 casos);
+  `bw_site.py test` (mapeamento no site = mesmos payloads já testados no GHL); `bw_site.py test --send` com o
+  `bw_forms.py test --to <inbox>` antes (aviso desviado) e `bw_forms.py live` depois.
+- Acesso: Application Password de um admin do WordPress em `<scratchpad>/bluewater-wp.env` (`BW_WP_USER`,
+  `BW_WP_APP_PASSWORD`), fora do repo. Desligar: `bw_site.py off`.

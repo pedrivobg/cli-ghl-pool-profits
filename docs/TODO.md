@@ -38,16 +38,20 @@ para o cliente testar.
 9. **Pool Keepers**: 805-262-9070 encaminha para ela mesma. Trocar para **+1 805-457-8212** (mesmo caminho do
    item 1) e ligar para testar. A2P dela também.
 10. **BurchTech** (acesso por API desde 20/10):
-    - **Bluewater**: GHL pronto e testado (`docs/bluewater-form-mapping.md`). Mandar ao Vik as 6 URLs + contrato (texto
-      no chat de 20/10); quando ele ligar, um envio real de cada form pelo site (você) e eu confiro. ClickUp "GHL Form
-      Mapping": comentário no chat.
+    - **Bluewater**: GHL pronto e testado. O site nós mesmos ligamos (não o Vik): o código está pronto e testado aqui
+      (`docs/bluewater-form-mapping.md`). Falta só **acesso ao WordPress** de bluewaterbrokerage.com: entrar em
+      bluewaterbrokerage.com/wp-admin → Users → Profile → *Application Passwords* → nome "Claude" → *Add New
+      Application Password* → me mandar o código + o seu usuário (precisa ser Administrator). Sem login: pedir ao Vik
+      um usuário admin para pedro@poolprofits.com. ClickUp "GHL Form Mapping": corrigir o "waiting on Vik" (texto no
+      chat de 20/10).
     - **Pool Keepers**: a conta viva é a da BurchTech (1.147 contatos). Snapshot só pela UI: Pool Profits → Account
       Snapshots → Create (sub-conta The Pool Keepers) → Share → copiar link; my.burchtech.app → Account Snapshots →
       Imported → colar → Sub-Accounts → The Pool Keepers → Load Snapshot, marcar **não sobrescrever** o que já existe.
       Me avisa: eu ajusto tudo pela API (Nathan nos avisos, números, custom values, NPS, link de review) e deixo em
       draft. Antes de publicar: decidir com o Frank/Nathan o que substitui os fluxos deles de form/chat e a "Customer
       Pipeline" (senão lead entra em dobro).
-11. **Trocar os 3 refresh tokens** (Pool Profits, Pool Duck e BurchTech) colados no chat (`docs/get-firebase-token.md`).
+11. **Trocar os 3 refresh tokens** (Pool Profits, Pool Duck e BurchTech) colados no chat (`docs/get-firebase-token.md`);
+    a Application Password da Bluewater, quando terminar, apaga no mesmo lugar onde criou.
 12. **Master do snapshot**: corrigir (3 etapas Won e os bugs antigos) e dar Refresh em Agency → Account Snapshots.
 
 ## Respostas e decisões
