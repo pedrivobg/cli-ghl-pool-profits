@@ -1,0 +1,383 @@
+{
+ "autoResponder": false,
+ "emailNotifications": false,
+ "form": {
+  "address": {
+   "autoCompleteEnabled": true,
+   "children": [],
+   "label": "Address",
+   "placeholder": "Search address",
+   "required": true
+  },
+  "autoResponderConfig": null,
+  "conditionalLogic": [
+   {
+    "conditionalOperation": "and",
+    "conditions": [
+     {
+      "inputValue": "5",
+      "selectedField": "nps_score",
+      "selectedOperation": "isNotEqualTo"
+     },
+     {
+      "inputValue": "4",
+      "selectedField": "nps_score",
+      "selectedOperation": "isNotEqualTo"
+     }
+    ],
+    "outcome": {
+     "hideType": "Show",
+     "type": "showHideFields",
+     "value": "nps_message"
+    }
+   }
+  ],
+  "contactAssociationSettings": null,
+  "currentThemeId": "69df8c1ec7fee340d1abbfa6",
+  "customStyle": "",
+  "desktopImageLayout": "topFixed",
+  "emailNotificationsConfig": null,
+  "enableTimezone": true,
+  "fbPixelId": "",
+  "fieldCSS": "@import url('https://fonts.googleapis.com/css?family=Inter:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n  #_builder-form .form-builder--item input[type=text][class=form-control],#_builder-form .form-builder--item .date-picker-custom-style,#_builder-form .form-builder--item input[type=number]{\n    background-color: #FFFFFFFF !important;\n    color: #101828FF !important;\n    border: 1px solid #D0D5DDFF !important;\n    border-radius: 6px !important;\n    padding: 8px 8px 8px 8px !important;\n    box-shadow: 0px 1px 2px 0px #1018280D;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n    background-clip: inherit !important;\n  }\n  #_builder-form textarea {\n    background-color: #FFFFFFFF !important;\n    color: #101828FF !important;\n    border: 1px solid #D0D5DDFF !important;\n    border-radius: 6px !important;\n    padding: 8px 8px 8px 8px !important;\n    box-shadow: 0px 1px 2px 0px #1018280D !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n    background-clip: inherit !important;\n  }\n  #_builder-form input[type=tel],#_builder-form input[type=email],#_builder-form .multiselect .multiselect__tags{\n    background-color: #FFFFFFFF !important;\n    color: #101828FF !important;\n    border: 1px solid #D0D5DDFF !important;\n    border: 1px solid #D0D5DDFF !important;\n    border-radius: 6px !important;\n    padding: 8px 8px 8px 8px !important;\n    box-shadow: 0px 1px 2px 0px #1018280D;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n    background-clip: inherit !important;\n  }\n  #_builder-form .multi_select_form {\n    border-radius: 6px !important;\n  }\n  #_builder-form .iti--allow-dropdown input, .iti--allow-dropdown input[type=tel]{\n    padding-left: 38px !important;\n  }\n  #_builder-form .countryphone {\n    height: inherit;\n  }\n\n\n  #_builder-form .form-builder--item .date-picker-custom-style input[type=text],  #_builder-form .form-builder--item .multiselect .multiselect__placeholder {\n    padding:0;\n    background-color: #FFFFFFFF;\n    color: #101828FF;\n    font-size: 16px;\n  }\n  #_builder-form .form-builder--item .multiselect .multiselect__input{\n    background-color: #FFFFFFFF !important;\n  }\n  #_builder-form .form-builder--item .multiselect .multiselect__select{\n    background: transparent;\n    z-index:10;\n  }\n  #_builder-form .form-builder--item .multiselect ,.multiselect__single{\n    padding:0 !important;\n    margin:0 !important;\n    min-height: 24px;\n    color:  #101828FF !important;\n    background-color: #FFFFFFFF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n  #_builder-form .form-builder--item  .multiselect__placeholder {\n    padding:0 !important;\n    margin:0 !important;\n    min-height: 24px;\n    color: #667085FF !important;\n    background-color: #FFFFFFFF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n  #_builder-form .field-container{\n    width:100%;\n    max-width: 900px;\n  }\n  #_builder-form ::-webkit-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */\n    color: #667085FF;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n    opacity: 1; /* Firefox */\n  }\n  #_builder-form ::placeholder, .signature-placeholder {\n    color: #667085FF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n\n  #_builder-form .input-icon {\n    color: #667085FF;\n  }\n    \n  #_builder-form :-ms-input-placeholder { /* Internet Explorer 10-11 */\n    color: #667085FF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n  #_builder-form ::-ms-input-placeholder { /* Microsoft Edge */\n    color: #667085FF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n\n  #_builder-form label{\n    color: #344054FF;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 500;\n  }\n  #_builder-form label * {\n    color: #344054FF;\n    font-family: 'Inter';\n  }\n  #_builder-form .text-element * {\n    color: inherit;\n    font-family: 'Inter';\n  }\n  #_builder-form .short-label{\n    color: #464D5FFF;\n    font-family: 'Inter';\n    font-size: 12px;\n    font-weight: 300;\n    -webkit-font-smoothing: auto;\n  }\n  #_builder-form .form-builder--item .payment-suggestion-tag-container {\n    background-color: #FFFFFFFF;\n    color: #101828FF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n      box-shadow: 0px 1px 2px 0px #1018280D;\n  }\n  #_builder-form .product-summary-amount-large, #order-confirmation .product-summary-amount-large {\n    color: #344054FF;\n    font-size: 20px;\n    font-weight: 700;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .product-summary-amount-normal, #order-confirmation .product-summary-amount-normal {\n    color: #344054FF;\n    font-size: 16px;\n    font-weight: 600;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .product-summary-label-bold, #order-confirmation .product-summary-label-bold{\n    color: #344054FF;\n    font-size: 16px;\n    font-weight: 700;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .crossed-amount {\n    color: #344054FF;\n    font-size: 18px;\n    font-weight: 600;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .product-summary-label-large, #order-confirmation .product-summary-label-large{\n    color: #344054FF;\n    font-size: 18px;\n    font-weight: 600;\n    font-family: Inter;\n    line-height: 1.575rem;\n  }\n  #_builder-form .product-summary-label-normal, #order-confirmation .product-summary-label-normal{\n    color: #344054FF;\n    font-size: 16px;\n    font-weight: 500;\n    font-family: Inter;\n    line-height: 1.575rem;\n  }\n  #_builder-form .product-summary-label-small, #order-confirmation .product-summary-label-small{\n    color: #344054FF;\n    font-size: 14px;\n    font-weight: 500;\n    font-family: Inter;\n    line-height: 1.575rem;\n  }\n  #_builder-form .variant-tag {\n    color: #344054FF;\n    font-size: 15px;\n    font-weight: 500;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .selected-tag {\n    background-color: #009EF426 !important;\n  }\n  #_builder-form .payment-tag, #_builder-form .quantity-container-counter {\n    box-shadow: 0px 1px 2px 0px #1018280D;\n    background-color : #FFFFFFFF;\n  }\n  #_builder-form .quantity-container-counter  {\n    padding-top: 6px !important;\n    padding-bottom:  6px !important;\n  }\n  #_builder-form .quantity-text {\n    font-size: 16px !important;\n  }\n  .bubble-label, .bubble-checkbox-label {\n    background-color: #FFFFFFFF !important;\n    color: #667085FF !important;\n    font-family: 'Inter' !important;\n    font-size: 16px !important;\n    font-weight: 400 !important;\n  }\n  .bubble-container, .bubble-checkbox-container {\n    border: 1px solid #D0D5DDFF !important;\n    border-radius: 12px !important;\n    /* Small horizontal gap between bubbles */\n    margin-left: 2px !important;\n    margin-right: 2px !important;\n    padding: 8px 8px 8px 8px !important;\n    box-shadow: 0px 1px 2px 0px #1018280D;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 500;\n    background-clip: inherit !important;\n  }\n  .vdpHeadCellContent {\n    word-wrap: normal;\n    }\n\n  \n  /* Input field hover and focus styles */\n  #_builder-form .form-builder--item input[type=text][class=form-control]:hover,\n  #_builder-form .form-builder--item .date-picker-custom-style:hover,\n  #_builder-form .form-builder--item input[type=number]:hover,\n  #_builder-form textarea:hover,\n  #_builder-form input[type=tel]:hover,\n  #_builder-form input[type=email]:hover,\n  #_builder-form .multiselect .multiselect__tags:hover {\n    border: 1px solid #155EEFFF !important;\n  }\n\n  /* Monetary element input group prepend hover styles */\n  #_builder-form .input-group:hover .input-group-prepend .input-group-text {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n  #_builder-form .form-builder--item input[type=text][class=form-control]:focus,\n  #_builder-form .form-builder--item .date-picker-custom-style:focus,\n  #_builder-form .form-builder--item input[type=number]:focus,\n  #_builder-form textarea:focus,\n  #_builder-form input[type=tel]:focus,\n  #_builder-form input[type=email]:focus,\n  #_builder-form .multiselect .multiselect__tags:focus {\n    border: 1px solid #155EEFFF !important;\n    outline: none;\n  }\n\n  /* Monetary element input group prepend focus styles */\n  #_builder-form .input-group:focus-within .input-group-prepend .input-group-text {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Checkbox and Radio button accent color */\n   #_builder-form input[type=checkbox] {\n    accent-color: #155EEFFF;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    border-radius: 4px !important;\n    height: 16px !important;\n    width: 16px !important;\n    background: #ffffff;\n    position: relative; \n    border: 1px solid #D0D5DDFF;\n      &:checked { \n      background : #155EEFFF;\n\n      &::after {\n      content: '';\n      position: absolute;\n      left: 4px;\n      top: 1px;\n      width: 6px;\n      height: 10px;\n      border: solid white;\n      border-width: 0 2px 2px 0;\n      transform: rotate(45deg);\n    }\n    }\n  }\n   /* Radio button styles */\n   #_builder-form input[type=radio] {\n    accent-color: #155EEFFF;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    border-radius: 50% !important;\n    height: 16px !important;\n    width: 16px !important;\n    background: #ffffff;\n    position: relative; \n    border: 1px solid #D0D5DDFF;\n    &:checked { \n      background : #FFFFFF;\n\n      &::after {\n        content: '';\n        position: absolute;\n        left: 50%;\n        top: 50%;\n        transform: translate(-50%, -50%);\n        width: 9px;\n        height: 9px;\n        border-radius: 50%;\n        background: #155EEFFF;\n      }\n    }\n  }\n\n  /* Date picker cell hover effect with primary color */\n  @media (hover: hover) {\n    #_builder-form .vdpCell.selectable:hover .vdpCellContent {\n      color: #fff !important;\n      background: #155EEFFF !important;\n    }\n  }\n\n  /* Date picker today cell with primary color */\n  #_builder-form .vdpCell.today {\n    color: #155EEFFF !important;\n  }\n\n  /* Date picker selected cell with primary color */\n#_builder-form .vdpCell.selectable.selected .vdpCellContent {\n  color: #fff !important;\n  background: #155EEFFF !important;\n}\n\n  /* File upload hover styles */\n  #_builder-form input[type=file]:hover,\n  #_builder-form .custom-file-upload:hover,\n  #_builder-form .file-input:hover {\n    border-color: #155EEFFF;\n    box-shadow: 0 0 0 2px #155EEFFF33;\n  }\n\n  /* Signature field hover styles */\n  #_builder-form .signature-button:hover {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33;\n  }\n\n  /* Quantity container counter hover styles */\n  #_builder-form .quantity-container-counter:hover {\n    border-color: #155EEFFF;\n    box-shadow: 0 0 0 2px #155EEFFF33;\n  }\n\n  /* Bubble container hover styles */\n  #_builder-form .bubble-container:hover,\n  #_builder-form .bubble-checkbox-container:hover {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Bubble checkbox checked state - apply primary color to container border */\n  #_builder-form .bubble-container:has(input[type=checkbox]:checked),\n  #_builder-form .bubble-checkbox-container:has(input[type=checkbox]:checked) {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Bubble radio checked state when input is inside the label (common in preview) */\n  #_builder-form .bubble-container:has(input[type=radio]:checked),\n  #_builder-form .bubble-checkbox-container:has(input[type=radio]:checked) {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Bubble radio checked state - apply primary color to label border and indicator */\n  #_builder-form .option-radio-bubble input[type=radio]:checked + label {\n    border-color: #155EEFFF !important;\n  }\n  #_builder-form .option-radio-bubble input[type=radio]:checked + label:before {\n    border-color: #155EEFFF !important;\n    background: #155EEFFF !important;\n  }\n\n  /* Payment suggestion tag container hover styles */\n  #_builder-form .payment-suggestion-tag-container:hover {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Payment suggestion tag container focus styles */\n  #_builder-form .payment-suggestion-tag-container:focus-within {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n  /* Dropdown hover and selection styles */\n  #_builder-form .multiselect__option--highlight {\n    background-color: #155EEFFF;\n    color: #000000;\n  }\n  #_builder-form .multiselect__option:hover {\n    background-color: #155EEFFF;\n    color: #000000;\n  }\n\n  /* Multiselect tag styles */\n  #_builder-form .multiselect__tag {\n    border: 1px solid #155EEFFF;\n    color: #101828FF;\n    background-color:transparent;\n  }\n  #_builder-form .multiselect__tag-icon {\n    background-color:transparent;\n    color: #98A2B3;\n  }\n  #_builder-form .multiselect__tag-icon:after {\n\n    color: #98A2B3;\n  }\n  #_builder-form .multiselect__tag-icon:hover {\n\n    color: #98A2B3;\n    opacity: 0.8;\n  }\n  #_builder-form .multiselect__tag-icon:hover:after {\n\n    color: #98A2B3;\n  }\n\n  /* Single select dropdown styles */\n  #_builder-form select option:hover {\n    background-color: #155EEFFF;\n    color: #000000;\n  }\n\n  /* Custom dropdown components */\n  #_builder-form .dropdown-option:hover {\n    background-color: #155EEFFF;\n    color: #000000;\n  }\n\n  /* Button styles when mapPrimaryColorToButtonColor is enabled - only for submit buttons */\n  \n  ",
+  "fieldStyle": {
+   "activeTagBgColor": "009EF426",
+   "bgColor": "FFFFFFFF",
+   "border": {
+    "border": 1,
+    "color": "D0D5DDFF",
+    "radius": 6,
+    "type": "solid"
+   },
+   "fontColor": "101828FF",
+   "labelAlignment": "top",
+   "labelColor": "344054FF",
+   "labelFontFamily": "Inter",
+   "labelFontSize": 16,
+   "labelFontWeight": 500,
+   "labelWidth": 200,
+   "mapPrimaryColorToButtonColor": false,
+   "mobileLabelColor": "344054FF",
+   "mobilePlaceholderColor": "667085FF",
+   "padding": {
+    "bottom": 8,
+    "left": 8,
+    "right": 8,
+    "top": 8
+   },
+   "placeholderColor": "667085FF",
+   "placeholderFontFamily": "Inter",
+   "placeholderFontSize": 16,
+   "placeholderFontWeight": 400,
+   "primaryColor": "155EEFFF",
+   "shadow": {
+    "blur": 2,
+    "color": "1018280D",
+    "horizontal": 0,
+    "spread": 0,
+    "vertical": 1
+   },
+   "shortLabel": {
+    "color": "464D5FFF",
+    "fontFamily": "Inter",
+    "fontSize": 12,
+    "fontWeight": 300,
+    "mobileColor": "464D5FFF"
+   },
+   "width": 900
+  },
+  "fields": [
+   {
+    "fieldWidthPercentage": 100,
+    "hiddenFieldQueryKey": "first_name",
+    "label": "First Name",
+    "placeholder": "Enter your first name",
+    "required": false,
+    "standard": true,
+    "tag": "first_name",
+    "type": "text",
+    "typeLabel": "Text"
+   },
+   {
+    "fieldWidthPercentage": 100,
+    "hiddenFieldQueryKey": "last_name",
+    "label": "Last Name",
+    "placeholder": "Enter your last name",
+    "required": false,
+    "standard": true,
+    "tag": "last_name",
+    "type": "text",
+    "typeLabel": "Text"
+   },
+   {
+    "fieldWidthPercentage": 100,
+    "hiddenFieldQueryKey": "email",
+    "label": "Email",
+    "placeholder": "your@email.com",
+    "required": true,
+    "standard": true,
+    "tag": "email",
+    "type": "email",
+    "typeLabel": "Email"
+   },
+   {
+    "enableCountryPicker": false,
+    "fieldWidthPercentage": 100,
+    "hiddenFieldQueryKey": "phone",
+    "label": "Phone",
+    "placeholder": "+1 (555) 000-0000",
+    "required": true,
+    "standard": true,
+    "tag": "phone",
+    "type": "text",
+    "typeLabel": "Phone"
+   },
+   {
+    "Id": "ZIN3A1XVj7dvVTyCL3qX",
+    "active": false,
+    "allowCustomOption": false,
+    "columnsNumber": 2,
+    "customFieldLabel": "NPS Score",
+    "dataType": "RADIO",
+    "dateAdded": "2026-05-28T03:15:46.697Z",
+    "description": "",
+    "documentType": "field",
+    "edit": false,
+    "fieldKey": "contact.nps_score",
+    "fieldWidthPercentage": 100,
+    "fieldsCount": 0,
+    "hiddenFieldQueryKey": "nps_score",
+    "id": "ZIN3A1XVj7dvVTyCL3qX",
+    "label": "NPS Score",
+    "locationId": "__LOCATION__",
+    "model": "contact",
+    "name": "NPS Score",
+    "optionDisplayType": "TEXT_ONLY",
+    "parentId": "cQeVtLWCgpe7vTtyUqCZ",
+    "picklistOptions": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "picklistOptionsImage": null,
+    "placeholder": "",
+    "position": 1200,
+    "required": true,
+    "showInForms": true,
+    "spreadColumns": true,
+    "standard": false,
+    "style": "bubble",
+    "tag": "__contact.nps_score__",
+    "type": "radio"
+   },
+   {
+    "Id": "Eb8WRVNJvV6tFauNYthR",
+    "active": false,
+    "allowCustomOption": false,
+    "customFieldLabel": "NPS Message",
+    "dataType": "LARGE_TEXT",
+    "dateAdded": "2026-05-28T03:16:00.686Z",
+    "description": "",
+    "documentType": "field",
+    "edit": false,
+    "fieldKey": "contact.nps_message",
+    "fieldsCount": 0,
+    "hidden": true,
+    "hiddenFieldQueryKey": "nps_message",
+    "id": "Eb8WRVNJvV6tFauNYthR",
+    "label": "NPS Message",
+    "locationId": "__LOCATION__",
+    "model": "contact",
+    "name": "NPS Message",
+    "optionDisplayType": null,
+    "parentId": "cQeVtLWCgpe7vTtyUqCZ",
+    "picklistOptionsImage": null,
+    "placeholder": "",
+    "position": 1250,
+    "required": false,
+    "showInForms": true,
+    "standard": false,
+    "tag": "__contact.nps_message__",
+    "type": "large_text"
+   },
+   {
+    "active": false,
+    "align": "center",
+    "background": "",
+    "bgColor": "155EEFFF",
+    "border": 0,
+    "borderColor": "140C0CFF",
+    "borderRadius": 6,
+    "borderType": "solid",
+    "color": "FFFFFFFF",
+    "fieldWidthPercentage": 100,
+    "fontFamily": "Inter",
+    "fontSize": 15,
+    "fullwidth": true,
+    "hiddenFieldQueryKey": "button",
+    "label": "Submit",
+    "padding": {
+     "bottom": 8,
+     "left": 14,
+     "right": 14,
+     "top": 8
+    },
+    "placeholder": "Button",
+    "radius": 8,
+    "shadow": {
+     "blur": 2,
+     "color": "1018280D",
+     "horizontal": 0,
+     "spread": 0,
+     "vertical": 1
+    },
+    "standard": true,
+    "subTextColor": "000000",
+    "subTextFontFamily": "Inter",
+    "subTextFontSize": 14,
+    "subTextWeight": 200,
+    "submitSubText": "",
+    "tag": "button",
+    "type": "submit",
+    "weight": 500
+   }
+  ],
+  "formAction": {
+   "actionType": "2",
+   "headerImageSrc": "",
+   "mobileHeaderImageSrc": "",
+   "mobileHeaderImageSrcDeleted": false,
+   "redirectUrl": "",
+   "thankyouText": "<p style=\"text-align: center;line-height: 28px;padding-left: 0px!important;font-family: Inter, sans-serif;font-size: 18px;font-weight: 600;margin: 0;\"><strong>😊</strong></p><p style=\"text-align: center;line-height: 24px;padding-left: 0px!important;font-family: Inter, sans-serif;font-size: 16px;font-weight: 600;margin: 4px 0 0;color: #101828;\"><strong>We appreciate your feedback!</strong></p><p style=\"text-align: center;line-height: 18px;padding-left: 0px!important;font-family: Inter, sans-serif;font-size: 12px;font-weight: 400;margin: 4px 0 0;color: #101828;\">Thank you for taking the time to complete this NPS.</p>"
+  },
+  "formLabelVisible": true,
+  "formSubmissionEvent": "SubmitApplication",
+  "fullScreenMode": true,
+  "height": 772,
+  "imageCornerRadius": 0,
+  "imageFieldSpacing": 24,
+  "imageFocusPoint": {
+   "x": 50,
+   "y": 50
+  },
+  "inputStyleType": "box",
+  "isGDPRCompliant": false,
+  "layout": 1,
+  "mobileFieldCSS": "@import url('https://fonts.googleapis.com/css?family=Inter:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');\n\n  #_builder-form .form-builder--item input[type=text][class=form-control],#_builder-form .form-builder--item .date-picker-custom-style,#_builder-form .form-builder--item input[type=number]{\n    background-color: #FFFFFFFF !important;\n    color: #101828FF !important;\n    border: 1px solid #D0D5DDFF !important;\n    border-radius: 6px !important;\n    padding: 8px 8px 8px 8px !important;\n    box-shadow: 0px 1px 2px 0px #1018280D;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n    background-clip: inherit !important;\n  }\n  #_builder-form textarea {\n    background-color: #FFFFFFFF !important;\n    color: #101828FF !important;\n    border: 1px solid #D0D5DDFF !important;\n    border-radius: 6px !important;\n    padding: 8px 8px 8px 8px !important;\n    box-shadow: 0px 1px 2px 0px #1018280D !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n    background-clip: inherit !important;\n  }\n  #_builder-form input[type=tel],#_builder-form input[type=email],#_builder-form .multiselect .multiselect__tags{\n    background-color: #FFFFFFFF !important;\n    color: #101828FF !important;\n    border: 1px solid #D0D5DDFF !important;\n    border: 1px solid #D0D5DDFF !important;\n    border-radius: 6px !important;\n    padding: 8px 8px 8px 8px !important;\n    box-shadow: 0px 1px 2px 0px #1018280D;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n    background-clip: inherit !important;\n  }\n  #_builder-form .multi_select_form {\n    border-radius: 6px !important;\n  }\n  #_builder-form .iti--allow-dropdown input, .iti--allow-dropdown input[type=tel]{\n    padding-left: 38px !important;\n  }\n  #_builder-form .countryphone {\n    height: inherit;\n  }\n\n\n  #_builder-form .form-builder--item .date-picker-custom-style input[type=text],  #_builder-form .form-builder--item .multiselect .multiselect__placeholder {\n    padding:0;\n    background-color: #FFFFFFFF;\n    color: #101828FF;\n    font-size: 16px;\n  }\n  #_builder-form .form-builder--item .multiselect .multiselect__input{\n    background-color: #FFFFFFFF !important;\n  }\n  #_builder-form .form-builder--item .multiselect .multiselect__select{\n    background: transparent;\n    z-index:10;\n  }\n  #_builder-form .form-builder--item .multiselect ,.multiselect__single{\n    padding:0 !important;\n    margin:0 !important;\n    min-height: 24px;\n    color:  #101828FF !important;\n    background-color: #FFFFFFFF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n  #_builder-form .form-builder--item  .multiselect__placeholder {\n    padding:0 !important;\n    margin:0 !important;\n    min-height: 24px;\n    color: #667085FF !important;\n    background-color: #FFFFFFFF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n  #_builder-form .field-container{\n    width:100%;\n    max-width: 900px;\n  }\n  #_builder-form ::-webkit-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */\n    color: #667085FF;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n    opacity: 1; /* Firefox */\n  }\n  #_builder-form ::placeholder, .signature-placeholder {\n    color: #667085FF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n\n  #_builder-form .input-icon {\n    color: #667085FF;\n  }\n    \n  #_builder-form :-ms-input-placeholder { /* Internet Explorer 10-11 */\n    color: #667085FF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n  #_builder-form ::-ms-input-placeholder { /* Microsoft Edge */\n    color: #667085FF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n  }\n\n  #_builder-form label{\n    color: #344054FF;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 500;\n  }\n  #_builder-form label * {\n    color: #344054FF;\n    font-family: 'Inter';\n  }\n  #_builder-form .text-element * {\n    color: inherit;\n    font-family: 'Inter';\n  }\n  #_builder-form .short-label{\n    color: #464D5FFF;\n    font-family: 'Inter';\n    font-size: 12px;\n    font-weight: 300;\n    -webkit-font-smoothing: auto;\n  }\n  #_builder-form .form-builder--item .payment-suggestion-tag-container {\n    background-color: #FFFFFFFF;\n    color: #101828FF !important;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 400;\n      box-shadow: 0px 1px 2px 0px #1018280D;\n  }\n  #_builder-form .product-summary-amount-large, #order-confirmation .product-summary-amount-large {\n    color: #344054FF;\n    font-size: 20px;\n    font-weight: 700;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .product-summary-amount-normal, #order-confirmation .product-summary-amount-normal {\n    color: #344054FF;\n    font-size: 16px;\n    font-weight: 600;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .product-summary-label-bold, #order-confirmation .product-summary-label-bold{\n    color: #344054FF;\n    font-size: 16px;\n    font-weight: 700;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .crossed-amount {\n    color: #344054FF;\n    font-size: 18px;\n    font-weight: 600;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .product-summary-label-large, #order-confirmation .product-summary-label-large{\n    color: #344054FF;\n    font-size: 18px;\n    font-weight: 600;\n    font-family: Inter;\n    line-height: 1.575rem;\n  }\n  #_builder-form .product-summary-label-normal, #order-confirmation .product-summary-label-normal{\n    color: #344054FF;\n    font-size: 16px;\n    font-weight: 500;\n    font-family: Inter;\n    line-height: 1.575rem;\n  }\n  #_builder-form .product-summary-label-small, #order-confirmation .product-summary-label-small{\n    color: #344054FF;\n    font-size: 14px;\n    font-weight: 500;\n    font-family: Inter;\n    line-height: 1.575rem;\n  }\n  #_builder-form .variant-tag {\n    color: #344054FF;\n    font-size: 15px;\n    font-weight: 500;\n    font-family: Inter;\n    line-height: 1.5rem;\n  }\n  #_builder-form .selected-tag {\n    background-color: #009EF426 !important;\n  }\n  #_builder-form .payment-tag, #_builder-form .quantity-container-counter {\n    box-shadow: 0px 1px 2px 0px #1018280D;\n    background-color : #FFFFFFFF;\n  }\n  #_builder-form .quantity-container-counter  {\n    padding-top: 6px !important;\n    padding-bottom:  6px !important;\n  }\n  #_builder-form .quantity-text {\n    font-size: 16px !important;\n  }\n  .bubble-label, .bubble-checkbox-label {\n    background-color: #FFFFFFFF !important;\n    color: #667085FF !important;\n    font-family: 'Inter' !important;\n    font-size: 16px !important;\n    font-weight: 400 !important;\n  }\n  .bubble-container, .bubble-checkbox-container {\n    border: 1px solid #D0D5DDFF !important;\n    border-radius: 12px !important;\n    /* Small horizontal gap between bubbles */\n    margin-left: 2px !important;\n    margin-right: 2px !important;\n    padding: 8px 8px 8px 8px !important;\n    box-shadow: 0px 1px 2px 0px #1018280D;\n    font-family: 'Inter';\n    font-size: 16px;\n    font-weight: 500;\n    background-clip: inherit !important;\n  }\n  .vdpHeadCellContent {\n    word-wrap: normal;\n    }\n\n  \n  /* Input field hover and focus styles */\n  #_builder-form .form-builder--item input[type=text][class=form-control]:hover,\n  #_builder-form .form-builder--item .date-picker-custom-style:hover,\n  #_builder-form .form-builder--item input[type=number]:hover,\n  #_builder-form textarea:hover,\n  #_builder-form input[type=tel]:hover,\n  #_builder-form input[type=email]:hover,\n  #_builder-form .multiselect .multiselect__tags:hover {\n    border: 1px solid #155EEFFF !important;\n  }\n\n  /* Monetary element input group prepend hover styles */\n  #_builder-form .input-group:hover .input-group-prepend .input-group-text {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n  #_builder-form .form-builder--item input[type=text][class=form-control]:focus,\n  #_builder-form .form-builder--item .date-picker-custom-style:focus,\n  #_builder-form .form-builder--item input[type=number]:focus,\n  #_builder-form textarea:focus,\n  #_builder-form input[type=tel]:focus,\n  #_builder-form input[type=email]:focus,\n  #_builder-form .multiselect .multiselect__tags:focus {\n    border: 1px solid #155EEFFF !important;\n    outline: none;\n  }\n\n  /* Monetary element input group prepend focus styles */\n  #_builder-form .input-group:focus-within .input-group-prepend .input-group-text {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Checkbox and Radio button accent color */\n   #_builder-form input[type=checkbox] {\n    accent-color: #155EEFFF;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    border-radius: 4px !important;\n    height: 16px !important;\n    width: 16px !important;\n    background: #ffffff;\n    position: relative; \n    border: 1px solid #D0D5DDFF;\n      &:checked { \n      background : #155EEFFF;\n\n      &::after {\n      content: '';\n      position: absolute;\n      left: 4px;\n      top: 1px;\n      width: 6px;\n      height: 10px;\n      border: solid white;\n      border-width: 0 2px 2px 0;\n      transform: rotate(45deg);\n    }\n    }\n  }\n   /* Radio button styles */\n   #_builder-form input[type=radio] {\n    accent-color: #155EEFFF;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    border-radius: 50% !important;\n    height: 16px !important;\n    width: 16px !important;\n    background: #ffffff;\n    position: relative; \n    border: 1px solid #D0D5DDFF;\n    &:checked { \n      background : #FFFFFF;\n\n      &::after {\n        content: '';\n        position: absolute;\n        left: 50%;\n        top: 50%;\n        transform: translate(-50%, -50%);\n        width: 9px;\n        height: 9px;\n        border-radius: 50%;\n        background: #155EEFFF;\n      }\n    }\n  }\n\n  /* Date picker cell hover effect with primary color */\n  @media (hover: hover) {\n    #_builder-form .vdpCell.selectable:hover .vdpCellContent {\n      color: #fff !important;\n      background: #155EEFFF !important;\n    }\n  }\n\n  /* Date picker today cell with primary color */\n  #_builder-form .vdpCell.today {\n    color: #155EEFFF !important;\n  }\n\n  /* Date picker selected cell with primary color */\n#_builder-form .vdpCell.selectable.selected .vdpCellContent {\n  color: #fff !important;\n  background: #155EEFFF !important;\n}\n\n  /* File upload hover styles */\n  #_builder-form input[type=file]:hover,\n  #_builder-form .custom-file-upload:hover,\n  #_builder-form .file-input:hover {\n    border-color: #155EEFFF;\n    box-shadow: 0 0 0 2px #155EEFFF33;\n  }\n\n  /* Signature field hover styles */\n  #_builder-form .signature-button:hover {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33;\n  }\n\n  /* Quantity container counter hover styles */\n  #_builder-form .quantity-container-counter:hover {\n    border-color: #155EEFFF;\n    box-shadow: 0 0 0 2px #155EEFFF33;\n  }\n\n  /* Bubble container hover styles */\n  #_builder-form .bubble-container:hover,\n  #_builder-form .bubble-checkbox-container:hover {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Bubble checkbox checked state - apply primary color to container border */\n  #_builder-form .bubble-container:has(input[type=checkbox]:checked),\n  #_builder-form .bubble-checkbox-container:has(input[type=checkbox]:checked) {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Bubble radio checked state when input is inside the label (common in preview) */\n  #_builder-form .bubble-container:has(input[type=radio]:checked),\n  #_builder-form .bubble-checkbox-container:has(input[type=radio]:checked) {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Bubble radio checked state - apply primary color to label border and indicator */\n  #_builder-form .option-radio-bubble input[type=radio]:checked + label {\n    border-color: #155EEFFF !important;\n  }\n  #_builder-form .option-radio-bubble input[type=radio]:checked + label:before {\n    border-color: #155EEFFF !important;\n    background: #155EEFFF !important;\n  }\n\n  /* Payment suggestion tag container hover styles */\n  #_builder-form .payment-suggestion-tag-container:hover {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n\n  /* Payment suggestion tag container focus styles */\n  #_builder-form .payment-suggestion-tag-container:focus-within {\n    border-color: #155EEFFF !important;\n    box-shadow: 0 0 0 2px #155EEFFF33 !important;\n  }\n  /* Dropdown hover and selection styles */\n  #_builder-form .multiselect__option--highlight {\n    background-color: #155EEFFF;\n    color: #000000;\n  }\n  #_builder-form .multiselect__option:hover {\n    background-color: #155EEFFF;\n    color: #000000;\n  }\n\n  /* Multiselect tag styles */\n  #_builder-form .multiselect__tag {\n    border: 1px solid #155EEFFF;\n    color: #101828FF;\n    background-color:transparent;\n  }\n  #_builder-form .multiselect__tag-icon {\n    background-color:transparent;\n    color: #98A2B3;\n  }\n  #_builder-form .multiselect__tag-icon:after {\n\n    color: #98A2B3;\n  }\n  #_builder-form .multiselect__tag-icon:hover {\n\n    color: #98A2B3;\n    opacity: 0.8;\n  }\n  #_builder-form .multiselect__tag-icon:hover:after {\n\n    color: #98A2B3;\n  }\n\n  /* Single select dropdown styles */\n  #_builder-form select option:hover {\n    background-color: #155EEFFF;\n    color: #000000;\n  }\n\n  /* Custom dropdown components */\n  #_builder-form .dropdown-option:hover {\n    background-color: #155EEFFF;\n    color: #000000;\n  }\n\n  /* Button styles when mapPrimaryColorToButtonColor is enabled - only for submit buttons */\n  \n  ",
+  "mobileImageLayout": "header",
+  "mobileLayout": 1,
+  "opportunitySettings": null,
+  "pageViewEvent": "PageView",
+  "payment": null,
+  "showImage": false,
+  "showSubmissionInConversationsFeed": false,
+  "stickyContact": false,
+  "style": {
+   "acBranding": false,
+   "background": "FFFFFFFF",
+   "bgImage": "",
+   "border": {
+    "border": 1,
+    "color": "FFFFFFFF",
+    "radius": 8,
+    "style": "solid"
+   },
+   "fieldSpacing": 16,
+   "margin": {
+    "bottom": "auto",
+    "left": "auto",
+    "right": "auto",
+    "top": 40
+   },
+   "mobileBgImage": "",
+   "mobileBgImageDeleted": false,
+   "mobileMargin": {
+    "bottom": "auto",
+    "left": "auto",
+    "right": "auto",
+    "top": "auto"
+   },
+   "mobilePadding": {
+    "bottom": 16,
+    "extraPaddingComputingProcessed": true,
+    "left": 16,
+    "right": 16,
+    "top": 16
+   },
+   "padding": {
+    "bottom": 16,
+    "extraPaddingComputingProcessed": true,
+    "left": 16,
+    "right": 16,
+    "top": 16
+   },
+   "shadow": {
+    "blur": 4,
+    "color": "57647e36",
+    "horizontal": 0,
+    "spread": 0,
+    "vertical": 4
+   }
+  },
+  "submitMessageStyle": {
+   "bgColor": "FFFFFF",
+   "cornerRadius": 10,
+   "fontWeight": 400,
+   "isEnabled": true,
+   "margin": {
+    "bottom": "auto",
+    "left": "auto",
+    "right": "auto",
+    "top": "auto"
+   },
+   "mobileBgColor": "FFFFFF",
+   "mobileFontWeight": 400,
+   "mobileMargin": {
+    "bottom": "auto",
+    "left": "auto",
+    "right": "auto",
+    "top": "auto"
+   },
+   "mobilePadding": {
+    "bottom": 48,
+    "left": 48,
+    "right": 48,
+    "top": 48
+   },
+   "padding": {
+    "bottom": 48,
+    "left": 48,
+    "right": 48,
+    "top": 48
+   }
+  },
+  "surveyImageSettings": {
+   "slideSettings": {},
+   "surveyDefault": {
+    "desktopImageLayout": "topFixed",
+    "headerImageSrc": "",
+    "imageCornerRadius": 0,
+    "imageFieldSpacing": 24,
+    "imageFocusPoint": {
+     "x": 50,
+     "y": 50
+    },
+    "mobileHeaderImageSrc": "",
+    "mobileHeaderImageSrcDeleted": false,
+    "mobileImageLayout": "header",
+    "showImage": false
+   }
+  },
+  "width": 800
+ },
+ "language": "en-US",
+ "lastUpdatedAt": "2026-10-14T14:49:42.287Z",
+ "parentFolderId": "",
+ "parentFolderName": "",
+ "recurringProductCurrency": null,
+ "recurringProductId": null,
+ "recurringProducts": []
+}

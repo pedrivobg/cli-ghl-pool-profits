@@ -1,0 +1,200 @@
+{
+ "wait_condition": {
+  "type": "condition",
+  "startAfter": {
+   "type": "days",
+   "value": 7,
+   "when": "after"
+  },
+  "name": "Wait for NPS Submission",
+  "cat": "multi-path",
+  "timePeriodInputMode": "standard",
+  "unitInputMode": "standard",
+  "condition": {
+   "currentRecipeType": "CUSTOM",
+   "branches": [
+    {
+     "id": "c8a42521-05eb-4eee-b4b8-421b714daa59",
+     "name": "Branch",
+     "segments": [
+      {
+       "__segmentId": "34ad6874-5c45-48a6-a065-c46a891793e7",
+       "operator": "and",
+       "conditions": [
+        {
+         "conditionType": "contact_detail",
+         "conditionSubType": "__NPS_SCORE__",
+         "conditionOperator": "has_value",
+         "__conditionId": "a0fc2479-15bd-4a05-a941-9a5be68faa52",
+         "ifElseNodeId": "",
+         "__customFieldType__": "standard",
+         "isWait": true,
+         "nestedDropdownTypes": [
+          "inboundWebhookRequest",
+          "sheet",
+          "datetime_formatter",
+          "custom_webhook",
+          "array_functions",
+          "ivr_gather",
+          "ivr_connect_call",
+          "custom_code",
+          "ai_agent",
+          "task-notification",
+          "event"
+         ],
+         "allowIsOperatorTypes": [
+          "contact_reply",
+          "inboundWebhookRequest",
+          "custom_webhook",
+          "custom_code",
+          "ai_agent",
+          "contact_detail",
+          "array_functions",
+          "appointment",
+          "service_booking",
+          "rental_booking"
+         ],
+         "_softDeletedFallbackCache": {}
+        }
+       ]
+      }
+     ],
+     "operator": "and",
+     "showErrors": false,
+     "branchNameError": "Branch name cannot be empty!"
+    }
+   ],
+   "operator": "and",
+   "if": true,
+   "conditionName": "Condition",
+   "version": 2,
+   "noneBranchName": "None"
+  },
+  "isHybridAction": true,
+  "hybridActionType": "wait",
+  "convertToMultipath": true,
+  "transitions": [
+   {
+    "id": "d4e5599c-c2bf-473a-adec-a673f449baaa",
+    "name": "wait",
+    "condition": "primary",
+    "conditionType": "user-defined",
+    "isPrimaryBranch": true,
+    "description": "",
+    "attributes": {
+     "type": "wait_condition",
+     "description": "What will happen when specified conditions are met"
+    }
+   },
+   {
+    "id": "44a624ed-9d32-4f9f-b4bc-327d1501681d",
+    "name": "timeout",
+    "condition": "timeout",
+    "conditionType": "user-defined",
+    "isPrimaryBranch": false,
+    "description": "",
+    "attributes": {
+     "type": "wait_timeout",
+     "description": "What will happen after 7 days"
+    }
+   }
+  ]
+ },
+ "if_low": {
+  "currentRecipeType": "CUSTOM",
+  "branches": [
+   {
+    "id": "0c178594-ab21-48ae-b2e6-9e48e1cbefca",
+    "name": "Low NPS Score Detected",
+    "segments": [
+     {
+      "__segmentId": "1ea8de97-4a8c-42d0-b416-ad241c4dc361",
+      "operator": "and",
+      "conditions": [
+       {
+        "conditionType": "contact_detail",
+        "conditionSubType": "__NPS_SCORE__",
+        "conditionOperator": "!=",
+        "conditionValue": "5",
+        "__conditionId": "7d0b6efa-f70e-4610-98a8-e42539b1412e",
+        "ifElseNodeId": "",
+        "__customFieldType__": "standard",
+        "isWait": false,
+        "nestedDropdownTypes": [
+         "inboundWebhookRequest",
+         "sheet",
+         "datetime_formatter",
+         "custom_webhook",
+         "array_functions",
+         "ivr_gather",
+         "ivr_connect_call",
+         "custom_code",
+         "ai_agent",
+         "task-notification",
+         "event"
+        ],
+        "allowIsOperatorTypes": [
+         "contact_reply",
+         "inboundWebhookRequest",
+         "custom_webhook",
+         "custom_code",
+         "ai_agent",
+         "contact_detail",
+         "array_functions",
+         "appointment",
+         "service_booking",
+         "rental_booking"
+        ],
+        "_softDeletedFallbackCache": {}
+       },
+       {
+        "conditionType": "contact_detail",
+        "conditionSubType": "__NPS_SCORE__",
+        "conditionOperator": "!=",
+        "conditionValue": "4",
+        "__conditionId": "64b79997-98d5-4a88-9f1c-255f1bf6d02c",
+        "ifElseNodeId": "",
+        "__customFieldType__": "standard",
+        "isWait": false,
+        "nestedDropdownTypes": [
+         "inboundWebhookRequest",
+         "sheet",
+         "datetime_formatter",
+         "custom_webhook",
+         "array_functions",
+         "ivr_gather",
+         "ivr_connect_call",
+         "custom_code",
+         "ai_agent",
+         "task-notification",
+         "event"
+        ],
+        "allowIsOperatorTypes": [
+         "contact_reply",
+         "inboundWebhookRequest",
+         "custom_webhook",
+         "custom_code",
+         "ai_agent",
+         "contact_detail",
+         "array_functions",
+         "appointment",
+         "service_booking",
+         "rental_booking"
+        ],
+        "_softDeletedFallbackCache": {}
+       }
+      ]
+     }
+    ],
+    "operator": "and",
+    "showErrors": false,
+    "branchNameError": "Branch name cannot be empty!"
+   }
+  ],
+  "operator": "and",
+  "if": true,
+  "conditionName": "Check NPS Score",
+  "version": 2,
+  "noneBranchName": "High NPS Score Detected"
+ }
+}

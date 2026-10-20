@@ -83,6 +83,11 @@
   (+ opcional `formId` `is-any-of`; não há endpoint conhecido para listar os forms). O lead só entra se o form
   estiver mapeado e **Active** em Settings → Integrations → Google Ads (botão Play/Map Fields); teste =
   Google Ads → campanha → Lead form → Edit → abrir o form → **Send Data** (help.gohighlevel.com 48001180147).
+- Review gate (NPS) em qualquer conta, até de outra agência: `pd_lwr_nps_gate.py` (modelos `config/nps_form.json`,
+  `config/nps_gate_steps.json`). Espera por condição com saída por tempo = passo `wait` com **`cat: "multi-path"` no
+  nó** (não só nos atributos) + 2 nós `transition` (wait_condition / wait_timeout); sem isso o PUT dá 400
+  "Transition parent … is not a multi-path action". Contato com nota: `PUT services /contacts/{id}
+  {customFields: [{id, field_value}]}` dispara a espera.
 - Ligação por IVR: a mensagem (type 24) tem `to` = nome da conta; o número discado está em
   `meta.ivr[<callSid>].to`. Gatilho `call_status` com `inbound_number` dispara mesmo com IVR (BluVantage).
   `meta.callStatusTriggerFired` lista os gatilhos que a ligação disparou (dá a linha quando há workflow por linha).

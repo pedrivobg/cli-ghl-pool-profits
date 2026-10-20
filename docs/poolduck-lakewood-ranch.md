@@ -106,7 +106,13 @@ excluindo a lista da Connie (e-mail de 07/10, 38 nomes). `scripts/pd_lwr_reviews
   Judy Fogel, Tom Bachar; os McQuaid já estavam — "Ron" não existe como contato) → 40 excluídos, **271**
   marcados. Workflow agora: espera janela seg–sex 10:00–16:00 (America/New_York) → drip 20 a cada 20 min →
   SMS + e-mail → 4 dias (mesma janela) → drip → lembrete. Primeiro lote ter 20/10 10:00 ET, ~4,5 h no total.
-  Pergunta do Ed sobre "feedback vs link de review": não tem filtro por nota (política do Google) — oferecido
-  um passo de feedback que avisa a equipe nas notas baixas sem tirar o link de ninguém.
+- **Review gate (Pedro, 20/10 — padrão de todas as sub-contas)**: `scripts/pd_lwr_nps_gate.py`. NPS Score/Message
+  criados, **NPS Form** da Pool Profits (`config/nps_form.json`) apontado para os campos da LWR
+  (`YZxqfjtFpgH5QZ6iWREe`), `nps_survey_link` = https://api.leadconnectorhq.com/widget/form/YZxqfjtFpgH5QZ6iWREe.
+  Campanha: janela → drip → SMS + e-mail pedindo a nota (link com e-mail/telefone) → espera a nota até 6 dias →
+  4–5: tag `review gate - promoter` + SMS/e-mail com o Google; 0–3: tag `review gate - low score` + alerta SMS
+  para Kenton e Pool Duck Service; sem resposta: janela → tag `review gate - no answer` + lembrete com o Google
+  (igual ao timeout da Southern). Primeiro passo (onde estão os 271) mantido. Testado antes na LWR com 3 contatos
+  (nota 5, nota 2, sem resposta → cada um no ramo certo; apagados).
 - (histórico) Não enviado até 19/10: aguardando o cliente aprovar os textos. Para disparar (274 clientes):
   `pd_lwr_reviews.py launch` (marca `send review request` em quem tem `turtle rock` e não está excluído).
