@@ -9,9 +9,12 @@ LIVE IN SOUTHERN (14/10): Pedro replaced the spoken menu with a recording (Whats
 Ed set 1 → Brett's cell (214) 893-2315, 2 / no key → company line (214) 308-1744. Do NOT rerun
 --apply there: it rebuilds from scratch and drops both. Edit the live version instead.
 
-Menu: 1 = new service, repairs or construction quotes; 2 = existing customers; no key = same
+STAY FRESH (21/10): own menu in MENUS (1 Service → Kris, 2 Construction → Mike), built as DRAFT for Frank;
+not published (publishing adds the trigger that ties the lines to the IVR).
+
+Default menu: 1 = new service, repairs or construction quotes; 2 = existing customers; no key = same
 as 1 (a real caller is never dropped). Every branch rings the line the number forwards to
-today and, if nobody answers, tags "missed call" and takes a voicemail.
+today (or the number set in MENUS) and, if nobody answers, tags "missed call" and takes a voicemail.
 
 Why the "missed call" tag lives here: once a number answers with an IVR, GHL reports every
 inbound call as "completed" (seen in Nortex since its IVR went live), so the call_status
@@ -44,6 +47,17 @@ OPTIONS = [  # (digit, branch name, tag) — digit None = no key pressed
     ("2", "2 - Existing Customer", "ivr - existing customer"),
     (None, "No Input", None),
 ]
+# Accounts with their own menu: greeting + (digit, branch, tag, number to ring, who). None = no key pressed.
+MENUS = {
+    "DdTE6mF11dqgoI5Cv7XN": {  # Stay Fresh Pools — Frank 21/10: Service → Kris, Construction → Mike; DRAFT only,
+        # prompts to be replaced by recordings once the wording is final (Ed decides the name of option 2)
+        "greeting": "Thank you for calling Stay Fresh Pools. For pool service, press 1. "
+                    "For pool construction or remodeling, press 2.",
+        "options": [("1", "1 - Service", "ivr - service", "+14807721420", "Kris"),
+                    ("2", "2 - Construction / Remodeling", "ivr - construction", "+14803040741", "Mike"),
+                    (None, "No Input", None, "+14803040741", "Mike")],
+    },
+}
 # Spoken names: "+" would be read as "plus"
 SPOKEN = {"SylIOZiJ6YQsZOypUI8Z": "Southern Pool and Outdoors"}
 NEST = ["inboundWebhookRequest", "sheet", "datetime_formatter", "custom_webhook", "array_functions", "ivr_gather",
@@ -66,21 +80,25 @@ def link(parent: str, nodes: list[dict]) -> list[dict]:
     return nodes
 
 
-def build(business: str, forward_to: str, display: str) -> list[dict]:
+def spoken(number: str) -> str:
+    return f"({number[2:5]}) {number[5:8]}-{number[8:]}"
+
+
+def build(greeting: str, options: list[tuple]) -> list[dict]:
     gather = nid()
     transitions = [{"id": nid(), "name": name, "condition": digit or "None",
                     "conditionType": "user-defined" if digit else "default",
                     "isPrimaryBranch": False, "description": "", "attributes": {}}
-                   for digit, name, _ in OPTIONS]
+                   for digit, name, *_ in options]
     steps = [{"id": gather, "order": 0, "name": "Main menu", "type": "ivr_gather", "cat": "multi-path",
               "stepIndex": 1, "next": [t["id"] for t in transitions],
               "attributes": {"loop": 2, "timeout": 5, "numDigits": 1, "enableFinishOnKey": False,
                              "widgetType": "say", "convertToMultipath": True, "name": "Main menu",
                              "type": "ivr_gather", "language": "en-US", "voice": "woman",
-                             "message": GREETING.format(business=business), "cat": "multi-path",
+                             "message": greeting, "cat": "multi-path",
                              "transitions": transitions}}]
     index = 2  # stepIndex of IVR nodes; the if/else reads "<stepIndex>.dialCallStatus"
-    for t, (digit, name, tag) in zip(transitions, OPTIONS):
+    for t, (digit, name, tag, forward_to, who) in zip(transitions, options):
         connect_index, vm_index = index, index + 1
         index += 2
         cond, yes, no = nid(), nid(), nid()
@@ -88,11 +106,11 @@ def build(business: str, forward_to: str, display: str) -> list[dict]:
         if tag:
             branch.append({"id": nid(), "name": f"Tag {tag}", "type": "add_contact_tag",
                            "attributes": {"tags": [tag]}})
-        branch.append({"id": nid(), "name": "Ring the office", "type": "ivr_connect_call", "stepIndex": connect_index,
+        branch.append({"id": nid(), "name": f"Ring {who}", "type": "ivr_connect_call", "stepIndex": connect_index,
                        "attributes": {
                            "timeout": 20, "timeLimit": 3600, "userId": "", "users": [], "detectVoicemail": True,
                            "isSayPlayOn": False, "record": "record-from-answer",
-                           "customNumbers": [{"country": "US", "phone": forward_to, "displayValue": display,
+                           "customNumbers": [{"country": "US", "phone": forward_to, "displayValue": spoken(forward_to),
                                               "isValid": True}],
                            "sayPlayAttributes": {"loop": 1, "widgetType": "say",
                                                  "message": "This is an automated call from workflows",
@@ -148,11 +166,19 @@ def main() -> int:
     numbers = a.call("GET", SERVICES, f"/phone-system/numbers/location/{loc}")["numbers"]
     main_line = next(n for n in numbers if n.get("isDefaultNumber"))
     forward = main_line.get("forwardingNumber")
-    assert forward, "main line has no forwarding number to ring"
-    display = f"({forward[2:5]}) {forward[5:8]}-{forward[8:]}"
     business = SPOKEN.get(loc) or load(d / "location.json", {})["name"]
-    print(f"== {business}: IVR on {[n['phoneNumber'] for n in numbers]} (todas as linhas), rings {display}")
-    steps = build(business, forward, display)
+    menu = MENUS.get(loc)
+    if menu:
+        greeting, options = menu["greeting"], menu["options"]
+    else:
+        assert forward, "main line has no forwarding number to ring"
+        greeting = GREETING.format(business=business)
+        options = [(digit, name, tag, forward, "the office") for digit, name, tag in OPTIONS]
+    print(f"== {business}: IVR on {[n['phoneNumber'] for n in numbers]} (todas as linhas)")
+    print(f"   «{greeting}»")
+    for digit, name, _, number, who in options:
+        print(f"   {digit or 'sem tecla'}: {name} → {who} {spoken(number)}; sem atender → tag missed call + voicemail")
+    steps = build(greeting, options)
     for s in steps:
         print(f"   [{s['type']}] {s['name']}")
     if not args.apply:
@@ -172,7 +198,7 @@ def main() -> int:
         res = a.call("POST", BACKEND, f"/workflow/{loc}", body={"name": NAME, "parentId": parent, "status": "draft"})
         wid, version = res.get("id") or res.get("_id"), 1
     have = {t["name"].lower() for t in a.tags(loc)}
-    for tag in [t for _, _, t in OPTIONS if t and t not in have]:
+    for tag in [o[2] for o in options if o[2] and o[2] not in have]:
         a.call("POST", BACKEND, f"/workflow/{loc}/tags/create", body={"tag": tag})
     status = "published" if args.publish else "draft"
     a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body={
