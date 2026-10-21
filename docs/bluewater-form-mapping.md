@@ -39,7 +39,16 @@ Testado com 1 envio por form (alertas desviados para e-mail de teste): contato, 
 tarefa para o Bill, ramo "não" do checkbox, reenvio sem telefone não apaga o telefone nem duplica o card. Contatos de
 teste apagados; alertas de volta para SMS do Bill.
 
-## Lado do site: nós, não o Vik (decisão do Pedro, 20/10)
+## Lado do site: nós, não o Vik (decisão do Pedro, 20/10) — NO AR desde 21/10
+
+O host (Kinsta + Cloudflare) descarta o cabeçalho Authorization: Application Password não loga ("rest_not_logged_in" até
+para usuário inexistente). Instalação: o Pedro colou o código gerado por `bw_site.py render` em Snippets → Add New (Code
+Snippets) e ativou. Testes (21/10): `bw_site.py test` no site = payloads certos nos 6 forms; `bw_site.py test --send` com
+os avisos desviados (`bw_forms.py test --to pedro@…`) = 6/6 contatos certos no GHL; envio real pelo navegador do rodapé
+(newsletter) e da calculadora = contato, tags, página, card em New Lead - Seller; o Bill recebeu os 2 e-mails normais do
+site marcados TEST. Contatos de teste apagados; `bw_forms.py live` (SMS ao Bill) reaplicado. `bw_site.py status` mostra os
+últimos envios (rota com ?key=, chave em `backup/bluewater-brokerage/site-key.txt`).
+
 
 O Vik não mexe com isso; quem liga o site ao GHL somos nós. Um snippet PHP (`site/bluewater/bwb-ghl.php`), instalado
 pelo plugin **Code Snippets** (`scripts/bw_site.py apply`), manda cada envio para o webhook do form **depois** do que o

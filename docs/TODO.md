@@ -56,13 +56,11 @@ para o cliente testar.
       > the sub-account's phone system is fully active? Thank you.
    3. A2P dela também.
 10. **BurchTech** (acesso por API desde 20/10):
-    - **Bluewater**: GHL pronto e testado. O site nós mesmos ligamos (não o Vik): o código está pronto e testado aqui
-      (`docs/bluewater-form-mapping.md`). Falta só **acesso ao WordPress** de bluewaterbrokerage.com: entrar em
-      bluewaterbrokerage.com/wp-admin → Users → Profile → *Application Passwords* → nome "Claude" → *Add New
-      Application Password* → me mandar o código + o seu usuário (precisa ser Administrator). Sem login: pedir ao Vik
-      um usuário admin para pedro@poolprofits.com. ClickUp "GHL Form Mapping": corrigir o "waiting on Vik" (texto no
-      chat de 20/10).
-    - **Pool Keepers**: a conta viva é a da BurchTech (1.147 contatos). Snapshot só pela UI: Pool Profits → Account
+    - **Bluewater**: no ar desde 21/10 (site → GHL, testado ponta a ponta). Falta só mandar as mensagens (ClickUp e
+      thread do Vik, texto no chat de 21/10) e apagar a Application Password que você criou (não serviu: o host bloqueia).
+    - **Pool Keepers**: snapshot `I4pXOMoyFjADBuoC2xpF` importado na BurchTech em 21/10, **falta carregar na sub-conta**
+      (Account Snapshots → Imported → ⋮ → carregar em The Pool Keepers, não sobrescrever). Vigia
+      `pp_guard_new_workflows.py` põe em draft o que chegar publicado. (Histórico:) Snapshot só pela UI: Pool Profits → Account
       Snapshots → Create (sub-conta The Pool Keepers) → Share → copiar link; my.burchtech.app → Account Snapshots →
       Imported → colar → Sub-Accounts → The Pool Keepers → Load Snapshot, marcar **não sobrescrever** o que já existe.
       Me avisa: eu ajusto tudo pela API (Nathan nos avisos, números, custom values, NPS, link de review) e deixo em
