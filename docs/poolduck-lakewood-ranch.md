@@ -114,5 +114,10 @@ excluindo a lista da Connie (e-mail de 07/10, 38 nomes). `scripts/pd_lwr_reviews
   para Kenton e Pool Duck Service; sem resposta: janela → tag `review gate - no answer` + lembrete com o Google
   (igual ao timeout da Southern). Primeiro passo (onde estão os 271) mantido. Testado antes na LWR com 3 contatos
   (nota 5, nota 2, sem resposta → cada um no ramo certo; apagados).
+- **21/10 (Val: "só 4 reviews no Google, cadê os 18?")**: os "5 estrelas" são notas da nossa pesquisa, não reviews.
+  28 notas altas (26 × 5, 2 × 4), todos receberam o link do Google (27 por SMS + e-mail; Charlene Schmidt só e-mail,
+  SMS bloqueado por ela desde fev.). Link certo (abre "Pool Duck of Lakewood Ranch", 5.0). E-mail: 11 abriram, 0
+  cliques; clique de SMS não é rastreável. Google Business Profile não está ligado no GHL da LWR (reputação = 0
+  reviews), então não dá para saber quem já postou. Oferecido: 1 lembrete aos 28 junto com o de segunda.
 - (histórico) Não enviado até 19/10: aguardando o cliente aprovar os textos. Para disparar (274 clientes):
   `pd_lwr_reviews.py launch` (marca `send review request` em quem tem `turtle rock` e não está excluído).
