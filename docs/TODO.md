@@ -1,4 +1,4 @@
-# TODO do Pedro — só o que depende de você e ainda está aberto (20/10/2026)
+# TODO do Pedro — só o que depende de você e ainda está aberto (21/10/2026)
 
 O que já foi feito está em `docs/execucao-2026-10-13.md`. Testes são nossos: nada aqui vai para a equipe ou
 para o cliente testar.
@@ -35,8 +35,17 @@ para o cliente testar.
 
 ## UI do GHL / acessos
 
-9. **Pool Keepers**: 805-262-9070 encaminha para ela mesma. Trocar para **+1 805-457-8212** (mesmo caminho do
-   item 1) e ligar para testar. A2P dela também.
+9. **Pool Keepers — a linha que não funciona** (+1 805-262-9070; a ligação cai e não aparece nada no GHL). O número
+   está configurado para encaminhar **para ele mesmo** desde 10/10 (a API não edita número).
+   1. Settings → Phone Numbers → 805-262-9070 → Edit → *Forward calls to* = **+1 805-457-8212** → salvar e ligar.
+   2. Se não salvar ou continuar caindo: **chamado no suporte do GHL** (texto pronto, é só colar):
+      > Calls to our LC Phone number +1 (805) 262-9070 in the sub-account "The Pool Keepers" (location ID
+      > hh6X9ht7Ay35b5I20aU2) don't connect: the call rings once or not at all and drops, and nothing shows up in
+      > the call logs or conversations. The number was purchased on Oct 9 and its forwarding number shows the number
+      > itself (+1 805-262-9070); it should forward to +1 805-457-8212. SMS from this sub-account also failed on
+      > Oct 7 with "Trial mode not enabled for this agency". Could you check the number's configuration and confirm
+      > the sub-account's phone system is fully active? Thank you.
+   3. A2P dela também.
 10. **BurchTech** (acesso por API desde 20/10):
     - **Bluewater**: GHL pronto e testado. O site nós mesmos ligamos (não o Vik): o código está pronto e testado aqui
       (`docs/bluewater-form-mapping.md`). Falta só **acesso ao WordPress** de bluewaterbrokerage.com: entrar em
@@ -56,8 +65,18 @@ para o cliente testar.
 
 ## Respostas e decisões
 
-- **Pool Shack (Rob, via Frank 20/10)**: colar aqui a thread do Rob no Basecamp ("Automation Snapshots"); sem
-  ela não dá para aplicar o texto dele. Análise pronta em `docs/pool-shack-rob.md`.
+- **Mandar hoje (textos no chat de 21/10)**: Pool Shack (Frank), IVR da Stay Fresh (Frank + Ed), lista de inativos
+  da Stay Fresh (Frank + Ed), tags universais (Frank + Ed), resposta à Val sobre as reviews da LWR.
+- **Pool Shack**: mudanças do Rob aplicadas e testadas (`docs/pool-shack-rob.md`). Esperando do Rob: o Skimmer já manda
+  boas-vindas/pedido de review para o cliente semanal? (se sim, desligo só no semanal) · horário comercial é 9–17?
+- **Stay Fresh IVR** (draft, nada ligado): Ed escolhe o nome da opção 2; Frank/Mike: quem atende sem tecla (hoje Mike),
+  se o Kris não atender tenta o Mike antes da caixa postal?, as duas linhas ou só a do site/GBP, fora do horário.
+  Depois: gravações em MP3 (eu troco a voz robótica pelos áudios) e publicar.
+- **Stay Fresh inativos** (`<scratchpad>/stayfresh-inactive/`, fora do git): Ed escolhe a tag (**não usar
+  "reactivation"**: dispara a campanha de reativação na hora); Mike confirma a lista (Jen Knight está como cliente
+  ativa; Kate DiBenedetto estava com o e-mail da própria Stay Fresh). Depois eu importo.
+- **Tags universais**: esperando o Frank/Ed aprovarem o formato (proposta no chat de 21/10); depois piloto na Pool Shack
+  e o resto pelo snapshot + script.
 
 13. **Stay Fresh**:
     - Conferir os 7 e-mails de teste com o texto do Mike em pedro@poolprofits.com.

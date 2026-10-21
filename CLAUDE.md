@@ -75,7 +75,10 @@
 - Templates (snippets): a leitura atrasa ~10-20 s depois do PUT (`pp_snippet_replace.py` espera).
 - Texto próprio do cliente nas automações: `config/<cliente>_wording.json` + `scripts/pp_wording.py` (plan /
   `--test <inbox>` na Test Snapshot / `--apply`). Conta com esse config é pulada pelo `pp_mirror --apply`.
-- If/else por gatilho: `conditionType: "trigger"`, `conditionValue: <id do gatilho>` (Won Stage e
+- Tirar contato de outros workflows: passo `remove_from_workflow` `{type: "remove_from_workflow", workflow_id: [ids]}`
+  (testado). Mensagem recebida não dá para simular: `POST /conversations/messages/inbound` → 401 com o token Firebase.
+- If/else por gatilho: `conditionType: "trigger"`, `conditionSubType: "trigger"`, `conditionOperator: "=="` (sem os
+  dois o PUT dá 400 "missing its field/operator"), `conditionValue: <id do gatilho>` (Won Stage e
   Review Request ramificam assim pelas 3 etapas Won). Gatilho novo precisa de `workflowId`,
   `workflow_id`, `location_id`, `actions` no corpo — sem isso o PUT dá "Workflow not found".
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
