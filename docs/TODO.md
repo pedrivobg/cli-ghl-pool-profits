@@ -58,14 +58,12 @@ para o cliente testar.
 10. **BurchTech** (acesso por API desde 20/10):
     - **Bluewater**: no ar desde 21/10 (site → GHL, testado ponta a ponta). Falta só mandar as mensagens (ClickUp e
       thread do Vik, texto no chat de 21/10) e apagar a Application Password que você criou (não serviu: o host bloqueia).
-    - **Pool Keepers**: snapshot `I4pXOMoyFjADBuoC2xpF` importado na BurchTech em 21/10, **falta carregar na sub-conta**
-      (Account Snapshots → Imported → ⋮ → carregar em The Pool Keepers, não sobrescrever). Vigia
-      `pp_guard_new_workflows.py` põe em draft o que chegar publicado. (Histórico:) Snapshot só pela UI: Pool Profits → Account
-      Snapshots → Create (sub-conta The Pool Keepers) → Share → copiar link; my.burchtech.app → Account Snapshots →
-      Imported → colar → Sub-Accounts → The Pool Keepers → Load Snapshot, marcar **não sobrescrever** o que já existe.
-      Me avisa: eu ajusto tudo pela API (Nathan nos avisos, números, custom values, NPS, link de review) e deixo em
-      draft. Antes de publicar: decidir com o Frank/Nathan o que substitui os fluxos deles de form/chat e a "Customer
-      Pipeline" (senão lead entra em dobro).
+    - **Pool Keepers**: snapshot carregado em 21/10 (22:50 UTC). Os 28 workflows nossos estão em **draft** (18 chegaram
+      publicados e o vigia pôs em draft em segundos; nada foi enviado); os 10 do cliente intactos. 17 custom values
+      preenchidos (auditoria: 68 → 5 ALTA). Comigo: Nathan nos 2 avisos sem usuário, 1 gatilho com id de fora, 2 mensagens
+      vazias, form NPS e calendários. Antes de publicar: decidir com o Frank/Nathan o que substitui os fluxos deles de
+      form/chat e a "Customer Pipeline" (senão lead entra em dobro). A linha 805-262-9070 da Pool Keepers da Pool Profits
+      (item 9) talvez nem seja mais necessária: a conta viva usa as linhas da BurchTech (805-457-8212 principal).
 11. **Trocar os 3 refresh tokens** (Pool Profits, Pool Duck e BurchTech) colados no chat (`docs/get-firebase-token.md`);
     a Application Password da Bluewater, quando terminar, apaga no mesmo lugar onde criou.
 12. **Master do snapshot**: corrigir (3 etapas Won e os bugs antigos) e dar Refresh em Agency → Account Snapshots.
