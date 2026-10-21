@@ -56,6 +56,9 @@ para o cliente testar.
 
 ## Respostas e decisões
 
+- **Pool Shack (Rob, via Frank 20/10)**: colar aqui a thread do Rob no Basecamp ("Automation Snapshots"); sem
+  ela não dá para aplicar o texto dele. Análise pronta em `docs/pool-shack-rob.md`.
+
 13. **Stay Fresh**:
     - Conferir os 7 e-mails de teste com o texto do Mike em pedro@poolprofits.com.
     - Mandar ao Frank a confirmação (texto no chat de 20/10), se ainda não mandou.
