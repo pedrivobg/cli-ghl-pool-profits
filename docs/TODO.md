@@ -60,8 +60,8 @@ para o cliente testar.
       thread do Vik, texto no chat de 21/10) e apagar a Application Password que você criou (não serviu: o host bloqueia).
     - **Pool Keepers**: snapshot carregado em 21/10 (22:50 UTC). Os 28 workflows nossos estão em **draft** (18 chegaram
       publicados e o vigia pôs em draft em segundos; nada foi enviado); os 10 do cliente intactos. 17 custom values
-      preenchidos (auditoria: 68 → 5 ALTA). Comigo: Nathan nos 2 avisos sem usuário, 1 gatilho com id de fora, 2 mensagens
-      vazias, form NPS e calendários. Antes de publicar: decidir com o Frank/Nathan o que substitui os fluxos deles de
+      preenchidos; Nathan nos avisos/dono do contato e nos 2 calendários novos (inativos). Auditoria 68 → 1 ALTA nossa
+      (AdWords Form escuta um form que já não existia na Pool Profits: depende de rodarem Ads). Antes de publicar: decidir com o Frank/Nathan o que substitui os fluxos deles de
       form/chat e a "Customer Pipeline" (senão lead entra em dobro). A linha 805-262-9070 da Pool Keepers da Pool Profits
       (item 9) talvez nem seja mais necessária: a conta viva usa as linhas da BurchTech (805-457-8212 principal).
 11. **Trocar os 3 refresh tokens** (Pool Profits, Pool Duck e BurchTech) colados no chat (`docs/get-firebase-token.md`);
