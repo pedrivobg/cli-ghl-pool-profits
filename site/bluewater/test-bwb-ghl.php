@@ -22,7 +22,7 @@ function get_option( $k, $d = false ) { return isset( $GLOBALS['opts'][ $k ] ) ?
 function update_option( $k, $v, $a = null ) { $GLOBALS['opts'][ $k ] = $v; }
 function get_transient( $k ) { return get_option( 't_' . $k ); }
 function set_transient( $k, $v, $e ) { update_option( 't_' . $k, $v ); }
-function current_user_can( $c ) { return true; }
+function current_user_can( $c ) { return false; }
 function register_rest_route( $ns, $r, $a ) { $GLOBALS['routes'][ $ns . $r ] = $a; }
 class WP_Error { function get_error_message() { return 'err'; } }
 class WP_HTTP_Response { public $s; function __construct( $s ) { $this->s = $s; } function get_status() { return $this->s; } }
@@ -97,6 +97,12 @@ expect( 'other REST route -> nothing', 'GATE', null );
 call_user_func( $rest, 'RESP', null, new Req( '/bwb/v1/route-lead', json_encode( array( 'type' => 'figures', 'who' => array( 'name' => 'X' ), 'figures' => $fig ) ) ) );
 expect( 'figures without email -> nothing', 'FIGURES', null );
 
+class KReq { function __construct( $k ) { $this->k = $k; } function get_param( $n ) { return 'key' === $n ? $this->k : null; } }
+call_user_func( $GLOBALS['hooks']['rest_api_init'] );
+$perm = $GLOBALS['routes']['bwb-ghl/v1/status']['permission_callback'];
+$ok   = ! $perm( new KReq( 'wrong' ) ) && ! $perm( new KReq( '' ) ) && ! $perm( new KReq( '__KEY__' ) );
+echo ( $ok ? 'ok   ' : 'FAIL ' ) . "test routes refuse a wrong/empty key (and the unfilled placeholder)\n";
+$fail += $ok ? 0 : 1;
 $log = get_option( 'bwb_ghl_log' );
 $ok  = 7 === count( $log ) && 'figures' === $log[0][1] && 200 === $log[0][3]; // the 7 sends above, newest first
 echo ( $ok ? 'ok   ' : 'FAIL ' ) . 'status log (' . count( $log ) . " entries)\n";

@@ -9,6 +9,12 @@
                                                         #   run bw_forms.py test --to <inbox> first, live after)
     ./.venv/bin/python scripts/bw_site.py status        # last sends logged by the snippet
     ./.venv/bin/python scripts/bw_site.py off           # deactivate the snippet (the site goes back to e-mail only)
+    ./.venv/bin/python scripts/bw_site.py render --out <file>   # code to paste by hand (Snippets → Add New)
+
+bluewaterbrokerage.com (Kinsta + Cloudflare) strips the Authorization header, so Application Passwords never reach
+WordPress ("rest_not_logged_in" even for a user that doesn't exist): plan/apply/off can't run there. Install = Pedro
+pastes the `render` output into Code Snippets; `test` and `status` work without WordPress login, through the snippet's
+own routes with ?key= (random, kept in backup/bluewater-brokerage/site-key.txt, out of git).
 
 The site e-mails every form to Bill (Elementor actions and the calculator's /bwb/v1/route-lead endpoint). One
 PHP snippet (site/bluewater/bwb-ghl.php) also posts each submission to its webhook, after the site's own handling,
@@ -21,11 +27,14 @@ import argparse
 import json
 import os
 import re
+import secrets
 import subprocess
 import sys
 import time
 
 import requests
+
+from pathlib import Path
 
 from _common import ROOT, load_dotenv
 
@@ -33,6 +42,7 @@ SITE = "https://bluewaterbrokerage.com"
 SNIPPET = "Bluewater forms → GHL (Pool Profits)"
 PHP = ROOT / "site" / "bluewater" / "bwb-ghl.php"
 URLS = ROOT / "backup" / "bluewater-brokerage" / "webhook-urls.json"
+KEY_FILE = ROOT / "backup" / "bluewater-brokerage" / "site-key.txt"
 HOOK_KEYS = {"GATE": "Website - Route Calculator Lead", "FIGURES": "Website - Route Calculator Figures",
              "SELLER": "Website - Seller's Guide Download", "BUYER": "Website - Buyer's Guide Download",
              "CONTACT": "Website - Contact Form", "NEWSLETTER": "Website - Newsletter Signup"}
@@ -76,9 +86,28 @@ class WP:
         return r.json() if r.text else None
 
 
+def site_key() -> str:
+    if not KEY_FILE.exists():
+        KEY_FILE.write_text(secrets.token_urlsafe(24))
+        KEY_FILE.chmod(0o600)
+    return KEY_FILE.read_text().strip()
+
+
+class Keyed:
+    """The snippet's own routes, authorised by ?key= (no WordPress login needed)."""
+
+    def __call__(self, method: str, path: str, ok: tuple = (200, 201), **kw):
+        kw.setdefault("params", {})["key"] = site_key()
+        r = requests.request(method, SITE + "/wp-json" + path, timeout=60,
+                             headers={"User-Agent": "Mozilla/5.0 (Pool Profits bw_site)"}, **kw)
+        if r.status_code not in ok:
+            raise SystemExit(f"{method} {path}: HTTP {r.status_code} {r.text[:300]}")
+        return r.json() if r.text else None
+
+
 def render() -> str:
     urls = json.loads(URLS.read_text())
-    code = PHP.read_text()
+    code = PHP.read_text().replace("__KEY__", site_key())
     for key, name in HOOK_KEYS.items():
         code = code.replace(f"__HOOK_{key}__", urls[name].rsplit("/", 1)[1])
     if re.search(r"__HOOK_[A-Z]+__", code):
@@ -108,7 +137,7 @@ def site_ok() -> bool:
     return r.status_code == 200 and "elementor-form" in r.text
 
 
-def run_tests(wp: WP, send: bool) -> int:
+def run_tests(wp, send: bool) -> int:
     from bw_forms import SAMPLES  # same payloads the GHL side was tested with
     bad = 0
     for name, body in SITE_SAMPLES.items():
@@ -121,12 +150,50 @@ def run_tests(wp: WP, send: bool) -> int:
     return bad
 
 
+def keyed(args) -> int:
+    site = Keyed()
+    st = site("GET", "/bwb-ghl/v1/status")
+    print(f"== {SITE} · snippet v{st['version']} no ar")
+    if args.mode == "status":
+        for when, form, email, code in st["log"]:
+            print(f"   {when} {form:10} {code} {email}")
+        return 0
+    if not args.send:
+        return run_tests(site, False)
+    from bw_forms import LOC, check, cleanup
+    from cli_anything.gohighlevel.utils.agency import Agency
+    a = Agency()
+    if a.company_id() != "syjenoyGz1jZ3ndDPkCm":
+        sys.exit("--send precisa do token da BurchTech (carregar burchtech.env)")
+    cf = {c["name"]: c["id"] for c in a.custom_fields(LOC)}
+    cleanup(a)
+    bad = run_tests(site, True)
+    time.sleep(45)
+    for name in SITE_SAMPLES:
+        probs = check(a, name, SITE_SAMPLES[name].get("elementor", {}).get("fields", {}).get("email")
+                      or CALC_WHO["email"], cf)
+        bad += bool(probs)
+        print(f"   {'✓' if not probs else '✗'} GHL {name}" + (f": {probs}" if probs else ""))
+    cleanup(a)
+    print("   contatos de teste apagados")
+    return 1 if bad else 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("mode", choices=["plan", "apply", "test", "status", "off"])
+    parser.add_argument("mode", choices=["plan", "apply", "test", "status", "off", "render"])
     parser.add_argument("--send", action="store_true", help="test: post to GHL and check the contacts there")
+    parser.add_argument("--out", help="render: file to write the code to")
     args = parser.parse_args()
     load_dotenv()
+    if args.mode == "render":
+        if not local_test():
+            return 1
+        Path(args.out).write_text(render() + "\n")
+        print(f"   código para colar → {args.out}")
+        return 0
+    if args.mode in ("test", "status"):
+        return keyed(args)
     wp = WP()
     me = wp("GET", "/wp/v2/users/me", params={"context": "edit"})
     caps = me.get("capabilities") or {}
@@ -175,37 +242,9 @@ def main() -> int:
         if not site_ok():
             wp("POST", f"/code-snippets/v1/snippets/{made['id']}/deactivate")
             sys.exit("a home não abriu normal depois do snippet: desativado")
-        st = wp("GET", "/bwb-ghl/v1/status")
+        st = Keyed()("GET", "/bwb-ghl/v1/status")
         print(f"   ✓ site no ar, snippet v{st['version']} respondendo")
         return run_tests(wp, False)
-
-    if args.mode == "test":
-        if not args.send:
-            return run_tests(wp, False)
-        from bw_forms import LOC, check, cleanup
-        from cli_anything.gohighlevel.utils.agency import Agency
-        a = Agency()
-        if a.company_id() != "syjenoyGz1jZ3ndDPkCm":
-            sys.exit("--send precisa do token da BurchTech também (carregar burchtech.env)")
-        cf = {c["name"]: c["id"] for c in a.custom_fields(LOC)}
-        cleanup(a)
-        bad = run_tests(wp, True)
-        time.sleep(45)
-        for name in SITE_SAMPLES:
-            probs = check(a, name, SITE_SAMPLES[name].get("elementor", {}).get("fields", {}).get("email")
-                          or CALC_WHO["email"], cf)
-            bad += bool(probs)
-            print(f"   {'✓' if not probs else '✗'} GHL {name}" + (f": {probs}" if probs else ""))
-        cleanup(a)
-        print("   contatos de teste apagados")
-        return 1 if bad else 0
-
-    if args.mode == "status":
-        st = wp("GET", "/bwb-ghl/v1/status")
-        print(f"   snippet v{st['version']}")
-        for when, form, email, code in st["log"]:
-            print(f"   {when} {form:10} {code} {email}")
-        return 0
 
     s = snippet(wp)  # off
     if s and s.get("active"):

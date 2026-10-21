@@ -12,7 +12,8 @@
  * - Elementor forms: hook elementor_pro/forms/new_record (after the form's own actions ran).
  * - Route calculator: filter rest_request_after_callbacks on /bwb/v1/route-lead (after the endpoint ran).
  * - Name is split at the first space; checkboxes go as "yes"/"no"; honeypot filled = nothing is sent.
- * - Admin-only routes: GET /wp-json/bwb-ghl/v1/status (last 30 sends), POST /wp-json/bwb-ghl/v1/test.
+ * - Routes for us (admin, or ?key=<KEY>; the host strips the Authorization header, so app passwords don't work here):
+ *   GET /wp-json/bwb-ghl/v1/status (last 30 sends), POST /wp-json/bwb-ghl/v1/test.
  */
 
 if ( ! class_exists( 'BWB_GHL' ) ) {
@@ -37,6 +38,7 @@ if ( ! class_exists( 'BWB_GHL' ) ) {
 			'36394603' => 'newsletter', // footer, every page
 		);
 		const CALC_ROUTE = '/bwb/v1/route-lead';
+		const KEY        = '__KEY__';
 
 		static function init() {
 			add_action( 'elementor_pro/forms/new_record', array( __CLASS__, 'on_elementor' ), 10, 2 );
@@ -187,8 +189,9 @@ if ( ! class_exists( 'BWB_GHL' ) ) {
 		}
 
 		static function routes() {
-			$admin = function () {
-				return current_user_can( 'manage_options' );
+			$admin = function ( $request ) {
+				$key = (string) $request->get_param( 'key' );
+				return current_user_can( 'manage_options' ) || ( strlen( self::KEY ) >= 20 && hash_equals( self::KEY, $key ) );
 			};
 			register_rest_route( 'bwb-ghl/v1', '/status', array(
 				'methods'             => 'GET',
