@@ -1,104 +1,78 @@
-# TODO do Pedro — só o que depende de você e ainda está aberto (21/10/2026)
+# TODO do Pedro — só o que depende de você e ainda está aberto (21/10/2026, noite)
 
 O que já foi feito está em `docs/execucao-2026-10-13.md`. Testes são nossos: nada aqui vai para a equipe ou
 para o cliente testar.
 
-## Contas novas (Poolheads, Rosebrook, Cleverblu) — automações prontas, faltam só coisas de UI
+## Mandar (textos prontos no chat de 21/10)
 
-1. **Encaminhamento das linhas** (sem API; hoje a ligação só toca no app web do GHL): Settings → Phone Numbers →
-   número → Edit → *Forward calls to*:
-   - Poolheads **936-301-4150 → +1 936-314-9255**
-   - Cleverblu **689-229-3738 → +1 407-922-8947**
-2. **Ligação de teste** em cada uma, depois do item 1, sem atender. Tem que chegar o SMS de chamada perdida no
-   seu celular e aparecer o card em New Lead com a tarefa. Me avisa que eu confiro tags, card e aviso.
-3. **A2P** dos dois números (Settings → Phone System → Trust Center): sem aprovação o SMS não sai.
-4. **Rosebrook**:
-   - **Número**: comprar um (nome "Website & GBP") e fazer o A2P. Sem número, nenhum SMS sai, nem o aviso de
-     lead para a Lynsey. Depois eu ponho o número no custom value, crio a tag da linha e confiro.
-   - **Link de review do Google**: pedir à Lynsey ou conectar o Google Business Profile em Settings →
-     Integrations. O Review Request fica em draft até ter o link.
+- **Frank — Pool Keepers**: decisões para publicar (mensagem de 21/10, noite).
+- **Bluewater**: comentário no ClickUp "GHL Form Mapping" e resposta na thread do Vik (Vik, Ed, Frank, Val).
+- **Frank — Pool Shack** (mudanças do Rob), **Frank + Ed — IVR da Stay Fresh**, **Frank + Ed — lista de inativos da
+  Stay Fresh**, **Frank + Ed — tags universais**.
+- **Val — LWR**: "Done, reminder Monday 10 AM" + passos do Google Business Profile.
+- **Vanessa (BluVantage)**: usuários da GoTour criados (texto de primeiro acesso).
+- **Poolheads**: resposta sobre a portabilidade (pedir o e-mail do Jorge Arias).
 
-5a. **Poolheads — portabilidade do 936-314-9255** (conta GHL antiga → nossa). Tudo pronto em draft. Falta:
-   - **Antes**: e-mail do **Jorge Arias** (para criar o usuário dele aqui, como na conta antiga).
-   - **No dia** (quando o número aparecer na nossa conta): me avisa → eu ligo o IVR em todas as linhas e publico.
-     Você, na tela: número → nome "Poolheads Main Service", Call Recording ligado **sem** a mensagem (o IVR já fala);
-     A2P do número novo (Trust Center); Felipe e Jorge entram no app LeadConnector com a conta nova; deskphone do
-     Felipe apontado para a conta nova.
-   - **Teste** (você): ligação em horário comercial atendida e não atendida, uma fora do horário, e um SMS fora do
-     horário. Depois disso o item 1 (encaminhar o 936-301-4150) deixa de ser necessário: o IVR cobre as duas linhas.
+## Contas novas (Poolheads, Rosebrook, Cleverblu) — faltam só coisas de UI
+
+1. **Encaminhamento** (Settings → Phone Numbers → número → Edit → *Forward calls to*): Cleverblu **689-229-3738 →
+   +1 407-922-8947**. Poolheads 936-301-4150 só até a portabilidade (depois o IVR cobre; item 5).
+2. **Ligação de teste** em cada uma, sem atender: SMS de chamada perdida no seu celular + card em New Lead. Me avisa.
+3. **A2P** dos números (Settings → Phone System → Trust Center): sem aprovação o SMS não sai.
+4. **Rosebrook**: comprar um número ("Website & GBP") + A2P; link de review do Google (Lynsey, ou conectar o Google
+   Business Profile em Settings → Integrations). O Review Request fica em draft até ter o link.
+5. **Poolheads — portabilidade do 936-314-9255** (conta GHL antiga → nossa). IVR e resposta fora do horário prontos em
+   draft (`scripts/pp_poolheads_port.py`).
+   - **Antes**: e-mail do **Jorge Arias** (crio o usuário dele aqui).
+   - **No dia** em que o número aparecer na nossa conta: me avisa → eu ligo o IVR nas linhas e publico. Você, na tela:
+     nome "Poolheads Main Service", Call Recording ligado **sem** a mensagem (o IVR já fala); A2P do número; Felipe e
+     Jorge entram no app LeadConnector com a conta nova; deskphone do Felipe apontado para a conta nova.
+   - **Teste** (você): ligação em horário comercial atendida e não atendida, uma fora do horário, um SMS fora do horário.
 
 ## Testes que só você faz
 
-5. **Nortex**: ligação no 469-238-2660 sem atender (SMS de chamada perdida + card).
-6. **Ligações**: Wrigley's LSA 925-744-7750 · Pool Duck LWR 941-541-5942 · IVR da Southern (214) 922-1914
-   (1 → Brett; 2 → 214-308-1744; sem resposta → caixa postal).
-7. **Google Lead Form** (Reign, Damon's, Simple; form "Weekly Pool Service Done Right"):
-   1. Na sub-conta, Settings → Integrations → Google Ads → Manage: o form tem que estar mapeado (nome,
-      telefone, e-mail, CEP) e **Active**.
-   2. No Google Ads: campanha → Lead form → Edit → abrir o form → **Send Data**.
-   3. Me avisa e eu confiro e apago o teste.
-8. **Forms de landing** (envio não automatizável):
-   - Southern: GOOGLE ADS - FORM em service.southernpoolandoutdoors.com.
-   - Sunwave: form da landing.
-   - Me avisa depois de enviar.
+6. **Ligações**: Nortex 469-238-2660 · Wrigley's LSA 925-744-7750 · Pool Duck LWR 941-541-5942 · IVR da Southern
+   (214) 922-1914 (1 → Brett; 2 → 214-308-1744; sem resposta → caixa postal). Sem atender; me avisa.
+7. **Google Lead Form** (Reign, Damon's, Simple; form "Weekly Pool Service Done Right"): Settings → Integrations →
+   Google Ads → Manage (mapeado e **Active**) → no Google Ads: campanha → Lead form → Edit → **Send Data**. Me avisa.
+8. **Forms de landing**: Southern (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com) e Sunwave. Me avisa.
 
 ## UI do GHL / acessos
 
-9. **Pool Keepers — a linha que não funciona** (+1 805-262-9070; a ligação cai e não aparece nada no GHL). O número
-   está configurado para encaminhar **para ele mesmo** desde 10/10 (a API não edita número).
-   1. Settings → Phone Numbers → 805-262-9070 → Edit → *Forward calls to* = **+1 805-457-8212** → salvar e ligar.
-   2. Se não salvar ou continuar caindo: **chamado no suporte do GHL** (texto pronto, é só colar):
-      > Calls to our LC Phone number +1 (805) 262-9070 in the sub-account "The Pool Keepers" (location ID
-      > hh6X9ht7Ay35b5I20aU2) don't connect: the call rings once or not at all and drops, and nothing shows up in
-      > the call logs or conversations. The number was purchased on Oct 9 and its forwarding number shows the number
-      > itself (+1 805-262-9070); it should forward to +1 805-457-8212. SMS from this sub-account also failed on
-      > Oct 7 with "Trial mode not enabled for this agency". Could you check the number's configuration and confirm
-      > the sub-account's phone system is fully active? Thank you.
-   3. A2P dela também.
-10. **BurchTech** (acesso por API desde 20/10):
-    - **Bluewater**: no ar desde 21/10 (site → GHL, testado ponta a ponta). Falta só mandar as mensagens (ClickUp e
-      thread do Vik, texto no chat de 21/10) e apagar a Application Password que você criou (não serviu: o host bloqueia).
-    - **Pool Keepers**: snapshot carregado em 21/10 (22:50 UTC). Os 28 workflows nossos estão em **draft** (18 chegaram
-      publicados e o vigia pôs em draft em segundos; nada foi enviado); os 10 do cliente intactos. 17 custom values
-      preenchidos; Nathan nos avisos/dono do contato e nos 2 calendários novos (inativos). Auditoria 68 → 1 ALTA nossa
-      (AdWords Form escuta um form que já não existia na Pool Profits: depende de rodarem Ads). Antes de publicar: decidir com o Frank/Nathan o que substitui os fluxos deles de
-      form/chat e a "Customer Pipeline" (senão lead entra em dobro). A linha 805-262-9070 da Pool Keepers da Pool Profits
-      (item 9) talvez nem seja mais necessária: a conta viva usa as linhas da BurchTech (805-457-8212 principal).
-11. **Trocar os 3 refresh tokens** (Pool Profits, Pool Duck e BurchTech) colados no chat (`docs/get-firebase-token.md`);
-    a Application Password da Bluewater, quando terminar, apaga no mesmo lugar onde criou.
+9. **Pool Keepers (Pool Profits), linha 805-262-9070** (encaminha para ela mesma, a ligação cai). Perguntado ao Frank se
+   ainda precisa: a conta viva é a da BurchTech. Se precisar: Settings → Phone Numbers → Edit → *Forward calls to* =
+   +1 805-457-8212; se não resolver, chamado no suporte do GHL:
+   > Calls to our LC Phone number +1 (805) 262-9070 in the sub-account "The Pool Keepers" (location ID
+   > hh6X9ht7Ay35b5I20aU2) don't connect: the call rings once or not at all and drops, and nothing shows up in the call
+   > logs or conversations. Its forwarding number shows the number itself; it should forward to +1 805-457-8212. SMS from
+   > this sub-account also failed on Oct 7 with "Trial mode not enabled for this agency". Could you check the number's
+   > configuration and confirm the sub-account's phone system is fully active? Thank you.
+10. **BurchTech**:
+    - **Bluewater: terminado** (site → GHL no ar e testado; o que o Vik pediu — calculadora e PDFs avisando o Bill — e o
+      resto dos forms). Falta só: mandar as 2 mensagens e **revogar a Application Password** (Users → Profile →
+      Application Passwords → Revoke; não serviu, o host bloqueia).
+    - **Pool Keepers**: snapshot carregado; nossos 28 workflows em **draft**, ajustados (Nathan, linha 805-457-8212,
+      review, NPS, calendários). **Esperando o Frank/Nathan** decidirem o que liga (mensagem de 21/10); depois eu publico.
+11. **Trocar os 3 refresh tokens** (Pool Profits, Pool Duck e BurchTech) colados no chat (`docs/get-firebase-token.md`).
 12. **Master do snapshot**: corrigir (3 etapas Won e os bugs antigos) e dar Refresh em Agency → Account Snapshots.
 
-## Respostas e decisões
+## Esperando resposta (eu aplico quando chegar)
 
-- **Mandar hoje (textos no chat de 21/10)**: Pool Shack (Frank), IVR da Stay Fresh (Frank + Ed), lista de inativos
-  da Stay Fresh (Frank + Ed), tags universais (Frank + Ed), resposta à Val sobre as reviews da LWR.
-- **Pool Shack**: mudanças do Rob aplicadas e testadas (`docs/pool-shack-rob.md`). Esperando do Rob: o Skimmer já manda
-  boas-vindas/pedido de review para o cliente semanal? (se sim, desligo só no semanal) · horário comercial é 9–17?
-- **Stay Fresh IVR** (draft, nada ligado): Ed escolhe o nome da opção 2; Frank/Mike: quem atende sem tecla (hoje Mike),
-  se o Kris não atender tenta o Mike antes da caixa postal?, as duas linhas ou só a do site/GBP, fora do horário.
-  Depois: gravações em MP3 (eu troco a voz robótica pelos áudios) e publicar.
-- **Stay Fresh inativos** (`<scratchpad>/stayfresh-inactive/`, fora do git): Ed escolhe a tag (**não usar
-  "reactivation"**: dispara a campanha de reativação na hora); Mike confirma a lista (Jen Knight está como cliente
-  ativa; Kate DiBenedetto estava com o e-mail da própria Stay Fresh). Depois eu importo.
-- **Tags universais**: esperando o Frank/Ed aprovarem o formato (proposta no chat de 21/10); depois piloto na Pool Shack
-  e o resto pelo snapshot + script.
+- **Pool Shack** (Rob): Skimmer já manda boas-vindas/pedido de review ao cliente semanal? Horário comercial é 9–17?
+- **Stay Fresh IVR** (draft): Ed escolhe o nome da opção 2; Frank/Mike: sem tecla → Mike?, Kris sem atender → Mike?,
+  quais linhas, fora do horário; depois as gravações em MP3.
+- **Stay Fresh inativos** (arquivos no scratchpad, fora do git): tag do Ed (**não** "reactivation") + lista confirmada
+  pelo Mike (Jen Knight está como cliente ativa). Depois eu importo.
+- **Tags universais**: Frank/Ed aprovam os nomes → piloto na Pool Shack → snapshot + script.
+- **LWR**: lembrete aos 32 promotores sai segunda 10:00 ET (eu confiro às 12:30 e mando os números).
 
-13. **Stay Fresh**:
-    - Conferir os 7 e-mails de teste com o texto do Mike em pedro@poolprofits.com.
-    - Mandar ao Frank a confirmação (texto no chat de 20/10), se ainda não mandou.
-    - Campanha drain & wash: se quiser, eu passo os 2 workflows para draft.
-14. **Nortex** (no lugar do Zoom): form do site → agenda preenchida no ar, testado por você; telefone com seletor
-    de país. Falta só mandar a resposta ao Frank (texto no chat de 20/10). Opcional, decisão do Fareed: tirar a
-    obrigatoriedade de endereço/cidade/CEP no form de agendamento.
-15. **Pool Duck LWR**: teste manual do form das landings, IDs de Ads/Pixel, Trustindex; avisar o WC dos alertas
-    antigos "… - Steve" sem destinatário. Google Business Profile no GHL da LWR (Val/cliente conectam; passos no chat de
-    21/10). Lembrete aos 32 promotores sai segunda 10:00 ET (eu confiro às 12:30).
-16. **Decisões em aberto** (perguntar ao Frank/Val quando der):
-    - Passion: a linha Secondary (629-324-1486) serve para quê? Os forms "PPC - … Quote" recebem anúncio?
-    - Paid Ads na Bahama, Passion e Pool Shack: rodam Ads para a landing `go.*`? Se não, draft.
-    - Sunwave: conversão do Google Ads nas ligações da Adwords? Trocar o número "Angi's Leads" (só recebe spam)?
-      Avisar a Val do redirecionamento quebrado de sunwavepoolpros.com e da tag do Zap.
-    - Wrigley's: SMS de follow-up também nas ligações do AdWords/LSA?
-    - BluVantage: bloquear no IVR quem tem tag `spam`?
-    - Tag por linha e SMS com a linha rastreada nas contas antigas que ainda não têm.
-    - Limpeza: drafts velhos da Stay Fresh e o "Sequential Call Routing" (IVR da BluVantage) nas contas antigas.
+## Outras decisões (perguntar ao Frank/Val quando der)
+
+13. **Stay Fresh**: conferir os e-mails de teste com o texto do Mike; confirmação ao Frank, se ainda não mandou;
+    campanha drain & wash: se quiser, passo os 2 workflows para draft.
+14. **Nortex**: resposta ao Frank (texto de 20/10). Opcional (Fareed): endereço/cidade/CEP não obrigatórios no agendamento.
+15. **Pool Duck LWR**: teste manual do form das landings, IDs de Ads/Pixel, Trustindex; alertas antigos "… - Steve" do WC.
+16. Passion (linha Secondary, forms "PPC - … Quote") · Paid Ads na Bahama, Passion e Pool Shack (se não rodam, draft;
+    na Pool Shack o "AdWords Form - New Lead" escuta um form que não existe mais) · Sunwave (conversão nas ligações da
+    Adwords, número "Angi's Leads", redirecionamento quebrado, tag do Zap) · Wrigley's (follow-up nas ligações de
+    AdWords/LSA) · BluVantage (bloquear `spam` no IVR) · tag por linha nas contas antigas · limpeza de drafts velhos.
