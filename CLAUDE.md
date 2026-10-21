@@ -72,6 +72,9 @@
   dentro do IVR (`scripts/pp_ivr.py`). Número externo em `ivr_connect_call.customNumbers`:
   `{country, phone (E.164), displayValue, isValid}`. Não ligar o IVR para um número que é do próprio
   IVR (loop): usar o número para onde a linha encaminhava.
+- Horário no if/else: `conditionType: "date_time"`, `conditionSubType: "day_week"` (`"weekday"`/`"weekend"`) e
+  `"quarter_hour"` (`"900"`, `"1700"` = HHMM, operadores `>=`/`<`), fuso da conta (Sunwave, `pp_poolheads_port.py`).
+  IVR tocando usuários: `ivr_connect_call.users: [userId]` (toca os aparelhos do usuário; BluVantage).
 - Templates (snippets): a leitura atrasa ~10-20 s depois do PUT (`pp_snippet_replace.py` espera).
 - Texto próprio do cliente nas automações: `config/<cliente>_wording.json` + `scripts/pp_wording.py` (plan /
   `--test <inbox>` na Test Snapshot / `--apply`). Conta com esse config é pulada pelo `pp_mirror --apply`.

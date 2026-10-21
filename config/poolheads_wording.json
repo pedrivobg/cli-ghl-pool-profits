@@ -1,0 +1,13 @@
+{
+ "location": "PeUynYCMm8e6PJMy785O",
+ "source": "Poolheads' old GHL account (screenshots sent by Pedro 21/10): the text their IVR 'Business Hours Call Routing' sent after a missed call, verbatim. Here it is SMS 1 of our missed-call follow-up, which the new IVR triggers (tag 'missed call'), so the caller gets it once.",
+ "placeholders": {},
+ "messages": [
+  {
+   "workflow": "Missed New Lead - Initial SMS Follow-up",
+   "step": "SMS 1",
+   "by": "Poolheads (old account)",
+   "text": "Hi this is Poolheads, We are sorry we missed your call! We are either with another customer or closed, we will call you right back as soon as we can 😁\n\nOur hours of operation are 9am to 5pm Monday thru Friday"
+  }
+ ]
+}

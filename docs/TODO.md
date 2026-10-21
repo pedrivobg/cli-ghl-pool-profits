@@ -18,6 +18,15 @@ para o cliente testar.
    - **Link de review do Google**: pedir à Lynsey ou conectar o Google Business Profile em Settings →
      Integrations. O Review Request fica em draft até ter o link.
 
+5a. **Poolheads — portabilidade do 936-314-9255** (conta GHL antiga → nossa). Tudo pronto em draft. Falta:
+   - **Antes**: e-mail do **Jorge Arias** (para criar o usuário dele aqui, como na conta antiga).
+   - **No dia** (quando o número aparecer na nossa conta): me avisa → eu ligo o IVR em todas as linhas e publico.
+     Você, na tela: número → nome "Poolheads Main Service", Call Recording ligado **sem** a mensagem (o IVR já fala);
+     A2P do número novo (Trust Center); Felipe e Jorge entram no app LeadConnector com a conta nova; deskphone do
+     Felipe apontado para a conta nova.
+   - **Teste** (você): ligação em horário comercial atendida e não atendida, uma fora do horário, e um SMS fora do
+     horário. Depois disso o item 1 (encaminhar o 936-301-4150) deixa de ser necessário: o IVR cobre as duas linhas.
+
 ## Testes que só você faz
 
 5. **Nortex**: ligação no 469-238-2660 sem atender (SMS de chamada perdida + card).
