@@ -86,7 +86,8 @@ para o cliente testar.
     de país. Falta só mandar a resposta ao Frank (texto no chat de 20/10). Opcional, decisão do Fareed: tirar a
     obrigatoriedade de endereço/cidade/CEP no form de agendamento.
 15. **Pool Duck LWR**: teste manual do form das landings, IDs de Ads/Pixel, Trustindex; avisar o WC dos alertas
-    antigos "… - Steve" sem destinatário.
+    antigos "… - Steve" sem destinatário. Google Business Profile no GHL da LWR (Val/cliente conectam; passos no chat de
+    21/10). Lembrete aos 32 promotores sai segunda 10:00 ET (eu confiro às 12:30).
 16. **Decisões em aberto** (perguntar ao Frank/Val quando der):
     - Passion: a linha Secondary (629-324-1486) serve para quê? Os forms "PPC - … Quote" recebem anúncio?
     - Paid Ads na Bahama, Passion e Pool Shack: rodam Ads para a landing `go.*`? Se não, draft.

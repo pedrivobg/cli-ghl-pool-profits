@@ -119,5 +119,11 @@ excluindo a lista da Connie (e-mail de 07/10, 38 nomes). `scripts/pd_lwr_reviews
   SMS bloqueado por ela desde fev.). Link certo (abre "Pool Duck of Lakewood Ranch", 5.0). E-mail: 11 abriram, 0
   cliques; clique de SMS não é rastreável. Google Business Profile não está ligado no GHL da LWR (reputação = 0
   reviews), então não dá para saber quem já postou. Oferecido: 1 lembrete aos 28 junto com o de segunda.
+- **21/10 — lembrete aos promotores** (Val aprovou): `scripts/pd_lwr_promoter_reminder.py`. Workflow "Review Reminder -
+  Promoters (Turtle Rock)" (7. Reviews & Referrals, publicado, re-entry off): tag `review reminder - promoters` (sem
+  `exclude from reviews`) → espera a janela de **segunda 10:00–16:00 ET** → drip 20/20 min → SMS (texto de lembrete da
+  campanha aprovado pelo cliente: "If you already left one, thank you so much!") + e-mail → tag `… sent`. **32**
+  promotores marcados (eram 28 no recado à Val; 4 notas altas a mais desde então); 0 enviados até segunda. Check-in
+  agendado para segunda 12:30 ET. GBP no GHL da LWR: Val/cliente vão conectar (precisa do login Google deles).
 - (histórico) Não enviado até 19/10: aguardando o cliente aprovar os textos. Para disparar (274 clientes):
   `pd_lwr_reviews.py launch` (marca `send review request` em quem tem `turtle rock` e não está excluído).
