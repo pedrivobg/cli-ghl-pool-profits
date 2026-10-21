@@ -7,7 +7,7 @@
 
 The config lists, per workflow step (workflow name + step name), the client's text verbatim with its
 placeholders ([First Name] …), mapped to merge fields by `placeholders`. SMS: the text lives in the
-step's template (attributes.template_id). E-mail: subject + html go into the step AND its template.
+step's template (attributes.template_id), or in the step itself (attributes.body) when it has none. E-mail: subject + html go into the step AND its template.
 In SMS, curly quotes/apostrophes become straight ones (same words; keeps the message in GSM-7 when
 nothing else forces Unicode); e-mails keep the text exactly. Blank line = paragraph; line break = <br>.
 Backup of every workflow and template in backup/<slug>/ before writing.
@@ -70,7 +70,7 @@ def locate(cfg: dict, flows: dict[str, dict], snippets: dict[str, dict]) -> list
         if step["type"] != kind:
             raise SystemExit(f"{msg['workflow']} / {msg['step']}: passo é {step['type']}, config diz {kind}")
         sn = snippets.get((step.get("attributes") or {}).get("template_id"))
-        if kind == "sms" and not sn:
+        if kind == "sms" and not sn and "body" not in (step.get("attributes") or {}):
             raise SystemExit(f"{msg['workflow']} / {msg['step']}: SMS sem template — texto ficaria no passo")
         out.append({"msg": msg, "wf": wf, "step": step, "snippet": sn, "new": wanted(msg, cfg["placeholders"])})
     return out
@@ -80,7 +80,7 @@ def current(item: dict) -> dict:
     at = item["step"]["attributes"]
     tpl = (item["snippet"] or {}).get("template") or {}
     if "body" in item["new"]:
-        return {"template": {"body": tpl.get("body")}}
+        return {"template": {"body": tpl.get("body") if item["snippet"] else at.get("body")}}
     return {"step": {"subject": at.get("subject"), "html": at.get("html")},
             "template": {"subject": tpl.get("subject"), "html": tpl.get("html")} if item["snippet"] else None}
 
@@ -122,9 +122,10 @@ def apply(a: Agency, loc: str, items: list[dict], bdir) -> None:
         tpl.update(i["new"])
         a.call("PUT", BACKEND, f"/snippets/{loc}/{sn['_id']}", body={"name": sn["name"], "type": sn["type"],
                                                                      "template": tpl})
-    for wid in {i["wf"]["id"] for i in items if "html" in i["new"]}:
+    in_step = [i for i in items if "html" in i["new"] or not i["snippet"]]  # e-mails, and SMS with no template
+    for wid in {i["wf"]["id"] for i in in_step}:
         live = a.workflow(loc, wid)
-        new = {i["step"]["id"]: i["new"] for i in items if i["wf"]["id"] == wid and "html" in i["new"]}
+        new = {i["step"]["id"]: i["new"] for i in in_step if i["wf"]["id"] == wid}
         tpl = json.loads(json.dumps(live["workflowData"]["templates"]))
         for s in tpl:
             if s["id"] in new:

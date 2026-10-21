@@ -1,0 +1,82 @@
+{
+ "location": "3CozZ1NfujYWEPIYgzx0",
+ "source": "Rob (The Pool Shack), Basecamp 'Automation Snapshots', 19/10/2026; Frank asked to apply it on 20/10. Missed-call SMS 1 is Rob's text verbatim. The others were written by us from his notes (general wording beyond weekly cleaning, no urgency, don't assume they hired another company, welcome per customer type) and go to Rob for review. Quote Sent texts and the weekly welcome stay as they were (Rob liked them).",
+ "placeholders": {
+  "[First Name]": "{{contact.first_name}}",
+  "[Business Name]": "{{custom_values.friendly_business_name}}",
+  "[Business Number]": "{{custom_values.a2p_verification_number}}",
+  "[Owner First Name]": "{{custom_values.owner_first_name}}"
+ },
+ "messages": [
+  {
+   "workflow": "Missed New Lead - Initial SMS Follow-up",
+   "step": "SMS 1",
+   "by": "Rob",
+   "text": "Hi [First Name], this is The Pool Shack. Sorry we missed your call! We're currently assisting other customers but will get back to you as soon as possible. Feel free to reply with a brief description of what you need help with."
+  },
+  {
+   "workflow": "Missed New Lead - Initial SMS Follow-up",
+   "step": "SMS 2",
+   "by": "us",
+   "text": "Hi [First Name], just following up on your call to [Business Name]. We'd be glad to help with whatever your pool needs. Reply here with a quick description or call us at [Business Number]."
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 1",
+   "by": "us",
+   "text": "Hi [First Name], this is [Business Name] following up. Are you still looking for help with your pool? Just reply here or call us at [Business Number]."
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 2",
+   "by": "us",
+   "text": "Hi [First Name], just checking in from [Business Name]. Whether it's routine service, equipment repairs or installations, remodeling, or commercial work, we're happy to help whenever you're ready. Reply here or call us at [Business Number]."
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 3",
+   "by": "us",
+   "text": "Hi [First Name], we understand now may not be the right time. Whenever you need help with your pool or equipment, [Business Name] is here: [Business Number]."
+  },
+  {
+   "workflow": "Lost Stage",
+   "step": "Email - Lost Customer Feedback",
+   "by": "us",
+   "subject": "Mind sharing some quick feedback, [First Name]?",
+   "text": "[First Name],\n\nThank you for considering [Business Name]. Whether you decided to put your project on hold, go a different direction, or something else came up, I'd really appreciate knowing what led to your decision.\n\nAs the business owner, I'm always looking for ways to make our company better, and your feedback means a lot.\n\nIf you have 30 seconds to spare, just reply to this email or give us a call at [Business Number].\n\n[Owner First Name]\n[Business Name]"
+  },
+  {
+   "workflow": "Lost Stage",
+   "step": "Email - 90 Day Check In",
+   "by": "us",
+   "subject": "Checking in on your pool, [First Name]",
+   "text": "[First Name],\n\nWe spoke a while back about your pool, and I wanted to check in and see how things are going.\n\nIf your plans have changed or you're ready to revisit your project, we'd be glad to help, whether it's routine service, an equipment repair or installation, or a remodel.\n\nOur customers always know what's happening with their pool:\n- Before & after photos\n- Chemical readings\n- Updates on the status of their equipment\n- A clean yard when we leave\n\nJust reply to this email or call us at [Business Number] whenever it's convenient.\n\n[Owner First Name]\n[Business Name]\n[Business Number]"
+  },
+  {
+   "workflow": "Won Stage",
+   "step": "Welcome Email - Repairs / Installs",
+   "by": "us",
+   "subject": "Thank you for choosing [Business Name], [First Name]!",
+   "text": "[First Name],\n\nThank you for choosing [Business Name] for your repair or installation. We appreciate your trust.\n\nHere's what happens next:\n✅ We'll confirm the scheduling details with you\n✅ Our technician will walk you through the work before getting started\n✅ When the job is done, we'll let you know, along with anything we noticed that may need attention\n\nIf you have any questions before then, just reply to this email or call us at [Business Number].\n\n[Owner First Name]\n[Business Name]"
+  },
+  {
+   "workflow": "Won Stage",
+   "step": "Welcome SMS - Repairs / Installs",
+   "by": "us",
+   "text": "Hi [First Name], thank you for choosing [Business Name]! We'll be in touch shortly to confirm the details of your repair or installation. Questions? Call or text us at [Business Number]."
+  },
+  {
+   "workflow": "Won Stage",
+   "step": "Welcome Email - Construction / Remodeling",
+   "by": "us",
+   "subject": "Thank you for choosing [Business Name], [First Name]!",
+   "text": "[First Name],\n\nThank you for trusting [Business Name] with your pool project. We're excited to get started.\n\nHere's what happens next:\n✅ We'll reach out to go over the project timeline and next steps\n✅ You'll have a direct point of contact throughout the project\n✅ We'll keep you updated at each stage, from start to finish\n\nIf you have any questions along the way, just reply to this email or call us at [Business Number].\n\n[Owner First Name]\n[Business Name]"
+  },
+  {
+   "workflow": "Won Stage",
+   "step": "Welcome SMS - Construction / Remodeling",
+   "by": "us",
+   "text": "Hi [First Name], thank you for choosing [Business Name] for your pool project! We'll be in touch shortly to go over the timeline and next steps. Questions? Call or text us at [Business Number]."
+  }
+ ]
+}
