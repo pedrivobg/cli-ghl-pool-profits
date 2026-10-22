@@ -6,9 +6,10 @@
     ./.venv/bin/python scripts/bv_service_forms.py test --to pedro@poolprofits.com
 
 Forms: Full Name, Phone (US country picker), Email, Property ZIP Code (required), optional message (custom field
-"Additional Details"), the SMS consent of the current "FORM - GOOGLE ADS" and the page's CTA on the button. Built from
-that form (its style), without its address/city fields and its placeholder Privacy/Terms links (example.com); the
-pages carry their own footer links. Atif styles them with CSS on the pages.
+"Additional Details"), the SMS consent of the current "FORM - GOOGLE ADS" (names the business) and the page's CTA on
+the button. Built from the NEWEST version of that form (versionHistory is newest first), without its address/city
+fields; after submit, the same thank-you page as the current landing (redirectUrl + redirect_url). Atif styles them
+with CSS on the pages. `apply --refresh-forms` rebuilds the existing forms (same ids/links).
 Workflows: a copy of "AdWords Form - New Lead" for each form, with the same spam/customer guard, Google Ads
 conversion, text to the 5 team users, emails to Vanessa and Paul, card in New Lead and reply text. Each has its own
 form trigger, the service tag (Val's names; GHL stores tags in lower case), Service Requested = <service> on the
@@ -22,6 +23,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import re
 import sys
 import time
 import uuid
@@ -56,7 +58,8 @@ def latest_form_data(a: Agency, fid: str) -> tuple[dict, dict]:
     """The GET's formData lags minutes behind; the newest version file is the real content."""
     f = a.call("GET", BACKEND, f"/forms/{fid}")
     f = f.get("form", f)
-    url = next((v.get("formDataDownloadUrl") for v in reversed(f.get("versionHistory") or []) if v.get("formDataDownloadUrl")), None)
+    versions = [v for v in f.get("versionHistory") or [] if v.get("formDataDownloadUrl")]
+    url = max(versions, key=lambda v: v.get("updatedAt") or "")["formDataDownloadUrl"] if versions else None  # newest
     return f, (a.session.get(url, timeout=30).json() if url else f["formData"])
 
 
@@ -77,9 +80,16 @@ def build_form(base: dict, s: dict, msg_cf: dict) -> dict:
         "full_name", "phone", "email", "postal_code", "terms_and_conditions", "button"))
     phone.update(placeholder="Phone", enableCountryPicker=True)
     zip_.update(label="Property ZIP Code", placeholder="ZIP Code", required=True, title="Property ZIP Code")
-    button["label"] = f"<p>{s['cta'].upper()}</p>"
+    button["label"] = re.sub(r">[^<]*<", f">{s['cta']}<", button["label"], count=1) if "<" in button["label"] \
+        else f"<p>{s['cta']}</p>"
     f["fields"] = [name, phone, email, zip_, message_field(msg_cf), consent, button]
-    f["formAction"] = {**(f.get("formAction") or {}), "actionType": "2", "thankyouText": THANKS}
+    action = dict(f.get("formAction") or {})
+    if action.get("actionType") == "1" and (action.get("redirectUrl") or action.get("redirect_url")):
+        url = action.get("redirect_url") or action.get("redirectUrl")  # same thank-you page as the current landing
+        action.update(redirectUrl=url, redirect_url=url)  # the widget reads redirect_url
+    else:
+        action.update(actionType="2", thankyouText=THANKS)
+    f["formAction"] = action
     return fd
 
 
@@ -170,6 +180,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["plan", "apply", "test"])
     parser.add_argument("--to", help="test: inbox that gets the lead e-mails")
+    parser.add_argument("--refresh-forms", action="store_true", help="apply: rebuild existing forms from the base form")
     args = parser.parse_args()
     if args.mode == "test" and not args.to:
         parser.error("--to is required in test mode")
@@ -209,6 +220,12 @@ def main() -> int:
 
     if args.mode == "apply":
         for s in SERVICES_LP:
+            if s["form"] in forms and args.refresh_forms:
+                fid = forms[s["form"]]
+                cur, cur_fd = latest_form_data(a, fid)
+                (BDIR / f"form-{fid}-{time.strftime('%Y%m%d-%H%M%S')}.json").write_text(json.dumps({"form": cur, "formData": cur_fd}))
+                a.call("POST", BACKEND, f"/forms/{fid}", body={"name": s["form"], "formData": build_form(base, s, cfs[MESSAGE_FIELD])})
+                print(f"   ✓ form {s['form']}: refeito a partir da versão atual do {BASE_FORM}")
             if s["form"] not in forms:
                 res = a.call("POST", BACKEND, "/forms/", body={"name": s["form"], "locationId": LOC,
                                                                "formData": build_form(base, s, cfs[MESSAGE_FIELD])})
