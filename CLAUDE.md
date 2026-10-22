@@ -19,7 +19,8 @@
   do Business Profile em todo aviso/tarefa). Sem Google conectado o link de review vem do `google_review_link`.
 - Master do snapshot = sub-conta "Snapshot Pool Profits" (`Kvdj7o189zlS3caaCNuX`), no padrão Southern desde 22/10:
   mudou o modelo → `pp_mirror --apply --template` + a mesma sequência nela → Pedro clica Refresh no snapshot (não vai
-  para o TODO).
+  para o TODO). PDF do sistema para cliente (funis, funil de vendas, automações, todas as mensagens com código A#/M#):
+  `pp_snapshot_guide.py --for "<cliente>"` (textos em `config/snapshot_guide.json`; nome novo de workflow → descrever lá).
 - **Testes são nossos** (Pedro, 19/10): para a equipe (Frank, Val, Ed) e os clientes, Pedro e o Claude são
   uma pessoa só. Nunca pedir a eles para testar; testar daqui e, o que precisar de mão humana (ligação,
   UI do GHL/Google Ads), passar o passo a passo para o Pedro. Mensagens para eles só depois de testado.
@@ -122,6 +123,10 @@
 - Ligação por IVR: a mensagem (type 24) tem `to` = nome da conta; o número discado está em
   `meta.ivr[<callSid>].to`. Gatilho `call_status` com `inbound_number` dispara mesmo com IVR (BluVantage).
   `meta.callStatusTriggerFired` lista os gatilhos que a ligação disparou (dá a linha quando há workflow por linha).
+- Funis/sites: `GET services /funnels/funnel/list?locationId` (passos com `pages[]`); print de qualquer página sem login
+  pelo preview `https://app.gohighlevel.com/v2/preview/<pageId>` (Chromium headless `--screenshot`).
+- If/else `contact_detail` com `has_value`: campo vazio cai no ramo else (testado 22/10). O "First Request?" do Review
+  Request do V9 usa `has_value` no NPS Score → cliente sem nota sai do workflow sem pedido de nota/review (todas as contas).
 - Onboarding de cliente: survey `efErcbOr4GAKXzZ28J4S` na sub-conta "Pool Profits" (`GET services
   /surveys/submissions?locationId`); cria a sub-conta em **America/Sao_Paulo** — corrigir o fuso
   (`PUT services /locations/{id} {timezone}`; `pp_timezone_fix.py`) e conferir custom values (`pp_onboarding_fill.py`).

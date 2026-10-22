@@ -1,0 +1,366 @@
+{
+  "title": "Your Pool Profits CRM",
+  "subtitle": "System overview: funnels, sales pipeline, automations and every message",
+  "phases": [
+    {
+      "id": "capture",
+      "title": "New leads come in",
+      "intro": "Every call, form and text becomes a contact and a card in your pipeline, and your team is told right away."
+    },
+    {
+      "id": "follow",
+      "title": "Follow up until they book",
+      "intro": "Short, friendly text sequences that keep you in front of the lead. Any reply stops the sequence and hands the conversation back to your team."
+    },
+    {
+      "id": "won",
+      "title": "Win and welcome the customer",
+      "intro": "When a job is won, the customer is welcomed and tagged correctly for everything that comes after."
+    },
+    {
+      "id": "reviews",
+      "title": "Reviews and reputation",
+      "intro": "Happy customers are asked for a Google review at the right moment; unhappy ones reach your team first."
+    },
+    {
+      "id": "retain",
+      "title": "Keep customers and win them back",
+      "intro": "Reminders, upsells and win-back campaigns for past customers and old leads, plus clean-up for lost and spam contacts."
+    },
+    {
+      "id": "addons",
+      "title": "Optional add-ons: ads and phone routing",
+      "intro": "Ready to switch on when you run Google Ads or want call routing for your main line. We connect them to your numbers and accounts."
+    }
+  ],
+  "automations": {
+    "Website Form Fill To Pipeline": {
+      "code": "A1",
+      "phase": "capture",
+      "title": "Website form → New Lead",
+      "purpose": "Someone fills out a quote or contact form on your website or landing pages. They become a New Lead card, the assigned team member gets an instant text with their details, and a follow-up task is created so nothing slips."
+    },
+    "Answered Incoming Call To Pipeline": {
+      "code": "A2",
+      "phase": "capture",
+      "title": "Answered call → New Lead",
+      "purpose": "Every answered inbound call creates (or updates) a New Lead card. An hour later, a task reminds the team to listen to the recording and move the card to the right stage."
+    },
+    "Missed Incoming Call To Pipeline": {
+      "code": "A3",
+      "phase": "capture",
+      "title": "Missed call → New Lead",
+      "purpose": "Same as A2 for calls you couldn't pick up (busy, no answer, voicemail). The contact is also tagged “missed call”, which starts the instant text-back (A4)."
+    },
+    "Missed New Lead - Initial SMS Follow-up": {
+      "code": "A4",
+      "phase": "capture",
+      "title": "Missed-call text back",
+      "purpose": "Texts the caller right away so they don't call the next company on the list. A reply within 30 minutes moves the card to In Communication; otherwise a second text goes out and the no-response follow-up (A6) starts."
+    },
+    "Contact Created -> add owner": {
+      "code": "A5",
+      "phase": "capture",
+      "title": "Assign every new contact",
+      "purpose": "Every new contact is assigned to your team member (the contact owner), so every alert and task reaches a real person."
+    },
+    "No Response Follow-up": {
+      "code": "A6",
+      "phase": "follow",
+      "title": "No-response follow-up",
+      "purpose": "For leads you haven't been able to reach. Up to 3 texts over about a week. Any reply stops the sequence and moves the card to In Communication; no reply after the last text moves it to Lost."
+    },
+    "In Communication Stage": {
+      "code": "A7",
+      "phase": "follow",
+      "title": "Nurture emails while you talk",
+      "purpose": "Three short emails over four business days for leads who are talking with you but haven't booked yet. Off by default: In Communication is mainly a stage for your team to track live conversations, so nothing goes out unless you want it."
+    },
+    "Appointment Confirmation/Reminders": {
+      "code": "A8",
+      "phase": "follow",
+      "title": "Estimate confirmation and reminders",
+      "purpose": "When an estimate is booked on your calendar: the card moves to Scheduled, your team is alerted, and the customer gets a confirmation, a reminder the day before and a heads-up an hour before. Turn it on if you book estimates through the CRM calendar."
+    },
+    "No-Show Follow-up": {
+      "code": "A9",
+      "phase": "follow",
+      "title": "No-show follow-up",
+      "purpose": "If a customer misses the appointment, the reminders stop and they get a text to reschedule. A reply moves them to In Communication; no reply after two texts moves them to Lost."
+    },
+    "Quote Sent Follow-up": {
+      "code": "A10",
+      "phase": "follow",
+      "title": "Quote follow-up",
+      "purpose": "After you send a quote, a text follows up the next day and another two days later. A reply moves the card to In Communication; no reply moves it to Lost."
+    },
+    "Won Stage": {
+      "code": "A11",
+      "phase": "won",
+      "title": "Welcome new customers",
+      "purpose": "Runs when a card moves to any of the three Won stages. Weekly-service customers get a welcome email and a welcome text; repair/install and construction jobs are tagged and marked won. Contacts tagged “existing customer” are skipped, so loading your current customers never sends them a welcome.",
+      "branch_labels": {
+        "Weekly": "Won - Weekly Pool Service",
+        "Repairs / Installs": "Won - One Time Repair or Install",
+        "Construction": "Won - Pool Construction or Remodeling"
+      }
+    },
+    "Recurring Customer Stage": {
+      "code": "A12",
+      "phase": "won",
+      "title": "Mark recurring customers",
+      "purpose": "Tags the contact “recurring customer” and sets Client Type = Recurring, so reminders, filters and campaigns can target your active customers."
+    },
+    "Post-Appointment Follow-up": {
+      "code": "A13",
+      "phase": "won",
+      "title": "How did the first visit go?",
+      "purpose": "An hour after a weekly customer is won, asks how the service went; either way the card moves to Recurring Customer. Optional, because the welcome messages (A11) already go out at that moment."
+    },
+    "Review Request": {
+      "code": "A14",
+      "phase": "reviews",
+      "title": "Rating first, then the Google review",
+      "status_note": "ON once your Google review link is connected",
+      "purpose": "Some time after a job is won, the customer gets a text asking for a quick 1–5 rating. Happy customers (4–5) are sent your Google review link by text and email. A 1–3 alerts your team so you can make it right first. If they don't rate within 7 days, the review link goes out anyway.",
+      "flow": [
+        {
+          "kind": "wait",
+          "text": "Waits after the job is won: 30 days (weekly service), 8 days (repair or install), 45 days (construction)"
+        },
+        {
+          "kind": "wait",
+          "text": "Then 14 more days, sent between 9am and 5pm"
+        },
+        {
+          "kind": "step",
+          "name": "SMS - Request NPS Feedback"
+        },
+        {
+          "kind": "wait",
+          "text": "Waits up to 7 days for the rating"
+        },
+        {
+          "kind": "paths",
+          "paths": [
+            {
+              "label": "Rated 4–5, or no rating after 7 days",
+              "items": [
+                {
+                  "kind": "step",
+                  "name": "Email - Send Review Request"
+                },
+                {
+                  "kind": "step",
+                  "name": "SMS - Send Review Request"
+                }
+              ]
+            },
+            {
+              "label": "Rated 1–3",
+              "items": [
+                {
+                  "kind": "step",
+                  "name": "Notify Team - Negative Feedback"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "Review Response - Positive": {
+      "code": "A15",
+      "phase": "reviews",
+      "title": "Thank-you for good reviews",
+      "purpose": "When a 4 or 5-star Google review comes in, the reviewer gets a personal thank-you text."
+    },
+    "Review Response - Negative": {
+      "code": "A16",
+      "phase": "reviews",
+      "title": "Fast response to bad reviews",
+      "purpose": "When a review of 3 stars or less comes in, the contact is flagged high priority, gets an apology text offering a call, and your team gets an urgent task to call within 24 hours."
+    },
+    "Monthly Service Reminder": {
+      "code": "A17",
+      "phase": "retain",
+      "title": "Monthly service reminder",
+      "purpose": "30 days after a customer becomes recurring, a text reminds them their service is coming up and invites special requests."
+    },
+    "Filter Clean Reminder": {
+      "code": "A18",
+      "phase": "retain",
+      "title": "Filter cleaning reminder",
+      "purpose": "About 75 days after a customer becomes recurring, an email lets them know their filter cleaning is coming up (sent on weekdays, during business hours)."
+    },
+    "Upsell Opportunity": {
+      "code": "A19",
+      "phase": "retain",
+      "title": "Upsell after a visit",
+      "purpose": "When your tech spots something worth fixing, tag the customer “upsell opportunity”: they get a text inviting a conversation, with one follow-up. A reply moves them to In Communication."
+    },
+    "Reactivation Campaign - SMS": {
+      "code": "A20",
+      "phase": "retain",
+      "title": "Win-back texts",
+      "purpose": "Tag a list of past customers or old leads “reactivation” and they get 3 texts over a week. Afterwards they're tagged “do not remarket”, so nobody is hit twice."
+    },
+    "Reactivation Campaign - Email": {
+      "code": "A21",
+      "phase": "retain",
+      "title": "Win-back emails",
+      "purpose": "Runs alongside A20 with 3 emails over a week: a free inspection offer, why customers choose you, and a last note."
+    },
+    "SMS Customer Reply to pipeline": {
+      "code": "A22",
+      "phase": "retain",
+      "title": "Campaign replies → New Lead",
+      "purpose": "When someone from a win-back campaign texts back, they become a New Lead card, leave the campaign, and your team gets the reply by text and app notification."
+    },
+    "Lost Stage": {
+      "code": "A23",
+      "phase": "retain",
+      "title": "Lost lead: feedback and 90-day check-in",
+      "purpose": "Two business days after a card is marked Lost, the owner asks by email why they went with someone else. 90 days later, a check-in email asks how the other company is doing."
+    },
+    "Spam Contact": {
+      "code": "A24",
+      "phase": "retain",
+      "title": "Spam clean-up",
+      "purpose": "Moving a card to Spam tags the contact and turns on Do Not Disturb, so no automation ever texts them again."
+    },
+    "AdWords Call In - New Lead": {
+      "code": "A25",
+      "phase": "addons",
+      "title": "Google Ads calls",
+      "purpose": "For your Google Ads call tracking number: reports the call to Google Ads as a conversion, tags the lead, creates a New Lead card and sends a thank-you text 5 minutes later.",
+      "trigger_note": "A call comes in on your Google Ads tracking number (we connect it when your ads go live)"
+    },
+    "AdWords Form - New Lead": {
+      "code": "A26",
+      "phase": "addons",
+      "title": "Google Ads landing page form",
+      "purpose": "For the landing page used in your Google Ads: reports the conversion, alerts your team, creates the card and texts the lead right away. Until ads run, that same form feeds A1."
+    },
+    "Adword Call - Conversion": {
+      "code": "A27",
+      "phase": "addons",
+      "title": "Report won jobs to Google Ads",
+      "purpose": "When a lead becomes a weekly customer, reports a “won” conversion to Google Ads, so your campaigns optimize for paying customers instead of just calls."
+    },
+    "Sequential Call Routing": {
+      "code": "A28",
+      "phase": "addons",
+      "title": "Call routing for your main line",
+      "purpose": "Rings your team one after the other and takes a voicemail if nobody answers, with call recording on. We set it up with your team's phones and your own greeting.",
+      "trigger_note": "A call comes in on your main business line (once we connect it)",
+      "flow": [
+        {
+          "kind": "action",
+          "text": "Rings team member 1 (call recording on)"
+        },
+        {
+          "kind": "wait",
+          "text": "No answer"
+        },
+        {
+          "kind": "action",
+          "text": "Rings team member 2"
+        },
+        {
+          "kind": "wait",
+          "text": "No answer"
+        },
+        {
+          "kind": "action",
+          "text": "Plays your voicemail greeting and records the caller's message"
+        }
+      ]
+    }
+  },
+  "stages": {
+    "🆕 New Lead": "Every new call, form and text reply lands here.",
+    "No Response - Follow Up": "You tried and couldn't reach them. Starts the 3-text follow-up.",
+    "💬 In Communication": "You're talking with them. Nothing is sent unless you turn on A7.",
+    "📅 Scheduled": "Estimate or first visit booked.",
+    "💰 Quote Sent": "Quote is out; the follow-up starts.",
+    "No Show": "They missed the appointment.",
+    "🏆 Won - Weekly Pool Service": "New weekly-service customer.",
+    "🏆 Won - One Time Repair or Install": "Repair or equipment job won.",
+    "🏆 Won - Pool Construction or Remodeling": "Construction or remodel job won.",
+    "🔄 Recurring Customer": "Active customer on a regular schedule.",
+    "❄ Not Qualified Stage": "Outside your area or not a fit. Nothing is sent.",
+    "❌ Lost": "Went with someone else or stopped answering.",
+    "🚫 Spam": "Spam or robocall. Messaging is turned off."
+  },
+  "forms": {
+    "Landing Page - Optin Form": "Quote request on the main landing page → A1 (A26 when Google Ads run).",
+    "Service Page - Contact Form": "Contact form on the service pages → A1.",
+    "Lead Gen - Claim Discount Form": "Discount-offer landing page → A1.",
+    "Appointment Booking Form": "Details collected when someone books on your calendar.",
+    "Client Onboarding Form": "New-customer intake: pool details, access, preferences.",
+    "Post-Visit Status Form": "After-visit report for a service call.",
+    "NPS Form": "The 1–5 rating page customers open from the rating text (A14)."
+  },
+  "custom_values": {
+    "Friendly Business Name": "Your name as customers know it, used in every message.",
+    "Legal Business Name": "Legal name for the website footer and consent text.",
+    "Owner First Name": "Signs the emails and the missed-call text.",
+    "Business Phone": "The number customers are told to call.",
+    "A2P Verification Number": "Your texting number (registered with the carriers).",
+    "Business Email": "Shown on the website and in emails.",
+    "Business Address": "Website footer and legal pages.",
+    "Service Area": "Cities you serve, used on the website.",
+    "Weekly Service Price": "Website pricing.",
+    "One-Time Clean Price": "Website pricing.",
+    "Green to Clean Price": "Website pricing.",
+    "Chemical Only Price": "Website pricing.",
+    "Google Review Link": "Where happy customers are sent to review you.",
+    "Logo URL": "Your logo on pages and emails.",
+    "Client Domain Name": "Your website domain.",
+    "A2P Domain": "Website used for texting registration.",
+    "Terms of Use": "Link to your terms page.",
+    "Privacy Policy": "Link to your privacy page.",
+    "Pool Service Appointment Link": "Booking link for service visits.",
+    "Pool Service Estimate Link": "Booking link for estimates.",
+    "NPS Survey Link": "The rating page used by A14 (set automatically)."
+  },
+  "funnels": [
+    {
+      "name": "Pool Service - Main Funnel",
+      "label": "Weekly pool service: main funnel",
+      "shot": "XI8YPM8VmE6Xwp8aSIAq",
+      "about": "Our main lead page for weekly service: a quote form with SMS consent, trust badges and a call button. The form feeds A1, or A26 when it runs in Google Ads."
+    },
+    {
+      "name": "Pool Maintenance Snapshot",
+      "label": "Maintenance packages: offer → booking",
+      "shot": "8cRhePMaFKHVjVTN11v7",
+      "about": "An offer page that leads straight into booking an estimate on your calendar, then a confirmation page."
+    },
+    {
+      "name": "Pool Repairs & Equipment",
+      "label": "Repairs & equipment",
+      "shot": "nVwsRGO3k8Y1mEaLF0Nq",
+      "about": "Landing page for pump, filter and equipment repair, with a quote request form."
+    },
+    {
+      "name": "Pool Restoration & Specialty Services",
+      "label": "Green pool & restoration",
+      "shot": "KwSL2POlGxSyv0Srr4Xm",
+      "about": "Landing page for green-to-clean, acid wash and tile/calcium work, with a quote form."
+    },
+    {
+      "name": "Pool Maintenance Service Website Version 1",
+      "label": "Full company website (10 pages)",
+      "shot": "tzIbeLTIi2LHtTIFXX2h",
+      "about": "A complete website if you need one: services, hot tub & spa, financing, about, contact and online booking."
+    },
+    {
+      "name": "New A2P Verification",
+      "label": "Texting-registration website",
+      "shot": "X9h8SnnoGxIoJMv12FfI",
+      "about": "A simple compliant site that carriers require before your business texts are approved (A2P 10DLC)."
+    }
+  ]
+}
