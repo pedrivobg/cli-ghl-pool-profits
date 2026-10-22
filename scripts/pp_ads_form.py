@@ -31,7 +31,7 @@ import argparse
 import json
 import time
 
-from _common import ROOT, load_dotenv, location_dirs
+from _common import ROOT, keep_redirect, load_dotenv, location_dirs
 from pp_audit import load
 from pp_won_stage import DROP
 
@@ -81,7 +81,7 @@ def main() -> int:
     phone = next((x for x in fd["form"]["fields"] if x.get("tag") == "phone"), {})
     form_changes = []
     if args.redirect and (str(action.get("actionType")) != "1" or action.get("redirectUrl") != args.redirect):
-        fd["form"]["formAction"] = {**action, "actionType": 1, "redirectUrl": args.redirect}
+        fd["form"]["formAction"] = {**action, "actionType": 1, "redirectUrl": args.redirect, "redirect_url": args.redirect}
         form_changes.append(f"obrigado → {args.redirect}")
     if args.country_picker and phone and not phone.get("enableCountryPicker"):
         phone["enableCountryPicker"] = True
@@ -90,7 +90,7 @@ def main() -> int:
         print(f"   form {args.form}: {', '.join(form_changes)}")
         if args.apply:
             (bdir / f"form-{fid}-{stamp}.json").write_text(json.dumps(form))
-            a.call("POST", BACKEND, f"/forms/{fid}", body={"name": form["name"], "formData": fd})
+            a.call("POST", BACKEND, f"/forms/{fid}", body={"name": form["name"], "formData": keep_redirect(fd)})
     notify = [users[n] for n in args.notify]
     wid = next(w["id"] for w in a.workflows(loc) if w["name"] == WORKFLOW)
     live = a.workflow(loc, wid)

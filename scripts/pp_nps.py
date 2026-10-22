@@ -26,7 +26,7 @@ import json
 import re
 import time
 
-from _common import PRIORITY, ROOT, load_dotenv, location_dirs
+from _common import PRIORITY, ROOT, keep_redirect, load_dotenv, location_dirs
 from pp_audit import load
 
 from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency
@@ -119,7 +119,7 @@ def main() -> int:
             print(f"   corrige NPS Form {fid}: campos da conta, nome/sobrenome opcionais")
             if args.apply:
                 backup(d.name, "form", fid, form)
-                a.call("POST", BACKEND, f"/forms/{fid}", body={"name": form["name"], "formData": fd})
+                a.call("POST", BACKEND, f"/forms/{fid}", body={"name": form["name"], "formData": keep_redirect(fd)})
         if args.apply and fid:
             for _ in range(6):  # GHL reads lag a few seconds behind the write
                 time.sleep(3)

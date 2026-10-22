@@ -32,7 +32,7 @@ import json
 import time
 import uuid
 
-from _common import ROOT, load_dotenv, location_dirs
+from _common import ROOT, keep_redirect, load_dotenv, location_dirs
 from pp_audit import load
 from pp_lead_alerts import guard_nodes
 from pp_won_stage import DROP
@@ -262,7 +262,7 @@ def apply(a: Agency, account: str, do: bool) -> int:
         (bdir / f"form-{fid}-{stamp}.json").write_text(json.dumps(f))
         fd = json.loads(json.dumps(f["formData"]))
         fd["form"]["showSubmissionInConversationsFeed"] = True
-        a.call("POST", BACKEND, f"/forms/{fid}", body={"name": f["name"], "formData": fd})
+        a.call("POST", BACKEND, f"/forms/{fid}", body={"name": f["name"], "formData": keep_redirect(fd)})
         time.sleep(3)
         g = a.call("GET", BACKEND, f"/forms/{fid}")
         g = g.get("form", g)

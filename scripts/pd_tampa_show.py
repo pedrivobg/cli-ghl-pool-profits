@@ -34,7 +34,7 @@ import uuid
 
 from _common import ROOT, load_dotenv
 
-from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency
+from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency, GHLError
 
 CFG = json.loads((ROOT / "config" / "pd_tampa_show.json").read_text())
 LOC, TAG = CFG["location"], CFG["tag"]
@@ -309,8 +309,12 @@ def main() -> int:
         if c.get("dnd"):
             skipped.append((c.get("contactName"), "DND"))
             continue
-        opps = a.call("GET", SERVICES, "/opportunities/search", params={"location_id": LOC, "contact_id": c["id"]}).get("opportunities", [])
-        appts = a.call("GET", SERVICES, f"/contacts/{c['id']}/appointments").get("events", [])
+        try:  # the contact search lags: a contact deleted minutes ago (test) can still come back
+            opps = a.call("GET", SERVICES, "/opportunities/search", params={"location_id": LOC, "contact_id": c["id"]}).get("opportunities", [])
+            appts = a.call("GET", SERVICES, f"/contacts/{c['id']}/appointments").get("events", [])
+        except GHLError as e:
+            skipped.append((c.get("contactName"), f"não existe mais ({e.status})"))
+            continue
         if any(o.get("pipelineStageId") in later for o in opps) or \
                 any(e.get("calendarId") in INTRO_CALENDARS or e.get("calendarId") in OTHER_CALENDARS for e in appts):
             skipped.append((c.get("contactName"), "já agendou / etapa adiante"))

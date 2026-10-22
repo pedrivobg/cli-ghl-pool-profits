@@ -58,3 +58,13 @@ def location_dirs(names: list[str] | None = None) -> list[Path]:
         return dirs
     wanted = [slugify(n) for n in names]
     return [d for d in dirs if any(w == d.name or w in d.name or d.name in w for w in wanted)]
+
+
+def keep_redirect(fd: dict) -> dict:
+    """Before saving a form: the widget redirects with formAction.redirect_url, but the form GET returns only
+    redirectUrl, so a GET → POST round trip used to drop the redirect (BluVantage 15/10, Southern 16/10). Sets both."""
+    act = (fd.get("form") or {}).get("formAction") or {}
+    url = act.get("redirect_url") or act.get("redirectUrl")
+    if str(act.get("actionType")) == "1" and url:
+        act.update(redirectUrl=url, redirect_url=url)
+    return fd

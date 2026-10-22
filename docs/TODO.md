@@ -73,6 +73,8 @@ para o cliente testar.
 
 - **Google Lead Form da Wesley Chapel**: mesmo passo a passo do item 6, na sub-conta Wesley Chapel da Pool Duck.
 - **LWR**: o lembrete aos 32 promotores sai segunda (26/10) às 10:00 ET. Eu confiro às 12:30 e te mando os números.
+- **Franchising — feira de Tampa** (Lee): a sequência está no ar para 72 leads e vai até quinta, 29/10; não depende de
+  você. Se o Lee quiser outro link em algum SMS, eu troco (vale para quem ainda está na espera).
 
 ### BurchTech
 
