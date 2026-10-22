@@ -4,6 +4,7 @@
     set -a; . <poolduck.env>; set +a                         # Pool Duck agency token
     ./.venv/bin/python scripts/pd_tampa_show.py plan
     ./.venv/bin/python scripts/pd_tampa_show.py test --to pedro@poolprofits.com   # temporary copies, 1-min waits
+    ... test --to pedro@poolprofits.com --stop-only         # only: booking after e-mail 1 stops the rest
     ./.venv/bin/python scripts/pd_tampa_show.py apply        # both workflows, published
     ./.venv/bin/python scripts/pd_tampa_show.py enroll       # put the contacts already tagged into the follow-up
 
@@ -211,6 +212,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["plan", "test", "apply", "enroll"])
     parser.add_argument("--to", help="test: inbox for the 5 test e-mails")
+    parser.add_argument("--stop-only", action="store_true", help="test: only the booking-stops-the-sequence check")
     args = parser.parse_args()
     load_dotenv()
     a = Agency()
@@ -231,35 +233,47 @@ def main() -> int:
     if args.mode == "test":
         if not args.to:
             parser.error("--to is required in test mode")
-        stamp = int(time.time())
         f_id = create(a, f"ZZ TEST {FOLLOW}", follow_steps(args.to))
         b_id = create(a, f"ZZ TEST {BOOKED}", booked_steps(f_id))
         publish(a, f_id), publish(a, b_id)
-        full = a.call("POST", SERVICES, "/contacts/", body={"locationId": LOC, "firstName": "Pedro", "lastName": "TEST full sequence",
-                                                            "email": args.to, "tags": []})["contact"]
-        stop = a.call("POST", SERVICES, "/contacts/", body={"locationId": LOC, "firstName": "ZZ", "lastName": "TEST booked",
-                                                            "email": f"zz-e2e-tampa-{stamp}@example.com", "tags": [TAG]})["contact"]
+        user, domain = args.to.split("@")
+        made = []
         try:
-            for c in (full, stop):
-                a.call("POST", SERVICES, f"/contacts/{c['id']}/workflow/{f_id}", body={})
-            time.sleep(150)  # the booked contact gets e-mail 1 (and maybe 2), then books
-            a.call("POST", SERVICES, f"/contacts/{stop['id']}/workflow/{b_id}", body={})
             emails = lambda cid: [m for m in messages(a, cid) if m.get("messageType") == "TYPE_EMAIL" or m.get("type") == 3]  # noqa: E731
-            for _ in range(24):  # 1-min waits run a bit slower than a minute
-                time.sleep(30)
-                if len(emails(full["id"])) >= 5:
+            if not args.stop_only:
+                full = a.call("POST", SERVICES, "/contacts/", body={"locationId": LOC, "firstName": "Pedro",
+                                                                    "lastName": "TEST full sequence", "email": args.to})["contact"]
+                made.append(full)
+                a.call("POST", SERVICES, f"/contacts/{full['id']}/workflow/{f_id}", body={})
+            # a real inbox (example.com gets no e-mail): books after e-mail 1, must get nothing more
+            stop = a.call("POST", SERVICES, "/contacts/", body={"locationId": LOC, "firstName": "Pedro", "lastName": "TEST booked",
+                                                                "email": f"{user}+stop@{domain}", "tags": [TAG]})["contact"]
+            made.append(stop)
+            a.call("POST", SERVICES, f"/contacts/{stop['id']}/workflow/{f_id}", body={})
+            for _ in range(24):
+                time.sleep(15)
+                if emails(stop["id"]):
                     break
-            full_mail = emails(full["id"])
-            stop_mail = emails(stop["id"])
+            before = len(emails(stop["id"]))
+            a.call("POST", SERVICES, f"/contacts/{stop['id']}/workflow/{b_id}", body={})
+            for _ in range(24):  # long enough for the 4 remaining 1-min waits
+                time.sleep(30)
+                if not args.stop_only and len(emails(full["id"])) >= 5:
+                    break
+            if args.stop_only:
+                time.sleep(120)
+            after = len(emails(stop["id"]))
             opps = a.call("GET", SERVICES, "/opportunities/search", params={"location_id": LOC, "contact_id": stop["id"]}).get("opportunities", [])
-            print(f"   sequência completa: {len(full_mail)} e-mail(s) para {args.to} · status {[m.get('status') for m in full_mail]}")
-            print(f"   agendou depois de ~2 min: {len(stop_mail)} e-mail(s) (parou?) · cards {[(o.get('name'), o.get('pipelineStageId') == STAGE, o.get('source')) for o in opps]}")
-            ok = len(full_mail) == 5 and 0 < len(stop_mail) < 5 and any(o.get("pipelineStageId") == STAGE for o in opps)
-            print("   ✓ ok" if ok else "   ✗ VERIFICAR")
+            if not args.stop_only:
+                print(f"   sequência completa: {len(emails(full['id']))} e-mail(s) para {args.to}")
+            print(f"   agendou depois do e-mail {before}: {after} e-mail(s) no total · cards "
+                  f"{[(o.get('name'), o.get('pipelineStageId') == STAGE, o.get('source')) for o in opps]}")
+            ok = before >= 1 and after == before and any(o.get("pipelineStageId") == STAGE for o in opps)
+            print("   ✓ ok: parou no agendamento" if ok else "   ✗ VERIFICAR")
         finally:
-            for o in a.call("GET", SERVICES, "/opportunities/search", params={"location_id": LOC, "contact_id": stop["id"]}).get("opportunities", []):
-                a.call("DELETE", SERVICES, f"/opportunities/{o['id']}")
-            for c in (full, stop):
+            for c in made:
+                for o in a.call("GET", SERVICES, "/opportunities/search", params={"location_id": LOC, "contact_id": c["id"]}).get("opportunities", []):
+                    a.call("DELETE", SERVICES, f"/opportunities/{o['id']}")
                 a.call("DELETE", SERVICES, f"/contacts/{c['id']}")
             drop(a, b_id), drop(a, f_id)
             print("   limpo")
