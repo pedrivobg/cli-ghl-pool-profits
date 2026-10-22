@@ -23,9 +23,19 @@ para o cliente testar.
    - **E-mail do Jorge Arias**: crio o usuário dele e coloco no IVR.
    - **Depois do A2P** (o Frank enviou): republicar o "Missed New Lead", que manda o texto de chamada perdida deles,
      e o resto das nossas automações quando o Frank liberar.
-   - **Workflows de anúncio da conta antiga** (print do Frank: "Lead Input & Notification - Google Service Ads",
-     "Lead Input - Google Repair Ads", "LVB - Meta Service", e mais uma página): os anúncios continuam? Para copiar,
-     preciso entrar na conta antiga, e o código de verificação vai para o cliente. Combinar com o Frank.
+   - **Conta antiga → nossa (Frank, 22/10: "copy over everything" + contatos)**. Para isso preciso do token da conta
+     antiga:
+     1. avisar o Frank na hora (o login manda código de verificação para info@poolheadscare.com, o e-mail do
+        cliente);
+     2. Chrome → app.gohighlevel.com com o login que o Frank mandou + o código;
+     3. abrir a sub-conta da Poolheads → Ctrl+Shift+J → colar o trecho de `docs/get-firebase-token.md` → Enter;
+     4. colar o token no chat.
+
+     Com ele eu:
+     - copio **todos** os workflows (inclui os de anúncio: Google Service Ads, Google Repair Ads, LVB Meta) em draft,
+       numa pasta "Conta antiga", com "[Old]" nos nomes repetidos;
+     - trago **todos os contatos** (tags, campos, DND; sem duplicar; tag "imported from old account");
+     - trago as oportunidades, se quiserem.
 6. **Google Lead Form "Weekly Pool Service Done Right"**: os workflows já estão no ar (lead → contato, tags, card,
    aviso à equipe, SMS de resposta). Falta ligar o form na tela em **6 contas**: Wrigley's, BluVantage, Precision Pools
    (pedido da Val de 22/10), Reign, Damon's e Simple (de 19/10). A Pool Duck Wesley Chapel está em "Outras agências".
