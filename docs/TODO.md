@@ -10,6 +10,7 @@ para o cliente testar.
 - **Frank — Pool Shack** (mudanças do Rob), **Frank + Ed — IVR da Stay Fresh**, **Frank + Ed — lista de inativos da
   Stay Fresh**, **Frank + Ed — tags universais**.
 - **Val — LWR**: "Done, reminder Monday 10 AM" + passos do Google Business Profile.
+- **Val — Google lead form** (4 contas): workflows prontos; resposta no chat de 22/10.
 - **Vanessa (BluVantage)**: usuários da GoTour criados (texto de primeiro acesso).
 - **Poolheads**: resposta sobre a portabilidade (pedir o e-mail do Jorge Arias).
 
@@ -33,8 +34,14 @@ para o cliente testar.
 
 6. **Ligações**: Nortex 469-238-2660 · Wrigley's LSA 925-744-7750 · Pool Duck LWR 941-541-5942 · IVR da Southern
    (214) 922-1914 (1 → Brett; 2 → 214-308-1744; sem resposta → caixa postal). Sem atender; me avisa.
-7. **Google Lead Form** (Reign, Damon's, Simple; form "Weekly Pool Service Done Right"): Settings → Integrations →
-   Google Ads → Manage (mapeado e **Active**) → no Google Ads: campanha → Lead form → Edit → **Send Data**. Me avisa.
+7. **Google Lead Form "Weekly Pool Service Done Right"** — os workflows já estão no ar (lead → contato, tags, card,
+   aviso à equipe, SMS de resposta). Falta ligar o form na tela, em **7 contas**: Wrigley's, BluVantage, Precision
+   Pools, Pool Duck Wesley Chapel (na conta Pool Duck) — pedido da Val de 22/10 — e Reign, Damon's, Simple (de 19/10).
+   1. Na sub-conta: Settings → Integrations → Google Ads → Manage → lead forms → "Weekly Pool Service Done Right" →
+      **Map Fields** (nome, e-mail, telefone, CEP) → salvar → **Active** (botão Play).
+   2. Teste: no Google Ads, campanha → Lead form → Edit → abrir o form → **Send Data**. O lead de teste dispara o aviso
+      de lead novo para a equipe do cliente (se preferir, me avisa antes e eu desvio os avisos para você durante o teste).
+   3. Me avisa: eu confiro contato, tags, card e aviso em cada uma e apago o teste.
 8. **Forms de landing**: Southern (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com) e Sunwave. Me avisa.
 
 ## UI do GHL / acessos

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Lead source tags (Val, 19/10): Google Ads tags in Wrigley's, Google Lead Form workflow in Reign /
-Damon's / Simple, source tags by line in Sunwave and Passion.
+Damon's / Simple, source tags by line in Sunwave and Passion. Val, 22/10: Google Lead Form workflow also in
+Wrigley's, BluVantage, Precision Pools and Pool Duck Wesley Chapel (Pool Duck agency: load poolduck.env).
 
     ./.venv/bin/python scripts/pp_source_tags.py --only "Wrigley"            # plan
     ./.venv/bin/python scripts/pp_source_tags.py --only "Wrigley" --apply
@@ -47,9 +48,16 @@ ACCOUNTS = {
             "Google LSA Call In - New Lead": {"from": "Incoming Call To Pipeline", "line": "lsa", "keep": 4,
                                               "tags": ["new lead", "incoming call", "google lsa"],
                                               "source": "Google LSA Call In"},
+            "Google Lead Form - New Lead": {**LEAD_FORM, "from": "Adwords Form Fill To Pipeline"},
         },
         "add_tags": {"Adwords Form Fill To Pipeline": ["new lead", "adwords form fill"]},
     },
+    "BluVantage": {"copy": {"Google Lead Form - New Lead": LEAD_FORM}},
+    "Precision Pools": {"copy": {"Google Lead Form - New Lead": LEAD_FORM}},
+    "Pool Duck Wesley Chapel": {"copy": {"Google AdWords - Qualified Lead (Lead Form)": {
+        **LEAD_FORM, "from": "Google AdWords - Qualified Lead (Form FIll)",
+        "tags": ["new lead", "google adwords", "google lead form"],
+        "drop": ["google_adword", "remove_from_workflow"]}}},  # its last step only takes the contact out of itself
     "Reign": {"copy": {"Google Lead Form - New Lead": LEAD_FORM}},
     "Damon": {"copy": {"Google Lead Form - New Lead": LEAD_FORM}, "notify_users": ["AdWords Form - New Lead"]},
     "Simple Pool": {"copy": {"Google Lead Form - New Lead": LEAD_FORM}, "notify_users": ["AdWords Form - New Lead"]},
