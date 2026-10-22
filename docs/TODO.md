@@ -45,18 +45,9 @@ para o cliente testar.
    pela API. Teste final: quando o Atif puser os forms nas páginas, mandar um envio de cada. Me avisa antes e eu
    desvio os avisos da equipe para você.
 9. **Forms de landing**: Southern (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com) e Sunwave. Me avisa.
-10. **Decidir (22/10)**:
-   - **Review Request em todas as contas**: o "First Request?" está invertido desde o V9 (testado). Cliente sem nota
-     sai do workflow, ou seja, nenhum cliente novo recebe pedido de nota ou de review. Correção: "NPS Score is empty".
-     Libera?
-   - **Limpar a master antes de importar na SwimReady**:
-     - Sequential Call Routing = IVR da BluVantage (Fred/Paul, caixa postal "BluVantage", 6 números dela) → versão
-       genérica;
-     - número de Tucson no gatilho do AdWords Call In → tirar;
-     - funis "Simple Pool Care" (3), "LP Teste" e o site duplicado → apagar;
-     - logo "The Pool Care Pros" na página Schedule do funil "Pool Maintenance Snapshot" → logo da conta.
-   - **SwimReady** (conta viva, sistema de março: 13 workflows, 6 publicados, funil de 10 etapas): a troca pelo
-     snapshot novo é migração, como na Pool Keepers (nosso em draft + vigia, depois virada combinada). Quando?
+10. **SwimReady** (conta viva, sistema de março: 13 workflows, 6 publicados, funil de 10 etapas): a troca pelo snapshot
+    novo é uma migração, como na Pool Keepers (o nosso entra em draft com o vigia, depois a virada combinada).
+    Perguntado ao Ed junto com o PDF: quando o Jeremy quer virar.
 
 ### Esperando resposta (eu aplico quando chegar)
 
