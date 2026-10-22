@@ -40,6 +40,7 @@ MERGE = {
     "message.body": "Their Message", "message.attachments": "Attachments", "user.name": "Team Member",
 }
 MERGE_RE = re.compile(r"\{\{\s*([^}]+?)\s*\}\}")
+FILL: dict[str, str] = {}  # merge key → the account's own value (pp_automation_review.py); empty = chips only
 DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 RECIPIENT = {"assign": "the assigned team member", "all": "all team members", "user": "selected team members",
              "contact.assigned_user": "the assigned team member"}
@@ -57,7 +58,13 @@ def chips(text: str) -> str:
         out.append(esc(text[pos:m.start()]))
         key = m.group(1)
         label = MERGE.get(key) or key.split(".")[-1].replace("_", " ").title()
-        out.append(f'<span class="mf">{esc(label)}</span>')
+        val = FILL.get(key)
+        if val and re.match(r"https?://", val):
+            out.append(f'<a class="cv" href="{html.escape(val)}">{esc(label)}</a>')
+        elif val:
+            out.append(f'<span class="cv">{esc(val)}</span>')
+        else:
+            out.append(f'<span class="mf">{esc(label)}</span>')
         pos = m.end()
     out.append(esc(text[pos:]))
     return "".join(out)
@@ -82,8 +89,10 @@ def para(raw: str) -> str:
 
 
 def plural(n, unit: str) -> str:
-    n = int(n) if float(n).is_integer() else n
     unit = unit.rstrip("s")
+    if unit == "minute" and float(n) < 1:
+        n, unit = round(float(n) * 60), "second"
+    n = int(n) if float(n).is_integer() else n
     return f"{n} {unit}{'' if n == 1 else 's'}"
 
 
@@ -97,28 +106,42 @@ def window_text(win: dict | None) -> str:
 
 
 class Guide:
-    def __init__(self, client: str):
+    def __init__(self, client: str, src: Path = MASTER):
         self.client = client
-        self.flows = [w for f in sorted((MASTER / "workflows").glob("*.json")) if f.name != "_index.json"
+        self.flows = [w for f in sorted((src / "workflows").glob("*.json")) if f.name != "_index.json"
                       for w in [json.loads(f.read_text())] if isinstance(w, dict) and w.get("workflowData")]
         self.by_name = {w["name"]: w for w in self.flows}
-        self.code = {w["id"]: CFG["automations"][w["name"]]["code"] for w in self.flows if w["name"] in CFG["automations"]}
-        missing = [w["name"] for w in self.flows if w["name"] not in CFG["automations"]]
-        if missing:
-            sys.exit(f"sem descrição em config/snapshot_guide.json: {missing}")
-        self.snip = {s["_id"]: s for s in json.loads((MASTER / "snippets.json").read_text())}
-        self.pipe = json.loads((MASTER / "pipelines.json").read_text())[0]
+        self.snip = {s["_id"]: s for s in json.loads((src / "snippets.json").read_text())}
+        self.pipe = json.loads((src / "pipelines.json").read_text())[0]
         self.stage = {s["id"]: s["name"] for s in self.pipe["stages"]}
-        self.forms = {f["_id"]: f["name"] for f in json.loads((MASTER / "forms.json").read_text())}
-        cals = json.loads((MASTER / "calendars.json").read_text())
+        self.forms = {f["_id"]: f["name"] for f in json.loads((src / "forms.json").read_text())}
+        cals = json.loads((src / "calendars.json").read_text())
         self.cals = {c["id"]: c for c in (cals if isinstance(cals, list) else cals.get("calendars", []))}
-        self.cvs = json.loads((MASTER / "custom_values.json").read_text())
-        self.cfields = json.loads((MASTER / "custom_fields.json").read_text())
-        self.tags = json.loads((MASTER / "tags.json").read_text())
-        self.funnels = json.loads((MASTER / "funnels.json").read_text())["funnels"]
+        self.cvs = json.loads((src / "custom_values.json").read_text())
+        self.cfields = json.loads((src / "custom_fields.json").read_text())
+        self.tags = json.loads((src / "tags.json").read_text())
+        users = src / "users.json"
+        self.users = {u["id"]: u.get("name") or f"{u.get('firstName', '')} {u.get('lastName', '')}".strip()
+                      for u in (json.loads(users.read_text()) if users.exists() else []) if not u.get("deleted")}
+        funnels = src / "funnels.json"
+        self.funnels = json.loads(funnels.read_text())["funnels"] if funnels.exists() else []
+        self.code = self.number()
         self.messages: list[dict] = []  # index of M codes
         self.node_code: dict[str, str] = {}  # step id → M code ("waits for a reply to M7")
         self.cur: dict = {}
+
+    def number(self) -> dict[str, str]:
+        """workflow id → A code (the snapshot's fixed codes)."""
+        missing = [w["name"] for w in self.flows if w["name"] not in CFG["automations"]]
+        if missing:
+            sys.exit(f"sem descrição em config/snapshot_guide.json: {missing}")
+        return {w["id"]: CFG["automations"][w["name"]]["code"] for w in self.flows}
+
+    def who(self, ref) -> str:
+        """Recipient of an alert or task: a user id of the account, or one of the GHL roles."""
+        refs = ref if isinstance(ref, list) else [ref]
+        names = [self.users[r] for r in refs if r in self.users]
+        return " and ".join(names) if names else RECIPIENT.get(refs[0] if refs else "", "the assigned team member")
 
     # ── triggers ───────────────────────────────────────────────────────────
 
@@ -135,6 +158,8 @@ class Guide:
                 return "A call comes in on your Google Ads tracking number"
             st = [v for c in conds if "status" in (c.get("field") or "").lower() or c.get("title") == "Call status"
                   for v in (c["value"] if isinstance(c["value"], list) else [c["value"]])]
+            if not st:
+                return "Any inbound call comes in (answered or missed, from anyone)"
             return ("An inbound call to your business line is answered" if st == ["completed"] else
                     "An inbound call is missed (no answer, busy, voicemail or hung up)")
         if ty == "contact_tag":
@@ -191,7 +216,8 @@ class Guide:
         if ty == "internal_notification":
             kind = a.get("type")
             sub = a.get(kind) if isinstance(a.get(kind), dict) else {}
-            who = RECIPIENT.get(sub.get("userType"), "your team")
+            who = self.who(sub.get("selectedUser") or sub.get("userType") or "")
+            who = "your team" if who == "the assigned team member" and sub.get("userType") not in RECIPIENT else who
             label = {"sms": f"Text alert to {who}", "email": f"Email alert to {who}",
                      "notification": f"App notification to {who}"}.get(kind, f"Alert to {who}")
             body = sub.get("body") or sub.get("html") or ""
@@ -202,7 +228,7 @@ class Guide:
             return (f'<div class="msg team"><div class="mh"><span class="mcode">{code}</span>{esc(label)}</div>'
                     f'<div class="note">{head}{para(body)}</div></div>')
         if ty == "task-notification":
-            who = RECIPIENT.get(a.get("assignedTo"), "the assigned team member")
+            who = self.who(a.get("assignedTo") or "")
             code = self.new_msg("Team", "Task", a.get("title", ""), " ".join(lines(a.get("body", ""))))
             return (f'<div class="msg team task"><div class="mh"><span class="mcode">{code}</span>Task for {esc(who)} '
                     f'(due right away)</div><div class="note"><div class="subj">{chips(a.get("title", ""))}</div>'
@@ -228,19 +254,31 @@ class Guide:
         if ty == "update_contact_field":
             return "; ".join(f"Set {f.get('title')} = {f.get('value')}" for f in a.get("fields", []))
         if ty == "assign_user":
-            return "Assign the contact to your team member"
+            names = [self.users[u] for u in a.get("user_list") or [] if u in self.users]
+            return f"Assign the contact to {' and '.join(names)}" if names else "Assign the contact to your team member"
+        if ty == "internal-add-opportunity-owner":
+            return "The card gets the same owner as the contact"
         if ty == "dnd_contact":
             return "Turn on Do Not Disturb (no more texts or emails)"
         if ty == "remove_from_workflow":
-            codes = [self.code.get(w, "?") for w in a.get("workflow_id", [])]
-            return "Stop " + ", ".join(codes) + " (appointment reminders)"
+            ids = a.get("workflow_id", [])
+            names = [w["name"] for w in self.flows if w["id"] in ids]
+            about = " (appointment reminders)" if all("appointment" in n.lower() for n in names) and names else ""
+            return "Stop " + ", ".join(self.code.get(w, "?") for w in ids) + about
         if ty == "google_adword":
-            return "Report a conversion to Google Ads"
+            value = a.get("conversion_value")
+            return "Report a conversion to Google Ads" + (f" (value ${float(value):g})" if value else "")
         return None
 
     def wait_text(self, n: dict) -> str:
         a = n.get("attributes") or {}
         sa = a.get("startAfter") or {}
+        before = (a.get("appointmentStartAfter") or {}) if a.get("type") == "appointment" else {}
+        if before.get("when") == "before" and before.get("value"):
+            mins = int(before["value"])
+            span = plural(mins // 1440, "day") if mins % 1440 == 0 else plural(mins // 60, "hour") if mins % 60 == 0 \
+                else plural(mins, "minute")
+            return f"Wait until {span} before the appointment"
         if a.get("type") == "appointment" or (not sa and "before" in n["name"].lower()):
             return n["name"].replace("Wait ", "Wait until ") + " the appointment" if "before" in n["name"] else \
                 "Wait until 1 hour before the appointment"

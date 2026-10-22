@@ -1,0 +1,214 @@
+{
+  "_note": "Automation review of the LIVE Ekahi setup for Erik (Frank, 22/10). scripts/pp_automation_review.py ekahi-solutions-llc. Purposes describe what runs today in this account (it predates V9: one Won stage, follow-ups by tag). {A:<workflow>} and {M:<workflow>/<step>} become the codes in the PDF; {N:<custom value key>} = how many messages use it.",
+  "client": "Ekahi Solutions",
+  "owner": "Erik",
+  "notes_to": "Frank",
+  "title": "Your automations today",
+  "subtitle": "What runs in your CRM, when it runs, the exact wording, and what happens when someone replies",
+  "phases": {
+    "capture": {"intro": "Every call and landing-page form becomes a contact and a card in your pipeline, Erik is told, and the lead gets your Aloha welcome text right away."},
+    "follow": {"intro": "Text and email sequences that keep you in front of the lead. A reply moves the card to In Communication and ends that sequence; no reply eventually moves the card to Lost."},
+    "won": {"intro": "When a card moves to Won, the customer is welcomed, asked how the first visit went, and reported to Google Ads."}
+  },
+  "automations": {
+    "Incoming Call To Pipeline": {
+      "phase": "capture", "like": "A2", "title": "Every inbound call → New Lead",
+      "purpose": "Every inbound call, answered or missed and from anyone (new leads and current customers alike), tags the caller “new lead” and “inbound call” and puts their card in New Lead. The “new lead” tag also sends your Aloha welcome text. An hour later Erik gets a task to listen to the recording and move the card."
+    },
+    "AdWords Form - New Lead": {
+      "phase": "capture", "like": "A3", "title": "Landing-page form → New Lead",
+      "purpose": "Someone fills out the quote form on your landing page (“Landing Page - Optin Form”). The lead is reported to Google Ads, Erik gets a text with their details, they're tagged “new lead” (which also sends the Aloha welcome text) and their card goes to New Lead. About 20 seconds later they get a thank-you text."
+    },
+    "New Lead - Initial SMS Follow-up": {
+      "phase": "capture", "like": "A4", "title": "Aloha welcome text",
+      "purpose": "Your own welcome text, sent the moment a contact is tagged “new lead” (every call, every landing-page form, every reply to a win-back campaign). A reply within 10 minutes moves the card to In Communication. Otherwise a second text goes out and the contact is tagged “follow-up”, which starts the no-response follow-up."
+    },
+    "Add Owner user": {
+      "phase": "capture", "like": "A5", "title": "Assign every new contact to Erik",
+      "purpose": "Every new contact is assigned to Erik, and their card gets Erik as its owner, so every alert and task reaches him."
+    },
+    "No Response Follow-up": {
+      "phase": "follow", "like": "A6", "title": "No-response follow-up",
+      "purpose": "Starts when a contact is tagged “follow-up”: after the welcome text gets no reply, and also after the monthly reminder and the upsell texts (see Things to decide). Three texts over about 11 days. A reply moves the card to In Communication and ends it; no reply after the third text moves the card to Lost, which starts the Lost emails."
+    },
+    "In Communication Stage": {
+      "phase": "follow", "like": "A7", "title": "Nurture emails while you talk",
+      "purpose": "When a card moves to In Communication (the lead replied, or you moved it), three emails go out over the next business days with questions about their pool, why customers choose you, and the free estimate. Runs only once per contact."
+    },
+    "Appointment Confirmation/Reminders": {
+      "phase": "follow", "like": "A8", "title": "Estimate confirmation and reminders",
+      "purpose": "When an estimate is booked on the “Pool Service Estimate” calendar: the card moves to Scheduled, Erik gets a text, and the customer gets a confirmation, a reminder the day before and a heads-up an hour before. Today nobody can book on that calendar (see Things to decide), so it hasn't run."
+    },
+    "No-Show Follow-up": {
+      "phase": "follow", "like": "A9", "title": "No-show follow-up",
+      "purpose": "Starts when you tag a contact “no-show”. The appointment reminders stop and they get a text to reschedule. A reply moves the card to In Communication; no reply after two texts moves it to Lost."
+    },
+    "Quote Sent Follow-up": {
+      "phase": "follow", "like": "A10", "title": "Quote follow-up",
+      "purpose": "When a card moves to Quote Sent: a text the next day and another two days later. A reply moves the card to In Communication; no reply moves it to Lost."
+    },
+    "Won Stage": {
+      "phase": "won", "like": "A11", "title": "Welcome new customers",
+      "purpose": "When a card moves to Won: the contact is tagged “won” and “recurring customer” and gets a welcome email right away and a welcome text 2 minutes later (weekdays, 9am–5pm)."
+    },
+    "Post-Appointment Follow-up": {
+      "phase": "won", "like": "A12", "title": "How did the first visit go?",
+      "purpose": "Also when a card moves to Won: an hour later, a text asks how the pool service went. Either way the card then moves to Recurring Customer (right after a reply, or after 2 days without one)."
+    },
+    "Recurring Customer Stage": {
+      "phase": "won", "like": "A13", "title": "Mark recurring customers",
+      "purpose": "When a card moves to Recurring Customer: the contact is tagged “recurring customer” and Client Type is set to Recurring."
+    },
+    "Adword Call - Conversion": {
+      "phase": "won", "like": "A13b", "title": "Report won customers to Google Ads",
+      "purpose": "When a card moves to Won, the customer is tagged “adwords won” and reported to Google Ads as a $180 conversion, so your campaigns learn which clicks become paying customers (only works for leads that came from an ad click)."
+    },
+    "Review Request": {
+      "phase": "reviews", "like": "A14", "title": "Rating first, then the Google review",
+      "purpose": "14 days after a card moves to Won, the customer gets a text asking for a quick 1–5 rating (only customers who haven't rated before). A 4 or 5, or no rating within 7 days, sends your Google review link by email and by text. A rating of 1–3 alerts Erik by text instead, so you can make it right first.",
+      "reply_note": "Text replies land in your Conversations inbox. What this automation waits for is the rating, given on the rating page the text links to.",
+      "flow": [
+        {"kind": "wait", "text": "Waits 14 days after the card moves to Won (sent between 9am and 5pm)"},
+        {"kind": "step", "name": "SMS - Request NPS Feedback"},
+        {"kind": "wait", "text": "Waits up to 7 days for the rating"},
+        {"kind": "paths", "paths": [
+          {"label": "Rated 4–5, or no rating after 7 days", "items": [
+            {"kind": "step", "name": "Email - Send Review Request"},
+            {"kind": "step", "name": "SMS - Send Review Request"}]},
+          {"label": "Rated 1–3", "items": [
+            {"kind": "step", "name": "Notify Team - Negative Feedback"}]}]}
+      ]
+    },
+    "Review Response - Positive": {
+      "phase": "reviews", "like": "A15", "title": "Thank-you for good reviews",
+      "purpose": "When a 4 or 5-star Google review comes in, the reviewer gets a thank-you text."
+    },
+    "Review Response - Negative": {
+      "phase": "reviews", "like": "A16", "title": "Fast response to bad reviews",
+      "purpose": "When a review of 3 stars or less comes in, the contact is tagged “high priority”, gets an apology text offering a call, and Erik gets an urgent task to call within 24 hours."
+    },
+    "Monthly Service Reminder": {
+      "phase": "retain", "like": "A17", "title": "Service reminder",
+      "purpose": "30 days after a card moves to Recurring Customer, one text says their monthly pool service is coming up this week and invites special requests. It is sent once, not every month, and afterwards tags the contact “follow-up” (see Things to decide)."
+    },
+    "Filter Clean Reminder": {
+      "phase": "retain", "like": "A18", "title": "Filter cleaning reminder",
+      "purpose": "About 75 days after a contact is tagged “recurring customer” (that happens at Won), an email says their filter cleaning is coming up (weekdays, 9am–5pm)."
+    },
+    "Upsell Opportunity": {
+      "phase": "retain", "like": "A19", "title": "Upsell after a visit",
+      "purpose": "Tag a customer “upsell opportunity” when your tech spots something worth fixing: a text invites a conversation, with one follow-up 2 days later. A reply moves the card to In Communication; no reply tags them “follow-up” (see Things to decide)."
+    },
+    "Reactivation Campaign - SMS": {
+      "phase": "retain", "like": "A20", "title": "Win-back texts",
+      "purpose": "Tag past customers or old leads “reactivation” and they get 3 texts over a week. Afterwards they're tagged “do not remarket”, so nobody gets the campaign twice."
+    },
+    "Reactivation Campaign - Email": {
+      "phase": "retain", "like": "A21", "title": "Win-back emails",
+      "purpose": "Runs alongside the win-back texts with 3 emails over a week: a free inspection offer, why customers choose you, and a last note."
+    },
+    "SMS Customer Reply to pipeline": {
+      "phase": "retain", "like": "A22", "title": "Win-back replies → New Lead",
+      "purpose": "When someone tagged “reactivation” texts back: their card goes to New Lead, the “reactivation” tag comes off, they're tagged “new lead” (which also sends the Aloha welcome text), and Erik gets their reply by text and app notification. The win-back texts and emails already scheduled still go out."
+    },
+    "Lost Stage": {
+      "phase": "retain", "like": "A23", "title": "Lost lead: feedback and 90-day check-in",
+      "purpose": "When a card moves to Lost (by you, or automatically after unanswered follow-ups): two business days later an email from Erik asks why they went with someone else, and 90 days later a check-in email asks how their current pool company is doing."
+    },
+    "Spam Contact": {
+      "phase": "retain", "like": "A24", "title": "Spam clean-up",
+      "purpose": "Moving a card to Spam tags the contact and turns on Do Not Disturb, so no automation texts them again."
+    },
+    "AdWords Call In - New Lead": {
+      "phase": "addons", "like": "A25", "title": "Google Ads calls",
+      "off_note": "Built for a Google Ads call-tracking number, but the number in it came with the template and isn't yours. We connect it if you run call ads. Today Google Ads callers are handled like any other call."
+    },
+    "Website Form Fill To Pipeline": {
+      "phase": "addons", "like": "A26", "title": "Website form → New Lead",
+      "off_note": "Would put website-form leads in the pipeline and text Erik. It listens to the same landing-page form as the Google Ads form automation (which already does this), so it stays off to avoid double alerts."
+    },
+    "Sequential Call Routing": {
+      "phase": "addons", "like": "A28", "title": "Call routing for your line",
+      "off_note": "Template call routing (rings your team one after the other, then takes a voicemail). It came with sample settings and isn't connected to your number. If you want it, we set it up with your phone and your own greeting."
+    }
+  },
+  "stages": {
+    "🆕 New Lead": "Every call, landing-page form and win-back reply lands here.",
+    "💬 In Communication": "The lead replied (or you moved the card). Starts the 3 nurture emails.",
+    "💰 Quote Sent": "Quote is out; the 2 follow-up texts start.",
+    "📅 Scheduled": "Estimate booked on the calendar.",
+    "🏆 Won": "New customer: welcome, first-visit text, review request and Google Ads conversion.",
+    "🔄 Recurring Customer": "Active customer on a regular schedule. Starts the service reminder.",
+    "❄ Not Qualified Stage": "Outside your area or not a fit. Nothing is sent.",
+    "❌ Lost": "Went with someone else or never answered. Starts the 2 Lost emails.",
+    "🚫 Spam": "Spam or robocall. Messaging is turned off."
+  },
+  "scenarios": [
+    {
+      "title": "Someone calls and never answers the texts",
+      "intro": "The most common path today: a caller who doesn't reply. Times are counted from the call.",
+      "workflows": ["Incoming Call To Pipeline"],
+      "extra": [{"t": 0, "to": "Customer", "text": "Missed calls only: your phone system's own missed-call text, “Hi this is Ekahi Solutions LLC, I saw that we just missed your call how can I help?” (not an automation; see Things to decide)"}]
+    },
+    {
+      "title": "Someone fills out the landing-page form and never answers",
+      "intro": "Times are counted from the form.",
+      "workflows": ["AdWords Form - New Lead"]
+    },
+    {
+      "title": "A customer is moved to Won and never replies",
+      "intro": "Times are counted from the moment you move the card to Won.",
+      "stage": "🏆 Won"
+    }
+  ],
+  "fixed": [
+    "Placeholders broken by the email editor in 9 emails: customers would have seen text like “{{custom_ values.business _phone}}” instead of your phone number or booking link.",
+    "The Google review link in the review request pointed to another business's Google page. It now opens yours.",
+    "The rating text had an empty link (the rating page wasn't set up). It now opens your own rating page.",
+    "The review request wasn't reading the rating, so an unhappy customer would also get the Google link and Erik wouldn't be told. It now reads it.",
+    "The task for negative Google reviews had an invalid due date. It is now due right away.",
+    "In two automations that are off: another company's name in a text, and a lead alert with no recipient."
+  ],
+  "decisions": [
+    {
+      "title": "Calls from current customers are treated as new leads",
+      "text": "{A:Incoming Call To Pipeline} tags every inbound caller “new lead”. So a current customer calling about their service, or a lead Erik has just talked to on the phone, gets {M:New Lead - Initial SMS Follow-up/SMS 1} (“We received your request for pool service”), then up to 4 more follow-up texts, and their card ends in Lost with the two Lost emails. Since early September, 14 of the 15 callers ended in Lost this way.",
+      "suggest": "Skip current customers, and send the welcome text only for missed calls (an answered caller has already talked to Erik)."
+    },
+    {
+      "title": "Missed calls get two texts",
+      "text": "Besides {M:New Lead - Initial SMS Follow-up/SMS 1}, your phone system's own missed-call text-back is on: “Hi this is Ekahi Solutions LLC, I saw that we just missed your call how can I help?”",
+      "suggest": "Turn the phone system's text off and keep your Aloha text."
+    },
+    {
+      "title": "Landing-page leads get two texts within a minute",
+      "text": "A form lead gets {M:New Lead - Initial SMS Follow-up/SMS 1} right away and {M:AdWords Form - New Lead/SMS} about 20 seconds later.",
+      "suggest": "Keep only the Aloha text."
+    },
+    {
+      "title": "The booking link opens an empty calendar",
+      "text": "{N:booking_link} messages send your estimate booking link, for example {M:New Lead - Initial SMS Follow-up/SMS 2} and {M:No Response Follow-up/SMS 1}. The calendar has no team member assigned, so it shows no available times. That's also why {A:Appointment Confirmation/Reminders} has never run.",
+      "suggest": "Either we add Erik to the calendar with your available hours (and connect your Google Calendar so nothing double-books), or we replace the link with “reply here or call us”."
+    },
+    {
+      "title": "Current customers can get lead follow-ups",
+      "text": "{A:Monthly Service Reminder} (after its text) and {A:Upsell Opportunity} (when the customer doesn't reply) tag the contact “follow-up”, which starts {A:No Response Follow-up}: “still thinking about getting your pool cleaned?”, three times, then the card moves to Lost and {A:Lost Stage} emails “I know you went a different direction with your pool care”. A customer who replies to the upsell text also gets the {A:In Communication Stage} emails about a free estimate. No customer has been affected yet (none has reached Won so far), but every new customer would get this about a month after joining.",
+      "suggest": "Remove the “follow-up” tag from both, and keep customers out of the lead emails."
+    },
+    {
+      "title": "The first-visit text goes out one hour after Won",
+      "text": "{M:Post-Appointment Follow-up/SMS 1} asks “How did everything go with your pool service today?” an hour after the card moves to Won, while {M:Won Stage/SMS} has just said “Your first service will be scheduled shortly”.",
+      "suggest": "Send it after the first visit (for example 7 days after Won), or turn it off."
+    },
+    {
+      "title": "The service reminder is sent once",
+      "text": "{A:Monthly Service Reminder} sends a single text 30 days after the card moves to Recurring Customer. It doesn't repeat, and it says “monthly pool service” to weekly customers too.",
+      "suggest": "Tell us if you want it every month, or different wording."
+    },
+    {
+      "title": "Win-back campaigns keep going after a reply",
+      "text": "When someone replies to a win-back text, {A:SMS Customer Reply to pipeline} moves them to New Lead and alerts Erik, but the remaining win-back texts and emails still go out, and they also get the Aloha welcome text (“We received your request for pool service”).",
+      "suggest": "Stop the campaign on a reply and skip the welcome text for these contacts."
+    }
+  ]
+}

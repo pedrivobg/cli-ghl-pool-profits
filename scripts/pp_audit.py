@@ -12,6 +12,7 @@ Checks (severity in brackets):
   [ALTA]  {{custom_values.x}} used in a message but missing or empty in this sub-account
   [ALTA]  internal notification / task / assign step with no user selected
   [ALTA]  trigger or step pointing at a form, stage, calendar or workflow that does not exist
+  [ALTA]  if/else or wait condition on a contact field the sub-account does not have (never true)
   [ALTA]  SMS/email step with an empty body
   [MÉDIA] two published workflows with the same trigger (double sends, e.g. the Landing Page form)
   [MÉDIA] booking/calendar link sent to leads (the meeting dropped it from the baseline)
@@ -101,6 +102,18 @@ def id_leaves(node):
 
 # ids of objects the dump does not fetch (documents/contract templates, ad accounts): not checkable here
 UNDUMPED_ID_FIELDS = {"documentCreatedByTemplateId", "adAccountId"}
+
+
+def field_conditions(node):
+    """Contact-field ids read by if/else and wait conditions."""
+    if isinstance(node, dict):
+        if node.get("conditionType") == "contact_detail" and isinstance(node.get("conditionSubType"), str):
+            yield node["conditionSubType"]
+        for v in node.values():
+            yield from field_conditions(v)
+    elif isinstance(node, list):
+        for v in node:
+            yield from field_conditions(v)
 
 
 def trigger_refs(trig: dict) -> tuple[list[str], list[str]]:
@@ -216,6 +229,7 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
             stages[s.get("id")] = f"{p.get('name')} → {s.get('name')}"
     calendars = {c.get("id"): c.get("name", "") for c in load(loc_dir / "calendars.json", [])}
     location_tags = {str(t.get("name", "")).lower() for t in load(loc_dir / "tags.json", [])}
+    fields = {f.get("id") for f in load(loc_dir / "custom_fields.json", [])}
     index = load(loc_dir / "workflows" / "_index.json", [])
     wf_by_id = {w["id"]: w for w in index}
     known_ids = {**forms, **stages, **pipelines, **calendars,
@@ -306,6 +320,10 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
                 for _, ref in id_leaves(attrs):
                     if ref in wf_by_id and wf_by_id[ref]["status"] != "published" and stype == "add_to_workflow":
                         add("MÉDIA", wname, sname, f"adiciona ao workflow '{wf_by_id[ref]['name']}' que está em draft")
+
+            for sub in field_conditions(attrs):
+                if fields and re.fullmatch(r"[A-Za-z0-9]{20}", sub) and sub not in fields:  # e.g. the snapshot source's NPS Score (pp_review_fix.py)
+                    add("ALTA", wname, sname, f"condição em campo que não existe nesta sub-conta ({sub}) — nunca é verdadeira")
 
             for key, ref in id_leaves(attrs):
                 if key.lower() in ("pipelinestageid", "stageid", "pipeline_stage_id") and ref and ref not in stages:

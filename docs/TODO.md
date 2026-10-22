@@ -66,6 +66,10 @@ para o cliente testar.
 - **Stay Fresh inativos** (arquivos no scratchpad, fora do git): tag do Ed (**não** "reactivation") + lista confirmada
   pelo Mike (Jen Knight está como cliente ativa). Depois eu importo.
 - **Tags universais**: Frank/Ed aprovam os nomes → piloto na Pool Shack → snapshot + script.
+- **Ekahi** (PDF de revisão das automações, 22/10, Frank → Erik no Basecamp): Erik aprova/pede mudanças por código e
+  responde D1–D8 (cliente que liga tratado como lead novo, dois textos na chamada perdida e no form, link de agenda
+  vazio, cliente ativo caindo no follow-up de lead e em Lost, texto de primeira visita 1 h depois do Won, lembrete
+  único, win-back que continua depois da resposta). Config: `config/review/ekahi-solutions-llc.json`.
 
 ## Outras agências do GHL
 
