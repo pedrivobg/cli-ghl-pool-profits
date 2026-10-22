@@ -38,9 +38,8 @@ para o cliente testar.
    review, NPS; 0 erro). Falta:
    - comprar um número ("Website & GBP") + A2P (sem número, nenhum SMS sai: nem para o cliente nem o aviso para o
      Brian). Por enquanto o `a2p_verification_number` está com o telefone da empresa (210) 360-1611;
-   - o Brian fazer o primeiro acesso ("Forgot password" em app.poolprofits.com) e instalar o app;
+   - o Brian e o Jason fazerem o primeiro acesso ("Forgot password" em app.poolprofits.com) e instalarem o app;
    - conectar o Google Business Profile (as respostas automáticas a reviews dependem disso);
-   - **Jason Kirk** (sócio, jasonkirk@att.net, 210-848-3438) também vira usuário?
 8. **BluVantage: 3 forms das landing pages novas** (pedido da Val, 22/10). Prontos, com workflows no ar e testados
    pela API. Teste final: quando o Atif puser os forms nas páginas, mandar um envio de cada. Me avisa antes e eu
    desvio os avisos da equipe para você.
