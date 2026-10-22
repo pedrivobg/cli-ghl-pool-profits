@@ -123,6 +123,11 @@
 - Ligação por IVR: a mensagem (type 24) tem `to` = nome da conta; o número discado está em
   `meta.ivr[<callSid>].to`. Gatilho `call_status` com `inbound_number` dispara mesmo com IVR (BluVantage).
   `meta.callStatusTriggerFired` lista os gatilhos que a ligação disparou (dá a linha quando há workflow por linha).
+- Arquivo na biblioteca de mídia (ex.: MP3 de caixa postal): `POST services /medias/files/` `{name, contentType, parentId:
+  "", altType: "location", altId, size}` → `{url (assinada), aknId}`; `PUT` do arquivo nessa URL com o Content-Type;
+  `POST services /medias/files/verify {altId, altType, id: aknId}` → URL pública `assets.cdn.filesafe.space/…`
+  (`/medias/upload-file` recusa o token Firebase). IVR tocando áudio: `sayPlayAttributes` com `widgetType: "play"` e
+  `audioUrl` (Poolheads, 22/10).
 - Funis/sites: `GET services /funnels/funnel/list?locationId` (passos com `pages[]`); print de qualquer página sem login
   pelo preview `https://app.gohighlevel.com/v2/preview/<pageId>` (Chromium headless `--screenshot`).
 - If/else `contact_detail` com `has_value`: campo vazio cai no ramo else (testado 22/10). O "First Request?" do Review

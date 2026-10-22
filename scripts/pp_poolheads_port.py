@@ -7,8 +7,9 @@ main number (+1 936-314-9255, "Poolheads Main Service") can be ported in (Pedro 
     ./.venv/bin/python scripts/pp_poolheads_port.py go-live                  # after the port: IVR on every line + publish
 
 Old account → here:
-- "Business Hours Call Routing" (IVR on the main line): Mon–Fri 9–5 rings the team (Felipe; Jorge once he is a user
-  here), not answered → voicemail; outside those hours → voicemail. The old flow then texted "Hi this is Poolheads, We are
+- "Business Hours Call Routing" (IVR on the main line): Mon–Fri 9–5 rings the team (Felipe's app/deskphone and his cell,
+  where the line forwarded before; Jorge once he is a user here), not answered → voicemail; outside those hours →
+  voicemail. Voicemail plays their own recorded greeting from the old account (22/10). The old flow then texted "Hi this is Poolheads, We are
   sorry we missed your call! …". Here the IVR tags "missed call" instead, and that text (verbatim, config/
   poolheads_wording.json) is SMS 1 of our "Missed New Lead - Initial SMS Follow-up": the caller gets the same first text,
   once, and our follow-up and pipeline card keep working (with an IVR every call is "completed", so the missed-call
@@ -34,11 +35,16 @@ TEAM = ["PTRbzJWOILyLyoz9aOfK"]  # Felipe Cobo (+ Jorge Arias when he has a user
 IVR, AFTER = "Business Hours Call Routing", "After Hours Message"
 OPEN = ("weekday", "900", "1700")  # Mon–Fri 9:00–17:00, account time zone
 RECORDING = "This call will be recorded for quality purposes."
-VM_CLOSED = ("Thank you for calling Poolheads. Our office is currently closed. Our hours are 9 AM to 5 PM, Monday "
-             "through Friday. Please leave your name, number and a brief message after the beep, and we will call you "
-             "back as soon as possible.")
-VM_MISSED = ("Thank you for calling Poolheads. We're sorry we missed your call. Please leave your name, number and a "
-             "brief message after the beep, and we will call you right back.")
+# Their own voicemail greeting from the old account (Frank, 22/10: Poolheads_Voicemail_1.mp3), in this account's media
+# library; the text is its transcription (shown in the builder). Used for both voicemail steps (it says "closed or
+# helping another customer").
+VM_AUDIO = "https://assets.cdn.filesafe.space/PeUynYCMm8e6PJMy785O/media/6ada863ffdcb71bb828255e9.mp3"
+VM_TEXT = ("Thank you for calling Poolheads. Sorry we missed your call. We're either closed or helping another customer. "
+           "Our hours are 9 a.m. to 5 p.m. If this is an emergency, please turn off your pool equipment. Leave your name "
+           "and a brief message and we'll get back to you as soon as possible. Thank you.")
+# The main line forwarded to Felipe's cell before the IVR: ring it too, so calls reach him even before the
+# LeadConnector app / deskphone are set up on this account.
+FELIPE_CELL = "+12818188794"
 AFTER_SMS = ("Thanks for contacting Poolheads! Our hours are 9am- 5pm Monday to Friday. If this is an emergency please "
              "turn off the power of your pool or spa equipment. We will reach out as soon as possible!")  # verbatim
 
@@ -79,9 +85,10 @@ def say(text: str) -> dict:
     return {"loop": 1, "widgetType": "say", "message": text, "type": "ivr_say", "language": "en-US", "voice": "woman"}
 
 
-def voicemail(text: str, index: int) -> dict:
+def voicemail(index: int) -> dict:
+    play = {**say(VM_TEXT), "widgetType": "play", "audioUrl": VM_AUDIO}
     return {"id": nid(), "name": "Record voicemail", "type": "ivr_collect_voicemail", "stepIndex": index,
-            "attributes": {"sayPlayAttributes": say(text), "isSayPlayOn": True, "timeout": 5, "finishOnKey": "",
+            "attributes": {"sayPlayAttributes": play, "isSayPlayOn": True, "timeout": 5, "finishOnKey": "",
                            "maxLength": 360, "playBeep": True, "type": "ivr_collect_voicemail"}}
 
 
@@ -97,7 +104,7 @@ def ivr_steps() -> list[dict]:
     intro["next"] = head["id"]
     ring = {"id": nid(), "name": "Ring the team", "type": "ivr_connect_call", "stepIndex": 2, "attributes": {
         "timeout": 20, "timeLimit": 3600, "userId": "", "users": TEAM, "detectVoicemail": True, "isSayPlayOn": False,
-        "customNumbers": [], "record": "record-from-answer", "sayPlayAttributes": say("")}}
+        "customNumbers": [{"country": "US", "phone": FELIPE_CELL, "displayValue": "(281) 818-8794", "isValid": True}], "record": "record-from-answer", "sayPlayAttributes": say("")}}
     check, not_answered, answered = nid(), nid(), nid()
     answered_q = {"id": check, "name": "Answered?", "type": "if_else", "cat": "conditions", "comments": [],
                   "nodeType": "condition-node", "next": [not_answered, answered],
@@ -120,9 +127,9 @@ def ivr_steps() -> list[dict]:
                 {"id": answered, "name": "Answered", "type": "if_else", "parent": check, "parentKey": check,
                  "cat": "conditions", "sibling": [not_answered], "comments": [], "nodeType": "branch-no", "order": 2,
                  "attributes": {"else": True}}]
-    missed = link(not_answered, [missed_tag(), voicemail(VM_MISSED, 3)])
+    missed = link(not_answered, [missed_tag(), voicemail(3)])
     branches[0]["next"] = missed[0]["id"]
-    after = link(closed["id"], [missed_tag(), voicemail(VM_CLOSED, 4)])
+    after = link(closed["id"], [missed_tag(), voicemail(4)])
     closed["next"] = after[0]["id"]
     return [intro, head, opened, closed, *open_chain, *branches, *missed, *after]
 

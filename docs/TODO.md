@@ -6,19 +6,26 @@ para o cliente testar.
 ## Pool Profits (sub-contas da nossa agência)
 
 1. **Encaminhamento** (Settings → Phone Numbers → número → Edit → *Forward calls to*): Cleverblu **689-229-3738 →
-   +1 407-922-8947**. Poolheads 936-301-4150 só até a portabilidade (depois o IVR cobre; item 5).
-2. **Ligação de teste** nas contas novas (Poolheads, Rosebrook, Cleverblu), sem atender: SMS de chamada perdida no seu
+   +1 407-922-8947**.
+2. **Ligação de teste** nas contas novas (Rosebrook, Cleverblu), sem atender: SMS de chamada perdida no seu
    celular + card em New Lead. Me avisa.
 3. **A2P** dos números das contas novas (Settings → Phone System → Trust Center): sem aprovação o SMS não sai.
 4. **Rosebrook**: comprar um número ("Website & GBP") + A2P; link de review do Google (Lynsey, ou conectar o Google
    Business Profile em Settings → Integrations). O Review Request fica em draft até ter o link.
-5. **Poolheads — portabilidade do 936-314-9255** (conta GHL antiga → nossa). IVR e resposta fora do horário prontos em
-   draft (`scripts/pp_poolheads_port.py`).
-   - **Antes**: e-mail do **Jorge Arias** (crio o usuário dele aqui).
-   - **No dia** em que o número aparecer na nossa conta: me avisa → eu ligo o IVR nas linhas e publico. Você, na tela:
-     nome "Poolheads Main Service", Call Recording ligado **sem** a mensagem (o IVR já fala); A2P do número; Felipe e
-     Jorge entram no app LeadConnector com a conta nova; deskphone do Felipe apontado para a conta nova.
-   - **Teste** (você): ligação em horário comercial atendida e não atendida, uma fora do horário, um SMS fora do horário.
+5. **Poolheads: número já na nossa conta (22/10)**. O IVR "Business Hours Call Routing" (pasta 09 System) e o "After
+   Hours Message" estão no ar nas 3 linhas (936-314-9255, 936-243-1724 e 936-301-4150). O IVR toca o app do Felipe e
+   o celular dele, e a caixa postal usa a gravação deles. Os outros 29 workflows estão em draft (alguém pausou hoje,
+   como o Frank pediu).
+   - **Teste** (você): agora, fora do horário, cai na caixa postal com a gravação deles. Amanhã, entre 9 e 17, testar
+     uma ligação atendida e uma não atendida, mais um SMS fora do horário.
+   - **Na tela**: Settings → Phone Numbers → 936-314-9255 → Call Recording ligado **sem** a mensagem (o IVR já fala).
+     Felipe (e Jorge) no app LeadConnector com a conta nova; deskphone do Felipe apontado para a conta nova.
+   - **E-mail do Jorge Arias**: crio o usuário dele e coloco no IVR.
+   - **Depois do A2P** (o Frank enviou): republicar o "Missed New Lead", que manda o texto de chamada perdida deles,
+     e o resto das nossas automações quando o Frank liberar.
+   - **Workflows de anúncio da conta antiga** (print do Frank: "Lead Input & Notification - Google Service Ads",
+     "Lead Input - Google Repair Ads", "LVB - Meta Service", e mais uma página): os anúncios continuam? Para copiar,
+     preciso entrar na conta antiga, e o código de verificação vai para o cliente. Combinar com o Frank.
 6. **Google Lead Form "Weekly Pool Service Done Right"**: os workflows já estão no ar (lead → contato, tags, card,
    aviso à equipe, SMS de resposta). Falta ligar o form na tela em **6 contas**: Wrigley's, BluVantage, Precision Pools
    (pedido da Val de 22/10), Reign, Damon's e Simple (de 19/10). A Pool Duck Wesley Chapel está em "Outras agências".
@@ -27,8 +34,18 @@ para o cliente testar.
    2. Teste: no Google Ads, campanha → Lead form → Edit → abrir o form → **Send Data**. O lead de teste dispara o aviso
       de lead novo para a equipe do cliente (se preferir, me avisa antes e eu desvio os avisos para você durante o teste).
    3. Me avisa: eu confiro contato, tags, card e aviso em cada uma e apago o teste.
-7. **Forms de landing**: Southern (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com) e Sunwave. Me avisa.
-8. **Decidir (22/10)**:
+7. **Blissful Waters (conta nova, 22/10)**: pronta no padrão (fuso, usuário Brian em avisos/tarefas/dono, link de
+   review, NPS; 0 erro). Falta:
+   - comprar um número ("Website & GBP") + A2P (sem número, nenhum SMS sai: nem para o cliente nem o aviso para o
+     Brian). Por enquanto o `a2p_verification_number` está com o telefone da empresa (210) 360-1611;
+   - o Brian fazer o primeiro acesso ("Forgot password" em app.poolprofits.com) e instalar o app;
+   - conectar o Google Business Profile (as respostas automáticas a reviews dependem disso);
+   - **Jason Kirk** (sócio, jasonkirk@att.net, 210-848-3438) também vira usuário?
+8. **BluVantage: 3 forms das landing pages novas** (pedido da Val, 22/10). Prontos, com workflows no ar e testados
+   pela API. Teste final: quando o Atif puser os forms nas páginas, mandar um envio de cada. Me avisa antes e eu
+   desvio os avisos da equipe para você.
+9. **Forms de landing**: Southern (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com) e Sunwave. Me avisa.
+10. **Decidir (22/10)**:
    - **Review Request em todas as contas**: o "First Request?" está invertido desde o V9 (testado). Cliente sem nota
      sai do workflow, ou seja, nenhum cliente novo recebe pedido de nota ou de review. Correção: "NPS Score is empty".
      Libera?
