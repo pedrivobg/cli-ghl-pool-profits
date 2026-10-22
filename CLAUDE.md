@@ -17,6 +17,9 @@
   [--include-drafts --skip "In Communication Stage"]` → `pp_tags_missing` → `pp_skip_tag` → `pp_line_tag` →
   missed-call nativo off → Sequential Call Routing draft → `pp_audit` + `pp_ready.py` (usuário = representante
   do Business Profile em todo aviso/tarefa). Sem Google conectado o link de review vem do `google_review_link`.
+- Master do snapshot = sub-conta "Snapshot Pool Profits" (`Kvdj7o189zlS3caaCNuX`), no padrão Southern desde 22/10:
+  mudou o modelo → `pp_mirror --apply --template` + a mesma sequência nela → Pedro clica Refresh no snapshot (não vai
+  para o TODO).
 - **Testes são nossos** (Pedro, 19/10): para a equipe (Frank, Val, Ed) e os clientes, Pedro e o Claude são
   uma pessoa só. Nunca pedir a eles para testar; testar daqui e, o que precisar de mão humana (ligação,
   UI do GHL/Google Ads), passar o passo a passo para o Pedro. Mensagens para eles só depois de testado.

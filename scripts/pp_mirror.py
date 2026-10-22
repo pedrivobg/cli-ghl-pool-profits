@@ -23,6 +23,9 @@ What it does, in order:
   6. Status of every other model workflow mirrored (draft/published), except
      08 Paid Ads, which is left as it is (ads tracking is per client).
 
+Snapshot master ("Snapshot Pool Profits", source of the V9 snapshot): --template blanks the model's users (the
+master has none) so every workflow is copied; then Pedro clicks Refresh on the snapshot.
+
 Full sequence for an account: pp_dump → pp_mirror --apply → pp_dump →
 pp_forms --apply → pp_fix --drop-booking --apply → pp_dump → pp_audit/pp_compare.
 """
@@ -140,14 +143,15 @@ class Side:
 
 class Mirror:
     def __init__(self, agency: Agency | None, model: Side, target: Side, apply: bool, publish: bool,
-                 full: bool = False):
+                 full: bool = False, template: bool = False):
         self.agency, self.m, self.t = agency, model, target
-        self.apply, self.publish, self.full = apply, publish, full
+        self.apply, self.publish, self.full, self.template = apply, publish, full, template
         self.folders: dict[str, str] = {}
         self.ids: dict[str, str] = {model.loc: target.loc}
         self.log: list[str] = []
         self.problems: list[str] = []
         self.no_place: str | None = None  # model's Google place when the target has none
+        self.created: dict[str, str] = {}  # target workflow created here → model workflow id
         self.stamp = time.strftime("%Y%m%d-%H%M%S")
         self.bdir = BACKUP / target.dir.name
         # canonical target workflow per name (oldest copy wins)
@@ -185,6 +189,9 @@ class Mirror:
                 "parentId": getattr(self, "move_to", None) or live.get("parentId"),
                 "workflowData": {"templates": steps if steps is not None
                                  else (live.get("workflowData") or {}).get("templates") or []}}
+        if wid in self.created:  # a POSTed workflow starts with re-entry off: take the model's
+            model = self.m.wf(self.created[wid])
+            body.update({k: model[k] for k in ("allowMultiple", "allowMultipleOpportunity") if k in model})
         self.agency.call("PUT", BACKEND, f"/workflow/{self.t.loc}/{wid}", body=body)
         after = self.agency.workflow(self.t.loc, wid)
         if after.get("status") != status or after.get("name") != name:
@@ -377,6 +384,17 @@ class Mirror:
                 raw = raw.replace(src, self.ids[src])
         return json.loads(raw)
 
+    def blank_users(self, obj):
+        """Snapshot master (--template): the model's users have no counterpart there; their ids become empty
+        (a loaded snapshot blanks unknown users anyway, and onboarding sets the client's representative)."""
+        users = {u["id"] for u in self.m.users} - {u["id"] for u in self.t.users}
+        if isinstance(obj, dict):  # also {"<user>": weight} and [{"id": "<user>", …}] (assign_user)
+            return {k: self.blank_users(v) for k, v in obj.items() if k not in users}
+        if isinstance(obj, list):
+            return [self.blank_users(v) for v in obj
+                    if not (isinstance(v, str) and v in users) and not (isinstance(v, dict) and v.get("id") in users)]
+        return "" if isinstance(obj, str) and obj in users else obj
+
     def leftovers(self, obj) -> list[str]:
         raw = json.dumps(obj, ensure_ascii=False)
         model_ids = {self.m.loc, *(u["id"] for u in self.m.users),
@@ -457,6 +475,7 @@ class Mirror:
                                        body={"name": name, "parentId": parent, "status": "draft"})
                 wid = res.get("id") or res.get("_id")
                 created = {"id": wid, "name": name, "status": "draft"}
+                self.created[wid] = mw["id"]
             else:
                 created = {"id": f"<novo {name}>", "name": name, "status": "draft"}
             self.t_by_name[norm(name)] = created
@@ -528,6 +547,18 @@ class Mirror:
             for s in [s for s in steps if model_only(s)]:  # e.g. Southern's lead e-mail to Brett
                 steps = drop_step(steps, s["id"])
                 self.say(f"      sem o passo '{s['name']}' (e-mail para {s['attributes']['email'].get('to')}, só do modelo)")
+            if self.template:
+                steps = self.blank_users(steps)
+                def userless(st: dict) -> bool:  # GHL refuses these without a user
+                    at = st.get("attributes") or {}
+                    if st.get("type") == "assign_user":
+                        return not at.get("user_list")
+                    sub = at.get(at.get("type")) if isinstance(at.get(at.get("type")), dict) else {}
+                    return st.get("type") == "internal_notification" and sub.get("userType") == "user" \
+                        and not sub.get("selectedUser")
+                if any(userless(st) for st in steps):
+                    self.problems.append(f"{name}: aviso/atribuição sem usuário no master — mantido como está")
+                    continue
             left = self.leftovers(steps)
             if left:
                 self.problems.append(f"{name}: passos com ids do modelo sem par no alvo {left} — não copiado")
@@ -626,6 +657,8 @@ def main() -> int:
     parser.add_argument("--full", action="store_true",
                         help="account NOT built from the snapshot: create every model workflow, folder "
                              "and custom field, make the funnel exactly the model's, draft target-only workflows")
+    parser.add_argument("--template", action="store_true",
+                        help="target is the snapshot master: the model's users are blanked instead of skipping the step")
     parser.add_argument("--client-wording-ok", action="store_true",
                         help="mirror even an account whose messages carry the client's own wording (config/*_wording.json)")
     args = parser.parse_args()
@@ -641,7 +674,7 @@ def main() -> int:
             print(f"== {d.name}: SMS/e-mails com texto do próprio cliente (config/{wording[side.loc]}) — o espelho "
                   f"voltaria o texto da {model.dir.name}. Pulado; --client-wording-ok e depois pp_wording.py --apply.")
             continue
-        Mirror(agency, model, side, args.apply, not args.no_publish, args.full).run()
+        Mirror(agency, model, side, args.apply, not args.no_publish, args.full, args.template).run()
     return 0
 
 

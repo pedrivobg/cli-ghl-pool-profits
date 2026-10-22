@@ -58,6 +58,12 @@ BOOKING_SENTENCES = [
      "just reply to this email or give us a call at " + PHONE + "."),
     (re.compile(r"book a free estimate today:" + SEP + BOOKING, re.I),
      "reply to this email or give us a call for a free estimate."),
+    # In Communication Stage (Nurture Email Day 2 / Day 3)
+    (re.compile(r"book your free estimate here:" + SEP + BOOKING, re.I),
+     "Just reply to this email to book your free estimate."),
+    (re.compile(r"book your free estimate today:" + SEP + BOOKING + SEP + r"or call us directly:", re.I),
+     "Reply to this email to book your free estimate, or call us directly:"),
+    # only at the end of an SMS: the one rule that is not applied across paragraphs
     (re.compile(r"\?\s*" + BOOKING + r"\s*$", re.I),
      "? Just reply here or call us at " + PHONE + "."),
 ]
@@ -113,7 +119,7 @@ class Fixer:
                     return rx.sub(rep, piece)
             return piece
 
-        for rx, rep in BOOKING_SENTENCES[:2]:
+        for rx, rep in BOOKING_SENTENCES[:-1]:
             value = rx.sub(rep, value)
         if is_html:
             def para(m: re.Match) -> str:
