@@ -1,23 +1,32 @@
-# TODO do Pedro — só o que está aberto (22/10/2026)
+# TODO do Pedro — só o que está aberto (23/10/2026)
 
 O que já foi feito está em `docs/execucao-2026-10-13.md`. Testes são nossos: nada aqui vai para a equipe ou
 para o cliente testar.
 
 ## Pool Profits (sub-contas da nossa agência)
 
-1. **Encaminhamento** (Settings → Phone Numbers → número → Edit → *Forward calls to*): Cleverblu **689-229-3738 →
-   +1 407-922-8947**.
-2. **Ligação de teste** nas contas novas (Rosebrook, Cleverblu), sem atender: SMS de chamada perdida no seu
-   celular + card em New Lead. Me avisa.
-3. **A2P** dos números das contas novas (Settings → Phone System → Trust Center): sem aprovação o SMS não sai.
-4. **Rosebrook**: comprar um número ("Website & GBP") + A2P; link de review do Google (Lynsey, ou conectar o Google
+Instruções do dia 24/10 para quem ajuda o Pedro (com as fichas de A2P; tem EIN, fica fora do git):
+`reports/Instrucoes 24-10 - TODO Pool Profits.pdf`. Encaminhamento da Cleverblu feito em 23/10 (conferido).
+
+1. **Ligação de teste** nas contas novas (Rosebrook, Cleverblu), sem atender: SMS de chamada perdida no seu
+   celular + card em New Lead. **Só depois do A2P aprovado** (a da Cleverblu toca o celular do dono).
+2. **A2P** (Settings → Phone System → Trust Center): sem aprovação o SMS não sai.
+   - Cleverblu: ninguém enviou; registrar em 24/10 com a ficha (site e política/termos do próprio site deles,
+     cleverblu.com/policy/…; os custom values `privacy_policy`/`terms_of_use` vazios foram preenchidos com essas
+     páginas em 23/10, o que conserta os links do form de consentimento).
+   - Poolheads: print do Trust Center (Brand/Campaign). Brand aprovada → registrar só a campanha; Brand pedindo
+     registro → não enviar (o Frank disse que enviou).
+   - Rosebrook e Blissful: faltam número e dados. EIN da Rosebrook no onboarding com 8 dígitos; Blissful sem
+     endereço; nenhum dos dois sites tem política de privacidade → site "New A2P Verification" num subdomínio deles
+     (precisa do DNS do cliente). Pedir ao Frank.
+3. **Rosebrook**: comprar um número ("Website & GBP") + A2P; link de review do Google (Lynsey, ou conectar o Google
    Business Profile em Settings → Integrations). O Review Request fica em draft até ter o link.
-5. **Poolheads: número já na nossa conta (22/10)**. O IVR "Business Hours Call Routing" (pasta 09 System) e o "After
+4. **Poolheads: número já na nossa conta (22/10)**. O IVR "Business Hours Call Routing" (pasta 09 System) e o "After
    Hours Message" estão no ar nas 3 linhas (936-314-9255, 936-243-1724 e 936-301-4150). O IVR toca o app do Felipe e
    o celular dele, e a caixa postal usa a gravação deles. Os outros 29 workflows estão em draft (alguém pausou hoje,
    como o Frank pediu).
-   - **Teste** (você): agora, fora do horário, cai na caixa postal com a gravação deles. Amanhã, entre 9 e 17, testar
-     uma ligação atendida e uma não atendida, mais um SMS fora do horário.
+   - **Teste**: feito pelas ligações do Frank em 22/10 (15:15 CT → IVR, caixa postal com a gravação deles; 17:17 CT →
+     mensagem de fora do horário). Os SMS dessas ligações saíram "failed": falta o A2P (item 2).
    - **Na tela**: Settings → Phone Numbers → 936-314-9255 → Call Recording ligado **sem** a mensagem (o IVR já fala).
      Felipe (e Jorge) no app LeadConnector com a conta nova; deskphone do Felipe apontado para a conta nova.
    - **E-mail do Jorge Arias**: crio o usuário dele e coloco no IVR.
@@ -36,25 +45,26 @@ para o cliente testar.
        numa pasta "Conta antiga", com "[Old]" nos nomes repetidos;
      - trago **todos os contatos** (tags, campos, DND; sem duplicar; tag "imported from old account");
      - trago as oportunidades, se quiserem.
-6. **Google Lead Form "Weekly Pool Service Done Right"**: os workflows já estão no ar (lead → contato, tags, card,
-   aviso à equipe, SMS de resposta). Falta ligar o form na tela em **6 contas**: Wrigley's, BluVantage, Precision Pools
-   (pedido da Val de 22/10), Reign, Damon's e Simple (de 19/10). A Pool Duck Wesley Chapel está em "Outras agências".
-   1. Na sub-conta: Settings → Integrations → Google Ads → Manage → lead forms → "Weekly Pool Service Done Right" →
-      **Map Fields** (nome, e-mail, telefone, CEP) → salvar → **Active** (botão Play).
-   2. Teste: no Google Ads, campanha → Lead form → Edit → abrir o form → **Send Data**. O lead de teste dispara o aviso
-      de lead novo para a equipe do cliente (se preferir, me avisa antes e eu desvio os avisos para você durante o teste).
-   3. Me avisa: eu confiro contato, tags, card e aviso em cada uma e apago o teste.
-7. **Blissful Waters (conta nova, 22/10)**: pronta no padrão (fuso, usuário Brian em avisos/tarefas/dono, link de
+5. **Google Lead Form "Weekly Pool Service Done Right"**: workflows no ar; form mapeado e ativo (23/10) em Wrigley's,
+   BluVantage e Precision, e já estava em Reign e Damon's (caminho atual: Settings → Integrations → card "Google Lead
+   Ads" → Manage → aba "Manage Google Ads" → ▶ Setup Form Mapping). Nenhum lead por lead form até 23/10 em nenhuma.
+   - **Simple**: "Lead ad forms not available": a conta de Google Ads ligada no GHL (258-800-5448) não tem o form →
+     perguntar à Val em que conta ele está.
+   - **Teste** (24/10): avisar antes → eu desvio os avisos → Send Data em cada conta (Google Ads → campanha → Lead form →
+     Edit → abrir o form → Send Data) → eu confiro contato, tags, card e aviso, apago o teste e volto os avisos.
+6. **Blissful Waters (conta nova, 22/10)**: pronta no padrão (fuso, usuário Brian em avisos/tarefas/dono, link de
    review, NPS; 0 erro). Falta:
    - comprar um número ("Website & GBP") + A2P (sem número, nenhum SMS sai: nem para o cliente nem o aviso para o
      Brian). Por enquanto o `a2p_verification_number` está com o telefone da empresa (210) 360-1611;
    - o Brian e o Jason fazerem o primeiro acesso ("Forgot password" em app.poolprofits.com) e instalarem o app;
    - conectar o Google Business Profile (as respostas automáticas a reviews dependem disso);
-8. **BluVantage: 3 forms das landing pages novas** (pedido da Val, 22/10). Prontos, com workflows no ar e testados
+7. **BluVantage: 3 forms das landing pages novas** (pedido da Val, 22/10). Prontos, com workflows no ar e testados
    pela API. Teste final: quando o Atif puser os forms nas páginas, mandar um envio de cada. Me avisa antes e eu
    desvio os avisos da equipe para você.
-9. **Forms de landing**: Southern (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com) e Sunwave. Me avisa.
-10. **SwimReady** (conta viva, sistema de março: 13 workflows, 6 publicados, funil de 10 etapas): a troca pelo snapshot
+8. **Form de landing da Southern** (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com): nenhum envio desde
+   16/10. Teste junto com o do item 5 (avisos ao Brett desviados): enviar e conferir que vai para a página de obrigado
+   (`/ty-page-2934-3692`). A Sunwave está confirmada pelo lead real de 17/10 (tags, card, follow-ups).
+9. **SwimReady** (conta viva, sistema de março: 13 workflows, 6 publicados, funil de 10 etapas): a troca pelo snapshot
     novo é uma migração, como na Pool Keepers (o nosso entra em draft com o vigia, depois a virada combinada).
     Perguntado ao Ed junto com o PDF: quando o Jeremy quer virar. Jeremy (23/10) aprovou a abordagem e vai mandar
     ajustes de texto e tom por código: os M/A do PDF são os do master de 22/10 (`reports/snapshot-guide/
