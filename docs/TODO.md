@@ -26,7 +26,15 @@ Instruções do dia 24/10 para quem ajuda o Pedro (com as fichas de A2P; tem EIN
    o celular dele, e a caixa postal usa a gravação deles. Os outros 29 workflows estão em draft (alguém pausou hoje,
    como o Frank pediu).
    - **Teste**: feito pelas ligações do Frank em 22/10 (15:15 CT → IVR, caixa postal com a gravação deles; 17:17 CT →
-     mensagem de fora do horário). Os SMS dessas ligações saíram "failed": falta o A2P (item 2).
+     mensagem de fora do horário). Os SMS dessas ligações saíram "failed" (sem A2P).
+   - **A2P aprovado (Frank, 23/10; SMS "delivered" desde 15:45 UTC)**. Publicados em 23/10 só os de captura: Contact
+     Created → add owner, Website & GBP Call - Tag, Answered Incoming (com IVR toda ligação é "completed": card + tarefa),
+     Missed New Lead (o texto deles), Missed Incoming, Website Form Fill. **Teste** (você, depois das 17h CT ou no fim de
+     semana, quando o IVR não toca o Felipe): ligar para 936-314-9255 e deixar recado → me avisa; eu confiro tag, SMS no
+     seu celular, card, e apago o contato antes da tarefa de 1 h chegar ao Felipe. Hoje 3 ligações caíram na caixa postal
+     antes disso, sem texto: (713) 299-3906, Jaime Dominguez, Patricia Baker (o Felipe retornou?).
+   - O resto (No Response, Quote, No-Show, Lost, Won, Review…) só depois de trazer os clientes da conta antiga com a tag
+     `existing customer` (senão cliente que liga cai no follow-up de lead) e do OK do Frank.
    - **Na tela**: Settings → Phone Numbers → 936-314-9255 → Call Recording ligado **sem** a mensagem (o IVR já fala).
      Felipe (e Jorge) no app LeadConnector com a conta nova; deskphone do Felipe apontado para a conta nova.
    - **E-mail do Jorge Arias**: crio o usuário dele e coloco no IVR.

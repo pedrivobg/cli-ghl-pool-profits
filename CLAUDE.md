@@ -141,6 +141,8 @@
   conta não tem: a espera nunca via a nota (todo mundo recebia o link do Google, a equipe nunca era avisada). Corrigido
   22/10 com `pp_review_fix.py` (id → NPS Score da conta; também link de review de outro lugar → place da conta).
   `pp_audit` agora acusa condição em campo inexistente.
+- If/else por gatilho copiado de outro workflow guarda os ids dos gatilhos da origem → nenhum ramo bate (18 workflows,
+  corrigido 23/10 com `pp_trigger_ref_fix.py`). O GET do workflow não traz os gatilhos: `Agency.triggers(loc, wid)`.
 - If/else `contact_detail` com `has_value`: campo vazio cai no ramo else (testado 22/10). O "First Request?" do Review
   Request do V9 usa `has_value` no NPS Score → cliente sem nota sai do workflow sem pedido de nota/review (todas as contas).
 - Onboarding de cliente: survey `efErcbOr4GAKXzZ28J4S` na sub-conta "Pool Profits" (`GET services

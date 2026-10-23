@@ -504,11 +504,13 @@ class Mirror:
                 self.backup("trigger", t_tr[i]["id"], t_tr[i])
                 self.agency.call("PUT", BACKEND, f"/workflow/{self.t.loc}/trigger/{t_tr[i]['id']}",
                                  body={**body, "id": t_tr[i]["id"]})
+                self.ids[mt["id"]] = t_tr[i]["id"]
             else:
                 res = self.agency.call("POST", BACKEND, f"/workflow/{self.t.loc}/trigger", body=body)
                 if res.get("id"):
                     self.agency.call("PUT", BACKEND, f"/workflow/{self.t.loc}/trigger/{res['id']}",
                                      body={**body, "id": res["id"]})
+                    self.ids[mt["id"]] = res["id"]
         for extra in t_tr[len(m_tr):]:
             if self.apply:
                 self.backup("trigger", extra["id"], extra)
@@ -584,6 +586,12 @@ class Mirror:
                 self.say("      gatilho de forms: mantido — rodar pp_forms.py depois")
             else:
                 self.triggers(mw, tw, model_wf, steps[0]["id"] if steps else None)
+                # if/else "which trigger fired?" names the MODEL's trigger ids: point them at the target's
+                # (without this Won Stage / Review Request never branch: pp_trigger_ref_fix.py, 23/10)
+                fixed = self.remap(steps)
+                if self.apply and fixed != steps:
+                    self.put_workflow(tw["id"], name, status, fixed)
+                    self.say("      if/else por gatilho → gatilhos da conta")
 
     # ── 6. status ──────────────────────────────────────────────────────────
 

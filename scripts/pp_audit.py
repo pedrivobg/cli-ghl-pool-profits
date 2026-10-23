@@ -13,6 +13,7 @@ Checks (severity in brackets):
   [ALTA]  internal notification / task / assign step with no user selected
   [ALTA]  trigger or step pointing at a form, stage, calendar or workflow that does not exist
   [ALTA]  if/else or wait condition on a contact field the sub-account does not have (never true)
+  [ALTA]  if/else "which trigger fired?" naming a trigger of another workflow (no branch ever matches)
   [ALTA]  SMS/email step with an empty body
   [MÉDIA] two published workflows with the same trigger (double sends, e.g. the Landing Page form)
   [MÉDIA] booking/calendar link sent to leads (the meeting dropped it from the baseline)
@@ -114,6 +115,18 @@ def field_conditions(node):
     elif isinstance(node, list):
         for v in node:
             yield from field_conditions(v)
+
+
+def trigger_conditions(node):
+    """Trigger ids an if/else compares with the trigger that fired."""
+    if isinstance(node, dict):
+        if node.get("conditionType") == "trigger" and node.get("conditionValue"):
+            yield node["conditionValue"]
+        for v in node.values():
+            yield from trigger_conditions(v)
+    elif isinstance(node, list):
+        for v in node:
+            yield from trigger_conditions(v)
 
 
 def trigger_refs(trig: dict) -> tuple[list[str], list[str]]:
@@ -275,6 +288,7 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
                 own = [trig.get("id", "")] if ttype == "inbound_webhook" else []  # each webhook has its own URL
                 trigger_keys[f"{ttype} | " + ", ".join(named + trig_tags + extra + own)].append(meta["name"])
 
+        own_triggers = {t.get("id") for t in wf.get("triggers") or [] if not t.get("deleted")}
         for step in steps_of(wf):
             stype = step.get("type", "")
             sname = step.get("name") or stype
@@ -320,6 +334,11 @@ def audit_location(loc_dir: Path, include_drafts: bool, all_dirs: list[Path]) ->
                 for _, ref in id_leaves(attrs):
                     if ref in wf_by_id and wf_by_id[ref]["status"] != "published" and stype == "add_to_workflow":
                         add("MÉDIA", wname, sname, f"adiciona ao workflow '{wf_by_id[ref]['name']}' que está em draft")
+
+            for ref in trigger_conditions(attrs):
+                if own_triggers and ref not in own_triggers:  # copied from another workflow (pp_trigger_ref_fix.py)
+                    add("ALTA", wname, sname, f"if/else por gatilho aponta para gatilho de outro workflow ({ref}) — "
+                                              "nenhum ramo bate")
 
             for sub in field_conditions(attrs):
                 if fields and re.fullmatch(r"[A-Za-z0-9]{20}", sub) and sub not in fields:  # e.g. the snapshot source's NPS Score (pp_review_fix.py)
