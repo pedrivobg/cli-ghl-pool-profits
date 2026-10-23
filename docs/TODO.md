@@ -69,6 +69,15 @@ Instruções do dia 24/10 para quem ajuda o Pedro (com as fichas de A2P; tem EIN
 7. **BluVantage: 3 forms das landing pages novas** (pedido da Val, 22/10). Prontos, com workflows no ar e testados
    pela API. Teste final: quando o Atif puser os forms nas páginas, mandar um envio de cada. Me avisa antes e eu
    desvio os avisos da equipe para você.
+7b. **Pool Shack: 2 landing pages de Google Ads** (brief da Val/Atif, 23/10). Forms "GOOGLE ADS – WEEKLY"
+   (`mlRZlBRFVFIJjiTYiWKX`) e "GOOGLE ADS – REPAIRS" (`Hb5KiQHQZkGFmSgzJbIk`) + "Google Ads LP - Weekly/Repairs" publicados
+   e testados pela API (`scripts/ps_ads_forms.py`). Falta:
+   - Atif embutir os forms e mandar as URLs (eu ponho a URL no campo Landing Page) e as páginas de obrigado (eu ligo o
+     redirecionamento, para o Val pôr a conversão lá);
+   - Google Ads não está conectado no GHL da Pool Shack (Settings → Integrations → Google): sem isso o passo de conversão
+     das automações não reporta nada (Val);
+   - ligações: decidir números de rastreamento (1 por página, encaminhando para o Rob) — você decide a compra;
+   - envio real de cada form quando as páginas subirem: me avisa antes e eu desvio os avisos do Rob.
 8. **Form de landing da Southern** (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com): nenhum envio desde
    16/10. Teste junto com o do item 5 (avisos ao Brett desviados): enviar e conferir que vai para a página de obrigado
    (`/ty-page-2934-3692`). A Sunwave está confirmada pelo lead real de 17/10 (tags, card, follow-ups).
