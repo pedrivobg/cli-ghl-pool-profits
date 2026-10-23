@@ -72,6 +72,9 @@
 - Calendário: link `…/widget/booking/<id>?full_name=&email=&phone=` abre o formulário já preenchido (testado).
   Calendário sem `teamMembers` não tem horário nenhum ("No users found in the calendar"): `PUT services
   /calendars/{id} {teamMembers}` (o PUT mexe em `slotInterval` — mandar o valor antigo junto).
+- Disponibilidade do calendário (v2) não fica no calendário (`openHours` vazio): `GET services /calendars/schedules/search
+  ?locationId[&userId|&isCustom=true]` (`calendarIds`, `rules` por dia, `timezone`); editar com `PUT /calendars/schedules/{id}
+  {rules, timezone}`; conferir com `GET /calendars/{id}/free-slots?startDate&endDate&timezone` (NorTex, 23/10).
 - Merge fields em link de SMS: `{{contact.phone}}` sai "(480) 555-1234" (espaço quebra o link);
   usar `{{contact.phone_raw}}`. Filtros liquid (`| url_encode`) fazem o GHL não enviar o SMS.
 - Link de review do Google: `writereview?placeid=<location.googlePlacesId>` da própria conta.
