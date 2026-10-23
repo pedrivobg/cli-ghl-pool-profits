@@ -56,14 +56,18 @@ para o cliente testar.
 9. **Forms de landing**: Southern (GOOGLE ADS - FORM em service.southernpoolandoutdoors.com) e Sunwave. Me avisa.
 10. **SwimReady** (conta viva, sistema de março: 13 workflows, 6 publicados, funil de 10 etapas): a troca pelo snapshot
     novo é uma migração, como na Pool Keepers (o nosso entra em draft com o vigia, depois a virada combinada).
-    Perguntado ao Ed junto com o PDF: quando o Jeremy quer virar.
+    Perguntado ao Ed junto com o PDF: quando o Jeremy quer virar. Jeremy (23/10) aprovou a abordagem e vai mandar
+    ajustes de texto e tom por código: os M/A do PDF são os do master de 22/10 (`reports/snapshot-guide/
+    swimready-pool-service.html` guarda essa numeração; o master mudando, os códigos de um PDF novo mudam). Os ajustes
+    entram como `config/swimready_wording.json` + `pp_wording.py` na migração.
 
 ### Esperando resposta (eu aplico quando chegar)
 
 - **Pool Shack** (Rob): o Skimmer já manda boas-vindas/pedido de review ao cliente semanal? O horário comercial é 9–17?
 - **Stay Fresh IVR** (draft): Ed escolhe o nome da opção 2; Frank/Mike: sem tecla → Mike?, Kris sem atender → Mike?,
   quais linhas, fora do horário; depois as gravações em MP3.
-- **Stay Fresh inativos** (arquivos no scratchpad, fora do git): tag do Ed (**não** "reactivation") + lista confirmada
+- **Stay Fresh inativos** (arquivos no scratchpad, fora do git; Frank pediu a confirmação ao Mike no Basecamp em 23/10
+  e repassa): tag do Ed (**não** "reactivation") + lista confirmada
   pelo Mike (Jen Knight está como cliente ativa). Depois eu importo.
 - **Tags universais**: Frank/Ed aprovam os nomes → piloto na Pool Shack → snapshot + script.
 - **Ekahi** (PDF de revisão das automações, 22/10, Frank → Erik no Basecamp): Erik aprova/pede mudanças por código e

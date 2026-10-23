@@ -1,0 +1,474 @@
+{
+ "_note": "Códigos A/M/D do PDF 'Pool Profits Automation Review - Ekahi Solutions' (conta como estava em 22/10). Pedido do Erik por código → workflow/passo aqui.",
+ "automations": {
+  "A1": "Incoming Call To Pipeline",
+  "A2": "AdWords Form - New Lead",
+  "A3": "New Lead - Initial SMS Follow-up",
+  "A4": "Add Owner user",
+  "A5": "No Response Follow-up",
+  "A6": "In Communication Stage",
+  "A7": "Appointment Confirmation/Reminders",
+  "A8": "No-Show Follow-up",
+  "A9": "Quote Sent Follow-up",
+  "A10": "Won Stage",
+  "A11": "Post-Appointment Follow-up",
+  "A12": "Recurring Customer Stage",
+  "A13": "Adword Call - Conversion",
+  "A14": "Review Request",
+  "A15": "Review Response - Positive",
+  "A16": "Review Response - Negative",
+  "A17": "Monthly Service Reminder",
+  "A18": "Filter Clean Reminder",
+  "A19": "Upsell Opportunity",
+  "A20": "Reactivation Campaign - SMS",
+  "A21": "Reactivation Campaign - Email",
+  "A22": "SMS Customer Reply to pipeline",
+  "A23": "Lost Stage",
+  "A24": "Spam Contact",
+  "A25": "AdWords Call In - New Lead",
+  "A26": "Website Form Fill To Pipeline",
+  "A27": "Sequential Call Routing"
+ },
+ "decisions": {
+  "D1": "Calls from current customers are treated as new leads",
+  "D2": "Missed calls get two texts",
+  "D3": "Landing-page leads get two texts within a minute",
+  "D4": "The booking link opens an empty calendar",
+  "D5": "Current customers can get lead follow-ups",
+  "D6": "The first-visit text goes out one hour after Won",
+  "D7": "The service reminder is sent once",
+  "D8": "Win-back campaigns keep going after a reply"
+ },
+ "messages": [
+  {
+   "code": "M1",
+   "automation": "A1",
+   "workflow": "Incoming Call To Pipeline",
+   "step": "Add Task",
+   "to": "Team",
+   "channel": "Task",
+   "subject": "Review Inbound Call - {{contact.name}}",
+   "first": "{{contact.name}} called in {{contact.phone}}. Listen to the call recording and…"
+  },
+  {
+   "code": "M2",
+   "automation": "A2",
+   "workflow": "AdWords Form - New Lead",
+   "step": "SMS Notification",
+   "to": "Team",
+   "channel": "Text",
+   "subject": "",
+   "first": "🚨 NEW LEAD FROM GOOGLE ADWORDS 🚨  Name: {{contact.name}}  Phone:…"
+  },
+  {
+   "code": "M3",
+   "automation": "A2",
+   "workflow": "AdWords Form - New Lead",
+   "step": "SMS",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Thank you for reaching out to {{location.name}}. We received your request for…"
+  },
+  {
+   "code": "M4",
+   "automation": "A3",
+   "workflow": "New Lead - Initial SMS Follow-up",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Aloha {{contact.first_name}}! This is {{custom_values.owner_first_name}} from…"
+  },
+  {
+   "code": "M5",
+   "automation": "A3",
+   "workflow": "New Lead - Initial SMS Follow-up",
+   "step": "SMS 2",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Just wanted to make sure you got my last message, {{contact.first_name}}! We'd…"
+  },
+  {
+   "code": "M6",
+   "automation": "A5",
+   "workflow": "No Response Follow-up",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hey {{contact.first_name}}, still thinking about getting your pool cleaned?…"
+  },
+  {
+   "code": "M7",
+   "automation": "A5",
+   "workflow": "No Response Follow-up",
+   "step": "SMS 2",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Just checking in from…"
+  },
+  {
+   "code": "M8",
+   "automation": "A5",
+   "workflow": "No Response Follow-up",
+   "step": "SMS 3",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Last follow-up from us, {{contact.first_name}}! If you ever need pool cleaning…"
+  },
+  {
+   "code": "M9",
+   "automation": "A6",
+   "workflow": "In Communication Stage",
+   "step": "Nurture Email Day 1",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "Quick questions about your pool, {{contact.first_name}}",
+   "first": "{{contact.first_name}}, Thank you for reaching out to…"
+  },
+  {
+   "code": "M10",
+   "automation": "A6",
+   "workflow": "In Communication Stage",
+   "step": "Nurture Email Day 2",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "What makes {{custom_values.friendly_business_name}} different",
+   "first": "{{contact.first_name}}, Not all pool services are created equal. At…"
+  },
+  {
+   "code": "M11",
+   "automation": "A6",
+   "workflow": "In Communication Stage",
+   "step": "Nurture Email Day 3",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "Last chance: your free pool estimate is waiting",
+   "first": "{{contact.first_name}}, Just checking in one last time. We have availability in…"
+  },
+  {
+   "code": "M12",
+   "automation": "A7",
+   "workflow": "Appointment Confirmation/Reminders",
+   "step": "Internal Notification",
+   "to": "Team",
+   "channel": "Text",
+   "subject": "",
+   "first": "New appointment booked! {{contact.name}} scheduled for…"
+  },
+  {
+   "code": "M13",
+   "automation": "A7",
+   "workflow": "Appointment Confirmation/Reminders",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Your pool service estimate with…"
+  },
+  {
+   "code": "M14",
+   "automation": "A7",
+   "workflow": "Appointment Confirmation/Reminders",
+   "step": "SMS 2",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Just a reminder, your pool service estimate with…"
+  },
+  {
+   "code": "M15",
+   "automation": "A7",
+   "workflow": "Appointment Confirmation/Reminders",
+   "step": "SMS 3",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Quick heads up - we'll be there in about an hour for…"
+  },
+  {
+   "code": "M16",
+   "automation": "A8",
+   "workflow": "No-Show Follow-up",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}, we missed you today! We had a pool service…"
+  },
+  {
+   "code": "M17",
+   "automation": "A8",
+   "workflow": "No-Show Follow-up",
+   "step": "SMS 2",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hey {{contact.first_name}}, just wanted to follow up on your missed…"
+  },
+  {
+   "code": "M18",
+   "automation": "A9",
+   "workflow": "Quote Sent Follow-up",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Just following up on the quote we sent you from…"
+  },
+  {
+   "code": "M19",
+   "automation": "A9",
+   "workflow": "Quote Sent Follow-up",
+   "step": "SMS 2",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}, still deciding? Your quote from…"
+  },
+  {
+   "code": "M20",
+   "automation": "A10",
+   "workflow": "Won Stage",
+   "step": "Welcome Email",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "Welcome to {{custom_values.friendly_business_name}}!",
+   "first": "{{contact.first_name}}, Welcome aboard! We're thrilled to have you as part of…"
+  },
+  {
+   "code": "M21",
+   "automation": "A10",
+   "workflow": "Won Stage",
+   "step": "SMS",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Welcome to {{custom_values.friendly_business_name}}!…"
+  },
+  {
+   "code": "M22",
+   "automation": "A11",
+   "workflow": "Post-Appointment Follow-up",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Thank you for choosing…"
+  },
+  {
+   "code": "M23",
+   "automation": "A14",
+   "workflow": "Review Request",
+   "step": "SMS - Request NPS Feedback",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}, thanks again for choosing…"
+  },
+  {
+   "code": "M24",
+   "automation": "A14",
+   "workflow": "Review Request",
+   "step": "Email - Send Review Request",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "Google review request",
+   "first": "Review request with your Google link"
+  },
+  {
+   "code": "M25",
+   "automation": "A14",
+   "workflow": "Review Request",
+   "step": "SMS - Send Review Request",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "Google review request",
+   "first": "Review request with your Google link"
+  },
+  {
+   "code": "M26",
+   "automation": "A14",
+   "workflow": "Review Request",
+   "step": "Notify Team - Negative Feedback",
+   "to": "Team",
+   "channel": "Text",
+   "subject": "",
+   "first": "⚠️ Negative customer feedback received.  Customer: {{contact.name}}  Phone:…"
+  },
+  {
+   "code": "M27",
+   "automation": "A15",
+   "workflow": "Review Response - Positive",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Thank you so much for your kind review! 🌟 We truly…"
+  },
+  {
+   "code": "M28",
+   "automation": "A16",
+   "workflow": "Review Response - Negative",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}, we're sorry to hear about your experience with…"
+  },
+  {
+   "code": "M29",
+   "automation": "A16",
+   "workflow": "Review Response - Negative",
+   "step": "Add task",
+   "to": "Team",
+   "channel": "Task",
+   "subject": "URGENT: Call {{contact.first_name}} - Negative Review",
+   "first": "{{contact.name}} {{contact.phone}} left a review of 3 stars or below. Call…"
+  },
+  {
+   "code": "M30",
+   "automation": "A17",
+   "workflow": "Monthly Service Reminder",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! Just a reminder that your monthly pool service with…"
+  },
+  {
+   "code": "M31",
+   "automation": "A18",
+   "workflow": "Filter Clean Reminder",
+   "step": "Email - Filter Clean Reminder",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "Your filter cleaning is coming up soon",
+   "first": "{{contact.first_name}}, It's been about 75 days since you started your service…"
+  },
+  {
+   "code": "M32",
+   "automation": "A19",
+   "workflow": "Upsell Opportunity",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! During our last visit we noticed something that…"
+  },
+  {
+   "code": "M33",
+   "automation": "A19",
+   "workflow": "Upsell Opportunity",
+   "step": "SMS 2",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hey {{contact.first_name}}, just following up! We have a solution that could…"
+  },
+  {
+   "code": "M34",
+   "automation": "A20",
+   "workflow": "Reactivation Campaign - SMS",
+   "step": "SMS 1",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hi {{contact.first_name}}! It's been a while since we've had the pleasure of…"
+  },
+  {
+   "code": "M35",
+   "automation": "A20",
+   "workflow": "Reactivation Campaign - SMS",
+   "step": "SMS 2",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Hey {{contact.first_name}}, just checking in! We're running some great deals on…"
+  },
+  {
+   "code": "M36",
+   "automation": "A20",
+   "workflow": "Reactivation Campaign - SMS",
+   "step": "SMS 3",
+   "to": "Customer",
+   "channel": "Text",
+   "subject": "",
+   "first": "Last message from us, {{contact.first_name}}! If you ever need pool service…"
+  },
+  {
+   "code": "M37",
+   "automation": "A21",
+   "workflow": "Reactivation Campaign - Email",
+   "step": "Email 1",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "We miss you, {{contact.first_name}}! Here's a free inspection",
+   "first": "{{contact.first_name}}, It's been a while since we've had the pleasure of…"
+  },
+  {
+   "code": "M38",
+   "automation": "A21",
+   "workflow": "Reactivation Campaign - Email",
+   "step": "Email 2",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "How's your pool been, {{contact.first_name}}?",
+   "first": "{{contact.first_name}}, Just checking in to see how your pool has been. If your…"
+  },
+  {
+   "code": "M39",
+   "automation": "A21",
+   "workflow": "Reactivation Campaign - Email",
+   "step": "Email 3",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "One last note from {{custom_values.friendly_business_name}}",
+   "first": "{{contact.first_name}}, This will be our last follow-up. We don't want to…"
+  },
+  {
+   "code": "M40",
+   "automation": "A22",
+   "workflow": "SMS Customer Reply to pipeline",
+   "step": "SMS Notification",
+   "to": "Team",
+   "channel": "Text",
+   "subject": "",
+   "first": "{{contact.name}} - {{contact.phone}} Replied:  {{message.body}}…"
+  },
+  {
+   "code": "M41",
+   "automation": "A22",
+   "workflow": "SMS Customer Reply to pipeline",
+   "step": "App Notification",
+   "to": "Team",
+   "channel": "App",
+   "subject": "{{contact.first_name}} is Waiting For Your Response",
+   "first": "{{contact.name}} - {{contact.phone}} Replied:  {{message.body}}…"
+  },
+  {
+   "code": "M42",
+   "automation": "A23",
+   "workflow": "Lost Stage",
+   "step": "Email - Lost Customer Feedback",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "Mind sharing some quick feedback, {{contact.first_name}}?",
+   "first": "{{contact.first_name}}, I know you went a different direction with your pool…"
+  },
+  {
+   "code": "M43",
+   "automation": "A23",
+   "workflow": "Lost Stage",
+   "step": "Email - 90 Day Check In",
+   "to": "Customer",
+   "channel": "Email",
+   "subject": "How's your pool service going, {{contact.first_name}}?",
+   "first": "{{contact.first_name}}, You spoke to my company a while back and were…"
+  }
+ ]
+}
