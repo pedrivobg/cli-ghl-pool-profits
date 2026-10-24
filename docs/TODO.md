@@ -69,6 +69,15 @@ Instruções do dia 24/10 para quem ajuda o Pedro (com as fichas de A2P; tem EIN
 7. **BluVantage: 3 forms das landing pages novas** (pedido da Val, 22/10). Prontos, com workflows no ar e testados
    pela API. Teste final: quando o Atif puser os forms nas páginas, mandar um envio de cada. Me avisa antes e eu
    desvio os avisos da equipe para você.
+6b. **WP Pools Ponds and spas (conta nova, 24/10; "WP" = Wolbers-Possehn, Ionia MI)**: pronta no padrão (0 ALTA, 0 ERRO).
+   Falta:
+   - telefone da Tiffany no usuário (Settings → My Staff → Tiffany → (616) 522-2477): a API recusa editar usuário, e
+     sem telefone os avisos por SMS não chegam a ela;
+   - comprar um número ("Website & GBP") + A2P; até lá `a2p_verification_number` = telefone da empresa e nenhum SMS sai;
+   - link do Google: não achei a ficha (conectar o Google Business Profile ou pedir o link); até lá o Review Request
+     fica em draft;
+   - o Ryan (dono, assina as mensagens) não é usuário: criar se quiserem (como o Jason na Blissful);
+   - primeiro acesso da Tiffany ("Forgot password" em app.poolprofits.com) + app.
 7b. **Pool Shack: 2 landing pages de Google Ads** (brief da Val/Atif, 23/10). Forms "GOOGLE ADS – WEEKLY"
    (`mlRZlBRFVFIJjiTYiWKX`) e "GOOGLE ADS – REPAIRS" (`Hb5KiQHQZkGFmSgzJbIk`) + "Google Ads LP - Weekly/Repairs" publicados
    e testados pela API (`scripts/ps_ads_forms.py`). Falta:
