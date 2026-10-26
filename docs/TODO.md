@@ -48,9 +48,11 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    e me avisar; eu confiro tags/card e apago.
 7. **Southern: SMS do Google Ads** no ar (26/10). Teste final: mandar um SMS do seu celular para (972) 632-3259 →
    me avisa antes (o aviso vai para o Brett) e eu confiro tag/card/tarefa e apago.
-8. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
+8. **NorTex: ligação de teste** (27/10): ligar para (469) 238-2660 e desligar durante a mensagem do IVR (não toca
+   ninguém) → o SMS de chamada perdida chega no seu celular; me avisa e eu confiro a tag/card e apago antes da tarefa de 1 h.
+9. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
    A troca pelo snapshot novo é uma migração; Ed pergunta quando o Jeremy quer virar.
-9. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
+10. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
    Pools ainda nasceu da versão antiga.
 
 ### Esperando resposta (eu aplico quando chegar)
