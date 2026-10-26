@@ -1,4 +1,4 @@
-# TODO do Pedro — só o que está aberto (24/10/2026)
+# TODO do Pedro — só o que está aberto (26/10/2026)
 
 O que já foi feito está em `docs/execucao-2026-10-13.md`. Testes são nossos: nada aqui vai para a equipe ou
 para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes** e eu desvio os avisos.
@@ -46,9 +46,11 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    antes). Números por página no ar (26/10): Weekly 470-470-8874, Repairs 470-450-6322, Winter 470-450-4427, no IVR e
    com tag/card/conversão por serviço. **Teste**: ligar fora do horário (o IVR toca a equipe no horário) para os 2 novos
    e me avisar; eu confiro tags/card e apago.
-7. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
+7. **Southern: SMS do Google Ads** no ar (26/10). Teste final: mandar um SMS do seu celular para (972) 632-3259 →
+   me avisa antes (o aviso vai para o Brett) e eu confiro tag/card/tarefa e apago.
+8. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
    A troca pelo snapshot novo é uma migração; Ed pergunta quando o Jeremy quer virar.
-8. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
+9. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
    Pools ainda nasceu da versão antiga.
 
 ### Esperando resposta (eu aplico quando chegar)
@@ -66,9 +68,8 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
 
 ### Pool Duck
 
-- **Franchising — feira de Tampa**: aviso de opt-out de 4,11% (4 STOP de 72 leads). Proposta ao Ed/Lee: pôr "Reply STOP
-  to opt out." nos 3 SMS que faltam (dom 25, seg 26, qua 28/10, 9:30 ET) e cortar o SMS de segunda. Sem resposta até
-  sábado à noite, ponho pelo menos a frase de opt-out.
+- **Franchising — feira de Tampa**: 7 STOP. O SMS de qua 28/10 (último) já tem "Reply STOP to opt out."; Ed decide se
+  corta. Albert Kollar respondeu "I'm ready" → Lee liga.
 - **Google Lead Form da Wesley Chapel**: mesmo caso do item 4 (precisa de acesso ao Google Ads).
 - **LWR**: o lembrete aos 32 promotores sai segunda (26/10) às 10:00 ET. Eu confiro às 12:30 e te mando os números.
 
