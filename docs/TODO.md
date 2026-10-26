@@ -62,6 +62,11 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
   "reactivation"); Jen Knight está como cliente ativa. Depois eu importo.
 - **Tags universais**: Frank/Ed aprovam os nomes → piloto na Pool Shack → snapshot + script.
 - **Ekahi**: Erik responde ao PDF de revisão por código e D1–D8 (mapa em `config/guide_codes/ekahi-2026-10-22.json`).
+- **"Ryan foy"** (`i5Gm48ZJ7YuASL6cyvcC`, 24/10): segunda sub-conta da WP Pools (mesmo EIN, LLC e endereço; o Ryan
+  respondeu o onboarding de novo). Vazia (sem usuário, número, contato; fuso de São Paulo). Ed confirma → apago e passo
+  para a WP o que a 2ª resposta traz a mais (usuários Ryan/Aubrey, descrição).
+- **YardSpring: 3 landing pages** (Val, 27/10): preciso da descrição da tarefa (serviços, ofertas, CEPs, requisitos do
+  GHL). O Google Ads não está conectado no GHL da YardSpring (conversões dependem disso).
 - **NorTex**: Fareed prefere 24 h em vez de 29 h de antecedência mínima? (troco em 1 minuto).
 
 ## Outras agências do GHL
