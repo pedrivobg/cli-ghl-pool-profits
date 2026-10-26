@@ -66,7 +66,8 @@
 - Form → redirecionar: `formAction.actionType "1"` (`"2"` = mensagem) com **`redirectUrl` e `redirect_url`** (o widget
   lê `redirect_url`; só `redirectUrl` = redireciona para URL vazia = recarrega a página). O GET do form devolve só
   `redirectUrl`: GET → POST apaga o `redirect_url` (quebrou BluVantage 15/10 e Southern 16/10). Gravar sempre com
-  `_common.keep_redirect(fd)`. `versionHistory` vem do mais novo para o mais antigo (usar o maior `updatedAt`). A URL aceita
+  `_common.keep_redirect(fd)`. Form **criado** (`POST /forms/`) com os dois campos também perde o `redirect_url`: regravar
+  (`POST /forms/{id}`) logo depois (YardSpring 27/10). `versionHistory` vem do mais novo para o mais antigo (usar o maior `updatedAt`). A URL aceita
   `{{contact.name}}`, `{{contact.email}}`, `{{contact.phone}}` (valores digitados) e muda a página de cima (iframe ok).
   Telefone com seletor de país (EUA por padrão; sem ele número sem código pode ir vazio): `fields[phone].enableCountryPicker: true`.
 - Calendário: link `…/widget/booking/<id>?full_name=&email=&phone=` abre o formulário já preenchido (testado).

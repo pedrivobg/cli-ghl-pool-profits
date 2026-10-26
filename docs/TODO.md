@@ -50,9 +50,13 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    me avisa antes (o aviso vai para o Brett) e eu confiro tag/card/tarefa e apago.
 8. **NorTex: ligação de teste** (27/10): ligar para (469) 238-2660 e desligar durante a mensagem do IVR (não toca
    ninguém) → o SMS de chamada perdida chega no seu celular; me avisa e eu confiro a tag/card e apago antes da tarefa de 1 h.
-9. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
+9. **YardSpring: 3 landing pages** (27/10): forms, tags e workflows no ar e testados (`scripts/ys_ads_forms.py`).
+   Falta: (a) as 3 páginas de obrigado no WordPress (yardspringpools.com/thank-you-…): ou o Atif cria com o texto que
+   mandei, ou me dão um Application Password do WP; (b) Google Ads conectado no GHL da YardSpring (Val); (c) envio real
+   de cada form quando as páginas subirem (me avisa antes: o aviso vai para o Joe).
+10. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
    A troca pelo snapshot novo é uma migração; Ed pergunta quando o Jeremy quer virar.
-10. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
+11. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
    Pools ainda nasceu da versão antiga.
 
 ### Esperando resposta (eu aplico quando chegar)
@@ -67,8 +71,6 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
 - **"Ryan foy"** (`i5Gm48ZJ7YuASL6cyvcC`, 24/10): segunda sub-conta da WP Pools (mesmo EIN, LLC e endereço; o Ryan
   respondeu o onboarding de novo). Vazia (sem usuário, número, contato; fuso de São Paulo). Ed confirma → apago e passo
   para a WP o que a 2ª resposta traz a mais (usuários Ryan/Aubrey, descrição).
-- **YardSpring: 3 landing pages** (Val, 27/10): preciso da descrição da tarefa (serviços, ofertas, CEPs, requisitos do
-  GHL). O Google Ads não está conectado no GHL da YardSpring (conversões dependem disso).
 - **NorTex**: Fareed prefere 24 h em vez de 29 h de antecedência mínima? (troco em 1 minuto).
 
 ## Outras agências do GHL
