@@ -108,7 +108,7 @@ def build(greeting: str, options: list[tuple]) -> list[dict]:
                            "attributes": {"tags": [tag]}})
         branch.append({"id": nid(), "name": f"Ring {who}", "type": "ivr_connect_call", "stepIndex": connect_index,
                        "attributes": {
-                           "timeout": 20, "timeLimit": 3600, "userId": "", "users": [], "detectVoicemail": True,
+                           "timeout": 20, "timeLimit": 3600, "userId": "", "users": [], "detectVoicemail": False,
                            "isSayPlayOn": False, "record": "record-from-answer",
                            "customNumbers": [{"country": "US", "phone": forward_to, "displayValue": spoken(forward_to),
                                               "isValid": True}],

@@ -42,8 +42,10 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    REPAIRS" (`Hb5KiQHQZkGFmSgzJbIk`) + "Google Ads LP - Weekly/Repairs" no ar e testados (`scripts/ps_ads_forms.py`). Falta:
    URLs e páginas de obrigado do Atif (eu ponho a URL e ligo o redirecionamento); Google Ads conectado no GHL da Pool
    Shack (Val); números de rastreamento de ligação (decisão sua); envio real de cada form (me avisa antes).
-6. **BluVantage: 3 forms das landing pages novas**: prontos e testados. Envio real quando o Atif puser nas páginas
-   (me avisa antes).
+6. **BluVantage: 3 landing pages**: forms prontos e testados (envio real quando o Atif puser nas páginas; me avisa
+   antes). Números por página no ar (26/10): Weekly 470-470-8874, Repairs 470-450-6322, Winter 470-450-4427, no IVR e
+   com tag/card/conversão por serviço. **Teste**: ligar fora do horário (o IVR toca a equipe no horário) para os 2 novos
+   e me avisar; eu confiro tags/card e apago.
 7. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
    A troca pelo snapshot novo é uma migração; Ed pergunta quando o Jeremy quer virar.
 8. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP

@@ -103,7 +103,7 @@ def ivr_steps() -> list[dict]:
     head, opened, closed = hours_split("Check Business Hours (9am-5pm)", 1, parent_key=intro["id"])
     intro["next"] = head["id"]
     ring = {"id": nid(), "name": "Ring the team", "type": "ivr_connect_call", "stepIndex": 2, "attributes": {
-        "timeout": 20, "timeLimit": 3600, "userId": "", "users": TEAM, "detectVoicemail": True, "isSayPlayOn": False,
+        "timeout": 20, "timeLimit": 3600, "userId": "", "users": TEAM, "detectVoicemail": False, "isSayPlayOn": False,
         "customNumbers": [{"country": "US", "phone": FELIPE_CELL, "displayValue": "(281) 818-8794", "isValid": True}], "record": "record-from-answer", "sayPlayAttributes": say("")}}
     check, not_answered, answered = nid(), nid(), nid()
     answered_q = {"id": check, "name": "Answered?", "type": "if_else", "cat": "conditions", "comments": [],
