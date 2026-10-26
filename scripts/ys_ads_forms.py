@@ -336,6 +336,7 @@ def main() -> int:
         else:
             res = a.call("POST", BACKEND, "/forms/", body={"name": p["form"], "locationId": LOC, "formData": build_form(base, p)})
             fid = forms[p["form"]] = (res.get("form") or res).get("_id") or (res.get("form") or res).get("id")
+            a.call("POST", BACKEND, f"/forms/{fid}", body={"name": p["form"], "formData": build_form(base, p)})  # create drops redirect_url
             print(f"   ✓ form {p['form']}: {fid}")
         if p["flow"] in flows:
             print(f"   {p['flow']}: já existe")
