@@ -19,8 +19,9 @@ from _common import ROOT
 
 CHROMIUM = "/opt/pw-browsers/chromium"
 OUT = ROOT / "reports" / "clear-pool-tucson"
-AVG = 150
-CARDS_TOTAL, CARDS_OUT_OF_SCOPE = 233, 18  # pipeline on 27/10: all cards, Out of Scope cards
+WEEKLY, REPAIR = 2160, 150  # Derek's values: weekly customer / one-time repair
+WON_WEEKLY, WON_REPAIR = 16, 21  # Won cards by stage, 27/10
+CARDS_BEFORE, CARDS_NOW = 233, 115  # pipeline before / after spam and out-of-area cards were removed (27/10)
 CALLS = {"window": "Sep 29 – Oct 27", "total": 46, "answered": 19, "not_answered": 13, "menu": 14}
 MONTHS = {"2026-04": "Apr", "2026-05": "May", "2026-06": "Jun", "2026-07": "Jul", "2026-08": "Aug",
           "2026-09": "Sep", "2026-10": "Oct*"}
@@ -78,7 +79,7 @@ def main() -> int:
         for s, v in sorted(by_src.items(), key=lambda kv: -kv[1]["leads"]) if v["leads"] or v["won"])
     month_rows = "".join(f"<tr><td>{lab}</td><td class=n>{m['leads']}</td><td class=n>{m['won']}</td>"
                          f"<td class=n>{pct(m['won'], m['leads'])}</td><td class=n>{m['spam']}</td></tr>" for lab, m in months)
-    real_cards = CARDS_TOTAL - spam
+    won_value = WON_WEEKLY * WEEKLY + WON_REPAIR * REPAIR
     bench = "".join(f'<tr><td>{a}</td><td class=n>{b}</td><td class=src><a href="{u}">{c}</a></td></tr>' for a, b, c, u in BENCH)
     html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Clear Pool Solutions Tucson – Lead Report</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -96,7 +97,7 @@ header {{ border-bottom:2px solid var(--water); padding-bottom:4mm; margin-botto
 .tile {{ background:var(--panel); border-radius:3mm; padding:3.5mm 4mm; }}
 .tile b {{ display:block; font-family:'Source Serif 4',Georgia,serif; font-size:21pt; font-weight:600; color:var(--water); font-variant-numeric:tabular-nums; }}
 .tile span {{ font-size:8.5pt; color:var(--muted); }}
-section {{ margin-bottom:6mm; break-inside:avoid; }}
+section {{ margin-bottom:4.5mm; break-inside:avoid; }}
 p {{ margin:0 0 2.5mm; max-width:175mm; }}
 table {{ width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; margin-top:2mm; }}
 th {{ text-align:left; font-size:8pt; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:600; border-bottom:1px solid var(--line); padding:1.6mm 2mm; }}
@@ -110,7 +111,7 @@ tr.hi td {{ font-weight:600; background:#e8f4ef; }}
 .legend {{ font-size:8.5pt; color:var(--muted); display:flex; gap:5mm; }}
 .sw {{ display:inline-block; width:3mm; height:3mm; border-radius:.6mm; vertical-align:-.4mm; margin-right:1.5mm; }}
 .callout {{ border-left:3px solid var(--water); background:var(--panel); padding:3mm 4mm; border-radius:0 2mm 2mm 0; }}
-ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:1.2mm; }}
+ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:.8mm; }}
 .page-break {{ break-before:page; }}
 .foot {{ font-size:8pt; color:var(--muted); }}
 </style></head><body>
@@ -124,26 +125,26 @@ ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:1.2mm; }}
   <div class="tile"><b>{leads}</b><span>real leads (spam removed)</span></div>
   <div class="tile"><b>{won}</b><span>became customers</span></div>
   <div class="tile"><b>{pct(won, leads)}</b><span>of real leads became customers</span></div>
-  <div class="tile"><b>${won * AVG:,}</b><span>won at your ${AVG} average per customer</span></div>
+  <div class="tile"><b>${won_value:,}</b><span>in customer value ({WON_WEEKLY} weekly at ${WEEKLY:,}, {WON_REPAIR} repairs at ${REPAIR})</span></div>
 </div>
 
 <section>
   <h2>What your conversion rate really is</h2>
-  <p>The GHL dashboard shows about <b>{pct(won, CARDS_TOTAL)}</b>. That figure divides your {won} customers by <i>every</i> card in the
-  pipeline ({CARDS_TOTAL}), including {spam} spam and robocalls and {CARDS_OUT_OF_SCOPE} people outside your service area, who were never
-  real prospects. Counted against real leads, you close roughly <b>one in every four</b>.</p>
+  <p>Until now the GHL dashboard showed about <b>{pct(won, CARDS_BEFORE)}</b>: it divided your {won} customers by <i>every</i> card in the
+  pipeline ({CARDS_BEFORE}), including {spam} spam calls and robocalls and 18 people outside your service area, who were never real prospects.
+  Those cards are now removed automatically, so GHL compares customers with real opportunities only.</p>
   <table><thead><tr><th>How it is counted</th><th class=n>Customers ÷ leads</th><th class=n>Rate</th></tr></thead><tbody>
-    <tr><td>Every card in the pipeline (what GHL shows today)</td><td class=n>{won} ÷ {CARDS_TOTAL}</td><td class=n>{pct(won, CARDS_TOTAL)}</td></tr>
-    <tr class=hi><td>Real leads, spam removed (every lead we tracked, this report)</td><td class=n>{won} ÷ {leads}</td><td class=n>{pct(won, leads)}</td></tr>
-    <tr><td>Pipeline cards, spam removed</td><td class=n>{won} ÷ {real_cards}</td><td class=n>{pct(won, real_cards)}</td></tr>
+    <tr><td>GHL dashboard before the cleanup (spam included)</td><td class=n>{won} ÷ {CARDS_BEFORE}</td><td class=n>{pct(won, CARDS_BEFORE)}</td></tr>
+    <tr class=hi><td>Every real lead we tracked (this report)</td><td class=n>{won} ÷ {leads}</td><td class=n>{pct(won, leads)}</td></tr>
+    <tr><td>GHL dashboard now (open, won and lost opportunities)</td><td class=n>{won} ÷ {CARDS_NOW}</td><td class=n>{pct(won, CARDS_NOW)}</td></tr>
   </tbody></table>
 </section>
 
 <section>
   <h2>How that compares</h2>
   <p>There is no published industry benchmark for pool service specifically, so the closest comparisons are other home-service
-  trades. Even on the strictest count, your rate sits at the top of the plumbing range and above HVAC; on real leads it is
-  well above both.</p>
+  trades. Even on the old count that included spam, your rate sat at the top of the plumbing range and above HVAC; on real
+  leads it is well above both.</p>
   <table><thead><tr><th>Benchmark</th><th class=n>Rate</th><th>Source</th></tr></thead><tbody>
     <tr class=hi><td>Clear Pool Solutions Tucson, real leads</td><td class=n>{pct(won, leads)}</td><td class=src>This report</td></tr>
     {bench}
@@ -189,7 +190,8 @@ ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:1.2mm; }}
   <h2>Your GHL dashboard from November</h2>
   <div class="callout">
   <p><b>From November 1, the GHL dashboards show your numbers exactly as you asked:</b> only leads you can still contact stay "open",
-  everything else closes on its own (Lost → lost; Spam and Out of Scope → abandoned), and every opportunity carries your ${AVG} average.</p>
+  everything else is handled on its own: Lost cards stay as lost at $0, and Spam and Out of Scope cards are removed. Values are set
+  automatically: open leads ${WEEKLY:,} (a weekly customer's average), weekly customers ${WEEKLY:,}, one-time repairs ${REPAIR}.</p>
   <p style="margin:0">For April – October, use this report rather than the GHL date filters. An old automation was deleting every card moved to
   Won; we stopped it and restored the {won} customer cards on October 27, and the statuses and values were also corrected that day. So in
   GHL those months show the cleanup date instead of when things really happened. The counts in this report come from your contacts, which
@@ -202,7 +204,7 @@ ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:1.2mm; }}
   <ul>
     <li><b>Won customers:</b> stopped the automation that deleted Won cards and restored the {won} missing cards (no emails sent to customers).</li>
     <li><b>Calls:</b> direct ring, missed-call text and task, spam and customer filtering, voicemail detection off.</li>
-    <li><b>Pipeline:</b> removed 2 empty stages; statuses now open / won / lost / abandoned, set automatically by stage; $150 on every card.</li>
+    <li><b>Pipeline:</b> removed 2 empty stages; status and value set automatically by stage (open and weekly ${WEEKLY:,}, one-time repair ${REPAIR}, lost $0); spam and out-of-area cards removed.</li>
     <li><b>Dashboards:</b> removed 7 duplicate dashboards; three remain: Dashboard, Call Tracking and Lead Attribution.</li>
   </ul>
   <p>One habit keeps the numbers accurate: when a lead becomes a customer, move the card to Won; when it is a no, move it to Lost.</p>
@@ -212,7 +214,8 @@ ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:1.2mm; }}
   <h2>How the numbers are counted</h2>
   <ul class="foot">
     <li>Lead: a contact our automations tagged as a new lead from a call, text or form on one of the tracked lines. Existing customers who call are not counted.</li>
-    <li>Spam: contacts tagged spam / do-not-disturb ({spam} in total), shown separately and left out of the real-lead rate.</li>
+    <li>Spam: contacts tagged spam / do-not-disturb ({spam} in total), shown separately and left out of the real-lead rate. The contacts stay in your CRM; only their pipeline cards were removed.</li>
+    <li>Customer value: ${WEEKLY:,} per weekly-service customer and ${REPAIR} per one-time repair, the averages you set.</li>
     <li>Customer: a lead whose card was moved to a Won stage (Won Customer or One Time Repair). Leads whose card was never updated count as not won.</li>
     <li>Data from your GHL account, April 1 – October 27, 2026. Benchmarks come from third-party industry reports and measure similar, not identical, steps of the sale.</li>
   </ul>
