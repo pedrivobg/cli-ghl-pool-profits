@@ -29,8 +29,8 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    - Rosebrook: EIN do onboarding com 8 dígitos; sem link do Google (Review Request em draft); site sem privacy.
    - Blissful: sem endereço no onboarding; site sem privacy; Brian e Jason: primeiro acesso + app; conectar o GBP.
    - WP Pools Ponds and spas (Wolbers-Possehn, Ionia MI): **telefone da Tiffany no usuário** (Settings → My Staff →
-     (616) 522-2477; a API recusa); sem link do Google (Review Request em draft); o Ryan (dono, assina as mensagens) não
-     é usuário — criar se quiserem; primeiro acesso da Tiffany.
+     (616) 522-2477; a API recusa); sem link do Google (Review Request em draft); Ryan (admin) e Aubrey (gerente) viraram
+     usuários em 27/10: primeiro acesso dos três por "Forgot password" em app.poolprofits.com.
    - Rosebrook/Blissful/WP: os sites não têm política de privacidade → A2P precisa de site com privacy (o "New A2P
      Verification" num subdomínio deles, com o DNS do cliente). Pedir ao Frank junto com o EIN/endereço.
 4. **Google Lead Form "Weekly Pool Service Done Right"**: workflows no ar; form mapeado e ativo em Wrigley's,
@@ -68,9 +68,6 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
   "reactivation"); Jen Knight está como cliente ativa. Depois eu importo.
 - **Tags universais**: Frank/Ed aprovam os nomes → piloto na Pool Shack → snapshot + script.
 - **Ekahi**: Erik responde ao PDF de revisão por código e D1–D8 (mapa em `config/guide_codes/ekahi-2026-10-22.json`).
-- **"Ryan foy"** (`i5Gm48ZJ7YuASL6cyvcC`, 24/10): segunda sub-conta da WP Pools (mesmo EIN, LLC e endereço; o Ryan
-  respondeu o onboarding de novo). Vazia (sem usuário, número, contato; fuso de São Paulo). Ed confirma → apago e passo
-  para a WP o que a 2ª resposta traz a mais (usuários Ryan/Aubrey, descrição).
 - **NorTex**: Fareed prefere 24 h em vez de 29 h de antecedência mínima? (troco em 1 minuto).
 
 ## Outras agências do GHL

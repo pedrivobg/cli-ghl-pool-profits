@@ -98,7 +98,8 @@
   `workflow_id`, `location_id`, `actions` no corpo — sem isso o PUT dá "Workflow not found".
 - Usuário novo na sub-conta: `POST services /users/` `{companyId, firstName, lastName, email, type: "account", role,
   locationIds, permissions}` (sem `scopes`: 422; senha não obrigatória → primeiro acesso por "Forgot password" em
-  app.poolprofits.com). Copiar `permissions` de um usuário existente com o mesmo papel.
+  app.poolprofits.com). Copiar `permissions` de um usuário existente com o mesmo papel. O `phone` vai na criação (o PUT depois recusa o token
+  Firebase); `lastName` obrigatório. Apagar sub-conta: `DELETE services /locations/{id}?deleteTwilioAccount=true` (27/10).
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
 - Tag usada em passo/gatilho/if-else **tem que existir na conta** (`POST backend /workflow/{loc}/tags/create
   {tag}`): o passo funciona, mas o construtor mostra "Referenced Tag does not exist" (Frank viu no Won
