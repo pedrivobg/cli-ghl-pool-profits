@@ -122,7 +122,8 @@
   (testado; manter o id do passo de espera).
 - Google Lead Form nativo: gatilho `google_lead_form_submitted` (`masterType: "internal"`), condição
   `{field: "adAccountId", operator: "==", value: <location.googleAdwordsId>, id: "adAccountId", type: "select"}`
-  (+ opcional `formId` `is-any-of`; não há endpoint conhecido para listar os forms). O lead só entra se o form
+  (+ opcional `formId` `is-any-of`; não há endpoint conhecido para listar os forms). Conta ligada pelo app novo "Google
+  Lead Ads" fica com `googleAdwordsId` vazio: gatilho sem condição é aceito (LWR, 27/10). O lead só entra se o form
   estiver mapeado e **Active** em Settings → Integrations → Google Ads (botão Play/Map Fields); teste =
   Google Ads → campanha → Lead form → Edit → abrir o form → **Send Data** (help.gohighlevel.com 48001180147).
 - Review gate (NPS) em qualquer conta, até de outra agência: `pd_lwr_nps_gate.py` (modelos `config/nps_form.json`,

@@ -6,10 +6,9 @@
     ./.venv/bin/python scripts/pd_lwr_google_leads.py test --to pedro@poolprofits.com
     ./.venv/bin/python scripts/pd_lwr_google_leads.py apply
 
-"Google Ads Lead Form - Qualified Lead": trigger Google Lead Form Submitted on the location's Google Ads account (form
-"Weekly pool service done right" mapped + Active in Settings → Integrations → Google Ads). Needs Google Ads connected in
-the LWR GHL (location.googleAdwordsId): until then the workflow waits in draft without a trigger; apply again adds the
-trigger and publishes it.
+"Google Ads Lead Form - Qualified Lead": trigger Google Lead Form Submitted (form "Weekly pool service done right"
+mapped + Active in the Google Lead Ads app). The app (connected by Val 27/10) leaves location.googleAdwordsId empty, so
+the trigger has no ad-account filter (the location has one ad account); the API accepts it.
 "Google Ads SMS - New Lead": trigger Customer Replied, SMS, In phone number = the Google Ads line +1 941-541-5942.
 Both: one if/else first — Spam / DND → nothing; already sent in the last 24 h → nothing (every text of a conversation
 fires the SMS trigger); current customer → alert marked existing customer, no card; new lead → tags, card in "Leads -->
@@ -90,9 +89,9 @@ def trigger(f: dict, wid: str, first: str, loc: dict) -> dict | None:
                   "type": "multiselect", "id": "inbound-twilio-number"}]
         kind, name, master = "customer_reply", "Customer Replied", "highlevel"
     else:
-        if not loc.get("googleAdwordsId"):
-            return None
-        cond_ = [{"field": "adAccountId", "operator": "==", "value": loc["googleAdwordsId"], "id": "adAccountId", "type": "select"}]
+        # the Google Lead Ads app (27/10) leaves location.googleAdwordsId empty: no filter (one ad account here)
+        cond_ = [{"field": "adAccountId", "operator": "==", "value": loc["googleAdwordsId"], "id": "adAccountId",
+                  "type": "select"}] if loc.get("googleAdwordsId") else []
         kind, name, master = "google_lead_form_submitted", "Google Lead Form Submitted", "internal"
     return {"type": kind, "name": name, "masterType": master, "schedule_config": {}, "conditions": cond_,
             "workflowId": wid, "workflow_id": wid, "location_id": LOC,

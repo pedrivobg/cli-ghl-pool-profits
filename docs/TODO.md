@@ -84,13 +84,10 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
 - **Franchising — feira de Tampa**: 7 STOP. O SMS de qua 28/10 (último) já tem "Reply STOP to opt out."; Ed decide se
   corta. Albert Kollar respondeu "I'm ready" → Lee liga.
 - **Google Lead Form da Wesley Chapel**: mesmo caso do item 4 (precisa de acesso ao Google Ads).
-- **LWR — Google Ads** (27/10): SMS no ar. O lead form "Weekly pool service done right" espera o **Google Ads ser
-  conectado no GHL da LWR** (Settings → Integrations → Google Ads, com o Google que tem a conta de anúncios; Val) +
-  mapear e ativar o form; aí eu rodo `pd_lwr_google_leads.py apply`. Testes reais (SMS para 941-541-5942 e Send Data do
-  form): me avisa antes (o alerta vai para o Kenton).
-
-### BurchTech
-
+- **LWR — Google Ads** (27/10): SMS e lead form no ar. Falta no app Google Lead Ads da LWR (Integrations → Google Lead
+  Ads → Manage Google Ads): ▶ no form "Weekly pool service done right" → mapear Full Name, Email, Phone, Zip → ativar
+  (está "Sync Disabled"). Depois: Send Data no Google Ads (acesso só da Val) e SMS real para 941-541-5942 — me avisa
+  antes (alerta vai para o Kenton).
 - **The Pool Keepers**: os nossos 28 workflows estão em draft e ajustados; esperando o Frank/Nathan decidirem o que liga.
 
 ## Geral

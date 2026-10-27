@@ -139,3 +139,7 @@ LWR (`googleAdwordsId` vazio). Mesma rota; novo → tags `google ads lead form`�
 o SMS ao lead do fluxo do Facebook. Depois de conectar (Settings → Integrations → Google Ads, com o Google que tem a conta
 de anúncios) e mapear/ativar o form "Weekly pool service done right": rodar `apply` de novo (põe o gatilho e publica).
 Testado nas cópias (6 casos). Falta: SMS real para 941-541-5942 e Send Data do form (me avisa antes: alerta ao Kenton).
+- **27/10 tarde**: Val conectou pelo app "Google Lead Ads" (conta Pool Duck Lakewood Ranch, val@poolprofits.com, form
+  "Weekly pool service done right", campanha Active, **Sync Disabled**). O app não preenche `googleAdwordsId`: gatilho
+  criado sem filtro de conta e o workflow **publicado**. Falta: Play/Map Fields (Full Name, Email, Phone, Zip) + ativar a
+  sincronização, e o Send Data no Google Ads (só a Val tem acesso).
