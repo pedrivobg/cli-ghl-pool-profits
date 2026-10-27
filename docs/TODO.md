@@ -10,7 +10,10 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    Call - Tag, Answered Incoming, Missed New Lead (texto deles), Missed Incoming, Website Form Fill.
    - **Teste** (depois das 17h CT ou no fim de semana, quando o IVR não toca o Felipe): ligar para 936-314-9255, deixar
      recado → me avisa; eu confiro tag, SMS no seu celular e card, e apago o contato antes da tarefa de 1 h.
-   - **Conta antiga → nossa** (Frank: "copy over everything" + contatos). Preciso do token da conta antiga:
+   - Felipe (27/10): SMS 2 do Missed New Lead tirado; ele mesmo conecta o WhatsApp.
+   - **Conta antiga → nossa** (Frank: "copy over everything" + contatos; Frank cobrou 27/10). Atalho para os contatos:
+     o Felipe exporta o CSV na conta antiga (Contacts → selecionar todos → Export) e manda; eu importo. Para os
+     workflows continua precisando do token da conta antiga:
      1. avisar o Frank na hora (o login manda código para info@poolheadscare.com, e-mail do cliente);
      2. Chrome → app.gohighlevel.com com o login que o Frank mandou + o código;
      3. sub-conta da Poolheads → Ctrl+Shift+J → colar o trecho de `docs/get-firebase-token.md` → Enter;
@@ -81,7 +84,10 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
 - **Franchising — feira de Tampa**: 7 STOP. O SMS de qua 28/10 (último) já tem "Reply STOP to opt out."; Ed decide se
   corta. Albert Kollar respondeu "I'm ready" → Lee liga.
 - **Google Lead Form da Wesley Chapel**: mesmo caso do item 4 (precisa de acesso ao Google Ads).
-- **LWR**: o lembrete aos 32 promotores sai segunda (26/10) às 10:00 ET. Eu confiro às 12:30 e te mando os números.
+- **LWR — Google Ads** (27/10): SMS no ar. O lead form "Weekly pool service done right" espera o **Google Ads ser
+  conectado no GHL da LWR** (Settings → Integrations → Google Ads, com o Google que tem a conta de anúncios; Val) +
+  mapear e ativar o form; aí eu rodo `pd_lwr_google_leads.py apply`. Testes reais (SMS para 941-541-5942 e Send Data do
+  form): me avisa antes (o alerta vai para o Kenton).
 
 ### BurchTech
 

@@ -127,3 +127,15 @@ excluindo a lista da Connie (e-mail de 07/10, 38 nomes). `scripts/pd_lwr_reviews
   agendado para segunda 12:30 ET. GBP no GHL da LWR: Val/cliente vão conectar (precisa do login Google deles).
 - (histórico) Não enviado até 19/10: aguardando o cliente aprovar os textos. Para disparar (274 clientes):
   `pd_lwr_reviews.py launch` (marca `send review request` em quem tem `turtle rock` e não está excluído).
+
+# Google Ads: lead form + SMS (27/10, Val)
+
+`scripts/pd_lwr_google_leads.py`. **"Google Ads SMS - New Lead"** publicado: Customer Replied, SMS, no número do Google
+Ads +1 941-541-5942; spam/DND → nada; já mandou nas últimas 24 h → nada; cliente (`active residential client`, `turtle
+rock`…) → alerta "EXISTING CUSTOMER", sem card; novo → tags `new lead`/`google adwords`/`google ads - sms`/`lakewood
+ranch`, card em Lead ("Google Ads - SMS"), SMS ao Kenton + Pool Duck Service com o texto da mensagem.
+**"Google Ads Lead Form - Qualified Lead"** criado em **draft sem gatilho**: o Google Ads **não está conectado** no GHL da
+LWR (`googleAdwordsId` vazio). Mesma rota; novo → tags `google ads lead form`…, card ("Google Ads - Lead Form"), alerta e
+o SMS ao lead do fluxo do Facebook. Depois de conectar (Settings → Integrations → Google Ads, com o Google que tem a conta
+de anúncios) e mapear/ativar o form "Weekly pool service done right": rodar `apply` de novo (põe o gatilho e publica).
+Testado nas cópias (6 casos). Falta: SMS real para 941-541-5942 e Send Data do form (me avisa antes: alerta ao Kenton).
