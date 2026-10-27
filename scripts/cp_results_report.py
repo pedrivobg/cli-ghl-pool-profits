@@ -194,8 +194,8 @@ ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:.8mm; }}
   everything else is handled on its own: Lost cards stay as lost at $0, and Spam and Out of Scope cards are removed. Values are set
   automatically: open leads ${WEEKLY:,} (a weekly customer's average), weekly customers ${WEEKLY:,}, one-time repairs ${REPAIR}.</p>
   <p>Pipeline value today: <b>${won_value:,}</b> won ({WON_WEEKLY} weekly customers at ${WEEKLY:,}, {WON_REPAIR} one-time repairs at ${REPAIR})
-  and <b>${OPEN_NOW * WEEKLY:,}</b> in open leads ({OPEN_NOW} at ${WEEKLY:,}). GHL's reporting can take a while to reflect the October 27 cleanup,
-  so some dashboard tiles may still show the old totals for a short time.</p>
+  and <b>${OPEN_NOW * WEEKLY:,}</b> in open leads ({OPEN_NOW} at ${WEEKLY:,}). In the dashboard, set the date range to "Till date"
+  to see these totals.</p>
   <p style="margin:0">For April – October, use this report rather than the GHL date filters. An old automation was deleting every card moved to
   Won; we stopped it and restored the {won} customer cards on October 27, and the statuses and values were also corrected that day. So in
   GHL those months show the cleanup date instead of when things really happened. The counts in this report come from your contacts, which
