@@ -60,8 +60,9 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    e testados (`scripts/nx_ads_forms.py`). Falta: as 2 páginas de obrigado no WordPress (Atif, com o texto que mandei,
    ou Application Password do WP); Google Ads conectado no GHL da NorTex (Val); envio real de cada form quando as
    páginas subirem (me avisa antes: o aviso vai para o Fareed).
-11. **Clear Pool Tucson: ligação de teste** (27/10): ligar para (520) 777-9131 e desligar durante a mensagem do IVR
-    (não toca o Derek) → SMS de chamada perdida no seu celular; me avisa e eu confiro tag/card/tarefa e apago.
+11. **Clear Pool Tucson: ligação de teste** (27/10): sem "aperte 1", toda ligação toca o Derek. Ligar para
+    (520) 777-9131 e deixar tocar até cair no recado (avisar o Frank/Derek antes) → SMS de chamada perdida no seu
+    celular; me avisa e eu confiro tag/card/tarefa e apago.
 12. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
    A troca pelo snapshot novo é uma migração; Ed pergunta quando o Jeremy quer virar.
 13. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
