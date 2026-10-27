@@ -108,6 +108,8 @@
 - Pular spam/cliente num workflow: if/else com `contact_detail` / `tags` / `index-of-false` (uma condição
   por tag) envolvendo a cadeia, em vez de filtro de gatilho (vale para qualquer gatilho; testado).
   Mid-chain: `parent` = branch que contém, `parentKey` = passo anterior (`scripts/pp_lead_alerts.py`).
+- Importar contatos: `POST services /contacts/upsert` (casa por telefone/e-mail) **sem `tags`** — com tags ele SUBSTITUI
+  as do contato existente; somar depois com `POST /contacts/{id}/tags {tags}` (`ph_import_contacts.py`, 27/10).
 - Pôr um contato num workflow publicado: `POST services /contacts/{id}/workflow/{wid}` com `{}`.
   O SMS de "internal notification" aparece na conversa do telefone do usuário (status delivered).
 - Submissões de form: `GET services /forms/submissions?locationId&startAt&endAt` (`others` traz os

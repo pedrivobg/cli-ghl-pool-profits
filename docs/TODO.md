@@ -11,9 +11,8 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    - **Teste** (depois das 17h CT ou no fim de semana, quando o IVR não toca o Felipe): ligar para 936-314-9255, deixar
      recado → me avisa; eu confiro tag, SMS no seu celular e card, e apago o contato antes da tarefa de 1 h.
    - Felipe (27/10): SMS 2 do Missed New Lead tirado; ele mesmo conecta o WhatsApp.
-   - **Conta antiga → nossa** (Frank: "copy over everything" + contatos; Frank cobrou 27/10). Atalho para os contatos:
-     o Felipe exporta o CSV na conta antiga (Contacts → selecionar todos → Export) e manda; eu importo. Para os
-     workflows continua precisando do token da conta antiga:
+   - **Conta antiga → nossa**: contatos importados (27/10, 1.513 novos). Automações antigas: perguntar ao Frank se
+     alguma ainda é usada; só se for, precisamos do token da conta antiga (outra agência; o login pede código):
      1. avisar o Frank na hora (o login manda código para info@poolheadscare.com, e-mail do cliente);
      2. Chrome → app.gohighlevel.com com o login que o Frank mandou + o código;
      3. sub-conta da Poolheads → Ctrl+Shift+J → colar o trecho de `docs/get-firebase-token.md` → Enter;
