@@ -21,7 +21,7 @@ CHROMIUM = "/opt/pw-browsers/chromium"
 OUT = ROOT / "reports" / "clear-pool-tucson"
 WEEKLY, REPAIR = 2160, 150  # Derek's values: weekly customer / one-time repair
 WON_WEEKLY, WON_REPAIR = 16, 21  # Won cards by stage, 27/10
-CARDS_BEFORE, CARDS_NOW = 233, 115  # pipeline before / after spam and out-of-area cards were removed (27/10)
+CARDS_BEFORE, CARDS_NOW, OPEN_NOW = 233, 114, 4  # pipeline before / after spam and out-of-area cards were removed; open now
 CALLS = {"window": "Sep 29 – Oct 27", "total": 46, "answered": 19, "not_answered": 13, "menu": 14}
 MONTHS = {"2026-04": "Apr", "2026-05": "May", "2026-06": "Jun", "2026-07": "Jul", "2026-08": "Aug",
           "2026-09": "Sep", "2026-10": "Oct*"}
@@ -132,11 +132,12 @@ ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:.8mm; }}
   <h2>What your conversion rate really is</h2>
   <p>Until now the GHL dashboard showed about <b>{pct(won, CARDS_BEFORE)}</b>: it divided your {won} customers by <i>every</i> card in the
   pipeline ({CARDS_BEFORE}), including {spam} spam calls and robocalls and 18 people outside your service area, who were never real prospects.
-  Those cards are now removed automatically, so GHL compares customers with real opportunities only.</p>
+  Those cards are now removed automatically. Your pipeline today holds {CARDS_NOW} real opportunities: {won} won, {CARDS_NOW - won - OPEN_NOW} lost
+  and {OPEN_NOW} still open.</p>
   <table><thead><tr><th>How it is counted</th><th class=n>Customers ÷ leads</th><th class=n>Rate</th></tr></thead><tbody>
     <tr><td>GHL dashboard before the cleanup (spam included)</td><td class=n>{won} ÷ {CARDS_BEFORE}</td><td class=n>{pct(won, CARDS_BEFORE)}</td></tr>
     <tr class=hi><td>Every real lead we tracked (this report)</td><td class=n>{won} ÷ {leads}</td><td class=n>{pct(won, leads)}</td></tr>
-    <tr><td>GHL dashboard now (open, won and lost opportunities)</td><td class=n>{won} ÷ {CARDS_NOW}</td><td class=n>{pct(won, CARDS_NOW)}</td></tr>
+    <tr><td>Pipeline now: won ÷ all opportunities (open, won, lost)</td><td class=n>{won} ÷ {CARDS_NOW}</td><td class=n>{pct(won, CARDS_NOW)}</td></tr>
   </tbody></table>
 </section>
 
@@ -192,6 +193,9 @@ ul {{ margin:1mm 0 0; padding-left:5mm; }} li {{ margin-bottom:.8mm; }}
   <p><b>From November 1, the GHL dashboards show your numbers exactly as you asked:</b> only leads you can still contact stay "open",
   everything else is handled on its own: Lost cards stay as lost at $0, and Spam and Out of Scope cards are removed. Values are set
   automatically: open leads ${WEEKLY:,} (a weekly customer's average), weekly customers ${WEEKLY:,}, one-time repairs ${REPAIR}.</p>
+  <p>Pipeline value today: <b>${won_value:,}</b> won ({WON_WEEKLY} weekly customers at ${WEEKLY:,}, {WON_REPAIR} one-time repairs at ${REPAIR})
+  and <b>${OPEN_NOW * WEEKLY:,}</b> in open leads ({OPEN_NOW} at ${WEEKLY:,}). GHL's reporting can take a while to reflect the October 27 cleanup,
+  so some dashboard tiles may still show the old totals for a short time.</p>
   <p style="margin:0">For April – October, use this report rather than the GHL date filters. An old automation was deleting every card moved to
   Won; we stopped it and restored the {won} customer cards on October 27, and the statuses and values were also corrected that day. So in
   GHL those months show the cleanup date instead of when things really happened. The counts in this report come from your contacts, which
