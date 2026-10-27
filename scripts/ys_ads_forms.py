@@ -331,7 +331,13 @@ def main() -> int:
             fid = forms[p["form"]]
             cur, cur_fd = latest_form_data(a, fid)
             (BDIR / f"form-{fid}-{time.strftime('%Y%m%d-%H%M%S')}.json").write_text(json.dumps({"form": cur, "formData": cur_fd}))
-            a.call("POST", BACKEND, f"/forms/{fid}", body={"name": p["form"], "formData": build_form(base, p)})
+            for wait in (10, 30, 60, 120, 240):  # a new form answers 404 to updates for a few minutes
+                time.sleep(wait)
+                try:
+                    a.call("POST", BACKEND, f"/forms/{fid}", body={"name": p["form"], "formData": build_form(base, p)})  # create drops redirect_url
+                    break
+                except Exception:  # noqa: BLE001
+                    pass
             print(f"   ✓ form {p['form']} refeito ({fid})")
         else:
             res = a.call("POST", BACKEND, "/forms/", body={"name": p["form"], "locationId": LOC, "formData": build_form(base, p)})

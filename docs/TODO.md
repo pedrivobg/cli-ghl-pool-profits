@@ -54,9 +54,13 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    Falta: (a) as 3 páginas de obrigado no WordPress (yardspringpools.com/thank-you-…): ou o Atif cria com o texto que
    mandei, ou me dão um Application Password do WP; (b) Google Ads conectado no GHL da YardSpring (Val); (c) envio real
    de cada form quando as páginas subirem (me avisa antes: o aviso vai para o Joe).
-10. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
+10. **NorTex: 2 landing pages** (27/10): forms, tags, workflows e a linha (469) 218-3416 (no IVR, como a principal) no ar
+   e testados (`scripts/nx_ads_forms.py`). Falta: as 2 páginas de obrigado no WordPress (Atif, com o texto que mandei,
+   ou Application Password do WP); Google Ads conectado no GHL da NorTex (Val); envio real de cada form quando as
+   páginas subirem (me avisa antes: o aviso vai para o Fareed).
+11. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
    A troca pelo snapshot novo é uma migração; Ed pergunta quando o Jeremy quer virar.
-11. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
+12. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
    Pools ainda nasceu da versão antiga.
 
 ### Esperando resposta (eu aplico quando chegar)
