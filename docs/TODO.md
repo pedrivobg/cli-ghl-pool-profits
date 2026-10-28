@@ -77,8 +77,9 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
       gente que o Derek atendeu depois, o próprio Derek testando (2/10) e o Frank (27/10). Derek liga para ele.
     - **Derek**: clientes da home warranty como contatos com tag (lista dele; eu importo).
     - **Val**: relatório Google Ads Search vs PMax, proposta de LSA e a mensagem "salve nosso número".
-    - **Pool Brain** (`docs/poolbrain-review-integration.md`): Ed/Derek mandam as perguntas para team@poolbrain.com
-      (chave da Open API, preço, job concluído com data e telefone/e-mail). Com a resposta eu ligo o review ao job.
+    - **Pool Brain / Skimmer** (`docs/poolbrain-review-integration.md`): a API do Pool Brain lista visitas/OS concluídas
+      e cria cliente; falta a chave: Derek olha em Settings > API do Pool Brain (ou pede no chat de suporte). Skimmer:
+      só no plano Enterprise (o cliente gera a chave no app). Com a chave: Won → cliente no app e review na conclusão.
 12. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
    A troca pelo snapshot novo é uma migração; Ed pergunta quando o Jeremy quer virar.
 13. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
