@@ -1,4 +1,4 @@
-# TODO do Pedro — só o que está aberto (26/10/2026)
+# TODO do Pedro — só o que está aberto (28/10/2026)
 
 O que já foi feito está em `docs/execucao-2026-10-13.md`. Testes são nossos: nada aqui vai para a equipe ou
 para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes** e eu desvio os avisos.
@@ -60,9 +60,25 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    e testados (`scripts/nx_ads_forms.py`). Falta: as 2 páginas de obrigado no WordPress (Atif, com o texto que mandei,
    ou Application Password do WP); Google Ads conectado no GHL da NorTex (Val); envio real de cada form quando as
    páginas subirem (me avisa antes: o aviso vai para o Fareed).
-11. **Clear Pool Tucson: ligação de teste** (27/10): sem "aperte 1", toda ligação toca o Derek. Ligar para
-    (520) 777-9131 e deixar tocar até cair no recado (avisar o Frank/Derek antes) → SMS de chamada perdida no seu
-    celular; me avisa e eu confiro tag/card/tarefa e apago.
+11. **Clear Pool Tucson** (call com Derek/Ed/Frank, 27/10; mensagem para o Ed no chat de 28/10):
+    - **Ligação de teste**: sem "aperte 1", toda ligação toca o Derek. Ligar para (520) 777-9131 e deixar tocar até cair
+      no recado (avisar o Derek antes) → me avisa e eu confiro tag/card/tarefa/aviso e apago.
+    - **Frank**: telefone do GBP de volta para o número de rastreamento (520) 777-9131 e o site certo; depois refazer o
+      teste do recado. A ligação "Frank Perez" (+1 346-763-6881, 27/10, não atendida) parece teste dele: confirmar.
+    - **Derek, na tela** (nós não conseguimos pela API): escolher as etapas nos widgets de funil/pizza do dashboard;
+      filtro de data "Till date" para ver os 32%.
+    - **Dashboards**: ficar só com um? Você confirma e eu apago "Call Tracking" e "Lead Attribution" (dá pela API).
+    - **Review Request** (draft, `scripts/cp_review_request.py`): 30 dias depois do Won semanal, 2 dias depois do
+      One Time Repair, nota (NPS) → 5 = link do Google, menos = SMS para o Derek; 6 meses depois, o SMS de review de novo.
+      Publicar = decisão do Derek (Ed pergunta). Antes de publicar eu testo numa cópia e confiro o texto do SMS/e-mail de
+      review em Reputation → Settings.
+    - **Ligações perdidas 29/09–27/10**: das 27 que não chegaram ao Derek, só 1 é lead real sem retorno: **P Carlson
+      (520) 342-4654**, 18/10, desligou no IVR antigo (deixou gravação). O resto: spam/DND, cliente (Danielle Riggs),
+      gente que o Derek atendeu depois, o próprio Derek testando (2/10) e o Frank (27/10). Derek liga para ele.
+    - **Derek**: clientes da home warranty como contatos com tag (lista dele; eu importo).
+    - **Val**: relatório Google Ads Search vs PMax, proposta de LSA e a mensagem "salve nosso número".
+    - **Pool Brain** (`docs/poolbrain-review-integration.md`): Ed/Derek mandam as perguntas para team@poolbrain.com
+      (chave da Open API, preço, job concluído com data e telefone/e-mail). Com a resposta eu ligo o review ao job.
 12. **SwimReady**: Jeremy aprovou o PDF e vai mandar ajustes por código (mapa em `config/guide_codes/swimready-2026-10-22.json`).
    A troca pelo snapshot novo é uma migração; Ed pergunta quando o Jeremy quer virar.
 13. **Refresh do snapshot** "Snapshot Pool Profits v9" (você, na tela): o master já tem as correções de 22–23/10; a WP
