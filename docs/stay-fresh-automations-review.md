@@ -29,10 +29,12 @@ Frank (27/10): na call com a Stay Fresh algumas automações não dispararam, ou
    Contact, AdWords Tracking(s) — draft, apontando para pipeline apagada. Current Customer **apaga o card**
    (`remove_opportunity`) se alguém publicar. Mover para uma pasta "Old - do not publish".
 
-## Correção proposta (pronta para aplicar com backup; testar numa cópia antes)
-- Novo "Stage Changed → Stop Follow-ups": card entra em Scheduled, In Communication, os 3 Won, Recurring,
-  Not Qualified, Lost ou Spam → tira o contato de Missed New Lead, No Response, Quote Sent e No-Show.
-- 1º passo de Quote Sent / No Response / No-Show: tirar dos outros dois (+ Missed New Lead).
+## Correção (Pedro OK 28/10)
+- **Aplicado 28/10** (`scripts/sf_stop_followups.py`): novo "Stage Changed -> Stop Follow-ups": card entra em Scheduled, In Communication, os 3 Won, Recurring,
+  Not Qualified, Lost ou Spam → tira o contato de Missed New Lead, No Response, Quote Sent e No-Show e as tags
+  `follow-up`/`no-show`. Testado numa cópia do Quote Sent com esperas de 1 min: card movido para Scheduled ficou lá;
+  controle terminou em Lost. Re-entry e textos intocados (backup dos 3 fluxos).
+- **Aplicado**: 1º passo de Quote Sent / No Response / No-Show tira dos outros follow-ups.
 - Re-entry ligado nos fluxos de etapa (Quote Sent, Lost, Won, No Response) — decidir no Zoom.
 - Etapas sem automação: Frank/Mike decidem o que cada uma faz (publicar os drafts ou não).
-- Contato de teste do Frank: tirar do Quote Sent (senão vira Lost em ~4 dias).
+- **Feito 19:48 UTC**: contato de teste do Frank tirado do Quote Sent (antes do SMS das 20:35).
