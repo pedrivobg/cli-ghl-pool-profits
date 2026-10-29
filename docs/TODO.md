@@ -56,10 +56,15 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    Falta: (a) as 3 páginas de obrigado no WordPress (yardspringpools.com/thank-you-…): ou o Atif cria com o texto que
    mandei, ou me dão um Application Password do WP; (b) Google Ads conectado no GHL da YardSpring (Val); (c) envio real
    de cada form quando as páginas subirem (me avisa antes: o aviso vai para o Joe).
-10. **NorTex: 2 landing pages** (27/10): forms, tags, workflows e a linha (469) 218-3416 (no IVR, como a principal) no ar
-   e testados (`scripts/nx_ads_forms.py`). Falta: as 2 páginas de obrigado no WordPress (Atif, com o texto que mandei,
-   ou Application Password do WP); Google Ads conectado no GHL da NorTex (Val); envio real de cada form quando as
-   páginas subirem (me avisa antes: o aviso vai para o Fareed).
+10. **NorTex: 2 landing pages** (27–29/10): páginas do Atif no funil (go.nortexpools.com/premium-weekly-pool-cleaning,
+   /pool-equipment-repair + 2 de obrigado), forms, tags, workflows e a linha (469) 218-3416 no ar. 29/10 (cliente via Val):
+   o form agora vai para o calendário "Pool Service Appointment" já preenchido, igual ao site, e todo agendamento avisa
+   o Fareed por SMS + e-mail (`scripts/nx_ads_booking.py`). Falta:
+   - **DNS (Frank ou acesso ao Cloudflare de nortexpools.com)**: não existe registro para `go` → criar **CNAME `go` →
+     `sites.ludicrous.cloud`, Proxy desligado (DNS only)**, como as outras contas; depois em GHL → Settings → Domains
+     verificar go.nortexpools.com. Eu confiro as 4 URLs.
+   - Google Ads conectado no GHL da NorTex (Val); envio real de cada form + agendamento quando o DNS subir (me avisa
+     antes: o aviso vai para o Fareed; eu cancelo o agendamento de teste).
 11. **Clear Pool Tucson** (call com Derek/Ed/Frank, 27/10; mensagem para o Ed no chat de 28/10):
     - **Ligação de teste**: sem "aperte 1", toda ligação toca o Derek. Ligar para (520) 777-9131 e deixar tocar até cair
       no recado (avisar o Derek antes) → me avisa e eu confiro tag/card/tarefa/aviso e apago.
