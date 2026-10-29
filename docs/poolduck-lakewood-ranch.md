@@ -143,3 +143,15 @@ Testado nas cópias (6 casos). Falta: SMS real para 941-541-5942 e Send Data do 
   "Weekly pool service done right", campanha Active, **Sync Disabled**). O app não preenche `googleAdwordsId`: gatilho
   criado sem filtro de conta e o workflow **publicado**. Falta: Play/Map Fields (Full Name, Email, Phone, Zip) + ativar a
   sincronização, e o Send Data no Google Ads (só a Val tem acesso).
+
+## Westchase — A2P (29/10)
+
+- Domínio `westchaseflorida.poolduck.com` (CNAME → sites.ludicrous.cloud) conectado pelo Pedro; funil "New A2P Verification"
+  (/home, /about-us, /faqs, /contact-us, /privacy-policy, /terms-of-use) usa os custom values da conta.
+- Preenchidos (estavam todos vazios; backup em `backup/poolduck-westchase/`), no padrão da Pool Route Marketplace/Odessa:
+  Legal Business Name (= o que está no Business Profile: "TSCS Investments LLC DBA Pool Duck Westchase"), Business Address
+  (27207 Evergreen Chase Dr., Zephyrhills 33544 FL), Business Email/From Email (poolduck@westchasefl.poolduck.com),
+  Business Phone/CRM/click-to-call (+1 813-797-6718, o número GHL da conta), Service Area, Privacy/Terms/Domain, cores;
+  website da conta = o domínio.
+- **Falta (documento do IRS / CP 575)**: EIN, tipo de empresa, nome legal exato (com ou sem o DBA) e o endereço como está
+  no IRS (Zephyrhills × Wesley Chapel, mesmo ZIP 33544) → Business Profile → Business Information. Logo da conta vazio.
