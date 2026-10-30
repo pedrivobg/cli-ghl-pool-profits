@@ -64,8 +64,8 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    o form agora vai para o calendário "Pool Service Appointment" já preenchido, igual ao site, e todo agendamento avisa
    o Fareed por SMS + e-mail (`scripts/nx_ads_booking.py`). Falta:
    - DNS: Frank criou o CNAME `go` → sites.ludicrous.cloud (30/10); as 4 URLs abrem (200) com os forms certos.
-   - Google Ads conectado no GHL da NorTex (Val); envio real de cada form + agendamento quando o DNS subir (me avisa
-     antes: o aviso vai para o Fareed; eu cancelo o agendamento de teste).
+   - Teste real 30/10 (Pedro, form Weekly + agendamento): tags, campos, card, confirmações ao lead, SMS + e-mail de lead e
+     de agendamento ao Fareed — tudo certo; teste apagado. Falta: Google Ads conectado no GHL da NorTex (Val).
 11. **Clear Pool Tucson** (call com Derek/Ed/Frank, 27/10; mensagem para o Ed no chat de 28/10):
     - **Ligação de teste**: sem "aperte 1", toda ligação toca o Derek. Ligar para (520) 777-9131 e deixar tocar até cair
       no recado (avisar o Derek antes) → me avisa e eu confiro tag/card/tarefa/aviso e apago.
