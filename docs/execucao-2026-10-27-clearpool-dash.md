@@ -69,3 +69,11 @@
   cidade/CEP saíram, como no site. Prévia em forms temporários (apagados) + print das páginas no ar; backup dos forms.
 - Teste real anterior (30/10, form + agendamento) continua valendo para fluxo/avisos; o aviso do Fareed agora mostra
   o endereço vazio (o form não pede mais).
+
+## 30/10 — YardSpring: correções do teste da Val nos 3 forms das landing pages
+
+- `scripts/ys_form_fix.py` (backup dos forms): redirecionamento ia para yardspringpools.com/thank-you-… (WordPress, 404)
+  → páginas de obrigado do Atif no mesmo funil do GHL (go.yardspringpools.com/weekly-pool-service-3356 / -8572 / -6305);
+  First + Last → Full Name; Street/City/ZIP → "Property Address" com busca do Google (`group_address`; o form guarda
+  `address.autoCompleteEnabled` e preenche cidade e CEP — o CEP continua alimentando o "service area zip" do fluxo).
+  Conferido na página no ar (campos novos); a busca do Google não abre daqui (rede da sessão).
