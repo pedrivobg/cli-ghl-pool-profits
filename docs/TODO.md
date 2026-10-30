@@ -56,6 +56,11 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    30/10: número das páginas (678) 448-4007 ("Google Adwords"): ligação e SMS viram lead (tags, card, conversão, SMS +
    e-mail + tarefa para o Joe; cliente atual só avisa; spam nada) — `scripts/ys_ads_line.py`, testado em cópias. O "AdWords
    Call In - New Lead" era cópia da Clear Pool (número, pipeline e texto deles) e nunca disparava: corrigido. Falta:
+   30/10: Google Ads lead form "Leads Form - Google Ads" (Val integrou) → "Google Lead Form - New Lead" (tags new lead /
+   new form fill / adwords, card, SMS + e-mail + tarefa ao Joe; o SMS de lead novo da conta vai para o lead), testado
+   em cópias. Privacy para o Google: https://go.yardspringpools.com/privacy-policy. Teste real: Google Ads → Lead form →
+   Send Data (Val; o form precisa estar mapeado e Active no app Google Lead Ads do GHL; pergunta de serviço → mapear em
+   "Service Requested"). Falta também:
    (a) Atif pôr o número e as páginas de obrigado; (b) Google Ads conectado no GHL da YardSpring (Val); (c) ligação + SMS
    reais para (678) 448-4007 e envio de cada form (me avisa antes: o aviso vai para o Joe). Resto da conta: "Sequential
    Call Routing" publicado com números e usuários da BluVantage (não dispara aqui; limpar com o modelo).
