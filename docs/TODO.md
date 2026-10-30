@@ -63,9 +63,7 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    /pool-equipment-repair + 2 de obrigado), forms, tags, workflows e a linha (469) 218-3416 no ar. 29/10 (cliente via Val):
    o form agora vai para o calendário "Pool Service Appointment" já preenchido, igual ao site, e todo agendamento avisa
    o Fareed por SMS + e-mail (`scripts/nx_ads_booking.py`). Falta:
-   - **DNS (Frank ou acesso ao Cloudflare de nortexpools.com)**: não existe registro para `go` → criar **CNAME `go` →
-     `sites.ludicrous.cloud`, Proxy desligado (DNS only)**, como as outras contas; depois em GHL → Settings → Domains
-     verificar go.nortexpools.com. Eu confiro as 4 URLs.
+   - DNS: Frank criou o CNAME `go` → sites.ludicrous.cloud (30/10); as 4 URLs abrem (200) com os forms certos.
    - Google Ads conectado no GHL da NorTex (Val); envio real de cada form + agendamento quando o DNS subir (me avisa
      antes: o aviso vai para o Fareed; eu cancelo o agendamento de teste).
 11. **Clear Pool Tucson** (call com Derek/Ed/Frank, 27/10; mensagem para o Ed no chat de 28/10):
