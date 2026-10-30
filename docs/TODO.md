@@ -20,7 +20,11 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
      Com ele eu copio todos os workflows em draft (pasta "Conta antiga") e todos os contatos (tag `existing customer`).
    - Depois disso e do OK do Frank: publico o resto (No Response, Quote, No-Show, Lost, Won, Review…).
    - **Na tela**: Call Recording no 936-314-9255 (sem a mensagem); Felipe/Jorge no app com a conta nova; deskphone.
-   - **E-mail do Jorge Arias**: crio o usuário e ponho no IVR.
+   - **Felipe vai fazer sozinho** (Frank, 30/10): criar o usuário do gerente de serviço e pôr no IVR; passar as automações
+     e lembretes de calendário (confirmação por SMS para cliente avulso, separada do Skimmer). Foto de antes (30/10):
+     1 usuário (Felipe); "Business Hours Call Routing" toca só o Felipe; 2 calendários inativos e sem membros;
+     "Appointment Confirmation/Reminders" em draft. Quando ele avisar, eu confiro: IVR (tags de chamada perdida e recado
+     intactos), calendário com membro/horário, lembretes do calendário × workflow (sem SMS em dobro), publicação.
 2. **Cleverblu — A2P preenchido, não enviado** (24/10). Falta: (a) o site deles: a Privacy Policy não fala de SMS e diz
    que pode vender/compartilhar dados (precisa de "SMS opt-in data and consent will not be shared with or sold to third
    parties"); os Terms não falam de SMS (tipo, frequência, STOP/HELP, msg & data rates); a home não mostra endereço
