@@ -53,9 +53,12 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
 8. **NorTex: ligação de teste** (27/10): ligar para (469) 238-2660 e desligar durante a mensagem do IVR (não toca
    ninguém) → o SMS de chamada perdida chega no seu celular; me avisa e eu confiro a tag/card e apago antes da tarefa de 1 h.
 9. **YardSpring: 3 landing pages** (27/10): forms, tags e workflows no ar e testados (`scripts/ys_ads_forms.py`).
-   Falta: (a) as 3 páginas de obrigado no WordPress (yardspringpools.com/thank-you-…): ou o Atif cria com o texto que
-   mandei, ou me dão um Application Password do WP; (b) Google Ads conectado no GHL da YardSpring (Val); (c) envio real
-   de cada form quando as páginas subirem (me avisa antes: o aviso vai para o Joe).
+   30/10: número das páginas (678) 448-4007 ("Google Adwords"): ligação e SMS viram lead (tags, card, conversão, SMS +
+   e-mail + tarefa para o Joe; cliente atual só avisa; spam nada) — `scripts/ys_ads_line.py`, testado em cópias. O "AdWords
+   Call In - New Lead" era cópia da Clear Pool (número, pipeline e texto deles) e nunca disparava: corrigido. Falta:
+   (a) Atif pôr o número e as páginas de obrigado; (b) Google Ads conectado no GHL da YardSpring (Val); (c) ligação + SMS
+   reais para (678) 448-4007 e envio de cada form (me avisa antes: o aviso vai para o Joe). Resto da conta: "Sequential
+   Call Routing" publicado com números e usuários da BluVantage (não dispara aqui; limpar com o modelo).
 10. **NorTex: 2 landing pages** (27–29/10): páginas do Atif no funil (go.nortexpools.com/premium-weekly-pool-cleaning,
    /pool-equipment-repair + 2 de obrigado), forms, tags, workflows e a linha (469) 218-3416 no ar. 29/10 (cliente via Val):
    o form agora vai para o calendário "Pool Service Appointment" já preenchido, igual ao site, e todo agendamento avisa
