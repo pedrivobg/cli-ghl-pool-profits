@@ -119,3 +119,15 @@
   (+ `new form fill`), card em New Lead, SMS + e-mail + tarefa ao Fareed. Testado em cópias (6 casos), publicado.
 - Falta: Google Ads conectado no GHL da NorTex (`googleAdwordsId` vazio) e o form mapeado/Active no app Google Lead Ads;
   Send Data; envio real do form das LPs com endereço + agendamento.
+
+## 04/11 — Poolheads: migração da conta antiga (outra agência) — etapa 1: templates
+
+- Token da conta antiga ("Poolheads Pool Service & Repair", `PvPul1DiA2pXShC0xfDD`) em `poolheads-old.env` no scratchpad
+  (fora do repo; dump em `dump/poolheads-old/`). Só leitura na conta antiga.
+- Inventário: 20 workflows (8 publicados), 9 templates de SMS, 5 de e-mail (1 + pasta "Email Confirmation Templates" com 4),
+  5 calendários, 5 forms, 1 pipeline, 16 campos, 4 usuários (Felipe, Jorge Arias, Jose Cobo, "Main Office Phone").
+- `scripts/ph_migrate_old.py emails|snippets --apply`: os 5 e-mails na conta nova com os mesmos nomes e pasta (como HTML: o
+  JSON do editor arrasta-e-solta não é baixável; o HTML é o e-mail renderizado, editável no editor de código); as 5
+  imagens que moravam no storage da conta antiga foram copiadas para a biblioteca de mídia da nova e os links trocados (0
+  links antigos restantes; comparação visual idêntica). Os 9 SMS com nome e texto iguais.
+- Próximo: campos, calendários (inativos), forms, workflows em draft (pasta "Old account", ids trocados), comparação.
