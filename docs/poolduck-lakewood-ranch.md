@@ -155,3 +155,15 @@ Testado nas cópias (6 casos). Falta: SMS real para 941-541-5942 e Send Data do 
   website da conta = o domínio.
 - **Falta (documento do IRS / CP 575)**: EIN, tipo de empresa, nome legal exato (com ou sem o DBA) e o endereço como está
   no IRS (Zephyrhills × Wesley Chapel, mesmo ZIP 33544) → Business Profile → Business Information. Logo da conta vazio.
+
+## Comercial — Google Ads (02/11, brief da Val)
+
+- `scripts/pd_lwr_commercial.py`: form **"Google Ads - Commercial"** (`wjt6wjkZcPzaGlhb8xfs`, visual do form "Google AdWords"
+  da LWR): título "Request a Commercial Pool Service Quote", Full Name, Email, Phone, Property Address com busca do Google
+  (preenche rua/cidade/estado/CEP), consentimento, botão "Get a Commercial Pool Service Quote"; mensagem de obrigado até
+  existir a página de obrigado comercial (aí troco para redirecionar).
+- Workflow **"Google Ads Commercial - Qualified Lead"** (pasta dos Qualified Lead): spam → nada; 24 h → nada; cliente →
+  alerta "EXISTING CUSTOMER"; novo → tags `commercial pool lead` + `new lead` + `google adwords` + `lakewood ranch`, card em
+  Lead (fonte "Google Ads - Commercial", sem valor), SMS ao Kenton + Pool Duck Service com nome, telefone, e-mail e endereço.
+  Sem SMS automático residencial ao lead. Testado em cópia (novo/repetido/cliente/spam), tudo apagado.
+- Falta: Atif embutir o form na página; envio real quando a página subir (me avisa antes: alerta ao Kenton).
