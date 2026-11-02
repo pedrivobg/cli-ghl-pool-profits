@@ -13,6 +13,10 @@ account's (OLD_ENV unset → .env) writes. Nothing is ever written to the old ac
   exact rendered email, editable in the code editor). Their images live in the old account's media storage and would
   disappear with it: each is downloaded and uploaded to the new account's media library, and the links swapped.
 - snippets: the 9 SMS templates → same names and text (skips names that already exist).
+- fields: the 16 contact custom fields (same name, type and options) that the new account does not have.
+- calendars: the 5 calendars → same settings (duration, interval, hours, title, description, confirmation), **inactive**,
+  Felipe as the team member (the old ones also had Jorge, not a user here yet); their email notifications to the
+  contact point at the migrated email templates (same subject).
 """
 from __future__ import annotations
 
@@ -150,9 +154,92 @@ def snippets(old: Agency, new: Agency, apply: bool) -> None:
         print(f"   {'✓' if not miss else '✗ faltam ' + str(miss)} {len(src)} templates de SMS")
 
 
+FIELD_TYPES = {"MULTIPLE_OPTIONS", "SINGLE_OPTIONS", "CHECKBOX", "RADIO"}
+
+
+def fields(old: Agency, new: Agency, apply: bool) -> None:
+    have = {c["name"].strip().lower() for c in new.custom_fields(NEW)}
+    for c in old.custom_fields(OLD):
+        name = c["name"].strip()
+        print(f"   {'= já existe' if name.lower() in have else '+'} {name} ({c.get('dataType')})")
+        if apply and name.lower() not in have:
+            body = {"name": name, "dataType": c["dataType"], "model": "contact", "placeholder": c.get("placeholder") or "", "position": 0}
+            if c["dataType"] in FIELD_TYPES:
+                body["options"] = c.get("picklistOptions") or []
+            new.call("POST", SERVICES, f"/locations/{NEW}/customFields", body=body)
+    if apply:
+        left = [c["name"] for c in old.custom_fields(OLD) if c["name"].strip().lower() not in {x["name"].strip().lower() for x in new.custom_fields(NEW)}]
+        print(f"   {'✓' if not left else '✗ faltam ' + str(left)} campos")
+
+
+CAL_DROP = {"id", "locationId", "groupId", "teamMembers", "formId", "providerId", "createdBy", "dateAdded", "dateUpdated",
+            "lastUpdatedBy", "version", "isSystemGenerated", "linkedCalendars", "stripe", "pixelId", "deleted", "isActive",
+            "widgetSlug", "order", "lookBusyConfig", "reserveService", "codeBlock", "notes"}
+
+
+def felipe(new: Agency) -> str:
+    return next(u["id"] for u in new.call("GET", SERVICES, "/users/", params={"locationId": NEW})["users"] if u.get("name") == "Felipe Cobo")
+
+
+def email_ids(new: Agency) -> dict:
+    out = {}
+    for b in new.call("GET", SERVICES, "/emails/builder", params={"locationId": NEW, "limit": 100})["builders"]:
+        out[b["name"].strip()] = b["id"]
+        if b.get("templateType") == "folder":
+            for k in new.call("GET", SERVICES, "/emails/builder", params={"locationId": NEW, "limit": 100, "parentId": b["id"]})["builders"]:
+                out[k["name"].strip()] = k["id"]
+    return out
+
+
+def calendars(old: Agency, new: Agency, apply: bool) -> None:
+    src = old.call("GET", SERVICES, "/calendars/", params={"locationId": OLD})["calendars"]
+    BDIR.mkdir(parents=True, exist_ok=True)
+    (BDIR / "calendars.json").write_text(json.dumps(src))
+    have = {c["name"].strip() for c in new.call("GET", SERVICES, "/calendars/", params={"locationId": NEW})["calendars"]}
+    old_names = {t["id"]: t["name"].strip() for t in json.loads((BDIR / "email-templates.json").read_text())}
+    tpl_new = email_ids(new)
+    fid = felipe(new)
+    for c in src:
+        name = c["name"].strip()
+        notif = [n for n in old.call("GET", SERVICES, f"/calendars/{c['id']}/notifications")
+                 if not n.get("deleted") and n.get("isActive") and n.get("channel") == "email" and n.get("receiverType") == "contact"]
+        mapped = [(n, tpl_new.get(old_names.get(n.get("templateId"), ""))) for n in notif]
+        print(f"   {'= já existe' if name in have else '+'} {name}: {c.get('slotDuration')} min · e-mail ao cliente "
+              f"{[(old_names.get(n.get('templateId')), bool(t)) for n, t in mapped]}")
+        if not apply or name in have:
+            continue
+        body = {k: v for k, v in c.items() if k not in CAL_DROP}
+        tm = (c.get("teamMembers") or [{}])[0]
+        body.update(locationId=NEW, name=name, isActive=False,
+                    teamMembers=[{**tm, "userId": fid, "isPrimary": True, "selected": True}])
+        for _ in range(40):  # the create endpoint rejects some read-only fields one at a time
+            try:
+                res = new.call("POST", SERVICES, "/calendars/", body=body)
+                break
+            except Exception as e:  # noqa: BLE001
+                bad = re.findall(r"property (\w+) should not exist", str(e))
+                if not bad:
+                    raise
+                for k in bad:
+                    body.pop(k, None)
+        cid = (res.get("calendar") or res)["id"]
+        for n, tid in mapped:
+            if not tid:
+                continue
+            new.call("POST", SERVICES, f"/calendars/{cid}/notifications", body=[{
+                "channel": "email", "notificationType": n["notificationType"], "receiverType": "contact", "isActive": True,
+                "templateId": tid, "subject": n.get("subject") or "", "body": n.get("body") or "",
+                "additionalEmailIds": [], "selectedUsers": []}])
+        got = new.call("GET", SERVICES, f"/calendars/{cid}")["calendar"]
+        ns = [x for x in new.call("GET", SERVICES, f"/calendars/{cid}/notifications") if not x.get("deleted")]
+        ok = got["isActive"] is False and got["slotDuration"] == c["slotDuration"] and \
+            all(any(x.get("templateId") == t for x in ns) for _, t in mapped if t)
+        print(f"      {'✓' if ok else '✗ VERIFICAR'} {cid} · inativo · e-mails {[x.get('templateId') for x in ns if x.get('channel') == 'email']}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("what", choices=["inventory", "emails", "snippets"])
+    parser.add_argument("what", choices=["inventory", "emails", "snippets", "fields", "calendars"])
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
     old = Agency()
@@ -165,6 +252,10 @@ def main() -> int:
         emails(old, new, args.apply)
     elif args.what == "snippets":
         snippets(old, new, args.apply)
+    elif args.what == "fields":
+        fields(old, new, args.apply)
+    elif args.what == "calendars":
+        calendars(old, new, args.apply)
     else:
         print(f"   workflows {len(old.workflows(OLD))} · forms {len(old.forms(OLD))} · campos {len(old.custom_fields(OLD))}")
     return 0
