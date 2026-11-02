@@ -131,3 +131,14 @@
   imagens que moravam no storage da conta antiga foram copiadas para a biblioteca de mídia da nova e os links trocados (0
   links antigos restantes; comparação visual idêntica). Os 9 SMS com nome e texto iguais.
 - Próximo: campos, calendários (inativos), forms, workflows em draft (pasta "Old account", ids trocados), comparação.
+- **Etapa 2 (04/11)**: 16 campos; 5 calendários **inativos** (mesmas configurações e horário seg–sex 8–17, Felipe como
+  membro; e-mail de confirmação ao cliente apontando para os templates migrados — conferido igual ao original); 5 forms
+  (Mainsite, 2026 - Pool Service - V69, Repairs LP V16, [Service]/[Repairs] Google LP Form V4); 11 workflows em draft
+  "[Old account] …" com todos os ids trocados (usuários → Felipe, pipeline/etapas por significado, calendários, campos e
+  chaves de merge, templates, forms) e gatilhos copiados (inativos): 0 ids antigos restantes. Não copiados: "After Hours
+  Message" e "Business Hours Call Routing" (portados e no ar desde outubro) e 7 vazios. Tag `current customer` criada.
+- **Antes de cancelar a conta antiga**: o "LVB - Meta Service" (publicado lá) recebe leads por webhook de um serviço
+  externo → trocar a URL no serviço para a nova (`…/hooks/PeUynYCMm8e6PJMy785O/webhook-trigger/zxySSbrHhRqaWat6wF0i`) e
+  publicar o draft; os forms antigos que estiverem em páginas da conta antiga continuam caindo lá até as páginas mudarem.
+- Histórico de conversas: a API não deixa gravar mensagens no Conversations com o nosso acesso (o mesmo limite do
+  `/conversations/messages/inbound`); dá para pôr o histórico de 6 meses como nota em cada contato (~500 conversas).

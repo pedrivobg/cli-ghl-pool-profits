@@ -14,6 +14,12 @@ account's (OLD_ENV unset → .env) writes. Nothing is ever written to the old ac
   disappear with it: each is downloaded and uploaded to the new account's media library, and the links swapped.
 - snippets: the 9 SMS templates → same names and text (skips names that already exist).
 - fields: the 16 contact custom fields (same name, type and options) that the new account does not have.
+- forms: the 5 forms (same names, fields, look; custom fields swapped for the new account's).
+- workflows: the 11 with steps → drafts named "[Old account] …" (the 2 already ported in October and the 7 empty ones are
+  skipped). Every old-account id in them is swapped for the new account's: users (Jorge, Jose and "Main Office Phone" are
+  not users here → Felipe), pipeline and stages (by meaning: New/Leads → New Lead, Appointment Scheduled → Scheduled,
+  Quoted → Quote Sent, Signed Account → Won Weekly, Backouts/Went w/ Another/Not Interested → Lost), calendars, custom
+  fields (ids and merge keys), SMS/email templates and forms (by name). Triggers copied too (inactive while draft).
 - calendars: the 5 calendars → same settings (duration, interval, hours, title, description, confirmation), **inactive**,
   Felipe as the team member (the old ones also had Jorge, not a user here yet); their email notifications to the
   contact point at the migrated email templates (same subject).
@@ -237,9 +243,124 @@ def calendars(old: Agency, new: Agency, apply: bool) -> None:
         print(f"      {'✓' if ok else '✗ VERIFICAR'} {cid} · inativo · e-mails {[x.get('templateId') for x in ns if x.get('channel') == 'email']}")
 
 
+STAGES = {"New [Google Lead]": "🆕 New Lead", "New [Google Repairs}": "🆕 New Lead", "New [Facebook Lead]": "🆕 New Lead",
+          "Leads": "🆕 New Lead", "Appointment Scheduled": "📅 Scheduled", "Quoted": "💰 Quote Sent",
+          "Signed Account": "🏆 Won - Weekly Pool Service", "Backouts": "❌ Lost", "Went w/ Another Company": "❌ Lost",
+          "Not Interested / DNC or Not Service Area": "❌ Lost"}
+SKIP_FLOWS = {"After Hours Message", "Business Hours Call Routing"}  # ported in October (pp_poolheads_port.py), live
+
+
+def id_map(old: Agency, new: Agency) -> dict[str, str]:
+    m = {OLD: NEW}
+    fid = felipe(new)
+    for u in old.call("GET", SERVICES, "/users/", params={"locationId": OLD})["users"]:
+        m[u["id"]] = fid
+    nps = {p["name"]: p for p in new.pipelines(NEW)}
+    newp = nps["Pool Leads"]
+    nst = {st["name"]: st["id"] for st in newp["stages"]}
+    for p in old.pipelines(OLD):
+        m[p["id"]] = newp["id"]
+        for st in p["stages"]:
+            m[st["id"]] = nst[STAGES[st["name"]]]
+    ncal = {c["name"].strip(): c["id"] for c in new.call("GET", SERVICES, "/calendars/", params={"locationId": NEW})["calendars"]}
+    for c in old.call("GET", SERVICES, "/calendars/", params={"locationId": OLD})["calendars"]:
+        if c["name"].strip() in ncal:
+            m[c["id"]] = ncal[c["name"].strip()]
+    ncf = {c["name"].strip().lower(): c for c in new.custom_fields(NEW)}
+    for c in old.custom_fields(OLD):
+        n = ncf.get(c["name"].strip().lower())
+        if n:
+            m[c["id"]] = n["id"]
+            m["{{" + c["fieldKey"] + "}}"] = "{{" + n["fieldKey"] + "}}"
+    nsms = {t["name"].strip(): t["id"] for t in new.call("GET", SERVICES, f"/locations/{NEW}/templates", params={"limit": 200})["templates"]}
+    for t in old.call("GET", SERVICES, f"/locations/{OLD}/templates", params={"limit": 200})["templates"]:
+        if t["name"].strip() in nsms:
+            m[t["id"]] = nsms[t["name"].strip()]
+    nem = email_ids(new)
+    for t in json.loads((BDIR / "email-templates.json").read_text()):
+        if t["name"] in nem:
+            m[t["id"]] = nem[t["name"]]
+    nforms = {f["name"]: f.get("_id") or f.get("id") for f in new.forms(NEW)}
+    for f in old.forms(OLD):
+        if f["name"] in nforms:
+            m[f.get("_id") or f.get("id")] = nforms[f["name"]]
+    return m
+
+
+def swap(obj, m: dict[str, str]):
+    text = json.dumps(obj)
+    for k in sorted(m, key=len, reverse=True):
+        text = text.replace(k, m[k])
+    return json.loads(text)
+
+
+def forms(old: Agency, new: Agency, apply: bool) -> None:
+    from bv_service_forms import latest_form_data
+    from _common import keep_redirect
+    have = {f["name"] for f in new.forms(NEW)}
+    m = id_map(old, new)
+    for f in old.forms(OLD):
+        fid = f.get("_id") or f.get("id")
+        print(f"   {'= já existe' if f['name'] in have else '+'} {f['name']}")
+        if not apply or f["name"] in have:
+            continue
+        _, fd = latest_form_data(old, fid)
+        fd = swap(fd, m)
+        res = new.call("POST", SERVICES.replace("services", "backend"), "/forms/", body={"name": f["name"], "locationId": NEW, "formData": keep_redirect(fd)})
+        nid = (res.get("form") or res).get("_id") or (res.get("form") or res).get("id")
+        print(f"      ✓ {nid}")
+
+
+def create_flow(new: Agency, name: str, tpl: list[dict], settings: dict) -> str:
+    backend = SERVICES.replace("services", "backend")
+    res = new.call("POST", backend, f"/workflow/{NEW}", body={"name": name, "status": "draft"})
+    wid = res.get("id") or res.get("_id")
+    new.call("PUT", backend, f"/workflow/{NEW}/{wid}", body={"name": name, "version": 1, "status": "draft",
+                                                            "workflowData": {"templates": tpl}, **settings})
+    return wid
+
+
+def workflows(old: Agency, new: Agency, apply: bool) -> None:
+    backend = SERVICES.replace("services", "backend")
+    m = id_map(old, new)
+    have = {w["name"] for w in new.workflows(NEW)}
+    BDIR.mkdir(parents=True, exist_ok=True)
+    for w in sorted(old.workflows(OLD), key=lambda w: w["name"]):
+        full = old.workflow(OLD, w["id"])
+        tpl = full["workflowData"]["templates"]
+        trs = [t for t in old.triggers(OLD, w["id"]) if not t.get("deleted")]
+        name = f"[Old account] {w['name']}"
+        why = "já portado em outubro" if w["name"] in SKIP_FLOWS else ("vazio" if not tpl else "")
+        (BDIR / f"workflow-{w['id']}.json").write_text(json.dumps({"workflow": full, "triggers": trs}))
+        print(f"   {'·' if why else ('=' if name in have else '+')} {w['name']} [{w['status']}] {why or f'{len(tpl)} passos, {len(trs)} gatilhos'}")
+        if why or not apply or name in have:
+            continue
+        settings = {k: full[k] for k in ("allowMultiple", "allowMultipleOpportunity", "stopOnResponse", "timezone", "window",
+                                          "removeContactFromLastStep", "autoMarkAsRead") if k in full}
+        new_tpl = swap(tpl, m)
+        try:
+            wid = create_flow(new, name, new_tpl, settings)
+        except Exception as e:  # noqa: BLE001
+            print(f"      ✗ {str(e)[:300]}")
+            continue
+        for t in trs:
+            body = {k: v for k, v in swap(t, m).items() if k not in ("id", "date_added", "date_updated", "_id", "active", "origin_id")}
+            body.update(workflowId=wid, workflow_id=wid, location_id=NEW, actions=[{"workflow_id": wid, "type": "add_to_workflow"}])
+            try:
+                r = new.call("POST", backend, f"/workflow/{NEW}/trigger", body=body)
+                new.call("PUT", backend, f"/workflow/{NEW}/trigger/{r['id']}", body={**body, "id": r["id"]})
+            except Exception as e:  # noqa: BLE001
+                print(f"      ✗ gatilho {t['type']}: {str(e)[:200]}")
+        got = new.workflow(NEW, wid)
+        left = [k for k in m if k != OLD and k in json.dumps(got["workflowData"]["templates"])]
+        n_tr = len([t for t in new.triggers(NEW, wid) if not t.get("deleted")])
+        print(f"      {'✓' if got['status'] == 'draft' and len(got['workflowData']['templates']) == len(tpl) and not left else '✗ VERIFICAR'}"
+              f" draft · {len(got['workflowData']['templates'])} passos · {n_tr}/{len(trs)} gatilhos · ids antigos restantes {len(left)}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("what", choices=["inventory", "emails", "snippets", "fields", "calendars"])
+    parser.add_argument("what", choices=["inventory", "emails", "snippets", "fields", "calendars", "forms", "workflows"])
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
     old = Agency()
@@ -256,6 +377,10 @@ def main() -> int:
         fields(old, new, args.apply)
     elif args.what == "calendars":
         calendars(old, new, args.apply)
+    elif args.what == "forms":
+        forms(old, new, args.apply)
+    elif args.what == "workflows":
+        workflows(old, new, args.apply)
     else:
         print(f"   workflows {len(old.workflows(OLD))} · forms {len(old.forms(OLD))} · campos {len(old.custom_fields(OLD))}")
     return 0
