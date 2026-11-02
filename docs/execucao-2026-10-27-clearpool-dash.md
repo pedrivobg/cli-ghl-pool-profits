@@ -77,3 +77,19 @@
   First + Last → Full Name; Street/City/ZIP → "Property Address" com busca do Google (`group_address`; o form guarda
   `address.autoCompleteEnabled` e preenche cidade e CEP — o CEP continua alimentando o "service area zip" do fluxo).
   Conferido na página no ar (campos novos); a busca do Google não abre daqui (rede da sessão).
+
+## 02/11 — Bonneville Pool Maintenance (conta nova, `DeSfqW31OleIiU7eUt35`, Kaysville UT; survey do Justin Jeppsen)
+
+- `pp_onboarding_fill --timezone` (survey de 02/11, anterior de 29/10): fuso Sao_Paulo → America/Denver; Green to Clean
+  "null" → vazio. Correções básicas (backup): `a2p_verification_number` provisório (801) 915-8582 (sem número na conta —
+  "No Twilio account"), Client Domain Name sem https, Service Area "Kaysville", missed-call nativo desligado.
+- `pp_mirror --apply` (11 workflows do modelo publicados), `pp_forms` (nada), `pp_nps` (NPS Form + link), `pp_fix
+  --drop-booking --include-drafts`, `pp_tags_missing`, `pp_skip_tag` (já tinha), `pp_review_fix` (nada).
+- **Erro do `pp_fix`**: leu o dump de antes do `pp_nps` (link do NPS vazio) e trocou o link do SMS do NPS por "Just reply…",
+  deixando `?email=…&phone=…` solto. Restaurado do backup (igual ao modelo). Lição: re-dump depois do `pp_nps`.
+- Veio do snapshot ainda sem o Refresh: Sequential Call Routing genérico (sem usuários/caixa postal da BluVantage, gatilho
+  com 6 números dela removido) e o gatilho do AdWords Call In no número de Tucson removido (os dois em draft). Os 4 funis
+  "Simple Pool Care"/"LP Teste" continuam na conta (não mexido).
+- Resultado: auditoria 0 ALTA, `pp_ready` 0 ERRO (com `--place` do link g.page do survey; Google não conectado).
+- Falta: número de telefone + A2P (sem número nenhum SMS sai, nem os avisos internos por SMS); o site não tem privacy/
+  terms (404) → A2P pelo "New A2P Verification" num subdomínio; conectar Google Business; primeiro acesso do Justin.

@@ -49,6 +49,11 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
      usuários em 27/10: primeiro acesso dos três por "Forgot password" em app.poolprofits.com.
    - Rosebrook/Blissful/WP: os sites não têm política de privacidade → A2P precisa de site com privacy (o "New A2P
      Verification" num subdomínio deles, com o DNS do cliente). Pedir ao Frank junto com o EIN/endereço.
+3b. **Bonneville Pool Maintenance (conta nova, 02/11)**: pronta no padrão (0 ALTA, 0 ERRO). Sem número na conta → nenhum
+   SMS sai (nem o aviso interno). Falta: **comprar um número** ("Website & GBP"; decisão sua/Frank) + A2P (o site
+   bonnevillepool.com não tem privacy/terms → "New A2P Verification" num subdomínio, DNS do cliente); conectar o Google
+   Business; primeiro acesso do Justin no app; **Refresh do snapshot** (a conta nasceu da versão antiga: tirei a sobra da
+   BluVantage do IVR; os 4 funis "Simple Pool Care" ainda vêm junto).
 4. **Google Lead Form "Weekly Pool Service Done Right"**: workflows no ar; form mapeado e ativo em Wrigley's,
    BluVantage, Precision, Reign e Damon's. Nenhum lead chegou ainda. **Teste parado**: a conta Google do seu amigo
    (pedrolp2005@gmail.com) não acessa o Google Ads dos clientes. Os forms estão ligados a val@poolprofits.com (Wrigley's,
