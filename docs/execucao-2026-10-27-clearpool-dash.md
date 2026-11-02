@@ -106,3 +106,16 @@
 - Falta (Val): no GHL da Pool Palooza → Settings → Integrations → Google Lead Ads: mapear os campos do form "Google Ads -
   Lead Form" e deixar **Active**; depois Send Data no Google Ads (me avisa antes: o lead de teste entra nas sequências e
   avisa a equipe; eu apago).
+
+## 03/11 — NorTex (Val/Fareed): endereço no form, Lead Form e SMS do Google Ads
+
+- Fareed: "o endereço não apareceu depois de escolher data/hora". O widget de agendamento (calendário "Pool Service
+  Appointment", form "Appointment Booking Form") só pede nome/e-mail/telefone (já preenchidos) e o form do site também
+  não pede endereço. Os 2 forms das LPs (agora em promo.nortexpools.com) ganharam **Property Address** obrigatório com busca
+  do Google (preenche rua/cidade/estado/CEP), antes do calendário (`nx_ads_form_style.py`, prévia + backup).
+- `scripts/nx_ads_line.py` (cópia do `ys_ads_line.py` com os ids da NorTex; ligações já cobertas pelo IVR): "Google Ads
+  SMS - New Lead" (SMS na linha (469) 218-3416) e "Google Lead Form - New Lead" (Google Lead Form Submitted; o form cobre
+  Weekly + Repairs; serviço no campo "Service" se o form perguntar), tags `new lead`/`adwords`/`google ads - sms|lead form`
+  (+ `new form fill`), card em New Lead, SMS + e-mail + tarefa ao Fareed. Testado em cópias (6 casos), publicado.
+- Falta: Google Ads conectado no GHL da NorTex (`googleAdwordsId` vazio) e o form mapeado/Active no app Google Lead Ads;
+  Send Data; envio real do form das LPs com endereço + agendamento.

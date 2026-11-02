@@ -8,8 +8,8 @@ Built from the newest version of "New Website Form" (the one on nortexpools.com)
 "GET YOUR SERVICE QUOTE" title, Full Name / Phone (country picker) / Email, gold button. Each landing page form keeps
 what is its own: name, redirect to the booking calendar (nx_ads_booking.py), email settings, the button text, and
 the consent checkbox + Terms/Privacy links (A2P), in white for the dark box. REPAIR also keeps "What equipment needs
-repair?" and the $150 diagnostic note. Street/City/ZIP go away, as on the website (the lead workflows only print them
-in Fareed's alert). Backup of each form before saving; both redirect fields kept (keep_redirect).
+repair?" and the $150 diagnostic note. Street/City/ZIP became one required "Property Address" with Google autocomplete
+(fills street, city, state, ZIP), before the calendar: the booking widget only asks name/email/phone (Fareed, 03/11). Backup of each form before saving; both redirect fields kept (keep_redirect).
 """
 from __future__ import annotations
 
@@ -31,6 +31,14 @@ FORMS = {"lxtvCbfxc4lDxC50Sifc": {"title": "GET YOUR SERVICE QUOTE", "cta": "GET
          "L3f9uKoFBk7QmOtl0hkq": {"title": "SCHEDULE A REPAIR VISIT", "cta": "SCHEDULE A REPAIR VISIT"}}
 EQUIPMENT = "xQQ0Am5xSXEl5adEYvn3"
 WHITE = "rgba(255,255,255,1)"
+ADDRESS = {"active": False, "hiddenFieldQueryKey": "group_address", "label": "Property Address", "placeholder": "Property Address",
+           "required": True, "standard": True, "tag": "group_address", "title": "Property Address", "type": "group"}
+ADDRESS_CFG = {"autoCompleteEnabled": True, "label": "Property Address", "placeholder": "Start typing your address",
+               "required": True, "children": [
+                   {"hiddenFieldQueryKey": "city", "label": "City", "placeholder": "City", "required": False, "standard": True,
+                    "tag": "city", "title": "City", "type": "text", "typeLabel": "Text"},
+                   {"hiddenFieldQueryKey": "postal_code", "label": "ZIP Code", "placeholder": "ZIP Code", "required": False,
+                    "standard": True, "tag": "postal_code", "title": "ZIP Code", "type": "text", "typeLabel": "Text"}]}
 BDIR = ROOT / "backup" / "nortex-pools"
 
 
@@ -46,13 +54,14 @@ def build(site: dict, lp: dict, spec: dict) -> dict:
             fd[k] = copy.deepcopy(lp[k])
     form = fd["form"]
     form["formAction"] = copy.deepcopy(lp["form"]["formAction"])
+    form["address"] = copy.deepcopy(ADDRESS_CFG)
     by = {x["tag"]: x for x in site["form"]["fields"]}
     own = {x["tag"]: x for x in lp["form"]["fields"]}
     title = copy.deepcopy(by["header"])
     title["label"] = title["label"].replace("GET YOUR SERVICE QUOTE", spec["title"])
     button = copy.deepcopy(by["button"])
     button["label"] = button["label"].replace("GET A QUOTE", spec["cta"])
-    fields = [title, *(copy.deepcopy(by[t]) for t in ("full_name", "phone", "email"))]
+    fields = [title, *(copy.deepcopy(by[t]) for t in ("full_name", "phone", "email")), copy.deepcopy(ADDRESS)]
     if EQUIPMENT in own:
         fields.append(copy.deepcopy(own[EQUIPMENT]))
     consent = copy.deepcopy(own["terms_and_conditions"])
@@ -119,7 +128,7 @@ def main() -> int:
         act = got["form"]["formAction"]
         tags = [x["tag"] for x in got["form"]["fields"]]
         ok = act.get("redirect_url") == lp["form"]["formAction"].get("redirect_url") and \
-            got["form"]["style"] == site["form"]["style"] and "full_name" in tags
+            got["form"]["style"] == site["form"]["style"] and "full_name" in tags and "group_address" in tags
         print(f"   {'✓' if ok else '✗ VERIFICAR'} {f['name']}: {tags}")
     return 0
 
