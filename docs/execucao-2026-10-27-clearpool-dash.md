@@ -93,3 +93,16 @@
 - Resultado: auditoria 0 ALTA, `pp_ready` 0 ERRO (com `--place` do link g.page do survey; Google não conectado).
 - Falta: número de telefone + A2P (sem número nenhum SMS sai, nem os avisos internos por SMS); o site não tem privacy/
   terms (404) → A2P pelo "New A2P Verification" num subdomínio; conectar Google Business; primeiro acesso do Justin.
+
+## 03/11 — Pool Palooza: Google Ads Lead Form "Google Ads - Lead Form" (Val)
+
+- Conta com setup próprio (Pool Service Accelerator): o "⚙️ Pool Service Lead Engine" (publicado) já recebe Facebook
+  lead form, TikTok, forms do site, Angi e Yelp e trata todos igual (aviso interno, dono, card em "1. Leads" → New Lead,
+  sequências de SMS/e-mail, pesquisa). Ganhou o gatilho **Google Lead Form Submitted** (sem filtro de conta: Google Ads
+  não conectado pela conta — `googleAdwordsId` vazio — como na LWR/YardSpring). Passos intocados (33), backup em
+  `backup/pool-palooza/`.
+- Novo "Google Lead Form - Tag" (mesma pasta, publicado): mesmo gatilho → tags `google ads` + `google ads lead form`
+  (origem, no padrão do "TAG Orchestrator" deles).
+- Falta (Val): no GHL da Pool Palooza → Settings → Integrations → Google Lead Ads: mapear os campos do form "Google Ads -
+  Lead Form" e deixar **Active**; depois Send Data no Google Ads (me avisa antes: o lead de teste entra nas sequências e
+  avisa a equipe; eu apago).
