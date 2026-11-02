@@ -58,6 +58,13 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    REPAIRS" (`Hb5KiQHQZkGFmSgzJbIk`) + "Google Ads LP - Weekly/Repairs" no ar e testados (`scripts/ps_ads_forms.py`). Falta:
    URLs e páginas de obrigado do Atif (eu ponho a URL e ligo o redirecionamento); Google Ads conectado no GHL da Pool
    Shack (Val); números de rastreamento de ligação (decisão sua); envio real de cada form (me avisa antes).
+   - **Rob (03/11)**: aprovou 2 números de rastreamento (Weekly e Repairs/Installs) encaminhando para o Google Voice dele
+     (480) 798-2888 → **comprar os 2 números (você, na tela; custo ~US$1–2/mês cada + uso)**; eu ligo cada um ao form/
+     campanha (tags, card, aviso) como na BluVantage/YardSpring. Ele quer o teste da chamada perdida com a caixa postal do
+     Google Voice: ligar para (480) 428-0655, não atender, deixar cair no recado → me avisa e eu confiro se o SMS saiu.
+     "Service Needed" no form do site: o site (WordPress, WPForms 440/443) **já pergunta** o serviço, mas **o form do site
+     não chega no GHL** (7 contatos na conta, nenhum do site). Ligar o WPForms ao GHL (webhook → workflow, como na
+     Bluewater) precisa de acesso ao WP (Application Password) ou o Atif troca pelo form do GHL.
 6. **BluVantage: 3 landing pages**: forms prontos e testados (envio real quando o Atif puser nas páginas; me avisa
    antes). Números por página no ar (26/10): Weekly 470-470-8874, Repairs 470-450-6322, Winter 470-450-4427, no IVR e
    com tag/card/conversão por serviço. **Teste**: ligar fora do horário (o IVR toca a equipe no horário) para os 2 novos
