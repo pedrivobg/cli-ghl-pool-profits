@@ -20,6 +20,16 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
      Com ele eu copio todos os workflows em draft (pasta "Conta antiga") e todos os contatos (tag `existing customer`).
    - Depois disso e do OK do Frank: publico o resto (No Response, Quote, No-Show, Lost, Won, Review…).
    - **Na tela**: Call Recording no 936-314-9255 (sem a mensagem); Felipe/Jorge no app com a conta nova; deskphone.
+   - **3 landing pages de Google Ads (02/11, Val)** — `scripts/ph_ads_forms.py`: forms GOOGLE ADS – WEEKLY
+     (`Xpcfh37RSgDWYHpyGzPl`), – REPAIR (`8i6m1oTeWFSanDFoNasS`), – LEAK DETECTION (`jmlPHTq3B6Cha86tKgfD`) e os 3 fluxos
+     "Google Ads LP - …" no ar e testados em cópias (tags google ads / poolheads / landing page lead / serviço, card em New
+     Lead, SMS + e-mail ao Felipe). Linha (936) 301-0309 entrou no IVR + "Google Ads Call - Tag". Falta:
+     (a) Atif: páginas no funil do go.poolheadscare.com + 3 páginas de obrigado (/thank-you-pool-service,
+     /thank-you-pool-repair, /thank-you-leak-detection) → eu rodo `ph_ads_forms.py thanks`;
+     (b) Val: e-mail preferido do Felipe para os avisos (hoje felipe.cobo4@gmail.com); IDs do GTM / GA4 / conversões do
+     Google Ads e conectar o Google Ads no GHL da Poolheads (conversão por form e por ligação);
+     (c) ligação de teste para o 936-301-0309 e envio real de cada form (avisar o Felipe antes);
+     (d) migração dos templates de e-mail da conta antiga: precisa do token da conta antiga (passos acima).
    - **Felipe vai fazer sozinho** (Frank, 30/10): criar o usuário do gerente de serviço e pôr no IVR; passar as automações
      e lembretes de calendário (confirmação por SMS para cliente avulso, separada do Skimmer). Foto de antes (30/10):
      1 usuário (Felipe); "Business Hours Call Routing" toca só o Felipe; 2 calendários inativos e sem membros;
