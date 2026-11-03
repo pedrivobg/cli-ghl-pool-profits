@@ -167,3 +167,20 @@ Testado nas cópias (6 casos). Falta: SMS real para 941-541-5942 e Send Data do 
   Lead (fonte "Google Ads - Commercial", sem valor), SMS ao Kenton + Pool Duck Service com nome, telefone, e-mail e endereço.
   Sem SMS automático residencial ao lead. Testado em cópia (novo/repetido/cliente/spam), tudo apagado.
 - Falta: Atif embutir o form na página; envio real quando a página subir (me avisa antes: alerta ao Kenton).
+
+## Landing page comercial no ar (03/11, Atif/Val)
+
+- O Atif montou as páginas na sub-conta "Pool Duck" da agência **Pool Profits** (`VpRdADKTSUn7nIYzxGGn`, funil
+  `VHLmTPe8J3SIvYCeOKzV`), sem domínio. O form que elas embutem (`wjt6wjkZcPzaGlhb8xfs`) e o workflow estão na LWR.
+- `scripts/pd_lwr_commercial_page.py` (export com o token Pool Profits → plan/apply com o token Pool Duck): funil
+  **"Google Ads - Commercial Pool Service - Lakewood Ranch"** `lEjIB0j5Emsj20HHMQyx` na LWR (clone do funil Google, mesma
+  pasta e tag AW-18499747250), corpo e título das 2 páginas do Atif, telefone → 941-541-5942 (número do Google Ads), domínio
+  da LWR. No ar (200):
+  - https://lakewoodranchflorida.poolduck.com/commercial-pool-service-lakewood-ranch
+  - https://lakewoodranchflorida.poolduck.com/commercial-quote-received
+- Form "Google Ads - Commercial" agora redireciona para a página de obrigado (antes: mensagem).
+- API de funil: `PUT backend /funnels/funnel/step/{funnelId}` (corpo do GET `/funnels/funnel/{fid}/step/{sid}` + `stepId`,
+  `sequence` como string) muda o passo, mas o domínio ao vivo continua no caminho antigo; o caminho do **funil** serve o
+  1º passo. Passo com o mesmo caminho do funil ganha sufixo aleatório ao ligar o domínio. Salvar a página "live" atualiza
+  título/corpo em ~1 min.
+- Falta: envio real do form (Pedro; alerta vai para o Kenton + Pool Duck Service → avisar antes) e apagar o contato/card.
