@@ -142,3 +142,17 @@
   publicar o draft; os forms antigos que estiverem em páginas da conta antiga continuam caindo lá até as páginas mudarem.
 - Histórico de conversas: a API não deixa gravar mensagens no Conversations com o nosso acesso (o mesmo limite do
   `/conversations/messages/inbound`); dá para pôr o histórico de 6 meses como nota em cada contato (~500 conversas).
+
+## 03/11 — NorTex: conversões offline do Google Ads (Val)
+
+- Val conectou o Google Ads da NorTex (`googleAdwordsId` 3853304460) e criou 2 conversões offline (UPLOAD). O GHL as
+  lista em `GET services /ad-publishing/google/conversions?locationId`: "Appointment Booked" 7887965192, "LP Form Submit"
+  7888097011.
+- `scripts/nx_ads_conversions.py apply` (backup de cada workflow): "LP Form Submit" no passo "Google Ads conversion" (estava
+  vazio) de "Google Ads LP - Weekly" e "- Repair" (ramo de lead novo, depois do card); "Appointment Booked" como último
+  passo de "Appointment Booked -> Notify Fareed" (gatilho continua no 1º passo). Os 3 publicados, re-entry mantido,
+  gatilhos ativos. gclid = `{{contact.attributionSource.gclid}}` (a página do LP grava o gclid da URL no contato).
+- Teste: cópia temporária com gclid falso rodou sem erro de configuração; o log de execução não tem endpoint conhecido
+  (4 caminhos 404). O teste de ponta a ponta precisa de um clique real no anúncio (gclid válido) — passo a passo no TODO.
+- "Send Data" do lead form: nenhum contato novo de teste na NorTex nem na Pool Palooza (últimos contatos: 02/11).
+- "Google Ads SMS - New Lead" também tem um passo de conversão vazio: Val criou só as 2; fica vazio até ela dizer.

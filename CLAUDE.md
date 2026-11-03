@@ -128,6 +128,11 @@
   Lead Ads" fica com `googleAdwordsId` vazio: gatilho sem condição é aceito (LWR, 27/10). O lead só entra se o form
   estiver mapeado e **Active** em Settings → Integrations → Google Ads (botão Play/Map Fields); teste =
   Google Ads → campanha → Lead form → Edit → abrir o form → **Send Data** (help.gohighlevel.com 48001180147).
+- Conversões do Google Ads da conta (as do dropdown do passo "Add to Google Ads"): `GET services
+  /ad-publishing/google/conversions?locationId` → `[{conversion_action_id, conversion_name, conversion_source}]`. Passo
+  `google_adword` `{conversion_name, conversion_type: <nome>, conversion_action_id, currency, conversion_value,
+  customMapping: {gclid: "{{contact.attributionSource.gclid}}"}, isCustomMappingEnabled: true}` (`nx_ads_conversions.py`,
+  03/11). Log de execução não tem endpoint conhecido: conferir no Google Ads (upload offline leva até ~24 h).
 - Review gate (NPS) em qualquer conta, até de outra agência: `pd_lwr_nps_gate.py` (modelos `config/nps_form.json`,
   `config/nps_gate_steps.json`). Espera por condição com saída por tempo = passo `wait` com **`cat: "multi-path"` no
   nó** (não só nos atributos) + 2 nós `transition` (wait_condition / wait_timeout); sem isso o PUT dá 400

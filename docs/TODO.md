@@ -96,7 +96,12 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    o Fareed por SMS + e-mail (`scripts/nx_ads_booking.py`). Falta:
    - DNS: Frank criou o CNAME `go` → sites.ludicrous.cloud (30/10); as 4 URLs abrem (200) com os forms certos.
    - Teste real 30/10 (Pedro, form Weekly + agendamento): tags, campos, card, confirmações ao lead, SMS + e-mail de lead e
-     de agendamento ao Fareed — tudo certo; teste apagado. Falta: Google Ads conectado no GHL da NorTex (Val).
+     de agendamento ao Fareed — tudo certo; teste apagado.
+   - 03/11: Google Ads conectado (Val). Conversões offline ligadas (`scripts/nx_ads_conversions.py`): "LP Form Submit"
+     (7888097011) nos 2 LP workflows, "Appointment Booked" (7887965192) no fim do "Appointment Booked -> Notify Fareed".
+     Só conta contato com gclid (veio de clique no anúncio). Falta o teste real: clicar num anúncio da NorTex (Pedro),
+     mandar o form e agendar; em até ~24 h aparece em Google Ads → Goals → Conversions (Val confere). Apagar o contato depois.
+   - Send Data do lead form (NorTex e Pool Palooza): nenhum lead de teste chegou em nenhuma das contas até 03/11.
 11. **Clear Pool Tucson** (call com Derek/Ed/Frank, 27/10; mensagem para o Ed no chat de 28/10):
     - **Ligação de teste**: sem "aperte 1", toda ligação toca o Derek. Ligar para (520) 777-9131 e deixar tocar até cair
       no recado (avisar o Derek antes) → me avisa e eu confiro tag/card/tarefa/aviso e apago.
