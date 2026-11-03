@@ -296,3 +296,18 @@
   saiu do **número principal** +14692382660 (não do Meta). Card: 1 só, mas a origem ficou "Inbound Call" (o passo do
   Meta atualiza o card do fluxo genérico, não troca a origem) e o SMS de resposta levou o card para In Communication
   (fluxo da conta). Contato, card e tarefas apagados (backup).
+
+## 03/11 — NorTex linha Meta: correção da origem do card + número de saída do SMS
+
+- Causa do "Inbound Call": o card do fluxo geral nasce antes; o "Create/Update Opportunity" **troca a origem** ao
+  atualizar (testado), mas no teste real o card já estava em In Communication (o SMS de resposta moveu) e o passo do
+  Meta, com etapa New Lead, não volta etapa → não atualizou nada.
+- Correção (backup de tudo): "Meta Ads Call - Weekly" cria o card **primeiro** (logo depois das tags, sem espera; gatilho
+  reapontado para o 1º passo). "Answered Incoming Call To Pipeline" (2 ramos) e "Missed Incoming Call To Pipeline":
+  antes do card, espera 1 min + if/else "Meta line call?" (tag `meta ads call 24h`) → ligação da linha Meta não ganha
+  card "Inbound Call" (nem a tarefa de 1 h do fluxo geral: o Meta já cria a dele); outras ligações seguem iguais, com o
+  card 1 min depois. Teste em cópias: contato da linha Meta → 1 card "Meta Ads Call - Weekly" em New Lead; outra
+  ligação → "Inbound Call" em New Lead. Limpo.
+- Número de saída do SMS de chamada perdida: o passo `sms` de workflow ignora qualquer campo de origem (testei
+  `fromNumber`, `from_number`, `from`, `phone_number`, `phoneNumber`, `fromPhone`, `fromNumberId`… — gravados, mas o SMS
+  sai sempre do número padrão +14692382660). 3 SMS de teste no celular do Pedro, contatos apagados. Sem solução por API.

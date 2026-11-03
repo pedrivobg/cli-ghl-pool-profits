@@ -101,10 +101,9 @@ def build(kind: str, test_to: str | None = None) -> list[dict]:
                 f"<p style=\"margin:0px\">{k['todo']} Then move the card down the pipeline.</p>",
         "assignedTo": FAREED, "dueDate": {"duration": 0, "unit": "days"}})
     tags = ("add_contact_tag", "Add Tags", {"type": "add_contact_tag", "tags": [*BASE, k["tag"], "new lead", k["recent"]]})
-    if kind == "call":  # after the generic call flow's "Inbound Call" card, which this one then updates (no duplicate)
-        lead = [tags, service, owner, *alerts(False), task, wait(1, "minutes", "Wait 1 minute"), card, *release]
-    else:
-        lead = [tags, service, owner, card, *alerts(False), task, *release]
+    # card first: the generic call flows create theirs 1 minute later (nx_meta_line.py card-fix), find this one and only
+    # update it, so the card keeps the Meta source (an update does not change the source)
+    lead = [tags, card, service, owner, *alerts(False), task, *release]
     customer = [("add_contact_tag", "Add Tags", {"type": "add_contact_tag", "tags": [*BASE, k["tag"], k["recent"]]}),
                 service, *alerts(True), *release]
     nodes, _ = if_else(f"Route the {k['what']}", [
