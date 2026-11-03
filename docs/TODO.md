@@ -11,14 +11,15 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    - **Teste** (depois das 17h CT ou no fim de semana, quando o IVR não toca o Felipe): ligar para 936-314-9255, deixar
      recado → me avisa; eu confiro tag, SMS no seu celular e card, e apago o contato antes da tarefa de 1 h.
    - Felipe (27/10): SMS 2 do Missed New Lead tirado; ele mesmo conecta o WhatsApp.
-   - **Conta antiga → nossa**: contatos importados (27/10, 1.513 novos). Automações antigas: perguntar ao Frank se
-     alguma ainda é usada; só se for, precisamos do token da conta antiga (outra agência; o login pede código):
-     1. avisar o Frank na hora (o login manda código para info@poolheadscare.com, e-mail do cliente);
-     2. Chrome → app.gohighlevel.com com o login que o Frank mandou + o código;
-     3. sub-conta da Poolheads → Ctrl+Shift+J → colar o trecho de `docs/get-firebase-token.md` → Enter;
-     4. colar o token no chat.
-     Com ele eu copio todos os workflows em draft (pasta "Conta antiga") e todos os contatos (tag `existing customer`).
-   - Depois disso e do OK do Frank: publico o resto (No Response, Quote, No-Show, Lost, Won, Review…).
+   - **Conta antiga → nossa** (`scripts/ph_migrate_old.py`): contatos (27/10, 1.513), 5 templates de e-mail, 9 de SMS,
+     16 campos, 5 forms, 5 calendários (inativos), 11 automações em draft "[Old account] …". Frank mandou o resumo ao
+     Felipe (04/11) com 3 perguntas — **aguardando a resposta**:
+     (a) histórico de 6 meses como nota em cada contato (~495 conversas)? (b) quem montou o webhook do "LVB - Meta
+     Service" → trocar para `…/hooks/PeUynYCMm8e6PJMy785O/webhook-trigger/zxySSbrHhRqaWat6wF0i` e publicar o draft antes
+     de cancelar; (c) Jorge Arias: criar usuário e pôr no IVR?
+     Frank vai ver com o Jonathan pôr a conta antiga como sub-conta nossa: se der, o histórico fica lá (sem notas) e o
+     webhook não se perde no cancelamento; aí o (a) pode nem ser preciso.
+   - Depois do OK do Frank: publico o resto (No Response, Quote, No-Show, Lost, Won, Review…).
    - **Na tela**: Call Recording no 936-314-9255 (sem a mensagem); Felipe/Jorge no app com a conta nova; deskphone.
    - **3 landing pages de Google Ads (02/11, Val)** — `scripts/ph_ads_forms.py`: forms GOOGLE ADS – WEEKLY
      (`Xpcfh37RSgDWYHpyGzPl`), – REPAIR (`8i6m1oTeWFSanDFoNasS`), – LEAK DETECTION (`jmlPHTq3B6Cha86tKgfD`) e os 3 fluxos
@@ -28,8 +29,7 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
      /thank-you-pool-repair, /thank-you-leak-detection) → eu rodo `ph_ads_forms.py thanks`;
      (b) Val: e-mail preferido do Felipe para os avisos (hoje felipe.cobo4@gmail.com); IDs do GTM / GA4 / conversões do
      Google Ads e conectar o Google Ads no GHL da Poolheads (conversão por form e por ligação);
-     (c) ligação de teste para o 936-301-0309 e envio real de cada form (avisar o Felipe antes);
-     (d) migração dos templates de e-mail da conta antiga: precisa do token da conta antiga (passos acima).
+     (c) ligação de teste para o 936-301-0309 e envio real de cada form (avisar o Felipe antes).
    - **Felipe vai fazer sozinho** (Frank, 30/10): criar o usuário do gerente de serviço e pôr no IVR; passar as automações
      e lembretes de calendário (confirmação por SMS para cliente avulso, separada do Skimmer). Foto de antes (30/10):
      1 usuário (Felipe); "Business Hours Call Routing" toca só o Felipe; 2 calendários inativos e sem membros;
