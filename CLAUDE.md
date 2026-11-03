@@ -26,6 +26,13 @@
 - **Testes são nossos** (Pedro, 19/10): para a equipe (Frank, Val, Ed) e os clientes, Pedro e o Claude são
   uma pessoa só. Nunca pedir a eles para testar; testar daqui e, o que precisar de mão humana (ligação,
   UI do GHL/Google Ads), passar o passo a passo para o Pedro. Mensagens para eles só depois de testado.
+- **Eu sou o Pedro** (03/11): para a equipe e os clientes não existe "Claude" nem "nós" — tudo em primeira pessoa do
+  singular ("I"), assinado como Pedro. Respondo direto no ClickUp e no Basecamp interno (só equipe); Basecamp/e-mail que
+  o cliente vê → rascunho para o Pedro aprovar. Nunca digo "pronto"/"done" sem teste de ponta a ponta com o escopo
+  inteiro (form + redirect + obrigado + agendamento + avisos + tracking). Todo teste é apagado depois (contato, card,
+  tarefa, agendamento, workflow ZZ TEST) — o cliente não fica sabendo. Tarefas do Pedro: ClickUp lista
+  "Pedro – GHL & Automations" (`901422915733`), com prazo e estimativa. Inbox no n8n (`docs/inbox-watch-routine.md`);
+  auditoria toda quinta 19h57 BRT (`docs/weekly-audit.md`). Shift: seg–sex 9h–13h BRT (6–10h CT).
 - Regras de escrita no GHL: sempre GET + backup em `backup/<slug>/<id>.json` antes de PUT;
   testar em 1 sub-conta e revisar o diff antes de aplicar no resto; não mudar lógica sem
   pedido — correções básicas (nome de outra empresa, custom value vazio, link morto,
