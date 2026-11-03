@@ -311,3 +311,12 @@
 - Número de saída do SMS de chamada perdida: o passo `sms` de workflow ignora qualquer campo de origem (testei
   `fromNumber`, `from_number`, `from`, `phone_number`, `phoneNumber`, `fromPhone`, `fromNumberId`… — gravados, mas o SMS
   sai sempre do número padrão +14692382660). 3 SMS de teste no celular do Pedro, contatos apagados. Sem solução por API.
+
+## 03/11 — Stay Fresh: call com o Frank (walkthrough) + avisos para o Kris
+
+- Walkthrough das automações com o Frank (resumo mandado por DM no ClickUp). Pedido: o Kris ("Chris", usuário Kris
+  Fitzhugh, Kris@stayfreshpools.com, +14807721420) recebe os avisos de lead novo por e-mail e SMS.
+- "Website Form Fill To Pipeline" (backup): "New Lead SMS" agora vai para Mike **e Kris**; passo novo "New Lead Email -
+  Kris" (e-mail com nome, telefone, e-mail, cidade, origem). E-mail testado numa cópia (chegou no pedro@), cópia apagada.
+- Em aberto (perguntado ao Frank): avisos de ligação para o Kris (hoje ligação só gera tarefa para o dono, Mike);
+  re-entry em Quote Sent/No Response/Won/Lost; IVR (o Frank traz como o cliente quer).
