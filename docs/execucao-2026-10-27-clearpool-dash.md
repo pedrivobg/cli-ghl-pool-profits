@@ -227,3 +227,16 @@
   Contatos, workflows e tags de teste apagados. Os contatos de teste passaram pelo "Atribuition" (dono Rob), como nos
   testes anteriores da conta.
 - Falta: envio real pelo site (Pedro, avisando o Rob antes — o aviso vai para ele): passo a passo no TODO, item 5.
+
+## 03/11 — Pool Shack: teste real das linhas (Pedro, 17:04–17:05 UTC)
+
+- Encaminhamento dos 3 números → Google Voice (480) 798-2888 ✓ (Pedro configurou).
+- Weekly (480) 418-1231, sem atender ("no-answer"): "Google Ads Call - Weekly" + "Missed Incoming Call To Pipeline" ✓;
+  SMS "Sorry we missed your call" ao lead ✓, card, SMS + e-mail ao Rob ✓.
+- Repairs (480) 568-3370 (6 s, "completed"): "Google Ads Call - Repairs" + "Answered Incoming Call To Pipeline" ✓, aviso ao
+  Rob ✓.
+- Linha principal (480) 428-0655 caindo na caixa postal do Google Voice: status "voicemail" → "Missed Incoming Call To
+  Pipeline" + "Website & GBP Call - Tag" ✓. Ou seja: o recado do Google Voice conta como chamada perdida e o SMS sai
+  para quem liga pela primeira vez (aqui não saiu de novo porque o mesmo contato já tinha recebido 1 min antes —
+  re-entry desligado, como deve ser). Pedido do Rob respondido.
+- Contato de teste (+55 37 …), card e 2 tarefas apagados (backup). Pendente: envio real dos 2 forms do site.

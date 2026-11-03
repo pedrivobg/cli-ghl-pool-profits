@@ -67,7 +67,7 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
      e Repairs / Installs (480) 568-3370. **No ar** (`scripts/ps_ads_lines.py`, testado em cópias): "Google Ads Call -
      Weekly/Repairs" (tags, card em New Lead, SMS + e-mail + tarefa ao Rob, 1 aviso por dia por contato). "AdWords Call In -
      New Lead" (cópia da Clear Pool) e "Sequential Call Routing" (cópia da BluVantage) → draft. **Falta (você, na tela)**:
-     Settings → Phone Numbers → cada número novo → encaminhar para (480) 798-2888 (sem API); depois ligar para cada um.
+     encaminhamento e ligações de teste feitos (03/11, tudo ok, inclusive caixa postal do Google Voice = chamada perdida).
      Ele quer o teste da chamada perdida com a caixa postal do
      Google Voice: ligar para (480) 428-0655, não atender, deixar cair no recado → me avisa e eu confiro se o SMS saiu.
    - Site → GHL **no ar** (03/11, `scripts/ps_site.py`): os 2 forms do WPForms (440 "Request a Quote" da home, 443 "Main
