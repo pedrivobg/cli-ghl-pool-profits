@@ -263,3 +263,29 @@
   no anúncio (anúncio segmentado para Frisco/TX não aparece do Brasil) → as conversões do Google foram enviadas sem gclid
   e o Google não conta. Conferência do lado do Google fica com a Val (primeiro lead real de anúncio / diagnóstico das
   conversões). Contato, card e agendamento apagados (backup).
+
+## 03/11 — NorTex: linha do Meta Ads (469) 535-7838 (Val)
+
+- Val comprou +1 469-535-7838 ("Facebook") só para a página Weekly (Meta Ads); o Atif põe o número só nela.
+- Como a NorTex toca hoje: nenhuma linha tem encaminhamento; as duas ((469) 238-2660 principal e (469) 218-3416 Google
+  Ads) passam pelo IVR "IVR SPAM Detection" ("press 1" → toca o usuário do Fareed; sem atender → recado + tag
+  `missed call` → "Missed New Lead - Initial SMS Follow-up"; sem tecla → nada no IVR, o "Answered Incoming Call To
+  Pipeline" trata como chamada perdida). A linha nova estava sem IVR (ligação não tocava ninguém).
+- `scripts/nx_meta_line.py apply`: o número entrou no gatilho do IVR (backup `backup/nortex-pools/trigger-TUyctF6wtZskP1Bc8IRv-*.json`;
+  só a lista de números mudou) → `inboundCallService` = IVR, toca igual às outras. Nenhum encaminhamento necessário.
+  "Answered / Missed Incoming Call To Pipeline" não filtram número: continuam valendo para a linha (tags `new lead` /
+  `inbound call` [/ `missed call`], card "Inbound Call", tarefa). Linha principal não tem workflow de tag; a do Google tem
+  "Google Ads Call - Tag" — a do Meta ganha as tags no próprio fluxo (`meta ads - call` / `meta ads - sms`).
+- Publicados na pasta do "Meta Ads LP - Weekly": **"Meta Ads Call - Weekly"** (`33f7adc7…`, Call Status inbound, In Phone
+  Number = a linha) e **"Meta Ads SMS - Weekly"** (`168883e9…`, Customer Replied SMS, In phone number = a linha); gatilhos
+  ativos e só nesse número. Rota: spam/DND → nada; últimas 24 h → nada; cliente atual → tags + Service + SMS/e-mail ao
+  Fareed "(EXISTING CUSTOMER)", sem card; lead novo → tags `meta ads - weekly`, `meta ads`, `meta ads - call|sms`, `new
+  lead`, 24 h; Service "Weekly Pool Cleaning" (como o LP Weekly); dono Fareed se vazio; SMS + e-mail + tarefa ao Fareed
+  ("NEW META ADS CALL|TEXT - PREMIUM WEEKLY POOL CLEANING"); card em New Lead (origem "Meta Ads Call|SMS - Weekly").
+  Sem conversão do Google. Ligação: o card vem 1 min depois e o workflow não permite 2º card → atualiza o card "Inbound
+  Call" que o fluxo genérico abre na mesma ligação (1 card só, origem Meta). Todo ramo: espera 1 dia → tira a tag 24 h.
+- Teste (`test --to pedro@poolprofits.com`, cópias ZZ TEST, sem SMS ao Fareed): 7/7 ✓ — ligação novo (+ 2ª entrada
+  barrada), novo com card "Inbound Call" já aberto (vira 1 card "Meta Ads Call - Weekly"), cliente, spam; SMS novo (+
+  repetição), cliente, spam. 5 e-mails [TEST] chegaram, nenhum do spam/repetição. Contatos, cards, tarefas e workflows
+  de teste apagados (conferido).
+- Falta: ligação + SMS reais (Pedro; passo a passo no TODO, item 10).

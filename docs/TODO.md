@@ -110,6 +110,15 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
      Só conta contato com gclid (veio de clique no anúncio). Falta o teste real: clicar num anúncio da NorTex (Pedro),
      mandar o form e agendar; em até ~24 h aparece em Google Ads → Goals → Conversions (Val confere). Apagar o contato depois.
    - Send Data do lead form (NorTex e Pool Palooza): nenhum lead de teste chegou em nenhuma das contas até 03/11.
+   - 03/11: **linha do Meta Ads (469) 535-7838** (só na página Weekly) no ar: entra no IVR como as outras (toca o Fareed),
+     "Meta Ads Call - Weekly" / "Meta Ads SMS - Weekly" (tags, card, SMS + e-mail + tarefa ao Fareed), testado em cópias
+     (`scripts/nx_meta_line.py`). **Teste real** (o aviso vai para o Fareed — avisar antes, ou fazer no horário combinado):
+     (1) do seu celular ligar para (469) 535-7838, ouvir o IVR, apertar 1 e deixar tocar até cair no recado (não deixar
+     recado ou deixar "TEST"), desligar; (2) mandar o SMS "TEST" para (469) 535-7838; (3) me avisar com o horário. Eu
+     confiro: ligação no IVR com o número certo (`meta.ivr…to`), gatilhos disparados (Meta Ads Call + Answered Incoming),
+     tags `meta ads - weekly`/`meta ads`/`meta ads - call`/`- sms`/`missed call`, Service, 1 card só "Meta Ads Call -
+     Weekly" em New Lead, SMS de chamada perdida ao seu celular (e de qual número saiu), SMS + e-mail + tarefa ao Fareed
+     (call e text); depois apago contato, card, tarefas e recado (backup).
 11. **Clear Pool Tucson** (call com Derek/Ed/Frank, 27/10; mensagem para o Ed no chat de 28/10):
     - **Ligação de teste**: sem "aperte 1", toda ligação toca o Derek. Ligar para (520) 777-9131 e deixar tocar até cair
       no recado (avisar o Derek antes) → me avisa e eu confiro tag/card/tarefa/aviso e apago.
