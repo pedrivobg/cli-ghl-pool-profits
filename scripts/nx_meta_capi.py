@@ -77,11 +77,11 @@ def booked(tpl: list[dict], tok: str) -> list[dict]:
         return tpl
     out = json.loads(json.dumps(tpl))
     last = next(s for s in out if not s.get("next") and not s.get("parent"))
-    # the booking widget's own visit has no fbclid: use the first visit's (the landing page)
+    # the form redirects to the booking widget with fbclid in the URL: the booking visit (last attribution) carries it
     nodes, head = if_else("Meta Ads weekly lead?", [
         ("Weekly page lead", [{"conditionType": "contact_detail", "conditionSubType": "tags", "conditionOperator": "index-of-true",
                                "conditionValue": [TAG], **{k: v for k, v in cond_extra().items()}}],
-         [("facebook_conversion_api", "Meta Schedule event", meta("Schedule", tok, "{{contact.attributionSource.fbclid}}"))]),
+         [("facebook_conversion_api", "Meta Schedule event", meta("Schedule", tok, "{{contact.lastAttributionSource.fbclid}}"))]),
     ], "Other bookings", [], parent_key=last["id"], order=last.get("order", len(out) - 1) + 1)
     last["next"] = head
     return [*out, *nodes]

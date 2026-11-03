@@ -244,3 +244,16 @@
   com nome, e-mail, telefone, endereço/CEP, Service Needed, Are You A New Customer, tags `website form fill` + `new lead`;
   card em New Lead (fonte Website Form), 2 SMS "NEW LEAD - Website Form" ao Rob (1 por form, delivered) e 2 tarefas.
   Contato de teste (era o "ZZ Teste Pedro" de 23/10), card e tarefas apagados (backup). Pool Shack: tudo testado.
+
+## 03/11 — NorTex: teste real do Meta (Pedro, 18:00 UTC) + funil renomeado
+
+- Funil "Google Ads - Premium Weekly Pool Cleaning" → **"Meta Ads - Premium Weekly Pool Cleaning"** (`dYgPQmS6io7iTWitYQbE`,
+  só o nome; domínio, caminhos e código do head iguais; página 200). As páginas estão em **promo.nortexpools.com** (o "go"
+  dá 404). Nenhum workflow ainda usa tag Google para o Weekly.
+- promo.nortexpools.com/premium-weekly-pool-cleaning?fbclid=TEST-POOLPROFITS → form + agendamento: tags `meta ads - weekly`,
+  `meta ads`, `new lead`; Landing Page "Meta Ads LP - …"; card "Meta Ads LP - Weekly" em New Lead; confirmação SMS + e-mail
+  ao lead; aviso "NEW META ADS LEAD" (SMS + e-mail) e "NEW APPOINTMENT BOOKED" ao Fareed; agendamento confirmado.
+- O redirecionamento leva o fbclid para o widget de agendamento: `lastAttributionSource.fbclid` = TEST-POOLPROFITS na
+  hora do agendamento (a primeira visita do contato antigo não tinha). O evento Schedule passou a usar
+  `lastAttributionSource.fbclid` (backup; script atualizado). Conferência dos eventos no Events Manager: Val.
+- Contato de teste, agendamento (05/11 8h no calendário do Fareed), card e tarefas apagados (backup).
