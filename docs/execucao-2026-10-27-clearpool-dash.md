@@ -289,3 +289,10 @@
   repetição), cliente, spam. 5 e-mails [TEST] chegaram, nenhum do spam/repetição. Contatos, cards, tarefas e workflows
   de teste apagados (conferido).
 - Falta: ligação + SMS reais (Pedro; passo a passo no TODO, item 10).
+- 19:07 UTC — teste real da linha Meta (469) 535-7838 (Pedro): ligação passou pelo IVR com o número certo e disparou
+  "Meta Ads Call - Weekly" + "Answered Incoming Call To Pipeline"; tags `meta ads - weekly`, `meta ads`, `meta ads - call`,
+  `missed call`, `new lead`; Service = Weekly Pool Cleaning; dono Fareed; SMS + e-mail + tarefa ao Fareed (ligação) ✓.
+  SMS "TEST" → "Meta Ads SMS - Weekly": tag `meta ads - sms`, aviso + tarefa ao Fareed ✓. SMS de chamada perdida ao lead
+  saiu do **número principal** +14692382660 (não do Meta). Card: 1 só, mas a origem ficou "Inbound Call" (o passo do
+  Meta atualiza o card do fluxo genérico, não troca a origem) e o SMS de resposta levou o card para In Communication
+  (fluxo da conta). Contato, card e tarefas apagados (backup).
