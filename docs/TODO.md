@@ -63,9 +63,13 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
    REPAIRS" (`Hb5KiQHQZkGFmSgzJbIk`) + "Google Ads LP - Weekly/Repairs" no ar e testados (`scripts/ps_ads_forms.py`). Falta:
    URLs e páginas de obrigado do Atif (eu ponho a URL e ligo o redirecionamento); Google Ads conectado no GHL da Pool
    Shack (Val); números de rastreamento de ligação (decisão sua); envio real de cada form (me avisa antes).
-   - **Rob (03/11)**: aprovou 2 números de rastreamento (Weekly e Repairs/Installs) encaminhando para o Google Voice dele
-     (480) 798-2888 → **comprar os 2 números (você, na tela; custo ~US$1–2/mês cada + uso)**; eu ligo cada um ao form/
-     campanha (tags, card, aviso) como na BluVantage/YardSpring. Ele quer o teste da chamada perdida com a caixa postal do
+   - Rob (03/11): só tem a nossa agência (a da Pool Monopoly, sem uso). Frank comprou os 2 números: Weekly (480) 418-1231
+     e Repairs / Installs (480) 568-3370. **No ar** (`scripts/ps_ads_lines.py`, testado em cópias): "Google Ads Call -
+     Weekly/Repairs" (tags, card em New Lead, SMS + e-mail + tarefa ao Rob, 1 aviso por dia por contato). "AdWords Call In -
+     New Lead" (cópia da Clear Pool) e "Sequential Call Routing" (cópia da BluVantage) → draft. **Falta (você, na tela)**:
+     Settings → Phone Numbers → cada número novo → encaminhar para (480) 798-2888 (sem API); depois ligar para cada um.
+     WordPress: login no Basecamp (thepoolshack.kinsta.cloud = thepoolshackarizona.com) → criar Application Password.
+     Ele quer o teste da chamada perdida com a caixa postal do
      Google Voice: ligar para (480) 428-0655, não atender, deixar cair no recado → me avisa e eu confiro se o SMS saiu.
      "Service Needed" no form do site: o site (WordPress, WPForms 440/443) **já pergunta** o serviço, mas **o form do site
      não chega no GHL** (7 contatos na conta, nenhum do site). Ligar o WPForms ao GHL (webhook → workflow, como na

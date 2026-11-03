@@ -169,3 +169,17 @@
 - Conclusão: a ligação não saiu do GHL. Mais provável: spoofing (spam/robocall usando o número deles como caller ID) ou
   alguém ligando por outro app/aparelho que mostra esse número. Sem acesso ao registro do Twilio fora do GHL.
 - Efeito colateral: esses retornos viram contato com tag `new lead` + `printed marketing materials` (conta como lead).
+
+## 03/11 — Pool Shack: 2 números de rastreamento (Frank comprou; Rob aprovou)
+
+- Rob: só usa a nossa agência (a Pool Monopoly o colocou num GHL, sem uso). Números: Weekly Pool Maintenance +14804181231,
+  Repairs / Installs +14805683370 — sem encaminhamento (o da conta, 480-428-0655, encaminha para o Google Voice
+  480-798-2888). Não há endpoint conhecido para `forwardingNumber`: Pedro configura na tela.
+- `scripts/ps_ads_lines.py`: "Google Ads Call - Weekly" e "- Repairs" (pasta dos Google Ads LP), Call Status inbound na
+  linha → spam/DND nada; 24 h nada; cliente → tags + aviso EXISTING CUSTOMER; novo → tags `google ads`, `weekly|repairs`,
+  `google ads - call`, `new lead`, `adwords`, card "Google Ads Call - Weekly|Repairs", conversão (vazia), SMS + e-mail +
+  tarefa ao Rob. Teste em cópias: 6/6 ✓, limpo.
+- Correção básica (backup): "AdWords Call In - New Lead" (gatilho no número da Clear Pool, texto da Clear Pool) e
+  "Sequential Call Routing" (números e usuários da BluVantage) estavam publicados → draft.
+- WordPress: thepoolshack.kinsta.cloud é o mesmo site (redireciona para thepoolshackarizona.com), WPForms 440/443,
+  Application Passwords disponível.
