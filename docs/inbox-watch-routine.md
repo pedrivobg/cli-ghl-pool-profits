@@ -27,10 +27,10 @@ Roda no n8n (sem crédito do Claude): workflow **"Pedro Inbox Watch (ClickUp, Ba
   tarefas abertas e o prazo de cada uma.
 - Tarefas vão para a lista "Pedro – GHL & Automations" (`901422915733`). Respostas sempre em primeira pessoa (eu = Pedro).
 - Ações:
-  - **Tarefa no ClickUp:** Team Space → To Do, atribuída ao Pedro, com prazo, estimativa e descrição. Não cria quando o
+  - **Tarefa no ClickUp:** lista "Pedro – GHL & Automations", atribuída ao Pedro, com prazo, estimativa e descrição. Não cria quando o
     item já é uma tarefa do ClickUp.
   - **Resposta automática**, só para a equipe interna:
-    - comentário na tarefa do ClickUp (notificação de tarefa);
+    - resposta na mesma thread do chat do ClickUp ou comentário na tarefa;
     - resposta por e-mail quando o remetente é @poolprofits.com e da equipe.
   - Basecamp e qualquer conversa que o cliente vê: **nunca** responde.
   - **E-mail ao Pedro** ("[Pool Profits] Ação/URGENTE: …") quando precisa dele: aprovação, teste humano, decisão,
@@ -47,8 +47,7 @@ O trabalho em si (GHL, scripts) continua sendo feito numa sessão com o Claude, 
 3. **ClickUp**: a credencial "ClickUp account" do n8n é de outro workspace (a API responde "Workspace not
    authorized"). Criar uma nova: ClickUp (Pool Profits) → avatar → Settings → Apps → API Token → Generate/Copy; no n8n
    Credentials → New → ClickUp API → colar o token → nome "ClickUp Pool Profits". Trocar em todos os nós de ClickUp.
-4. Conferir a credencial da OpenAI ("OpenAi Guiar", auto-atribuída) e a do ClickUp ("ClickUp account": tem que ser a
-   sua).
+4. Conferir a credencial da OpenAI ("OpenAi Guiar", auto-atribuída).
 5. Me avisar: eu rodo um teste e publico.
 
 ## Teste (03/11, dados simulados, nada enviado)
