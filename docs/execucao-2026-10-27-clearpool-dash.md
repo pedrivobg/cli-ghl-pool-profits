@@ -183,3 +183,18 @@
   "Sequential Call Routing" (números e usuários da BluVantage) estavam publicados → draft.
 - WordPress: thepoolshack.kinsta.cloud é o mesmo site (redireciona para thepoolshackarizona.com), WPForms 440/443,
   Application Passwords disponível.
+
+## 03/11 — NorTex: Meta Conversions API (Val) — Weekly = Meta Ads, Repair = Google Ads
+
+- `scripts/nx_meta_capi.py` (token lido do draft da Val "Forms/Meta Conversion API", nunca impresso; dataset 2163998117807974;
+  a Meta responde ao token "Missing Permission" na leitura = token válido só para enviar eventos).
+- "Google Ads LP - Weekly" → **"Meta Ads LP - Weekly"**: tags `meta ads - weekly` + `meta ads` (+ `meta ads lp weekly 24h`)
+  no lugar de `google ads - weekly` + `adwords`; Landing Page, origem do card e avisos dizem Meta Ads; o passo de conversão
+  do Google virou o evento Meta **Lead** (`facebook_conversion_api`, `event_type: funnel_event`, `event_name: Lead`,
+  fbclid `{{contact.lastAttributionSource.fbclid}}`) no ramo de lead novo. Form renomeado "META ADS – WEEKLY" (redirect ok).
+- "Appointment Booked -> Notify Fareed": depois do Google "Appointment Booked", if/else tag `meta ads - weekly` → evento
+  Meta **Schedule** (fbclid da primeira visita: o widget de agendamento chega sem fbclid). Gatilhos e re-entry intactos.
+- "Google Ads LP - Repair" igual (Google, "LP Form Submit"). O draft da Val ficou como está.
+- Formato do passo Meta visto em Orange Tree / Pool Duck WC. Na Wesley Chapel (Pool Duck), 2 workflows têm o token colado
+  no campo `pixel_id` (o evento não sai) — avisar.
+- Send Data: ainda nenhum lead de teste na NorTex nem na Pool Palooza (03/11 15:40 UTC).
