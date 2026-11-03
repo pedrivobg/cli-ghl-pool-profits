@@ -68,12 +68,16 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
      Weekly/Repairs" (tags, card em New Lead, SMS + e-mail + tarefa ao Rob, 1 aviso por dia por contato). "AdWords Call In -
      New Lead" (cópia da Clear Pool) e "Sequential Call Routing" (cópia da BluVantage) → draft. **Falta (você, na tela)**:
      Settings → Phone Numbers → cada número novo → encaminhar para (480) 798-2888 (sem API); depois ligar para cada um.
-     WordPress: login no Basecamp (thepoolshack.kinsta.cloud = thepoolshackarizona.com) → criar Application Password.
      Ele quer o teste da chamada perdida com a caixa postal do
      Google Voice: ligar para (480) 428-0655, não atender, deixar cair no recado → me avisa e eu confiro se o SMS saiu.
-     "Service Needed" no form do site: o site (WordPress, WPForms 440/443) **já pergunta** o serviço, mas **o form do site
-     não chega no GHL** (7 contatos na conta, nenhum do site). Ligar o WPForms ao GHL (webhook → workflow, como na
-     Bluewater) precisa de acesso ao WP (Application Password) ou o Atif troca pelo form do GHL.
+   - Site → GHL **no ar** (03/11, `scripts/ps_site.py`): os 2 forms do WPForms (440 "Request a Quote" da home, 443 "Main
+     Contact / Service Form" da home e /contact/) chegam no GHL com nome, telefone, e-mail, endereço, CEP, Service Needed,
+     Message / Are You A New Customer, tags `website form fill` + `new lead`, e entram no "Website Form Fill To Pipeline"
+     (card New Lead, SMS + tarefa ao Rob — o mesmo de todo form). Testado do site até o GHL em cópias ZZ TEST (sem aviso).
+     **Teste real (você)**: avisar o Rob antes (o SMS "NEW LEAD - Website Form" e a tarefa vão para ele) → em
+     https://thepoolshackarizona.com/contact/ preencher o form com nome "ZZ Teste Pedro", seu celular e seu e-mail, Service
+     Needed qualquer, marcar o consentimento, enviar; depois o "Request a Quote" da home com o mesmo nome e celular → me avisa
+     e eu confiro (`ps_site.py status` = HTTP 200, contato/campos/tags, card, SMS/tarefa) e apago contato, card e tarefa.
 6. **BluVantage: 3 landing pages**: forms prontos e testados (envio real quando o Atif puser nas páginas; me avisa
    antes). Números por página no ar (26/10): Weekly 470-470-8874, Repairs 470-450-6322, Winter 470-450-4427, no IVR e
    com tag/card/conversão por serviço. **Teste**: ligar fora do horário (o IVR toca a equipe no horário) para os 2 novos

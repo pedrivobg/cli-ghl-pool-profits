@@ -198,3 +198,32 @@
 - Formato do passo Meta visto em Orange Tree / Pool Duck WC. Na Wesley Chapel (Pool Duck), 2 workflows têm o token colado
   no campo `pixel_id` (o evento não sai) — avisar.
 - Send Data: ainda nenhum lead de teste na NorTex nem na Pool Palooza (03/11 15:40 UTC).
+
+## 03/11 — Pool Shack: forms do site (WPForms) → GHL
+
+- Antes: o site (thepoolshackarizona.com, WordPress + WPForms) já perguntava o "Service Needed", mas nenhum envio chegava
+  no GHL. Forms: **440 "Request a Quote"** (home: Name, Phone, Are You a New Customer?, Service Needed) e **443 "Main
+  Contact / Service Form"** (home e /contact/: Full Name, Phone, Email, Address, Postal Code, Service Needed, Message,
+  consentimento). reCAPTCHA v3 do WPForms nos dois.
+- O que já existia no GHL: "Website Form Fill To Pipeline" (card Pool Leads → New Lead, origem "Website Form", tags
+  `new lead` + `form fill`, SMS ao Rob, tarefa) dispara **só por envio de form do GHL** (3 forms); nada na conta escuta
+  a tag `website form fill` (não existia) nem `new lead`. "Atribuition" (contato criado → dono Rob) roda para todo contato.
+- GHL (`scripts/ps_site.py ghl-live`, pasta do Website Form Fill): **"Website Form - Request a Quote"** e **"Website Form -
+  Main Contact / Service Form"**, publicados, gatilho inbound webhook (URLs em `backup/the-pool-shack/webhook-urls.json`):
+  criar/atualizar contato (nome, sobrenome, telefone; no 443 também e-mail, endereço, CEP) → campos que já existiam
+  (Service Needed; Are You A New Customer no 440; Message no 443) → tags `website form fill` + `new lead` → passo **"Add to
+  workflow" → "Website Form Fill To Pipeline"** (o card e o aviso ao Rob são os de sempre, uma vez só; nenhum campo criado).
+  Formato do passo (visto na Wesley Chapel / Bluewater): `{type: "add_to_workflow", attributes: {input_trigger_params:
+  false, type: "add_to_workflow", workflow_id}}` — testado: o contato entra no workflow alvo.
+- Site (`ps_site.py apply`): Code Snippets instalado (não havia) + snippet #5 "The Pool Shack forms → GHL (Pool Profits)"
+  (`site/poolshack/ps-ghl.php`), hook `wpforms_process_complete` (prioridade 99, depois dos e-mails/confirmação do
+  WPForms; só envio aceito pelo WPForms). Nome dividido no 1º espaço, telefone US → +1XXXXXXXXXX, página de origem
+  (`page_url`). Envia se tiver telefone ou e-mail (o 440 não tem e-mail). Rotas nossas com `?key=`
+  (`backup/the-pool-shack/site-key.txt`): `/ps-ghl/v1/status` (últimos 30 envios) e `/ps-ghl/v1/test` (o `send` só vai
+  para um webhook de teste; webhook do ar → 400). Nada mais mexido (plugins, tema, páginas, forms do WPForms).
+- Testes: PHP local (`site/poolshack/test-ps-ghl.php`, 12/12); `ghl-test` (cópias ZZ TEST cujo "Add to workflow" vai
+  para um alvo que só põe tag, POST direto) 2/2 ✓; `apply` (home ok com os 2 forms, mapeamento no site 2/2 ✓);
+  `ghl-test --via-site` (o snippet no servidor posta nas cópias ZZ TEST) 2/2 ✓ — contato, campos, tags, alvo, sem card.
+  Contatos, workflows e tags de teste apagados. Os contatos de teste passaram pelo "Atribuition" (dono Rob), como nos
+  testes anteriores da conta.
+- Falta: envio real pelo site (Pedro, avisando o Rob antes — o aviso vai para ele): passo a passo no TODO, item 5.
