@@ -240,3 +240,7 @@
   para quem liga pela primeira vez (aqui não saiu de novo porque o mesmo contato já tinha recebido 1 min antes —
   re-entry desligado, como deve ser). Pedido do Rob respondido.
 - Contato de teste (+55 37 …), card e 2 tarefas apagados (backup). Pendente: envio real dos 2 forms do site.
+- 17:53 UTC — envio real dos 2 forms do site (Pedro): snippet → GHL HTTP 200 nos dois (`ps_site.py status`); contato
+  com nome, e-mail, telefone, endereço/CEP, Service Needed, Are You A New Customer, tags `website form fill` + `new lead`;
+  card em New Lead (fonte Website Form), 2 SMS "NEW LEAD - Website Form" ao Rob (1 por form, delivered) e 2 tarefas.
+  Contato de teste (era o "ZZ Teste Pedro" de 23/10), card e tarefas apagados (backup). Pool Shack: tudo testado.
