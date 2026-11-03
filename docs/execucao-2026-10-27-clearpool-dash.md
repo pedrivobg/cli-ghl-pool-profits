@@ -156,3 +156,16 @@
   (4 caminhos 404). O teste de ponta a ponta precisa de um clique real no anúncio (gclid válido) — passo a passo no TODO.
 - "Send Data" do lead form: nenhum contato novo de teste na NorTex nem na Pool Palooza (últimos contatos: 02/11).
 - "Google Ads SMS - New Lead" também tem um passo de conversão vazio: Val criou só as 2; fica vazio até ela dizer.
+
+## 03/11 — BluVantage: "people say we called them" (Paul/Vanessa via Frank)
+
+- 404-334-2495 = número principal da conta (Twilio no GHL desde 28/05, linha "Printed Marketing Materials", no IVR).
+- Os 2 casos da Vanessa: Gerald Kearse (+14045205268, 30/10 15:05Z) e Sonia (+14047215757, 02/11 19:55Z). Os dois
+  contatos nasceram na própria ligação de entrada; nenhuma ligação ou SMS de saída do GHL para eles antes, de nenhum
+  número. Transcrição da Sonia: "I missed a call from this number. I'm just calling back" — a equipe não achou histórico.
+- Nenhum workflow publicado liga para fora (só o IVR `ivr_connect_call` / voicemail). Ligações de saída do GHL usam
+  local-presence dialing (rodam entre as 7 linhas; 14 das ~80 recentes saíram pelo 404-334-2495), mas todas ficam
+  registradas na conversa — e não há nenhuma para esses contatos. Outras transcrições de outubro: nenhum caso parecido.
+- Conclusão: a ligação não saiu do GHL. Mais provável: spoofing (spam/robocall usando o número deles como caller ID) ou
+  alguém ligando por outro app/aparelho que mostra esse número. Sem acesso ao registro do Twilio fora do GHL.
+- Efeito colateral: esses retornos viram contato com tag `new lead` + `printed marketing materials` (conta como lead).
