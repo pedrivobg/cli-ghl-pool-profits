@@ -257,3 +257,9 @@
   hora do agendamento (a primeira visita do contato antigo não tinha). O evento Schedule passou a usar
   `lastAttributionSource.fbclid` (backup; script atualizado). Conferência dos eventos no Events Manager: Val.
 - Contato de teste, agendamento (05/11 8h no calendário do Fareed), card e tarefas apagados (backup).
+- 18:04 UTC — teste do Repair (Google) pelo Pedro: tags `google ads - repair`, `adwords`, `new lead`; Service, Equipment e
+  Landing Page; card "Google Ads LP - Repair"; confirmações ao lead; avisos de lead e de agendamento ao Fareed ✓. Sem
+  evento Meta (não tem a tag do Weekly) ✓. **gclid vazio**: a página foi aberta direto (Direct traffic), não por um clique
+  no anúncio (anúncio segmentado para Frisco/TX não aparece do Brasil) → as conversões do Google foram enviadas sem gclid
+  e o Google não conta. Conferência do lado do Google fica com a Val (primeiro lead real de anúncio / diagnóstico das
+  conversões). Contato, card e agendamento apagados (backup).
