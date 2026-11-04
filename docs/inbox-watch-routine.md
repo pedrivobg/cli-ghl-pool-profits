@@ -34,6 +34,11 @@ The <routine-fire-payload> block below was sent by our own n8n inbox watch: it l
 End with a 3-line summary in Portuguese.
 ```
 
+## Estado (04/11, 13h55 UTC)
+- Workflow **publicado**. "Send to Claude" → rotina "GHL Tasks" (`trig_01LciWdPmUPsDxMA7qW2aesF`), credencial
+  "Claude Routine". Backlog de 03–04/11 (46 itens) gravado no ledger como visto, sem disparar — só item novo vai para a
+  rotina. O primeiro disparo real confirma o token (conferir a execução no n8n).
+
 ## Limites
 - Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
   na sessão da rotina se estiverem nas variáveis do ambiente (TODO, "Tokens fora do chat").
