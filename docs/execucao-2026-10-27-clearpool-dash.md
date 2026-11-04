@@ -328,3 +328,14 @@
   com `meta ads`/`adwords`/`google ads - …` não ganha a tag (o SMS de chamada perdida de todas as linhas sai do número
   principal, então resposta de lead de anúncio cai nele). Teste: contato comum → `website & gbp`; contato `meta ads` →
   sem a tag. Limpo. Val respondida no DM.
+
+## 04/11 — Pool Duck LWR: hero novo da landing page comercial (Val/Atif, inbox watch)
+
+- Cliente pediu hero com piscina de hotel/condomínio. O Atif trocou no preview (sub-conta "Pool Duck" da Pool Profits);
+  a Val viu as duas versões diferentes e o Atif passou para mim. Diferença real entre as páginas: só o CSS do cabeçalho
+  (`trackingCode.headerCode`: imagem Unsplash nova, desktop + mobile).
+- `pd_lwr_commercial_page.py export` + novo modo **`css`** (token Pool Duck): copia só o CSS das páginas do Atif para as
+  páginas no ar da LWR, mantendo o corpo (telefone do Google Ads 941-541-5942, form, tag). Backup
+  `backup/pool-duck-lakewood-ranch/page-yzmSuNMFMbGEBIaZNJlZ-20261104-191912.json`; obrigado sem mudança.
+- Teste: HTML ao vivo com a imagem nova na 1ª leitura; prints desktop/mobile iguais ao preview do Atif. Respondido na
+  thread (86bcf4mbr); tarefa 86bcycgby fechada. NorTex (5 itens): só agradecimentos / já respondidos.

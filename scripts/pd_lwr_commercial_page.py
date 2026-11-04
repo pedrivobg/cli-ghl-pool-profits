@@ -16,6 +16,8 @@ URLs: the landing page is served at the funnel path (/commercial-pool-service-la
 a step PUT changes the step but the live domain keeps routing the old path, and a step path equal to the funnel path
 gets a random suffix when the domain is attached. A live page save (autosave pageType "live") refreshes title/body.
 Backups of the form and of each page before saving.
+`css` (after a new `export`): copies only the page CSS (trackingCode.headerCode) of Atif's pages to the live LWR pages,
+keeping the live body (04/11: new commercial hero image, Val/Atif). Backup of each page first.
 """
 from __future__ import annotations
 
@@ -85,13 +87,41 @@ def src_funnel() -> dict:
     return json.loads(SRC.read_text())["funnel"]
 
 
+def css() -> int:
+    a = Agency()
+    if a.location(LWR)["name"] != "Pool Duck Lakewood Ranch":
+        sys.exit("sub-conta errada (token da Pool Duck?)")
+    src, f = json.loads(SRC.read_text()), funnel(a)
+    BDIR.mkdir(parents=True, exist_ok=True)
+    stamp = time.strftime("%Y%m%d-%H%M%S")
+    for s, new in zip(sorted(f["steps"], key=lambda s: s["sequence"]), src["steps"]):
+        pid = s["pages"][0]
+        page = a.get(BACKEND, f"/funnels/page/{pid}")
+        page = page.get("page", page)
+        live = requests.get(page["pageDataDownloadUrl"], timeout=60).json()
+        want = phones(new["pageData"])[0].get("trackingCode", {}).get("headerCode")
+        if live.get("trackingCode", {}).get("headerCode") == want:
+            print(f"   = {new['name']}: CSS igual")
+            continue
+        (BDIR / f"page-{pid}-{stamp}.json").write_text(json.dumps({"page": page, "pageData": live}))
+        live.setdefault("trackingCode", {})["headerCode"] = want
+        a.call("POST", BACKEND, f"/funnels/builder/autosave/{pid}",
+               body={"funnelId": f["_id"], "pageData": live, "pageVersion": page.get("pageVersion") or 1, "pageType": "live",
+                     "manualSave": True, "meta": page.get("meta") or {},
+                     "integrations": (page.get("versionHistory") or [{}])[0].get("integrations") or {}})
+        print(f"   ✓ {new['name']}: CSS do Atif copiado (backup {stamp})")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("mode", choices=["export", "plan", "apply"])
+    parser.add_argument("mode", choices=["export", "plan", "apply", "css"])
     args = parser.parse_args()
     load_dotenv()
     if args.mode == "export":
         return export()
+    if args.mode == "css":
+        return css()
     a = Agency()
     if a.location(LWR)["name"] != "Pool Duck Lakewood Ranch":
         sys.exit("sub-conta errada (token da Pool Duck?)")
