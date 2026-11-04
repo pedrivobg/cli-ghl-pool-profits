@@ -41,10 +41,11 @@ End with a 3-line summary in Portuguese.
   rotina.
 - 04/11 15h: o n8n não via **resposta dentro de comentário de tarefa** (menção do Atif/Val na tarefa Pool Duck
   Commercial). Agora lê `GET /api/v2/comment/{id}/reply` de todo comentário com `reply_count > 0` nas tarefas
-  atualizadas em 26 h; o texto do item começa pela resposta nova. Se a rotina recusar o lote, o n8n apaga esses itens do
-  ledger e eles voltam no próximo ciclo.
+  atualizadas em 26 h (id `cu-reply-…`); o texto do item começa pela resposta nova. O ledger só grava depois que a
+  rotina aceita o lote (nó "Accepted by Claude?"): envio recusado volta no próximo ciclo.
 - 1º disparo real (04/11 18h15 UTC): **401 "Invalid bearer token"** na rotina. Conferir a credencial "Claude Routine"
-  (Header Auth: Name `Authorization`, Value `Bearer sk-ant-oat01-…`).
+  (Header Auth: Name `Authorization`, Value `Bearer sk-ant-oat01-…`). Token trocado pelo Pedro → **19h17 UTC: aceito**
+  (sessão `cse_01CFrgTVW7bNZ55KvJaouvgF`, 9 itens, ledger gravado).
 
 ## Limites
 - Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
