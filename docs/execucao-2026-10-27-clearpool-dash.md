@@ -342,3 +342,23 @@
 - 20h UTC (inbox watch, 1 item): a Val respondeu ao Atif na thread ("for now the same number is fine"), ou seja, fica o
   número de rastreio do Google Ads (941-541-5942), que já está na página. Ninguém me pediu nada: não respondi e não mexi
   em nada. O ledger não tem ferramenta de update pelo MCP do n8n → linha nova com o mesmo `item_id` e status `done`.
+
+## 04/11 — Stay Fresh: respostas de campanha SMS viram New Lead + avisos para o Kris (Val, inbox watch)
+
+- Val (DM em grupo no ClickUp): antes de qualquer campanha SMS, revisar painel/automações com a Stay Fresh como
+  referência + checklist de lançamento (aprovação do cliente, quem recebe aviso, tipo, lista, uso do CRM, automações,
+  teste). Estado ao vivo: "Drain & Wash Campaign - Replies" só punha tag + SMS/e-mail ao Mike (as 11 respostas de 19/10
+  nunca viraram card); "SMS Customer Reply to pipeline" (reativação) já criava card em New Lead, mas o aviso ia só ao
+  dono (Mike), sem e-mail, e a sequência de reativação seguia depois da resposta. A reativação ainda não foi enviada a
+  ninguém (0 contatos com `reactivation`).
+- `scripts/sf_campaign_replies.py` (plan/test/apply, backup dos 2 fluxos): Drain & Wash Replies + card New Lead (origem
+  "SMS Reply - Drain & Wash") + tag `new lead`, SMS para Mike e Kris, e-mail para Mike e Kris; reativação: + "Stop
+  reactivation sequence" (tira de Reactivation SMS/Email), SMS para Mike e Kris, e-mail para os dois. Ids dos passos
+  existentes e alvo dos gatilhos mantidos; re-entry igual.
+- Teste em cópias ZZ TEST (gatilho por tag; "Customer Replied" não dá para simular; sem SMS/app para o Mike/Kris,
+  e-mails para o pedro@): resposta → card New Lead + tag, saiu da sequência; controle continuou; dw → card + tags;
+  4 e-mails [TEST] chegaram. Contatos, cards e workflows de teste apagados. Respondido à Val; perguntei se crio cards
+  para as respostas reais de outubro (ex.: Evan Harrison). Resposta "STOP" também vira New Lead (GHL põe DND).
+  Tarefa 86bcygeub fechada.
+- Basecamp: Frank me adicionou ao projeto "Capital Lawn & Pool" (só convite). A conta GHL continua esperando a private
+  key + form do n8n (TODO 3).
