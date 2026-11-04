@@ -18,15 +18,27 @@ REPORTS = ROOT / "reports"
 PRIORITY = json.loads((ROOT / "config" / "priority.json").read_text())
 
 
+AGENCY_TOKENS = {"poolduck": "POOLDUCK_FIREBASE_REFRESH_TOKEN", "burchtech": "BURCHTECH_FIREBASE_REFRESH_TOKEN",
+                 "poolheads_old": "POOLHEADS_OLD_FIREBASE_REFRESH_TOKEN"}
+
+
 def load_dotenv() -> None:
+    """`.env` first; then, with GHL_AGENCY=poolduck|burchtech|poolheads_old, use that agency's token from the
+    environment variables (set in the cloud environment, never in the repo) and its own dump dir."""
     path = ROOT / ".env"
-    if not path.exists():
-        return
-    for line in path.read_text().splitlines():
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            key, _, val = line.partition("=")
-            os.environ.setdefault(key.strip(), val.strip())
+    if path.exists():
+        for line in path.read_text().splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, _, val = line.partition("=")
+                os.environ.setdefault(key.strip(), val.strip())
+    agency = os.environ.get("GHL_AGENCY", "").strip().lower()
+    if agency:
+        var = AGENCY_TOKENS.get(agency)
+        if not var or not os.environ.get(var):
+            sys.exit(f"GHL_AGENCY={agency}: variável {var or '?'} não está no ambiente")
+        os.environ["GHL_FIREBASE_REFRESH_TOKEN"] = os.environ[var]
+        os.environ["GHL_DUMP_DIR"] = str(ROOT / "dump" / agency)
 
 
 def select(locations: list[dict], names: list[str] | None, use_all: bool,

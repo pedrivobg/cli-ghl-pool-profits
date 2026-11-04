@@ -173,6 +173,10 @@
 
 ## Outra agência: Pool Duck
 
+- Tokens das outras agências nas variáveis do ambiente (04/11): `POOLDUCK_` / `BURCHTECH_` / `POOLHEADS_OLD_FIREBASE_REFRESH_TOKEN`;
+  rodar com `GHL_AGENCY=poolduck|burchtech|poolheads_old` (o `load_dotenv` troca o token e o `GHL_DUMP_DIR`). Os arquivos
+  `.env` do scratchpad continuam valendo enquanto existirem.
+
 - Token Firebase próprio, **fora do repo** (arquivo de env carregado com `set -a; . <arquivo>`); o
   cache de token é por refresh token (`.token-cache-<hash>.json`), então as duas agências não se
   misturam. `GHL_DUMP_DIR=dump/poolduck` mantém os dumps fora do alcance dos scripts `pp_*`.
