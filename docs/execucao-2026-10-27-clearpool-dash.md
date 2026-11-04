@@ -362,3 +362,28 @@
   Tarefa 86bcygeub fechada.
 - Basecamp: Frank me adicionou ao projeto "Capital Lawn & Pool" (só convite). A conta GHL continua esperando a private
   key + form do n8n (TODO 3).
+
+## 04/11 (22h UTC) — inbox watch, 5 itens (gravação ao vivo bloqueada na sessão da rotina)
+
+- **Clear Pool Tucson — ligação atendida virava perdida** (Derek via Frank, e-mail). Desde o "sem aperte 1" (27/10) o IVR
+  começa com 2 passos comuns (tirar `ivr call missed`, tag `ivr pressed 1`) antes do Connect call; o motor do IVR começa
+  no 1º passo de IVR → a tag nunca entra → "Route the call" mandava toda ligação para "Didn't press 1" (= perdida: SMS,
+  card, tarefa, aviso). 29/10, 02/11 e 04/11: atendidas (IVR `completed` 34–46 s), todas com o SMS. Na NorTex a mesma tag
+  vem depois do gather e funciona. `scripts/cp_ivr_answered_fix.py`: "Pressed 1" → "Reached Derek's phone" (sem tag
+  `spam`, ou seja, todo mundo depois de spam/cliente); "Did Derek answer?" (`ivr call missed`) decide. Teste em cópias
+  15/15 (atendida sem tag de IVR, não atendida, spam, cliente atendido/perdido × 3 fluxos), limpo. **`apply` bloqueado
+  pela permissão da sessão** → Pedro roda/aprova. Frank respondido por e-mail. Tarefa 86bcyjmjh.
+- **Bahama Blue — IVR** (Frank, DM). 3 linhas no "IVR SPAM Detection" (aperte 1 → Andy 10 s → recado). Não atendida não
+  ganha `missed call` → "Missed New Lead - Initial SMS" nunca dispara; quem não aperta 1 cai em ~13 s sem nada. As 6
+  ligações da conta foram assim (inclusive o teste do Frank hoje); só tag + card + tarefa do "Answered Incoming Call".
+  Sobras: "AdWords Call In" com número de Tucson, "Sequential Call Routing" da BluVantage. Plano mandado ao Frank; tarefa
+  86bcyjmmh.
+- **Stay Fresh — respostas de Drain & Wash** (Val). 11 revisadas, nenhuma com card. Interesse: Susan Ogg, Evan Harrison,
+  Brent Olson, Cyndy Pellien, Jen Knight, Donna Johnson; sem card: Toni Mason e Mike Haskell (STOP), Suzy Wright, Jason
+  Hatch, Charlene Darst. Nenhum workflow dispara em New Lead (conferido). Falta criar os 6 cards + guarda de STOP nos 2
+  fluxos de resposta. Val respondida; tarefa 86bcyjmq9.
+- **Poolheads — páginas do Atif**: 3 páginas + 3 obrigado no ar (go.poolheadscare.com, 200), forms certos, (936)
+  301-0309. Falta redirect dos forms (só o formAction da versão mais nova; o modo `thanks` do ph_ads_forms reconstrói o
+  form) + teste real. Comentado na tarefa; minha tarefa 86bcyjmtp.
+- **Pool Shack (Basecamp, cliente vê)**: Rob pergunta à Val sobre agency/client verification do Google Ads → rascunho por
+  e-mail ao Pedro, não postado. Ledger: 5 linhas `needs_pedro`.
