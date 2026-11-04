@@ -8,7 +8,8 @@ combinar antes.
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
-3. **Contas novas no ClickUp** (03/11): "Create GHL Account" Test Pool Co e Capital Lawn & Pool LLC — dizer se eu faço.
+3. **Contas novas** Test Pool Co e Capital Lawn & Pool LLC: criar a private key e enviar o form do n8n (e-mail do
+   onboarding); depois disso eu reviso e completo.
 4. **Refresh do snapshot V9** (na tela).
 5. **Números + A2P**: Rosebrook, Blissful, WP Pools, Bonneville sem número (nenhum SMS sai); Cleverblu com A2P
    salvo, falta privacy/terms do site + pagamento + enviar.

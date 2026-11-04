@@ -12,6 +12,10 @@
 - Fluxo: `pp_dump.py --priority` → `pp_audit.py` → `pp_compare.py` → revisar → aplicar
   (`pp_mirror` → `pp_forms` → `pp_fix --drop-booking`). Histórico: `docs/execucao-*.md`;
   pendências do Pedro: `docs/TODO.md`.
+- **Tarefa "Create GHL Account" (ClickUp)**: não faço nada até o Pedro concluir o passo dele (04/11). A sub-conta nasce
+  sozinha do formulário de onboarding; chega um e-mail de pedroivobegarrido@gmail.com para pedro@poolprofits.com com um
+  link (form do n8n; outro workflow do n8n preenche o resto); o Pedro cria a private key na sub-conta e envia o form. Só
+  depois eu reviso a conta e completo o onboarding abaixo. Antes disso: no máximo respondo que está aguardando esse passo.
 - Conta nova (onboarding): `pp_onboarding_fill` (+ fuso) → custom values do GHL (`a2p_verification_number` = número
   do GHL, friendly name como no site) → `pp_mirror --apply` → `pp_forms` → `pp_nps` → `pp_fix --drop-booking
   [--include-drafts --skip "In Communication Stage"]` → `pp_tags_missing` → `pp_skip_tag` → `pp_line_tag` →

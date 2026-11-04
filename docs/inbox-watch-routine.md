@@ -26,11 +26,12 @@ The <routine-fire-payload> block below was sent by our own n8n inbox watch: it l
 
 1. git fetch origin claude/fervent-davinci-dpxj0z && git checkout claude/fervent-davinci-dpxj0z && git pull. Read CLAUDE.md, docs/TODO.md, docs/inbox-watch-routine.md and the tail of docs/execucao-2026-10-27-clearpool-dash.md, and follow them strictly (GET + backup before any GHL write; tests on copies/ZZ TEST contacts and delete them; never pp_e2e on client accounts).
 2. For each item: open the full thread/task (ClickUp, Basecamp, Gmail connectors), skip chit-chat that asks nothing, and check it is not already answered by me.
-3. If it asks for work: do it fully (whole scope) and test it end to end. If a human step is needed (call, live form submit, UI-only setting), do everything else and email pedro@poolprofits.com the exact steps.
-4. Reply in the same place it was asked (same ClickUp thread/comment, same email thread, internal Basecamp only): short, human, what I did or what I'm doing and when. Never say done unless tested. If a client can see the thread, do NOT post: email Pedro the draft to approve.
-5. Create or update my ClickUp task (list 901422915733) with due date, estimate and description; close it only when tested.
-6. Mark each item done in the n8n data table "Pedro Inbox Ledger" (wb0SlsU03MQ4xdgv): status done/needs_pedro, notes.
-7. Log what changed in docs/execucao-2026-10-27-clearpool-dash.md, commit and push (Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>).
+3. ClickUp "Create GHL Account" tasks: do nothing until Pedro has created the sub-account private key and submitted the n8n onboarding form (link in an email from pedroivobegarrido@gmail.com to pedro@poolprofits.com); only then review and finish the onboarding (CLAUDE.md). Otherwise mark the item needs_pedro.
+4. If it asks for work: do it fully (whole scope) and test it end to end. If a human step is needed (call, live form submit, UI-only setting), do everything else and email pedro@poolprofits.com the exact steps.
+5. Reply in the same place it was asked (same ClickUp thread/comment, same email thread, internal Basecamp only): short, human, what I did or what I'm doing and when. Never say done unless tested. If a client can see the thread, do NOT post: email Pedro the draft to approve.
+6. Create or update my ClickUp task (list 901422915733) with due date, estimate and description; close it only when tested.
+7. Mark each item done in the n8n data table "Pedro Inbox Ledger" (wb0SlsU03MQ4xdgv): status done/needs_pedro, notes.
+8. Log what changed in docs/execucao-2026-10-27-clearpool-dash.md, commit and push (Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>).
 End with a 3-line summary in Portuguese.
 ```
 
