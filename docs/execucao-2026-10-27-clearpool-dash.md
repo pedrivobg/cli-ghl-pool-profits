@@ -339,3 +339,6 @@
   `backup/pool-duck-lakewood-ranch/page-yzmSuNMFMbGEBIaZNJlZ-20261104-191912.json`; obrigado sem mudança.
 - Teste: HTML ao vivo com a imagem nova na 1ª leitura; prints desktop/mobile iguais ao preview do Atif. Respondido na
   thread (86bcf4mbr); tarefa 86bcycgby fechada. NorTex (5 itens): só agradecimentos / já respondidos.
+- 20h UTC (inbox watch, 1 item): a Val respondeu ao Atif na thread ("for now the same number is fine"), ou seja, fica o
+  número de rastreio do Google Ads (941-541-5942), que já está na página. Ninguém me pediu nada: não respondi e não mexi
+  em nada. O ledger não tem ferramenta de update pelo MCP do n8n → linha nova com o mesmo `item_id` e status `done`.
