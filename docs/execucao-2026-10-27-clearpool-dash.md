@@ -320,3 +320,11 @@
   Kris" (e-mail com nome, telefone, e-mail, cidade, origem). E-mail testado numa cópia (chegou no pedro@), cópia apagada.
 - Em aberto (perguntado ao Frank): avisos de ligação para o Kris (hoje ligação só gera tarefa para o dono, Mike);
   re-entry em Quote Sent/No Response/Won/Lost; IVR (o Frank traz como o cliente quer).
+
+## 04/11 — NorTex: tag da linha Website & GBP (Val)
+
+- `pp_line_tag.py --only NorTex --apply` → "Website & GBP Call - Tag" (ligação de entrada em +14692382660 → `website & gbp`)
+  + novo "Website & GBP SMS - Tag" (SMS recebido no mesmo número). Os dois com if/else "Came from an ad line?": contato
+  com `meta ads`/`adwords`/`google ads - …` não ganha a tag (o SMS de chamada perdida de todas as linhas sai do número
+  principal, então resposta de lead de anúncio cai nele). Teste: contato comum → `website & gbp`; contato `meta ads` →
+  sem a tag. Limpo. Val respondida no DM.
