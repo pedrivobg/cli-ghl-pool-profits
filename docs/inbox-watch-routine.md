@@ -1,59 +1,40 @@
-# Pedro Inbox Watch — n8n (03/11)
+# Inbox automático — n8n detecta, Claude faz (04/11)
 
-Roda no n8n (sem crédito do Claude): workflow **"Pedro Inbox Watch (ClickUp, Basecamp, Gmail)"**
-(https://n8n.valenteai.cloud/workflow/ktHFt1DCNDSxWHjd), fuso America/Sao_Paulo.
+**n8n** (https://n8n.valenteai.cloud/workflow/ktHFt1DCNDSxWHjd): só detecta, **sem IA, sem responder, sem criar
+tarefa, sem gastar token**. Seg–sex a cada 15 min das 9h às 12h45 e de hora em hora das 13h às 19h (America/Sao_Paulo).
 
-- Quando roda: seg–sex, a cada 15 min das 9h às 12h45 (o shift) e de hora em hora das 13h às 19h.
-- Fontes:
-  - **ClickUp direto pela API** (últimas 26 h): todos os canais e DMs, respostas em thread (threads dos últimos 7
-    dias onde eu participo, sou mencionado ou que estão em DM), tarefas novas atribuídas a mim ou que me citam na
-    descrição, comentários em tarefas minhas / onde comentei / que me mencionam. Resposta vai no mesmo lugar (thread do
-    chat ou comentário da tarefa).
-  - **Gmail** pedro@poolprofits.com (últimas 24 h), incluindo as notificações do Basecamp. Os e-mails do ClickUp são
-    descartados (o ClickUp já é lido direto), para não haver item duplicado.
-- Ruído descartado: Fyxer, newsletters, recibos, Zoom, LinkedIn, calendário.
-- Atraso natural: o item só é tratado depois de 5 min, então a resposta sai entre 5 e 20 min.
-- Registro: tabela do n8n "Pedro Inbox Ledger" (`wb0SlsU03MQ4xdgv`). Item já registrado não é tratado de novo.
-- A IA (OpenAI, temperatura 0.1) classifica cada item:
-  - se pede algo ao Pedro;
-  - cliente;
-  - se o cliente vê a conversa;
-  - resumo em PT;
-  - nome e descrição da tarefa, estimativa, prazo e prioridade;
-  - resposta curta em inglês, que nunca diz "pronto";
-  - se precisa do Pedro e se é urgente.
-- Proatividade: 9h30, se nada chegou desde a véspera, mensagem no canal "Pool Profits" do ClickUp marcando Frank e Val
-  ("anything you need on GHL today?", 3 variações). 12h50: atualização de fim de shift no mesmo canal com as minhas
-  tarefas abertas e o prazo de cada uma.
-- Tarefas vão para a lista "Pedro – GHL & Automations" (`901422915733`). Respostas sempre em primeira pessoa (eu = Pedro).
-- Ações:
-  - **Tarefa no ClickUp:** lista "Pedro – GHL & Automations", atribuída ao Pedro, com prazo, estimativa e descrição. Não cria quando o
-    item já é uma tarefa do ClickUp.
-  - **Resposta automática**, só para a equipe interna:
-    - resposta na mesma thread do chat do ClickUp ou comentário na tarefa;
-    - resposta por e-mail quando o remetente é @poolprofits.com e da equipe.
-  - Basecamp e qualquer conversa que o cliente vê: **nunca** responde.
-  - **E-mail ao Pedro** ("[Pool Profits] Ação/URGENTE: …") quando precisa dele: aprovação, teste humano, decisão,
-    conversa com cliente (vai com o rascunho da resposta) ou urgência.
+- **Fontes** (o que vi nos últimos 14 dias de e-mail/ClickUp/Basecamp):
+  - ClickUp direto pela API: todos os canais e DMs, respostas em thread onde eu participo / sou mencionado / DM,
+    tarefas novas atribuídas a mim ou que me citam, comentários nas minhas tarefas, nas que comentei ou que me mencionam.
+  - Gmail pedro@poolprofits.com (24 h): e-mails de pessoas (equipe e clientes) e **notificações do Basecamp** (menções e
+    pings; o e-mail diz "The client can see this message" quando o cliente vê → marcado `CLIENT CAN SEE`).
+  - Descartado por regra: avisos de lead dos GHL (remetentes `reply.*`/`lc.*`, assunto `[TEST]`), e-mails do ClickUp (já
+    lido direto), Fyxer, Skool, convites de calendário/chat, newsletters, recibos.
+- Item só entra com 5+ min de idade. Dedupe na tabela "Pedro Inbox Ledger" (`wb0SlsU03MQ4xdgv`), status `sent_to_claude`.
+- Quando há item novo: **um** POST com a lista para a rotina do Claude (API trigger; 1 sessão por lote; máx. 30/h).
 
-O trabalho em si (GHL, scripts) continua sendo feito numa sessão com o Claude, a partir da tarefa ou do e-mail.
+**Claude** (rotina no claude.ai, disparada pelo n8n): entende cada item, faz o trabalho e testa, responde no mesmo lugar
+(primeira pessoa, como Pedro; "done" só testado), cliente vê → rascunho por e-mail para o Pedro aprovar, cria/atualiza a
+tarefa na lista "Pedro – GHL & Automations" (`901422915733`), marca o item `done` no ledger.
 
-## Para ligar (Pedro, no n8n)
+## Prompt da rotina (colar no claude.ai, sem agenda, Trigger = API)
 
-1. Credentials → New → Gmail OAuth2 → entrar com **pedro@poolprofits.com**. Hoje os 3 nós de Gmail estão com
-   "Gmail Valente" (auto-atribuída), que é outra conta e não lê nem responde como você.
-2. No workflow, trocar a credencial nos nós "Get recent emails to Pedro", "Acknowledge by email (team only)" e
-   "Email Pedro (needs you)".
-3. **ClickUp**: a credencial "ClickUp account" do n8n é de outro workspace (a API responde "Workspace not
-   authorized"). Criar uma nova: ClickUp (Pool Profits) → avatar → Settings → Apps → API Token → Generate/Copy; no n8n
-   Credentials → New → ClickUp API → colar o token → nome "ClickUp Pool Profits". Trocar em todos os nós de ClickUp.
-4. Conferir a credencial da OpenAI ("OpenAi Guiar", auto-atribuída).
-5. Me avisar: eu rodo um teste e publico.
+```
+You are Pedro Garrido (pedro@poolprofits.com), GHL/automation lead at Pool Profits. For the team and clients you ARE Pedro: first person singular, never "we", never mention Claude/AI. Reply to Pedro himself in Portuguese; to the team/clients in English.
 
-## Teste (03/11, dados simulados, nada enviado)
+The <routine-fire-payload> block below was sent by our own n8n inbox watch: it lists new items addressed to me (ClickUp chat/threads/tasks/comments, emails, Basecamp notifications). Act on it.
 
-- 3 e-mails simulados:
-  - menção no ClickUp → comentário na própria tarefa, sem tarefa nova, sem e-mail;
-  - e-mail do Frank → tarefa + resposta por e-mail + e-mail ao Pedro;
-  - Fyxer → descartado.
-- Na tabela ficaram 2 linhas de teste (`TEST-1`, `TEST-2`). São inofensivas: os ids não existem no Gmail.
+1. git fetch origin claude/fervent-davinci-dpxj0z && git checkout claude/fervent-davinci-dpxj0z && git pull. Read CLAUDE.md, docs/TODO.md, docs/inbox-watch-routine.md and the tail of docs/execucao-2026-10-27-clearpool-dash.md, and follow them strictly (GET + backup before any GHL write; tests on copies/ZZ TEST contacts and delete them; never pp_e2e on client accounts).
+2. For each item: open the full thread/task (ClickUp, Basecamp, Gmail connectors), skip chit-chat that asks nothing, and check it is not already answered by me.
+3. If it asks for work: do it fully (whole scope) and test it end to end. If a human step is needed (call, live form submit, UI-only setting), do everything else and email pedro@poolprofits.com the exact steps.
+4. Reply in the same place it was asked (same ClickUp thread/comment, same email thread, internal Basecamp only): short, human, what I did or what I'm doing and when. Never say done unless tested. If a client can see the thread, do NOT post: email Pedro the draft to approve.
+5. Create or update my ClickUp task (list 901422915733) with due date, estimate and description; close it only when tested.
+6. Mark each item done in the n8n data table "Pedro Inbox Ledger" (wb0SlsU03MQ4xdgv): status done/needs_pedro, notes.
+7. Log what changed in docs/execucao-2026-10-27-clearpool-dash.md, commit and push (Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>).
+End with a 3-line summary in Portuguese.
+```
+
+## Limites
+- Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
+  na sessão da rotina se estiverem nas variáveis do ambiente (TODO, "Tokens fora do chat").
+- A auditoria de quinta (19h57) é separada: tarefa agendada desta sessão (`docs/weekly-audit.md`).

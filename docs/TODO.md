@@ -159,6 +159,12 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
 
 ### Pool Duck
 
+- **Snapshot V9 nas franquias LWR, Odessa e Wesley Chapel** (Frank, e-mail 03/11; tarefa ClickUp `86bcxzjfa`, prazo 05/11):
+  revisão só-leitura das 3 contas em andamento → `docs/poolduck-snapshot-plan.md` (inventário, conflitos, gatilhos que
+  podem disparar em contatos antigos, plano por conta com Wesley Chapel em detalhe). Respondi ao Frank que mando o plano
+  antes de aplicar. Depois do OK dele: aplicar conta por conta (V9 entra em draft, guarda para contatos antigos, testes
+  ZZ TEST apagados, religar na ordem do plano). Pool Duck é outra agência: link de snapshot importado lá ou cópia por
+  API com os 2 tokens (decidir no plano).
 - **Franchising — feira de Tampa**: 7 STOP. O SMS de qua 28/10 (último) já tem "Reply STOP to opt out."; Ed decide se
   corta. Albert Kollar respondeu "I'm ready" → Lee liga.
 - **Google Lead Form da Wesley Chapel**: mesmo caso do item 4 (precisa de acesso ao Google Ads).
@@ -170,4 +176,12 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
 
 ## Geral
 
+- **Inbox automático (n8n só detecta, Claude faz)** — `docs/inbox-watch-routine.md`. Falta (você):
+  1. n8n: credencial Gmail OAuth2 com pedro@poolprofits.com no nó "Get recent emails to Pedro" (hoje "Gmail Valente").
+  2. claude.ai/code/routines → New routine: repo `pedrivobg/cli-ghl-pool-profits` (branch `claude/fervent-davinci-dpxj0z`),
+     mesmo ambiente desta sessão, conectores Basecamp + ClickUp + Gmail + n8n, prompt do doc; sem agenda; Trigger → API →
+     Generate token (copiar na hora).
+  3. n8n: Credentials → New → Header Auth: name `Authorization`, value `Bearer <token>` → no nó "Send to Claude" colar a
+     Fire URL (`…/routines/trig_…/fire`), escolher essa credencial e ativar o nó.
+  4. Me avisar: eu marco os itens antigos como já vistos (para não disparar o atraso) e publico o workflow.
 - **Trocar os 3 refresh tokens** colados no chat (Pool Profits, Pool Duck, BurchTech) — `docs/get-firebase-token.md`.
