@@ -160,7 +160,9 @@ para o cliente testar. Teste que dispara aviso para o cliente: **me avisa antes*
 ### Pool Duck
 
 - **Snapshot V9 nas franquias LWR, Odessa e Wesley Chapel** (Frank, e-mail 03/11; tarefa ClickUp `86bcxzjfa`, prazo 05/11):
-  revisão só-leitura das 3 contas em andamento → `docs/poolduck-snapshot-plan.md` (inventário, conflitos, gatilhos que
+  **plano pronto (04/11)** em `docs/poolduck-snapshot-plan.md`, com 10 perguntas e o rascunho em inglês para o Frank no fim
+  (Odessa: link do snapshot + `pp_guard_new_workflows.py`; LWR e Wesley Chapel: cópia por API em draft + tags `pre-snapshot`;
+  antes: Refresh do snapshot V9) (inventário, conflitos, gatilhos que
   podem disparar em contatos antigos, plano por conta com Wesley Chapel em detalhe). Respondi ao Frank que mando o plano
   antes de aplicar. Depois do OK dele: aplicar conta por conta (V9 entra em draft, guarda para contatos antigos, testes
   ZZ TEST apagados, religar na ordem do plano). Pool Duck é outra agência: link de snapshot importado lá ou cópia por
