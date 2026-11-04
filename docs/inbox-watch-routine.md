@@ -38,7 +38,13 @@ End with a 3-line summary in Portuguese.
 ## Estado (04/11, 13h55 UTC)
 - Workflow **publicado**. "Send to Claude" → rotina "GHL Tasks" (`trig_01LciWdPmUPsDxMA7qW2aesF`), credencial
   "Claude Routine". Backlog de 03–04/11 (46 itens) gravado no ledger como visto, sem disparar — só item novo vai para a
-  rotina. O primeiro disparo real confirma o token (conferir a execução no n8n).
+  rotina.
+- 04/11 15h: o n8n não via **resposta dentro de comentário de tarefa** (menção do Atif/Val na tarefa Pool Duck
+  Commercial). Agora lê `GET /api/v2/comment/{id}/reply` de todo comentário com `reply_count > 0` nas tarefas
+  atualizadas em 26 h; o texto do item começa pela resposta nova. Se a rotina recusar o lote, o n8n apaga esses itens do
+  ledger e eles voltam no próximo ciclo.
+- 1º disparo real (04/11 18h15 UTC): **401 "Invalid bearer token"** na rotina. Conferir a credencial "Claude Routine"
+  (Header Auth: Name `Authorization`, Value `Bearer sk-ant-oat01-…`).
 
 ## Limites
 - Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
