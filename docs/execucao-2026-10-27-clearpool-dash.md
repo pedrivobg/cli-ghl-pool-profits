@@ -448,3 +448,13 @@
 - Falta: envio real em cada form depois do go-live (Turnstile → mão humana), conferir card/aviso e apagar.
   Tarefa 86bcyw37n (em andamento). Ledger n8n sem conector (item 1a1ac1849e3f5d06 → done, "Corolla launch: GHL
   forms wired; reply is Frank's").
+
+## 05/11 (~14h45 UTC) — inbox watch, 2 itens (Smart Chem Pools, mesmo pedido)
+
+- Christopher Keplinger (web dev do site Lovable) por e-mail (cliente vê) e no chat Pool Profits: pede uma conta GHL
+  para a **Smart Chem Pools** para ligar os forms do site. Nenhuma sub-conta com esse nome entre as 64 e nenhuma
+  submissão no survey de onboarding (`efErcbOr4GAKXzZ28J4S`) → regra "Create GHL Account": nada criado.
+- Respondi no thread do chat (interno): a conta nasce do form de onboarding, pedi ao Frank que mande o link ao
+  cliente (ou diga se já foi preenchido com outro nome/e-mail). Tarefa 86bcywax9 (prazo 07/11, 2 h). E-mail do
+  Christopher: rascunho na notificação para o Pedro aprovar.
+- Sem conector Gmail/n8n: ledger não gravado (1a1ac255402111e1 e cu-chat-80140065683863 → needs_pedro).
