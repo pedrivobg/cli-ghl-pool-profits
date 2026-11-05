@@ -406,3 +406,16 @@
   e-mail do onboarding → falta a private key + form (TODO 3, needs_pedro).
 - Sessão sem conector Gmail/n8n: não respondi ao e-mail do Frank, não mandei o rascunho por e-mail e não gravei o
   ledger. Tudo isso foi na notificação para o Pedro.
+
+## 05/11 (13h UTC) — inbox watch, 2 itens (tarefa Poolheads - New Landing Pages)
+
+- Frank → Val ("Yes please", mandar as 3 páginas ao cliente) e Atif → Frank (formatação do site corrigida): nada pedido
+  a mim. Como as páginas vão para o cliente/anúncios, fiz a minha parte pendente (86bcyjmtp):
+- **Forms → páginas de obrigado**: `ph_ads_forms.py thanks` agora só troca o `formAction` da versão mais nova (não
+  reconstrói o form; `--only weekly|repair|leak`). Aplicado 12:47–12:48 UTC (backup `backup/poolheads/form-*-20261105-*`):
+  WEEKLY → /thank-you-pool-service, REPAIR → /thank-you-pool-repair, LEAK → /thank-you-leak-detection. Diff vs backup =
+  só a ação; o widget público (`/widget/form/<id>`) traz cada URL. As 6 URLs (as do funil e as `-page` da Val) embutem o
+  form certo; obrigado = 200.
+- Falta (mão humana, Turnstile): envio real em cada página → redireciona + contato/tags/card New Lead/aviso ao Felipe
+  (avisar antes), depois apagar. Comentei na thread da Val; tarefa 86bcyjmtp em andamento.
+- Sem conector Gmail/n8n nesta sessão: ledger não gravado (2 itens → done), passos para o Pedro na notificação.

@@ -4,7 +4,7 @@
     ./.venv/bin/python scripts/ph_ads_forms.py plan
     ./.venv/bin/python scripts/ph_ads_forms.py test --to pedro@poolprofits.com
     ./.venv/bin/python scripts/ph_ads_forms.py apply                       # forms + published workflows + line
-    ./.venv/bin/python scripts/ph_ads_forms.py thanks                      # forms → thank-you pages, once Atif's exist
+    ./.venv/bin/python scripts/ph_ads_forms.py thanks [--only weekly]      # forms → thank-you pages (only the action of the newest version)
 
 Forms "GOOGLE ADS – WEEKLY / – REPAIR / – LEAK DETECTION", built from the newest version of "Landing Page - Optin Form"
 (same look): Full Name*, Phone* (US picker), ZIP Code*, Email (optional), the page's optional question (repair: "What
@@ -314,6 +314,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["plan", "test", "apply", "thanks"])
     parser.add_argument("--to", help="test: inbox that gets the lead alerts")
+    parser.add_argument("--only", choices=[p["key"] for p in PAGES], help="thanks: one form only")
     args = parser.parse_args()
     if args.mode == "test" and not args.to:
         parser.error("--to is required in test mode")
@@ -346,11 +347,17 @@ def main() -> int:
         return test(a, cfs, stage, folder, args.to)
     if args.mode == "thanks":
         for p in PAGES:
+            if args.only and p["key"] != args.only:
+                continue
             fid = forms[p["form"]]
             cur, cur_fd = latest_form_data(a, fid)
             (BDIR / f"form-{fid}-{time.strftime('%Y%m%d-%H%M%S')}.json").write_text(json.dumps({"form": cur, "formData": cur_fd}))
-            save_form(a, fid, p["form"], build_form(base, p, cfs, redirect=True))
-            print(f"   {p['form']} → {SITE + p['thanks']}")
+            url = SITE + p["thanks"]
+            fd = copy.deepcopy(cur_fd)  # only the action changes: keeps any edit made after apply (Atif's pages)
+            fd["form"]["formAction"] = {**(fd["form"].get("formAction") or {}), "actionType": "1",
+                                        "redirectUrl": url, "redirect_url": url}
+            save_form(a, fid, p["form"], keep_redirect(fd))
+            print(f"   {p['form']} → {url}")
         return 0
 
     for p in PAGES:
