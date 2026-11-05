@@ -505,3 +505,22 @@
   "Mapping Reference" do Main Contact (já explicado no DM às 19h). Reconferido: 0 contatos com `website form fill` → nenhum
   envio real do site ainda. Respondi no DM (envio real nos 2 forms amanhã cedo → salvar a requisição como referência nos
   2 gatilhos → conferir card/aviso → apagar). Comentário na tarefa 86bcz2gme. Ledger n8n: 1 linha done.
+
+## 05/11 (~22h UTC): inbox watch, 2 itens (Frank)
+
+- **E-mail "Ekahi Solutions LLC - Automations"** (só o Frank): texto havaiano + sem links de agendamento + repensar
+  o Monthly Service Reminder. Novo `scripts/ek_wording.py` (plan / `--apply` / `--test <inbox>`, idempotente, troca só o
+  trecho e mantém o HTML): "Hi {{" → "Aloha {{" e "Hey {{" → "Howzit {{" nos 23 templates SMS; link de agendamento →
+  "reply here or call/text us at {{business_phone}}" em Reactivation SMS 2 e Upsell SMS 2 (draft) e nos e-mails de
+  Reactivation 1–3 (template + passo). Achado: 4 passos de e-mail (Nurture Day 2/3, Lost Stage 1/2) ainda mandavam o
+  booking link, embora os templates já estivessem em "call or reply" → o passo agora tem o html do template. Backup em
+  `backup/ekahi-solutions-llc/`; releitura 0 diferenças; status e re-entry mantidos (In Communication já estava com
+  re-entry off). Re-dump: nenhum Hi/Hey ou booking_link na conta. Teste: prévia pela Test Snapshot para
+  pedro@poolprofits.com (4 e-mails chegaram e foram conferidos; workflow/contato de teste apagados).
+  Não conferido: o texto do review request nativo (configurações de Reputation, sem endpoint conhecido).
+- Monthly reminder: não mudei a lógica. Respondi no thread com a proposta "first 90 days" (detalhes do dia de serviço →
+  check-in depois da 1ª visita, no lugar do SMS de 1 h depois do Won → dica havaiana no dia 30 → filtro no dia 75 (o draft
+  "Filter Clean Reminder") → check-in por trimestre), contra o lembrete semanal (vira ruído, e um STOP corta o SMS da
+  review). Perguntei se o Erik usa app de relatório de visita (Skimmer). Montar em draft até 09/11 depois do ok do Frank.
+  Tarefa 86bcz7706.
+- DM do Frank "Thanks @Pedro G!": só agradecimento, sem resposta. Ledger: 2 linhas done.
