@@ -433,3 +433,18 @@
   Felipe opinar. Nada pedido a mim, sem comentários na mensagem; não postei. Meu pendente segue o 86bcyjmtp (envio
   real nas 3 páginas → redirect/card/aviso, depois apagar). Ledger n8n sem conector (item 1a1abd4de2f47956 → done,
   "Val intro to client, no action").
+
+## 05/11 (~15h UTC) — inbox watch, 1 item (Corolla, cliente vê)
+
+- Basecamp Corolla "Website Mockup": Josh aprovou o site novo ("go ahead and publish"), leads caíram com o site Wix,
+  vai manter o Wix ativo um tempo, pergunta se segura os pedidos de review no Google. Pergunta é para o Frank (site);
+  não postei (cliente vê). Rascunho para o Pedro na notificação.
+- Minha parte (GHL): o staging embute 2 forms da conta Corolla (`hhXkAONzl78btBsxb35f`): "Request a Quote"
+  `Ft5UHxn2jwcJynAxLYBw` e "Main Contact Form" `w5MxiPRdTfGTww4aY4uV` (ambos mensagem, sem redirect). O
+  "Website Form Fill To Pipeline" (publicado; card + avisos) só escutava o form antigo `zZVClfbhuG9LafXaMfN8` → lead do
+  site novo viraria só contato. Incluí os 2 forms no gatilho `kJSLeNZg2JpJNON7heGg` (backup
+  `backup/corolla-pool-and-spa/trigger-*-20261105-*` + workflow); relido: publicado, ativo, só a lista de forms mudou.
+  Conta sem nenhuma submissão de form em 30 dias.
+- Falta: envio real em cada form depois do go-live (Turnstile → mão humana), conferir card/aviso e apagar.
+  Tarefa 86bcyw37n (em andamento). Ledger n8n sem conector (item 1a1ac1849e3f5d06 → done, "Corolla launch: GHL
+  forms wired; reply is Frank's").
