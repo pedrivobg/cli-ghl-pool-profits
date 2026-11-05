@@ -498,3 +498,10 @@
   Passo humano por e-mail ao Pedro: envio real nos 2 forms do site (avisar o Rob) → escolher a requisição como Mapping
   Reference nos 2 gatilhos → eu confiro e apago. Tarefa 86bcz2gme.
 - Ledger n8n: 6 linhas (5 done, 1 needs_pedro).
+
+## 05/11 (~20h UTC) — inbox watch, 1 item (Frank, Pool Shack)
+
+- DM com print de **"Website Form - Request a Quote"** (bolinha laranja no gatilho inbound webhook): mesmo aviso de
+  "Mapping Reference" do Main Contact (já explicado no DM às 19h). Reconferido: 0 contatos com `website form fill` → nenhum
+  envio real do site ainda. Respondi no DM (envio real nos 2 forms amanhã cedo → salvar a requisição como referência nos
+  2 gatilhos → conferir card/aviso → apagar). Comentário na tarefa 86bcz2gme. Ledger n8n: 1 linha done.
