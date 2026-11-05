@@ -419,3 +419,10 @@
 - Falta (mão humana, Turnstile): envio real em cada página → redireciona + contato/tags/card New Lead/aviso ao Felipe
   (avisar antes), depois apagar. Comentei na thread da Val; tarefa 86bcyjmtp em andamento.
 - Sem conector Gmail/n8n nesta sessão: ledger não gravado (2 itens → done), passos para o Pedro na notificação.
+
+## 05/11 (~14h UTC) — inbox watch, 1 item
+
+- Val → eu ("awesome, TYSM") na thread das páginas Poolheads (86bcwet1g): agradecimento, nada pedido. Sem resposta.
+  Pendente meu continua o mesmo (86bcyjmtp): envio real nas 3 páginas (Turnstile → mão humana) para conferir redirect,
+  card New Lead e aviso ao Felipe, depois apagar; aí confirmo na thread. Ledger n8n sem conector nesta sessão
+  (item cu-reply-90140278275905 → done, "thanks only").
