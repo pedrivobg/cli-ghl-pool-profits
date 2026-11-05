@@ -464,3 +464,14 @@
 - Frank no thread Smart Chem Pools (chat Pool Profits): "Yep will work on it today!" — vai mandar o link de onboarding
   ao cliente. Nada pedido a mim; sem resposta. Sigo aguardando o form de onboarding (regra "Create GHL Account");
   tarefa 86bcywax9 sem mudança. Ledger n8n sem conector (item cu-chat-80140065687644 → done, "Frank ack, no action").
+
+## 05/11 (~18h UTC) — inbox watch, 4 itens (Frank, Bonneville)
+
+- **DM "phone system requires configuration"** (print de Bonneville → Settings → Phone Numbers): a API confirma
+  "No Twilio account found for location DeSfqW31OleIiU7eUt35" (sem LC Phone; rebilling off). Mandei ao Frank no DM o
+  passo a passo (Agency → Settings → Phone Integration → LC Phone → ativar Bonneville; comprar número 801; A2P no Trust
+  Center; site sem privacy/terms). Não encontrei o "processo" antigo que ele citou (ClickUp/repo). Tarefa 86bcz0y87.
+- **Basecamp "📢 Client List"** (interno): formatar Customers (4).xlsx para importar. O conector do Basecamp não baixa o
+  arquivo (nem o storage assinado, nem o e-mail) → comentei pedindo o xlsx no DM do ClickUp e se todos são clientes
+  ativos (tag); formatar amanhã com `pp_import_clean.py` (xlsx → csv antes). Tarefa 86bcz0y7b.
+- Ledger n8n: não há ferramenta de update → linhas novas com o mesmo item_id (3 done, 1 in_progress).
