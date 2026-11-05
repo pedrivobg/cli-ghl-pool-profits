@@ -13,7 +13,10 @@ from cli_anything.gohighlevel.utils.agency import Agency, match_location, slugif
 
 # Another agency's dumps go elsewhere (e.g. GHL_DUMP_DIR=dump/poolduck) so the Pool Profits
 # scripts, which scan every folder in dump/, never pick them up.
-DUMP = Path(os.environ.get("GHL_DUMP_DIR") or ROOT / "dump").resolve()
+_AGENCY = os.environ.get("GHL_AGENCY", "").strip().lower()
+# GHL_AGENCY must pick the dump dir here, at import: scripts do `from _common import DUMP` before load_dotenv runs
+# (05/11: a GHL_AGENCY=poolduck dump landed in dump/ and mixed with the Pool Profits sub-accounts).
+DUMP = Path(os.environ.get("GHL_DUMP_DIR") or (ROOT / "dump" / _AGENCY if _AGENCY else ROOT / "dump")).resolve()
 REPORTS = ROOT / "reports"
 PRIORITY = json.loads((ROOT / "config" / "priority.json").read_text())
 

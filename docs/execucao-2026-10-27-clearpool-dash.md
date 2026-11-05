@@ -524,3 +524,22 @@
   review). Perguntei se o Erik usa app de relatório de visita (Skimmer). Montar em draft até 09/11 depois do ok do Frank.
   Tarefa 86bcz7706.
 - DM do Frank "Thanks @Pedro G!": só agradecimento, sem resposta. Ledger: 2 linhas done.
+
+## 05/11 (23h UTC) — auditoria semanal (`docs/weekly-audit-log.md`)
+
+- **Clear Pool**: fix do IVR confirmado em ligação real (17:34 UTC, atendida 116 s → SMS "answered", card). Frank
+  respondido no e-mail "Fwd: IVR Issue"; tarefa 86bcyjmjh fechada.
+- **Stay Fresh**: `scripts/sf_stop_guard.py` — if/else "STOP reply?" (`contact_reply`/`message.body`: is-any-of palavras de
+  opt-out + contém "unsubscribe") envolvendo a cadeia dos 2 fluxos de resposta; teste em cópia (caminho "Real reply" → card)
+  ok, limpo; aplicado (published, re-entry igual). Lado STOP: teste real com o Pedro. 6 cards criados em New Lead (Susan
+  Ogg, Evan Harrison, Brent Olson, Cyndy Pellien, Jen Knight, Donna Johnson; origem "SMS Reply - Drain & Wash"; nada
+  dispara em New Lead nem na tag; só a atividade "Opportunity created"). Val e Frank (estatísticas do disparo: 105
+  enviados 19/10, 103 entregues, 11 respostas) respondidos.
+- **Bahama Blue**: `pp_ivr_missed.py --apply` (ramo "não atendeu" → `missed call`); "AdWords Call In - New Lead" (Tucson)
+  e "Sequential Call Routing" (BluVantage) → draft (backup). Teste real com o Pedro (tarefa 86bcyjmmh).
+- **pp_fix** (básico, backup + releitura): Wrigley, Sunwave, YardSpring, Precision, Simple, SwimReady, Signature, Clean
+  Co, Corolla, Aqua Clear. YardSpring/Sunwave/Corolla/Aqua Clear com `--drop-booking` (calendários sem membro). 3 SMS de
+  modelo com link de calendário ("New Lead SMS 2", "No Response SMS 1", "No-Show SMS 2") → "reply / call us" em
+  YardSpring, Corolla e Aqua Clear. Corolla: `a2p_verification_number` = +1 252-600-3428 (número do GHL). Aqua Clear:
+  Review Request com link de review da Clear Pool → `g.page/r/CZRcZF3HgnXLECE/review` (custom value dela).
+- `_common.py`: `GHL_AGENCY` escolhe `dump/<agência>` no import (antes o dump da Pool Duck ia para `dump/`).
