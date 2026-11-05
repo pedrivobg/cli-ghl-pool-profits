@@ -426,3 +426,10 @@
   Pendente meu continua o mesmo (86bcyjmtp): envio real nas 3 páginas (Turnstile → mão humana) para conferir redirect,
   card New Lead e aviso ao Felipe, depois apagar; aí confirmo na thread. Ledger n8n sem conector nesta sessão
   (item cu-reply-90140278275905 → done, "thanks only").
+
+## 05/11 (~14h30 UTC) — inbox watch, 1 item
+
+- Basecamp Poolheads, "Google Ads" (Val → Felipe, cliente vê): apresentação da Val e as 3 páginas `-page` para o
+  Felipe opinar. Nada pedido a mim, sem comentários na mensagem; não postei. Meu pendente segue o 86bcyjmtp (envio
+  real nas 3 páginas → redirect/card/aviso, depois apagar). Ledger n8n sem conector (item 1a1abd4de2f47956 → done,
+  "Val intro to client, no action").
