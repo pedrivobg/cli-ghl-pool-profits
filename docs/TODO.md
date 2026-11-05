@@ -1,4 +1,4 @@
-# TODO do Pedro — só o aberto (04/11/2026)
+# TODO do Pedro — só o aberto (05/11/2026)
 
 Curto de propósito (as rotinas leem este arquivo). Uma linha por item; detalhe e histórico em
 `docs/execucao-*.md` e `docs/TODO-arquivo-2026-11-04.md`. Item fechado sai daqui. Teste que avisa cliente:
@@ -15,9 +15,13 @@ combinar antes.
    salvo, falta privacy/terms do site + pagamento + enviar.
 6. **Testes reais** (me avisa e eu confiro/apago): Poolheads recado 936-314-9255 (após 17h CT); Southern SMS
    (972) 632-3259; BluVantage ligação fora do horário nos 2 números novos; Clear Pool recado (520) 777-9131;
-   NorTex clique em anúncio → form → agendamento (conversão em ~24 h).
+   NorTex clique em anúncio → form → agendamento (conversão em ~24 h); Bahama Blue ligação não atendida (aperta 1);
+   Stay Fresh resposta STOP; forms do site da Pool Shack (+ Mapping Reference nos 2 gatilhos); 3 forms Poolheads;
+   2 forms da Corolla depois do go-live.
 7. **Na tela**: Call Recording Poolheads; Tiffany (WP Pools) telefone no usuário; LWR Google Lead Ads → mapear e ativar
    o form "Weekly pool service done right".
+8. **Contas no snapshot antigo** (Pool Palooza, Corolla, Aqua Clear, ABC, Clear Conceptz, Pool Smart OC…): decidir com o
+   Frank quais migram para o V9 (ClickUp 86bcz86jw).
 
 ## Esperando outros
 - Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service", usuário do Jorge.
