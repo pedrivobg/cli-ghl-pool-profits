@@ -458,3 +458,9 @@
   cliente (ou diga se já foi preenchido com outro nome/e-mail). Tarefa 86bcywax9 (prazo 07/11, 2 h). E-mail do
   Christopher: rascunho na notificação para o Pedro aprovar.
 - Sem conector Gmail/n8n: ledger não gravado (1a1ac255402111e1 e cu-chat-80140065683863 → needs_pedro).
+
+## 05/11 (~15h15 UTC) — inbox watch, 1 item
+
+- Frank no thread Smart Chem Pools (chat Pool Profits): "Yep will work on it today!" — vai mandar o link de onboarding
+  ao cliente. Nada pedido a mim; sem resposta. Sigo aguardando o form de onboarding (regra "Create GHL Account");
+  tarefa 86bcywax9 sem mudança. Ledger n8n sem conector (item cu-chat-80140065687644 → done, "Frank ack, no action").
