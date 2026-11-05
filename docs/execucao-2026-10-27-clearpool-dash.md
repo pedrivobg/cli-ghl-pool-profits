@@ -387,3 +387,22 @@
   form) + teste real. Comentado na tarefa; minha tarefa 86bcyjmtp.
 - **Pool Shack (Basecamp, cliente vê)**: Rob pergunta à Val sobre agency/client verification do Google Ads → rascunho por
   e-mail ao Pedro, não postado. Ledger: 5 linhas `needs_pedro`.
+
+## 05/11 (12h UTC) — inbox watch, 17 itens
+
+- **Blue Lagoon — "$250 Offer"** (Frank, DM, com o post da Caila de 19/10 no Basecamp, cliente vê). Origem: workflow
+  "SMS Blast Campaign" (`e217a274…`), **draft desde 03/08**; últimos envios 01–03/08. Varri as 500 conversas com
+  atividade desde 01/08: nenhum envio depois de 03/08. A Chiaro Anthony recebeu em 23/07 e respondeu "Stop" em 19/10,
+  e a conversa subiu para o topo da caixa (parecia envio novo). Carmen Wood (11/10) foi resposta dela; a Destiny
+  respondeu em 12/10. Nada alterado. Frank respondido no DM (ofereci apagar o workflow velho; aguardando ele).
+  Rascunho para a Caila na tarefa 86bcyu05g (Pedro aprova e posta).
+- **Clear Pool — fix do IVR (atendida virando perdida) aplicado**: `cp_ivr_answered_fix.py apply` às 12:05 UTC
+  (backup `backup/clear-pool-solutions-tucson/workflow-*-20261105-12054*.json`), os 3 fluxos ainda publicados, re-entry
+  on, gatilhos ok; `plan` = "já feito". Falta conferir em ligação real e depois confirmar ao Frank (thread "Fwd: IVR
+  Issue"). Tarefa 86bcyjmjh em andamento.
+- Sem ação: Pool Shack (a Val já respondeu ao Rob), resumo do Basecamp, Poolheads/Aqua Clear/Corolla mockups (site, com
+  o Frank/Atif/Vikkar), Frank "Beautiful, thanks" e Pool Duck ("if you need anything", o plano está no TODO 2 do Pedro),
+  thread das páginas Poolheads (Frank/Val/Atif, nada para mim; minha 86bcyjmtp segue aberta). Capital Lawn & Pool:
+  e-mail do onboarding → falta a private key + form (TODO 3, needs_pedro).
+- Sessão sem conector Gmail/n8n: não respondi ao e-mail do Frank, não mandei o rascunho por e-mail e não gravei o
+  ledger. Tudo isso foi na notificação para o Pedro.
