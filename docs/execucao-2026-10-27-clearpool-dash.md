@@ -475,3 +475,26 @@
   arquivo (nem o storage assinado, nem o e-mail) → comentei pedindo o xlsx no DM do ClickUp e se todos são clientes
   ativos (tag); formatar amanhã com `pp_import_clean.py` (xlsx → csv antes). Tarefa 86bcz0y7b.
 - Ledger n8n: não há ferramenta de update → linhas novas com o mesmo item_id (3 done, 1 in_progress).
+
+## 05/11 (~19h UTC) — inbox watch, 6 itens (Frank: Bonneville + Pool Shack)
+
+- **Bonneville, lista de clientes** (DM + Basecamp "📢 Client List", interno): o xlsx (export do Skimmer, 149 linhas,
+  Active/Inactive) baixou do DM. Novo `scripts/pp_import_skimmer.py` (só lê o GHL): telefone +1, endereço do serviço,
+  tags `active client` + `existing customer` (ativos) / `past client` (inativos) + `skimmer import` + TagList; mesmo
+  telefone/e-mail = 1 contato com os outros endereços em Notes; 37 indicações da **Blue Wave Spas** ("Blue Wave" no
+  sobrenome + e-mail do revendedor drew@/melinda@bluewavespas.com: juntariam tudo num contato) → nome limpo, e-mail do
+  revendedor em Notes, tag `blue wave referral`; linha "Schedule Available (4 jobs)" fora. Resultado: 88 importáveis
+  (74 ativos, 14 antigos) + 55 sem telefone e sem e-mail (arquivo à parte). Enviados ao Frank no DM, comentário no
+  Basecamp; ofereci importar (antes: conferir que nada publicado dispara em contato novo/tags). Conta com 0 contatos.
+  Tarefa 86bcz0y7b (aguarda o Frank).
+- **Pool Shack, "errors in the automations"** (print: "Website Form - Main Contact / Service Form" → inbound webhook
+  "Mapping Reference is required"): `ps_site.py ghl-test` (cópias ZZ TEST, apagadas) 2/2 ok → o webhook funciona; o aviso
+  é a falta de requisição de amostra salva no gatilho (só pela tela, depois de um envio real; nenhum envio do site
+  chegou desde 03/11 — 0 contatos com `website form fill`). Varredura de 216 workflows: nenhum gatilho inbound_webhook
+  guarda campo de mapping (fica fora do GET do gatilho).
+  `pp_audit`: "AdWords Form - New Lead" com gatilho em form inexistente (`YAwhPHdh4TcKq158O6vm`, nunca disparou) →
+  **draft** (backup `backup/the-pool-shack/workflow-6d3e4b75-*`; 6 passos iguais, re-entry mantido). "Add Task" com
+  incompleteData (contact.assigned_user) = igual à Southern, tarefas são criadas → sem mudança. Respondi no DM.
+  Passo humano por e-mail ao Pedro: envio real nos 2 forms do site (avisar o Rob) → escolher a requisição como Mapping
+  Reference nos 2 gatilhos → eu confiro e apago. Tarefa 86bcz2gme.
+- Ledger n8n: 6 linhas (5 done, 1 needs_pedro).
