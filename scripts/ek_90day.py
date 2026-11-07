@@ -370,7 +370,10 @@ def test(a: Agency) -> int:
             a.call("PUT", BACKEND, f"/workflow/{LOC}/{wid}", body={"name": name, "version": live.get("version", 1),
                    "status": "draft", "workflowData": {"templates": live["workflowData"]["templates"]}})
             a.call("DELETE", BACKEND, f"/workflow/{LOC}/{wid}")
-        print(f"   limpo (contato e {name} apagados)")
+        for t in a.tags(LOC):  # the copy's tags are created in the account on first use
+            if t["name"].startswith("zz90 "):
+                a.call("DELETE", SERVICES, f"/locations/{LOC}/tags/{t['id']}")
+        print(f"   limpo (contato, tags zz90 e {name} apagados)")
     return 1 if bad else 0
 
 

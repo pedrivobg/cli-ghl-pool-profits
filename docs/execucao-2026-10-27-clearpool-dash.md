@@ -632,3 +632,27 @@
 - Falta mão humana (Pedro): envio real no site (Turnstile) — "Weekly Pool Service" → dono/card/tarefa Kris, SMS+e-mail Kris,
   FYI no escritório; depois "Pool Repairs" → Mike. Os avisos vão de verdade para o Kris/Mike (avisar antes) e o card/contato
   de teste é apagado depois. Abrir a lista do dropdown no site para ver o estilo.
+
+## 07/11 (~14h UTC) — Ekahi: Monthly Service Reminder pausado + "First 90 Days" em draft (Frank, e-mail 06/11)
+
+- Frank aprovou (06/11): pausar o lembrete mensal e montar a sequência dos primeiros 90 dias em draft. Erik já usa o
+  Skimmer e manda relatório de visita → a sequência não manda relatório. Novo `scripts/ek_90day.py` (`pause` / `build
+  [--apply]` / `test`); textos para o Frank em `docs/ekahi-90-day-sequence.md`.
+- **Monthly Service Reminder** (`86c93caf…`) → **draft** (backup `before-pause`; releitura: passos iguais, re-entry
+  igual, gatilho inativo). Era 1 SMS 30 dias depois de Recurring Customer.
+- **First 90 Days - New Client Sequence** (`2a9188d0-c59e-458d-a49c-d7b90bd9e640`, DRAFT, pasta 04 Pipeline
+  Automations, re-entry off): gatilho Pool Leads/Won (o mesmo do Won Stage / Post-Appointment / Review Request). Tag
+  `first 90 days` → +1 h SMS Day 1 (gate code, pets, melhor contato) → dia 7 SMS "como foi a 1ª visita" → dia 30 SMS
+  dica havaiana (chuva/sol/trade winds) → dia 75 e-mail do filtro (texto do draft "Filter Clean Reminder" com Aloha e
+  reply/call/text) → a cada 90 dias SMS de check-in sazonal (Go To em loop). Antes de cada mensagem: if/else "Still a
+  client?" (sem `lost lead` / `spam` / `dnd` / `one-time customer`). Esperas seg–sex 9–17h (Pacific/Honolulu). 5
+  templates novos "90 Days - …" (4 SMS + 1 e-mail). Dia 14 = Review Request, sem mudança. Sem link de agendamento.
+- Ao publicar (não feito): tirar o "SMS 1" do Post-Appointment Follow-up (1 h depois do Won, "pool service today") e
+  trocar a espera de resposta dele por espera de 2 dias (tags e ida para Recurring continuam); Filter Clean Reminder e
+  Monthly ficam em draft.
+- Teste (cópia "ZZ TEST …" na conta, esperas de 1 min, tag no lugar de SMS/e-mail, contato sem telefone): caminho
+  completo em 402 s (dia 1 → 7 → 30 → 75 → trimestral) ✓; Go To: o check-in trimestral volta na volta seguinte ✓;
+  guarda: com `lost lead` a mensagem não sai ✓. Contato, cópia e tags `zz90 *` apagados.
+- Achado: gatilho criado num workflow em draft fica `active: true` (re-salvar em draft e PUT com `active: false` não
+  mudam). Testado com cópia ZZ TEST: o workflow em draft **não** inscreve o contato mesmo assim (apagado depois).
+- Falta: revisão do Frank (textos) → publicar + ajustar o Post-Appointment. Tarefa 86bcz7706.
