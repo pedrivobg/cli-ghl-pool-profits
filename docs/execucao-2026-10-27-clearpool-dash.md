@@ -543,3 +543,28 @@
   YardSpring, Corolla e Aqua Clear. Corolla: `a2p_verification_number` = +1 252-600-3428 (número do GHL). Aqua Clear:
   Review Request com link de review da Clear Pool → `g.page/r/CZRcZF3HgnXLECE/review` (custom value dela).
 - `_common.py`: `GHL_AGENCY` escolhe `dump/<agência>` no import (antes o dump da Pool Duck ia para `dump/`).
+
+## 07/11 — BluVantage: Homebuyer Postcard (Val, ClickUp 86bck0f6j)
+
+- Páginas do Atif (funil "BluVantage - New Homeowner Welcome" `8K72QYlax9bCu7Asa15X`): landing
+  go.bluvantagepools.com/new-homeowner-welcome---landing-page (página `BCsQYJZVHKONhfE4LXFj`) e obrigado
+  /new-homeowner-welcome---thank-you (200). A landing usava o form do Atif "BluVantage — New Homeowner Welcome"
+  (`mLGnkBqG0Zbrgjl4p41w`, 05/11): endereço em 5 campos, redirect para `…---thank-you-page` (também abre o obrigado),
+  **nenhum workflow ouvindo** (0 submissões até hoje).
+- `scripts/bv_homebuyer_form.py` (plan/test/apply):
+  - Form **"Homebuyer Postcard Campaign"** `iljZOmWY2dAQiHi2NbAt` (da versão mais nova do form do Atif: visual, botão
+    "Claim My Offer", os 2 consentimentos de SMS iguais aos nossos): First Name*, Last Name, Property Address* (um campo,
+    busca do Google, como na NorTex), Email*, Phone* (seletor de país), → /new-homeowner-welcome---thank-you (os 2
+    campos de redirect; regravado depois de criado). Submissão aparece na conversa; aviso por e-mail do form desligado.
+  - Workflow **"Homebuyer Postcard Campaign - New Lead"** `3b3d2fb6-4a46-4ac0-9b8e-c57118c540f3`, publicado, re-entry on:
+    Form Submitted = form novo **ou** o do Atif; cópia do "AdWords Form - Heater & Equipment Repair" sem a conversão do
+    Google Ads (cartão postal, não anúncio) e sem Service Requested; if/else spam/dnd/current customer (o das ligações);
+    texto aos 5 usuários + e-mail a vanessa@/paul@; tags `new lead`, `printed marketing materials`, `homebuyer postcard
+    campaign`; card 💧 Pool Leads 💧 → New Lead, origem "Homebuyer Postcard Campaign"; o mesmo SMS de resposta ao lead.
+  - Página: elemento `form-r7EGTC35lN8` → form novo (backup `backup/bluvantage-pool-service/page-BCsQYJZVHKONhfE4LXFj-
+    20261107-140800.json`; salvo live; diff = só formId). Página ao vivo 200 com o form novo; print conferido.
+- Teste (cópia ZZ TEST com gatilho de tag, só e-mail para pedro@): lead → 3 tags + card New Lead com a origem; spam → nada;
+  current customer → nada. Contatos, cards, workflow e tag de teste apagados. Nenhum workflow escuta a etapa New Lead.
+- Falta (mão humana, Turnstile): envio real na landing → redireciona + contato/tags/card + texto/e-mail à equipe (apagar).
+  Form do Atif ficou sem uso (pode apagar). O telefone da página é 404-224-9387 (linha "Incoming Call"), não a linha
+  "Printed Marketing Materials" 404-334-2495: ligações do cartão não ficam marcadas como postal (perguntar à Val).
