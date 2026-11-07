@@ -656,3 +656,16 @@
 - Achado: gatilho criado num workflow em draft fica `active: true` (re-salvar em draft e PUT com `active: false` não
   mudam). Testado com cópia ZZ TEST: o workflow em draft **não** inscreve o contato mesmo assim (apagado depois).
 - Falta: revisão do Frank (textos) → publicar + ajustar o Post-Appointment. Tarefa 86bcz7706.
+
+## 07/11 — recuperação da sexta (créditos acabaram 06/11: a rotina recebeu 42 itens e não executou nada)
+
+- Revisados os 42 itens do ledger (06/11). Feito hoje (detalhes nas seções acima de cada frente):
+  Stay Fresh (6 leads → Quote Sent sem follow-up; dropdown Service Needed + roteamento Kris/Mike), Ekahi (lembrete
+  mensal pausado; "First 90 Days" em draft, textos ao Frank), Pool Duck Franchising (4 automações do Lee publicadas;
+  resposta ao Lee = rascunho no Gmail para o Pedro aprovar), BluVantage (form "Homebuyer Postcard Campaign" + workflow +
+  form na página do Atif), Pool Keepers (`pp_client_sheet.py`, folha de 8 páginas M1–M23 enviada ao Frank + achados).
+- YardSpring: os 3 números sem encaminhamento, sem usuário e sem IVR → a ligação do Google Ads de 04/11 não tocou para
+  ninguém (Joe tinha razão). Perguntei à Val para qual telefone encaminhar; encaminhamento só pela tela (86bd02rg2).
+  Outras contas com linhas sem encaminhamento/IVR listadas na tarefa (a confirmar se são usadas).
+- Ledger: 42 linhas novas (39 done, 3 needs_pedro: Puddle Jumper, Capital Lawn, rascunho do Lee). Tarefas: 86bd02rg2,
+  86bd02rg6 (testes reais), 86bd02rg9 (Pool Keepers), 86bcz7706 atualizada.
