@@ -1,0 +1,40 @@
+{
+  "_note": "Lee Majidimehr's stage SMS automations for Franchise Development (e-mail of 06/11/2026), verbatim. Changes: 'here here' -> 'here' (Missed Intro Call SMS 1); Missed Intro Call SMS 2 says 're-schedule your call below' but had no link: the same booking link as SMS 1/3 added at the end. 'Intro Call' in the e-mail = the stage '📞  Intro Call Booked'.",
+  "location": "3SajdfY03koVEv9ThwMt",
+  "pipeline": "ZQaQOztZ37hkLheoQJCO",
+  "links": {
+    "intro": "https://link.poolduckfranchise.com/widget/booking/IiyQDitIIbOyigGsmAKt",
+    "webinar": "https://link.poolduckfranchise.com/widget/bookings/franchisepresentation2",
+    "video": "https://www.youtube.com/watch?v=Ew9nOhmH65U"
+  },
+  "sequences": [
+    {"key": "intro", "name": "Franchise Dev - Intro Call Nurture", "stage": "Intro Call Booked", "stop_on_reply": false,
+     "messages": [
+       {"after": ["hours", 24], "label": "24 h after the move",
+        "text": "Hey {{contact.first_name}}, did you know Florida has an estimated 1.59 million residential pools? Keeping them clean and properly maintained is an essential, ongoing service.\n\nI look forward to sharing why Pool Duck is the perfect opportunity for your community and how we can help you launch your operation, build a recurring customer base, and pursue a profitable future in Florida’s thriving pool care market."}
+     ]},
+    {"key": "missed-intro", "name": "Franchise Dev - Missed Intro Call", "stage": "Missed Intro Call", "stop_on_reply": true,
+     "messages": [
+       {"after": ["minutes", 20], "label": "20 min after the move",
+        "text": "Looks like we’ll need to reschedule. I’m heading into my next meeting, but feel free to grab another time for the introductory call here: {intro}"},
+       {"after": ["hours", 24], "label": "24 h after SMS 1",
+        "text": "Hey {{contact.first_name}}, are you still interested in exploring how a Pool Duck franchise can help you capitalize on Florida’s ongoing demand for pool care?\n\nIf so, re-schedule your call below to hear more about our franchise partners’ success stories and show you how we can help you follow in their footsteps.\n\n{intro}"},
+       {"after": ["hours", 48], "label": "2 days after SMS 2",
+        "text": "Hey {{contact.first_name}}, one last check-in before I close the loop. Pool Duck franchise partners receive exclusive territories, once a territory is awarded, it’s off the table for other partners.\n\nDon’t miss the chance to explore your preferred area. Grab a time here: {intro}"}
+     ]},
+    {"key": "webinar", "name": "Franchise Dev - Webinar Nurture", "stage": "Webinar", "stop_on_reply": false,
+     "messages": [
+       {"after": ["hours", 24], "label": "24 h after the move",
+        "text": "Hey {{contact.first_name}}! Ahead of our upcoming presentation, I wanted to share a few firsthand stories from our franchise partners. Hear what their experience has been like, why they chose Pool Duck, and what they're most excited about as they build their businesses with us!\n\nVoices of Pool Duck: {video}"}
+     ]},
+    {"key": "missed-webinar", "name": "Franchise Dev - Missed Webinar", "stage": "Missed Webinar", "stop_on_reply": true,
+     "messages": [
+       {"after": ["minutes", 20], "label": "20 min after the move",
+        "text": "Looks like we’ll need to reschedule. I’m heading into my next meeting, but feel free to grab another time for the webinar here: {webinar}"},
+       {"after": ["hours", 24], "label": "24 h after SMS 1",
+        "text": "Hey {{contact.first_name}}, are you still interested in exploring how you can capitalize on Florida’s strong demand for pool maintenance by building a profitable Pool Duck franchise? If so, reschedule your call below to hear firsthand success stories from our franchise partners and discover how we can help you build a successful business of your own.\n\nBooking Link: {webinar}"},
+       {"after": ["hours", 48], "label": "2 days after SMS 2",
+        "text": "Hey {{contact.first_name}}, one last check-in before we close the loop. Here at Pool Duck our partners receive large, exclusive territories. Once awarded, that market is off the table. If you don’t want to miss the advantages of establishing a foothold in a prime territory with strong market demand, simply use the following link to get back on calendar: {webinar}"}
+     ]}
+  ]
+}
