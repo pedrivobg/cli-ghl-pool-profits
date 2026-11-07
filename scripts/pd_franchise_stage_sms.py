@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pool Duck Franchising: SMS when a card moves in Franchise Development (Lee Majidimehr, e-mail of 06/11/2026).
+"""Pool Duck Franchising: SMS when a card moves in Franchise Development (Lee Majidimehr, e-mail, nov/2026).
 
     GHL_AGENCY=poolduck ./.venv/bin/python scripts/pd_franchise_stage_sms.py plan
     GHL_AGENCY=poolduck ./.venv/bin/python scripts/pd_franchise_stage_sms.py test    # ZZ TEST copies, tags instead of SMS
@@ -20,6 +20,8 @@ Texts: config/pd_franchise_stage_sms.json (Lee's wording). Sender: the account's
   overlap: moving out of the stage always ends the running copy first.
 test: copies named "ZZ TEST …", every trigger filtered by a test tag (a real card moved meanwhile does not enter),
 1–2 min waits, "add tag" in place of each SMS, test contacts without phone; everything deleted at the end.
+Tested 07/11: a card created straight in a stage fires pipeline_stage_updated too (no opportunity_created trigger:
+it would enroll twice). A reply cannot be simulated (inbound message API refuses the Firebase token).
 """
 from __future__ import annotations
 

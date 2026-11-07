@@ -568,3 +568,29 @@
 - Falta (mão humana, Turnstile): envio real na landing → redireciona + contato/tags/card + texto/e-mail à equipe (apagar).
   Form do Atif ficou sem uso (pode apagar). O telefone da página é 404-224-9387 (linha "Incoming Call"), não a linha
   "Printed Marketing Materials" 404-334-2495: ligações do cartão não ficam marcadas como postal (perguntar à Val).
+
+## 07/11 — Pool Duck Franchising: SMS por etapa em Franchise Development (pedido do Lee)
+
+- `scripts/pd_franchise_stage_sms.py` (plan / test / apply) + `config/pd_franchise_stage_sms.json` (textos do Lee).
+  Remetente = número padrão da conta (Lee, 813-710-4144), como no Tampa Show. Pasta Franchise Drip Campaigns.
+- 4 sequências, gatilho = card entra na etapa (`pipeline_stage_updated`, publicadas, re-entry on):
+  - **Intro Call Nurture** `7c34c412-4f60-44fe-a7b1-c8b895ff1ca2` ← 📞 Intro Call Booked (o "Intro Call" do e-mail): SMS 24 h depois.
+  - **Missed Intro Call** `3101d3fc-0992-4ccb-9c82-ddc50ee48228` ← 👻 Missed Intro Call: 20 min, +24 h, +2 dias
+    (link `widget/booking/IiyQDitIIbOyigGsmAKt` = calendário "[MISSED] Franchise Introductory Call"). Stop on response.
+  - **Webinar Nurture** `cd43a4fc-ceac-4575-8cfc-4629534dbb90` ← 🖥️ Webinar: SMS 24 h depois (vídeo Voices of Pool Duck).
+  - **Missed Webinar** `3a0a765d-1b0d-4891-8238-174e02e38e31` ← 👻 Missed Webinar: 20 min, +24 h, +2 dias
+    (`widget/bookings/franchisepresentation2`). Stop on response.
+  - Toda espera segura o texto até 9h–20h ET. Cada sequência começa tirando o contato das outras 3.
+- Saídas: **Missed Follow-up Stop (Booked)** `8010fe62-0ce9-4162-9a7c-65c9e33c1770` (agendamento confirmed/new em qualquer
+  calendário → sai das 2 Missed); **Stage SMS Stop (Left Stage)** `c632979f-9e5e-4f14-aba1-5791460bb8ef` (card entra em
+  qualquer uma das outras 20 etapas, ou won/lost/abandoned → sai das 4). Resposta (inclusive STOP) = `stopOnResponse`
+  nativo nas 2 Missed; DND o GHL já não manda SMS.
+- Textos literais; mudanças: "here here" → "here"; SMS 2 do Missed Intro dizia "re-schedule your call below" sem link →
+  link do SMS 1/3 no fim. Sem texto de opt-out (literais do Lee; ver STOP do Tampa).
+- Teste (cópias ZZ TEST com gatilho filtrado por tag de teste, esperas de 1–2 min, tag no lugar do SMS, contatos sem
+  telefone): 8/8 ok — New Lead → Intro Call; card criado direto em Webinar também dispara o `pipeline_stage_updated`
+  (por isso não há gatilho `opportunity_created`: inscreveria duas vezes); Missed Intro completo (3); agendou depois do
+  SMS 1 → parou; Missed Webinar → Unit Economics → parou; Missed Webinar → Intro Call Booked → parou e entrou no Intro
+  Nurture; card abandoned → parou; saiu e voltou para Missed Intro → recomeça (re-entry). Resposta não simulável
+  (inbound 401). Tudo apagado (workflows, contatos, cards, tags).
+- Só cards que se moverem daqui em diante entram (os 45/13/8/2 que já estão nas etapas não).
