@@ -1,4 +1,4 @@
-# TODO do Pedro — só o aberto (05/11/2026)
+# TODO do Pedro — só o aberto (07/11/2026)
 
 Curto de propósito (as rotinas leem este arquivo). Uma linha por item; detalhe e histórico em
 `docs/execucao-*.md` e `docs/TODO-arquivo-2026-11-04.md`. Item fechado sai daqui. Teste que avisa cliente:
@@ -17,10 +17,13 @@ combinar antes.
    (972) 632-3259; BluVantage ligação fora do horário nos 2 números novos; Clear Pool recado (520) 777-9131;
    NorTex clique em anúncio → form → agendamento (conversão em ~24 h); Bahama Blue ligação não atendida (aperta 1);
    Stay Fresh resposta STOP; forms do site da Pool Shack (+ Mapping Reference nos 2 gatilhos); 3 forms Poolheads;
-   2 forms da Corolla depois do go-live.
+   2 forms da Corolla depois do go-live; form do site da Stay Fresh (Weekly → Kris, Repairs → Mike); form do pós-cartão da
+   BluVantage (ClickUp 86bd02rg6).
 7. **Na tela**: Call Recording Poolheads; Tiffany (WP Pools) telefone no usuário; LWR Google Lead Ads → mapear e ativar
    o form "Weekly pool service done right".
-8. **Contas no snapshot antigo** (Pool Palooza, Corolla, Aqua Clear, ABC, Clear Conceptz, Pool Smart OC…): decidir com o
+8. **YardSpring**: encaminhar os 3 números (Settings → Phone Numbers) para o telefone que a Val confirmar + ligação de
+   teste (86bd02rg2). **Lee**: aprovar o rascunho no Gmail (Re: Tampa Show Workflows).
+9. **Contas no snapshot antigo** (Pool Palooza, Corolla, Aqua Clear, ABC, Clear Conceptz, Pool Smart OC…): decidir com o
    Frank quais migram para o V9 (ClickUp 86bcz86jw).
 
 ## Esperando outros
