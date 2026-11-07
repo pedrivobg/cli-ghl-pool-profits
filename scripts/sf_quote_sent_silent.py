@@ -44,6 +44,7 @@ CONTACTS = {  # Frank's names → contact ids (searched 07/11)
     "Brent Olson": "llBGHsZV2JuvZ8lgt5na", "Evan Harrison": "k5YCQSQ3iRzWejwRBYr2",
     "Susan Ogg": "WtmXw8DoEEskZONQ1zpG", "Sean Mullane": "A74yG2KujpRZnQjUilsG"}
 BDIR = ROOT / "backup" / "stay-fresh-pools"
+ACTIVITY = {25, 26, 27, 28, 29, 30, 31}  # activity notes in the conversation (28 = "Opportunity updated"), not messages
 
 
 def stamp() -> str:
@@ -57,7 +58,7 @@ def cards(a: Agency, cid: str) -> list[dict]:
 
 
 def outbound_since(a: Agency, cid: str, since_ms: int) -> list[dict]:
-    """Outbound messages (SMS, e-mail, anything but activity notes) created after since_ms."""
+    """Outbound messages (SMS, e-mail, calls…; not the activity notes) created after since_ms."""
     out = []
     for conv in a.call("GET", SERVICES, "/conversations/search",
                        params={"locationId": LOC, "contactId": cid}).get("conversations", []):
@@ -66,7 +67,8 @@ def outbound_since(a: Agency, cid: str, since_ms: int) -> list[dict]:
         for m in msgs:
             when = m.get("dateAdded") or ""
             ms = calendar.timegm(time.strptime(when[:19], "%Y-%m-%dT%H:%M:%S")) * 1000 if when else 0
-            if m.get("direction") == "outbound" and ms >= since_ms and "ACTIVITY" not in str(m.get("messageType")):
+            if m.get("direction") == "outbound" and ms >= since_ms and m.get("type") not in ACTIVITY \
+                    and "ACTIVITY" not in str(m.get("messageType")):
                 out.append({"type": m.get("messageType"), "at": when, "body": (m.get("body") or "")[:60]})
     return out
 

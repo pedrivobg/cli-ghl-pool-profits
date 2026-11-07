@@ -594,3 +594,41 @@
   Nurture; card abandoned → parou; saiu e voltou para Missed Intro → recomeça (re-entry). Resposta não simulável
   (inbound 401). Tudo apagado (workflows, contatos, cards, tags).
 - Só cards que se moverem daqui em diante entram (os 45/13/8/2 que já estão nas etapas não).
+
+## 07/11 (~14h UTC) — Stay Fresh: cards orçados em Quote Sent sem follow-up + "Service Needed" no form do site (Frank, e-mail 06/11)
+
+- **Quote Sent sem mensagem** (`scripts/sf_quote_sent_silent.py` plan/guard/test/apply/check): a varredura de todos os
+  gatilhos da conta mostra só o "Quote Sent Follow-up" reagindo à etapa 💰 Quote Sent (o "Stop Follow-ups" não escuta essa
+  etapa). Guarda **permanente** (mesmo formato do `existing customer` nos Won): gatilho `3M0Uh4HpGV5UDzdewSzo` + filtro
+  "Doesn't Have Tag: `quoted manually`" (backup `backup/stay-fresh-pools/trigger-3M0Uh4HpGV5UDzdewSzo-*`; tag criada).
+  Uso pela equipe: pôr a tag e depois mover o card. Teste (cópia ZZ TEST com o mesmo gatilho + "has zz tag", 2 contatos só
+  com e-mail): com a tag o card foi para Quote Sent e não entrou; controle entrou. Tudo apagado (o controle tirado também do
+  fluxo real, que espera 1 dia antes do SMS 1).
+  Aplicado em Donna Johnson, Cyndy Pellien, Brent Olson ("Bret Olsen"), Evan Harrison, Susan Ogg (cards New Lead de 05/11) e
+  **Sean Mullane** (já tinha card New Lead do form do site de 30/10, página pool-resurfacing): backup do card → tag → PUT
+  etapa → 90 s → remove do Quote Sent Follow-up por garantia → tag tirada (re-orçamento futuro segue o fluxo normal).
+  Conferido: 6 cards em Quote Sent (open), nenhuma mensagem de saída desde o apply (só a nota de atividade type 28
+  "Opportunity updated" — não é mensagem). Reconferir depois de 08/11 14:10 UTC: `sf_quote_sent_silent.py check --since 1794060485784`.
+- **"Service Needed" + roteamento** (`scripts/sf_service_routing.py` plan/test/apply/style):
+  - Campo `contact.service_needed` (dropdown: Weekly Pool Service, Pool Repairs, Pool Remodeling, New Pool Build, Other).
+  - Form do site = **Main Website Form** `kqNJs6ZFliL5IQQpUYp6` (7 das 9 submissões de 2026, todas de stayfreshpoolsaz.com;
+    "FORM - GOOGLE ADS" só no go.stayfreshpoolsaz.com, última em 08/2026; os outros 3 forms do gatilho sem submissões).
+    Dropdown obrigatório antes de Message (versão mais nova lida antes do POST, `keep_redirect`, ação "mensagem" igual).
+    O CSS próprio do form não estilizava o componente dropdown (caixa branca + borda do input de busca escondido) → bloco
+    de CSS no fim do customStyle (`style`); print headless conferido (mesma borda dourada/placeholder dos outros campos;
+    a lista aberta não foi conferida em print).
+  - "Website Form Fill To Pipeline": if/else "Service Needed?" no início: Weekly → dono Kris → card (dono Kris) → tags → SMS
+    Kris → e-mail Kris → FYI por e-mail ao escritório (Mike) → tarefa Kris; Repairs/Remodel/Build/Other → dono Mike → card →
+    SMS Mike → e-mail stayfreshpoolsoffice@ → FYI e-mail Kris → tarefa Mike; sem serviço (outros forms, gatilho por tag) →
+    cadeia antiga com os mesmos ids (SMS aos dois, e-mail Kris). Published, re-entry true, 2 gatilhos no if/else. Backup.
+  - "Contact Created -> add owner": `only_unassigned_contact` false → true (corrida: rodando depois do form, devolveria o
+    Mike como dono de lead semanal). Contato sem dono continua indo para o Mike.
+  - Achado: os cards do form do site saíam **sem dono** (Sean Mullane: `assignedTo` vazio), o card nasce antes do
+    "add owner". Nos 2 ramos novos o dono é posto antes do card.
+  - Teste: cópia ZZ TEST (gatilho por tag, sem SMS/tarefa, e-mails para pedro@, os 2 ramos atribuindo Mike para o Kris não
+    receber nada, tag-marcador por ramo), 6 contatos (5 opções + vazio): 6/6 no ramo certo, 1 card em New Lead, dono do card
+    = usuário atribuído; 11 e-mails chegaram em pedro@poolprofits.com com "Service: …" preenchido. Tudo apagado.
+  - If/else `contact_detail` com id do campo SINGLE_OPTIONS e `==` no texto da opção funciona (testado).
+- Falta mão humana (Pedro): envio real no site (Turnstile) — "Weekly Pool Service" → dono/card/tarefa Kris, SMS+e-mail Kris,
+  FYI no escritório; depois "Pool Repairs" → Mike. Os avisos vão de verdade para o Kris/Mike (avisar antes) e o card/contato
+  de teste é apagado depois. Abrir a lista do dropdown no site para ver o estilo.
