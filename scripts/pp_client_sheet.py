@@ -66,6 +66,15 @@ class Sheet:
         self.flows = [w for w in self.flows if isinstance(w, dict) and w.get("workflowData")]
         self.by_name = {w["name"]: w for w in self.flows}
         self.snip = {s["_id"]: s for s in load("snippets.json", [])}
+        self.load_account(src)
+        self.cards: list[dict] = []  # customer messages, numbered
+        self.team: list[dict] = []
+        self.missing: set[str] = set()
+
+    def load_account(self, src: Path) -> None:
+        """Location, users and custom values used to fill the texts (pp_crm_guide.py: the client's account while
+        the flows come from the master)."""
+        load = lambda name, default=None: json.loads((src / name).read_text()) if (src / name).exists() else default  # noqa: E731
         loc = load("location.json", {})
         self.loc = loc.get("location", loc)
         self.users = {u["id"]: u.get("name") or f"{u.get('firstName', '')} {u.get('lastName', '')}".strip()
@@ -79,42 +88,64 @@ class Sheet:
                 v = str(c.get("value") or "").strip()
                 if v and v.lower() not in ("null", "none"):
                     self.values[f"custom_values.{m.group(1)}"] = v
-        self.cards: list[dict] = []  # customer messages, numbered
-        self.team: list[dict] = []
-        self.missing: set[str] = set()
 
     # ── text ───────────────────────────────────────────────────────────────
+
+    # how each piece is written out (HTML here; pp_crm_guide.py overrides them for plain text)
+    def out_text(self, s: str) -> str:
+        return esc(s)
+
+    def out_link(self, label: str, url: str, field: str) -> str:
+        return f'<a class="lk" href="{esc(url)}">{esc(label)}</a>'
+
+    def out_value(self, val: str, field: str) -> str:
+        return f'<span class="v">{esc(val)}</span>'
+
+    def out_missing(self, name: str, field: str) -> str:
+        return f'<span class="miss">[{esc(name)}: not set yet]</span>'
+
+    def out_field(self, label: str) -> str:
+        return f'<span class="mf">{esc(label)}</span>'
+
+    def out_lines(self, parts: list[str]) -> str:
+        return "".join(f"<p>{p}</p>" if p else '<p class="gap"></p>' for p in parts)
+
+    def review_text(self, link: str) -> str:
+        target = f'<a class="lk" href="{esc(link)}">your Google review page</a>' if link else "your Google review page"
+        return (f"<p>A short request from your Google review tool with a link to {target}.</p>"
+                '<p class="gap"></p><p class="dim">Its wording is set once in your review settings; '
+                "tell me if you'd like it changed too.</p>")
 
     def fill(self, text: str) -> str:
         """One line of a message → HTML: business values filled in, contact fields as [chips]."""
         text = re.sub(r"(\{\{\s*custom_values\.\w+\s*\}\})\?\S+", r"\1", text or "")  # tracking query of a link
         out, pos = [], 0
         for m in MERGE_RE.finditer(text):
-            out.append(esc(text[pos:m.start()]))
+            out.append(self.out_text(text[pos:m.start()]))
             key, pos = m.group(1), m.end()
             group, _, field = key.partition(".")
             val = self.values.get(key)
             if group in ("custom_values", "location") and val:
                 if re.match(r"https?://", val):
-                    out.append(f'<a class="lk" href="{esc(val)}">{esc(LINKS.get(field, "link"))}</a>')
+                    out.append(self.out_link(LINKS.get(field, "link"), val, field))
                 else:
-                    out.append(f'<span class="v">{esc(val)}</span>')
+                    out.append(self.out_value(val, field))
             elif group == "custom_values":
                 self.missing.add(self.cv_names.get(field, field))
-                out.append(f'<span class="miss">[{esc(self.cv_names.get(field, field))}: not set yet]</span>')
+                out.append(self.out_missing(self.cv_names.get(field, field), field))
             elif group == "contact":
-                out.append(f'<span class="mf">{esc(CONTACT.get(field, field.replace("_", " ").capitalize()))}</span>')
+                out.append(self.out_field(CONTACT.get(field, field.replace("_", " ").capitalize())))
             elif key.startswith("appointment."):
-                out.append('<span class="mf">Appointment date &amp; time</span>')
+                out.append(self.out_field("Appointment date & time"))
             elif key.startswith("message."):
-                out.append(f'<span class="mf">{"Their message" if "body" in key else "Attachments"}</span>')
+                out.append(self.out_field("Their message" if "body" in key else "Attachments"))
             else:
-                out.append(f'<span class="mf">{esc(field or key)}</span>')
-        out.append(esc(text[pos:]))
+                out.append(self.out_field(field or key))
+        out.append(self.out_text(text[pos:]))
         return "".join(out)
 
     def body(self, raw: str) -> str:
-        return "".join(f"<p>{self.fill(ln)}</p>" if ln else '<p class="gap"></p>' for ln in lines(raw))
+        return self.out_lines([self.fill(ln) if ln else "" for ln in lines(raw)])
 
     def first_line(self, raw: str, n: int = 75) -> str:
         s = " ".join(x for x in lines(raw) if x)
@@ -274,12 +305,8 @@ class Sheet:
                         chans.add("sms" if a.get("review_type") == "email" else "email")
                         skip.add(nxt)
                     link = a.get("overrideReviewLink") or self.values.get("custom_values.google_review_link", "")
-                    target = f'<a class="lk" href="{esc(link)}">your Google review page</a>' if link else "your Google review page"
                     chan = "Text + email" if len(chans) > 1 else ("Text" if "sms" in chans else "Email")
-                    self.cards.append({**base, "channel": chan, "html":
-                                       f"<p>A short request from your Google review tool with a link to {target}.</p>"
-                                       '<p class="gap"></p><p class="dim">Its wording is set once in your review settings; '
-                                       "tell me if you'd like it changed too.</p>"})
+                    self.cards.append({**base, "channel": chan, "review": True, "html": self.review_text(link)})
                 elif ty == "internal_notification":
                     kind = a.get("type")
                     sub = a.get(kind) if isinstance(a.get(kind), dict) else {}

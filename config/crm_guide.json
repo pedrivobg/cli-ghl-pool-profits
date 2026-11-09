@@ -1,0 +1,118 @@
+{
+  "_note": "pp_crm_guide.py: generic CRM guide (site/crm-guide/data/<slug>.json). Flows come from the master 'Snapshot Pool Profits' (published set = Southern's, minus per-account ones); texts get the client's own values. 'automations' = workflow → stage + plain event (pp_client_sheet logic: 'Right after …' / '1 day after …'); stage 'team' = only team alerts. 'team_what' = plain description of an alert step (fallback: first line of its text). Placeholders in journey/decisions/meeting_note: {business} {owner} {codes:<stage id>} {code:<workflow>/<step>} {when:<workflow>/<step>}.",
+  "model_slug": "snapshot-pool-profits",
+  "southern_slug": "southern-pool-outdoors",
+  "skip_folders": ["08 Paid Ads"],
+  "skip_names": ["Sequential Call Routing", "AdWords Call In - New Lead", "AdWords Form - New Lead", "Adword Call - Conversion"],
+  "prepared_by": "Pedro Garrido · Pool Profits",
+  "meeting_note": "Before we go live, we'll walk through how {business} will handle every lead, read every message your customers will get, and check off your part of the setup together.",
+  "stages": [
+    {"id": "missed", "title": "When you miss a call", "trigger_plain": "Someone calls your business line and nobody answers"},
+    {"id": "no-response", "title": "When a lead goes quiet", "trigger_plain": "You move the card to “No Response - Follow Up” (you called and couldn't reach them)"},
+    {"id": "quote-sent", "title": "After you send a quote", "trigger_plain": "You move the card to “Quote Sent”"},
+    {"id": "no-show", "title": "When they miss an appointment", "trigger_plain": "You move the card to “No Show” (your tech went out and nobody was home)"},
+    {"id": "won", "title": "When they become a customer", "trigger_plain": "You move the card to one of the “Won” columns"},
+    {"id": "review", "title": "Asking for a review", "trigger_plain": "Some time after a job is won, and when someone leaves you a Google review"},
+    {"id": "lost", "title": "When a lead is lost", "trigger_plain": "The card moves to “Lost” (by you, or after the follow-ups get no reply)"},
+    {"id": "win-back", "title": "Win-back campaigns (only when you start one)", "trigger_plain": "You ask me to run a campaign to past customers or old leads"}
+  ],
+  "automations": {
+    "Missed New Lead - Initial SMS Follow-up": {"stage": "missed", "event": "a missed call"},
+    "No Response Follow-up": {"stage": "no-response", "event": "you move the card to “No Response - Follow Up”"},
+    "Quote Sent Follow-up": {"stage": "quote-sent", "event": "you move the card to “Quote Sent”"},
+    "No-Show Follow-up": {"stage": "no-show", "event": "you move the card to “No Show”"},
+    "Won Stage": {
+      "stage": "won", "event": "you move the card to “Won - Weekly Pool Service”",
+      "branch_labels": {"Weekly": "", "Repairs / Installs": null, "Construction": null, "None": null}
+    },
+    "Review Request": {
+      "stage": "review", "event": "you move the card to “Won”",
+      "branch_labels": {
+        "Weekly": "for weekly customers", "One Time": "for repair / install jobs",
+        "Construction": "for construction / remodeling jobs", "YES": "", "NO": null, "Won": "", "None": null,
+        "Low NPS Score Detected": "if they rate you 1–3", "High NPS Score Detected": "if they rate you 4 or 5"
+      },
+      "rating_event": "they answer the rating text",
+      "when": {
+        "Email - Send Review Request": "Right after they rate you 4 or 5 in the rating text, or 7 days after the rating text if they haven't answered",
+        "SMS - Send Review Request": "Right after they rate you 4 or 5 in the rating text, or 7 days after the rating text if they haven't answered"
+      }
+    },
+    "Review Response - Positive": {"stage": "review", "event": "they leave you a 4 or 5-star Google review"},
+    "Review Response - Negative": {"stage": "review", "event": "they leave you a Google review of 3 stars or less"},
+    "Lost Stage": {"stage": "lost", "event": "the card moves to “Lost”"},
+    "Reactivation Campaign - SMS": {"stage": "win-back", "event": "you start a win-back campaign"},
+    "Reactivation Campaign - Email": {"stage": "win-back", "event": "you start a win-back campaign"},
+    "Website Form Fill To Pipeline": {"stage": "team", "event": "someone fills the form on your website"},
+    "Missed Incoming Call To Pipeline": {"stage": "team", "event": "a missed call"},
+    "Answered Incoming Call To Pipeline": {"stage": "team", "event": "an answered call from a new number"},
+    "SMS Customer Reply to pipeline": {"stage": "team", "event": "someone answers a win-back text"},
+    "Contact Created -> add owner": {"stage": "team", "event": ""},
+    "Recurring Customer Stage": {"stage": "team", "event": ""},
+    "Spam Contact": {"stage": "team", "event": ""}
+  },
+  "team_what": {
+    "Website Form Fill To Pipeline/New Lead SMS": "Text with the lead's name, phone, email and city",
+    "Website Form Fill To Pipeline/Add Task": "Task: follow up with the new web lead (call, then move the card)",
+    "Missed Incoming Call To Pipeline/Add Task": "Task: listen to the call recording and call them back",
+    "Answered Incoming Call To Pipeline/Add Task": "Task: listen to the call recording and confirm the next step on the card",
+    "SMS Customer Reply to pipeline/SMS Notification": "Text with their name, phone and what they wrote",
+    "SMS Customer Reply to pipeline/App Notification": "Alert in the app: “[First name] is waiting for your response”",
+    "Review Response - Negative/Add task": "Urgent task: call them within 24 hours and try to make it right",
+    "Review Request/Notify Team - Negative Feedback": "Text with their rating and comment, so you can call before any review request goes out"
+  },
+  "team_when": {
+    "Review Request/Notify Team - Negative Feedback": "A customer rates you 1–3 in the rating text"
+  },
+  "pipeline_plain": {
+    "New Lead": "A new call, text or website form. The card is created for you.",
+    "No Response - Follow Up": "You tried and couldn't reach them. Move the card here and 3 friendly texts go out over about a week.",
+    "In Communication": "You're talking with them. Nothing is sent. Cards also land here when a lead replies to a follow-up.",
+    "Scheduled": "A visit or estimate is booked. Nothing is sent; it just keeps your board tidy.",
+    "Quote Sent": "You sent a quote. If they don't reply, 2 follow-up texts go out.",
+    "No Show": "Your tech went out and nobody was home. 2 texts ask them to reschedule.",
+    "Won - Weekly Pool Service": "A new weekly customer. They get a welcome email and text, and a rating request later on.",
+    "Won - One Time Repair or Install": "A repair or install job you won. A rating request goes out after the job.",
+    "Won - Pool Construction or Remodeling": "A construction or remodel job you won. A rating request goes out after the job.",
+    "Recurring Customer": "An ongoing customer. Nothing is sent.",
+    "Not Qualified Stage": "Outside your area or not a fit. Nothing is sent.",
+    "Lost": "They went another way. A short feedback email goes out, and a check-in after 90 days.",
+    "Spam": "Spam or a wrong number. They're blocked from all messages."
+  },
+  "pipeline_ids": {
+    "New Lead": "new-lead", "No Response - Follow Up": "no-response", "In Communication": "in-communication",
+    "Scheduled": "scheduled", "Quote Sent": "quote-sent", "No Show": "no-show", "Won - Weekly Pool Service": "won",
+    "Won - One Time Repair or Install": "won-repair", "Won - Pool Construction or Remodeling": "won-construction",
+    "Recurring Customer": "recurring", "Not Qualified Stage": "not-qualified", "Lost": "lost", "Spam": "spam"
+  },
+  "journey": [
+    {"id": "new", "icon": "phone", "title": "A new lead reaches you", "stage": "new-lead",
+     "text": "A call, text or website form becomes a card on your lead board, and {owner} gets an alert."},
+    {"id": "missed", "icon": "chat", "title": "You miss their call", "stage": "missed",
+     "text": "They get a text right away saying you'll call back, and a reminder 30 minutes later if they don't answer."},
+    {"id": "quiet", "icon": "clock", "title": "You can't reach them", "stage": "no-response",
+     "text": "Move the card to “No Response”: 3 friendly texts go out over about a week, then the card moves to Lost."},
+    {"id": "quote", "icon": "quote", "title": "You send a quote", "stage": "quote-sent",
+     "text": "Move the card to “Quote Sent”: 2 follow-up texts go out if they don't reply."},
+    {"id": "noshow", "icon": "calendar", "title": "Nobody's home for the visit", "stage": "no-show",
+     "text": "Move the card to “No Show”: 2 texts ask them to pick a new time."},
+    {"id": "won", "icon": "trophy", "title": "They say yes", "stage": "won",
+     "text": "Move the card to the right “Won” column. New weekly customers get a welcome email and text."},
+    {"id": "review", "icon": "star", "title": "A few weeks later", "stage": "review",
+     "text": "We ask how you did. 4–5 stars get your Google review link; 1–3 stars alert {owner} first."},
+    {"id": "lost", "icon": "refresh", "title": "Lost leads and past customers", "stage": "lost",
+     "text": "Lost leads get a feedback email and a check-in after 90 days. Win-back texts go out only when you ask for a campaign."}
+  ],
+  "decisions": [
+    {"id": "d-reentry", "question": "If a lead goes quiet again later, should the follow-up texts start over when you move the card back to “No Response” or “Quote Sent”?",
+     "suggestion": "Yes. They only start when you move the card, so you stay in control."},
+    {"id": "d-stop", "question": "Should the first text after a missed call ({code:Missed New Lead - Initial SMS Follow-up/SMS 1}) end with “Reply STOP to opt out”?",
+     "suggestion": "Yes, on that first text only. Phone carriers like to see it, and the other texts stay short."},
+    {"id": "d-review-timing", "question": "Is the rating text ({code:Review Request/SMS - Request NPS Feedback}) timed right for your customers?",
+     "suggestion": "Keep it as it is: {when:Review Request/SMS - Request NPS Feedback}. Tell me if your jobs need more or less time."},
+    {"id": "d-weekend", "question": "Is it OK if follow-up texts ({codes:no-response}, {codes:quote-sent}) go out on weekends?",
+     "suggestion": "Yes, they're short check-ins. If you'd rather not, I'll hold them to Mon–Fri, 9am–5pm."},
+    {"id": "d-welcome", "question": "Weekly customers get a welcome email and text ({codes:won}). Do you want a welcome message for repair and construction jobs too?",
+     "suggestion": "No for now. Their rating request already thanks them."}
+  ]
+}
