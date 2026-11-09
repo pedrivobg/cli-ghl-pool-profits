@@ -55,21 +55,24 @@ One interactive page (`site/crm-guide/index.html`) serves every client; only thi
 }
 ```
 
-## Publicar (padrão para todo cliente novo, antes do go-live)
+## Publicar (padrão para todo cliente novo, antes do go-live) — hospedado no n8n, link público automático
 1. `scripts/pp_crm_guide.py <slug>` → `site/crm-guide/data/<slug>.json` (revisar).
-2. `scripts/pp_crm_guide_site.sh <slug> "<Nome curto>" <scratchpad>/crm-guide/<slug>`.
-3. Artifact: `file_path` = `index.html` da pasta, `files` `{data.json, logo.png}`, `capabilities {db:{}, user:{}}`,
-   icon `guide`. Republicar a mesma pasta mantém a URL.
-4. Compartilhar (padrão, Pedro 09/11): **Share → anyone with the link** (só o Pedro muda isso na página) → mandar o
-   link ao Frank no ClickUp, ele envia ao cliente. Com link público as respostas ficam no navegador do cliente
-   (sobrevivem a recarregar) e o botão "Copy my answers" gera o texto para colar no Basecamp/e-mail.
-5. Depois da reunião: pegar o texto do "Copy my answers" (e o `db`, se alguém da equipe preencheu logado) e aplicar
-   (`config/<cliente>_wording.json`; tarefas do cliente → onboarding).
+2. `CRM_GUIDE_ADMIN_KEY=… scripts/pp_crm_guide_publish.py <slug>` → imprime o link
+   `https://n8n.valenteai.cloud/webhook/crm-guide?c=<key>` (guardado em `config/crm_guide_links.json`; republicar
+   mantém o link e as respostas). Mudou o layout (`index.html`/logo) → `pp_crm_guide_publish.py --template` (vale para
+   todos os clientes na hora). A chave de admin está no nó "Check admin key" do workflow n8n
+   `SlfpWZmKH1d62hB9` (nunca no repo).
+3. Mandar o link ao Frank (ClickUp DM); ele envia ao cliente. Ninguém precisa mexer em compartilhamento.
+4. O cliente responde na própria página: cada clique grava na tabela n8n "CRM Guide Answers" (`tju295LzOR6tfp8J`,
+   uma linha por key/kind/item_id; `payload` = JSON) e volta na próxima visita, em qualquer aparelho. "Send to Pedro"
+   manda o resumo por e-mail para pedro@ (cc Frank). "Copy my answers" continua como reserva.
+5. Aplicar: ler as linhas da key (`get_data_table_rows`) → textos em `config/<cliente>_wording.json`, tarefas dele →
+   onboarding. Apagar uma resposta de teste = POST `crm-guide-answer` com `body: {}` no mesmo item.
 
-Publicados (09/11): Corolla https://claude.ai/artifact/Mssjgf1bDYimNqcHpJdp8W · Aqua Clear
-https://claude.ai/artifact/Lvjw8puELksVQ71xV4TCcN
+Publicados (09/11): ver `config/crm_guide_links.json`.
 
-Page state (claude.ai artifact `db`, read back with ArtifactData):
-- `edits/<code>`: `{code, status: "ok"|"change", new_text, note, by, at}`
-- `tasks/<id>`: `{id, status: "done"|"help", note, by, at}`
-- `answers/<id>`: `{id, answer: "yes"|"no", note, by, at}`
+Answer payloads (`kind` / `item_id` → `payload`):
+- `edits` / `<code>`: `{code, status: "ok"|"change", new_text, note, at}`
+- `tasks` / `<id>`: `{id, status: "done"|"help", note, at}`
+- `answers` / `<id>`: `{id, answer: "yes"|"no", note, at}`
+- `submit` / `final`: `{summary, at}` (texto do resumo, também vai por e-mail)

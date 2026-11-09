@@ -50,14 +50,14 @@ P/pp_dump.py --only "<n>";  P/pp_audit.py --only "<n>";  P/pp_ready.py --only "<
 ```
 
 ## 4. Guia do CRM (todo cliente, antes da pre-meeting do go-live)
-Página interativa padrão (mesmo layout para todos, só os dados do cliente mudam): `site/crm-guide/SCHEMA.md`.
+Página interativa padrão hospedada no n8n (mesmo layout para todos, só os dados do cliente mudam):
 ```
-P/pp_crm_guide.py <slug>   # revisar site/crm-guide/data/<slug>.json
-scripts/pp_crm_guide_site.sh <slug> "<Nome curto>" <scratchpad>/crm-guide/<slug>
+P/pp_crm_guide.py <slug>            # revisar site/crm-guide/data/<slug>.json
+P/pp_crm_guide_publish.py <slug>    # CRM_GUIDE_ADMIN_KEY no env → imprime o link público
 ```
-Publicar como artifact (passo 3 do SCHEMA) → Pedro deixa **Share → anyone with the link** → link para o Frank
-(ClickUp DM) mandar ao cliente. O cliente devolve pelo "Copy my answers" (Basecamp); eu aplico as mudanças de texto
-(`config/<cliente>_wording.json`) e as tarefas dele viram itens do onboarding.
+Link → Frank (ClickUp DM) → cliente. As respostas gravam sozinhas (tabela n8n "CRM Guide Answers") e o "Send to Pedro"
+avisa por e-mail; eu aplico os textos (`config/<cliente>_wording.json`) e as tarefas dele viram itens do onboarding.
+Detalhes: `site/crm-guide/SCHEMA.md`.
 
 ## Pronto quando…
 - `pp_audit` **0 ALTA** (as 4 MÉDIA "Add Task incompleto" + Won/Review mesmo gatilho existem no modelo);

@@ -195,6 +195,7 @@ textarea:focus, input:focus { outline: 2px solid var(--accent); outline-offset: 
 <main class="wrap" id="app"><p class="empty">Loading your CRM guide…</p></main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script>/*CRM_BOOT*/</script>
 <script>
 (() => {
 const $ = (s, el = document) => el.querySelector(s);
@@ -212,7 +213,8 @@ const ICONS = {
 const icon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n] || ICONS.chat}</svg>`;
 const fill = t => esc(t).replace(/\[([^\]\n]{1,40})\]/g, '<span class="ph">$1</span>');
 
-let D = null, db = null, canWrite = false, me = null;
+let D = null, canWrite = false;
+const KEY = window.__CRM_KEY__ || "", POST = window.__CRM_POST__ || "";
 const state = { edits: {}, tasks: {}, answers: {} };
 function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 2200); }
 const local = {
@@ -224,13 +226,19 @@ async function save(kind, id, body) {
   state[kind][id] = { ...(state[kind][id] || {}), ...body, at: new Date().toISOString() };
   local.set(state);
   progress();
-  if (!db || !canWrite) return false;
-  try { await db.doc(kind + "/" + id).set({ id, ...state[kind][id], by: me || "" }); return true; }
-  catch (e) { if (e && e.code === "invalid_argument") { canWrite = false; note(); } return false; }
+  if (!canWrite) return false;
+  return send(kind, id, state[kind][id]);
+}
+async function send(kind, id, body) {
+  try {
+    const r = await fetch(POST, { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
+      body: JSON.stringify({ key: KEY, kind, id, body }) });
+    return r.ok;
+  } catch { return false }
 }
 function note() {
   const el = $("#saveNote"); if (!el) return;
-  el.textContent = canWrite ? "Your answers save automatically, and Pedro sees them right away."
+  el.textContent = canWrite ? "Your answers save automatically as you go, and Pedro sees them right away. You can close the page and come back to this same link."
     : "Your answers are kept on this device. When you're done, use “Copy my answers” at the bottom and paste them in Basecamp.";
 }
 
@@ -300,7 +308,7 @@ function render() {
     <div class="summary"><p class="eyebrow" style="color:#bcd7ff">7 · Send</p><h2 id="sh">Your review</h2>
       <div class="nums"><div><b id="nOk">0</b>messages look good</div><div><b id="nChg">0</b>to change</div><div><b id="nDone">0</b>tasks done</div><div><b id="nHelp">0</b>need help</div><div><b id="nAns">0</b>answers</div></div>
       <p id="sendTxt"></p>
-      <div class="acts"><button class="btn pri" id="copy">Copy my answers</button><button class="btn" id="showTxt">Preview</button></div>
+      <div class="acts"><button class="btn pri" id="sendBtn" ${canWrite ? "" : "hidden"}>Send to Pedro</button><button class="btn" id="copy">Copy my answers</button><button class="btn" id="showTxt">Preview</button></div>
       <pre id="pre" hidden></pre>
     </div>
   </section>`;
@@ -411,6 +419,11 @@ function bind() {
     let h; $("input", card).oninput = e => { clearTimeout(h); h = setTimeout(() => save("answers", id, { id, answer: (state.answers[id] || {}).answer || "", note: e.target.value }), 700) };
   });
   $("#copy").onclick = async () => { const t = summary(); try { await navigator.clipboard.writeText(t); toast("Copied. Paste it in Basecamp for Pedro.") } catch { const p = $("#pre"); p.hidden = false; p.textContent = t; const r = document.createRange(); r.selectNodeContents(p); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("Selected. Copy it and paste it in Basecamp.") } };
+  const sb = $("#sendBtn"); if (sb) sb.onclick = async () => {
+    sb.disabled = true; const ok = await send("submit", "final", { summary: summary(), at: new Date().toISOString() });
+    sb.disabled = false; toast(ok ? "Sent. Pedro has your answers." : "Couldn't send. Use “Copy my answers” and paste it in Basecamp.");
+    if (ok) sb.textContent = "Sent ✓ (send again if you change anything)";
+  };
   $("#showTxt").onclick = () => { const p = $("#pre"); p.hidden = !p.hidden; p.textContent = summary() };
 }
 function progress() {
@@ -423,7 +436,7 @@ function progress() {
   const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v };
   set("progTxt", `${got} of ${total} answered`); const bar = $("#progBar"); if (bar) bar.style.width = (total ? 100 * got / total : 0) + "%";
   set("nOk", ok); set("nChg", chg); set("nDone", done); set("nHelp", help); set("nAns", ans);
-  set("sendTxt", canWrite ? "Pedro sees your answers as you go. Copy them only if you'd like to keep a record." : "Copy your answers and paste them in Basecamp. Pedro turns each change into a task.");
+  set("sendTxt", canWrite ? "Your answers are already saved. When you're done, press “Send to Pedro” so he knows you've finished." : "Copy your answers and paste them in Basecamp. Pedro turns each change into a task.");
 }
 function summary() {
   const L = [`CRM guide review: ${D.client.name}`, ""];
@@ -437,23 +450,18 @@ function summary() {
 }
 
 async function boot() {
-  try { const r = await fetch("data.json", { cache: "no-store" }); D = await r.json() }
-  catch { $("#app").innerHTML = '<p class="empty">This guide could not load its content. Reload the page, or ask Pedro for a new link.</p>'; return }
+  D = window.__CRM__ || null;
+  if (!D) { try { const r = await fetch("data.json", { cache: "no-store" }); D = await r.json() } catch {} }
+  if (!D) { $("#app").innerHTML = '<p class="empty">This guide could not load its content. Reload the page, or ask Pedro for a new link.</p>'; return }
+  canWrite = !!(KEY && POST);
   Object.assign(state, local.get());
   for (const k of ["edits", "tasks", "answers"]) state[k] = state[k] || {};
-  render();
-  const [dbns, user] = await Promise.all([window.claude?.use?.("db") ?? null, window.claude?.use?.("user") ?? null]);
-  if (user) { try { me = await user.id() } catch {} ; try { const c = await user.can("data.write"); canWrite = c !== false } catch { canWrite = true } }
-  db = dbns; if (!db) { canWrite = false; note(); progress(); return }
-  note();
-  for (const k of ["edits", "tasks", "answers"]) {
-    let t = setTimeout(() => {}, 10000);
-    db.collection(k).onSnapshot(snap => {
-      clearTimeout(t); let changed = false;
-      snap.docs.forEach(d => { const v = d.data(); const cur = state[k][d.id]; if (!cur || (v.at || "") > (cur.at || "")) { state[k][d.id] = v; changed = true } });
-      if (changed) { local.set(state); refresh(k) }
-    }, () => clearTimeout(t));
+  for (const row of window.__CRM_ANS__ || []) {   // answers saved on the server (any device), newest wins
+    const k = row.kind; if (!state[k]) continue;
+    let v; try { v = JSON.parse(row.payload) } catch { continue }
+    const cur = state[k][row.item_id]; if (!cur || (v.at || "") > (cur.at || "")) state[k][row.item_id] = v;
   }
+  render();
 }
 function refresh(k) {
   if (k === "edits") document.querySelectorAll(".msg").forEach(card => { const e = state.edits[card.dataset.code]; if (!e) return; card.dataset.st = e.status;
