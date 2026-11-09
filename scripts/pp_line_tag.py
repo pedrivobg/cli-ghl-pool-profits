@@ -43,7 +43,11 @@ def main() -> int:
     for d in location_dirs(args.only):
         loc = load(d / "location.json", {})["id"]
         name = load(d / "location.json", {}).get("name")
-        numbers = a.call("GET", SERVICES, f"/phone-system/numbers/location/{loc}")["numbers"]
+        try:
+            numbers = a.call("GET", SERVICES, f"/phone-system/numbers/location/{loc}")["numbers"]
+        except Exception as e:  # "No Twilio account found" = LC Phone not set up yet (new account)
+            print(f"== {name}: sem LC Phone/números ({str(e)[:80]}) — nada a fazer")
+            continue
         line = [n["phoneNumber"] for n in numbers if args.line.lower() in (n.get("friendlyName") or "").lower()]
         flows = {w["name"]: w for w in a.workflows(loc)}
         print(f"== {name}: linhas {[(n['phoneNumber'], n.get('friendlyName')) for n in numbers]}")

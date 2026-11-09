@@ -15,6 +15,9 @@
 - "Pool Maintenance Snapshot" → Schedule page: "The Pool Care Pros" logo → {{custom_values.logo_url}}, like the
   funnel's first page.
 Then Pedro clicks Refresh on the snapshot.
+
+    ./.venv/bin/python scripts/pp_master_cleanup.py --loc <id> [--apply]   # new account loaded before the Refresh:
+                                                                            # only the 2 workflows (funnels untouched)
 """
 from __future__ import annotations
 
@@ -26,7 +29,7 @@ import time
 
 import requests
 
-from _common import ROOT, load_dotenv
+from _common import ROOT, load_dotenv, slugify
 
 from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency
 
@@ -87,10 +90,15 @@ def logo_nodes(o):
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--loc", help="another sub-account (new client from the old snapshot): workflows only")
     args = parser.parse_args()
     load_dotenv()
     a = Agency()
-    if a.location(LOC)["name"] != "Snapshot Pool Profits":
+    global LOC, BDIR
+    if args.loc:
+        LOC = args.loc
+        BDIR = ROOT / "backup" / slugify(a.location(LOC)["name"])
+    elif a.location(LOC)["name"] != "Snapshot Pool Profits":
         sys.exit("sub-conta errada")
     BDIR.mkdir(parents=True, exist_ok=True)
     stamp = time.strftime("%Y%m%d-%H%M%S")
@@ -124,6 +132,8 @@ def main() -> int:
             json.loads(json.dumps(got["workflowData"]["templates"]))))
         print(f"    {'✓' if ok else '✗ VERIFICAR'} {got['status']} · gatilhos {len(left)}")
 
+    if args.loc:
+        return 0
     # 3. funnels
     funnels = {f["_id"]: f for f in a.call("GET", SERVICES, f"/funnels/funnel/list?locationId={LOC}")["funnels"]}
     for fid, fname in FOREIGN_FUNNELS.items():

@@ -8,10 +8,13 @@ combinar antes.
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
-3. **Contas novas** Test Pool Co e Capital Lawn & Pool LLC: criar a private key e enviar o form do n8n (e-mail do
-   onboarding); depois disso eu reviso e completo.
+3. **Contas novas West Coast e Capital Lawn** (revisadas 09/11, 0 ALTA/0 ERRO): West Coast → ativar LC Phone; nas duas
+   comprar número local (323 / 916), encaminhar para o celular do dono, A2P (site sem privacy → funil "New A2P
+   Verification"), trocar `a2p_verification_number` pelo número novo, conectar o GBP (West Coast: libera o Review
+   Request), primeiro acesso + app (Milen, Zuriel), conferir o friendly name "West Coast Chemical Company". Test Pool Co:
+   private key + form do n8n.
 4. **Refresh do snapshot V9** (na tela).
-5. **Números + A2P**: Rosebrook, Blissful, WP Pools, Bonneville sem número (nenhum SMS sai); Cleverblu com A2P
+5. **Números + A2P**: Rosebrook, Blissful, WP Pools, Bonneville, West Coast, Capital sem número (nenhum SMS sai); Cleverblu com A2P
    salvo, falta privacy/terms do site + pagamento + enviar.
 6. **Testes reais** (me avisa e eu confiro/apago): Poolheads recado 936-314-9255 (após 17h CT); Southern SMS
    (972) 632-3259; BluVantage ligação fora do horário nos 2 números novos; Clear Pool recado (520) 777-9131;

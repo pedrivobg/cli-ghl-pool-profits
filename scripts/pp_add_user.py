@@ -8,6 +8,7 @@
 POST services /users/ {companyId, firstName, lastName, email, phone, type: "account", role, locationIds,
 permissions}: no scopes (422; GHL builds them from the permissions), no password: the first login is through
 "Forgot password" at app.poolprofits.com. The new user stays isActive=false until that first login.
+--like-loc: the user to copy is in another sub-account (the target has no user yet, e.g. West Coast 09/11).
 """
 from __future__ import annotations
 
@@ -27,6 +28,7 @@ def main() -> int:
     parser.add_argument("--last", required=True)
     parser.add_argument("--email", required=True)
     parser.add_argument("--phone", default="")
+    parser.add_argument("--like-loc", help="sub-account of the --like user (default: --loc)")
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
     load_dotenv()
@@ -36,7 +38,8 @@ def main() -> int:
     if any((u.get("email") or "").lower() == args.email.lower() for u in users):
         print(f"{args.email} já é usuário de {loc['name']}")
         return 0
-    like = next((u for u in users if args.like in (u["id"], (u.get("email") or "").lower())), None)
+    like_users = a.users(args.like_loc) if args.like_loc else users
+    like = next((u for u in like_users if args.like in (u["id"], (u.get("email") or "").lower())), None)
     if not like:
         sys.exit(f"{args.like} não é usuário de {loc['name']}")
     model = a.call("GET", SERVICES, f"/users/{like['id']}")

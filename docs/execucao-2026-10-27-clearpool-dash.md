@@ -730,3 +730,34 @@
   Sem tarefa nova, sem mudança no GHL. Ledger: 3 linhas (done).
 - 09/11 (2º lote): Val (DM) "awesome!!!! TYSM!!!" — só agradecimento depois da minha resposta; sem resposta, sem
   tarefa, sem mudança no GHL. Ledger: 1 linha (done).
+
+## 09/11 — Contas novas: West Coast Pool Care (`63COocPIEK6XLvRikVK9`) e Capital Lawn & Pool LLC (`0FSiPPwFKaeanOv7FUIg`)
+
+Roteiro novo: `docs/new-account-review.md`. As duas nasceram do snapshot antigo (`9VNEhn…`, sem o Refresh), como a
+Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-pool-llc/`.
+
+- **Survey**: West Coast `6aefe02d…` (08/11, Milen Der Nigoghossian, Montebello CA); Capital `6aebf1a2…` (05/11, Zuriel
+  Jackson; a de 21/10 é de outro form). `pp_onboarding_fill --timezone`: Sao_Paulo → America/Los_Angeles; preços
+  "null" → vazio (+ Logo URL "null" na Capital).
+- **Custom values** (backup): Friendly Business Name "West Coast Chemical Company" (nome do site e do GBP; legal fica West
+  Coast Pool Care) e "Capital Lawn & Pool" (site); Service Area "Los Angeles County, the San Gabriel Valley & Orange
+  County" (era o texto do survey) e "Sacramento" (vazio); `a2p_verification_number` provisório = telefone do negócio
+  (323) 695-6810 / (916) 585-0360 (nenhuma tem número no GHL). Missed-call nativo desligado nas duas.
+- **West Coast sem usuário nem representante** (o painel não tinha nada): criado Milen Der Nigoghossian
+  (`GBKrP2QIC3nh8bCdsNy1`, admin, permissões do admin da Capital, westcoastchemicalco@gmail.com, +1 323-767-6028 do survey)
+  com `pp_add_user.py --like-loc` (opção nova) e posto como `authorizedRepresentative` do Business Profile (CEO).
+  Capital: Zuriel Jackson já era usuário e representante.
+- `pp_mirror --apply` (11 do modelo; Capital com Review Request publicado e place `ChIJaz4i-rceSC0RRLfNYqHAq4k` do
+  g.page do survey; West Coast: `share.google/…` não resolve para place → Review Request draft), `pp_forms` (nada),
+  `pp_nps` (NPS Form + link), re-dump, `pp_fix --drop-booking --include-drafts --skip "In Communication Stage"` (nada),
+  `pp_tags_missing` ("form fill"), `pp_skip_tag` (já tinha), `pp_line_tag` (sem números; agora não quebra com "No Twilio
+  account"), `pp_review_fix` (nada).
+- Sequential Call Routing (BluVantage) e AdWords Call In (gatilho em Tucson) já em draft: genéricos/sem gatilho com
+  `pp_master_cleanup.py --loc` (opção nova: só os 2 workflows, funis intocados). Funis "Simple Pool Care"/"LP Teste"
+  ficam (como na Bonneville).
+- Teste: contato ZZ TEST (@example.com, sem telefone/tags) em cada → dono = Milen / Zuriel; apagados.
+- **Resultado**: auditoria 0 ALTA nas duas (MÉDIAs iguais às do modelo); `pp_ready` 0 ERRO (West Coast: 1 aviso,
+  Review Request draft; Capital com `--place`).
+- Telefonia: West Coast "No Twilio account" (LC Phone não ativado); Capital com Twilio e 0 números. Sites sem privacy/
+  terms (404) → A2P pelo funil "New A2P Verification". Calendários inativos sem membros (booking tirado, padrão).
+  Passos do Pedro no TODO 3.
