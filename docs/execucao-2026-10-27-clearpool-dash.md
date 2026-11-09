@@ -669,3 +669,14 @@
   Outras contas com linhas sem encaminhamento/IVR listadas na tarefa (a confirmar se são usadas).
 - Ledger: 42 linhas novas (39 done, 3 needs_pedro: Puddle Jumper, Capital Lawn, rascunho do Lee). Tarefas: 86bd02rg2,
   86bd02rg6 (testes reais), 86bd02rg9 (Pool Keepers), 86bcz7706 atualizada.
+
+## 09/11 — inbox (4 itens): Ekahi (Erik respondeu), Pool Keepers FYI, digest
+
+- **Ekahi** (Basecamp, cliente vê): Erik pediu (1) recomendação sobre o "Reply STOP" e (2) alternativa ao e-mail do dia 75
+  (quase todas as piscinas dele são de areia, backwash mensal). Rascunho da resposta enviado ao Pedro por e-mail para
+  aprovar: STOP só no check-in trimestral (sai do dia 30); dia 75 = A check-in de equipamento (areia a cada 5–7 anos,
+  bomba/aquecedor; recomendado), B pedido de indicação, C tirar o dia 75. Nenhuma mudança no GHL (sequência segue draft).
+  Depois da escolha: trocar o template "90 Days - Day 75…" (e o texto do dia 30), testar na cópia ZZ TEST, publicar +
+  ajuste do Post-Appointment. Frank respondido no e-mail. Tarefa 86bcz7706 (prazo 11/11, 1 h).
+- **Pool Keepers**: Frank mandou a folha M1–M23 ao Nathan antes da call — só FYI. Digest do Basecamp: nada pedido.
+- Ledger: 4 linhas (3 done, 1 needs_pedro).
