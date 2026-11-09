@@ -699,3 +699,9 @@
 - Teste: cópia ZZ TEST de cada cadeia nova (gatilho por tag, alerta/card/tarefa trocados por tags), contato
   @example.com: ✓ nas duas contas; contato, cópias e tags `zz notify test*` apagados. Releitura: status/re-entry iguais,
   gatilho ativo. Tarefa 86bd02rg2 (in progress). Ledger: 2 linhas (1 done, 1 needs_pedro).
+
+## 09/11 — inbox: Poolheads landing pages (Atif → Val)
+
+- Comentário do Atif na tarefa 86bcwet1g perguntando à **Val** se o cliente já respondeu sobre a página Pool Repairs
+  (áreas atendidas + imagem de fundo, aguardando o Felipe). Nada pedido a mim: sem resposta, sem tarefa nova, sem
+  mudança no GHL. Ledger: 1 linha (done).
