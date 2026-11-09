@@ -722,3 +722,9 @@
   (telefones/IVR, avisos, atribuição, forms/LP/lead form, tracking, workflows copiados, teste). Respondido no DM.
 - Poolheads LP (86bcwet1g): Atif ↔ Val, nada pedido a mim.
 - Tarefa 86bd02rg2 atualizada. Ledger: 3 linhas (2 done, 1 needs_pedro).
+
+## 09/11 — inbox: Val (lista de clientes + agradecimentos)
+
+- Val (DM): passou a List View de clientes (`2kyd9h1f-2894`) com datas de ativação, atualizada todo dia; nenhuma
+  ativação hoje/amanhã. Respondi no DM que vou acompanhar a lista. Os outros 2 itens eram só agradecimento.
+  Sem tarefa nova, sem mudança no GHL. Ledger: 3 linhas (done).
