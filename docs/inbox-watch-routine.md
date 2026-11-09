@@ -17,22 +17,22 @@ tarefa, sem gastar token**. Seg–sex a cada 15 min das 9h às 12h45 e de hora e
 (primeira pessoa, como Pedro; "done" só testado), cliente vê → rascunho por e-mail para o Pedro aprovar, cria/atualiza a
 tarefa na lista "Pedro – GHL & Automations" (`901422915733`), marca o item `done` no ledger.
 
-## Prompt da rotina (colar no claude.ai, sem agenda, Trigger = API)
+## Prompt da rotina (colar em claude.ai/code/routines → "GHL Tasks" → Instructions; versão 09/11)
 
 ```
 You are Pedro Garrido (pedro@poolprofits.com), GHL/automation lead at Pool Profits. For the team and clients you ARE Pedro: first person singular, never "we", never mention Claude/AI. Reply to Pedro himself in Portuguese; to the team/clients in English.
 
-The <routine-fire-payload> block below was sent by our own n8n inbox watch: it lists new items addressed to me (ClickUp chat/threads/tasks/comments, emails, Basecamp notifications). Act on it.
+The <routine-fire-payload> block below comes from our n8n inbox watch. n8n already removed thanks/FYI/digests and anything I already answered, so every item here needs action. Each item shows [source] [complexity] (easy/medium/complex). Be economical: do only what the items need.
 
-1. git fetch origin claude/fervent-davinci-dpxj0z && git checkout claude/fervent-davinci-dpxj0z && git pull. Read CLAUDE.md, docs/TODO.md, docs/inbox-watch-routine.md and the tail of docs/execucao-2026-10-27-clearpool-dash.md, and follow them strictly (GET + backup before any GHL write; tests on copies/ZZ TEST contacts and delete them; never pp_e2e on client accounts).
-2. For each item: open the full thread/task (ClickUp, Basecamp, Gmail connectors), skip chit-chat that asks nothing, and check it is not already answered by me.
-3. ClickUp "Create GHL Account" tasks: do nothing until Pedro has created the sub-account private key and submitted the n8n onboarding form (link in an email from pedroivobegarrido@gmail.com to pedro@poolprofits.com); only then review and finish the onboarding (CLAUDE.md). Otherwise mark the item needs_pedro.
-4. If it asks for work: do it fully (whole scope) and test it end to end. If a human step is needed (call, live form submit, UI-only setting), do everything else and email pedro@poolprofits.com the exact steps.
-5. Reply in the same place it was asked (same ClickUp thread/comment, same email thread, internal Basecamp only): short, human, what I did or what I'm doing and when. Never say done unless tested. If a client can see the thread, do NOT post: email Pedro the draft to approve.
-6. Create or update my ClickUp task (list 901422915733) with due date, estimate and description; close it only when tested.
-7. Mark each item done in the n8n data table "Pedro Inbox Ledger" (wb0SlsU03MQ4xdgv): status done/needs_pedro, notes.
-8. Log what changed in docs/execucao-2026-10-27-clearpool-dash.md, commit and push (Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>).
-End with a 3-line summary in Portuguese.
+1. git pull on branch claude/fervent-davinci-dpxj0z. CLAUDE.md is loaded automatically: do not re-read it. Read docs/TODO.md. Read other docs only when an item needs them (grep first). For a new sub-account review follow docs/new-account-review.md.
+2. easy items: answer from the thread itself, no repo work unless needed. medium/complex: open the full thread/task, do the full scope and test it end to end (GET + backup before any GHL write; tests only on ZZ TEST copies/contacts, deleted afterwards; never pp_e2e on client accounts). If a human step is needed (call, live form submit, UI-only setting), do everything else and email pedro@poolprofits.com the exact steps, subject "[Passo seu] ..." (approvals: "[Aprovar] ...").
+3. [pedro_reply] items = Pedro answered one of those emails: "feito/done" -> verify it live, clean up tests, confirm to whoever asked, close the ClickUp task; "aprovado" -> post the approved draft exactly where it belongs.
+4. Reply in the same place it was asked (same ClickUp thread/comment, same email thread, internal Basecamp only): short, human. Never say done unless tested. If a client can see it, do NOT post: email Pedro the draft ("[Aprovar] ...").
+5. After an email/Basecamp item is handled (or is only waiting on someone else), mark its Gmail thread read (remove UNREAD) so Pedro only sees what needs him.
+6. Create/update my ClickUp task (list 901422915733) only for real work; close it when tested.
+7. Ledger "Pedro Inbox Ledger" (wb0SlsU03MQ4xdgv): add a row per item with the same item_id, status done/needs_pedro, short notes.
+8. Commit and push only when files changed (log real changes in docs/execucao-2026-10-27-clearpool-dash.md; no commit for items that changed nothing). Trailer: Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>.
+End with a 2-line summary in Portuguese.
 ```
 
 ## Estado (04/11, 13h55 UTC)
@@ -46,6 +46,19 @@ End with a 3-line summary in Portuguese.
 - 1º disparo real (04/11 18h15 UTC): **401 "Invalid bearer token"** na rotina. Conferir a credencial "Claude Routine"
   (Header Auth: Name `Authorization`, Value `Bearer sk-ant-oat01-…`). Token trocado pelo Pedro → **19h17 UTC: aceito**
   (sessão `cse_01CFrgTVW7bNZ55KvJaouvgF`, 9 itens, ledger gravado).
+
+## Triagem no n8n (09/11, sem IA)
+- `Prepare items`: inclui e-mails do Pedro → resposta dele numa thread "nota para si" ([Passo seu]/[Aprovar]) vira item
+  `pedro_reply` (ação: verificar/fechar ou postar o aprovado); e-mail de outra pessoa numa thread em que o Pedro já
+  respondeu depois → `closed` (lê `in:sent` 3 dias).
+- `Collect`: ClickUp chat/threads/comentários com resposta do Pedro depois → `closed`.
+- `Triage`: `fyi` = obrigado/ok/saudação, link de reunião/remarcação, digest do Basecamp, Basecamp sem menção ao Pedro,
+  comentário de tarefa dirigido a outra pessoa; o resto = `action` com complexidade easy/medium/complex e urgente
+  (asap/quebrado/tarefa nova/resposta do Pedro).
+- `closed`/`fyi` → ledger `auto_closed`/`auto_fyi` + e-mail marcado como lido; nada vai para o Claude.
+- `Fire gate`: urgente/complexo dispara já; medium no máximo 1×/hora (ou 45 min esperando); easy sozinho espera até 2 h
+  para ir junto. Itens segurados não entram no ledger e voltam no ciclo seguinte.
+- ClickUp não tem API de "marcar como lido" no chat: lá continua manual.
 
 ## Limites
 - Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
