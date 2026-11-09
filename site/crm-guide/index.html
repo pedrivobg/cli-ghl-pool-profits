@@ -1,0 +1,470 @@
+<title>CRM Launch Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one long guided page — hero, animated lead journey, lead board, messages to review, the client's part,
+   quick decisions, then a summary to send. Pool Profits brand: Jost display, Inter body, indigo + bright blue. */
+:root {
+  --bg: #F6F9FC; --surface: #FFFFFF; --surface-2: #EEF4FA; --line: #DCE6F0;
+  --ink: #0F1A26; --ink-2: #44546A; --ink-3: #6B7A8F;
+  --brand: #1C1678; --accent: #0776FB; --accent-soft: #E3EFFF;
+  --ok: #0E9F6E; --ok-soft: #E3F7EF; --warn: #C27803; --warn-soft: #FEF3DC; --bad: #C81E1E;
+  --bubble: #E9EEF5; --bubble-me: #0776FB;
+  --display: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r: 14px; --r-sm: 9px;
+  --shadow: 0 1px 2px rgba(15,26,38,.05), 0 6px 18px rgba(28,22,120,.06);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0B1220; --surface: #121B2C; --surface-2: #17233A; --line: #24324B;
+  --ink: #E8EEF7; --ink-2: #B4C1D4; --ink-3: #8394AD;
+  --brand: #B9B4FF; --accent: #4B9BFF; --accent-soft: #15284A;
+  --ok: #34D399; --ok-soft: #0F2E25; --warn: #F5B544; --warn-soft: #33270F; --bad: #F87171;
+  --bubble: #1D2A42; --bubble-me: #2F7FF0;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0B1220; --surface: #121B2C; --surface-2: #17233A; --line: #24324B;
+  --ink: #E8EEF7; --ink-2: #B4C1D4; --ink-3: #8394AD;
+  --brand: #B9B4FF; --accent: #4B9BFF; --accent-soft: #15284A;
+  --ok: #34D399; --ok-soft: #0F2E25; --warn: #F5B544; --warn-soft: #33270F; --bad: #F87171;
+  --bubble: #1D2A42; --bubble-me: #2F7FF0;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25); color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 0 72px }
+h1, h2, h3 { font-family: var(--display); color: var(--brand); text-wrap: balance; margin: 0 }
+h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.08; letter-spacing: -.01em }
+h2 { font-size: clamp(22px, 3vw, 30px); line-height: 1.15 }
+h3 { font-size: 18px; line-height: 1.25 }
+p { margin: 0 }
+.eyebrow { font: 600 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--accent) }
+.muted { color: var(--ink-2) }
+button { font: inherit; cursor: pointer }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px }
+
+/* top bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))) }
+.top .in { max-width: 1040px; margin: 0 auto; display: flex; align-items: center; gap: 16px; padding: 10px max(16px, env(safe-area-inset-left, 0px)) }
+.logo { height: 26px; width: auto; padding: 3px 6px; border-radius: 6px; background: #fff }
+.nav { display: flex; gap: 4px; overflow-x: auto; margin-left: auto; scrollbar-width: none }
+.nav a { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 13.5px; padding: 6px 10px; border-radius: 999px; white-space: nowrap }
+.nav a:hover { background: var(--surface-2); color: var(--ink) }
+.prog { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--ink-2); white-space: nowrap }
+.prog .bar { width: 86px; height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden }
+.prog .bar i { display: block; height: 100%; width: 0; background: var(--ok); transition: width .6s ease }
+
+section { padding-top: 56px; scroll-margin-top: 64px }
+.sec-head { display: grid; gap: 8px; margin-bottom: 22px; max-width: 680px }
+
+/* hero */
+.hero { padding-top: 40px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center }
+.hero .lead { font-size: 17px; color: var(--ink-2); margin-top: 14px; max-width: 58ch }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-size: 13.5px; color: var(--ink-3) }
+.meta b { color: var(--ink); font-weight: 600 }
+.how { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; box-shadow: var(--shadow) }
+.how ol { margin: 10px 0 0; padding-left: 20px; display: grid; gap: 8px; color: var(--ink-2) }
+.how ol b { color: var(--ink) }
+.save-note { margin-top: 12px; font-size: 12.5px; padding: 8px 10px; border-radius: var(--r-sm); background: var(--surface-2); color: var(--ink-2) }
+
+/* journey */
+.journey { position: relative; display: grid; grid-template-columns: repeat(var(--n, 8), minmax(0, 1fr)); gap: 10px }
+.journey::before { content: ""; position: absolute; left: 4%; right: 4%; top: 31px; height: 3px; background: var(--line); border-radius: 3px }
+.journey .runner { position: absolute; top: 24px; left: 4%; width: 17px; height: 17px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 20%, transparent); transition: left .9s cubic-bezier(.6,.05,.3,1) }
+.step { position: relative; display: grid; justify-items: center; gap: 10px; text-align: center; border: 0; background: none; color: inherit; padding: 0 }
+.step .dot { width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); border: 2px solid var(--line);
+  color: var(--brand); transition: transform .3s, border-color .3s, background .3s; z-index: 1 }
+.step svg { width: 26px; height: 26px }
+.step .t { font: 600 13px/1.25 var(--body); color: var(--ink-2) }
+.step.on .dot { border-color: var(--accent); background: var(--accent-soft); transform: scale(1.08) }
+.step.on .t { color: var(--ink) }
+.journey-detail { margin-top: 22px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; box-shadow: var(--shadow); min-height: 92px }
+.journey-detail .n { font: 700 34px/1 var(--display); color: var(--accent); min-width: 2ch }
+.journey-detail h3 { margin-bottom: 4px }
+.jd-txt { min-width: 0 }
+.jd-txt.swap { animation: fadeup .45s ease }
+.ctl { display: flex; gap: 6px }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: 13.5px }
+.btn:hover { border-color: var(--accent); color: var(--accent) }
+.btn.pri { background: var(--accent); border-color: var(--accent); color: #fff }
+.btn.pri:hover { filter: brightness(1.08); color: #fff }
+.btn.ghost { background: transparent }
+.link { color: var(--accent); background: none; border: 0; padding: 0; font-weight: 600 }
+
+/* board */
+.board { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 1fr); gap: 10px; overflow-x: auto; padding-bottom: 8px }
+.col { background: var(--surface-2); border-radius: var(--r); padding: 12px; min-height: 172px; display: grid; align-content: start; gap: 8px }
+.col h4 { margin: 0; font: 600 13px/1.2 var(--body); color: var(--ink); display: flex; justify-content: space-between; gap: 6px }
+.col h4 span { color: var(--ink-3); font-weight: 500; font-size: 11.5px }
+.col p { font-size: 12.5px; color: var(--ink-2) }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 9px 10px; font-size: 12.5px; box-shadow: var(--shadow) }
+.card b { display: block; font-size: 13px }
+.card.fly { animation: pop .5s ease }
+.board-foot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; color: var(--ink-2); font-size: 13.5px }
+
+/* messages */
+.stage { margin-top: 26px }
+.stage-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: 12px }
+.stage-head .when { font-size: 13.5px; color: var(--ink-2) }
+.msgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px }
+.msg { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; display: grid; gap: 10px; box-shadow: var(--shadow); min-width: 0 }
+.msg[data-st="ok"] { border-color: color-mix(in srgb, var(--ok) 55%, var(--line)) }
+.msg[data-st="change"] { border-color: color-mix(in srgb, var(--warn) 65%, var(--line)) }
+.msg-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap }
+.code { font: 700 12px/1 var(--body); background: var(--brand); color: var(--surface); padding: 5px 7px; border-radius: 6px; letter-spacing: .02em }
+.chan { font-size: 12px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em }
+.whenchip { margin-left: auto; font-size: 12px; color: var(--ink-2); background: var(--surface-2); padding: 4px 8px; border-radius: 99px }
+.bubble { background: var(--bubble); border-radius: 16px 16px 16px 4px; padding: 10px 12px; font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere }
+.email { border: 1px solid var(--line); border-radius: var(--r-sm); overflow: hidden }
+.email .subj { background: var(--surface-2); padding: 7px 10px; font-weight: 600; font-size: 13px }
+.email .bd { padding: 10px; font-size: 13.5px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 210px; overflow: auto }
+.ph { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); border-radius: 5px; padding: 0 4px; font-weight: 600; white-space: nowrap }
+.acts { display: flex; gap: 6px; flex-wrap: wrap }
+.chip-btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); border-radius: 99px; padding: 6px 12px; font-size: 13px; font-weight: 600 }
+.chip-btn[aria-pressed="true"].ok { background: var(--ok-soft); border-color: var(--ok); color: var(--ok) }
+.chip-btn[aria-pressed="true"].chg { background: var(--warn-soft); border-color: var(--warn); color: var(--warn) }
+.edit { display: grid; gap: 6px }
+.edit label { font-size: 12.5px; font-weight: 600; color: var(--ink-2) }
+textarea, input[type=text] { width: 100%; font: 14px/1.45 var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 9px 10px; resize: vertical }
+textarea:focus, input:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent }
+.saved { font-size: 12px; color: var(--ok); min-height: 1em }
+
+/* tasks */
+.areas { display: grid; gap: 14px }
+.task { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; box-shadow: var(--shadow) }
+.task .tick { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; color: var(--surface); grid-row: span 3; transition: .25s }
+.task[data-st="done"] .tick { background: var(--ok); border-color: var(--ok) }
+.task[data-st="help"] .tick { background: var(--warn); border-color: var(--warn) }
+.task .area { font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3) }
+.task ol { margin: 4px 0 0; padding-left: 18px; color: var(--ink-2); display: grid; gap: 3px; font-size: 14px }
+.task .why { color: var(--ink-2); font-size: 14px }
+.task .row { grid-column: 2; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 6px }
+.task .row input { flex: 1 1 220px }
+.pill { font-size: 11.5px; font-weight: 600; padding: 3px 8px; border-radius: 99px; background: var(--ok-soft); color: var(--ok) }
+
+/* alerts + decisions */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px }
+.alert { display: grid; gap: 2px; padding: 12px 14px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 var(--r-sm) var(--r-sm) 0 }
+.alert b { font-size: 14px }
+.alert span { font-size: 13.5px; color: var(--ink-2) }
+.dec { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: grid; gap: 8px }
+.dec .sug { font-size: 13.5px; color: var(--ink-2) }
+
+/* summary */
+.summary { background: var(--brand); color: #fff; border-radius: 20px; padding: 26px; display: grid; gap: 14px }
+:root[data-theme="dark"] .summary, .summary { background: linear-gradient(135deg, #1C1678, #0b4fc0) }
+.summary h2 { color: #fff }
+.summary .nums { display: flex; flex-wrap: wrap; gap: 18px }
+.summary .nums div { font-size: 13px; opacity: .85 }
+.summary .nums b { display: block; font: 700 28px/1.1 var(--display); opacity: 1 }
+.summary .btn { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.08); color: #fff }
+.summary .btn.pri { background: #fff; color: #1C1678; border-color: #fff }
+.summary pre { margin: 0; white-space: pre-wrap; background: rgba(0,0,0,.25); padding: 12px; border-radius: 10px; font: 12.5px/1.45 ui-monospace, Menlo, monospace; max-height: 260px; overflow: auto }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%) translateY(20px); opacity: 0;
+  background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 99px; font-size: 13.5px; transition: .3s; pointer-events: none; z-index: 20 }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0) }
+.empty { padding: 40px; text-align: center; color: var(--ink-2) }
+
+@keyframes fadeup { from { opacity: .2; transform: translateY(6px) } to { opacity: 1; transform: none } }
+@keyframes pop { 0% { transform: scale(.85); opacity: .3 } 70% { transform: scale(1.04) } 100% { transform: none; opacity: 1 } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important } }
+@media (max-width: 820px) {
+  .hero, .two { grid-template-columns: 1fr }
+  .journey { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 18px }
+  .journey::before, .journey .runner { display: none }
+  .nav { display: none }
+  .journey-detail { grid-template-columns: 1fr; }
+}
+</style>
+
+<header class="top"><div class="in">
+  <img class="logo" src="logo.png" alt="Pool Profits">
+  <nav class="nav" aria-label="Sections">
+    <a href="#journey">How it works</a><a href="#board">Lead board</a><a href="#messages">Your messages</a>
+    <a href="#tasks">Your part</a><a href="#decisions">Quick decisions</a><a href="#send">Send</a>
+  </nav>
+  <div class="prog" title="Your review progress"><span id="progTxt">0 of 0 reviewed</span><span class="bar"><i id="progBar"></i></span></div>
+</div></header>
+
+<main class="wrap" id="app"><p class="empty">Loading your CRM guide…</p></main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ICONS = {
+  phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+  form: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/>',
+  chat: '<path d="M4 5h16v11H8l-4 4z"/>', clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  quote: '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>',
+  calendar: '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  trophy: '<path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 21h8M10 17h4"/>',
+  star: '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+  refresh: '<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>', missed: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2M15 3l6 6M21 3l-6 6"/>'
+};
+const icon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n] || ICONS.chat}</svg>`;
+const fill = t => esc(t).replace(/\[([^\]\n]{1,40})\]/g, '<span class="ph">$1</span>');
+
+let D = null, db = null, canWrite = false, me = null;
+const state = { edits: {}, tasks: {}, answers: {} };
+function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 2200); }
+const local = {
+  get() { try { return JSON.parse(localStorage.getItem("crmguide:" + D.client.slug) || "{}") } catch { return {} } },
+  set(v) { try { localStorage.setItem("crmguide:" + D.client.slug, JSON.stringify(v)) } catch {} }
+};
+
+async function save(kind, id, body) {
+  state[kind][id] = { ...(state[kind][id] || {}), ...body, at: new Date().toISOString() };
+  local.set(state);
+  progress();
+  if (!db || !canWrite) return false;
+  try { await db.doc(kind + "/" + id).set({ id, ...state[kind][id], by: me || "" }); return true; }
+  catch (e) { if (e && e.code === "invalid_argument") { canWrite = false; note(); } return false; }
+}
+function note() {
+  const el = $("#saveNote"); if (!el) return;
+  el.textContent = canWrite ? "Your answers save automatically, and Pedro sees them right away."
+    : "Your answers are kept on this device. When you're done, use “Copy my answers” at the bottom and paste them in Basecamp.";
+}
+
+function render() {
+  const c = D.client, msgs = D.stages.flatMap(s => s.messages);
+  $("#app").innerHTML = `
+  <section class="hero" aria-labelledby="h">
+    <div>
+      <p class="eyebrow">CRM launch guide · ${esc(c.name)}</p>
+      <h1 id="h">Your new lead system, step by step</h1>
+      <p class="lead">${esc(D.meeting_note || "")}</p>
+      <div class="meta"><span>Prepared for <b>${esc(c.owner_first || c.name)}</b></span><span>by <b>${esc(D.prepared_by || "Pool Profits")}</b></span><span>${msgs.length} messages · ${D.client_tasks.length} things for you</span></div>
+    </div>
+    <aside class="how" aria-label="How to use this page">
+      <h3>How to use this page</h3>
+      <ol><li><b>Watch how a lead moves</b> through your CRM (2 minutes).</li>
+      <li><b>Read each message</b> your customers will get. Tap “Looks good”, or “Change it” and write your version.</li>
+      <li><b>Do your part</b>: a short checklist. Mark each one done, or ask for help.</li>
+      <li><b>Answer a few yes/no questions</b> and send it all to Pedro.</li></ol>
+      <p class="save-note" id="saveNote"></p>
+    </aside>
+  </section>
+
+  <section id="journey" aria-labelledby="jh">
+    <div class="sec-head"><p class="eyebrow">1 · How it works</p><h2 id="jh">From first call to happy customer</h2>
+      <p class="muted">Press play or tap a step. Each step shows what happens on its own and what your team does.</p></div>
+    <div class="journey" style="--n:${D.journey.length}" role="tablist" aria-label="Lead journey">
+      <span class="runner" id="runner" aria-hidden="true"></span>
+      ${D.journey.map((j, i) => `<button class="step" role="tab" data-i="${i}" aria-selected="false"><span class="dot">${icon(j.icon)}</span><span class="t">${esc(j.title)}</span></button>`).join("")}
+    </div>
+    <div class="journey-detail"><span class="n" id="jn">1</span><div class="jd-txt" id="jt"></div>
+      <div class="ctl"><button class="btn" id="jprev" aria-label="Previous step">‹</button><button class="btn pri" id="jplay">Play</button><button class="btn" id="jnext" aria-label="Next step">›</button></div></div>
+  </section>
+
+  <section id="board" aria-labelledby="bh">
+    <div class="sec-head"><p class="eyebrow">2 · Your lead board</p><h2 id="bh">One card per lead, one column per step</h2>
+      <p class="muted">Most messages start when a card moves to a column. If a card isn't moved, nothing is sent, so your team stays in control.</p></div>
+    <div class="board" id="boardCols">${D.pipeline.map((p, i) => `<div class="col" data-i="${i}"><h4>${esc(p.name)} ${p.auto ? "<span>moves by itself</span>" : ""}</h4><p>${esc(p.plain)}</p></div>`).join("")}</div>
+    <div class="board-foot"><button class="btn pri" id="demo">Show a lead moving</button><span id="demoTxt">Watch a sample lead go from first call to customer.</span></div>
+  </section>
+
+  <section id="messages" aria-labelledby="mh">
+    <div class="sec-head"><p class="eyebrow">3 · Your messages</p><h2 id="mh">What your customers will receive</h2>
+      <p class="muted">Highlighted words are filled in automatically for each person. Change any wording you like: write it the way you'd say it.</p></div>
+    ${D.stages.map(s => `<div class="stage" id="st-${esc(s.id)}"><div class="stage-head"><h3>${esc(s.title)}</h3><span class="when">${esc(s.trigger_plain || "")}</span></div>
+      <div class="msgs">${s.messages.map(m => msgCard(m)).join("")}</div></div>`).join("")}
+  </section>
+
+  <section id="team" aria-labelledby="th">
+    <div class="sec-head"><p class="eyebrow">4 · Your team</p><h2 id="th">What lands on your phone</h2>
+      <p class="muted">Alerts and reminders for you and your team, so no lead waits.</p></div>
+    <div class="two">${D.team_alerts.map(a => `<div class="alert"><b>${esc(a.when)}</b><span>${esc(a.what)}${a.who ? " · to " + esc(a.who) : ""}</span></div>`).join("")}</div>
+  </section>
+
+  <section id="tasks" aria-labelledby="kh">
+    <div class="sec-head"><p class="eyebrow">5 · Your part</p><h2 id="kh">A few things only you can do</h2>
+      <p class="muted">Mark each one done, or tap “I need help” and leave a note. Pedro gets it as a task.</p></div>
+    <div class="areas">${D.client_tasks.map(t => taskCard(t)).join("")}</div>
+  </section>
+
+  <section id="decisions" aria-labelledby="dh">
+    <div class="sec-head"><p class="eyebrow">6 · Quick decisions</p><h2 id="dh">Yes or no, and you're set</h2></div>
+    <div class="two">${D.decisions.map(d => decCard(d)).join("")}</div>
+  </section>
+
+  <section id="send" aria-labelledby="sh">
+    <div class="summary"><p class="eyebrow" style="color:#bcd7ff">7 · Send</p><h2 id="sh">Your review</h2>
+      <div class="nums"><div><b id="nOk">0</b>messages look good</div><div><b id="nChg">0</b>to change</div><div><b id="nDone">0</b>tasks done</div><div><b id="nHelp">0</b>need help</div><div><b id="nAns">0</b>answers</div></div>
+      <p id="sendTxt"></p>
+      <div class="acts"><button class="btn pri" id="copy">Copy my answers</button><button class="btn" id="showTxt">Preview</button></div>
+      <pre id="pre" hidden></pre>
+    </div>
+  </section>`;
+  bind(); note(); progress(); journey(0, false);
+}
+
+function msgCard(m) {
+  const st = (state.edits[m.code] || {}).status || "";
+  const body = m.channel === "email"
+    ? `<div class="email"><div class="subj">${fill(m.subject || "(no subject)")}</div><div class="bd">${fill(m.text)}</div></div>`
+    : `<div class="bubble">${fill(m.text)}</div>`;
+  const e = state.edits[m.code] || {};
+  return `<article class="msg" data-code="${esc(m.code)}" data-st="${st}">
+    <div class="msg-top"><span class="code">${esc(m.code)}</span><span class="chan">${m.channel === "email" ? "Email" : "Text"}</span><span class="whenchip">${esc(m.when)}</span></div>
+    ${body}
+    <div class="acts"><button class="chip-btn ok" data-act="ok" aria-pressed="${st === "ok"}">Looks good</button><button class="chip-btn chg" data-act="change" aria-pressed="${st === "change"}">Change it</button></div>
+    <div class="edit" ${st === "change" ? "" : "hidden"}>
+      <label for="t-${esc(m.code)}">Your version</label>
+      <textarea id="t-${esc(m.code)}" rows="4" data-f="new_text">${esc(e.new_text ?? m.text)}</textarea>
+      <label for="n-${esc(m.code)}">Anything else? (optional)</label>
+      <input type="text" id="n-${esc(m.code)}" data-f="note" value="${esc(e.note || "")}" placeholder="e.g. send this one only on weekdays">
+      <span class="saved" aria-live="polite"></span>
+    </div></article>`;
+}
+function taskCard(t) {
+  const s = state.tasks[t.id] || {}, st = s.status || (t.status_hint === "done" ? "done" : "");
+  return `<article class="task" data-id="${esc(t.id)}" data-st="${st}">
+    <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></span>
+    <span class="area">${esc(t.area)} ${t.status_hint === "done" ? '<span class="pill">already set up</span>' : ""}</span>
+    <h3>${esc(t.title)}</h3>
+    <div><p class="why">${esc(t.why || "")}</p>${(t.steps || []).length ? `<ol>${t.steps.map(x => `<li>${esc(x)}</li>`).join("")}</ol>` : ""}</div>
+    <div class="row"><button class="chip-btn ok" data-act="done" aria-pressed="${st === "done"}">Done</button><button class="chip-btn chg" data-act="help" aria-pressed="${st === "help"}">I need help</button>
+      <input type="text" id="tn-${esc(t.id)}" data-f="note" value="${esc(s.note || "")}" placeholder="Note for Pedro (optional)" aria-label="Note for Pedro"></div></article>`;
+}
+function decCard(d) {
+  const a = state.answers[d.id] || {};
+  return `<article class="dec" data-id="${esc(d.id)}"><h3>${esc(d.question)}</h3><p class="sug">${esc(d.suggestion || "")}</p>
+    <div class="acts"><button class="chip-btn ok" data-act="yes" aria-pressed="${a.answer === "yes"}">Yes</button><button class="chip-btn chg" data-act="no" aria-pressed="${a.answer === "no"}">No</button></div>
+    <input type="text" id="dn-${esc(d.id)}" data-f="note" value="${esc(a.note || "")}" placeholder="Comment (optional)" aria-label="Comment"></article>`;
+}
+
+let ji = 0, timer = null;
+function journey(i, anim = true) {
+  ji = (i + D.journey.length) % D.journey.length;
+  document.querySelectorAll(".step").forEach((b, k) => { b.classList.toggle("on", k === ji); b.setAttribute("aria-selected", k === ji) });
+  const b = document.querySelectorAll(".step")[ji], r = $("#runner"), wrap = $(".journey");
+  if (b && r && wrap) r.style.left = (b.offsetLeft + b.offsetWidth / 2 - 8) + "px";
+  const j = D.journey[ji], t = $("#jt");
+  $("#jn").textContent = ji + 1;
+  t.innerHTML = `<h3>${esc(j.title)}</h3><p class="muted">${esc(j.text)}</p>`;
+  if (anim) { t.classList.remove("swap"); void t.offsetWidth; t.classList.add("swap") }
+}
+function play() {
+  const btn = $("#jplay");
+  if (timer) { clearInterval(timer); timer = null; btn.textContent = "Play"; return }
+  btn.textContent = "Pause"; journey(0);
+  timer = setInterval(() => { if (ji >= D.journey.length - 1) { clearInterval(timer); timer = null; btn.textContent = "Play again"; return } journey(ji + 1) }, 2600);
+}
+async function demo() {
+  const cols = [...document.querySelectorAll("#boardCols .col")]; if (!cols.length) return;
+  document.querySelectorAll("#boardCols .card").forEach(x => x.remove());
+  const path = cols.map((c, i) => i).filter(i => !/lost|spam|not qualified|no.?show|no response/i.test(D.pipeline[i].name));
+  const steps = path.length ? path : [0];
+  for (const i of steps) {
+    document.querySelectorAll("#boardCols .card").forEach(x => x.remove());
+    const card = document.createElement("div"); card.className = "card fly";
+    card.innerHTML = `<b>Sample lead · Maria P.</b>${esc(D.pipeline[i].name)}`;
+    cols[i].appendChild(card); cols[i].scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    $("#demoTxt").textContent = D.pipeline[i].plain;
+    await new Promise(r => setTimeout(r, 1500));
+  }
+}
+
+function bind() {
+  document.querySelectorAll(".step").forEach(b => b.onclick = () => { if (timer) play(); journey(+b.dataset.i) });
+  $("#jprev").onclick = () => journey(ji - 1); $("#jnext").onclick = () => journey(ji + 1); $("#jplay").onclick = play;
+  $("#demo").onclick = demo;
+  window.addEventListener("resize", () => journey(ji, false));
+  document.querySelectorAll(".msg").forEach(card => {
+    const code = card.dataset.code, edit = $(".edit", card);
+    card.querySelectorAll("[data-act]").forEach(b => b.onclick = async () => {
+      const status = b.dataset.act; card.dataset.st = status;
+      card.querySelectorAll("[data-act]").forEach(x => x.setAttribute("aria-pressed", x === b));
+      edit.hidden = status !== "change";
+      const body = { code, status };
+      if (status === "change") { body.new_text = $("textarea", card).value; body.note = $("input", card).value; }
+      await save("edits", code, body); if (status === "change") $("textarea", card).focus();
+    });
+    let h; card.querySelectorAll("[data-f]").forEach(f => f.oninput = () => { clearTimeout(h); h = setTimeout(async () => {
+      const ok = await save("edits", code, { code, status: "change", new_text: $("textarea", card).value, note: $("input", card).value });
+      $(".saved", card).textContent = ok ? "Saved" : "Kept on this device"; }, 700) });
+  });
+  document.querySelectorAll(".task").forEach(card => {
+    const id = card.dataset.id;
+    card.querySelectorAll("[data-act]").forEach(b => b.onclick = () => {
+      card.dataset.st = b.dataset.act; card.querySelectorAll("[data-act]").forEach(x => x.setAttribute("aria-pressed", x === b));
+      save("tasks", id, { id, status: b.dataset.act, note: $("input", card).value });
+      if (b.dataset.act === "help") $("input", card).focus();
+    });
+    let h; $("input", card).oninput = e => { clearTimeout(h); h = setTimeout(() => save("tasks", id, { id, status: card.dataset.st || "help", note: e.target.value }), 700) };
+  });
+  document.querySelectorAll(".dec").forEach(card => {
+    const id = card.dataset.id;
+    card.querySelectorAll("[data-act]").forEach(b => b.onclick = () => {
+      card.querySelectorAll("[data-act]").forEach(x => x.setAttribute("aria-pressed", x === b));
+      save("answers", id, { id, answer: b.dataset.act, note: $("input", card).value });
+    });
+    let h; $("input", card).oninput = e => { clearTimeout(h); h = setTimeout(() => save("answers", id, { id, answer: (state.answers[id] || {}).answer || "", note: e.target.value }), 700) };
+  });
+  $("#copy").onclick = async () => { const t = summary(); try { await navigator.clipboard.writeText(t); toast("Copied. Paste it in Basecamp for Pedro.") } catch { const p = $("#pre"); p.hidden = false; p.textContent = t; const r = document.createRange(); r.selectNodeContents(p); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("Selected. Copy it and paste it in Basecamp.") } };
+  $("#showTxt").onclick = () => { const p = $("#pre"); p.hidden = !p.hidden; p.textContent = summary() };
+}
+function progress() {
+  if (!D) return;
+  const msgs = D.stages.flatMap(s => s.messages), ed = Object.values(state.edits);
+  const ok = ed.filter(e => e.status === "ok").length, chg = ed.filter(e => e.status === "change").length;
+  const tk = Object.values(state.tasks), done = tk.filter(t => t.status === "done").length, help = tk.filter(t => t.status === "help").length;
+  const ans = Object.values(state.answers).filter(a => a.answer).length;
+  const total = msgs.length + D.client_tasks.length + D.decisions.length, got = ok + chg + done + help + ans;
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v };
+  set("progTxt", `${got} of ${total} answered`); const bar = $("#progBar"); if (bar) bar.style.width = (total ? 100 * got / total : 0) + "%";
+  set("nOk", ok); set("nChg", chg); set("nDone", done); set("nHelp", help); set("nAns", ans);
+  set("sendTxt", canWrite ? "Pedro sees your answers as you go. Copy them only if you'd like to keep a record." : "Copy your answers and paste them in Basecamp. Pedro turns each change into a task.");
+}
+function summary() {
+  const L = [`CRM guide review: ${D.client.name}`, ""];
+  const ms = D.stages.flatMap(s => s.messages);
+  const ch = ms.filter(m => (state.edits[m.code] || {}).status === "change"), ok = ms.filter(m => (state.edits[m.code] || {}).status === "ok");
+  L.push(`Messages OK: ${ok.map(m => m.code).join(", ") || "none yet"}`);
+  if (ch.length) { L.push("", "Changes:"); ch.forEach(m => { const e = state.edits[m.code]; L.push(`- ${m.code}: ${e.new_text}${e.note ? `  (note: ${e.note})` : ""}`) }) }
+  L.push("", "My part:"); D.client_tasks.forEach(t => { const s = state.tasks[t.id] || {}; L.push(`- [${s.status === "done" ? "done" : s.status === "help" ? "need help" : "open"}] ${t.title}${s.note ? ` (${s.note})` : ""}`) });
+  L.push("", "Decisions:"); D.decisions.forEach(d => { const a = state.answers[d.id] || {}; L.push(`- ${d.question} ${a.answer ? a.answer.toUpperCase() : "(no answer)"}${a.note ? ` (${a.note})` : ""}`) });
+  return L.join("\n");
+}
+
+async function boot() {
+  try { const r = await fetch("data.json", { cache: "no-store" }); D = await r.json() }
+  catch { $("#app").innerHTML = '<p class="empty">This guide could not load its content. Reload the page, or ask Pedro for a new link.</p>'; return }
+  Object.assign(state, local.get());
+  for (const k of ["edits", "tasks", "answers"]) state[k] = state[k] || {};
+  render();
+  const [dbns, user] = await Promise.all([window.claude?.use?.("db") ?? null, window.claude?.use?.("user") ?? null]);
+  if (user) { try { me = await user.id() } catch {} ; try { const c = await user.can("data.write"); canWrite = c !== false } catch { canWrite = true } }
+  db = dbns; if (!db) { canWrite = false; note(); progress(); return }
+  note();
+  for (const k of ["edits", "tasks", "answers"]) {
+    let t = setTimeout(() => {}, 10000);
+    db.collection(k).onSnapshot(snap => {
+      clearTimeout(t); let changed = false;
+      snap.docs.forEach(d => { const v = d.data(); const cur = state[k][d.id]; if (!cur || (v.at || "") > (cur.at || "")) { state[k][d.id] = v; changed = true } });
+      if (changed) { local.set(state); refresh(k) }
+    }, () => clearTimeout(t));
+  }
+}
+function refresh(k) {
+  if (k === "edits") document.querySelectorAll(".msg").forEach(card => { const e = state.edits[card.dataset.code]; if (!e) return; card.dataset.st = e.status;
+    card.querySelectorAll("[data-act]").forEach(x => x.setAttribute("aria-pressed", x.dataset.act === e.status)); $(".edit", card).hidden = e.status !== "change";
+    const ta = $("textarea", card); if (document.activeElement !== ta && e.new_text != null) ta.value = e.new_text; });
+  if (k === "tasks") document.querySelectorAll(".task").forEach(card => { const s = state.tasks[card.dataset.id]; if (!s) return; card.dataset.st = s.status;
+    card.querySelectorAll("[data-act]").forEach(x => x.setAttribute("aria-pressed", x.dataset.act === s.status)); });
+  if (k === "answers") document.querySelectorAll(".dec").forEach(card => { const a = state.answers[card.dataset.id]; if (!a) return;
+    card.querySelectorAll("[data-act]").forEach(x => x.setAttribute("aria-pressed", x.dataset.act === a.answer)); });
+  progress();
+}
+boot();
+})();
+</script>
