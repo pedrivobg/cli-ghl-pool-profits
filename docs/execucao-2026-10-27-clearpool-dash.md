@@ -730,3 +730,9 @@
   Sem tarefa nova, sem mudança no GHL. Ledger: 3 linhas (done).
 - 09/11 (2º lote): Val (DM) "awesome!!!! TYSM!!!" — só agradecimento depois da minha resposta; sem resposta, sem
   tarefa, sem mudança no GHL. Ledger: 1 linha (done).
+
+## 09/11 — inbox: Val (número do Ed + weekly meeting)
+
+- Val (DM): o número "Ed's number" da YardSpring (678) 448-5005 não é usado → fica sem encaminhamento (nada gravado no
+  GHL). Weekly meeting mudou para 12h (horário dela) com link do Zoom às 12h02 BRT → push para o Pedro entrar.
+  Respondi no DM. Sem tarefa nova. Ledger: 3 linhas (1 done, 2 needs_pedro).
