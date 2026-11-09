@@ -705,3 +705,8 @@
 - Comentário do Atif na tarefa 86bcwet1g perguntando à **Val** se o cliente já respondeu sobre a página Pool Repairs
   (áreas atendidas + imagem de fundo, aguardando o Felipe). Nada pedido a mim: sem resposta, sem tarefa nova, sem
   mudança no GHL. Ledger: 1 linha (done).
+
+## 09/11 — inbox: Frank "Sounds great" (Ekahi)
+
+- Resposta do Frank ao meu e-mail sobre o Ekahi: só agradecimento, nada pedido. Sem resposta, sem mudança no GHL.
+  Ekahi segue aguardando o Pedro aprovar o rascunho para o Erik (tarefa 86bcz7706, prazo 11/11). Ledger: 1 linha (done).
