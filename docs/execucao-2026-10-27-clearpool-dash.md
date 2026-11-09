@@ -761,3 +761,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Telefonia: West Coast "No Twilio account" (LC Phone não ativado); Capital com Twilio e 0 números. Sites sem privacy/
   terms (404) → A2P pelo funil "New A2P Verification". Calendários inativos sem membros (booking tirado, padrão).
   Passos do Pedro no TODO 3.
+
+## 09/11 — inbox: Val (número do Ed + weekly meeting)
+
+- Val (DM): o número "Ed's number" da YardSpring (678) 448-5005 não é usado → fica sem encaminhamento (nada gravado no
+  GHL). Weekly meeting mudou para 12h (horário dela) com link do Zoom às 12h02 BRT → push para o Pedro entrar.
+  Respondi no DM. Sem tarefa nova. Ledger: 3 linhas (1 done, 2 needs_pedro).
