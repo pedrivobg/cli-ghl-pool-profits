@@ -49,6 +49,16 @@ não resolve → Review Request fica draft até conectar o GBP (depois: `pp_dump
 P/pp_dump.py --only "<n>";  P/pp_audit.py --only "<n>";  P/pp_ready.py --only "<n>" [--place <slug>=<placeId>]
 ```
 
+## 4. Guia do CRM (todo cliente, antes da pre-meeting do go-live)
+Página interativa padrão (mesmo layout para todos, só os dados do cliente mudam): `site/crm-guide/SCHEMA.md`.
+```
+P/pp_crm_guide.py <slug>   # revisar site/crm-guide/data/<slug>.json
+scripts/pp_crm_guide_site.sh <slug> "<Nome curto>" <scratchpad>/crm-guide/<slug>
+```
+Publicar como artifact (passo 3 do SCHEMA) → Pedro deixa **Share → anyone with the link** → link para o Frank
+(ClickUp DM) mandar ao cliente. O cliente devolve pelo "Copy my answers" (Basecamp); eu aplico as mudanças de texto
+(`config/<cliente>_wording.json`) e as tarefas dele viram itens do onboarding.
+
 ## Pronto quando…
 - `pp_audit` **0 ALTA** (as 4 MÉDIA "Add Task incompleto" + Won/Review mesmo gatilho existem no modelo);
 - `pp_ready` **0 ERRO** (aviso aceito: Review Request draft sem place);

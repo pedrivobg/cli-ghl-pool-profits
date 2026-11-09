@@ -60,9 +60,11 @@ One interactive page (`site/crm-guide/index.html`) serves every client; only thi
 2. `scripts/pp_crm_guide_site.sh <slug> "<Nome curto>" <scratchpad>/crm-guide/<slug>`.
 3. Artifact: `file_path` = `index.html` da pasta, `files` `{data.json, logo.png}`, `capabilities {db:{}, user:{}}`,
    icon `guide`. Republicar a mesma pasta mantém a URL.
-4. Compartilhar: convidar o e-mail do cliente como **Editor** (Share) → as respostas gravam no `db`; sem convite elas
-   ficam no navegador dele e o botão "Copy my answers" gera o texto para colar no Basecamp.
-5. Depois da reunião: ler `edits`, `tasks`, `answers` com ArtifactData e aplicar (`config/<cliente>_wording.json`).
+4. Compartilhar (padrão, Pedro 09/11): **Share → anyone with the link** (só o Pedro muda isso na página) → mandar o
+   link ao Frank no ClickUp, ele envia ao cliente. Com link público as respostas ficam no navegador do cliente
+   (sobrevivem a recarregar) e o botão "Copy my answers" gera o texto para colar no Basecamp/e-mail.
+5. Depois da reunião: pegar o texto do "Copy my answers" (e o `db`, se alguém da equipe preencheu logado) e aplicar
+   (`config/<cliente>_wording.json`; tarefas do cliente → onboarding).
 
 Publicados (09/11): Corolla https://claude.ai/artifact/Mssjgf1bDYimNqcHpJdp8W · Aqua Clear
 https://claude.ai/artifact/Lvjw8puELksVQ71xV4TCcN
