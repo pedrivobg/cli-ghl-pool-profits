@@ -767,3 +767,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Val (DM): o número "Ed's number" da YardSpring (678) 448-5005 não é usado → fica sem encaminhamento (nada gravado no
   GHL). Weekly meeting mudou para 12h (horário dela) com link do Zoom às 12h02 BRT → push para o Pedro entrar.
   Respondi no DM. Sem tarefa nova. Ledger: 3 linhas (1 done, 2 needs_pedro).
+
+## 09/11 — Guia do CRM da Poolheads (pedido do Frank, ClickUp DM)
+- `pp_crm_guide.py poolheads` (dumps novos de master, Southern e Poolheads). M1 trocado pelo texto que está no ar
+  (`config/poolheads_wording.json`, conferido no template da conta); nota do topo diz que o M1 já está no ar e o resto
+  liga depois da aprovação; tarefa de forms genérica (o tool sugeria "GOOGLE ADS – LEAK DETECTION" no site); horário 9–5
+  seg–sex já conhecido.
+- Publicado direto na tabela n8n "CRM Guides" (o `pp_crm_guide_publish.py` precisa da chave de admin na linha de
+  comando, bloqueado nesta rotina). Link `https://n8n.valenteai.cloud/webhook/crm-guide?c=poolheads-2377671f`: 200,
+  dados iguais ao arquivo, sem erro de JS. Enviado ao Frank.
