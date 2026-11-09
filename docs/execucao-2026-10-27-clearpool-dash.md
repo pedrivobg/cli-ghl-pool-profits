@@ -680,3 +680,22 @@
   ajuste do Post-Appointment. Frank respondido no e-mail. Tarefa 86bcz7706 (prazo 11/11, 1 h).
 - **Pool Keepers**: Frank mandou a folha M1–M23 ao Nathan antes da call — só FYI. Digest do Basecamp: nada pedido.
 - Ledger: 4 linhas (3 done, 1 needs_pedro).
+
+## 09/11 (~12h30 UTC) — inbox: Val "set everything to Joe" + conferir avisos das contas novas
+
+- Val (DM ClickUp) respondeu à pergunta da YardSpring: tudo para o Joe; e pediu checar avisos de Pool Shack, YardSpring,
+  NorTex e Pool Duck LWR. Novo `scripts/pp_notify_map.py <loc>` (só leitura: linhas, usuários e quem recebe cada aviso
+  em todo workflow publicado). Correções em `scripts/pp_notify_fix.py ys|lwr [--apply|--test]` (backup antes do PUT).
+- **YardSpring**: os avisos de Ads/LP/lead form já iam para o Joe (SMS + e-mail + tarefa), contato novo → dono Joe.
+  "Website Form Fill To Pipeline" só fazia card + tarefa → **SMS "NEW LEAD - Website Form" ao Joe** depois da tag (mesmo
+  passo da NorTex/Pool Shack). "Sequential Call Routing" (cópia da BluVantage: Fred/Paul, números e recado da
+  BluVantage) estava publicado → **draft**. As 3 linhas seguem sem encaminhamento → passo do Pedro (tela) enviado por
+  e-mail: encaminhar para +1 770-615-7665 + ligação de teste.
+- **Pool Duck LWR**: "Google AdWords - Qualified Lead (Call In)" (linha 941-541-5942, sem encaminhamento/IVR) fazia card
+  + tags e não avisava ninguém → **SMS "NEW GOOGLE ADS CALL" a Kenton + Pool Duck Service**. Perguntei à Val para onde a
+  linha deve tocar. Ainda: fluxos antigos "… - Steve" / chat widget sem destinatário (ver se são usados).
+- Pool Shack (tudo → Rob, linhas encaminham para 480-798-2888) e NorTex (tudo → Fareed, linhas no IVR): nada faltando.
+- Missed-call text nativo ligado em YardSpring, NorTex e LWR (na YardSpring é o único text-back): não mexi.
+- Teste: cópia ZZ TEST de cada cadeia nova (gatilho por tag, alerta/card/tarefa trocados por tags), contato
+  @example.com: ✓ nas duas contas; contato, cópias e tags `zz notify test*` apagados. Releitura: status/re-entry iguais,
+  gatilho ativo. Tarefa 86bd02rg2 (in progress). Ledger: 2 linhas (1 done, 1 needs_pedro).

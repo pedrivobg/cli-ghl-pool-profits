@@ -21,7 +21,7 @@ combinar antes.
    BluVantage (ClickUp 86bd02rg6).
 7. **Na tela**: Call Recording Poolheads; Tiffany (WP Pools) telefone no usuário; LWR Google Lead Ads → mapear e ativar
    o form "Weekly pool service done right".
-8. **YardSpring**: encaminhar os 3 números (Settings → Phone Numbers) para o telefone que a Val confirmar + ligação de
+8. **YardSpring**: encaminhar os 3 números (Settings → Phone Numbers) para o celular do Joe +1 770-615-7665 (Val, 09/11) + ligação de
    teste (86bd02rg2). **Lee**: aprovar o rascunho no Gmail (Re: Tampa Show Workflows).
 9. **Contas no snapshot antigo** (Pool Palooza, Corolla, Aqua Clear, ABC, Clear Conceptz, Pool Smart OC…): decidir com o
    Frank quais migram para o V9 (ClickUp 86bcz86jw).
