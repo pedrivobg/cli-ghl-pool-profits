@@ -710,3 +710,15 @@
 
 - Resposta do Frank ao meu e-mail sobre o Ekahi: só agradecimento, nada pedido. Sem resposta, sem mudança no GHL.
   Ekahi segue aguardando o Pedro aprovar o rascunho para o Erik (tarefa 86bcz7706, prazo 11/11). Ledger: 1 linha (done).
+
+## 09/11 — inbox: Val (LWR linha do Ads no menu + checklist padrão), Poolheads LP (Atif ↔ Val)
+
+- Val (DM): a linha do Google Ads da LWR (+1 941-541-5942, hoje não toca ninguém) deve passar pelo menu principal da
+  Pool Duck, como a 941-588-2227. Novo `scripts/pd_lwr_ads_ivr.py plan|apply` (soma o número ao "Start IVR Trigger" do
+  "Active - Phone Tree IVR", backup + releitura; mesmo padrão do `bv_call_numbers.py`). Plan ok; o **apply foi bloqueado
+  pela permissão da sessão automática** → nada gravado. Passo do Pedro por e-mail: rodar o apply (ou tela) + ligação de
+  teste. O "Google AdWords - Qualified Lead (Call In)" (call_status na linha) segue avisando Kenton + Service com IVR.
+- Val pediu checklist padrão por cliente a cada form novo / antes de campanha → `docs/client-setup-checklist.md`
+  (telefones/IVR, avisos, atribuição, forms/LP/lead form, tracking, workflows copiados, teste). Respondido no DM.
+- Poolheads LP (86bcwet1g): Atif ↔ Val, nada pedido a mim.
+- Tarefa 86bd02rg2 atualizada. Ledger: 3 linhas (2 done, 1 needs_pedro).
