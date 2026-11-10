@@ -91,6 +91,38 @@ def model_only(step: dict) -> bool:
         (at.get("email") or {}).get("userType") == "custom_email"
 
 
+def drop_plain_step(tpl: list[dict], sid: str) -> list[dict]:
+    """drop_step that also goes past a condition/wait: the following nodes of the same chain move up one, and so do
+    the transitions hanging from a multi-path node (their order is the node's + 1); what is inside a branch keeps its
+    own order (each branch starts at 0)."""
+    by = {s["id"]: s for s in json.loads(json.dumps(tpl))}
+    gone = by.pop(sid)
+    nxt = gone.get("next")
+    if isinstance(nxt, list):
+        raise SystemExit("cannot drop a condition node")
+    for s in by.values():
+        if s.get("next") == sid:
+            if nxt:
+                s["next"] = nxt
+            else:
+                s.pop("next")
+    cur = by.get(nxt) if nxt else None
+    if cur:
+        if gone.get("parentKey"):
+            cur["parentKey"] = gone["parentKey"]
+        else:
+            cur.pop("parentKey", None)
+    while cur:
+        cur["order"] -= 1
+        if isinstance(cur.get("next"), list):
+            for t in by.values():
+                if t.get("parent") == cur["id"] and t.get("parentKey") == cur["id"]:
+                    t["order"] -= 1
+            break
+        cur = by.get(cur.get("next")) if isinstance(cur.get("next"), str) else None
+    return list(by.values())
+
+
 def review_place(side: Side) -> str | None:
     """Google place of an account whose profile has none (GBP not connected): from google_review_link."""
     link = next(((c.get("value") or "").strip() for c in side.custom_values
@@ -549,6 +581,24 @@ class Mirror:
             for s in [s for s in steps if model_only(s)]:  # e.g. Southern's lead e-mail to Brett
                 steps = drop_step(steps, s["id"])
                 self.say(f"      sem o passo '{s['name']}' (e-mail para {s['attributes']['email'].get('to')}, só do modelo)")
+            # "Remove from Workflow" naming a model workflow the target doesn't have (old-snapshot accounts without
+            # Appointment Confirmation/Reminders, 10/11): nothing to remove the contact from → drop that id / the step
+            m_wf = {w["id"]: w["name"] for w in self.m.index}
+            for s in [s for s in steps if s.get("type") == "remove_from_workflow"]:
+                ids = (s.get("attributes") or {}).get("workflow_id") or []
+                gone = [i for i in ids if i in m_wf and i not in self.ids]
+                if not gone:
+                    continue
+                keep = [i for i in ids if i not in gone]
+                what = ", ".join(m_wf[i] for i in gone)
+                if keep:
+                    s["attributes"]["workflow_id"] = keep
+                    self.say(f"      '{s['name']}': sem {what} (a conta não tem)")
+                else:
+                    if isinstance(s.get("next"), str):
+                        self.ids[s["id"]] = s["next"]  # a trigger aimed at the dropped step starts at the next one
+                    steps = drop_plain_step(steps, s["id"])
+                    self.say(f"      sem o passo '{s['name']}' (tirava de {what}, que a conta não tem)")
             if self.template:
                 steps = self.blank_users(steps)
                 def userless(st: dict) -> bool:  # GHL refuses these without a user
