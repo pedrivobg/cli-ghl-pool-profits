@@ -60,6 +60,13 @@ End with a 2-line summary in Portuguese.
   para ir junto. Itens segurados não entram no ledger e voltam no ciclo seguinte.
 - ClickUp não tem API de "marcar como lido" no chat: lá continua manual.
 
+## Triagem v3 (10/11)
+- O Frank escreveu "Hey i may start needed help with the a2p verifications" e o n8n fechou como cumprimento (começava com
+  "Hey"). As perguntas dele sobre DNS/custom values (com print) viraram `easy` e ficaram até 2 h esperando lote.
+- Agora: ack só sem pedido (help/need/can you/please/check/fix… ou texto longo com pergunta); domínio/DNS/CNAME/SSL/A2P/
+  custom value/business profile = `complex` (dispara na hora); pergunta, imagem ou pedido = `medium` (dispara após 20 min
+  ou 30 min desde o último disparo); `easy` espera no máximo 30 min.
+
 ## Limites
 - Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
   na sessão da rotina se estiverem nas variáveis do ambiente (TODO, "Tokens fora do chat").

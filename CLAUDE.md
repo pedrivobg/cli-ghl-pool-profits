@@ -117,6 +117,11 @@
   locationIds, permissions}` (sem `scopes`: 422; senha não obrigatória → primeiro acesso por "Forgot password" em
   app.poolprofits.com). Copiar `permissions` de um usuário existente com o mesmo papel. O `phone` vai na criação (o PUT depois recusa o token
   Firebase); `lastName` obrigatório. Apagar sub-conta: `DELETE services /locations/{id}?deleteTwilioAccount=true` (27/10).
+- **A2P / Business Profile / campanha por API interna** (10/11, `docs/a2p-automation.md`, `scripts/pp_a2p.py`): perfil A2P =
+  `PUT services /locations/{id}` (`legalBusinessName`, `businessInformation`, `authorizedRepresentative`; padrão CONSUMER /
+  CEO); campanha + encaminhamento = `backend /phone-system/twilio-accounts` (`campaignDetails`, `forwardingNumbers`);
+  envio = `POST backend/isv_service /compliance/{companyId}/standard-registration/{loc}?brandType=standard` (pago, só com
+  OK do Pedro). API oficial/Marketplace não tem nada disso.
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
 - Tag usada em passo/gatilho/if-else **tem que existir na conta** (`POST backend /workflow/{loc}/tags/create
   {tag}`): o passo funciona, mas o construtor mostra "Referenced Tag does not exist" (Frank viu no Won
