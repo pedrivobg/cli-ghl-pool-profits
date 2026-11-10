@@ -832,3 +832,16 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Website Form Fill da Orange Tree, sem usuário (Net Positive, Next Level, Pooly, Ponchos), `location_dirs` casa por
   pedaço do nome (Damon's pega a Billing Only). Planos em `scratchpad/fleet/`.
 - **Fora por configuração própria**: BluVantage, Clear Pool Tucson, Ekahi, Sunwave, Pool Palooza, Golden View, Pool Duck.
+## 10/11 — Rodada diária de contas novas (`daily-newaccounts-2026-11-10`)
+
+- `pp_new_account.py --scan --apply --submit` (9 contas dos últimos 30 dias): Blissful Waters `A2P Verification Number` →
+  (210) 864-9642 (número do GHL). Nenhum envio de A2P: todas esperam o go.<domínio> no site "New A2P Verification".
+  Sem número disponível no DDD: Cleverblu (407) e Blissful (210) para as linhas 2 e 3.
+- **Bug corrigido**: na Poolheads (já com nomes próprios, "Website & GBP"/"Google Adwords") o script rotulou as 2 linhas
+  antigas sem nome — o principal 936-314-9255 virou "Facebook Ads". Voltei os dois nomes para vazio (encaminhamento do
+  9255 → Felipe intacto) e o script agora só nomeia em conta sem nenhum nome ou número que ele mesmo comprou.
+- `pp_dump` + `pp_audit` + `pp_ready`: 0 ALTA em todas; 0 ERRO nas 8 novas (Blissful, Bonneville, Capital, Cleverblu com
+  `--place` do `google_review_link` da conta). Poolheads: ERROs são os drafts/fluxos da conta antiga (combinado, fora daqui).
+- Guia do CRM publicado e aberto (200, sem erro de JS): Cleverblu, Blissful Waters, Rosebrook, WP Pools, Bonneville
+  (`config/crm_guide_links.json`) → DM ao Frank. Comentário de status nas 5 tarefas "Create GHL Account" (Capital/West
+  Coast já comentadas hoje, sem mudança). Sem e-mail novo: os 1ºs números já estão no [Passo seu] de hoje.
