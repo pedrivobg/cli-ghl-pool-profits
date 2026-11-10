@@ -130,6 +130,10 @@
   contas: `POST services /reporting/dashboards/{id}/duplicate {locationId, targetLocationId, title}` (a cópia vem privada) →
   `POST …/{novo}/permissions {locationId, permissionAccess, isPrivate: false}` → `POST …/{novo}/set-default {locationId}`
   (privado dá 403). Mudou o dashboard na Snapshot → apagar a cópia nas contas e rodar de novo (pula quem já tem o título).
+- **Gate de nota** (Frank 10/11): no Review Request o ramo "Low NPS" é só `NPS != 5` (antes `!= 5 e != 4`: o 4 ia para o
+  Google) e começa com o SMS "SMS - Ask What Went Wrong" (template "NPS - Feedback Request (below 5)") antes do aviso à
+  equipe (`scripts/pp_review_gate.py`). Conta fora do modelo: `scripts/pp_fleet_check.py` (etapas, CONTENT do pp_mirror,
+  gate, dashboard).
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
 - Tag usada em passo/gatilho/if-else **tem que existir na conta** (`POST backend /workflow/{loc}/tags/create
   {tag}`): o passo funciona, mas o construtor mostra "Referenced Tag does not exist" (Frank viu no Won
