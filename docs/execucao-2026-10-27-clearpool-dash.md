@@ -767,3 +767,21 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Val (DM): o número "Ed's number" da YardSpring (678) 448-5005 não é usado → fica sem encaminhamento (nada gravado no
   GHL). Weekly meeting mudou para 12h (horário dela) com link do Zoom às 12h02 BRT → push para o Pedro entrar.
   Respondi no DM. Sem tarefa nova. Ledger: 3 linhas (1 done, 2 needs_pedro).
+
+## 10/11 — inbox (6 itens): Ekahi no ar, Pool Keepers só 5 estrelas, Skimmer/Voice AI, blog do Ekahi
+
+- **Ekahi** (Basecamp, cliente vê): Erik escolheu STOP só no trimestral + Opção A no dia 75. `ek_90day.py`: dia 30 sem
+  "Reply STOP"; e-mail do dia 75 = "90 Days - Day 75 - Equipment Check-in" (template antigo renomeado, assunto "Quick
+  equipment check-in from Ekahi Solutions"; areia a cada 5–7 anos, bomba/vazamento/aquecedor). `build --apply` (draft) →
+  `test` ✓ (caminho completo 320 s, loop, guarda) → novo `publish --apply`: **First 90 Days publicado** (re-entry off,
+  gatilho ativo) + **Post-Appointment Follow-up** sem o "SMS 1" (espera de resposta → espera de 2 dias; tags e
+  Recurring iguais; status/re-entry mantidos). Post-Appointment novo testado em cópia ZZ TEST (esperas 1 min, card →
+  tag) ✓. Tudo apagado. Resposta ao Erik = [Aprovar] por e-mail. Tarefa 86bcz7706 fechada.
+- **Pool Keepers** (BurchTech; Nathan via Frank): só nota 5 recebe o pedido de review do Google; 1–4 → SMS "Negative
+  customer feedback" ao Nathan. Novo `scripts/pk_nps_five.py` (plan / `--test` / `--apply`): ramo Low = `!= 5` (era `!= 5`
+  e `!= 4`). Teste em cópia ZZ TEST (5 → high, 4 e 1 → low) ✓, apagada. Review Request segue **draft** (publicar combinado).
+- **Skimmer / Voice AI** (Frank DM): form do Skimmer não tem webhook; Zapier/API do Skimmer só nos planos Scaling Up /
+  Enterprise → proposta: form do GHL no site + envio ao Skimmer via Zapier/n8n; perguntei o plano do Nathan. Voice AI do
+  GHL explicado (atende fora do horário, coleta dados, avisa o Nathan; por minuto ou plano fixo); monto em draft se ele quiser.
+- **Blog do Ekahi** (posts 4 e 5, notas do Erik): é do time de conteúdo (Frank) — avisado no DM, sem post no cliente.
+- Ledger: 6 linhas (5 done, 1 needs_pedro).

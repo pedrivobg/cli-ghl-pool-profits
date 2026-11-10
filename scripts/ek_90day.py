@@ -5,13 +5,14 @@
     ./.venv/bin/python scripts/ek_90day.py build            # plan (read-only): texts + steps
     ./.venv/bin/python scripts/ek_90day.py build --apply    # templates (snippets) + DRAFT workflow + Won trigger
     ./.venv/bin/python scripts/ek_90day.py test             # ZZ TEST copy: minute waits, tags instead of SMS/e-mail
+    ./.venv/bin/python scripts/ek_90day.py publish [--apply] # publish + Post-Appointment without its 1 h "SMS 1"
 
 Sequence (trigger = Pool Leads / Won, the same stage as Won Stage, Post-Appointment and Review Request):
     +1 h          Day 1 SMS   service details (gate code, pets, best way to reach)   [Won Stage welcome SMS stays]
     day 7         SMS         how was the first visit                                [replaces the 1 h Post-Appointment SMS]
     (day 14       NPS / review request: Review Request workflow, unchanged)
     day 30        SMS         island pool tip (rain / sun / trade winds)
-    day 75        e-mail      filter cleaning heads-up (text of the draft "Filter Clean Reminder")
+    day 75        e-mail      equipment check-in (sand every 5-7 years, pump/leaks/heater; Erik option A, 10/11)
     every 90 days SMS         seasonal check-in (Go To loop)
 Before every message: guard if/else "Still a client?" (no tag lost lead / spam / dnd / one-time customer). Waits hold
 until Mon-Fri 9:00-17:00 (account time zone, Pacific/Honolulu). Re-entry off (moving the card to Won again does not
@@ -53,20 +54,21 @@ SMS = {  # template name -> body
     "90 Days - Day 30 - Island Pool Tip":
         f"Aloha {FN}! Quick tip from Erik: heavy rain dilutes your chemicals and strong sun burns off chlorine, "
         "so if the water looks off after a storm or a hot week, let me know. When the trade winds kick up, "
-        "keeping the skimmer basket clear helps a lot. Reply anytime! Reply STOP to opt out.",
+        "keeping the skimmer basket clear helps a lot. Reply anytime!",
     "90 Days - Quarterly Seasonal Check-in":
         f"Howzit {FN}! Seasonal check-in from Erik at {BIZ}: anything new with your pool? More swimming, "
         f"guests coming, equipment making noise? Just reply or call/text {PH}. Mahalo! Reply STOP to opt out.",
 }
-EMAIL_NAME = "90 Days - Day 75 - Filter Clean Heads-up"
-EMAIL_SUBJECT = "Your filter cleaning is coming up soon"
+EMAIL_NAME = "90 Days - Day 75 - Equipment Check-in"
+OLD_EMAIL_NAME = "90 Days - Day 75 - Filter Clean Heads-up"  # renamed 10/11 (Erik chose option A)
+EMAIL_SUBJECT = "Quick equipment check-in from Ekahi Solutions"
 
 # (label, wait, kind, template name) — wait = (unit, value) after the previous message
 PLAN = [
     ("Day 1 - Service Details", ("hours", 1), "sms", "90 Days - Day 1 - Service Details"),
     ("Day 7 - First Visit Check-in", ("days", 6), "sms", "90 Days - Day 7 - First Visit Check-in"),
     ("Day 30 - Island Pool Tip", ("days", 23), "sms", "90 Days - Day 30 - Island Pool Tip"),
-    ("Day 75 - Filter Clean Heads-up", ("days", 45), "email", EMAIL_NAME),
+    ("Day 75 - Equipment Check-in", ("days", 45), "email", EMAIL_NAME),
     ("Quarterly Seasonal Check-in", ("days", 90), "sms", "90 Days - Quarterly Seasonal Check-in"),
 ]
 LOOP = "Quarterly Seasonal Check-in"
@@ -166,12 +168,12 @@ def message(label: str, kind: str, tname: str, ids: dict, email_tpl: dict, test:
 def email_html() -> str:
     p = '<p class="custom-newline" style="line-height: 1.5;padding-left: 0px!important;margin:0px">{}</p>'
     lines = [f"Aloha {FN},",
-             f"It's been about 75 days since you started your service with {BIZ}, which means your filter cleaning "
-             "is coming up soon!",
-             "We'll be keeping an eye on it during our next few visits and will get you scheduled when the cleaning "
-             "is due.",
-             "As always, if you have any questions or concerns about your pool, just reply to this email or call/text "
-             f"us at {PH}.",
+             f"It's been about 75 days since you started service with {BIZ}! We've been backwashing your filter as "
+             "needed and keeping an eye on your equipment.",
+             "Quick heads-up: filter sand usually needs replacing every 5 to 7 years, so if you're not sure when "
+             "yours was last changed, just let me know and I'll check it on your next visit. Same goes for any pump "
+             "noises, leaks or a heater acting up.",
+             f"Just reply to this email or call/text {PH}.",
              "Mahalo,", "{{custom_values.owner_first_name}}", BIZ, PH]
     return "".join(p.format(x) for x in lines)
 
@@ -225,8 +227,8 @@ def snippet_ids(a: Agency, apply: bool) -> dict:
     want[EMAIL_NAME] = ("email", {"subject": EMAIL_SUBJECT, "html": email_html(), "attachments": []})
     ids = {}
     for name, (typ, tpl) in want.items():
-        s = snips.get(name)
-        if s and all((s.get("template") or {}).get(k) == v for k, v in tpl.items() if k != "attachments"):
+        s = snips.get(name) or (snips.get(OLD_EMAIL_NAME) if name == EMAIL_NAME else None)
+        if s and s["name"].strip() == name and all((s.get("template") or {}).get(k) == v for k, v in tpl.items() if k != "attachments"):
             ids[name] = s["_id"]
             continue
         print(f"   {'atualiza' if s else 'cria'} template [{typ}] {name}")
@@ -305,6 +307,88 @@ def build(a: Agency, apply: bool) -> int:
     return 0 if now["status"] == "draft" and n == len(steps) and trs else 1
 
 
+# ── publish ──────────────────────────────────────────────────────────────
+
+POST_APPT = "Post-Appointment Follow-up"
+
+
+def post_appt_steps(steps: list[dict]) -> list[dict] | None:
+    """Drop "SMS 1" (1 h after Won, "how did today's service go") and turn its wait-for-reply into a plain 2-day wait;
+    the timeout branch (tag review requested + move to Recurring Customer) becomes the straight path."""
+    by = {s["id"]: s for s in steps}
+    sms = next((s for s in steps if s["type"] == "sms" and s["name"] == "SMS 1"), None)
+    rw = next((s for s in steps if s["type"] == "wait" and (s.get("attributes") or {}).get("type") == "reply"), None)
+    if not sms or not rw:
+        return None
+    timeout = next(s for s in steps if s["type"] == "transition" and s.get("parent") == rw["id"]
+                   and s["attributes"].get("type") == "wait_timeout")
+    keep_branch, nid_ = [], timeout.get("next")
+    while nid_:
+        keep_branch.append(by[nid_])
+        nid_ = by[nid_].get("next")
+    drop = {sms["id"]} | {s["id"] for s in steps if s.get("parent") and s["id"] not in {x["id"] for x in keep_branch}
+                           and (s.get("parent") == rw["id"] or by.get(s.get("parent"), {}).get("parent") == rw["id"])}
+    prev = by[sms["parentKey"]]
+    out = []
+    for s in steps:
+        if s["id"] in drop:
+            continue
+        s = json.loads(json.dumps(s))
+        if s["id"] == prev["id"]:
+            s["next"] = rw["id"]
+        if s["id"] == rw["id"]:
+            at = s["attributes"]
+            for k in ("reply", "replyLabel", "transitions"):
+                at.pop(k, None)
+            at.update(type="time", cat="", convertToMultipath=False, transitions=[])
+            s.update(cat="", parentKey=prev["id"], next=keep_branch[0]["id"], order=prev["order"] + 1)
+        out.append(s)
+    for i, b in enumerate(keep_branch):
+        s = next(x for x in out if x["id"] == b["id"])
+        s.pop("parent", None)
+        s["parentKey"] = rw["id"] if i == 0 else keep_branch[i - 1]["id"]
+        s["order"] = prev["order"] + 2 + i
+    return out
+
+
+def put_status(a: Agency, wid: str, status: str, steps: list[dict] | None = None) -> dict:
+    live = a.workflow(LOC, wid)
+    a.call("PUT", BACKEND, f"/workflow/{LOC}/{wid}", body={
+        "name": live["name"], "version": live.get("version", 1), "status": status, "parentId": live.get("parentId"),
+        "allowMultiple": live.get("allowMultiple", False),
+        "workflowData": {"templates": steps if steps is not None else live["workflowData"]["templates"]}})
+    time.sleep(4)
+    return a.workflow(LOC, wid)
+
+
+def publish(a: Agency, apply: bool) -> int:
+    fl = flows(a)
+    pa = a.workflow(LOC, fl[POST_APPT]["id"])
+    new = post_appt_steps(pa["workflowData"]["templates"])
+    print(f"{POST_APPT}: " + ("já sem SMS 1" if new is None else " -> ".join(s["name"] for s in new
+                                                                         if not s.get("parent"))))
+    if not apply:
+        print("(plano; --apply para publicar o First 90 Days e gravar o Post-Appointment)")
+        return 0
+    wid = fl[NAME]["id"]
+    backup(a, wid, "before-publish")
+    now = put_status(a, wid, "published")
+    trs = [t for t in a.triggers(LOC, wid) if not t.get("deleted")]
+    print(f"✓ {NAME}: status {now['status']}, re-entry {now.get('allowMultiple')}, "
+          f"{len(now['workflowData']['templates'])} nós, gatilhos {[(t['type'], t.get('active')) for t in trs]}")
+    ok = now["status"] == "published" and now.get("allowMultiple") is False
+    if new is not None:
+        backup(a, pa["id"], "before-drop-sms1")
+        now = put_status(a, pa["id"], pa["status"], new)
+        names = [s["name"] for s in now["workflowData"]["templates"]]
+        good = "SMS 1" not in names and now["status"] == pa["status"] and \
+            now.get("allowMultiple") == pa.get("allowMultiple")
+        print(f"{'✓' if good else '✗'} {POST_APPT}: status {now['status']}, re-entry {now.get('allowMultiple')}, "
+              f"passos {names}")
+        ok = ok and good
+    return 0 if ok else 1
+
+
 # ── test ─────────────────────────────────────────────────────────────────
 
 def tags_of(a: Agency, cid: str) -> set:
@@ -379,12 +463,13 @@ def test(a: Agency) -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("cmd", choices=["pause", "build", "test"])
+    ap.add_argument("cmd", choices=["pause", "build", "test", "publish"])
     ap.add_argument("--apply", action="store_true")
     args = ap.parse_args()
     load_dotenv()
     a = Agency()
-    return {"pause": lambda: pause(a), "build": lambda: build(a, args.apply), "test": lambda: test(a)}[args.cmd]()
+    return {"pause": lambda: pause(a), "build": lambda: build(a, args.apply), "test": lambda: test(a),
+            "publish": lambda: publish(a, args.apply)}[args.cmd]()
 
 
 if __name__ == "__main__":
