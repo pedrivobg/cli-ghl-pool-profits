@@ -8,15 +8,15 @@ combinar antes.
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
-3. **Contas novas West Coast e Capital Lawn** (revisadas 09/11, 0 ALTA/0 ERRO): West Coast → ativar LC Phone; nas duas
-   comprar número local (323 / 916), encaminhar para o celular do dono, A2P (site sem privacy → funil "New A2P
-   Verification"), trocar `a2p_verification_number` pelo número novo, conectar o GBP (West Coast: libera o Review
-   Request), primeiro acesso + app (Milen, Zuriel), conferir o friendly name "West Coast Chemical Company". Test Pool Co:
-   private key + form do n8n. **Smart Chem Pools LLC** (`Ykjw1clNFPkr4izP9Uaq`, 09/11): private key + form do n8n
-   (e-mail "Falta 1 passo"; custom values 0/21) → depois eu reviso.
+3. **Contas novas (processo automático desde 10/11, `docs/new-account-review.md`)**: Smart Chem, West Coast e Capital prontas
+   (0 ALTA/0 ERRO, usuário do dono em avisos/tarefas, guia do CRM com o Frank). Falta de você: **1º número** de cada uma
+   (Settings → Phone Numbers; o GHL pede documento + selfie só na 1ª compra) — Smart Chem 512, West Coast 323, Capital 916
+   (o encaminhamento e o resto saem sozinhos); conectores ClickUp/Gmail/n8n na rotina "GHL new accounts + A2P (daily)";
+   GBP de Smart Chem e West Coast; primeiro acesso + app (Steve, Milen, Zuriel). Questionários sem sub-conta: Mako's Pool,
+   Cool N Clean, Puddle Jumper → são clientes? (ativar MCP nos workflows n8n A/B para eu ver a falha).
 4. **Refresh do snapshot V9** (na tela).
-5. **Números + A2P**: Rosebrook, Blissful, WP Pools, Bonneville, West Coast, Capital sem número (nenhum SMS sai); Cleverblu com A2P
-   salvo, falta privacy/terms do site + pagamento + enviar.
+5. **Números + A2P**: 1º número (verificação de identidade) em Rosebrook, WP Pools, Bonneville; Corolla pronta para o envio do
+   A2P assim que o SSL do go.corollapoolandspa.com sair (a rotina diária envia); Cleverblu falta site A2P com domínio.
 6. **Testes reais** (me avisa e eu confiro/apago): Poolheads recado 936-314-9255 (após 17h CT); Southern SMS
    (972) 632-3259; BluVantage ligação fora do horário nos 2 números novos; Clear Pool recado (520) 777-9131;
    NorTex clique em anúncio → form → agendamento (conversão em ~24 h); Bahama Blue ligação não atendida (aperta 1);
