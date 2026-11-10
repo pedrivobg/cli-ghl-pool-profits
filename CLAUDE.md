@@ -12,10 +12,13 @@
 - Fluxo: `pp_dump.py --priority` → `pp_audit.py` → `pp_compare.py` → revisar → aplicar
   (`pp_mirror` → `pp_forms` → `pp_fix --drop-booking`). Histórico: `docs/execucao-*.md`;
   pendências do Pedro: `docs/TODO.md`.
-- **Tarefa "Create GHL Account" (ClickUp)**: não faço nada até o Pedro concluir o passo dele (04/11). A sub-conta nasce
-  sozinha do formulário de onboarding; chega um e-mail de pedroivobegarrido@gmail.com para pedro@poolprofits.com com um
-  link (form do n8n; outro workflow do n8n preenche o resto); o Pedro cria a private key na sub-conta e envia o form. Só
-  depois eu reviso a conta e completo o onboarding abaixo. Antes disso: no máximo respondo que está aguardando esse passo.
+- **Conta nova sem private key** (Pedro 10/11): o questionário cria a sub-conta; eu faço o resto pelo token de agência
+  (`scripts/pp_new_account.py`: custom values + fuso do survey, Business Profile do A2P, encaminhamento, campanha e envio do
+  A2P quando o site carrega) + a sequência do modelo + auditoria + guia do CRM. Roda sozinho todo dia útil 8h47 BRT
+  (tarefa agendada "GHL new accounts + A2P (daily)") e comenta na tarefa "Create GHL Account For Client <nome>" (lista
+  `901417290241`; o texto dela vem do workflow "Lead Closed - Welcome Aboard" da sub-conta Pool Profits). Passos humanos
+  que sobram: cliente aponta o DNS (CNAME go → sites.ludicrous.cloud; Frank conecta o go.<domínio> ao site "New A2P
+  Verification") e a 1ª compra de número da sub-conta (verificação de identidade do GHL, Persona).
   Revisão passo a passo + critério de pronto: `docs/new-account-review.md`.
 - **Guia do CRM** (todo cliente, antes da pre-meeting do go-live; Pedro 09/11): página interativa padrão
   `site/crm-guide/` hospedada no n8n (`pp_crm_guide.py` → `pp_crm_guide_publish.py` → link público

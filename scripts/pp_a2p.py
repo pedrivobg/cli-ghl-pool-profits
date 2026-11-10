@@ -14,6 +14,7 @@ Found 10/11 from the Trust Center bundle (appcdn …/revex/phone-integration, mo
 - Campaign details + numbers config: GET/PUT backend /phone-system/twilio-accounts?entityId=&entityType=LOCATION
   (PUT ?locationId=) — campaignDetails {useCase, useCaseDescription, sampleMessages, endUserConsent, optIn*,
   privacyPolicyUrl, termsAndConditionsUrl, checkboxStates…}, forwardingNumbers {number: target}, numberName.
+  Forwarding is written with POST …/twilio-accounts?locationId= {number, forwardingNumber} (PUT ignores it).
 - Submit: POST backend/isv_service /compliance/{companyId}/standard-registration/{loc}?brandType=standard (no body;
   uses the two above). Status: compliance.standardRegistration in twilio-accounts (brandData.status, campaignStatus),
   GET isv_service /compliance/{companyId}/brands/{loc}, …/campaigns/{loc}.
@@ -164,7 +165,9 @@ def main() -> None:
             fwd[n] = args.to
         if args.apply:
             backup(slug, "twilio-accounts.json", tw)
-            a.call("PUT", BACKEND, f"/phone-system/twilio-accounts?locationId={loc['id']}", body={"forwardingNumbers": fwd})
+            for n in targets:  # what the number settings screen sends (one POST per number)
+                a.call("POST", BACKEND, f"/phone-system/twilio-accounts?locationId={loc['id']}",
+                       body={"number": n, "forwardingNumber": args.to})
             got = twilio(a, loc["id"]).get("forwardingNumbers") or {}
             print("saved" if all(got.get(n) == args.to for n in targets) else f"NOT saved: {got}")
     elif args.cmd == "submit":

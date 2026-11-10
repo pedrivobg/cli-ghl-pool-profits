@@ -1,15 +1,24 @@
-# Revisão de conta nova (quando o Pedro diz "conta pronta para revisão")
+# Conta nova: processo completo (automático desde 10/11)
 
 Rotina do inbox segue isto. Base: Bonneville (02/11), West Coast + Capital (09/11). Sem `pp_e2e`, sem mensagem a cliente.
 `P` = `./.venv/bin/python scripts`. `<n>` = parte do nome da sub-conta; `<loc>` = id.
 
-## 0. Pré-condição (passo do Pedro)
-- [ ] E-mail "Nova subconta criada: <nome> - Falta 1 passo" lido e form do n8n enviado (custom values preenchidos:
-      `owner_first_name`, `logo_url`, `google_review_link`…). Se estão vazios → responder "aguardando o passo do form".
-- [ ] Survey: `GET services /surveys/submissions?locationId=wohRifObKPEykgu17LJu` → a submissão do form
-      `efErcbOr4GAKXzZ28J4S` (ignorar a de outro `formId`) com o e-mail/empresa da conta.
+## 0. Pré-condiç## 0. Automático (sem private key, sem form do n8n)
+```
+P/pp_new_account.py -n "<n>"            # plano: survey, perfil A2P, telefone, site A2P, status
+P/pp_new_account.py -n "<n>" --apply [--submit]   # --submit envia o A2P quando tudo está pronto (pago)
+P/pp_new_account.py --scan --apply --submit       # todas as contas dos últimos 30 dias (tarefa agendada diária)
+```
+- Survey casado por e-mail/nome; custom values só em conta "fresca" (fuso Sao_Paulo ou Friendly Name vazio) — nunca
+  sobrescreve texto editado à mão. Perfil A2P só nos campos vazios (padrão CONSUMER / CEO / USA_AND_CANADA).
+- Telefone: a **1ª compra de número** da sub-conta pede verificação de identidade do GHL (Persona, `GUARD_LOCATION_NOT_KYC_VERIFIED`)
+  → passo do Pedro/Frank uma vez; depois o script compra (DDD do telefone do negócio) e encaminha para o telefone do negócio
+  (`POST backend /phone-system/twilio-accounts?locationId= {number, forwardingNumber}`).
+- A2P: o site "New A2P Verification" precisa do domínio go.<domínio> (Frank conecta; cliente cria o CNAME). Quando
+  `/pools/privacy-policy` e `/pools/terms-of-use` carregam → custom values privacy/terms + campanha + envio.
+- Questionário não respondido (tarefa "update required", sem sub-conta) → nada a fazer.
 
-## 1. Dados e ajustes básicos
+ustes básicos
 ```
 P/pp_dump.py --only "<n>" --only "Southern Pool"
 P/pp_onboarding_fill.py --submission <sub> --loc <loc> --timezone [--apply]     # 'null' → vazio, fuso Sao_Paulo → cliente
@@ -37,9 +46,7 @@ Sem Google conectado: o link de review vem do `google_review_link` (g.page/…/r
 não resolve → Review Request fica draft até conectar o GBP (depois: `pp_dump` + `pp_mirror --apply`).
 
 ## 3. Conferir (só leitura)
-- [ ] Telefones: `GET services /phone-system/numbers/location/<loc>` ("No Twilio account" = LC Phone não ativado;
-      `forwardingNumber` de cada número — não há API para gravar: passo de tela).
-- [ ] A2P: site com privacy/terms? (404 → funil "New A2P Verification" num subdomínio). Status só na tela (Trust Center).
+- [ ] Telefones e A2P: `P/pp_a2p.py status -n "<n>"` (números, encaminhamento, perfil, campanha, brand/campaign status).
 - [ ] Usuários: primeiro acesso por "Forgot password" em app.poolprofits.com; telefone no usuário (recebe os SMS internos).
 - [ ] Calendários: com membros, ou booking tirado (`--drop-booking`; inativos sem membros = padrão).
 - [ ] Funis "Simple Pool Care"/"LP Teste" do snapshot antigo: não mexer (Bonneville igual).
@@ -63,5 +70,6 @@ Detalhes: `site/crm-guide/SCHEMA.md`.
 - `pp_audit` **0 ALTA** (as 4 MÉDIA "Add Task incompleto" + Won/Review mesmo gatilho existem no modelo);
 - `pp_ready` **0 ERRO** (aviso aceito: Review Request draft sem place);
 - fuso do cliente, missed-call nativo off, nenhum `null`, representante = usuário, dono do contato testado;
-- log em `docs/execucao-*.md` e passos de tela do Pedro (número + encaminhamento, LC Phone, A2P, GBP, primeiro acesso,
-  ligação de teste) numerados no relatório e no `docs/TODO.md`. "Pronto para começar" só depois do número + A2P.
+- guia do CRM publicado e link com o Frank; comentário na tarefa "Create GHL Account For Client <nome>" (fechar só
+  quando número encaminhado + A2P enviado + guia enviado);
+- log em `docs/execucao-*.md`; passos humanos restantes (1º número, DNS, GBP, primeiro acesso) num e-mail "[Passo seu]".

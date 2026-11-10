@@ -21,8 +21,9 @@ Marketplace / API?
 | Dados da campanha | `GET backend /phone-system/twilio-accounts?entityId={loc}&entityType=LOCATION`; `PUT …/twilio-accounts?locationId={loc}` com `campaignDetails` (useCase LOW_VOLUME, useCaseDescription, sampleMessages, endUserConsent, optInMessage/Keywords/Method/ImageUrl, privacyPolicyUrl, termsAndConditionsUrl, checkboxStates) | Corolla gravada (modelo = Southern, campanha VERIFIED) |
 | Status | mesmo GET: `compliance.standardRegistration {brandSid, brandData.status, campaignSid, campaignStatus, campaignErrors}`; `GET backend/isv_service /compliance/{companyId}/brands/{loc}`, `…/campaigns/{loc}`; `GET backend /phone-system/sub-account/is-a2p-registration-restricted/{loc}` | 60 contas |
 | **Enviar** (pago) | `POST backend/isv_service /compliance/{companyId}/standard-registration/{loc}?brandType=standard` (sem corpo; usa os dois acima). High volume: `&standardBrandType=direct-standard`. Sole prop: `/compliance/{companyId}/sole-prop/{loc}?brandType=sole-prop` (OTP no celular). Reenviar brand: `POST …/resubmit-brand/{loc} {brandSid}`; campanha: `PUT /compliance/campaign/{loc}` | **não testado** (é o envio real; só com OK do Pedro) |
-| Encaminhamento de número | mesmo objeto: `forwardingNumbers {"+1…": "+1…"}` (PUT `?locationId=`) | leitura ok; escrita **não testada** |
-| Domínio do site | `GET services /funnels/domain/?locationId=` lista (id, url, defaultPage); o funil guarda `domainId` + `url` (path, ex. `/pools`) | leitura ok; criar domínio por API ainda não procurado |
+| Encaminhamento de número | `POST backend /phone-system/twilio-accounts?locationId= {number, forwardingNumber}` (o PUT com `forwardingNumbers` é ignorado) | Corolla e Blissful gravados e relidos |
+| Comprar número | `GET backend /phone-system/numbers/location/{loc}/available?countryCode=US&firstPart=<DDD>&numberTypes=local` → `POST …/purchase {phoneNumber, countryCode, numberType: "local", locality, region, fingerprintId, skipLocationKYC: false, addressSid/bundleSid/stripe*: ""}` | busca ok; compra barrada na 1ª vez por KYC (`GUARD_LOCATION_NOT_KYC_VERIFIED`, status em `GET backend /phone-system/kyc-verification/status?entityId&entity=LOCATION`) |
+| Domínio do site | `GET services /funnels/domain/?locationId=`; `POST /funnels/domain/validate {domain, locationId}` → `{state: CONNECTED}`; criar = `POST /funnels/domain`, ligar ao site = `POST /funnels/domain/attach-domain` (corpo ainda não visto) | leitura/validate ok |
 
 O DNS (CNAME `go` → `sites.ludicrous.cloud`) continua do lado do cliente/registrador (Wix, GoDaddy…); SSL sai sozinho
 depois que o GHL vê o DNS.
@@ -44,6 +45,10 @@ depois que o GHL vê o DNS.
 - Campanha recusada: Pool Profits (Sales) FAILED (High Risk, 30885). Dream Pools e Net Positive: VERIFIED com erro antigo.
 - Números sem encaminhamento (pode ser intencional: IVR/usuários): Clean Co (4), Clear Conceptz (2), GID (3), Ponchos (3),
   Pool Palooza (2), Pool Profits (1), Pooly (4), Pool Keepers (1), Wrigley's (3), YardSpring (1), Corolla (1).
+
+## Pendências conhecidas
+- Corolla: domínio CONNECTED no GHL e DNS certo, mas o SSL ainda não saiu (10/11 14h UTC) → envio do A2P espera.
+- Criar/ligar domínio por API (corpo do `POST /funnels/domain` e do `attach-domain`) para tirar esse passo do Frank.
 
 ## Próximos passos possíveis
 1. Pedro aprova → `submit` na Corolla; acompanhar `status` até APPROVED/VERIFIED.
