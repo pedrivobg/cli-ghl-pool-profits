@@ -1,0 +1,584 @@
+{
+  "version": 1,
+  "generated_at": "2026-11-10",
+  "client": {
+    "slug": "smart-chem-pools-llc",
+    "name": "Smart Chem Pools",
+    "owner_first": "Steve",
+    "business_phone": "(512) 970-3359",
+    "city": "Burnet, TX",
+    "location_id": "Ykjw1clNFPkr4izP9Uaq"
+  },
+  "prepared_by": "Pedro Garrido · Pool Profits",
+  "meeting_note": "Before we go live, we'll walk through how Smart Chem Pools will handle every lead, read every message your customers will get, and check off your part of the setup together.",
+  "journey": [
+    {
+      "id": "new",
+      "icon": "phone",
+      "title": "A new lead reaches you",
+      "text": "A call, text or website form becomes a card on your lead board, and Steve gets an alert.",
+      "stage": "new-lead"
+    },
+    {
+      "id": "missed",
+      "icon": "chat",
+      "title": "You miss their call",
+      "text": "They get a text right away saying you'll call back, and a reminder 30 minutes later if they don't answer.",
+      "stage": "missed"
+    },
+    {
+      "id": "quiet",
+      "icon": "clock",
+      "title": "You can't reach them",
+      "text": "Move the card to “No Response”: 3 friendly texts go out over about a week, then the card moves to Lost.",
+      "stage": "no-response"
+    },
+    {
+      "id": "quote",
+      "icon": "quote",
+      "title": "You send a quote",
+      "text": "Move the card to “Quote Sent”: 2 follow-up texts go out if they don't reply.",
+      "stage": "quote-sent"
+    },
+    {
+      "id": "noshow",
+      "icon": "calendar",
+      "title": "Nobody's home for the visit",
+      "text": "Move the card to “No Show”: 2 texts ask them to pick a new time.",
+      "stage": "no-show"
+    },
+    {
+      "id": "won",
+      "icon": "trophy",
+      "title": "They say yes",
+      "text": "Move the card to the right “Won” column. New weekly customers get a welcome email and text.",
+      "stage": "won"
+    },
+    {
+      "id": "review",
+      "icon": "star",
+      "title": "A few weeks later",
+      "text": "We ask how you did. 4–5 stars get your Google review link; 1–3 stars alert Steve first.",
+      "stage": "review"
+    },
+    {
+      "id": "lost",
+      "icon": "refresh",
+      "title": "Lost leads and past customers",
+      "text": "Lost leads get a feedback email and a check-in after 90 days. Win-back texts go out only when you ask for a campaign.",
+      "stage": "lost"
+    }
+  ],
+  "pipeline": [
+    {
+      "id": "new-lead",
+      "name": "New Lead",
+      "plain": "A new call, text or website form. The card is created for you.",
+      "auto": true
+    },
+    {
+      "id": "no-response",
+      "name": "No Response - Follow Up",
+      "plain": "You tried and couldn't reach them. Move the card here and 3 friendly texts go out over about a week.",
+      "auto": false
+    },
+    {
+      "id": "in-communication",
+      "name": "In Communication",
+      "plain": "You're talking with them. Nothing is sent. Cards also land here when a lead replies to a follow-up.",
+      "auto": true
+    },
+    {
+      "id": "scheduled",
+      "name": "Scheduled",
+      "plain": "A visit or estimate is booked. Nothing is sent; it just keeps your board tidy.",
+      "auto": false
+    },
+    {
+      "id": "quote-sent",
+      "name": "Quote Sent",
+      "plain": "You sent a quote. If they don't reply, 2 follow-up texts go out.",
+      "auto": false
+    },
+    {
+      "id": "no-show",
+      "name": "No Show",
+      "plain": "Your tech went out and nobody was home. 2 texts ask them to reschedule.",
+      "auto": false
+    },
+    {
+      "id": "won",
+      "name": "Won - Weekly Pool Service",
+      "plain": "A new weekly customer. They get a welcome email and text, and a rating request later on.",
+      "auto": false
+    },
+    {
+      "id": "won-repair",
+      "name": "Won - One Time Repair or Install",
+      "plain": "A repair or install job you won. A rating request goes out after the job.",
+      "auto": false
+    },
+    {
+      "id": "won-construction",
+      "name": "Won - Pool Construction or Remodeling",
+      "plain": "A construction or remodel job you won. A rating request goes out after the job.",
+      "auto": false
+    },
+    {
+      "id": "recurring",
+      "name": "Recurring Customer",
+      "plain": "An ongoing customer. Nothing is sent.",
+      "auto": false
+    },
+    {
+      "id": "not-qualified",
+      "name": "Not Qualified Stage",
+      "plain": "Outside your area or not a fit. Nothing is sent.",
+      "auto": false
+    },
+    {
+      "id": "lost",
+      "name": "Lost",
+      "plain": "They went another way. A short feedback email goes out, and a check-in after 90 days.",
+      "auto": true
+    },
+    {
+      "id": "spam",
+      "name": "Spam",
+      "plain": "Spam or a wrong number. They're blocked from all messages.",
+      "auto": false
+    }
+  ],
+  "stages": [
+    {
+      "id": "missed",
+      "title": "When you miss a call",
+      "trigger_plain": "Someone calls your business line and nobody answers",
+      "messages": [
+        {
+          "code": "M1",
+          "channel": "sms",
+          "when": "Right after a missed call",
+          "text": "Hi [First name]! This is Steve from Smart Chem Pools. We're sorry we missed your call. We will be calling you back shortly. Is this the best number to call you back at? 🏊",
+          "editable": true
+        },
+        {
+          "code": "M2",
+          "channel": "sms",
+          "when": "30 minutes after a missed call, if they haven't replied",
+          "text": "Just wanted to make sure you got my last message, [First name]! We'd love to help keep your pool clean. Text or call this line back, please.",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "id": "no-response",
+      "title": "When a lead goes quiet",
+      "trigger_plain": "You move the card to “No Response - Follow Up” (you called and couldn't reach them)",
+      "messages": [
+        {
+          "code": "M3",
+          "channel": "sms",
+          "when": "1 day after you move the card to “No Response - Follow Up”",
+          "text": "Hey [First name], still thinking about getting your pool cleaned? We'd love to help! Give us a call at (512) 970-3359 or text us back.",
+          "editable": true
+        },
+        {
+          "code": "M4",
+          "channel": "sms",
+          "when": "3 days after you move the card to “No Response - Follow Up”, if they haven't replied",
+          "text": "Hi [First name]! Just checking in from Smart Chem Pools. Spots are filling up fast this week for initial pool maintenance estimates. Please call or text this number to reserve your time. 🏊",
+          "editable": true
+        },
+        {
+          "code": "M5",
+          "channel": "sms",
+          "when": "7 days after you move the card to “No Response - Follow Up”, if they haven't replied",
+          "text": "Hi [First name]! We understand now might not be the best time, but if you ever need pool cleaning or maintenance, we're here - Smart Chem Pools, (512) 970-3359",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "id": "quote-sent",
+      "title": "After you send a quote",
+      "trigger_plain": "You move the card to “Quote Sent”",
+      "messages": [
+        {
+          "code": "M6",
+          "channel": "sms",
+          "when": "1 day after you move the card to “Quote Sent”",
+          "text": "Hi [First name]! Just following up on the quote we sent you from Smart Chem Pools. Do you have any questions? We'd love to get the opportunity to work on your pool! 🏊",
+          "editable": true
+        },
+        {
+          "code": "M7",
+          "channel": "sms",
+          "when": "3 days after you move the card to “Quote Sent”, if they haven't replied",
+          "text": "Hi [First name], still deciding? Your quote from Smart Chem Pools is ready whenever you are. Just reply here or call us at (512) 970-3359 if you have any questions!",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "id": "no-show",
+      "title": "When they miss an appointment",
+      "trigger_plain": "You move the card to “No Show” (your tech went out and nobody was home)",
+      "messages": [
+        {
+          "code": "M8",
+          "channel": "sms",
+          "when": "Right after you move the card to “No Show”",
+          "text": "Hi [First name], we missed you today! We had a pool service appointment scheduled. Would you like to reschedule? Reply here or call us at (512) 970-3359 🏊",
+          "editable": true
+        },
+        {
+          "code": "M9",
+          "channel": "sms",
+          "when": "1 day after you move the card to “No Show”, if they haven't replied",
+          "text": "Hey [First name], just wanted to follow up on your missed appointment. We still have availability this week!",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "id": "won",
+      "title": "When they become a customer",
+      "trigger_plain": "You move the card to one of the “Won” columns",
+      "messages": [
+        {
+          "code": "M10",
+          "channel": "email",
+          "when": "Right after you move the card to “Won - Weekly Pool Service”",
+          "subject": "Welcome to Smart Chem Pools!",
+          "text": "[First name],\nWelcome aboard! We're thrilled to have you as part of the Smart Chem Pools family.\nHere's what you can expect from us:\n✅ Consistent, reliable service every visit\n✅ Chemical balancing and water testing\n✅ Equipment inspections included\n✅ Direct communication with your technician\nYour first service will be scheduled shortly. If you have any questions before then, don't hesitate to reach out.\n📞 (512) 970-3359\n📧 steve@smartchempools.com\nLooking forward to keeping your pool crystal clear!\nSteve\nSmart Chem Pools",
+          "editable": true
+        },
+        {
+          "code": "M11",
+          "channel": "sms",
+          "when": "2 minutes after you move the card to “Won - Weekly Pool Service” (weekdays 9am–5pm)",
+          "text": "Hi [First name]! Welcome to Smart Chem Pools! 🏊 We're excited to have you on board. Your first service will be scheduled shortly. Questions? Call us at (512) 970-3359",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "title": "Asking for a review",
+      "trigger_plain": "Some time after a job is won, and when someone leaves you a Google review",
+      "messages": [
+        {
+          "code": "M12",
+          "channel": "sms",
+          "when": "44 days after you move the card to “Won”, for weekly customers (9am–5pm); or 22 days after you move the card to “Won”, for repair / install jobs (9am–5pm); or 59 days after you move the card to “Won”, for construction / remodeling jobs (9am–5pm)",
+          "text": "Hi [First name], thanks again for choosing Smart Chem Pools! How did we do? Please take 10 seconds to rate your experience here: your rating page We really appreciate your feedback.",
+          "editable": true
+        },
+        {
+          "code": "M13",
+          "channel": "email",
+          "when": "Right after they rate you 4 or 5 in the rating text, or 7 days after the rating text if they haven't answered",
+          "text": "A short email from Google's review tool asking them to review Smart Chem Pools, with a link to your Google review page.",
+          "editable": false
+        },
+        {
+          "code": "M14",
+          "channel": "sms",
+          "when": "Right after they rate you 4 or 5 in the rating text, or 7 days after the rating text if they haven't answered",
+          "text": "A short text from Google's review tool asking them to review Smart Chem Pools, with a link to your Google review page.",
+          "editable": false
+        },
+        {
+          "code": "M15",
+          "channel": "sms",
+          "when": "Right after they leave you a 4 or 5-star Google review",
+          "text": "Hi [First name]! Thank you so much for your kind review! 🌟 We truly appreciate your support. Smart Chem Pools",
+          "editable": true
+        },
+        {
+          "code": "M16",
+          "channel": "sms",
+          "when": "Right after they leave you a Google review of 3 stars or less",
+          "text": "Hi [First name], we're sorry to hear about your experience with Smart Chem Pools. We'd love to make it right. Can we give you a call? (512) 970-3359",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "id": "lost",
+      "title": "When a lead is lost",
+      "trigger_plain": "The card moves to “Lost” (by you, or after the follow-ups get no reply)",
+      "messages": [
+        {
+          "code": "M17",
+          "channel": "email",
+          "when": "2 days after the card moves to “Lost” (weekdays 9am–5pm)",
+          "subject": "Mind sharing some quick feedback, [First name]?",
+          "text": "[First name],\nI know you went a different direction with your pool care and as the business owner I wanted to ask you for a favor. Do you mind letting us know why you chose to go with someone else?\nI am always looking for feedback on how I can make my company stronger and will value any feedback you give us.\nIf you have 30 seconds to spare, just reply to this email or give us a call at (512) 970-3359.\nSteve\nSmart Chem Pools",
+          "editable": true
+        },
+        {
+          "code": "M18",
+          "channel": "email",
+          "when": "92 days after the card moves to “Lost” (weekdays 9am–5pm)",
+          "subject": "How's your pool service going, [First name]?",
+          "text": "[First name],\nYou spoke to my company a while back and were interested in pool service, but we weren't able to earn your business.\nHow has your current company been performing? Are they doing the following:\n- Before & After pics every week\n- Weekly report with chemical readings\n- Sharing the status of your pool equipment\n- Leaving your yard clean\nIf not, ask them why. Our customers know the details about every single visit we make at their pool. If you're feeling left in the dark about what your pool guy is doing, come experience the Smart Chem Pools difference.\nSteve\nSmart Chem Pools\n(512) 970-3359",
+          "editable": true
+        }
+      ]
+    },
+    {
+      "id": "win-back",
+      "title": "Win-back campaigns (only when you start one)",
+      "trigger_plain": "You ask me to run a campaign to past customers or old leads",
+      "messages": [
+        {
+          "code": "M19",
+          "channel": "sms",
+          "when": "Right after you start a win-back campaign",
+          "text": "Hi [First name]! It's been a while since we've had the pleasure of servicing your pool. We'd love to have you back at Smart Chem Pools! Reply here or call (512) 970-3359 🏊",
+          "editable": true
+        },
+        {
+          "code": "M20",
+          "channel": "sms",
+          "when": "3 days after you start a win-back campaign",
+          "text": "Hey [First name], just checking in! We're running some great deals on pool service this month. Interested in getting your pool back in top shape? Just reply here or call us at (512) 970-3359.",
+          "editable": true
+        },
+        {
+          "code": "M21",
+          "channel": "sms",
+          "when": "7 days after you start a win-back campaign",
+          "text": "Last message from us, [First name]! If you ever need pool service again, we're here. Smart Chem Pools. Call us at (512) 970-3359",
+          "editable": true
+        },
+        {
+          "code": "M22",
+          "channel": "email",
+          "when": "Right after you start a win-back campaign",
+          "subject": "We miss you, [First name]! Here's a free inspection",
+          "text": "[First name],\nIt's been a while since we've had the pleasure of caring for your pool, and we wanted to reach out personally.\nAt Smart Chem Pools, we pride ourselves on consistent, reliable service, and we'd love to have you back.\nAs a returning customer, we're happy to offer you a complimentary pool inspection on your first visit back. No strings attached.\nReady to get your pool back in top shape?\n📞 Call us: (512) 970-3359\nHope to hear from you soon!\nSteve\nSmart Chem Pools",
+          "editable": true
+        },
+        {
+          "code": "M23",
+          "channel": "email",
+          "when": "3 days after you start a win-back campaign",
+          "subject": "How's your pool been, [First name]?",
+          "text": "[First name],\nJust checking in to see how your pool has been.\nIf your current service isn't meeting your expectations, we'd love the chance to show you what Smart Chem Pools can do.\nOur clients enjoy:\n✅ Consistent weekly visits\n✅ Detailed chemical reports\n✅ Equipment inspections every visit\n✅ Direct communication with their technician\nGive us a shot, reply to this email or give us a call for a free estimate.\nSteve\nSmart Chem Pools\n(512) 970-3359",
+          "editable": true
+        },
+        {
+          "code": "M24",
+          "channel": "email",
+          "when": "7 days after you start a win-back campaign",
+          "subject": "One last note from Smart Chem Pools",
+          "text": "[First name],\nThis will be our last follow-up. We don't want to overwhelm your inbox!\nIf you ever need pool service in the future, Smart Chem Pools will be here. We'd love to earn your business back.\nSteve\nSmart Chem Pools\n(512) 970-3359",
+          "editable": true
+        }
+      ]
+    }
+  ],
+  "team_alerts": [
+    {
+      "when": "Right after someone fills the form on your website",
+      "what": "Text with the lead's name, phone, email and city; plus task: follow up with the new web lead (call, then move the card)",
+      "who": "Steve"
+    },
+    {
+      "when": "1 hour after a missed call",
+      "what": "Task: listen to the call recording and call them back",
+      "who": "Steve"
+    },
+    {
+      "when": "1 hour after an answered call from a new number",
+      "what": "Task: listen to the call recording and confirm the next step on the card",
+      "who": "Steve"
+    },
+    {
+      "when": "Right after someone answers a win-back text",
+      "what": "Text with their name, phone and what they wrote; plus alert in the app: “[First name] is waiting for your response”",
+      "who": "Steve"
+    },
+    {
+      "when": "A customer rates you 1–3 in the rating text",
+      "what": "Text with their rating and comment, so you can call before any review request goes out",
+      "who": "Steve"
+    },
+    {
+      "when": "Right after they leave you a Google review of 3 stars or less",
+      "what": "Urgent task: call them within 24 hours and try to make it right",
+      "who": "Steve"
+    }
+  ],
+  "client_tasks": [
+    {
+      "id": "t-line",
+      "area": "Phone",
+      "title": "Get your business line",
+      "why": "Texts to your customers need a business line inside the system.",
+      "steps": [
+        "Tell me the area code you'd like for the new number.",
+        "I'll buy it and send it to you to save in your phone."
+      ],
+      "status_hint": "todo"
+    },
+    {
+      "id": "t-ring",
+      "area": "Phone",
+      "title": "Pick the phone that rings when someone calls your business line",
+      "why": "Missed calls get a text right away, but the best result is still picking up.",
+      "steps": [
+        "Tell me the cell number(s) that should ring: yours, the office, or a team member.",
+        "If more than one: should they ring at the same time, or one after the other?",
+        "I'll set it up and test it from here before go-live."
+      ],
+      "status_hint": "todo"
+    },
+    {
+      "id": "t-a2p",
+      "area": "Phone",
+      "title": "Confirm your business details for texting approval",
+      "why": "Phone carriers only approve business texting when these match your IRS records exactly.",
+      "steps": [
+        "Check: Smart Chem Pools LLC · EIN ending in 5864 · 1000 River Rd, Burnet, TX, 78611.",
+        "Contact person: Steve Deitrick, steve@smartchempools.com.",
+        "If anything differs from your IRS letter (CP 575 or 147C), send me the right version."
+      ],
+      "status_hint": "done"
+    },
+    {
+      "id": "t-privacy",
+      "area": "Website",
+      "title": "Privacy policy page on your website",
+      "why": "Phone carriers check it before approving your texts.",
+      "steps": [
+        "I found it at https://SmartChemPools.com/privacy-policy and it already covers text messages.",
+        "Keep it linked in your website footer, and tell me if the address changes."
+      ],
+      "status_hint": "done"
+    },
+    {
+      "id": "t-forms",
+      "area": "Website",
+      "title": "Put the “Service Page - Contact Form” form on your website",
+      "why": "Then every website lead lands on your lead board and you get a text alert right away.",
+      "steps": [
+        "Tell me who manages your website (or send me a login).",
+        "Tell me which pages have a contact or quote form today.",
+        "I'll place the “Service Page - Contact Form” form there and send a test lead myself before go-live."
+      ],
+      "status_hint": "todo"
+    },
+    {
+      "id": "t-google",
+      "area": "Google",
+      "title": "Connect your Google Business Profile",
+      "why": "Your Google reviews and messages then show up in the app, next to your texts.",
+      "steps": [
+        "Log in at app.poolprofits.com (see the Team task).",
+        "Go to Settings → Integrations → Google and click Connect.",
+        "Sign in with the Google account that manages your Business Profile, allow everything and pick Smart Chem Pools."
+      ],
+      "status_hint": "todo"
+    },
+    {
+      "id": "t-review-link",
+      "area": "Google",
+      "title": "Send me your Google review link",
+      "why": "Happy customers get this link in the review request.",
+      "steps": [
+        "Search your business on Google, open your profile and tap “Ask for reviews” (or “Share review form”).",
+        "Copy the link and send it to me."
+      ],
+      "status_hint": "todo"
+    },
+    {
+      "id": "t-team",
+      "area": "Team",
+      "title": "Log in to the app (you and your team)",
+      "why": "You'll see every lead, text and call in one place, and get alerts on your phone.",
+      "steps": [
+        "Send me the name, email and cell number of everyone who should use it.",
+        "Go to app.poolprofits.com, click “Forgot password” and enter your email to set your password.",
+        "Install the “LeadConnector” app on your phone (App Store or Google Play), log in with the same email and allow notifications."
+      ],
+      "status_hint": "done"
+    },
+    {
+      "id": "t-messages",
+      "area": "Messages",
+      "title": "Read every message (M1–M24) and mark it OK or change it",
+      "why": "These are the exact words your customers will get, with your details filled in.",
+      "steps": [
+        "Go through each message on this page.",
+        "Mark “OK”, or write the change you want.",
+        "I'll update them and test each one before go-live."
+      ],
+      "status_hint": "todo"
+    },
+    {
+      "id": "t-hours",
+      "area": "Other",
+      "title": "Tell me your business hours",
+      "why": "Welcome texts and some emails wait for business hours, and your team alerts follow them.",
+      "steps": [
+        "Send me your office hours for each day (and the days you're closed).",
+        "Tell me if you take calls on weekends."
+      ],
+      "status_hint": "todo"
+    },
+    {
+      "id": "t-booking",
+      "area": "Other",
+      "title": "Booking: customers reply or call (no booking link)",
+      "why": "Most pool companies book in their own software, so the texts ask customers to reply or call.",
+      "steps": [
+        "Customers book by replying to a text or calling your business line.",
+        "If you'd like an online booking link in the texts, tell me which software you book in and I'll check it first."
+      ],
+      "status_hint": "na"
+    },
+    {
+      "id": "t-import",
+      "area": "Other",
+      "title": "Send me your current customer list",
+      "why": "So your current customers never get new-lead texts when they call or text you.",
+      "steps": [
+        "Export your customers from your pool software (Skimmer, Pool Brain, QuickBooks…) as a spreadsheet: name, phone, email, address.",
+        "Send it to me by email.",
+        "I'll import them as customers before go-live."
+      ],
+      "status_hint": "todo"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d-reentry",
+      "question": "If a lead goes quiet again later, should the follow-up texts start over when you move the card back to “No Response” or “Quote Sent”?",
+      "suggestion": "Yes. They only start when you move the card, so you stay in control."
+    },
+    {
+      "id": "d-stop",
+      "question": "Should the first text after a missed call (M1) end with “Reply STOP to opt out”?",
+      "suggestion": "Yes, on that first text only. Phone carriers like to see it, and the other texts stay short."
+    },
+    {
+      "id": "d-review-timing",
+      "question": "Is the rating text (M12) timed right for your customers?",
+      "suggestion": "Keep it as it is: 44 days after you move the card to “Won”, for weekly customers (9am–5pm); or 22 days after you move the card to “Won”, for repair / install jobs (9am–5pm); or 59 days after you move the card to “Won”, for construction / remodeling jobs (9am–5pm). Tell me if your jobs need more or less time."
+    },
+    {
+      "id": "d-weekend",
+      "question": "Is it OK if follow-up texts (M3–M5, M6–M7) go out on weekends?",
+      "suggestion": "Yes, they're short check-ins. If you'd rather not, I'll hold them to Mon–Fri, 9am–5pm."
+    },
+    {
+      "id": "d-welcome",
+      "question": "Weekly customers get a welcome email and text (M10–M11). Do you want a welcome message for repair and construction jobs too?",
+      "suggestion": "No for now. Their rating request already thanks them."
+    }
+  ]
+}
