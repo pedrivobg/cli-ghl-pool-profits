@@ -46,6 +46,10 @@ VOICEMAIL = ("Thank you for calling {{custom_values.friendly_business_name}}. We
              "out in the field. Please leave your name, phone number, address, and a quick note about what you need, "
              "and we'll get back to you as soon as we can.")
 BDIR = ROOT / "backup" / "snapshot-pool-profits"
+# triggers the old snapshot carried from other clients: BluVantage's 6 IVR lines, Clear Pool Solutions Tucson's ads line.
+# With --loc only these are removed — an account's own line on AdWords Call In (Bluebird 10/11) stays.
+FOREIGN_NUMBERS = {"+14047775712", "+14042249387", "+14049824034", "+14704708802", "+14704708874", "+14043342495",
+                   "+15207771392"}
 
 
 def user_id(a: Agency) -> str:
@@ -108,6 +112,14 @@ def main() -> int:
     for name in (IVR, ADS_CALL):
         live = a.workflow(LOC, flows[name])
         trs = [t for t in a.triggers(LOC, live["id"]) if not t.get("deleted")]
+        if args.loc:
+            def foreign(t: dict) -> bool:
+                nums = [v for c in t.get("conditions") or [] if c.get("field") == "inbound_number" for v in c.get("value") or []]
+                return bool(nums) and set(nums) <= FOREIGN_NUMBERS
+            for t in trs:
+                if not foreign(t):
+                    print(f"    mantém o gatilho {t['type']} (número da conta ou sem número)")
+            trs = [t for t in trs if foreign(t)]
         tpl = json.loads(json.dumps(live["workflowData"]["templates"]))
         changes = generic_ivr(tpl) if name == IVR else []
         print(f"== {name} [{live['status']}]")
@@ -128,7 +140,7 @@ def main() -> int:
         time.sleep(3)
         got = a.workflow(LOC, live["id"])
         left = [t for t in a.triggers(LOC, live["id"]) if not t.get("deleted")]
-        ok = got["status"] == live["status"] and not left and (not changes or not generic_ivr(
+        ok = got["status"] == live["status"] and not {t["id"] for t in left} & {t["id"] for t in trs} and (not changes or not generic_ivr(
             json.loads(json.dumps(got["workflowData"]["templates"]))))
         print(f"    {'✓' if ok else '✗ VERIFICAR'} {got['status']} · gatilhos {len(left)}")
 
