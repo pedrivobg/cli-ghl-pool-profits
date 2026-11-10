@@ -36,8 +36,6 @@ from cli_anything.gohighlevel.utils.agency import Agency, SERVICES, match_locati
 BACKEND = "https://backend.leadconnectorhq.com"
 ISV = "https://backend.leadconnectorhq.com/isv_service"
 MODEL_LOC = "SylIOZiJ6YQsZOypUI8Z"  # Southern Pool + Outdoors (campaign VERIFIED, brand APPROVED)
-MODEL_LEGAL = "Dragon Ventures LLC"
-MODEL_SITE = "https://go.southernpoolandoutdoors.com"
 
 
 def twilio(a: Agency, loc: str) -> dict:
@@ -51,13 +49,54 @@ def backup(slug: str, name: str, data) -> None:
 
 
 def a2p_site(loc: dict, a: Agency) -> str:
-    """Base URL of the site that holds the privacy/terms pages (custom values first, then the A2P funnel domain)."""
+    """Base URL of the A2P site = https://go.<domain> (root). The "New A2P Verification" website has the path /pools,
+    but on its own domain the pages answer at the root (Southern: /privacy-policy 200, /pools/privacy-policy 404)."""
     for cv in a.custom_values(loc["id"]):
         if (cv.get("name") or "").strip().lower() in ("privacy policy", "privacy_policy") and cv.get("value"):
-            m = re.match(r"(https?://[^/]+(?:/[^/]+)?)/privacy-policy", cv["value"].strip())
+            m = re.match(r"(https?://[^/]+)/", cv["value"].strip())
             if m:
-                return m.group(1)
+                return m.group(1).lower()
     return ""
+
+
+# Approved texts (SOP "Submissão A2P 10DLC", Pedro 10/11): copy exactly, only the legal name and links change.
+SOP_USE_CASE = ("{legal} uses SMS messaging to send transactional messages related to customers account, orders, or services "
+                "requested. These messages may include appointment reminders, order confirmations, and account notifications, "
+                "among others. Also to send marketing and promotional messages, including special offers, discounts, new product "
+                "updates, among others. Message frequency may vary. Message & Data rates may apply. The customer can reply HELP "
+                "for help or STOP to opt-out.")
+SOP_SAMPLE_1 = ("Hello Caleb, this is {legal}. We're excited to share a new promotion available for a limited time. "
+                "Reply STOP to unsubscribe. Msg & data rates may apply.")
+SOP_SAMPLE_2 = ("Hey Kevin, this is {legal}: This is a reminder of your upcoming appointment on 12th July at 5:00pm. "
+                "Reply STOP to opt out.")
+SOP_CONSENT = ("End users provide consent via the {legal} company's website {site}, where the opt-in form is available on the "
+               "main page. Or upon clicking the 'Contact Us' button, they are redirected to an opt-in form where they submit "
+               "their information and explicitly agree to receive SMS communications, including marketing and transactional "
+               "messages, by checking the consent box. Both the consent check boxes are optional to select. Please refer to "
+               "{site} to view the customer's business, as this is the most up-to-date website for their business.")
+SOP_OPTIN_MSG = ("You have successfully opted in to receive notification and promotional SMS from {legal}. Message frequency "
+                 "varies. Msg & data rates may apply. Reply STOP to opt out. Reply HELP for help.")
+
+
+def compliance_review(a: Agency, loc_id: str, site: str) -> dict:
+    """GHL's AI compliance review ("Review Application"): checks the opt-in form, privacy policy and terms pages.
+    Returns the final event: {isCompliant, passedChecks, totalChecks, checks[], errors[], optInValidationId}."""
+    from cli_anything.gohighlevel.utils.agency import CHROME_UA
+    h = {"token-id": a.tokens.get_token(), "channel": "APP", "source": "WEB_USER", "Version": "2021-07-28",
+         "Accept": "text/event-stream", "User-Agent": CHROME_UA}
+    r = a.session.get(f"{BACKEND}/phone-system/regulatory-compliance/opt-in-form/validate", headers=h, stream=True, timeout=240,
+                      params={"locationId": loc_id, "optInFormUrl": f"{site}/contact-us", "optInMethod": "website"})
+    r.raise_for_status()
+    last = {}
+    for line in r.iter_lines(decode_unicode=True):
+        if line and line.startswith("data:"):
+            try:
+                last = json.loads(line[5:])
+            except ValueError:
+                continue
+            if last.get("responseType") == "final":
+                break
+    return last
 
 
 def status_row(a: Agency, loc: dict) -> dict:
@@ -98,18 +137,27 @@ def cmd_status(a: Agency, locs: list[dict]) -> None:
               + (f" | ERRORS {r['campaign_errors']}" if r["campaign_errors"] else ""))
 
 
-def build_campaign(a: Agency, full: dict, site: str) -> dict:
-    model = copy.deepcopy(twilio(a, MODEL_LOC).get("campaignDetails") or {})
-    legal = full.get("legalBusinessName") or full.get("name")
-    for k in ("chatWidgets", "optInValidationId"):
-        model.pop(k, None)
-    txt = json.dumps(model, ensure_ascii=False).replace(MODEL_LEGAL, legal).replace(MODEL_SITE, site)
-    txt = txt.replace("..", ".").replace(".:", ":")  # legal names ending in "inc." / "LLC."
-    model = json.loads(txt)
-    model["privacyPolicyUrl"] = f"{site}/privacy-policy"
-    model["termsAndConditionsUrl"] = f"{site}/terms-of-use"
-    model["optInImageUrl"] = f"{site}/contact-us"
-    return model
+def build_campaign(a: Agency, full: dict, site: str, validation_id: str = "") -> dict:
+    """Campaign details exactly as the SOP: Low Volume Standard, manual setup, opt-in by website, approved texts."""
+    legal = (full.get("legalBusinessName") or full.get("name") or "").strip()
+    fix = lambda t: t.replace("..", ".")  # noqa: E731  legal names ending in "inc." / "LLC."
+    out = {
+        "ageGated": False, "registrationFlowType": "selfserve", "useCase": "LOW_VOLUME",
+        "useCaseDescription": fix(SOP_USE_CASE.format(legal=legal)),
+        "sampleMessages": [fix(SOP_SAMPLE_1.format(legal=legal)), fix(SOP_SAMPLE_2.format(legal=legal))],
+        "messageIncludesEmbeddedLink": True, "messageIncludesPhoneNumbers": True, "directLending": False,
+        "endUserConsent": fix(SOP_CONSENT.format(legal=legal, site=site)),
+        "optInKeywords": "START, SUBSCRIBE",
+        "optInMessage": fix(SOP_OPTIN_MSG.format(legal=legal)),
+        "privacyPolicyUrl": f"{site}/privacy-policy", "termsAndConditionsUrl": f"{site}/terms-of-use",
+        "optInMethod": "website", "optInImageUrl": f"{site}/contact-us",
+        "checkboxStates": {k: True for k in ("optInMethodMentioned", "websiteLiveNoErrors", "businessWebsiteLinkProvided",
+                                             "optInFormCompliant", "tosPrivacyPolicyAdded", "tosCorrect",
+                                             "businessInfoOnWebsite", "noAffiliateMention", "dbaNamesDisplayed")},
+    }
+    if validation_id:
+        out["optInValidationId"] = validation_id
+    return out
 
 
 def pick(a: Agency, names: list[str]) -> list[dict]:
@@ -147,7 +195,7 @@ def main() -> None:
     if args.cmd == "campaign":
         site = args.site or a2p_site(loc, a)
         if not site:
-            sys.exit("no privacy_policy custom value; pass --site https://go.<domain>/pools")
+            sys.exit("no privacy_policy custom value; pass --site https://go.<domain>")
         new = build_campaign(a, full, site)
         print(json.dumps(new, indent=1, ensure_ascii=False))
         if args.apply:

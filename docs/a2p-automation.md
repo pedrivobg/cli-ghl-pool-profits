@@ -46,8 +46,11 @@ depois que o GHL vê o DNS.
 - Números sem encaminhamento (pode ser intencional: IVR/usuários): Clean Co (4), Clear Conceptz (2), GID (3), Ponchos (3),
   Pool Palooza (2), Pool Profits (1), Pooly (4), Pool Keepers (1), Wrigley's (3), YardSpring (1), Corolla (1).
 
+## SOP
+Regras do Pedro para o envio (textos exatos, raiz do go., 3 números, revisão por IA): `docs/a2p-sop.md`.
+
 ## Pendências conhecidas
-- Corolla: domínio CONNECTED no GHL e DNS certo, mas o SSL ainda não saiu (10/11 14h UTC) → envio do A2P espera.
+- Corolla: domínio CONNECTED no GHL e DNS certo, mas o SSL não sai nem apagando/adicionando de novo (10/11) → suporte do GHL ou outro subdomínio.
 - Criar/ligar domínio por API (corpo do `POST /funnels/domain` e do `attach-domain`) para tirar esse passo do Frank.
 
 ## Próximos passos possíveis

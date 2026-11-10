@@ -42,6 +42,7 @@ ONBOARDING_LOC = "wohRifObKPEykgu17LJu"
 F_BUSINESS, F_LEGAL, F_TYPE, F_EIN, F_REP = ("UUc0Lc3Bps8PZm8g5Y1I", "Er4JquP5hSCM8Jna1VOj", "1KzpDbDTP0oZ2Jvw72gZ",
                                              "fz90PpR2jFrHOTuF67nN", "ZJgSwbkWQIMnN8Hx3T9G")
 BACKEND = pp_a2p.BACKEND
+LINES = ["Website & GBP", "Google Ads", "Facebook Ads"]  # SOP: three numbers per client (main first)
 
 
 def e164(v: str) -> str:
@@ -89,7 +90,7 @@ def a2p_site(a: Agency, loc_id: str) -> tuple[str, str]:
     for f in a.get(SERVICES, "/funnels/funnel/list", {"locationId": loc_id}).get("funnels", []):
         if "a2p" in (f.get("name") or "").lower() and f.get("domainId") in domains:
             dom = domains[f["domainId"]]
-            return f"https://{dom}{(f.get('url') or '').rstrip('/')}", dom
+            return f"https://{dom.lower()}", dom  # pages answer at the root (Southern), not under the website path /pools
     return "", next(iter(domains.values()), "")
 
 
@@ -147,41 +148,55 @@ def process(a: Agency, loc: dict, apply: bool, submit: bool) -> list[str]:
         else:
             say("   business profile: ok")
 
-    # 3. phone: number + forwarding
+    # 3. phone: three numbers (SOP) named by line + forwarding to the business phone
     try:
         tw = pp_a2p.twilio(a, lid)
     except Exception:  # noqa: BLE001
         tw = None
+    target = e164(full.get("phone") or "") or e164((o or {}).get("phone") or "")
+    nums: list[str] = []
+    main = ""
     if tw is None:
         say("   phone: LC Phone NOT active (Pedro: Settings → Phone Numbers → activate)")
     else:
-        nums = list((tw.get("numberName") or {}).keys())
+        names = dict(tw.get("numberName") or {})
+        nums = list(names.keys())
         kyc = a.get(BACKEND, "/phone-system/kyc-verification/status", {"entityId": lid, "entity": "LOCATION"})
-        target = e164(full.get("phone") or "") or e164((o or {}).get("phone") or "")
-        if not nums:
-            if kyc.get("status") != "completed":
-                say("   phone: no number; first purchase needs GHL identity check (Persona) — Pedro/Frank buys it once "
-                    f"in Settings → Phone Numbers (area code {target[2:5] or '?'})")
-            else:
-                avail = a.get(BACKEND, f"/phone-system/numbers/location/{lid}/available",
-                              {"countryCode": "US", "firstPart": target[2:5], "smsEnabled": "true", "voiceEnabled": "true",
-                               "mmsEnabled": "true", "numberTypes": "local"})
-                city = (full.get("city") or "").lower()
-                pick = next((n for n in avail.get("numbers", []) if (n.get("locality") or "").lower() == city),
-                            (avail.get("numbers") or [None])[0])
-                if not pick:
-                    say(f"   phone: no {target[2:5]} numbers available")
-                elif apply:
+        if not nums and kyc.get("status") != "completed":
+            say("   phone: no number; first purchase needs GHL identity check (Persona) — Pedro buys the FIRST one once "
+                f"in Settings → Phone Numbers (area code {target[2:5] or '?'}); I buy the other two")
+        elif len(nums) < len(LINES):
+            avail = a.get(BACKEND, f"/phone-system/numbers/location/{lid}/available",
+                          {"countryCode": "US", "firstPart": target[2:5], "smsEnabled": "true", "voiceEnabled": "true",
+                           "mmsEnabled": "true", "numberTypes": "local"})
+            city = (full.get("city") or "").lower()
+            pool = sorted(avail.get("numbers", []), key=lambda n: (n.get("locality") or "").lower() != city)
+            need = len(LINES) - len(nums)
+            picks = pool[:need]
+            if not picks:
+                say(f"   phone: no {target[2:5]} numbers available")
+            for pick in picks:
+                if apply:
                     a.call("POST", BACKEND, f"/phone-system/numbers/location/{lid}/purchase", body={
                         "addressSid": "", "bundleSid": "", "countryCode": "US", "numberType": "local",
                         "phoneNumber": pick["phoneNumber"], "stripeAccountId": "", "locality": pick.get("locality", ""),
                         "region": pick.get("region", ""), "paymentIntentId": "", "paymentMethodId": "",
                         "fingerprintId": avail.get("fingerprintId"), "skipLocationKYC": False})
-                    say(f"   phone: bought {pick['phoneNumber']} ({pick.get('locality')})")
-                    time.sleep(5)
-                    tw, nums = pp_a2p.twilio(a, lid), [pick["phoneNumber"]]
-                else:
-                    say(f"   phone: would buy {pick['phoneNumber']} ({pick.get('locality')})")
+                    nums.append(pick["phoneNumber"])
+                say(f"   phone: {'bought' if apply else 'would buy'} {pick['phoneNumber']} ({pick.get('locality')})")
+            if apply and picks:
+                time.sleep(5)
+                tw = pp_a2p.twilio(a, lid)
+                names = dict(tw.get("numberName") or {})
+        # line names: Website & GBP (main, the A2P verification number) / Google Ads / Facebook Ads
+        free = [l for l in LINES if l not in names.values()]
+        for n in nums:
+            if not (names.get(n) or "").strip() and free:
+                line = free.pop(0)
+                say(f"   phone: name {n} → {line}" + (" ✓" if apply else ""))
+                if apply:
+                    a.call("POST", BACKEND, f"/phone-system/twilio-accounts?locationId={lid}", body={"number": n, "friendlyName": line})
+                    names[n] = line
         fwd = tw.get("forwardingNumbers") or {}
         try:
             ring = {n["phoneNumber"] for n in a.get(BACKEND, f"/phone-system/numbers/location/{lid}").get("numbers", [])
@@ -197,41 +212,84 @@ def process(a: Agency, loc: dict, apply: bool, submit: bool) -> list[str]:
                            body={"number": n, "forwardingNumber": target})
         elif nums:
             say(f"   phone: {len(nums)} number(s), forwarding ok")
+        main = next((n for n, l in names.items() if l == LINES[0]), nums[0] if nums else "")
 
-    # 4. A2P site + campaign
+    # 4. SOP custom values (Fase 1) + A2P site (Fase 2) + campaign (Fases 4–6)
+    cvs = {c["name"].lower(): c for c in a.custom_values(lid)}
+    def setcv(name: str, value: str) -> None:
+        c = cvs.get(name.lower())
+        if apply:
+            if c:
+                a.call("PUT", SERVICES, f"/locations/{lid}/customValues/{c['id']}", body={"name": c["name"], "value": value})
+            else:
+                a.call("POST", SERVICES, f"/locations/{lid}/customValues", body={"name": name, "value": value})
+    cv = lambda n: ((cvs.get(n.lower()) or {}).get("value") or "").strip()  # noqa: E731
+    a2p_num = re.sub(r"\D", "", cv("A2P Verification Number"))[-10:]
+    if main and a2p_num not in {n[-10:] for n in nums}:  # empty or provisional (business phone): use the main GHL number
+        say(f"   custom value A2P Verification Number → {main} (main number)" + (" ✓" if apply else ""))
+        setcv("A2P Verification Number", f"({main[2:5]}) {main[5:8]}-{main[8:]}")
+    biz_logo = (full.get("business") or {}).get("logoUrl") or full.get("logoUrl") or ""
+    if not cv("Logo URL").startswith("http") and biz_logo.startswith("http") and live(biz_logo):
+        say("   custom value Logo URL ← Business Profile logo" + (" ✓" if apply else ""))
+        setcv("Logo URL", biz_logo)
+        if apply:
+            cvs["logo url"] = {**(cvs.get("logo url") or {}), "value": biz_logo}
+    cv_missing = [n for n in ("Business Address", "Business Email", "Friendly Business Name", "Legal Business Name", "Logo URL")
+                  if not cv(n) or cv(n).lower() in ("none", "null")]
+    if cv("Logo URL").startswith("http") and not live(cv("Logo URL")):
+        cv_missing.append("Logo URL (doesn't open publicly)")
+    if cv_missing:
+        say(f"   custom values missing (SOP): {', '.join(cv_missing)}")
     site, dom = a2p_site(a, lid)
-    site_live = bool(site) and live(f"{site}/privacy-policy") and live(f"{site}/terms-of-use")
+    site_live = bool(site) and all(live(f"{site}/{p}") for p in ("privacy-policy", "terms-of-use", "contact-us"))
+    review: dict = {}
     if not site:
         say(f"   A2P site: no domain on the A2P website yet ({dom or 'no domain at all'}) — Frank connects go.<domain>, "
             "client points CNAME go → sites.ludicrous.cloud")
     elif not site_live:
         say(f"   A2P site: {site} not loading yet (DNS/SSL pending)")
     else:
-        cvs = {c["name"].lower(): c for c in a.custom_values(lid)}
-        for name, path in (("privacy policy", "privacy-policy"), ("terms of use", "terms-of-use")):
-            c = cvs.get(name)
-            if c and not (c.get("value") or "").strip() and apply:
-                a.call("PUT", SERVICES, f"/locations/{lid}/customValues/{c['id']}", body={"name": c["name"], "value": f"{site}/{path}"})
-        if tw is not None and not (tw.get("campaignDetails") or {}).get("useCaseDescription"):
-            say("   A2P campaign details: fill from Southern model" + (" ✓" if apply else ""))
+        for name, path in (("Privacy Policy", "privacy-policy"), ("Terms of Use", "terms-of-use")):
+            if cv(name) != f"{site}/{path}":
+                say(f"   custom value {name} → {site}/{path}" + (" ✓" if apply else ""))
+                setcv(name, f"{site}/{path}")
+        if (full.get("website") or "").rstrip("/").lower() != site:
+            say(f"   brand website → {site} (as Southern)" + (" ✓" if apply else ""))
             if apply:
-                pp_a2p.backup(slugify(full["name"]), "twilio-accounts.json", tw)
-                a.call("PUT", BACKEND, f"/phone-system/twilio-accounts?locationId={lid}",
-                       body={"campaignDetails": pp_a2p.build_campaign(a, a.location(lid), site)})
+                a.call("PUT", SERVICES, f"/locations/{lid}", body={"website": site, "business": {**(full.get("business") or {}), "website": site}})
+        if tw is not None:
+            cur = tw.get("campaignDetails") or {}
+            want = pp_a2p.build_campaign(a, a.location(lid), site)
+            stale = {k for k in ("useCaseDescription", "privacyPolicyUrl", "termsAndConditionsUrl", "optInImageUrl", "endUserConsent")
+                     if cur.get(k) != want[k]} or cur.get("sampleMessages") != want["sampleMessages"]
+            if stale and not (tw.get("compliance") or {}).get("standardRegistration", {}).get("brandSid"):
+                say("   A2P campaign details: SOP texts + links" + (" ✓" if apply else ""))
+                if apply:
+                    pp_a2p.backup(slugify(full["name"]), "twilio-accounts.json", tw)
+                    a.call("PUT", BACKEND, f"/phone-system/twilio-accounts?locationId={lid}", body={"campaignDetails": want})
 
-    # 5. status / submit
+    # 5. status / AI compliance review / submit
     if tw is not None:
         st = pp_a2p.status_row(a, {"id": lid, "name": full["name"]})
-        ready = site_live and st["numbers"] and not st["profile_missing"] and st["campaign_details"]
+        ready = site_live and st["numbers"] and not st["profile_missing"] and st["campaign_details"] and not cv_missing
         if st["brand"] or st["campaign"]:
             say(f"   A2P: brand {st['brand'] or '—'}, campaign {st['campaign'] or '—'}")
         elif ready and submit and apply:
-            pp_a2p.backup(slugify(full["name"]), "twilio-accounts-before-submit.json", pp_a2p.twilio(a, lid))
-            r = a.call("POST", pp_a2p.ISV, f"/compliance/{full['companyId']}/standard-registration/{lid}?brandType=standard")
-            say(f"   A2P: SUBMITTED {json.dumps(r)[:200]}")
+            review = pp_a2p.compliance_review(a, lid, site)
+            if not review.get("isCompliant"):
+                bad = [c.get("label") for c in review.get("checks", []) if not c.get("passed")] + review.get("errors", [])
+                say(f"   A2P: AI compliance review FAILED ({review.get('passedChecks')}/{review.get('totalChecks')}): {bad} — not submitted")
+            else:
+                tw = pp_a2p.twilio(a, lid)
+                cd = {**(tw.get("campaignDetails") or {}), "optInValidationId": review.get("optInValidationId", "")}
+                a.call("PUT", BACKEND, f"/phone-system/twilio-accounts?locationId={lid}", body={"campaignDetails": cd})
+                pp_a2p.backup(slugify(full["name"]), "twilio-accounts-before-submit.json", pp_a2p.twilio(a, lid))
+                r = a.call("POST", pp_a2p.ISV, f"/compliance/{full['companyId']}/standard-registration/{lid}?brandType=standard")
+                say(f"   A2P: AI review {review.get('passedChecks')}/{review.get('totalChecks')} ✓ → SUBMITTED {json.dumps(r)[:200]}")
         else:
             missing = [x for x, ok in (("live site", site_live), ("number", st["numbers"]),
                                        ("profile " + ",".join(st["profile_missing"]), not st["profile_missing"]),
+                                       ("custom values " + ",".join(cv_missing), not cv_missing),
                                        ("campaign details", st["campaign_details"])) if not ok]
             say("   A2P: " + ("READY to submit" if ready else "waiting on " + "; ".join(missing)))
     return out
