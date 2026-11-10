@@ -27,11 +27,14 @@ combinar antes.
    o form "Weekly pool service done right".
 8. **Blue Lagoon** (86bcyu05g): o rascunho da oferta de $250 para a Caila não está mais nos rascunhos do Gmail — se já foi,
    fechar a tarefa; se não, me avisa que eu refaço.
-9. **Contas fora do modelo (Frank 10/11, caso Corolla)** — `scripts/pp_fleet_check.py` (relatório `reports/fleet-*.json`).
-   Corolla migrada 10/11 (0 ALTA/0 ERRO, boas-vindas de reparo no ar). 33 contas do snapshot antigo sendo migradas pela
-   mesma sequência (10–11/11). **Decisão sua** (têm configuração própria que o `pp_mirror` sobrescreveria): BluVantage,
-   Clear Pool Tucson, Ekahi, Sunwave (no V9, só faltam etapas novas + Answered Incoming Call), Pool Palooza (sem pipeline
-   Pool Leads), Golden View (pipeline diferente), Pool Duck. Dashboard padrão e gate de nota já em todas.
+9. **Contas fora do modelo (Frank 10/11)** — `scripts/pp_fleet_check.py`; detalhe no fim de
+   `docs/execucao-2026-10-27-clearpool-dash.md`. Migradas: Corolla, Aqua Clear, YardSpring, Bluebird e Summer Wave (as duas
+   em draft). **Seu**: 27 contas pré-V9 (snapshot de antes do V9) só migram com os custom values do cliente preenchidos
+   (nome do dono, telefone, e-mail, preço semanal, link de agendamento, número do A2P, link do Google) e decisão sobre a
+   linha/IVR de cada uma — via Frank ou questionário; confirmar quais ainda são clientes (Net Positive, Next Level, Pooly,
+   Ponchos sem usuário; GID e Next Level sem lead novo desde 03/2026 e 12/2025). Pool Smart OC meio migrada (fluxos ao lead em
+   draft, faltam 5 custom values). Fora por configuração própria: BluVantage, Clear Pool, Ekahi, Sunwave, Pool Palooza,
+   Golden View, Pool Duck.
 10. **Gate de nota** (Frank 10/11): só 5 recebe o link do Google; 1–4 recebe SMS "what could we have done better?" +
    aviso à equipe (`pp_review_gate.py`, testado na Test Snapshot). **Decidir**: quem não dá nota em 7 dias ainda recebe
    o link (regra do V9) — manter ou cortar?

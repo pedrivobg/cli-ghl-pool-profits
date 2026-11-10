@@ -810,3 +810,25 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   0 ERRO (sem o `--place` acusa o link de review porque o GBP não está conectado). Josh = único usuário: tarefas
   (`contact.assigned_user`) e avisos (assign/all/user) caem nele. ZZ TEST (@example.com, sem telefone) → dono = Josh em
   10 s; apagado. Backups em `backup/corolla-pool-and-spa/`.
+
+## 10/11 (noite) — Frank: dashboard da reunião, gate de nota e todas as contas no modelo
+- **Dashboard** (o da SwimReady): "Pool Profits Dashboard" na Snapshot Pool Profits e padrão em 56 contas (`pp_dashboard.py`;
+  rota `duplicate` com `targetLocationId`, cópia vem privada → permissions → set-default). `pp_new_account.py` faz nas novas.
+- **Gate de nota**: só 5 vai ao Google; 1–4 recebe "SMS - Ask What Went Wrong" + aviso à equipe (`pp_review_gate.py`).
+  Antes o 4 ia ao Google (`!= 5 e != 4`). Teste na Test Snapshot (notas 4/5/2, contatos e workflow ZZ apagados). Aplicado no
+  modelo, na master e em 25 contas; `config/snapshot_guide.json` atualizado.
+- **Contas vs modelo** (`pp_fleet_check.py`, `reports/fleet-20261110.json`): 16 OK. Migradas hoje: Corolla, Aqua Clear
+  (+ usuário Alex Kalogianis, dono no Contact Created; 0 ALTA/0 ERRO com --place), YardSpring (0/0), Bluebird e Summer Wave
+  (`--no-publish`, pré-go-live). `pp_master_cleanup --loc` agora só tira gatilhos com números de outros clientes (Bluebird
+  e YardSpring têm linha própria no AdWords Call In); `pp_mirror` tira "Remove from Workflow" de fluxos que a conta não tem.
+- **Pool Smart OC** meio migrada (antes do critério): pipeline do modelo, 7 fluxos criados, Incoming Call/SMS Reply com
+  passos do modelo; Missed New Lead SMS, No Response, No-Show, Quote Sent e Won Stage em **draft**; o Review Request antigo
+  segue publicado. Faltam owner_first_name, business_phone, weekly_service_price, booking_link, google_review_link.
+- **Não migradas (pré-V9, pipeline "💧 Pool Leads 💧", faltam 6–9 dos 9 custom values do V9 → SMS sairiam com campos
+  vazios)**: ABC, Big George's, Clear Conceptz, Leisure, Premier 1 (2), PoolReady SELA, Signature, Net Positive, Legion,
+  GID, Dream, JM, Next Level, Damon's, Clean Co, Blue Lagoon, SwimReady, Pooly, Ponchos, Pool Time, Pooltexx, Sparkling
+  Clear, Precision, Reign, Wrigley's, Simple, Orange Tree. Além disso: Incoming Call por linha/IVR (SwimReady, Blue Lagoon,
+  Reign com IVR SPAM Detection; 6 contas ouvem +18179548486, linha velha do snapshot), e-mails da Vanessa dentro do
+  Website Form Fill da Orange Tree, sem usuário (Net Positive, Next Level, Pooly, Ponchos), `location_dirs` casa por
+  pedaço do nome (Damon's pega a Billing Only). Planos em `scratchpad/fleet/`.
+- **Fora por configuração própria**: BluVantage, Clear Pool Tucson, Ekahi, Sunwave, Pool Palooza, Golden View, Pool Duck.
