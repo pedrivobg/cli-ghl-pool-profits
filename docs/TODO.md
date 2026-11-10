@@ -12,7 +12,8 @@ combinar antes.
    comprar número local (323 / 916), encaminhar para o celular do dono, A2P (site sem privacy → funil "New A2P
    Verification"), trocar `a2p_verification_number` pelo número novo, conectar o GBP (West Coast: libera o Review
    Request), primeiro acesso + app (Milen, Zuriel), conferir o friendly name "West Coast Chemical Company". Test Pool Co:
-   private key + form do n8n.
+   private key + form do n8n. **Smart Chem Pools LLC** (`Ykjw1clNFPkr4izP9Uaq`, 09/11): private key + form do n8n
+   (e-mail "Falta 1 passo"; custom values 0/21) → depois eu reviso.
 4. **Refresh do snapshot V9** (na tela).
 5. **Números + A2P**: Rosebrook, Blissful, WP Pools, Bonneville, West Coast, Capital sem número (nenhum SMS sai); Cleverblu com A2P
    salvo, falta privacy/terms do site + pagamento + enviar.
