@@ -125,6 +125,11 @@
   CEO); campanha + encaminhamento = `backend /phone-system/twilio-accounts` (`campaignDetails`, `forwardingNumbers`);
   envio = `POST backend/isv_service /compliance/{companyId}/standard-registration/{loc}?brandType=standard` (pago, só com
   OK do Pedro). API oficial/Marketplace não tem nada disso.
+- **Dashboard padrão** (Pedro 10/11: o da SwimReady, da reunião): "Pool Profits Dashboard" (16 widgets) na Snapshot Pool Profits
+  e como padrão em todas as contas de cliente (`scripts/pp_dashboard.py`; o `pp_new_account.py` faz nas novas). Copiar entre
+  contas: `POST services /reporting/dashboards/{id}/duplicate {locationId, targetLocationId, title}` (a cópia vem privada) →
+  `POST …/{novo}/permissions {locationId, permissionAccess, isPrivate: false}` → `POST …/{novo}/set-default {locationId}`
+  (privado dá 403). Mudou o dashboard na Snapshot → apagar a cópia nas contas e rodar de novo (pula quem já tem o título).
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
 - Tag usada em passo/gatilho/if-else **tem que existir na conta** (`POST backend /workflow/{loc}/tags/create
   {tag}`): o passo funciona, mas o construtor mostra "Referenced Tag does not exist" (Frank viu no Won

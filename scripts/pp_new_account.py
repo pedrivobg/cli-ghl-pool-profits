@@ -7,6 +7,7 @@
   add --submit to also send the A2P brand + campaign when everything is ready (paid, goes to the carriers)
 
 Steps (each one only when its input exists; safe to re-run, nothing filled by hand is overwritten):
+ 0. Standard dashboard (pp_dashboard.py: "Pool Profits Dashboard" from the snapshot master, set as default).
  1. Onboarding survey (efErcbOr4GAKXzZ28J4S, sub-account "Pool Profits") matched by e-mail / business name
     → custom values + time zone (pp_onboarding_fill.py --apply --timezone).
  2. Business Profile for A2P from the survey: legal name, EIN, entity type, representative (title CEO,
@@ -37,6 +38,7 @@ from _common import ROOT, load_dotenv, slugify
 load_dotenv()
 from cli_anything.gohighlevel.utils.agency import SERVICES, Agency, match_location  # noqa: E402
 import pp_a2p  # noqa: E402
+import pp_dashboard  # noqa: E402
 
 ONBOARDING_LOC = "wohRifObKPEykgu17LJu"
 F_BUSINESS, F_LEGAL, F_TYPE, F_EIN, F_REP = ("UUc0Lc3Bps8PZm8g5Y1I", "Er4JquP5hSCM8Jna1VOj", "1KzpDbDTP0oZ2Jvw72gZ",
@@ -106,6 +108,12 @@ def process(a: Agency, loc: dict, apply: bool, submit: bool) -> list[str]:
     full = a.location(lid)
     say = out.append
     say(f"== {full['name']} ({lid})")
+
+    # 0. standard dashboard (copy of the snapshot master's "Pool Profits Dashboard" as the default)
+    try:
+        say(f"   Dashboard: {pp_dashboard.run(a, full | {'id': lid}, apply)}")
+    except Exception as e:  # noqa: BLE001
+        say(f"   Dashboard: ERROR {str(e)[:200]}")
 
     # 1. survey → custom values + time zone
     sub = find_submission(a, full)
