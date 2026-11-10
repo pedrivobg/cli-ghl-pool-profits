@@ -767,3 +767,17 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Val (DM): o número "Ed's number" da YardSpring (678) 448-5005 não é usado → fica sem encaminhamento (nada gravado no
   GHL). Weekly meeting mudou para 12h (horário dela) com link do Zoom às 12h02 BRT → push para o Pedro entrar.
   Respondi no DM. Sem tarefa nova. Ledger: 3 linhas (1 done, 2 needs_pedro).
+
+## 10/11 — BluVantage: Pool Renovations form (Val, ClickUp 86bc6vwyv)
+
+- `bv_service_forms.py` gets a 4th service (Pool Renovations) + `test --only`. `apply` created the form "BluVantage — Pool
+  Renovations" `ZGvQmo1SSi9U0AzXpqA3` (CTA "Get Your Free Pool Renovation Quote") and "AdWords Form - Pool Renovations"
+  (published; tag `google ads form - pool renovations`, Service Requested, card "Google Ads LP - Pool Renovations",
+  team SMS, Vanessa/Paul emails, conversion "AdWords - Form Fill - Qualified"). The new form lost `redirect_url` →
+  re-POSTed with `keep_redirect` (backup `backup/bluvantage-pool-service/form-ZGvQ…`); thank-you = ty-page-2934 until
+  Atif builds the page's own.
+- Test (ZZ copy, `--only renovations`): tags + field + card OK, [TEST] email arrived; contact/card/workflow/email
+  deleted. Missing: real submission on Atif's page (my task 86bd12x55).
+- Client's "spam leads": GHL only has 4 submissions since 15/10 (all real). The spam comes from the Elementor forms on
+  bluvantagepoolservice.com (reCAPTCHA v3, email straight to the client). Asked Val for examples.
+- Frank (DM): A2P now comes to me; the `/pools` path of the "New A2P Verification" site comes from the snapshot (master too).

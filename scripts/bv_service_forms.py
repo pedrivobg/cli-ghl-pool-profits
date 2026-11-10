@@ -3,7 +3,7 @@
 
     ./.venv/bin/python scripts/bv_service_forms.py plan
     ./.venv/bin/python scripts/bv_service_forms.py apply
-    ./.venv/bin/python scripts/bv_service_forms.py test --to pedro@poolprofits.com
+    ./.venv/bin/python scripts/bv_service_forms.py test --to pedro@poolprofits.com [--only renovations]
 
 Forms: Full Name, Phone (US country picker), Email, Property ZIP Code (required), optional message (custom field
 "Additional Details"), the SMS consent of the current "FORM - GOOGLE ADS" (names the business) and the page's CTA on
@@ -49,6 +49,9 @@ SERVICES_LP = [
     {"service": "Pool Closing & Winterization", "form": "BluVantage — Pool Closing & Winterization",
      "tag": "google ads form - closing & winterization", "cta": "Schedule Pool Closing",
      "flow": "AdWords Form - Closing & Winterization"},
+    {"service": "Pool Renovations", "form": "BluVantage — Pool Renovations",  # Val, 10/11 (ClickUp 86bc6vwyv)
+     "tag": "google ads form - pool renovations", "cta": "Get Your Free Pool Renovation Quote",
+     "flow": "AdWords Form - Pool Renovations"},
 ]
 THANKS = "Thank you! We received your request and will contact you shortly."
 BDIR = ROOT / "backup" / "bluvantage-pool-service"
@@ -180,6 +183,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["plan", "apply", "test"])
     parser.add_argument("--to", help="test: inbox that gets the lead e-mails")
+    parser.add_argument("--only", help="test: only the services whose name contains this text")
     parser.add_argument("--refresh-forms", action="store_true", help="apply: rebuild existing forms from the base form")
     args = parser.parse_args()
     if args.mode == "test" and not args.to:
@@ -256,7 +260,7 @@ def main() -> int:
     # test: temporary diverted copies, one test contact each, then clean up
     stamp = int(time.time())
     bad = 0
-    for s in SERVICES_LP:
+    for s in [x for x in SERVICES_LP if not args.only or args.only.lower() in x["service"].lower()]:
         tpl = diverted(build_flow(src["workflowData"]["templates"], s, cfs[SERVICE_FIELD]["id"]), args.to)
         wid = put_flow(a, f"ZZ TEST {s['flow']}", src.get("parentId"), True, tpl, "published")
         contact = a.call("POST", SERVICES, "/contacts/", body={
