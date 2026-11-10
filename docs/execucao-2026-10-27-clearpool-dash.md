@@ -781,3 +781,32 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   relido: status/gatilhos/re-entry iguais, só esses nós mudaram. Re-entry de No Response / Quote Sent já estava ligado.
 - No pp_mirror da migração: Won Stage e Review Request voltam ao modelo (seg–sex 9–17) → reaplicar 08–18; boas-vindas de
   reparo (decisão 5) = rascunho para o Pedro aprovar, entra no ramo Repairs / Installs do Won Stage do modelo.
+
+## 10/11 (~20h UTC) — Corolla: migração para o modelo (Pedro aprovou; guia do CRM aprovado pelo cliente)
+
+- Conta com 0 contatos e 0 oportunidades (conferido por `/contacts/search` e `/opportunities/search`; a mesma chamada na
+  Southern devolve 45) → nenhum card movido, nenhum envio a cliente real.
+- `pp_mirror --apply`: pipeline Pool Leads 9 → 13 etapas (ids das 9 mantidos; "🏆 Won" → "🏆 Won - Weekly Pool Service";
+  novas: No Response - Follow Up, No Show, Won - One Time Repair or Install, Won - Pool Construction or Remodeling);
+  11 workflows copiados do modelo (Answered Incoming Call criado; Incoming Call / New Lead SMS renomeados para Missed);
+  8 templates SMS com o texto do modelo; tag `missed call`; os 6 extras (Appointment Confirmation/Reminders,
+  Post-Appointment Follow-up, In Communication Stage, Filter Clean Reminder, Monthly Service Reminder, Upsell
+  Opportunity) → draft. Custom values da Corolla intactos.
+- Sequência: `pp_forms` nada a fazer (5 forms de lead já no Website Form Fill); `pp_nps` (campo NPS Message, NPS Form com
+  os campos da conta, `nps_survey_link`); `pp_fix` (AdWords Call In - New Lead, draft: "Clear Pool Solutions Tucson" →
+  friendly name); `pp_tags_missing` 5 tags criadas (2ª leitura 0); `pp_skip_tag` filtro em 2 drafts; `pp_line_tag` →
+  "Website & GBP Call - Tag" publicado (+12526003428); `pp_master_cleanup` (Sequential Call Routing sem Fred/Paul/números
+  da BluVantage; AdWords Call In sem o gatilho do +15207771392); `pp_review_fix` nada. Missed-call nativo → off.
+  Custom values `'null'` → vazio (Weekly Service / Chemical Only / Green to Clean Price).
+- Janelas 08–18 todo dia reaplicadas: Won Stage "Wait 2 minutes" e Review Request "Wait Before NPS Request" (id novo
+  `3f3826e2…` depois do espelho); Lost Stage não é espelhado e continuou 08–18.
+- Boas-vindas de reparo (textos aprovados pelo Pedro): Won Stage, ramo Repairs / Installs, depois de "Mark won (Repairs /
+  Installs)": "Repair Welcome Email" (html no passo + snippet "Won Stage - Repair Welcome Email" `MF4qSWIMMMFdeQEQ5zGd`)
+  → "Wait 2 minutes" (todo dia 08–18) → "Repair Welcome SMS" (snippet `clUf03Y54apsohJXxObx`). Relido: só os 3 passos
+  novos + o `next` do Mark won; demais ramos, status, re-entry e os 3 gatilhos iguais.
+  **Atenção:** um novo `pp_mirror --apply` na Corolla volta o Won Stage ao modelo (apaga o ramo novo e as janelas 08–18).
+- Conferido: `pp_audit` 0 ALTA / 8 MÉDIA (4 Add Task incompleto + 3 Won/Review mesmo gatilho do modelo + Landing Page
+  form no Website Form Fill, sem workflow de Ads publicado); `pp_ready --place corolla-pool-and-spa=ChIJ08hxEB6E04AReOkRA0DoxeU`
+  0 ERRO (sem o `--place` acusa o link de review porque o GBP não está conectado). Josh = único usuário: tarefas
+  (`contact.assigned_user`) e avisos (assign/all/user) caem nele. ZZ TEST (@example.com, sem telefone) → dono = Josh em
+  10 s; apagado. Backups em `backup/corolla-pool-and-spa/`.
