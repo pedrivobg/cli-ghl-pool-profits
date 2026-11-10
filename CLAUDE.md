@@ -14,8 +14,8 @@
   pendências do Pedro: `docs/TODO.md`.
 - **Conta nova sem private key** (Pedro 10/11): o questionário cria a sub-conta; eu faço o resto pelo token de agência
   (`scripts/pp_new_account.py`: custom values + fuso do survey, Business Profile do A2P, encaminhamento, campanha e envio do
-  A2P quando o site carrega) + a sequência do modelo + auditoria + guia do CRM. Roda sozinho todo dia útil 8h47 BRT
-  (tarefa agendada "GHL new accounts + A2P (daily)") e comenta na tarefa "Create GHL Account For Client <nome>" (lista
+  A2P quando o site carrega) + a sequência do modelo + auditoria + guia do CRM. Roda sozinho 1x por dia útil (item diário
+  do n8n para a rotina "GHL Tasks"; passos em `docs/new-account-review.md` → "Rodada diaria") e comenta na tarefa "Create GHL Account For Client <nome>" (lista
   `901417290241`; o texto dela vem do workflow "Lead Closed - Welcome Aboard" da sub-conta Pool Profits). Passos humanos
   que sobram: cliente aponta o DNS (CNAME go → sites.ludicrous.cloud; Frank conecta o go.<domínio> ao site "New A2P
   Verification") e a 1ª compra de número da sub-conta (verificação de identidade do GHL, Persona).

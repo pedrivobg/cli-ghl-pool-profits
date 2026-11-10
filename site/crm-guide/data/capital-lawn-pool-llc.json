@@ -440,14 +440,15 @@
     {
       "id": "t-a2p",
       "area": "Phone",
-      "title": "Confirm your business details for texting approval",
+      "title": "Check your business details for texting approval",
       "why": "Phone carriers only approve business texting when these match your IRS records exactly.",
       "steps": [
         "Check: Capital Lawn & Pool LLC · EIN ending in 8601 · 1301 W El Camino Ave, Sacramento, CA, 95833.",
         "Contact person: Zuriel Jackson, capitallandp@gmail.com.",
-        "If anything differs from your IRS letter (CP 575 or 147C), send me the right version."
+        "If anything differs from your IRS letter (CP 575 or 147C), send me the right version.",
+        "I submit the registration for you; approval usually takes 1–3 weeks."
       ],
-      "status_hint": "done"
+      "status_hint": "todo"
     },
     {
       "id": "t-privacy",
@@ -524,13 +525,13 @@
     {
       "id": "t-hours",
       "area": "Other",
-      "title": "Tell me your business hours",
+      "title": "Your business hours",
       "why": "Welcome texts and some emails wait for business hours, and your team alerts follow them.",
       "steps": [
-        "Send me your office hours for each day (and the days you're closed).",
-        "Tell me if you take calls on weekends."
+        "From your onboarding form: Monday _ Sunday 7:00am-9:00pm",
+        "Tell me if they change (or if you take calls on weekends)."
       ],
-      "status_hint": "todo"
+      "status_hint": "done"
     },
     {
       "id": "t-booking",

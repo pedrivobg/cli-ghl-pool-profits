@@ -67,6 +67,11 @@ End with a 2-line summary in Portuguese.
   custom value/business profile = `complex` (dispara na hora); pergunta, imagem ou pedido = `medium` (dispara após 20 min
   ou 30 min desde o último disparo); `easy` espera no máximo 30 min.
 
+## Item diário (10/11)
+- Nó "Daily new-accounts item" (depois de "Collect all items", que agora sempre devolve algo): de seg a sex, a partir das 9h
+  BRT, entra um item `daily-newaccounts-<data>` (fonte `daily`, complexo → dispara na hora). O ledger evita repetir no dia.
+  A rotina segue `docs/new-account-review.md` → "Rodada diaria". Substitui a rotina separada que tinha sido criada.
+
 ## Limites
 - Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
   na sessão da rotina se estiverem nas variáveis do ambiente (TODO, "Tokens fora do chat").

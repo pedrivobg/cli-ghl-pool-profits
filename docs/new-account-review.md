@@ -7,7 +7,7 @@ Rotina do inbox segue isto. Base: Bonneville (02/11), West Coast + Capital (09/1
 ```
 P/pp_new_account.py -n "<n>"            # plano: survey, perfil A2P, telefone, site A2P, status
 P/pp_new_account.py -n "<n>" --apply [--submit]   # --submit envia o A2P quando tudo está pronto (pago)
-P/pp_new_account.py --scan --apply --submit       # todas as contas dos últimos 30 dias (tarefa agendada diária)
+P/pp_new_account.py --scan --apply --submit       # todas as contas dos últimos 30 dias (rodada diária, abaixo)
 ```
 - Survey casado por e-mail/nome; custom values só em conta "fresca" (fuso Sao_Paulo ou Friendly Name vazio) — nunca
   sobrescreve texto editado à mão. Perfil A2P só nos campos vazios (padrão CONSUMER / CEO / USA_AND_CANADA).
@@ -73,3 +73,22 @@ Detalhes: `site/crm-guide/SCHEMA.md`.
 - guia do CRM publicado e link com o Frank; comentário na tarefa "Create GHL Account For Client <nome>" (fechar só
   quando número encaminhado + A2P enviado + guia enviado);
 - log em `docs/execucao-*.md`; passos humanos restantes (1º número, DNS, GBP, primeiro acesso) num e-mail "[Passo seu]".
+
+## Rodada diaria (item "daily-newaccounts-<data>" do n8n, 1x por dia útil a partir das 9h BRT, rotina "GHL Tasks")
+O n8n (Pedro Inbox Watch, nó "Daily new-accounts item") manda esse item uma vez por dia; não existe rotina separada.
+1. Chave do guia do CRM: ler do workflow n8n `SlfpWZmKH1d62hB9`, nó "Check admin key", e exportar `CRM_GUIDE_ADMIN_KEY` só no
+   shell (nunca imprimir/gravar/commitar).
+2. `P/pp_new_account.py --scan` (ler o plano) → `P/pp_new_account.py --scan --apply --submit`.
+3. Toda sub-conta criada nos últimos 30 dias: `pp_dump` + `pp_audit` + `pp_ready`. Sem a sequência do modelo (sem os workflows
+   V9, ALTA no audit ou ERRO no ready) → seções 1–3 acima completas (usuário = representante em todo aviso/tarefa).
+4. Guia do CRM: conta sem entrada em `config/crm_guide_links.json` e com o passo 3 ok → `pp_crm_guide.py` + conferir o JSON +
+   `pp_crm_guide_publish.py` + abrir o link → DM ao Frank (ClickUp, user 94490678) com o link.
+5. ClickUp, lista `901417290241`: tarefa "Create GHL Account For Client <nome>" (casar pelo nome; Smart Chem ficou na
+   86bcywax9 da lista do Pedro). Um comentário só quando algo mudou desde o último (feito / esperando: Frank conectar
+   go.<domínio> ao site "New A2P Verification" + CNAME do cliente; Pedro: 1º número; status do A2P). Fechar só com: audit
+   limpo, usuário nos avisos/tarefas, número encaminhado, A2P enviado, guia enviado. Tarefa sem sub-conta (questionário 2.0
+   "Local SEO Onboarding Form 2.0" = `efErcbOr4GAKXzZ28J4S` não respondido) fica como está — o "Pool Profits Training Survey
+   Intake Form" (`4irAGdK9ycRh4itHvI8C`) NÃO cria sub-conta.
+6. Algo que precisa do Pedro (1º número, passo travado) → UM e-mail "[Passo seu] Contas novas <data>". Nada → sem e-mail.
+7. Registrar em `docs/execucao-*.md`, commit/push só se mudou arquivo. Marcar o item `done` no ledger.
+

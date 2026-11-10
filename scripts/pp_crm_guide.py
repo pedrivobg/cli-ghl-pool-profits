@@ -155,6 +155,19 @@ class CrmGuide:
         except Exception as e:  # noqa: BLE001
             self.flags.append(f"contatos: {e}")
         out["privacy"] = self.privacy_page()
+        try:  # A2P status (internal phone-system API, see docs/a2p-automation.md)
+            import pp_a2p
+            sr = ((pp_a2p.twilio(a, loc).get("compliance") or {}).get("standardRegistration") or {})
+            out["a2p"] = {"brand": (sr.get("brandData") or {}).get("status") or ("SUBMITTED" if sr.get("brandSid") else ""),
+                          "campaign": sr.get("campaignStatus") or ""}
+        except Exception as e:  # noqa: BLE001
+            self.flags.append(f"status A2P: {e}")
+        try:  # business hours from the onboarding questionnaire
+            import pp_new_account
+            sub = pp_new_account.find_submission(a, a.location(loc))
+            out["hours"] = ((sub or {}).get("others") or {}).get("XQ58PJ6NfS0JmBfCJXZs", "").strip()
+        except Exception as e:  # noqa: BLE001
+            self.flags.append(f"horário do questionário: {e}")
         cache.write_text(json.dumps(out, indent=1))
         return out
 
@@ -323,14 +336,18 @@ class CrmGuide:
         addr = v.get("custom_values.business_address") or ", ".join(
             x for x in (loc.get("address"), loc.get("city"), loc.get("state"), loc.get("postalCode")) if x)
         legal = loc.get("legalBusinessName") or v.get("custom_values.legal_business_name") or ""
-        a2p_ok = bool(legal and len(ein) == 9 and addr and rep.get("email"))
-        add("t-a2p", "Phone", "Confirm your business details for texting approval",
+        a2p = live.get("a2p") or {}
+        approved = a2p.get("campaign") == "VERIFIED"
+        add("t-a2p", "Phone", "Texting approved by the phone carriers" if approved else "Check your business details for texting approval",
             "Phone carriers only approve business texting when these match your IRS records exactly.",
-            [f"Check: {legal or '[legal name missing]'} · EIN ending in {ein[-4:] if ein else '[missing]'} · {addr or '[address missing]'}.",
-             f"Contact person: {(rep.get('firstName', '') + ' ' + rep.get('lastName', '')).strip() or '[missing]'}"
-             f"{', ' + rep['email'] if rep.get('email') else ''}.",
-             "If anything differs from your IRS letter (CP 575 or 147C), send me the right version."],
-            "done" if a2p_ok else "todo")
+            ([f"Approved: {legal} is registered with the carriers, your texts go out normally."] if approved else
+             [f"Check: {legal or '[legal name missing]'} · EIN ending in {ein[-4:] if ein else '[missing]'} · {addr or '[address missing]'}.",
+              f"Contact person: {(rep.get('firstName', '') + ' ' + rep.get('lastName', '')).strip() or '[missing]'}"
+              f"{', ' + rep['email'] if rep.get('email') else ''}.",
+              "If anything differs from your IRS letter (CP 575 or 147C), send me the right version.",
+              "I submit the registration for you" + (" (already sent, waiting on the carriers)." if a2p.get("brand") else
+                                                     "; approval usually takes 1–3 weeks.")]),
+            "done" if approved else "todo")
         # Website
         priv = live.get("privacy") or {}
         sentence = ("“No mobile information will be shared with third parties or affiliates for marketing or promotional "
@@ -423,10 +440,16 @@ class CrmGuide:
                 [f"{name} (used in {', '.join(codes)})." for name, codes in client_missing] +
                 ["Send them to me and I'll fill them in."], "todo")
         # Other
-        add("t-hours", "Other", "Tell me your business hours",
-            "Welcome texts and some emails wait for business hours, and your team alerts follow them.",
-            ["Send me your office hours for each day (and the days you're closed).",
-             "Tell me if you take calls on weekends."], "todo")
+        hours = (live.get("hours") or "").strip()
+        if hours:
+            add("t-hours", "Other", "Your business hours",
+                "Welcome texts and some emails wait for business hours, and your team alerts follow them.",
+                [f"From your onboarding form: {hours}", "Tell me if they change (or if you take calls on weekends)."], "done")
+        else:
+            add("t-hours", "Other", "Tell me your business hours",
+                "Welcome texts and some emails wait for business hours, and your team alerts follow them.",
+                ["Send me your office hours for each day (and the days you're closed).",
+                 "Tell me if you take calls on weekends."], "todo")
         add("t-booking", "Other", "Booking: customers reply or call (no booking link)",
             "Most pool companies book in their own software, so the texts ask customers to reply or call.",
             [f"Customers book by replying to a text or calling {line_txt or 'your business line'}.",

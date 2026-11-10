@@ -440,14 +440,15 @@
     {
       "id": "t-a2p",
       "area": "Phone",
-      "title": "Confirm your business details for texting approval",
+      "title": "Check your business details for texting approval",
       "why": "Phone carriers only approve business texting when these match your IRS records exactly.",
       "steps": [
         "Check: Smart Chem Pools LLC · EIN ending in 5864 · 1000 River Rd, Burnet, TX, 78611.",
         "Contact person: Steve Deitrick, steve@smartchempools.com.",
-        "If anything differs from your IRS letter (CP 575 or 147C), send me the right version."
+        "If anything differs from your IRS letter (CP 575 or 147C), send me the right version.",
+        "I submit the registration for you; approval usually takes 1–3 weeks."
       ],
-      "status_hint": "done"
+      "status_hint": "todo"
     },
     {
       "id": "t-privacy",
@@ -522,13 +523,13 @@
     {
       "id": "t-hours",
       "area": "Other",
-      "title": "Tell me your business hours",
+      "title": "Your business hours",
       "why": "Welcome texts and some emails wait for business hours, and your team alerts follow them.",
       "steps": [
-        "Send me your office hours for each day (and the days you're closed).",
-        "Tell me if you take calls on weekends."
+        "From your onboarding form: Monday through Friday 8:00 am until 5:00 pm and Saturdays 9:00 am until 1:00 pm.",
+        "Tell me if they change (or if you take calls on weekends)."
       ],
-      "status_hint": "todo"
+      "status_hint": "done"
     },
     {
       "id": "t-booking",

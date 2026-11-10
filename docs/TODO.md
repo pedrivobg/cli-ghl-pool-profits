@@ -11,8 +11,7 @@ combinar antes.
 3. **Contas novas (processo automático desde 10/11, `docs/new-account-review.md`)**: Smart Chem, West Coast e Capital prontas
    (0 ALTA/0 ERRO, usuário do dono em avisos/tarefas, guia do CRM com o Frank). Falta de você: **1º número** de cada uma
    (Settings → Phone Numbers; o GHL pede documento + selfie só na 1ª compra) — Smart Chem 512, West Coast 323, Capital 916
-   (o encaminhamento e o resto saem sozinhos); conectores ClickUp/Gmail/n8n na rotina "GHL new accounts + A2P (daily)";
-   GBP de Smart Chem e West Coast; primeiro acesso + app (Steve, Milen, Zuriel). Questionários sem sub-conta: Mako's Pool,
+   (o encaminhamento e o resto saem sozinhos); GBP de Smart Chem e West Coast; primeiro acesso + app (Steve, Milen, Zuriel). Questionários sem sub-conta: Mako's Pool,
    Cool N Clean, Puddle Jumper → são clientes? (ativar MCP nos workflows n8n A/B para eu ver a falha).
 4. **Refresh do snapshot V9** (na tela).
 5. **Números + A2P**: 1º número (verificação de identidade) em Rosebrook, WP Pools, Bonneville; Corolla pronta para o envio do
@@ -29,6 +28,10 @@ combinar antes.
    teste (86bd02rg2). **Lee**: aprovar o rascunho no Gmail (Re: Tampa Show Workflows).
 9. **Contas no snapshot antigo** (Pool Palooza, Corolla, Aqua Clear, ABC, Clear Conceptz, Pool Smart OC…): decidir com o
    Frank quais migram para o V9 (ClickUp 86bcz86jw).
+
+10. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency
+   Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
+   texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
 ## Esperando outros
 - Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service", usuário do Jorge.
