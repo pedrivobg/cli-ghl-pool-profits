@@ -1,6 +1,9 @@
 # TODO do Pedro — só o aberto (10/11/2026)
 
-Curto de propósito (as rotinas leem este arquivo). Uma linha por item; detalhe e histórico em
+Curto de propósito (as rotinas leem este arquivo). **Regra das tarefas do ClickUp (Pedro 10/11)**: toda tarefa que eu crio
+tem prazo realista e é fechada quando o meu trabalho está feito e testado; se só falta teste real do Pedro, comento, fecho
+e acrescento o teste no checklist da tarefa única "Live tests with Pedro" (`86bd1b3b5`); se depende de outra pessoa,
+comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha por item; detalhe e histórico em
 `docs/execucao-*.md` e `docs/TODO-arquivo-2026-11-04.md`. Item fechado sai daqui. Teste que avisa cliente:
 combinar antes.
 
@@ -18,16 +21,12 @@ combinar antes.
 5. **Corolla A2P**: go.corollapoolandspa.com conectado e DNS certo, mas o GHL não emite o SSL (erro cinza, mesmo apagando e
    adicionando de novo) → ticket no suporte do GHL ou testar outro subdomínio (CNAME `sms` no Wix). Links e campanha já
    corrigidos para a raiz (sem /pools); a rodada diária envia quando abrir. 1º número também em Rosebrook, WP Pools, Bonneville.
-6. **Testes reais** (me avisa e eu confiro/apago): Poolheads recado 936-314-9255 (após 17h CT); Southern SMS
-   (972) 632-3259; BluVantage ligação fora do horário nos 2 números novos; Clear Pool recado (520) 777-9131;
-   NorTex clique em anúncio → form → agendamento (conversão em ~24 h); Bahama Blue ligação não atendida (aperta 1);
-   Stay Fresh resposta STOP; forms do site da Pool Shack (+ Mapping Reference nos 2 gatilhos); 3 forms Poolheads;
-   2 forms da Corolla depois do go-live; form do site da Stay Fresh (Weekly → Kris, Repairs → Mike); form do pós-cartão da
-   BluVantage (ClickUp 86bd02rg6).
+6. **Testes reais**: todos numa tarefa só, com checklist — ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5)
+   (prazo 14/11). YardSpring: os 3 números já encaminham para o Joe (Ed's number gravado 10/11 por API).
 7. **Na tela**: Call Recording Poolheads; Tiffany (WP Pools) telefone no usuário; LWR Google Lead Ads → mapear e ativar
    o form "Weekly pool service done right".
-8. **YardSpring**: encaminhar os 3 números (Settings → Phone Numbers) para o celular do Joe +1 770-615-7665 (Val, 09/11) + ligação de
-   teste (86bd02rg2).
+8. **Blue Lagoon** (86bcyu05g): o rascunho da oferta de $250 para a Caila não está mais nos rascunhos do Gmail — se já foi,
+   fechar a tarefa; se não, me avisa que eu refaço.
 9. **Contas no snapshot antigo** (Pool Palooza, Corolla, Aqua Clear, ABC, Clear Conceptz, Pool Smart OC…): decidir com o
    Frank quais migram para o V9 (ClickUp 86bcz86jw).
 

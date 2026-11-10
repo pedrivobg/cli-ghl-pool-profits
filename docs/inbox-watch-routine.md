@@ -58,7 +58,8 @@ End with a 2-line summary in Portuguese.
 - `closed`/`fyi` → ledger `auto_closed`/`auto_fyi` + e-mail marcado como lido; nada vai para o Claude.
 - `Fire gate`: urgente/complexo dispara já; medium no máximo 1×/hora (ou 45 min esperando); easy sozinho espera até 2 h
   para ir junto. Itens segurados não entram no ledger e voltam no ciclo seguinte.
-- ClickUp não tem API de "marcar como lido" no chat: lá continua manual.
+- ClickUp não tem API de "marcar como lido" no chat (nem no Inbox de notificações): responder pela API não muda o
+  "não lido" dele; lá continua manual (botão "Mark all as read" no Chat/Inbox).
 
 ## Triagem v3 (10/11)
 - O Frank escreveu "Hey i may start needed help with the a2p verifications" e o n8n fechou como cumprimento (começava com
@@ -71,6 +72,12 @@ End with a 2-line summary in Portuguese.
 - Nó "Daily new-accounts item" (depois de "Collect all items", que agora sempre devolve algo): de seg a sex, a partir das 9h
   BRT, entra um item `daily-newaccounts-<data>` (fonte `daily`, complexo → dispara na hora). O ledger evita repetir no dia.
   A rotina segue `docs/new-account-review.md` → "Rodada diaria". Substitui a rotina separada que tinha sido criada.
+
+## Respostas do guia do CRM (10/11)
+- O "Send to Pedro" do guia manda "[CRM Guide] <cliente> sent their review" de pedro@ para pedro@ (cc Frank). O `Prepare`
+  ignorava e-mail do próprio Pedro que não fosse "Re:", então a resposta da Corolla (17h46 UTC) nunca chegou à rotina.
+  Agora vira item `crm_guide`: a rotina aplica o que o cliente pediu (textos → `config/<cliente>_wording.json`; decisões
+  sim/não → fluxos; tarefas dele → comentário na tarefa do cliente) e manda ao Pedro o que precisa de aprovação.
 
 ## Limites
 - Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
