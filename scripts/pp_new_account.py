@@ -161,6 +161,7 @@ def process(a: Agency, loc: dict, apply: bool, submit: bool) -> list[str]:
     else:
         names = dict(tw.get("numberName") or {})
         nums = list(names.keys())
+        picks: list[dict] = []
         kyc = a.get(BACKEND, "/phone-system/kyc-verification/status", {"entityId": lid, "entity": "LOCATION"})
         if not nums and kyc.get("status") != "completed":
             say("   phone: no number; first purchase needs GHL identity check (Persona) — Pedro buys the FIRST one once "
@@ -189,9 +190,13 @@ def process(a: Agency, loc: dict, apply: bool, submit: bool) -> list[str]:
                 tw = pp_a2p.twilio(a, lid)
                 names = dict(tw.get("numberName") or {})
         # line names: Website & GBP (main, the A2P verification number) / Google Ads / Facebook Ads
+        # only in an account nobody named yet, or numbers I just bought: an older account with its own names (Poolheads:
+        # "Google Adwords", main line unnamed) must not get its old lines relabelled (10/11).
         free = [l for l in LINES if l not in names.values()]
+        fresh = not any((v or "").strip() for v in names.values())
+        bought = {p["phoneNumber"] for p in picks}
         for n in nums:
-            if not (names.get(n) or "").strip() and free:
+            if not (names.get(n) or "").strip() and free and (fresh or n in bought):
                 line = free.pop(0)
                 say(f"   phone: name {n} → {line}" + (" ✓" if apply else ""))
                 if apply:
