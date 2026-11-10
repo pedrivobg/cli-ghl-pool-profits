@@ -27,10 +27,16 @@ combinar antes.
    o form "Weekly pool service done right".
 8. **Blue Lagoon** (86bcyu05g): o rascunho da oferta de $250 para a Caila não está mais nos rascunhos do Gmail — se já foi,
    fechar a tarefa; se não, me avisa que eu refaço.
-9. **Contas no snapshot antigo** (Pool Palooza, Corolla, Aqua Clear, ABC, Clear Conceptz, Pool Smart OC…): decidir com o
+9. **Corolla → migrar para o modelo (decisão sua, 10/11)**: o cliente aprovou as 24 mensagens do guia, mas o que está no
+   ar é a carga V9 antiga de 30/09 + 6 fluxos extras publicados (In Communication manda 3 e-mails; Monthly Service Reminder
+   leva cliente pagante para a cadeia de "lead perdido"; Filter Clean, Upsell, Post-Appointment, Appointment). Com o seu OK:
+   `pp_mirror --apply` + sequência de onboarding (missed-call nativo off) + reaplicar janelas 08–18 + boas-vindas de reparo
+   (textos prontos, aprovar) — antes de importar a lista de clientes. Feito hoje: usuário Josh (admin), Sequential Call
+   Routing da BluVantage → draft, janelas 08–18 em Won/Lost/Review, link de review da Clear Pool → o da Corolla.
+10. **Contas no snapshot antigo** (Pool Palooza, Corolla, Aqua Clear, ABC, Clear Conceptz, Pool Smart OC…): decidir com o
    Frank quais migram para o V9 (ClickUp 86bcz86jw).
 
-10. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency
+11. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency
    Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 

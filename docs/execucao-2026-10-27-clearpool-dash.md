@@ -767,3 +767,17 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Val (DM): o número "Ed's number" da YardSpring (678) 448-5005 não é usado → fica sem encaminhamento (nada gravado no
   GHL). Weekly meeting mudou para 12h (horário dela) com link do Zoom às 12h02 BRT → push para o Pedro entrar.
   Respondi no DM. Sem tarefa nova. Ledger: 3 linhas (1 done, 2 needs_pedro).
+
+## 10/11 — Corolla: respostas do guia do CRM (`hhXkAONzl78btBsxb35f`)
+
+- Conta ainda no V9 antigo (sem o pp_mirror): o guia mostra o master; o que está no ar é outro (Incoming Call em toda
+  ligação + tag `new lead` → SMS "We received your request…", No Response só por tag `follow-up` (sem etapa), 1 etapa Won,
+  Review Request 14 dias). Publicados que o master tem em draft: Appointment Confirmation/Reminders, Post-Appointment
+  Follow-up, In Communication Stage, Filter Clean Reminder, Monthly Service Reminder, Upsell Opportunity (não mexi).
+- Sequential Call Routing (molde da BluVantage: 6 números dela, Fred/Paul, caixa postal dela; o número da Corolla não
+  estava ligado) → draft. Janelas de envio → todo dia 08–18 (horário do cliente): Won Stage "Wait 2 minutes", Lost Stage
+  2 esperas, Review Request "Wait Before NPS Request". Review Request: link do Google da Clear Pool Tucson → place da
+  Corolla `ChIJ08hxEB6E04AReOkRA0DoxeU` (do `google_review_link`). Backups `backup/corolla-pool-and-spa/workflow-*-20261110-191729.json`;
+  relido: status/gatilhos/re-entry iguais, só esses nós mudaram. Re-entry de No Response / Quote Sent já estava ligado.
+- No pp_mirror da migração: Won Stage e Review Request voltam ao modelo (seg–sex 9–17) → reaplicar 08–18; boas-vindas de
+  reparo (decisão 5) = rascunho para o Pedro aprovar, entra no ramo Repairs / Installs do Won Stage do modelo.
