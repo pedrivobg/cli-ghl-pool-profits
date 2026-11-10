@@ -1,0 +1,7 @@
+{
+  "_note": "E-mail automático do guia do CRM ao cliente (rodada diária, passo 4). Sai do Gmail do Pedro para o representante do Business Profile, cópia para o Frank. Só envia com approved=true (texto aprovado pelo Pedro); senão o link vai por DM ao Frank como antes. Campos: {first_name}, {business}, {link}.",
+  "approved": false,
+  "cc": ["frank@poolprofits.com"],
+  "subject": "Your CRM guide for {business}",
+  "body": "Hi {first_name},\n\nBefore our pre-launch meeting, here is your CRM guide:\n{link}\n\nIt shows how your new leads, follow-ups and review requests will work, and lets you approve or change every message your customers will receive. It takes about 15 minutes, and your answers are saved as you go.\n\nIf something doesn't fit how you run your business, just change it on the page or reply to this email.\n\nThanks,\nPedro\nPool Profits"
+}

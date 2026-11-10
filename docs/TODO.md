@@ -35,6 +35,10 @@ combinar antes.
 10. **Gate de nota** (Frank 10/11): só 5 recebe o link do Google; 1–4 recebe SMS "what could we have done better?" +
    aviso à equipe (`pp_review_gate.py`, testado na Test Snapshot). **Decidir**: quem não dá nota em 7 dias ainda recebe
    o link (regra do V9) — manter ou cortar?
+10b. **E-mail do novo processo para Ed/Frank/Jonathan** (ClickUp `86bd1ctcg`): texto em `docs/team-email-new-account-process.md`;
+   a rodada diária envia sozinha quando: 1º A2P automático aceito + guia do CRM enviado automático + usuário criado
+   automático + Refresh do snapshot. **Seu**: aprovar o texto do e-mail do guia ao cliente (`config/crm_guide_email.json`,
+   `approved: true`) e o Refresh do snapshot (item 4).
 11. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency
    Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.

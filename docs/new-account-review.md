@@ -82,7 +82,9 @@ O n8n (Pedro Inbox Watch, nó "Daily new-accounts item") manda esse item uma vez
 3. Toda sub-conta criada nos últimos 30 dias: `pp_dump` + `pp_audit` + `pp_ready`. Sem a sequência do modelo (sem os workflows
    V9, ALTA no audit ou ERRO no ready) → seções 1–3 acima completas (usuário = representante em todo aviso/tarefa).
 4. Guia do CRM: conta sem entrada em `config/crm_guide_links.json` e com o passo 3 ok → `pp_crm_guide.py` + conferir o JSON +
-   `pp_crm_guide_publish.py` + abrir o link → DM ao Frank (ClickUp, user 94490678) com o link.
+   `pp_crm_guide_publish.py` + abrir o link → se `config/crm_guide_email.json` tem `approved: true`: e-mail do Gmail do
+   Pedro para o representante do Business Profile (cópia Frank) com aquele texto, e DM ao Frank avisando que foi; senão,
+   DM ao Frank (ClickUp, user 94490678) com o link.
 5. ClickUp, lista `901417290241`: tarefa "Create GHL Account For Client <nome>" (casar pelo nome; Smart Chem ficou na
    86bcywax9 da lista do Pedro). Um comentário só quando algo mudou desde o último (feito / esperando: Frank conectar
    go.<domínio> ao site "New A2P Verification" + CNAME do cliente; Pedro: 1º número; status do A2P). Fechar só com: audit
@@ -91,4 +93,6 @@ O n8n (Pedro Inbox Watch, nó "Daily new-accounts item") manda esse item uma vez
    Intake Form" (`4irAGdK9ycRh4itHvI8C`) NÃO cria sub-conta.
 6. Algo que precisa do Pedro (1º número, passo travado) → UM e-mail "[Passo seu] Contas novas <data>". Nada → sem e-mail.
 7. Registrar em `docs/execucao-*.md`, commit/push só se mudou arquivo. Marcar o item `done` no ledger.
-
+8. E-mail do novo processo para Ed/Frank/Jonathan (`docs/team-email-new-account-process.md`): se ainda não foi enviado e
+   as 4 condições do topo do arquivo estão verdadeiras → enviar aquele texto, marcar "Enviado em <data>" no arquivo e fechar
+   a tarefa do ClickUp; senão, nada.

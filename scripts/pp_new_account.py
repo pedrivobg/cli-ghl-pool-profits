@@ -12,6 +12,7 @@ Steps (each one only when its input exists; safe to re-run, nothing filled by ha
     → custom values + time zone (pp_onboarding_fill.py --apply --timezone).
  2. Business Profile for A2P from the survey: legal name, EIN, entity type, representative (title CEO,
     industry CONSUMER, region USA_AND_CANADA) — only empty fields.
+    Then the representative becomes a user (admin, permissions of Capital's admin) when the account has none for that e-mail.
  3. Phone: LC Phone number + call forwarding to the business phone. Buying the FIRST number of a sub-account
     needs GHL's identity check (Persona ID + selfie, kyc-verification status "completed") — a person does it once
     in Settings → Phone Numbers; after that numbers can be bought here (local area code of the business phone).
@@ -45,6 +46,7 @@ F_BUSINESS, F_LEGAL, F_TYPE, F_EIN, F_REP = ("UUc0Lc3Bps8PZm8g5Y1I", "Er4JquP5hS
                                              "fz90PpR2jFrHOTuF67nN", "ZJgSwbkWQIMnN8Hx3T9G")
 BACKEND = pp_a2p.BACKEND
 LINES = ["Website & GBP", "Google Ads", "Facebook Ads"]  # SOP: three numbers per client (main first)
+USER_LIKE_LOC = "0FSiPPwFKaeanOv7FUIg"  # Capital Lawn & Pool: its admin's permissions are copied to a new account's owner
 
 
 def e164(v: str) -> str:
@@ -155,6 +157,27 @@ def process(a: Agency, loc: dict, apply: bool, submit: bool) -> list[str]:
                 a.call("PUT", SERVICES, f"/locations/{lid}", body=body)
         else:
             say("   business profile: ok")
+
+    # 2b. the representative is a user of the sub-account (alerts, tasks, contact owner) — admin, same permissions as
+    #     the admin of a finished new account (USER_LIKE_LOC); first login through "Forgot password"
+    rep_now = {**(full.get("authorizedRepresentative") or {}), **(body.get("authorizedRepresentative") or {})} if sub else \
+        (full.get("authorizedRepresentative") or {})
+    users = a.users(lid)
+    email = (rep_now.get("email") or "").strip().lower()
+    if any((u.get("email") or "").lower() == email for u in users) or (users and not email):
+        say(f"   user: ok ({', '.join(u.get('name') or u.get('email') or '' for u in users)})")
+    elif not (email and rep_now.get("firstName") and rep_now.get("lastName")):
+        say("   user: NONE and no representative name/e-mail in the profile — add by hand (pp_add_user.py)")
+    else:
+        like = next((u for u in a.users(USER_LIKE_LOC) if (u.get("roles") or {}).get("role") == "admin"), None)
+        say(f"   user: create {rep_now['firstName']} {rep_now['lastName']} <{email}> (admin)" + (" ✓" if apply else ""))
+        if apply and like:
+            model = a.call("GET", SERVICES, f"/users/{like['id']}")
+            res = a.call("POST", SERVICES, "/users/", body={
+                "companyId": full["companyId"], "firstName": rep_now["firstName"], "lastName": rep_now["lastName"],
+                "email": email, "phone": rep_now.get("phoneNumber") or "", "type": "account", "role": "admin",
+                "locationIds": [lid], "permissions": model.get("permissions") or {}})
+            say(f"     created {(res.get('user') or res).get('id')} — first login: Forgot password at app.poolprofits.com")
 
     # 3. phone: three numbers (SOP) named by line + forwarding to the business phone
     try:
