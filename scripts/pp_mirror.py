@@ -213,10 +213,11 @@ class Side:
 
 class Mirror:
     def __init__(self, agency: Agency | None, model: Side, target: Side, apply: bool, publish: bool,
-                 full: bool = False, template: bool = False, keep_status: bool = False):
+                 full: bool = False, template: bool = False, keep_status: bool = False, new_only: bool = False):
         self.agency, self.m, self.t = agency, model, target
         self.apply, self.publish, self.full, self.template = apply, publish, full, template
-        self.keep_status = keep_status
+        self.keep_status = keep_status or new_only
+        self.new_only = new_only  # another agency's account (Pool Duck): only create what is missing, never update
         self.specific: list[str] = []  # --keep-status: the account's own version of a snapshot workflow, left alone
         self.folders: dict[str, str] = {}
         self.ids: dict[str, str] = {model.loc: target.loc}
@@ -286,6 +287,9 @@ class Mirror:
 
     def pipeline(self) -> None:
         mp, tp = self.m.pool_pipeline(), self.t.pool_pipeline()
+        if self.new_only and "pool leads" not in norm(tp.get("name")):
+            self.problems.append("--new-only: a conta não tem a pipeline 'Pool Leads' (criar antes; a dela não é tocada)")
+            tp = {}
         if not tp:
             self.problems.append("alvo sem pipeline Pool Leads")
             return
@@ -484,6 +488,17 @@ class Mirror:
         return bool(inc and inc.get("status") == "published" and not inc["id"].startswith("<")
                     and inc["id"] not in self.created and not self.own_version("Missed Incoming Call To Pipeline", inc))
 
+    def our_copy(self, name: str, tw: dict) -> bool:
+        """Empty, or only steps the model has: a copy an earlier (interrupted) run made — safe to fill."""
+        mw = next((w for w in self.m.index if w["name"] == name), None)
+        if not mw:
+            return False
+        model_steps = {(s.get("type"), norm(s.get("name"))) for s in
+                       (self.m.wf(mw["id"]).get("workflowData") or {}).get("templates") or []}
+        live = self.t.wf(tw["id"])
+        have = {(s.get("type"), norm(s.get("name"))) for s in (live.get("workflowData") or {}).get("templates") or []}
+        return have <= model_steps and tw.get("status") == "draft"
+
     def own_version(self, name: str, tw: dict) -> str | None:
         """--keep-status: why the account's copy of a snapshot workflow is its own (then it is left alone)."""
         if tw["id"].startswith("<") or tw["id"] in self.created:
@@ -530,6 +545,10 @@ class Mirror:
             text = (ms.get("template") or {}).get("body") or ""
             if re.search(r"southern|brett", json.dumps(ms.get("template")), re.I):
                 self.problems.append(f"template '{ms['name']}' do modelo tem texto específico da Southern — pulado")
+                continue
+            if ts and self.new_only:
+                self.ids[sid] = ts["_id"]
+                self.say(f"    mantém o template da conta '{ms['name']}' (--new-only)")
                 continue
             if ts and self.keep_status and json.dumps(ts.get("template"), sort_keys=True) not in \
                     stock_baseline(self.m)["texts"].get(norm(ts.get("name")), set()):
@@ -650,6 +669,10 @@ class Mirror:
             tw = self.target_wf(name)
             if not mw or not tw:
                 self.problems.append(f"{name}: sem par (modelo={bool(mw)}, alvo={bool(tw)})")
+                continue
+            if self.new_only and not (tw["id"] in self.created or tw["id"].startswith("<") or self.our_copy(name, tw)):
+                self.specific.append(f"{tw['name']} [{tw.get('status')}]: já existe na conta — não mexi (--new-only)")
+                self.say(f"    {tw['name']}: já existe — não mexi")
                 continue
             if self.keep_status:
                 why = self.own_version(name, tw)
@@ -822,12 +845,15 @@ def main() -> int:
     parser.add_argument("--keep-status", action="store_true",
                         help="old accounts (Pedro 11/11): update the snapshot workflows in place keeping draft/published, "
                              "create the missing ones as draft, leave the account's own versions and texts alone, no dedupe")
+    parser.add_argument("--model-dir", help="model dump folder (absolute or relative to the repo), e.g. for another agency")
+    parser.add_argument("--new-only", action="store_true",
+                        help="another agency's account: create only what is missing (as draft); never update its workflows/templates")
     parser.add_argument("--freeze-stock", action="store_true", help="write dump/_stock_baseline.json and exit")
     parser.add_argument("--client-wording-ok", action="store_true",
                         help="mirror even an account whose messages carry the client's own wording (config/*_wording.json)")
     args = parser.parse_args()
     load_dotenv()
-    model = Side(location_dirs([args.model])[0])
+    model = Side((ROOT / args.model_dir) if args.model_dir else location_dirs([args.model])[0])
     if args.freeze_stock:
         st = stock_baseline(model)
         (ROOT / "dump" / "_stock_baseline.json").write_text(json.dumps(
@@ -845,11 +871,11 @@ def main() -> int:
             print(f"== {d.name}: SMS/e-mails com texto do próprio cliente (config/{wording[side.loc]}) — o espelho "
                   f"voltaria o texto da {model.dir.name}. Pulado; --client-wording-ok e depois pp_wording.py --apply.")
             continue
-        if args.keep_status and "pool leads" not in " ".join(norm(p.get("name")) for p in side.pipelines):
+        if args.keep_status and not args.new_only and "pool leads" not in " ".join(norm(p.get("name")) for p in side.pipelines):
             print(f"== {d.name}: sem pipeline 'Pool Leads' — estrutura própria, não mexi")
             continue
         Mirror(agency, model, side, args.apply, not args.no_publish, args.full, args.template,
-               args.keep_status).run()
+               args.keep_status, args.new_only).run()
     return 0
 
 

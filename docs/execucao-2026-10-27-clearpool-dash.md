@@ -864,3 +864,32 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   go.<domínio>); Corolla e Aqua Clear: brand APPROVED / campanha VERIFIED (Aqua Clear: +19282397997 sem encaminhamento).
 - Pool Palooza (Todd, Basecamp, cliente vê): página Catalina Foothills pedida ao Frank/Val (site) — não é meu.
 - Pool Duck (Frank quer conversar hoje): plano `docs/poolduck-snapshot-plan.md` espera a revisão do Pedro (e-mail [Passo seu]).
+
+## 11/11 — contas antigas no modelo (Pedro: "migra tudo, mantém o status") + Pool Duck fase 1 + inbox
+- **Dashboard**: cópia de 10/11 levava os embeds da SwimReady (heat map/relatório local) → `pp_dashboard.py --replace-embeds`
+  (copia a limpa, vira padrão, apaga a antiga; o padrão não pode ser apagado antes) em 33 contas + master; nas 22 que o Frank
+  limpou, o widget GMB filtrava pelo place da SwimReady → place da conta (`PUT …/widget-preference`). Todas conferidas.
+- **`pp_mirror --keep-status`** + `scripts/pp_fleet_migrate.py` (dump → pp_nps → mirror → pp_forms → pp_fix publicados →
+  tags → skip_tag → review_fix → master_cleanup → review_gate → audit/ready/fleet_check). Regras: fluxo do snapshot que a conta
+  tem = atualizado com o mesmo status; o que falta = criado draft (todos os do modelo menos 08 Paid Ads, IVR, "… Call - Tag" e
+  Sequential Call Routing); a metade "Answered" do Incoming Call publicado sai publicada junto; versão própria da conta
+  (IVR, passos/gatilhos sem cópia igual em 3+ contas ou no modelo — base congelada em `dump/_stock_baseline.json`) e texto de
+  template do cliente ficam; sem dedupe e sem passada de status. `location_dirs` casa nome exato primeiro (Damon's ≠ Billing Only).
+- Rodado em 34 contas (ABC + 32 dos lotes + Pool Smart OC): nenhum fluxo existente mudou de status (conferido pelos backups),
+  0 publicados novos além do Answered. ERRO do pp_ready = fluxos novos em draft + dados do cliente vazios (combinado).
+  **Específicos (não mexi)**: Damon's (Incoming Call, Website Form Fill), Clean Co (Website Form Fill), Ponchos (SMS Customer
+  Reply), Ekahi (Review Request), Pooltexx (Website Form Fill draft), Wrigley's (Incoming Call, Website Form Fill), BluVantage
+  (Incoming Call, Review Request, Website Form Fill), Clear Pool (Incoming Call, Review Request, Website Form Fill). Sem Google
+  place → Review Request antigo mantido: Leisure, Premier 1 (2), Net Positive, Ponchos, Sparkling Clear, Reign, Wrigley's.
+  Fora: Pool Palooza (sem Pool Leads), Golden View e o sub-account Pool Duck (estrutura própria).
+- **Aqua Clear**: form do site novo do Frank não gerava card/aviso (Website Form Fill só ouvia o Landing Page) → `pp_forms`:
+  Contact Form, Request a Quote, Lead Gen e Service Page no gatilho. Contato de teste do Frank apagado (backup).
+- **Pool Duck fase 1** (`scripts/pd_v9_phase1.py`, `pp_mirror --model-dir … --new-only`): Odessa (334 contatos) e Lakewood Ranch
+  (778; 356 clientes com `existing customer`): `pre-snapshot` em todos, pipeline "Pool Leads" ao lado (a deles intacta), 24 fluxos
+  V9 em draft, campos/templates/custom values (do que a conta já tinha). 0 fluxo da Pool Duck mudou de status; 0 V9 publicado.
+  Guardas nos gatilhos e publicação = fase 2, depois das respostas do Frank (e-mail no thread "Pool Duck Franchisee Accounts").
+  Wesley Chapel por último.
+- **Inbox (n8n)**: resposta do Pedro entra depois de 1 min (antes 5: o "aprovado" das 12h56 só seria visto às 14h); cadência
+  igual (15 min no turno, 1 h depois); item noturno 21h "nightly-tasks" para a mesma rotina (revisão das tarefas). ClickUp sem
+  API de lido → ✅ nas mensagens tratadas. Guia do CRM ao cliente: Pedro aprovou, pedido ao Frank. Resposta do guia = decisão
+  do cliente (sem "[Aprovar]").
