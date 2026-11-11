@@ -928,3 +928,14 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Corolla e Precision sem saída: só val@ conectado, que só vê a propriedade "Pool Profits" (Precision ainda mostra o
   tráfego da agência, herdado da cópia). Southern e PoolReady SELA: 0 / "No data found" em todas as propriedades
   (provável tag GA ausente no site ou propriedade errada). Comentado na tarefa da Val 86bd1zk8p.
+
+## 11/11 (noite) — BluVantage: ligações direto para a caixa postal (Vanessa)
+- Causa: a migração da frota de hoje (`pp_mirror --keep-status`, 16:15 UTC) sobrescreveu o "Sequential Call Routing"
+  **publicado** com o genérico do snapshot (4 "Ring team member" sem usuário → toca 1x, música, caixa postal). O
+  `own_version` só via o IVR pelo gatilho `ivr_incoming_call`, que o dump não trazia.
+- Restaurado da v17 (`GET backend /workflow/{loc}/{id}/history` → `fileUrl` de cada versão = histórico completo de passos):
+  Vanessa → Fred → Paul → caixa postal gravada, publicado (v19), gatilho ativo com os 8 números. Backup antes.
+- Varredura das contas (fluxos com `ivr_connect_call` mudados em 11/11): só a BluVantage foi afetada ao vivo; Bluebird,
+  Corolla, Ekahi, Smart Chem, Summer Wave, Sunwave e YardSpring estão em draft e tinham sobra da BluVantage (genérico certo).
+- `pp_mirror.own_version`: fluxo publicado com passo de ligação que já tem `users`/`customNumbers` = da conta, nunca sobrescrito.
+- Falta: ligação de teste do Pedro + aprovar a resposta à Vanessa (ClickUp `86bd22q3e`).

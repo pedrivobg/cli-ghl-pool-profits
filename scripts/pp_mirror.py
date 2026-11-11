@@ -506,6 +506,13 @@ class Mirror:
         live = self.t.wf(tw["id"])
         if any(t.get("type") == "ivr_incoming_call" for t in live.get("triggers") or [] if not t.get("deleted")):
             return "IVR da conta (roteamento de ligação)"
+        # BluVantage 11/11: published routing with its own users was emptied (the model's call steps have nobody to ring)
+        # because the dump had no trigger to tell. Anyone set to ring = the account's own routing, never overwritten.
+        if live.get("status") == "published" and any(
+                s.get("type") == "ivr_connect_call" and ((s.get("attributes") or {}).get("users")
+                                                        or (s.get("attributes") or {}).get("customNumbers"))
+                for s in (live.get("workflowData") or {}).get("templates") or []):
+            return "IVR da conta (passo de ligação com usuário/número)"
         stock = stock_baseline(self.m)["sigs"]
         keys = [norm(name), *map(norm, ALIASES.get(name, [])), norm(tw["name"])]
         mw = next((w for w in self.m.index if w["name"] == name), None)
