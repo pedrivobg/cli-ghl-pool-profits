@@ -1,0 +1,22 @@
+{
+  "location": "Zcf24KZHXVgoxWLvCCcJ",
+  "source": "Alex (Aqua Clear Pool Services), CRM guide review 11/11/2026: M3 new text; decision YES = M1 ends with 'Reply STOP to opt out'",
+  "placeholders": {
+    "[First name]": "{{contact.first_name}}",
+    "[Business Phone]": "{{custom_values.business_phone}}",
+    "[Owner First Name]": "{{custom_values.owner_first_name}}",
+    "[Business Name]": "{{custom_values.friendly_business_name}}"
+  },
+  "messages": [
+    {
+      "workflow": "Missed New Lead - Initial SMS Follow-up",
+      "step": "SMS 1",
+      "text": "Hi [First name]! This is [Owner First Name] from [Business Name]. We're sorry we missed your call. We will be calling you back shortly. Is this the best number to call you back at? 🏊 Reply STOP to opt out."
+    },
+    {
+      "workflow": "No Response Follow-up",
+      "step": "SMS 1",
+      "text": "Hey [First name], still thinking about getting weekly pool service? We'd love to help! Give us a call at [Business Phone] or text us back."
+    }
+  ]
+}

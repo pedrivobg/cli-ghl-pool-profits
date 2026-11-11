@@ -864,3 +864,18 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   go.<domínio>); Corolla e Aqua Clear: brand APPROVED / campanha VERIFIED (Aqua Clear: +19282397997 sem encaminhamento).
 - Pool Palooza (Todd, Basecamp, cliente vê): página Catalina Foothills pedida ao Frank/Val (site) — não é meu.
 - Pool Duck (Frank quer conversar hoje): plano `docs/poolduck-snapshot-plan.md` espera a revisão do Pedro (e-mail [Passo seu]).
+
+## 11/11 — Aqua Clear: respostas do guia do CRM (`Zcf24KZHXVgoxWLvCCcJ`)
+- Textos (`config/aqua_clear_wording.json` + `pp_wording.py --apply`, relido 2/2): M3 (No Response SMS 1) com o texto do
+  Alex ("weekly pool service", telefone continua `{{custom_values.business_phone}}`); M1 (Missed New Lead SMS 1) termina com
+  "Reply STOP to opt out." (decisão 2 = sim). **A conta agora tem wording config → `pp_mirror --apply` pula a Aqua Clear.**
+- Encaminhamento: +19282397997 → +18582456628 (`pp_a2p.py forward --apply`, backup `twilio-accounts.json`; status sem
+  pendência). Teste de ligação real no checklist "Live tests with Pedro".
+- Lista do Skimmer (136 linhas, e-mail do Alex via Frank): novo `scripts/pp_import_skimmer.py` → 135 contatos (127 novos,
+  8 já existiam; 1 sem telefone/e-mail), tags `skimmer import` + `existing customer` (96 Active) / `former customer`
+  (39 Inactive). Antes: só "Contact Created -> add owner" (assign user) dispara em contato novo; TagList do Skimmer não
+  copiada. Relatório `reports/import-Zcf24KZHXVgoxWLvCCcJ-20261111-155636.json`.
+- Decisões: re-entry já ligado; M12/fins de semana sem mudança; boas-vindas de reparo/obra = rascunho [Aprovar] ao Pedro
+  (molde Corolla). Achado: `existing customer` só pula Won Stage/Review Request; ligação perdida de cliente atual ainda
+  recebe SMS de lead novo → proposta no mesmo e-mail. Site (privacy + form) perguntado ao Frank na tarefa `86bc8yg7r`.
+- Pool Palooza (Val/Todd, LSA): nada para mim; lido.
