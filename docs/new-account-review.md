@@ -82,7 +82,7 @@ O n8n (Pedro Inbox Watch, nó "Daily new-accounts item") manda esse item uma vez
 3. Toda sub-conta criada nos últimos 30 dias: `pp_dump` + `pp_audit` + `pp_ready`. Sem a sequência do modelo (sem os workflows
    V9, ALTA no audit ou ERRO no ready) → seções 1–3 acima completas (usuário = representante em todo aviso/tarefa).
 4. Guia do CRM: conta sem entrada em `config/crm_guide_links.json` e com o passo 3 ok → `pp_crm_guide.py` + conferir o JSON +
-   `pp_crm_guide_publish.py` + abrir o link → se `config/crm_guide_email.json` tem `approved: true`: e-mail do Gmail do
+   `pp_crm_guide_publish.py` + abrir o link → se `config/crm_guide_email.json` tem `approved_pedro` e `approved_frank` = true: e-mail do Gmail do
    Pedro para o representante do Business Profile (cópia Frank) com aquele texto, e DM ao Frank avisando que foi; senão,
    DM ao Frank (ClickUp, user 94490678) com o link.
 5. ClickUp, lista `901417290241`: tarefa "Create GHL Account For Client <nome>" (casar pelo nome; Smart Chem ficou na

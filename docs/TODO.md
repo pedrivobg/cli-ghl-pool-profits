@@ -7,6 +7,18 @@ comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha p
 `docs/execucao-*.md` e `docs/TODO-arquivo-2026-11-04.md`. Item fechado sai daqui. Teste que avisa cliente:
 combinar antes.
 
+## Regras da rotina (lidas a cada disparo; Pedro 11/11)
+- **ClickUp não tem API de "marcar como lido"** (chat, respostas, Inbox, notificação de tarefa). Depois de responder ou
+  terminar uma mensagem de chat/resposta em thread, pôr a reação `white_check_mark` nela (`clickup_react_to_chat_message`):
+  o Pedro vê o que já foi tratado e usa "Mark all as read". Nunca reagir no que ainda precisa dele.
+- **E-mail do guia do CRM ao cliente** (`config/crm_guide_email.json`): só envia com `approved_pedro` e `approved_frank` =
+  true. Pedro aprovou 11/11; se o Frank responder "approved" no e-mail "[Approve] CRM guide e-mail to clients" → pôr
+  `approved_frank: true`, commit, e a rodada diária passa a mandar.
+- **Nada pode disparar para contato/lead/cliente antigo** (Ed e Pedro 11/11; WC da Pool Duck tem leads reais): não mover
+  card, não publicar fluxo novo, não pôr tag que tenha gatilho, não importar lista sem OK. Migração de conta antiga =
+  `scripts/pp_fleet_migrate.py` (fluxo existente mantém o status; novo entra draft).
+- Item de e-mail que o Pedro não respondeu = fica como está até ele decidir.
+
 ## Você faz
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
@@ -34,8 +46,8 @@ combinar antes.
    aviso à equipe (`pp_review_gate.py`). Sem nota em 7 dias → recebe o link, como no V9 (Pedro 11/11: manter).
 10b. **E-mail do novo processo para Ed/Frank/Jonathan** (ClickUp `86bd1ctcg`): texto em `docs/team-email-new-account-process.md`;
    a rodada diária envia sozinha quando: 1º A2P automático aceito (Corolla aprovada 11/11, mas enviada pela tela) + guia do CRM enviado automático + usuário criado
-   automático + Refresh do snapshot. **Seu**: aprovar o texto do e-mail do guia ao cliente (`config/crm_guide_email.json`,
-   `approved: true`) e o Refresh do snapshot (item 4).
+   automático + Refresh do snapshot. Texto do guia ao cliente: aprovado pelo Pedro 11/11, esperando o Frank.
+   **Seu**: o Refresh do snapshot (item 4).
 11. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency
    Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.

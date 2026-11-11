@@ -5,7 +5,7 @@
 1. Um A2P enviado pelo fluxo automático (`pp_new_account.py --submit`) com brand e campanha aceitos (status ≠ pending/failed
    em `pp_a2p.py status`). Corolla: APPROVED/VERIFIED em 11/11, mas enviada pela tela (não conta). Smart Chem, West Coast,
    Capital, Rosebrook, WP Pools e Bonneville esperam o 1º número (Frank/time compra).
-2. Guia do CRM enviado automaticamente a um cliente real (`config/crm_guide_email.json` com `approved: true`).
+2. Guia do CRM enviado automaticamente a um cliente real (`config/crm_guide_email.json`: Pedro aprovou 11/11, falta o Frank).
 3. Usuário do dono criado automaticamente numa conta nova real (passo 2b do `pp_new_account.py`; testado na Test Snapshot
    10/11).
 4. Snapshot V9 com Refresh feito pelo Pedro (dashboard padrão + gate de nota dentro).
