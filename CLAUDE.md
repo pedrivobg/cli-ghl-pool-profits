@@ -135,8 +135,9 @@
   `GET services /reporting/external-google-analytics/integration-meta?locationId` → resolvedEmail/resolvedAccountId/property
   isDefault). Gravar pela API (`PUT /reporting/dashboards/{id}?locationId` com `activityBuffer.update`) dá sempre 409
   "outdated dashboard version" (qualquer `version`, até sem mudança) — não resolvido. Google Ads/Facebook/GBP não guardam
-  config no widget (GBP: preferência `pageId`, ajustada pelo `pp_dashboard.py`). Em 8 contas o GA padrão é a propriedade
-  "Pool Profits" (da agência), não a do cliente: escolher a do cliente à mão.
+  config no widget (GBP: preferência `pageId`, ajustada pelo `pp_dashboard.py`). A conta GA4 "Pool Profits" guarda as
+  propriedades de TODOS os clientes e a tela pré-seleciona a primeira (ex.: PoolTexx na Bahama Blue): sempre escolher a
+  propriedade do próprio cliente (prompt da extensão: `docs/chrome-prompt-dashboards-ga.md`).
 - **Gate de nota** (Frank 10/11): no Review Request o ramo "Low NPS" é só `NPS != 5` (antes `!= 5 e != 4`: o 4 ia para o
   Google) e começa com o SMS "SMS - Ask What Went Wrong" (template "NPS - Feedback Request (below 5)") antes do aviso à
   equipe (`scripts/pp_review_gate.py`). Conta fora do modelo: `scripts/pp_fleet_check.py` (etapas, CONTENT do pp_mirror,

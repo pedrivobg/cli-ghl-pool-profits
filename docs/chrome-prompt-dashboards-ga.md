@@ -11,9 +11,11 @@ STEPS FOR EACH ACCOUNT
 2. Click the edit button of the dashboard (pencil / "Edit Dashboard").
 3. Find the widgets "Google Analytics count" and "Google Analytics chart". For each of them, open its settings (hover → pencil/edit icon or the "⋮" menu → Edit):
    - Google account / email: leave the one already selected; if empty, pick the only one listed (or the first).
-   - Account and Property:
-     - Group A accounts: keep the property that GoHighLevel fills in by default (if empty, pick the first one listed).
-     - Group B accounts: GoHighLevel will default to the property "Pool Profits" — that is OUR agency's website, NOT the client's. Open the Property dropdown and choose the property whose name matches the client's business or website (e.g. "NorTex Pools", "BluVantage", their domain). If there is no property with the client's name, choose nothing different, leave "Pool Profits" unselected if possible (otherwise cancel this widget's edit) and note "no client GA property" for this account.
+   - Account and Property (ALL accounts, group A and B): the GA4 account "Pool Profits" holds every client's property and
+     GoHighLevel pre-selects the first one (e.g. "PoolTexx"), which belongs to ANOTHER client. Always open the Property
+     dropdown and choose the property that matches this client's business name or website domain (e.g. "Bahama Blue Pool and
+     Spa"). Never keep another client's property or "Pool Profits" (our agency site). If no property clearly matches the
+     client, cancel this widget's edit (don't save it) and note "no client GA property".
    - Apply / Save the widget.
 4. While in edit mode, also look at "Google Ads Report", "Facebook Ads Report" and "GMB Reports" (Google Business Profile). If any of them shows a "connect"/"select account" prompt or a setup message but an account is already connected in the dropdown, open its settings, select the connected account and apply. If they just show data or "no data", leave them alone.
 5. Click Save (save the dashboard) and exit edit mode. Wait until the widgets reload. Check that both Google Analytics widgets now show numbers or a chart (zero is fine) instead of an empty/setup state.
