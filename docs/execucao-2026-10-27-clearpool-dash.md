@@ -917,3 +917,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   igual (15 min no turno, 1 h depois); item noturno 21h "nightly-tasks" para a mesma rotina (revisão das tarefas). ClickUp sem
   API de lido → ✅ nas mensagens tratadas. Guia do CRM ao cliente: Pedro aprovou, pedido ao Frank. Resposta do guia = decisão
   do cliente (sem "[Aprovar]").
+- **Dashboards — GA pela extensão do Chrome (Pedro, 11/11)**: 37 contas com GA. 26 com dados do próprio cliente, 4 com a
+  propriedade certa sem tráfego, 2 com erro na propriedade (Big George's, Orange Tree), 5 sem propriedade sob val@ (Corolla,
+  NorTex, Precision, Sparkling Clear, Wrigley's → trocar o login do widget para hello@; Sparkling e Wrigley's têm propriedade).
+  A conta GA4 "Pool Profits" tem as propriedades de todos e a tela pré-seleciona a primeira (PoolTexx/Orange Tree) — sempre
+  escolher a do cliente. Ads: Meta "Connection expired" em quase todas, Google Ads em 13; Next Level com Google Ads na conta
+  9619764724 (aparece como da Clean Co; é a integração da conta, não o widget). Tudo que pede login → tarefa da Val
+  86bd1zk8p (DM enviado).
