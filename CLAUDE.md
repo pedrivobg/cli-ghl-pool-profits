@@ -130,6 +130,13 @@
   contas: `POST services /reporting/dashboards/{id}/duplicate {locationId, targetLocationId, title}` (a cópia vem privada) →
   `POST …/{novo}/permissions {locationId, permissionAccess, isPrivate: false}` → `POST …/{novo}/set-default {locationId}`
   (privado dá 403). Mudou o dashboard na Snapshot → apagar a cópia nas contas e rodar de novo (pula quem já tem o título).
+- **Widgets do dashboard com integração** (11/11): Google Analytics guarda `externalDataConfig {email, accountId, propertyId}` no
+  widget e a cópia (`duplicate`) **zera** isso → widget vazio até "Edit" na tela (o app preenche com o padrão de
+  `GET services /reporting/external-google-analytics/integration-meta?locationId` → resolvedEmail/resolvedAccountId/property
+  isDefault). Gravar pela API (`PUT /reporting/dashboards/{id}?locationId` com `activityBuffer.update`) dá sempre 409
+  "outdated dashboard version" (qualquer `version`, até sem mudança) — não resolvido. Google Ads/Facebook/GBP não guardam
+  config no widget (GBP: preferência `pageId`, ajustada pelo `pp_dashboard.py`). Em 8 contas o GA padrão é a propriedade
+  "Pool Profits" (da agência), não a do cliente: escolher a do cliente à mão.
 - **Gate de nota** (Frank 10/11): no Review Request o ramo "Low NPS" é só `NPS != 5` (antes `!= 5 e != 4`: o 4 ia para o
   Google) e começa com o SMS "SMS - Ask What Went Wrong" (template "NPS - Feedback Request (below 5)") antes do aviso à
   equipe (`scripts/pp_review_gate.py`). Conta fora do modelo: `scripts/pp_fleet_check.py` (etapas, CONTENT do pp_mirror,
