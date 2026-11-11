@@ -924,3 +924,7 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   escolher a do cliente. Ads: Meta "Connection expired" em quase todas, Google Ads em 13; Next Level com Google Ads na conta
   9619764724 (aparece como da Clean Co; é a integração da conta, não o widget). Tudo que pede login → tarefa da Val
   86bd1zk8p (DM enviado).
+- 11/11 2ª passada da extensão: NorTex e Wrigley's (hello@) e Sparkling Clear (success@) com dados do próprio cliente.
+  Corolla e Precision sem saída: só val@ conectado, que só vê a propriedade "Pool Profits" (Precision ainda mostra o
+  tráfego da agência, herdado da cópia). Southern e PoolReady SELA: 0 / "No data found" em todas as propriedades
+  (provável tag GA ausente no site ou propriedade errada). Comentado na tarefa da Val 86bd1zk8p.
