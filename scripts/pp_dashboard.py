@@ -27,14 +27,19 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, ROOT)
 from cli_anything.gohighlevel.utils.agency import SERVICES, Agency, GHLError, match_location, slugify  # noqa: E402
 
-SRC_LOC = "Kvdj7o189zlS3caaCNuX"        # Snapshot Pool Profits
-SRC_DASH = "6af373efd621ce6c86db0b2b"   # Pool Profits Dashboard (copy of SwimReady 69fa1dcdcb2a3129a3a1cca2)
+# Source (11/11): Smart Chem's copy, cleaned by Frank in the UI. The master copy (Snapshot Pool Profits 6af373efd621ce6c86db0b2b)
+# and SwimReady's original carry 2 "object-embed" widgets with SwimReady's own reports (Local Heat Map = Local Dominator,
+# Local Reporting = local-marketing-reports.com): every account copied on 10/11 showed SwimReady's local report.
+SRC_LOC = "Ykjw1clNFPkr4izP9Uaq"        # Smart Chem Pools LLC
+SRC_DASH = "6af374b6221fe50f64ae0b4c"   # Pool Profits Dashboard, 14 widgets, no embeds
+FOREIGN_EMBEDS = ("taskId=70004&", "e934480d3dd485e026b40bd97bfb6c871c17e276")  # SwimReady's heat map / local report
 TITLE = "Pool Profits Dashboard"
 PERMS = [{"role": "agency_user", "permission": "full"}, {"role": "account_user", "permission": "read"}]
 
 # Not client accounts (internal, test, billing, old snapshot, the source itself).
 SKIP = {
-    "Kvdj7o189zlS3caaCNuX",  # Snapshot Pool Profits (source)
+    "Kvdj7o189zlS3caaCNuX",  # Snapshot Pool Profits (old source, still has the SwimReady embeds)
+    "Ykjw1clNFPkr4izP9Uaq",  # Smart Chem Pools LLC (source)
     "OVQ4nVT6Ik0xlcSacRGL",  # SWIMREADY (origin, already its default)
     "9RRhRHphfPCXM1glTaqL",  # Damon's Pool Care - Billing Only
     "ry6sFIgFjqY8XLwTVYEj",  # Master Pool Service Snapshot V1
@@ -68,6 +73,12 @@ def run(a: Agency, loc: dict, apply: bool) -> str:
     dashes = all_dashboards(data)
     mine = [d for d in dashes if d.get("title") == TITLE]
     default = data.get("defaultDashboardId")
+    if mine:
+        det = a.get(SERVICES, f"/reporting/dashboards/{mine[0]['_id']}", {"locationId": lid})["data"]
+        bad = [w.get("title") for w in det.get("widgets") or []
+               if any(f in json.dumps(w.get("objectWidgetOptions") or {}) for f in FOREIGN_EMBEDS)]
+        if bad:
+            return f"FOREIGN EMBEDS (SwimReady): {bad} -> remove in the UI"
     if mine and default == mine[0]["_id"]:
         return "ok (already default)"
     if not apply:
