@@ -876,3 +876,16 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   GHL antigo (ids de outra agência, 401), 63 contatos, fora 3 testes + 2 telefones inválidos. Nada publicado reage às
   tags (só "Contact Created -> add owner"). Importação em conta de cliente não rodou daqui (precisa de OK) → e-mail
   [Aprovar]. Tarefa 86bd1ne90.
+
+## 11/11 (~16h20 UTC) — inbox watch: 2 "aprovado" do Pedro
+- **Listas de clientes** (aprovado): anexos do e-mail do Pedro (xlsx → csv no scratchpad); gatilhos publicados das duas
+  contas relidos (nenhum reage a `client list import`/`active client`/`existing customer`/`past client`; só "Contact
+  Created -> add owner" na Smart Chem). `pp_client_list_import.py --apply`: Bahama Blue 28 novos (27 ativos, 1 past),
+  Smart Chem 63 novos, 0 erros. Conferido: tags certas, dono atribuído em todos, 0 conversas. Backups em
+  `backup/<conta>/client-list-import-20261111-*.json`. Tarefa 86bd1ne90 fechada; Frank avisado no DM.
+- **Aqua Clear — boas-vindas de reparo e obra** (aprovado; decisão 5 do guia): `scripts/pp_won_welcome.py` (novo, padrão
+  da Corolla): no Won Stage, depois de "Mark won (Repairs / Installs)" e "Mark won (Construction)": e-mail (html no passo
+  + snippet) → "Wait 2 minutes" (todo dia 08–18) → SMS (snippet). 4 snippets "Won Stage - Repair/Construction Welcome
+  Email/SMS". Relido contra o backup (`backup/aqua-clear-pool-services-inc/won-stage-20261111-1623.json`): só os 6 passos
+  novos + o `next` dos dois Mark won; status, re-entry, configurações e 3 gatilhos iguais. Frank avisado na tarefa
+  86bc8yg7r. O "aprovado skip" (if/else existing customer em Missed Incoming Call / Missed New Lead) não veio → não feito.
