@@ -12,15 +12,10 @@ combinar antes.
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
 3. **Contas novas (processo automático desde 10/11, `docs/new-account-review.md`, SOP em `docs/a2p-sop.md`)**: Smart Chem,
-   West Coast e Capital prontas (0 ALTA/0 ERRO, usuário do dono em avisos/tarefas, guia do CRM com o Frank). Falta de você:
-   **1º número** de cada uma (o GHL pede documento + selfie só na 1ª compra; eu compro os outros 2, nomeio e encaminho) —
-   Smart Chem 512, West Coast 323, Capital 916. Via Frank: logo da Smart Chem, GBP de Smart Chem e West Coast, primeiro acesso
-   (Steve, Milen, Zuriel). Mako's Pool, Cool N Clean, Puddle Jumper e Pools of Perfection responderam só o "Training Survey
-   Intake Form": falta o questionário 2.0 (é ele que cria a sub-conta).
+   West Coast e Capital prontas (0 ALTA/0 ERRO, usuário do dono em avisos/tarefas, guia do CRM com o Frank). O **1º número**
+   de cada conta é do Frank/time (Pedro 11/11: não é item seu; a rodada diária avisa o Frank). Mako's Pool, Cool N Clean,
+   Puddle Jumper e Pools of Perfection responderam só o "Training Survey Intake Form": falta o questionário 2.0.
 4. **Refresh do snapshot V9** (na tela).
-5. **Corolla A2P**: go.corollapoolandspa.com conectado e DNS certo, mas o GHL não emite o SSL (erro cinza, mesmo apagando e
-   adicionando de novo) → ticket no suporte do GHL ou testar outro subdomínio (CNAME `sms` no Wix). Links e campanha já
-   corrigidos para a raiz (sem /pools); a rodada diária envia quando abrir. 1º número também em Rosebrook, WP Pools, Bonneville.
 6. **Testes reais**: todos numa tarefa só, com checklist — ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5)
    (prazo 14/11). YardSpring: os 3 números já encaminham para o Joe (Ed's number gravado 10/11 por API).
 7. **Na tela**: Call Recording Poolheads; Tiffany (WP Pools) telefone no usuário; LWR Google Lead Ads → mapear e ativar
@@ -36,10 +31,9 @@ combinar antes.
    draft, faltam 5 custom values). Fora por configuração própria: BluVantage, Clear Pool, Ekahi, Sunwave, Pool Palooza,
    Golden View, Pool Duck.
 10. **Gate de nota** (Frank 10/11): só 5 recebe o link do Google; 1–4 recebe SMS "what could we have done better?" +
-   aviso à equipe (`pp_review_gate.py`, testado na Test Snapshot). **Decidir**: quem não dá nota em 7 dias ainda recebe
-   o link (regra do V9) — manter ou cortar?
+   aviso à equipe (`pp_review_gate.py`). Sem nota em 7 dias → recebe o link, como no V9 (Pedro 11/11: manter).
 10b. **E-mail do novo processo para Ed/Frank/Jonathan** (ClickUp `86bd1ctcg`): texto em `docs/team-email-new-account-process.md`;
-   a rodada diária envia sozinha quando: 1º A2P automático aceito + guia do CRM enviado automático + usuário criado
+   a rodada diária envia sozinha quando: 1º A2P automático aceito (Corolla aprovada 11/11, mas enviada pela tela) + guia do CRM enviado automático + usuário criado
    automático + Refresh do snapshot. **Seu**: aprovar o texto do e-mail do guia ao cliente (`config/crm_guide_email.json`,
    `approved: true`) e o Refresh do snapshot (item 4).
 11. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency

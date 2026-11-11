@@ -146,6 +146,38 @@ def norm(name: str) -> str:
     return re.sub(r"\s+", " ", (name or "").strip().lower())
 
 
+def wf_signature(wf: dict) -> tuple:
+    """What a workflow does, ignoring ids and texts: its steps (type + name) and trigger types."""
+    steps = sorted((s.get("type") or "", norm(s.get("name"))) for s in (wf.get("workflowData") or {}).get("templates") or [])
+    trig = sorted(t.get("type") or "" for t in wf.get("triggers") or [] if not t.get("deleted"))
+    return tuple(steps), tuple(trig)
+
+
+_STOCK: dict | None = None
+
+
+def stock_baseline(model: "Side") -> dict:
+    """Workflow signatures and template texts the snapshot itself carries: anything found identical in 3+ dumped
+    accounts (old snapshot copies) or in the model. A client's own change shows up as a one-off (--keep-status)."""
+    global _STOCK
+    if _STOCK is not None:
+        return _STOCK
+    sigs, texts = defaultdict(Counter), defaultdict(Counter)
+    for d in location_dirs():
+        side = Side(d)
+        for w in side.index:
+            sigs[norm(w["name"])][wf_signature(side.wf(w["id"]))] += 1
+        for sn in side.snippets:
+            texts[norm(sn.get("name"))][json.dumps(sn.get("template"), sort_keys=True)] += 1
+    _STOCK = {"sigs": {k: {sg for sg, n in c.items() if n >= 3} for k, c in sigs.items()},
+              "texts": {k: {t for t, n in c.items() if n >= 3} for k, c in texts.items()}}
+    for w in model.index:
+        _STOCK["sigs"].setdefault(norm(w["name"]), set()).add(wf_signature(model.wf(w["id"])))
+    for sn in model.snippets:
+        _STOCK["texts"].setdefault(norm(sn.get("name")), set()).add(json.dumps(sn.get("template"), sort_keys=True))
+    return _STOCK
+
+
 class Side:
     """One sub-account as dumped."""
 
@@ -175,9 +207,11 @@ class Side:
 
 class Mirror:
     def __init__(self, agency: Agency | None, model: Side, target: Side, apply: bool, publish: bool,
-                 full: bool = False, template: bool = False):
+                 full: bool = False, template: bool = False, keep_status: bool = False):
         self.agency, self.m, self.t = agency, model, target
         self.apply, self.publish, self.full, self.template = apply, publish, full, template
+        self.keep_status = keep_status
+        self.specific: list[str] = []  # --keep-status: the account's own version of a snapshot workflow, left alone
         self.folders: dict[str, str] = {}
         self.ids: dict[str, str] = {model.loc: target.loc}
         self.log: list[str] = []
@@ -439,6 +473,25 @@ class Mirror:
             model_ids |= {s["id"] for s in p["stages"]}
         return sorted(i for i in model_ids if i and i in raw and self.ids.get(i) != i)
 
+    def split_from_live(self) -> bool:
+        inc = self.target_wf("Missed Incoming Call To Pipeline")
+        return bool(inc and inc.get("status") == "published" and not inc["id"].startswith("<")
+                    and inc["id"] not in self.created and not self.own_version("Missed Incoming Call To Pipeline", inc))
+
+    def own_version(self, name: str, tw: dict) -> str | None:
+        """--keep-status: why the account's copy of a snapshot workflow is its own (then it is left alone)."""
+        if tw["id"].startswith("<") or tw["id"] in self.created:
+            return None
+        live = self.t.wf(tw["id"])
+        if any(t.get("type") == "ivr_incoming_call" for t in live.get("triggers") or [] if not t.get("deleted")):
+            return "IVR da conta (roteamento de ligação)"
+        stock = stock_baseline(self.m)["sigs"]
+        keys = [norm(name), *map(norm, ALIASES.get(name, [])), norm(tw["name"])]
+        if not any(wf_signature(live) in stock.get(k, set()) for k in keys):
+            mine = {(s.get("type"), s.get("name")) for s in (live.get("workflowData") or {}).get("templates") or []}
+            return f"passos/gatilhos próprios ({len(mine)} passos, diferente do snapshot)"
+        return None
+
     # ── 3. templates ───────────────────────────────────────────────────────
 
     def templates(self, names: list[str]) -> None:
@@ -465,6 +518,11 @@ class Mirror:
             text = (ms.get("template") or {}).get("body") or ""
             if re.search(r"southern|brett", json.dumps(ms.get("template")), re.I):
                 self.problems.append(f"template '{ms['name']}' do modelo tem texto específico da Southern — pulado")
+                continue
+            if ts and self.keep_status and json.dumps(ts.get("template"), sort_keys=True) not in \
+                    stock_baseline(self.m)["texts"].get(norm(ts.get("name")), set()):
+                self.ids[sid] = ts["_id"]
+                self.say(f"    mantém o texto da conta em '{ms['name']}' (diferente do snapshot)")
                 continue
             if ts:
                 self.say(f"    atualiza '{ms['name']}': {re.sub(r'<[^>]+>', ' ', text)[:140]}")
@@ -576,6 +634,12 @@ class Mirror:
             if not mw or not tw:
                 self.problems.append(f"{name}: sem par (modelo={bool(mw)}, alvo={bool(tw)})")
                 continue
+            if self.keep_status:
+                why = self.own_version(name, tw)
+                if why:
+                    self.specific.append(f"{tw['name']} [{tw.get('status')}]: {why}")
+                    self.say(f"    {tw['name']}: NÃO mexi — {why}")
+                    continue
             model_wf = self.m.wf(mw["id"])
             steps = self.remap((model_wf.get("workflowData") or {}).get("templates") or [])
             for s in [s for s in steps if model_only(s)]:  # e.g. Southern's lead e-mail to Brett
@@ -616,6 +680,18 @@ class Mirror:
                 self.problems.append(f"{name}: passos com ids do modelo sem par no alvo {left} — não copiado")
                 continue
             status = mw["status"] if (self.publish or mw["status"] == "draft") else tw.get("status", "draft")
+            if self.keep_status:  # Pedro 11/11: what is live stays live, drafts and new ones stay draft
+                status = "draft" if tw["id"] in self.created or tw["id"].startswith("<") else tw.get("status", "draft")
+                if name == "Answered Incoming Call To Pipeline" and status == "draft" and self.split_from_live():
+                    # the old "Incoming Call" handled every call on the line; the model splits it in Missed + Answered,
+                    # so the answered half goes live with it or answered callers stop getting a card
+                    status = "published"
+                    self.say("      (metade 'atendida' do Incoming Call publicado → publicado junto)")
+            if self.keep_status and self.no_place and self.no_place in json.dumps(steps) \
+                    and not (tw["id"] in self.created or tw["id"].startswith("<")):
+                self.specific.append(f"{tw['name']} [{tw.get('status')}]: sem Google place da conta — mantido o atual")
+                self.say(f"    {tw['name']}: NÃO mexi — sem link do Google da conta (o atual fica)")
+                continue
             if self.no_place and self.no_place in json.dumps(steps):  # never the model's Google page
                 for st in steps:
                     if self.no_place in (st.get("attributes") or {}).get("overrideReviewLink", ""):
@@ -683,8 +759,14 @@ class Mirror:
                 self.put_workflow(w["id"], w["name"], "draft")
 
     def run(self) -> None:
-        print(f"\n===== {self.t.name}  ←  modelo {self.m.name}  ({'APLICANDO' if self.apply else 'plano'})")
-        self.dedupe()
+        print(f"\n===== {self.t.name}  ←  modelo {self.m.name}  ({'APLICANDO' if self.apply else 'plano'})"
+              + ("  [--keep-status]" if self.keep_status else ""))
+        if self.keep_status:
+            if [w for w in self.dupes if w["status"] == "published"]:
+                self.say("    duplicados publicados (não mexi): " + ", ".join(
+                    sorted({w["name"] for w in self.dupes if w["status"] == "published"})))
+        else:
+            self.dedupe()
         self.pipeline()
         self.map_assets()
         if self.full:
@@ -693,7 +775,8 @@ class Mirror:
         self.map_workflows()
         self.templates(self.names())
         self.content()
-        self.statuses()
+        if not self.keep_status:
+            self.statuses()
         if self.full:
             self.draft_target_only()
         untouched = [w["name"] for w in self.t.index if not any(
@@ -702,6 +785,8 @@ class Mirror:
             self.say("\n    só no alvo (não mexi): " + ", ".join(sorted(set(untouched))))
         for p in self.problems:
             print(f"  ⚠ {p}")
+        for p in self.specific:
+            print(f"  ◆ específico da conta: {p}")
 
 
 def main() -> int:
@@ -717,6 +802,9 @@ def main() -> int:
                              "and custom field, make the funnel exactly the model's, draft target-only workflows")
     parser.add_argument("--template", action="store_true",
                         help="target is the snapshot master: the model's users are blanked instead of skipping the step")
+    parser.add_argument("--keep-status", action="store_true",
+                        help="old accounts (Pedro 11/11): update the snapshot workflows in place keeping draft/published, "
+                             "create the missing ones as draft, leave the account's own versions and texts alone, no dedupe")
     parser.add_argument("--client-wording-ok", action="store_true",
                         help="mirror even an account whose messages carry the client's own wording (config/*_wording.json)")
     args = parser.parse_args()
@@ -732,7 +820,11 @@ def main() -> int:
             print(f"== {d.name}: SMS/e-mails com texto do próprio cliente (config/{wording[side.loc]}) — o espelho "
                   f"voltaria o texto da {model.dir.name}. Pulado; --client-wording-ok e depois pp_wording.py --apply.")
             continue
-        Mirror(agency, model, side, args.apply, not args.no_publish, args.full, args.template).run()
+        if args.keep_status and "pool leads" not in " ".join(norm(p.get("name")) for p in side.pipelines):
+            print(f"== {d.name}: sem pipeline 'Pool Leads' — estrutura própria, não mexi")
+            continue
+        Mirror(agency, model, side, args.apply, not args.no_publish, args.full, args.template,
+               args.keep_status).run()
     return 0
 
 

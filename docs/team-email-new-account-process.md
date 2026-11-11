@@ -3,8 +3,8 @@
 **Enviar só quando TODAS as condições abaixo estiverem verdadeiras** (a rodada diária confere e envia; depois marca aqui
 "Enviado em <data>" e fecha a tarefa do ClickUp):
 1. Um A2P enviado pelo fluxo automático (`pp_new_account.py --submit`) com brand e campanha aceitos (status ≠ pending/failed
-   em `pp_a2p.py status`). Hoje: Corolla espera o SSL do go.corollapoolandspa.com; Smart Chem, West Coast, Capital,
-   Rosebrook, WP Pools e Bonneville esperam o 1º número (KYC).
+   em `pp_a2p.py status`). Corolla: APPROVED/VERIFIED em 11/11, mas enviada pela tela (não conta). Smart Chem, West Coast,
+   Capital, Rosebrook, WP Pools e Bonneville esperam o 1º número (Frank/time compra).
 2. Guia do CRM enviado automaticamente a um cliente real (`config/crm_guide_email.json` com `approved: true`).
 3. Usuário do dono criado automaticamente numa conta nova real (passo 2b do `pp_new_account.py`; testado na Test Snapshot
    10/11).
@@ -32,7 +32,7 @@ The new-client setup in GHL now runs on its own. Here's how it works from now on
 4. **As soon as the domain is connected** (the client points go.<their domain> and the A2P site loads), the A2P registration is submitted automatically, following our SOP. An AI compliance check runs first, so we don't pay for submissions that would be rejected.
 
 What's still manual:
-- the first phone number of each account (GHL asks for an ID check once); I take care of that;
+- the first phone number of each account (GHL asks for an ID check once), which Frank or the team buys;
 - the client's DNS record, and Frank connecting the domain to the A2P site;
 - the client's first login.
 

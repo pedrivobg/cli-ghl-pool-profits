@@ -12,7 +12,7 @@ P/pp_new_account.py --scan --apply --submit       # todas as contas dos últimos
 - Survey casado por e-mail/nome; custom values só em conta "fresca" (fuso Sao_Paulo ou Friendly Name vazio) — nunca
   sobrescreve texto editado à mão. Perfil A2P só nos campos vazios (padrão CONSUMER / CEO / USA_AND_CANADA).
 - Telefone: a **1ª compra de número** da sub-conta pede verificação de identidade do GHL (Persona, `GUARD_LOCATION_NOT_KYC_VERIFIED`)
-  → passo do Pedro/Frank uma vez; depois o script compra (DDD do telefone do negócio) e encaminha para o telefone do negócio
+  → o Frank (ou alguém do time) faz uma vez; depois o script compra (DDD do telefone do negócio) e encaminha para o telefone do negócio
   (`POST backend /phone-system/twilio-accounts?locationId= {number, forwardingNumber}`).
 - A2P: o site "New A2P Verification" precisa do domínio go.<domínio> (Frank conecta; cliente cria o CNAME). Quando
   `/pools/privacy-policy` e `/pools/terms-of-use` carregam → custom values privacy/terms + campanha + envio.
@@ -91,7 +91,8 @@ O n8n (Pedro Inbox Watch, nó "Daily new-accounts item") manda esse item uma vez
    limpo, usuário nos avisos/tarefas, número encaminhado, A2P enviado, guia enviado. Tarefa sem sub-conta (questionário 2.0
    "Local SEO Onboarding Form 2.0" = `efErcbOr4GAKXzZ28J4S` não respondido) fica como está — o "Pool Profits Training Survey
    Intake Form" (`4irAGdK9ycRh4itHvI8C`) NÃO cria sub-conta.
-6. Algo que precisa do Pedro (1º número, passo travado) → UM e-mail "[Passo seu] Contas novas <data>". Nada → sem e-mail.
+6. 1º número da sub-conta (KYC) → DM ao Frank no ClickUp (user 94490678), uma vez por conta: ele ou o time compra (Pedro
+   11/11). Algo que precisa do Pedro (passo travado) → UM e-mail "[Passo seu] Contas novas <data>". Nada → sem e-mail.
 7. Registrar em `docs/execucao-*.md`, commit/push só se mudou arquivo. Marcar o item `done` no ledger.
 8. E-mail do novo processo para Ed/Frank/Jonathan (`docs/team-email-new-account-process.md`): se ainda não foi enviado e
    as 4 condições do topo do arquivo estão verdadeiras → enviar aquele texto, marcar "Enviado em <data>" no arquivo e fechar

@@ -71,8 +71,11 @@ def location_dirs(names: list[str] | None = None) -> list[Path]:
     dirs = sorted(p for p in DUMP.iterdir() if (p / "location.json").exists()) if DUMP.exists() else []
     if not names:
         return dirs
-    wanted = [slugify(n) for n in names]
-    return [d for d in dirs if any(w == d.name or w in d.name or d.name in w for w in wanted)]
+    out = []
+    for w in (slugify(n) for n in names):
+        exact = [d for d in dirs if d.name == w]  # "Damon's Pool Care" must not also hit "…- Billing Only"
+        out += exact or [d for d in dirs if w in d.name or d.name in w]
+    return sorted(set(out))
 
 
 def keep_redirect(fd: dict) -> dict:
