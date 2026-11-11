@@ -864,3 +864,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   go.<domínio>); Corolla e Aqua Clear: brand APPROVED / campanha VERIFIED (Aqua Clear: +19282397997 sem encaminhamento).
 - Pool Palooza (Todd, Basecamp, cliente vê): página Catalina Foothills pedida ao Frank/Val (site) — não é meu.
 - Pool Duck (Frank quer conversar hoje): plano `docs/poolduck-snapshot-plan.md` espera a revisão do Pedro (e-mail [Passo seu]).
+
+## 11/11 — BluVantage: teste real da LP Pool Renovations (Pedro enviou o form)
+
+- Submissão real (15:09 UTC) no form `ZGvQmo1SSi9U0AzXpqA3` → página pool-renovations-thank-you (Pedro conferiu). Conferido
+  daqui: tags `new lead`/`adwords`/`adwords form fill`/`google ads form - pool renovations`, Service Requested = Pool
+  Renovations, card em 🚨 New Lead com origem "Google Ads LP - Pool Renovations", SMS interno entregue a Vanessa, Fred, Jake
+  e Paul, SMS de resposta ao lead entregue. E-mails à Vanessa/Paul e a conversão do Ads não dá para ver daqui.
+- Contato e card de teste apagados (backup em `backup/bluvantage-pool-service/`). Confirmado à Val/Atif em `86bc6vwyv`;
+  tarefa `86bd12x55` fechada.
