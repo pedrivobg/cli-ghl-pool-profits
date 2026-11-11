@@ -23,5 +23,30 @@
     "key": "capital-f233818b",
     "name": "Capital Lawn & Pool",
     "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=capital-f233818b"
+  },
+  "cleverblu-llc": {
+    "key": "cleverblu-a0c0b17c",
+    "name": "Cleverblu",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=cleverblu-a0c0b17c"
+  },
+  "rosebrook-pools": {
+    "key": "rosebrook-37476a55",
+    "name": "Rosebrook Pools",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=rosebrook-37476a55"
+  },
+  "blissful-waters-pool-care": {
+    "key": "blissful-68df9634",
+    "name": "Blissful Waters Pool Care",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=blissful-68df9634"
+  },
+  "wp-pools-ponds-and-spas": {
+    "key": "wp-51620018",
+    "name": "WP Pools Ponds and spas",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=wp-51620018"
+  },
+  "bonneville-pool-maintenance": {
+    "key": "bonneville-c1a3528e",
+    "name": "Bonneville Pool Maintenance",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=bonneville-c1a3528e"
   }
 }

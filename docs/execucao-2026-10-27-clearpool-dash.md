@@ -832,3 +832,35 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Website Form Fill da Orange Tree, sem usuário (Net Positive, Next Level, Pooly, Ponchos), `location_dirs` casa por
   pedaço do nome (Damon's pega a Billing Only). Planos em `scratchpad/fleet/`.
 - **Fora por configuração própria**: BluVantage, Clear Pool Tucson, Ekahi, Sunwave, Pool Palooza, Golden View, Pool Duck.
+## 10/11 — Rodada diária de contas novas (`daily-newaccounts-2026-11-10`)
+
+- `pp_new_account.py --scan --apply --submit` (9 contas dos últimos 30 dias): Blissful Waters `A2P Verification Number` →
+  (210) 864-9642 (número do GHL). Nenhum envio de A2P: todas esperam o go.<domínio> no site "New A2P Verification".
+  Sem número disponível no DDD: Cleverblu (407) e Blissful (210) para as linhas 2 e 3.
+- **Bug corrigido**: na Poolheads (já com nomes próprios, "Website & GBP"/"Google Adwords") o script rotulou as 2 linhas
+  antigas sem nome — o principal 936-314-9255 virou "Facebook Ads". Voltei os dois nomes para vazio (encaminhamento do
+  9255 → Felipe intacto) e o script agora só nomeia em conta sem nenhum nome ou número que ele mesmo comprou.
+- `pp_dump` + `pp_audit` + `pp_ready`: 0 ALTA em todas; 0 ERRO nas 8 novas (Blissful, Bonneville, Capital, Cleverblu com
+  `--place` do `google_review_link` da conta). Poolheads: ERROs são os drafts/fluxos da conta antiga (combinado, fora daqui).
+- Guia do CRM publicado e aberto (200, sem erro de JS): Cleverblu, Blissful Waters, Rosebrook, WP Pools, Bonneville
+  (`config/crm_guide_links.json`) → DM ao Frank. Comentário de status nas 5 tarefas "Create GHL Account" (Capital/West
+  Coast já comentadas hoje, sem mudança). Sem e-mail novo: os 1ºs números já estão no [Passo seu] de hoje.
+
+## 11/11 (~12h UTC) — inbox: dashboard com relatório da SwimReady (Frank), listas de clientes, rodada diária
+- **Dashboard padrão (Frank: "this reporting pulled over")**: a cópia do "Pool Profits Dashboard" (origem SwimReady) traz 2
+  widgets `object-embed` com links fixos da SwimReady — "Local Heat Map" (app.localdominator.co, taskId=70004) e "Local
+  Reporting" (local-marketing-reports.com/…e934480d…) → toda conta mostrava o relatório local da SwimReady. O Frank tirou
+  à mão em ~25 contas (Ekahi e NorTex com heat map próprio). `pp_dashboard.py`: origem agora = cópia limpa da Smart Chem
+  (`6af374b6221fe50f64ae0b4c`, 14 widgets) e o plano acusa `FOREIGN EMBEDS` → 33 contas + a master ainda com os embeds.
+  Remoção de widget por API sem endpoint conhecido (não chutei); pedido ao Pedro: aprovar apagar+recopiar ou tirar na tela;
+  master antes do Refresh do snapshot. Também: preferência do widget GMB com `pageId` = place da SwimReady em todas
+  (`ChIJS_4iU3DDGgoRbPjauVQYjNE`). Tarefa 86bd1ne8w.
+- **Listas de clientes** Bahama Blue (xlsx) e Smart Chem (csv) no DM: anexo de chat não baixa pelo conector → pedi ao Frank
+  para anexar na tarefa 86bd1ne90 e dizer se são todos ativos.
+- **Rodada diária**: o commit de 10/11 (`32e2685`, guias do CRM de 5 contas + correção dos nomes de linha) estava só no
+  branch `claude/sharp-albattani-qgcnif` → trazido para cá. O scan de hoje rodou antes disso e rotulou de novo 2 linhas da
+  Poolheads (+19362431724, +19363149255): voltei para vazio (backup `backup/poolheads/twilio-20261111-before-revert`,
+  encaminhamento igual); com a correção o scan não mexe mais. Nenhuma conta nova, nenhum A2P enviado (todas esperam o
+  go.<domínio>); Corolla e Aqua Clear: brand APPROVED / campanha VERIFIED (Aqua Clear: +19282397997 sem encaminhamento).
+- Pool Palooza (Todd, Basecamp, cliente vê): página Catalina Foothills pedida ao Frank/Val (site) — não é meu.
+- Pool Duck (Frank quer conversar hoje): plano `docs/poolduck-snapshot-plan.md` espera a revisão do Pedro (e-mail [Passo seu]).
