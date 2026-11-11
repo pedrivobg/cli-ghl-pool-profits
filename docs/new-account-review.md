@@ -94,6 +94,6 @@ O n8n (Pedro Inbox Watch, nó "Daily new-accounts item") manda esse item uma vez
 6. 1º número da sub-conta (KYC) → DM ao Frank no ClickUp (user 94490678), uma vez por conta: ele ou o time compra (Pedro
    11/11). Algo que precisa do Pedro (passo travado) → UM e-mail "[Passo seu] Contas novas <data>". Nada → sem e-mail.
 7. Registrar em `docs/execucao-*.md`, commit/push só se mudou arquivo. Marcar o item `done` no ledger.
-8. E-mail do novo processo para Ed/Frank/Jonathan (`docs/team-email-new-account-process.md`): se ainda não foi enviado e
-   as 4 condições do topo do arquivo estão verdadeiras → enviar aquele texto, marcar "Enviado em <data>" no arquivo e fechar
-   a tarefa do ClickUp; senão, nada.
+8. E-mail do processo novo já foi (11/11). Quando um A2P enviado pela rodada (`--submit`) aparecer APPROVED/VERIFIED pela 1ª vez →
+   responder no thread "GHL update: one snapshot for every client…" (Ed/Frank/Jonathan) que o A2P automático está no ar, e
+   fechar a tarefa 86bd1ctcg.

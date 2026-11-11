@@ -47,10 +47,8 @@ combinar antes.
    (e-mail 11/11) para a fase 2 (guardas + publicar um a um); depois Wesley Chapel.
 10. **Gate de nota** (Frank 10/11): só 5 recebe o link do Google; 1–4 recebe SMS "what could we have done better?" +
    aviso à equipe (`pp_review_gate.py`). Sem nota em 7 dias → recebe o link, como no V9 (Pedro 11/11: manter).
-10b. **E-mail do novo processo para Ed/Frank/Jonathan** (ClickUp `86bd1ctcg`): texto em `docs/team-email-new-account-process.md`;
-   a rodada diária envia sozinha quando: 1º A2P automático aceito (Corolla aprovada 11/11, mas enviada pela tela) + guia do CRM enviado automático + usuário criado
-   automático + Refresh do snapshot. Texto do guia ao cliente: aprovado pelo Pedro 11/11, esperando o Frank.
-   **Seu**: o Refresh do snapshot (item 4).
+10b. **E-mail do processo novo para Ed/Frank/Jonathan**: enviado 11/11. Quando o 1º A2P automático for aprovado → uma
+   linha no mesmo thread ("GHL update: one snapshot for every client…") dizendo que está 100% no ar (ClickUp `86bd1ctcg`).
 11. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency
    Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.

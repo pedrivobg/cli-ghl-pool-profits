@@ -1,6 +1,10 @@
 # E-mail para Ed, Frank e Jonathan: novo processo automático de conta nova (Pedro 10/11)
 
-**Enviar só quando TODAS as condições abaixo estiverem verdadeiras** (a rodada diária confere e envia; depois marca aqui
+**ENVIADO em 11/11 (~17h20 UTC) por pedido do Pedro, versão ampliada (snapshot igual em todas + onboarding automático; avisa
+que o A2P automático liga de verdade com a 1ª aprovação). Falta só: quando o 1º A2P enviado pelo fluxo automático for
+aprovado, mandar uma linha curta no mesmo thread ("GHL update: one snapshot…") avisando que está 100% no ar.**
+
+Texto original (referência). ~~Enviar só quando TODAS as condições abaixo estiverem verdadeiras~~ (a rodada diária confere e envia; depois marca aqui
 "Enviado em <data>" e fecha a tarefa do ClickUp):
 1. Um A2P enviado pelo fluxo automático (`pp_new_account.py --submit`) com brand e campanha aceitos (status ≠ pending/failed
    em `pp_a2p.py status`). Corolla: APPROVED/VERIFIED em 11/11, mas enviada pela tela (não conta). Smart Chem, West Coast,
