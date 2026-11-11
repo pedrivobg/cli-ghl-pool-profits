@@ -14,6 +14,8 @@ Existing dashboards stay; the copy only becomes the default. Re-running skips ac
   python3 scripts/pp_dashboard.py                 # plan for all client accounts
   python3 scripts/pp_dashboard.py --only Corolla --apply
   python3 scripts/pp_dashboard.py --apply
+  python3 scripts/pp_dashboard.py --apply --replace   # copy with SwimReady embeds: new clean copy as default, old one deleted
+                                                      # (Pedro approved 11/11; master: --only "Snapshot Pool Profits")
 """
 from __future__ import annotations
 
@@ -67,7 +69,35 @@ def all_dashboards(data: dict) -> list[dict]:
     return out
 
 
-def run(a: Agency, loc: dict, apply: bool) -> str:
+def replace(a: Agency, lid: str, name: str, old: dict, data: dict) -> str:
+    """New clean copy as default first, then DELETE the old copy (backup of list + detail)."""
+    folder = os.path.join(ROOT, "backup", slugify(name))
+    os.makedirs(folder, exist_ok=True)
+    with open(os.path.join(folder, f"dashboard-{old['_id']}-{dt.date.today():%Y%m%d}.json"), "w") as fh:
+        json.dump({"list": data, "detail": old}, fh, indent=1)
+    r = a.call("POST", SERVICES, f"/reporting/dashboards/{SRC_DASH}/duplicate",
+               body={"locationId": SRC_LOC, "targetLocationId": lid, "title": TITLE, "isPrivate": False,
+                     "permissionAccess": PERMS})
+    new_id = (r.get("data") or {}).get("targetDashboardId")
+    if not new_id:
+        return f"ERROR duplicate: {json.dumps(r)[:200]}"
+    a.call("POST", SERVICES, f"/reporting/dashboards/{new_id}/permissions",
+           body={"locationId": lid, "permissionAccess": PERMS, "isPrivate": False})
+    a.call("POST", SERVICES, f"/reporting/dashboards/{new_id}/set-default", body={"locationId": lid})
+    check = dash_list(a, lid).get("defaultDashboardId")
+    if check != new_id:
+        return f"ERROR new copy {new_id} not default ({check}); old copy kept"
+    ver = old.get("version") or 1
+    a.call("DELETE", SERVICES, f"/reporting/dashboards/{old['_id']}", body={"locationId": lid, "version": ver - 1})
+    left = [d["_id"] for d in all_dashboards(dash_list(a, lid)) if d.get("title") == TITLE]
+    det = a.get(SERVICES, f"/reporting/dashboards/{new_id}", {"locationId": lid})["data"]
+    bad = [w.get("title") for w in det.get("widgets") or []
+           if any(f in json.dumps(w.get("objectWidgetOptions") or {}) for f in FOREIGN_EMBEDS)]
+    return f"replaced {old['_id']} -> {new_id} (default yes, {len(det.get('widgets') or [])} widgets, " \
+           f"embeds {bad or 'none'}, copies now {left})"
+
+
+def run(a: Agency, loc: dict, apply: bool, do_replace: bool = False) -> str:
     lid, name = loc["id"], loc.get("name", "")
     data = dash_list(a, lid)
     dashes = all_dashboards(data)
@@ -78,7 +108,9 @@ def run(a: Agency, loc: dict, apply: bool) -> str:
         bad = [w.get("title") for w in det.get("widgets") or []
                if any(f in json.dumps(w.get("objectWidgetOptions") or {}) for f in FOREIGN_EMBEDS)]
         if bad:
-            return f"FOREIGN EMBEDS (SwimReady): {bad} -> remove in the UI"
+            if apply and do_replace:
+                return replace(a, lid, name, det, data)
+            return f"FOREIGN EMBEDS (SwimReady): {bad} -> --apply --replace (or remove in the UI)"
     if mine and default == mine[0]["_id"]:
         return "ok (already default)"
     if not apply:
@@ -110,6 +142,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", action="append", help="account name or id (repeatable)")
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--replace", action="store_true", help="with --apply: swap copies that carry SwimReady embeds")
     args = ap.parse_args()
     a = Agency()
     locs = a.locations()
@@ -121,7 +154,7 @@ def main() -> None:
         targets = [l for l in locs if l["id"] not in SKIP]
     for loc in sorted(targets, key=lambda l: l.get("name", "")):
         try:
-            res = run(a, loc, args.apply)
+            res = run(a, loc, args.apply, args.replace)
         except GHLError as exc:
             res = f"ERROR {exc}"
         print(f"{loc.get('name', '')[:38]:38} {res}")

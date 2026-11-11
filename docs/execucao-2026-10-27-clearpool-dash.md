@@ -864,3 +864,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   go.<domínio>); Corolla e Aqua Clear: brand APPROVED / campanha VERIFIED (Aqua Clear: +19282397997 sem encaminhamento).
 - Pool Palooza (Todd, Basecamp, cliente vê): página Catalina Foothills pedida ao Frank/Val (site) — não é meu.
 - Pool Duck (Frank quer conversar hoje): plano `docs/poolduck-snapshot-plan.md` espera a revisão do Pedro (e-mail [Passo seu]).
+
+## 11/11 (~15h40 UTC) — Pedro: "1. aprovado (padrão p/ snapshot)", "4. anexado aqui"
+- **Dashboard**: conferido ao vivo — 56 contas de cliente + master Snapshot Pool Profits com exatamente 1 "Pool Profits
+  Dashboard", padrão, 14 widgets, sem embed da SwimReady (cópias novas criadas 15:27–15:32 UTC, logo após o OK).
+  `pp_dashboard.py --apply --replace`: cópia limpa nova como padrão primeiro, depois DELETE da antiga (backup lista +
+  detalhe). Tarefa 86bd1ne8w fechada; Frank avisado no DM. Master limpa → o próximo Refresh do snapshot leva a versão limpa.
+- **Listas de clientes** (anexos do e-mail): `scripts/pp_client_list_import.py` (plan/--apply; upsert sem tags + POST tags
+  `client list import` + `active client`/`existing customer`, inativo `past client`). Bahama Blue 28 (27 ativos, 1 past;
+  City/State/Zip em colunas próprias — o `pp_import_clean` perdia isso e juntava linhas sem nome); Smart Chem = export do
+  GHL antigo (ids de outra agência, 401), 63 contatos, fora 3 testes + 2 telefones inválidos. Nada publicado reage às
+  tags (só "Contact Created -> add owner"). Importação em conta de cliente não rodou daqui (precisa de OK) → e-mail
+  [Aprovar]. Tarefa 86bd1ne90.
