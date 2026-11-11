@@ -66,8 +66,9 @@ One interactive page (`site/crm-guide/index.html`) serves every client; only thi
 4. O cliente responde na própria página: cada clique grava na tabela n8n "CRM Guide Answers" (`tju295LzOR6tfp8J`,
    uma linha por key/kind/item_id; `payload` = JSON) e volta na próxima visita, em qualquer aparelho. "Send to Pedro"
    manda o resumo por e-mail para pedro@ (cc Frank). "Copy my answers" continua como reserva.
-5. Aplicar: ler as linhas da key (`get_data_table_rows`) → textos em `config/<cliente>_wording.json`, tarefas dele →
-   onboarding. Apagar uma resposta de teste = POST `crm-guide-answer` com `body: {}` no mesmo item.
+5. Aplicar **direto, sem pedir aprovação ao Pedro** (Pedro 11/11: o cliente decide): ler as linhas da key
+   (`get_data_table_rows`) → textos em `config/<cliente>_wording.json`, tarefas dele → onboarding. "Sim" que pede texto
+   novo (boas-vindas de reparo/obra) → padrão já aprovado (Corolla) com os dados da conta. Só o ambíguo vai ao Pedro. Apagar uma resposta de teste = POST `crm-guide-answer` com `body: {}` no mesmo item.
 
 Publicados (09/11): ver `config/crm_guide_links.json`.
 

@@ -85,3 +85,19 @@ End with a 2-line summary in Portuguese.
 - Tokens das outras agências (Pool Duck, BurchTech, Poolheads antiga) e Application Passwords de WordPress só funcionam
   na sessão da rotina se estiverem nas variáveis do ambiente (TODO, "Tokens fora do chat").
 - A auditoria de quinta (19h57) é separada: tarefa agendada desta sessão (`docs/weekly-audit.md`).
+
+## Revisao da noite (item "nightly-tasks-<data>", 21h BRT seg–sex; Pedro 11/11)
+O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rotina separada).
+1. Todas as tarefas abertas da lista `901422915733` + as "Create GHL Account For Client" abertas da `901417290241`: ler
+   descrição/comentários e conferir ao vivo (GHL, ledger, Gmail, Basecamp interno).
+2. Feita e conferida → comentar o que foi checado e fechar. Dá para fazer agora → fazer o escopo todo e testar (nunca
+   mandar nada a contato existente) e fechar. Depende de outra pessoa → comentar quem/o quê e prazo realista. Só o
+   Pedro → fica aberta com prazo realista e vai no e-mail. Nada vencido sem dono; duplicada → fechar a mais nova com link.
+3. ✅ (`white_check_mark`) nas mensagens de chat já tratadas.
+4. `docs/TODO.md` só com o aberto; log em `docs/execucao-*.md`; commit/push.
+5. UM e-mail "[Passo seu] O que é seu – <data> (revisão da noite)": (a) passos do Pedro, numerados; (b) decisões dele;
+   (c) o que foi fechado/adiantado, uma linha cada. Marcar como lidos os [Passo seu] anteriores que ele substitui.
+
+## Cadência (11/11)
+- n8n a cada 15 min das 9h às 19h45 BRT (seg–sex) + 21h. Resposta do próprio Pedro entra depois de 1 min (antes 5 min +
+  rodada de hora em hora à tarde: o "aprovado" das 12h56 só seria visto às 14h).

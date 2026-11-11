@@ -18,6 +18,9 @@ combinar antes.
   card, não publicar fluxo novo, não pôr tag que tenha gatilho, não importar lista sem OK. Migração de conta antiga =
   `scripts/pp_fleet_migrate.py` (fluxo existente mantém o status; novo entra draft).
 - Item de e-mail que o Pedro não respondeu = fica como está até ele decidir.
+- **Resposta do guia do CRM = decisão do cliente** (Pedro 11/11): aplicar direto, sem "[Aprovar]". Texto que o cliente
+  mudou → usar o dele. "SIM" para algo que pede texto novo (ex.: boas-vindas de reparo/obra) → usar o padrão já aprovado
+  (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
 ## Você faz
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
