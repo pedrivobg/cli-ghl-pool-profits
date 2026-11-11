@@ -99,5 +99,7 @@ O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rot
    (c) o que foi fechado/adiantado, uma linha cada. Marcar como lidos os [Passo seu] anteriores que ele substitui.
 
 ## Cadência (11/11)
-- n8n a cada 15 min das 9h às 19h45 BRT (seg–sex) + 21h. Resposta do próprio Pedro entra depois de 1 min (antes 5 min +
-  rodada de hora em hora à tarde: o "aprovado" das 12h56 só seria visto às 14h).
+- n8n a cada 15 min no turno (9h–12h45), de hora em hora 13h–19h, + 21h (revisão da noite). Capta **na hora** (sem filtro
+  de idade em e-mail nem ClickUp) e manda todo item de ação na mesma rodada (sem segurar médios). A regra dos 5 min é da
+  rotina: nenhuma resposta a uma pessoa sai antes de 5 min do `received_at` do item (antes o n8n esperava 5 min para
+  captar: o "aprovado" das 12h56 só seria visto às 14h).
