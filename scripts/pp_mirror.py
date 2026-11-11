@@ -162,6 +162,12 @@ def stock_baseline(model: "Side") -> dict:
     global _STOCK
     if _STOCK is not None:
         return _STOCK
+    cache = ROOT / "dump" / "_stock_baseline.json"  # frozen before a fleet run (parallel dumps would be read half-written)
+    if cache.exists():
+        raw = json.loads(cache.read_text())
+        _STOCK = {"sigs": {k: {(tuple(map(tuple, a)), tuple(b)) for a, b in v} for k, v in raw["sigs"].items()},
+                  "texts": {k: set(v) for k, v in raw["texts"].items()}}
+        return _STOCK
     sigs, texts = defaultdict(Counter), defaultdict(Counter)
     for d in location_dirs():
         side = Side(d)
@@ -487,6 +493,12 @@ class Mirror:
             return "IVR da conta (roteamento de ligação)"
         stock = stock_baseline(self.m)["sigs"]
         keys = [norm(name), *map(norm, ALIASES.get(name, [])), norm(tw["name"])]
+        mw = next((w for w in self.m.index if w["name"] == name), None)
+        model_steps = {(s.get("type"), norm(s.get("name"))) for s in
+                       (self.m.wf(mw["id"]).get("workflowData") or {}).get("templates") or []} if mw else set()
+        have = {(s.get("type"), norm(s.get("name"))) for s in (live.get("workflowData") or {}).get("templates") or []}
+        if have <= model_steps:  # empty, or an earlier (partial) copy of the model: ours to update
+            return None
         if not any(wf_signature(live) in stock.get(k, set()) for k in keys):
             mine = {(s.get("type"), s.get("name")) for s in (live.get("workflowData") or {}).get("templates") or []}
             return f"passos/gatilhos próprios ({len(mine)} passos, diferente do snapshot)"
@@ -543,6 +555,11 @@ class Mirror:
     # ── 4/5. workflows ─────────────────────────────────────────────────────
 
     def names(self) -> list[str]:
+        if self.keep_status:  # every model workflow, except per-client ads tracking and the model's call routing
+            extra = [w["name"] for w in self.m.index if w["name"] not in CONTENT + STEPS_ONLY
+                     and not (w.get("folder") or "").startswith(SKIP_STATUS_FOLDERS) and w["name"] not in FORCE_DRAFT
+                     and not w["name"].startswith("IVR") and not w["name"].endswith("Call - Tag")]  # per-client lines
+            return CONTENT + STEPS_ONLY + extra
         return [w["name"] for w in self.m.index] if self.full else CONTENT + STEPS_ONLY
 
     def ensure_created(self) -> None:
@@ -552,7 +569,7 @@ class Mirror:
             mw = next((w for w in self.m.index if w["name"] == name), None)
             if not mw:
                 continue
-            if self.full:
+            if self.full or (self.keep_status and name not in CONTENT + STEPS_ONLY):
                 parent, where = self.folder_for(mw), mw.get("folder", "—")
             else:
                 sibling = next((w for w in self.t.index if w.get("folder") == mw.get("folder")), None) \
@@ -769,7 +786,7 @@ class Mirror:
             self.dedupe()
         self.pipeline()
         self.map_assets()
-        if self.full:
+        if self.full or self.keep_status:
             self.custom_fields(self.names())
         self.ensure_created()
         self.map_workflows()
@@ -805,11 +822,19 @@ def main() -> int:
     parser.add_argument("--keep-status", action="store_true",
                         help="old accounts (Pedro 11/11): update the snapshot workflows in place keeping draft/published, "
                              "create the missing ones as draft, leave the account's own versions and texts alone, no dedupe")
+    parser.add_argument("--freeze-stock", action="store_true", help="write dump/_stock_baseline.json and exit")
     parser.add_argument("--client-wording-ok", action="store_true",
                         help="mirror even an account whose messages carry the client's own wording (config/*_wording.json)")
     args = parser.parse_args()
     load_dotenv()
     model = Side(location_dirs([args.model])[0])
+    if args.freeze_stock:
+        st = stock_baseline(model)
+        (ROOT / "dump" / "_stock_baseline.json").write_text(json.dumps(
+            {"sigs": {k: [[list(map(list, a)), list(b)] for a, b in v] for k, v in st["sigs"].items()},
+             "texts": {k: sorted(v) for k, v in st["texts"].items()}}))
+        print("stock baseline frozen")
+        return 0
     agency = Agency() if (args.apply or args.full) else None
     wording = {json.loads(f.read_text())["location"]: f.name for f in (ROOT / "config").glob("*_wording.json")}
     for d in location_dirs(args.target):
