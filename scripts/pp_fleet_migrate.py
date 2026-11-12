@@ -75,6 +75,9 @@ def main() -> None:
             audit = run(log, f"{S}/pp_audit.py", "--only", name)
             ready = run(log, f"{S}/pp_ready.py", "--only", name)
             fleet = run(log, f"{S}/pp_fleet_check.py", "--only", name)
+            calls = run(log, f"{S}/pp_call_check.py", "--only", name, "--quiet")  # BluVantage 11/11: every line still rings
+            if " ERRO " in calls or "ERRO  " in calls:
+                print(f"!!! {name}: pp_call_check com ERRO — conferir as ligações antes de seguir:\n{calls}", flush=True)
             alta = re.search(r"ALTA (\d+)", audit)
             erro = re.search(r"(\d+) ERRO", ready)
             spec = [l.strip() for l in mirror.splitlines() if "◆" in l or "⚠" in l]

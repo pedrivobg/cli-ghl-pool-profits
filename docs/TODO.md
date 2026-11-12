@@ -8,9 +8,10 @@ comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha p
 combinar antes.
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
-- **ClickUp não tem API de "marcar como lido"** (chat, respostas, Inbox, notificação de tarefa). Depois de responder ou
-  terminar uma mensagem de chat/resposta em thread, pôr a reação `white_check_mark` nela (`clickup_react_to_chat_message`):
-  o Pedro vê o que já foi tratado e usa "Mark all as read". Nunca reagir no que ainda precisa dele.
+- **Reações no ClickUp: NÃO reagir em toda mensagem** (Pedro 12/11: reagir em tudo com ✅ parece automação). Reação não
+  marca como lido (o ClickUp não tem API para isso; o Pedro usa "Mark all as read"). Só de vez em quando, como uma pessoa
+  faria, quando combina (pedido recebido/feito, agradecimento): variar `thumbsup`, `white_check_mark`, `saluting_face`.
+  No normal, a resposta escrita basta. Nunca reagir no que ainda precisa do Pedro.
 - **E-mail do guia do CRM ao cliente** (`config/crm_guide_email.json`): só envia com `approved_pedro` e `approved_frank` =
   true. Pedro aprovou 11/11; se o Frank responder "approved" no e-mail "[Approve] CRM guide e-mail to clients" → pôr
   `approved_frank: true`, commit, e a rodada diária passa a mandar.
@@ -26,8 +27,6 @@ combinar antes.
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
 ## Você faz
-0. **BluVantage**: resolvido. Resposta à Vanessa enviada 12/11 14:03 UTC; ligação real 12/11 8:51 ET passou pelo
-   "Sequential Call Routing" (v19) e a Vanessa atendeu (2 min). Ligação de teste sua não é mais necessária.
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.

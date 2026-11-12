@@ -975,3 +975,23 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   atendida (132 s; o "telemarketer" do e-mail dela). Antes disso (11/11 tarde) as entradas não passavam pelo IVR.
   Vanessa agradeceu (sem resposta, thread lida); Frank perguntou da ligação de teste → respondido no Group DM com o
   horário da ligação real. TODO item 0 fechado.
+
+## 12/11 (~15h UTC) — IVR: causa real da BluVantage + varredura de todas as linhas
+- Causa real (não era o `pp_mirror`, que já deixava o Sequential Call Routing de fora): o `pp_fleet_migrate` roda
+  `pp_master_cleanup --loc` em cada conta, e o `generic_ivr` dele tirava usuários dos passos Ring e a gravação da caixa postal
+  de QUALQUER "Sequential Call Routing", publicado ou não, com usuários da própria conta ou não. A "trava no pp_mirror" citada
+  no e-mail de 11/11 não tinha sido commitada (container perdido). Agora: `pp_master_cleanup --loc` pula fluxo publicado e
+  passos com usuário da conta; `pp_mirror.own_version` pula passo `ivr_*` publicado ou com usuário/número. Testado em plano
+  na BluVantage ("PUBLICADO: não mexo").
+- `scripts/pp_call_check.py` (só leitura; as 2 agências, 71 contas): só a BluVantage foi atingida ao vivo, e já está certa (v19).
+  Achados que não vieram de nós: IVR em draft com linha apontando para ele (Precision "Off Hours Voicemail" desde 18/06,
+  Ponchos "IVR Automation" desde 09/09, Dream Pools "Inbound IVR Call Routing" desde 26/10 por outro usuário da agência,
+  toll-free da Pool Profits); as ligações dessas linhas continuam entrando (completed/voicemail). Sunwave: os 2 IVRs editados
+  11/11 22:56 pelo próprio Davey. Sobras da BluVantage PUBLICADAS desde a carga do snapshot (ago–out) em Passion, Southern e
+  Pool Keepers (ouviam só os números da BluVantage, tocavam Fred/Paul) → **draft** com backup; linhas da BluVantage
+  conferidas iguais depois.
+- Teste do Pedro 14:19 UTC (+55…9401 → 404-334-2495): roteamento → Ring Vanessa, ela atendeu; card "Printed Marketing
+  Materials". Contato e card apagados (backup). Frank respondido no Group DM; tarefa 86bd22q3e fechada.
+- `pp_call_check` entrou no `pp_fleet_migrate` (para em ERRO) e na auditoria de quinta (item 3b).
+- Reações no ClickUp (Pedro 12/11): não reagir em tudo; só de vez em quando, variando. Regra no TODO/inbox-watch; o prompt
+  da rotina "GHL Tasks" (http_api, eu não edito) precisa ser colado pelo Pedro: `docs/routine-ghl-tasks-prompt.md`.

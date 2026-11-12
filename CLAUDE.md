@@ -99,6 +99,13 @@
 - Merge fields em link de SMS: `{{contact.phone}}` sai "(480) 555-1234" (espaço quebra o link);
   usar `{{contact.phone_raw}}`. Filtros liquid (`| url_encode`) fazem o GHL não enviar o SMS.
 - Link de review do Google: `writereview?placeid=<location.googlePlacesId>` da própria conta.
+- **Ligação nunca pode parar de tocar** (BluVantage 11/11: a migração rodou `pp_master_cleanup --loc` em toda conta e deixou
+  genérico o "Sequential Call Routing" PUBLICADO dela → passos Ring sem usuário, tudo na caixa postal). Script em lote nunca
+  reescreve passo `ivr_*` publicado nem com usuário/número (travas no `pp_master_cleanup` e no `own_version` do `pp_mirror`).
+  Depois de qualquer escrita em lote: `pp_call_check.py --quiet` (as duas agências; roda também no `pp_fleet_migrate` e na
+  auditoria de quinta). `meta.ivr[].answeredBy: machine_start` NÃO quer dizer caixa postal: veio assim em ligação atendida
+  por pessoa (teste do Pedro e ligação real de 2 min, 12/11). Desligar um IVR que ouve número de outra conta não mexe na
+  linha da outra conta (testado 12/11).
 - IVR: gatilho `ivr_incoming_call` publicado liga o número ao workflow (`inboundCallService`). Com IVR,
   toda ligação de entrada vira "completed" → gatilhos de chamada perdida param; marcar `missed call`
   dentro do IVR (`scripts/pp_ivr.py`). Número externo em `ivr_connect_call.customNumbers`:

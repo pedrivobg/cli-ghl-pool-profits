@@ -506,6 +506,12 @@ class Mirror:
         live = self.t.wf(tw["id"])
         if any(t.get("type") == "ivr_incoming_call" for t in live.get("triggers") or [] if not t.get("deleted")):
             return "IVR da conta (roteamento de ligação)"
+        steps = (live.get("workflowData") or {}).get("templates") or []
+        if any(s.get("type", "").startswith("ivr_") for s in steps) and (tw.get("status") != "draft" or any(
+                (s.get("attributes") or {}).get("users") or (s.get("attributes") or {}).get("customNumbers")
+                for s in steps if s.get("type") == "ivr_connect_call")):
+            # BluVantage 11/11: a live call routing overwritten = calls ring nobody. Never rewrite call steps in use.
+            return "roteamento de ligação da conta (passos de IVR publicados ou com usuário/número)"
         stock = stock_baseline(self.m)["sigs"]
         keys = [norm(name), *map(norm, ALIASES.get(name, [])), norm(tw["name"])]
         mw = next((w for w in self.m.index if w["name"] == name), None)

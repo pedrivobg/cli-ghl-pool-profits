@@ -30,7 +30,7 @@ The <routine-fire-payload> block below comes from our n8n inbox watch. n8n alrea
 3. [pedro_reply] items = Pedro answered one of those emails: "feito/done" -> verify it live, clean up tests, confirm to whoever asked, close the ClickUp task; "aprovado" -> post the approved draft exactly where it belongs.
 4. Reply in the same place it was asked (same ClickUp thread/comment, same email thread, internal Basecamp only): short, human. Never say done unless tested. If a client can see it, do NOT post: email Pedro the draft ("[Aprovar] ...").
 5. After an email/Basecamp item is handled (or is only waiting on someone else), mark its Gmail thread read (remove UNREAD) so Pedro only sees what needs him.
-5b. ClickUp has NO mark-as-read API: after you answer or finish a ClickUp chat message or thread reply, add the reaction "white_check_mark" to it (clickup_react_to_chat_message). Never react to one that still needs Pedro.
+5b. ClickUp has NO mark-as-read API, and reactions do NOT mark anything as read. Do NOT react to every message (Pedro 12/11: it looks automated). React only now and then, the way a person would, when it fits (a request received or done, a thanks), and vary it: thumbsup, white_check_mark, saluting_face. Usually the written reply is enough. Never react to one that still needs Pedro.
 6. Create/update my ClickUp task (list 901422915733) only for real work; close it when tested.
 7. Ledger "Pedro Inbox Ledger" (wb0SlsU03MQ4xdgv): add a row per item with the same item_id, status done/needs_pedro, short notes.
 8. Commit and push only when files changed (log real changes in docs/execucao-2026-10-27-clearpool-dash.md; no commit for items that changed nothing). Trailer: Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>.
@@ -93,7 +93,7 @@ O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rot
 2. Feita e conferida → comentar o que foi checado e fechar. Dá para fazer agora → fazer o escopo todo e testar (nunca
    mandar nada a contato existente) e fechar. Depende de outra pessoa → comentar quem/o quê e prazo realista. Só o
    Pedro → fica aberta com prazo realista e vai no e-mail. Nada vencido sem dono; duplicada → fechar a mais nova com link.
-3. ✅ (`white_check_mark`) nas mensagens de chat já tratadas.
+3. Reação só de vez em quando (ver 5b), nunca em todas.
 4. `docs/TODO.md` só com o aberto; log em `docs/execucao-*.md`; commit/push.
 5. UM e-mail "[Passo seu] O que é seu – <data> (revisão da noite)": (a) passos do Pedro, numerados; (b) decisões dele;
    (c) o que foi fechado/adiantado, uma linha cada. Marcar como lidos os [Passo seu] anteriores que ele substitui.

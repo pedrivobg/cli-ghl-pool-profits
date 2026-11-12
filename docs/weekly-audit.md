@@ -30,6 +30,10 @@ sexta, tarefas no ClickUp (lista "Pedro – GHL & Automations", `901422915733`) 
    novas. Acusar: ALTA/ERRO novos, workflow publicado com gatilho inativo ou em número/form/pipeline de outra conta,
    passo com usuário/telefone/e-mail vazio ou de outra empresa, custom value vazio, form com `redirect_url` vazio,
    SMS saindo "failed" (A2P), número sem encaminhamento/IVR, calendário sem membro ou sem horário, review link errado.
+3b. **Ligações** (BluVantage 11/11): `pp_call_check.py --quiet` (e `GHL_AGENCY=poolduck`): todo ERRO (passo de IVR
+   publicado sem usuário/número, usuário de outra conta, linha num IVR inexistente, gatilho em número de outro cliente)
+   é urgente e vai para o topo do e-mail. IVR em draft de propósito (Precision, Ponchos, Dream Pools, Pool Profits toll-free,
+   feitos pela tela antes de 11/11) só entra se mudar.
 4. **Ponta a ponta nas entregas da semana** (sem disparar nada real): páginas/funis respondem 200 e têm o form certo
    (`curl`), webhooks e snippets de site (`ps_site.py status`, `bw_site.py status`), conversões (passos `google_adword`
    / `facebook_conversion_api` com ID preenchido), leads reais que entraram desde a última auditoria com tags/card/

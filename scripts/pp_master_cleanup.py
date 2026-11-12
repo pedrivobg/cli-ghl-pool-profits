@@ -123,6 +123,20 @@ def main() -> int:
         tpl = json.loads(json.dumps(live["workflowData"]["templates"]))
         changes = generic_ivr(tpl) if name == IVR else []
         print(f"== {name} [{live['status']}]")
+        if args.loc and live["status"] != "draft":
+            # 11/11: the fleet migration ran this on BluVantage, whose live Sequential Call Routing is the real one →
+            # its ring steps lost Vanessa/Fred/Paul and every call went to voicemail. A live flow is never touched here.
+            print("    PUBLICADO: não mexo (roteamento de ligação no ar da conta) — conferir à mão se for sobra")
+            continue
+        if args.loc and changes:
+            own = {u["id"] for u in a.users(LOC)}
+            ring = {u for st in live["workflowData"]["templates"] if st.get("type") == "ivr_connect_call"
+                    for u in (st.get("attributes") or {}).get("users") or []}
+            if ring & own:
+                print("    passos de ligação com usuários DA CONTA: não mexo (é o roteamento dela)")
+                changes = []
+                if not trs:
+                    continue
         for c in changes:
             print("   ", c)
         for t in trs:
