@@ -995,3 +995,8 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - `pp_call_check` entrou no `pp_fleet_migrate` (para em ERRO) e na auditoria de quinta (item 3b).
 - Reações no ClickUp (Pedro 12/11): não reagir em tudo; só de vez em quando, variando. Regra no TODO/inbox-watch; o prompt
   da rotina "GHL Tasks" (http_api, eu não edito) precisa ser colado pelo Pedro: `docs/routine-ghl-tasks-prompt.md`.
+- 12/11 resposta do Pedro ao [Passo seu]: prompt novo da rotina colado; Refresh do snapshot feito (11/11 tarde e 12/11);
+  tokens trocados; Call Recording Poolheads e form da LWR no Lead Ads feitos. Free month nos 3 publicados: Pedro não sabia
+  que veio do Ed → perguntado ao Frank (DM) se algum dos 3 pediu a oferta antes de mudar ao vivo. Blue Lagoon $250: o Frank já
+  respondeu a Caila no Basecamp em 06/11 → tarefa 86bcyu05g fechada. IVRs em draft: manter. Live tests 86bd1b3b5 enxugados
+  (4 necessários + 4 opcionais; saíram YardSpring, BluVantage linha principal, NorTex).
