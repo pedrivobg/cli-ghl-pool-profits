@@ -1000,3 +1000,22 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   que veio do Ed → perguntado ao Frank (DM) se algum dos 3 pediu a oferta antes de mudar ao vivo. Blue Lagoon $250: o Frank já
   respondeu a Caila no Basecamp em 06/11 → tarefa 86bcyu05g fechada. IVRs em draft: manter. Live tests 86bd1b3b5 enxugados
   (4 necessários + 4 opcionais; saíram YardSpring, BluVantage linha principal, NorTex).
+
+## 12/11 (~18h30 UTC) — inbox (Puddle Jumper conta nova, Bonneville landing pages, Aqua Clear, Val/Justin)
+- **Puddle Jumper Pool Service LLC** (`OkwVYZUEbrfNYQLTG8uy`, criada hoje pelo questionário; o e-mail do n8n pedia PIT ao
+  Rafael — não precisa): `pp_new_account --apply` (custom values + fuso America/Phoenix, Business Profile), usuário **Eric
+  Bridges** (`JTr0NKiNPZDN5AYlFppp`, admin, billing@puddlejumperaz.com, +14805779308, permissões do admin da Bonneville) e
+  e-mail no representante; missed-call nativo off; Friendly "Puddle Jumper Pool Service" (título do site), Service Area
+  "Mesa", Client Domain sem https, `a2p_verification_number` provisório (480) 388-0083 (sem número). Sequência do modelo
+  (mirror/forms/nps/fix/tags_missing/skip/line/master_cleanup/review_fix). Audit 0 ALTA, ready 0 ERRO (aviso: Review Request
+  draft — survey sem link de review). Contato ZZ TEST → dono Eric (apagado). Guia do CRM publicado (`puddle-8bc89d69`, abre sem
+  erro). Tarefa 86bcz85nw comentada (in progress); DM ao Frank: 1º número 480, go.puddlejumperaz.com, guia, link de review.
+- **Bonneville — 2 landing pages do Google Ads** (Val, ClickUp 86bcwer98): `scripts/bn_ads_forms.py` (novo, padrão
+  NorTex/YardSpring). Forms "Bonneville — Weekly Pool Service" (`MhkyjjhjdYJGElGbsMV4`) e "Bonneville — Pool Equipment & Hot
+  Tub Repair" (`KehOjHSs73DlVQq5ucMJ`, tipo de reparo Pool Equipment/Hot Tub + descrição + marca/modelo); campos novos
+  Service Requested, Landing Page, Pool Details, Repair Type, Issue Description, Brand / Model. Fluxos "Google Ads LP - Weekly
+  Pool Service" / "- Pool & Hot Tub Repair" publicados (tags do brief, card New Lead, conversão sem ação escolhida — Google
+  Ads não conectado, SMS + e-mail ao Justin em service@bonnevillepool.com, confirmação ao lead, CEP nos 5 do brief, trava de
+  24 h). Teste em cópias ZZ TEST: todos os ramos ✓, e-mails de teste apagados. Falta: thank-you do Atif (`--thanks-*`),
+  Google Ads conectado (Val), número de rastreamento (pergunta à Val), envio real nas páginas. Tarefa minha 86bd2ha9z.
+- Aqua Clear "Blog Posts (old site)" e Val ↔ Justin (orçamento): nada para mim; threads lidas.
