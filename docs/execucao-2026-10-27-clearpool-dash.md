@@ -928,3 +928,23 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Corolla e Precision sem saída: só val@ conectado, que só vê a propriedade "Pool Profits" (Precision ainda mostra o
   tráfego da agência, herdado da cópia). Southern e PoolReady SELA: 0 / "No data found" em todas as propriedades
   (provável tag GA ausente no site ou propriedade errada). Comentado na tarefa da Val 86bd1zk8p.
+
+## 11/11 noite — inbox (Ed/Pool Duck, BluVantage no Group DM) + revisão da noite
+
+- **Pool Duck — respostas do Ed** (8 perguntas): mover tudo para a Pool Leads (cards, fluxos de anúncio, conversões, Review
+  Request), SMS de missed do V9, card de ligação só na principal, marcador no IVR da LWR, boas-vindas pela tag `new residential
+  client`, avisos = mesmas pessoas (WC: dono responde 12/11), WC depois das 18h ET. Feito hoje:
+  - "Free month" (varredura de templates + fluxos, Pool Profits e Pool Duck): templates limpos; o V9 não tem. Mas o fluxo
+    antigo "In Communications" (snapshot pré-V9) → "Nurture Email Day 3" ("How Can You Earn Money With Us?") promete mês grátis
+    por indicação em 33 contas + Pool Duck HQ. `scripts/pp_referral_offer_fix.py`: texto vira pedido de indicação sem oferta,
+    assunto "Know Someone Who Needs a Pool Pro?" — aplicado nos 30 em draft (backup, status mantido). **Publicados (Pool Time,
+    Reign, Sparkling Clear): a escrita foi bloqueada pelo classificador da sessão → falta rodar com OK do Pedro**
+    (`--apply` com o nome da conta). Promoções próprias não mexidas: WC "Epperson Lead Bug Campaign", Blue Lagoon Reactivation
+    (first month free), Pooly "Promo - 1 Free Month", ABC "First Service Free" (drafts). Correção mandada ao Ed.
+  - WC "*Welcome NEW Residential Client Messaging": 2 publicados idênticos (mesmo e-mail/SMS; só o template_id do e-mail
+    difere). A cópia `0974e427` → draft (backup `backup/poolduck-wesley-chapel/`); só 1 gatilho da tag ativo (conferido).
+  - Odessa: custom value Owner First Name = "Matt" (backup). E-mail ao Matt pedindo os preços → [Aprovar] ao Pedro.
+  - Fase 2 LWR/Odessa 12–13/11; ClickUp 86bcxzjfa em andamento (prazo 17/11).
+- **BluVantage**: Ed perguntou no Group DM quem corrigiu o IVR. Conferido ao vivo: "Sequential Call Routing" v19 publicado,
+  Ring Vanessa → Fred → Paul → caixa postal, gatilho ativo; nenhuma ligação de entrada depois do conserto. Respondido no DM;
+  a resposta à Vanessa espera o teste do Pedro + aprovação.

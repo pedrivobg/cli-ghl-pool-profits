@@ -1,4 +1,4 @@
-# TODO do Pedro — só o aberto (10/11/2026)
+# TODO do Pedro — só o aberto (11/11/2026, revisão da noite)
 
 Curto de propósito (as rotinas leem este arquivo). **Regra das tarefas do ClickUp (Pedro 10/11)**: toda tarefa que eu crio
 tem prazo realista e é fechada quando o meu trabalho está feito e testado; se só falta teste real do Pedro, comento, fecho
@@ -26,6 +26,8 @@ combinar antes.
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
 ## Você faz
+0. **BluVantage** (urgente): ligação de teste para o 404-334-2495 (deve tocar Vanessa → Fred → Paul) e aprovar a resposta
+   à Vanessa (e-mail "[Aprovar] BluVantage - Call Routing"). Ed perguntou no Group DM; respondi que está no ar.
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
@@ -43,8 +45,13 @@ combinar antes.
 9. **Contas antigas no modelo (11/11)**: 34 migradas com status mantido (log 11/11). **Para ver com o time** (fluxo próprio
    da conta, não mexi): Damon's, Clean Co, Ponchos, Ekahi, Pooltexx, Wrigley's, BluVantage, Clear Pool; e Pool Palooza, Golden
    View, sub-conta Pool Duck (estrutura diferente). Dados do cliente vazios ficam para depois (Pedro 11/11).
-9b. **Pool Duck**: fase 1 feita em Odessa e Lakewood Ranch (tudo draft, `pre-snapshot`). Esperando as 8 respostas do Frank
-   (e-mail 11/11) para a fase 2 (guardas + publicar um a um); depois Wesley Chapel.
+9b. **Pool Duck** (respostas do Ed 11/11, thread "Pool Duck Franchisee Accounts"): tudo para a Pool Leads (cards, fluxos de
+   anúncio, conversões do Google Ads, Review Request nas etapas Won; campanha de review da LWR intocada), SMS de missed do V9
+   no lugar do nativo, card de ligação só na linha principal, marcador `missed call` no IVR da LWR, boas-vindas = tag
+   `new residential client` (duplicada da WC desligada 11/11), avisos = as mesmas pessoas de hoje. Free month: tirado do
+   "In Communications" antigo (30 drafts); **faltam os 3 publicados** (Pool Time, Reign, Sparkling Clear) — `pp_referral_offer_fix.py`
+   bloqueado pelo classificador; Ed avisado que sai amanhã cedo. Fase 2 LWR + Odessa 12–13/11; WC depois da resposta
+   do dono (via Frank), após 18h ET. Você: aprovar o e-mail ao Matt (preços da Odessa; dono = Matt já gravado).
 10. **Gate de nota** (Frank 10/11): só 5 recebe o link do Google; 1–4 recebe SMS "what could we have done better?" +
    aviso à equipe (`pp_review_gate.py`). Sem nota em 7 dias → recebe o link, como no V9 (Pedro 11/11: manter).
 10b. **E-mail do processo novo para Ed/Frank/Jonathan**: enviado 11/11. Quando o 1º A2P automático for aprovado → uma
