@@ -602,6 +602,11 @@ class Mirror:
                 parent = self.t.wf(sibling["id"]).get("parentId") if sibling else None
                 where = sibling.get("folder", "—")
             self.say(f"\n[4] cria workflow '{name}' (pasta {where})")
+            if self.apply and any(w.get("name") == name for w in self.agency.workflows(self.t.loc)):
+                # Capital 12/11: the dump missed "No Response Follow-up" (listing lag) and a 2nd published copy was made
+                self.say("      já existe ao vivo (o dump estava defasado) — não crio; rodar pp_dump de novo")
+                self.problems.append(f"{name}: existe ao vivo mas não no dump — refazer o dump")
+                continue
             if self.apply:
                 res = self.agency.call("POST", BACKEND, f"/workflow/{self.t.loc}",
                                        body={"name": name, "parentId": parent, "status": "draft"})
