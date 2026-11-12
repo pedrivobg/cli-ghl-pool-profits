@@ -55,6 +55,10 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
+12. **Pools of Perfection** (Frank 12/11, ClickUp `86bd2p4gc`): criar a sub-conta na tela com "Snapshot Pool Profits v9" (API de
+   snapshot recusa o token Firebase) → "feito" e eu faço o resto (sem A2P/número/domínio).
+13. **Corolla LPs** (`86bcp75bk`): envio real nas 2 páginas (Turnstile); forms, redirects e fluxos conferidos 12/11.
+
 ## Esperando outros
 - Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service", usuário do Jorge.
 - Atif: páginas/obrigado de Poolheads, Pool Shack, YardSpring, BluVantage; tirar o número antigo da página Weekly da NorTex.
@@ -63,7 +67,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
   tags universais; Pool Keepers (o que liga); GBP da Clear Pool no número de rastreamento.
 - Frank (12/11): OK para o filtro de spam do form da Passion (telefone sem +1 / palavras de venda → spam, sem aviso; telefone só EUA)
   — 6 de 8 submissões em 30 dias eram spam; data da call da Reign → eu monto a tag `pipeline cleanup` (guarda nos fluxos de etapa).
-- Pedro: [Aprovar] NorTex (resposta ao Fareed: Neena não apertou 1; opções linha Meta direta / toque 10→20 s; text-back nativo).
+- Fareed (NorTex, Basecamp "Paid Ads" 12/11): escolher linha Meta direta e/ou toque 10→20 s (resposta postada; nativo off).
+- Frank (Pools of Perfection): avisos de lead para o Christopher já ou depois da call dele.
 - Derek (Clear Pool): publicar Review Request?, chave do Pool Brain. Erik (Ekahi) e Jeremy (SwimReady): ajustes por código.
 
 ## Em breve (combinado)

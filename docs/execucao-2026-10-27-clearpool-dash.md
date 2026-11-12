@@ -1012,3 +1012,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   serviço, 3 suspeitas. Proposta ao Frank (filtro +1 / palavras / telefone só EUA), esperando OK. Nada alterado.
 - Reign (Frank): mover cards antigos sem disparar → proposta de tag `pipeline cleanup` com if/else no início dos fluxos de
   etapa (No Response, Quote Sent, No-Show, Won, Lost). Monto quando ele disser a data da call.
+
+## 12/11 — Inbox 21h UTC
+- NorTex: resposta aprovada postada ao Fareed (Basecamp "Paid Ads"); `enableMissedCallText` = false conferido ao vivo
+  (desligado pelo Pedro). Frank avisado no DM.
+- Corolla: LPs do Atif conferidas ao vivo (Weekly → form VdbZAHIJ2AmD6vD5RhyS, Repair → my5l2w6jE4yCGmPcgtoC, tel
+  +12526002066); redirect_url dos 2 forms já aponta para os obrigados; fluxos Google Ads LP - Weekly/Repair e Won -> Google
+  Ads publicados. Nada gravado. Falta envio real (Pedro).
+- Pools of Perfection: `GET /snapshots` com o token Firebase → 401 (pede Authorization) → criação com snapshot pela tela.
