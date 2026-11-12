@@ -292,7 +292,12 @@ def process(a: Agency, loc: dict, apply: bool, submit: bool) -> list[str]:
         if (full.get("website") or "").rstrip("/").lower() != site:
             say(f"   brand website → {site} (as Southern)" + (" ✓" if apply else ""))
             if apply:
-                a.call("PUT", SERVICES, f"/locations/{lid}", body={"website": site, "business": {**(full.get("business") or {}), "website": site}})
+                try:
+                    a.call("PUT", SERVICES, f"/locations/{lid}", body={"website": site, "business": {**(full.get("business") or {}), "website": site}})
+                except Exception as e:  # some locations answer 422 "property business should not exist" (West Coast 12/11)
+                    if "property business should not exist" not in str(e):
+                        raise
+                    a.call("PUT", SERVICES, f"/locations/{lid}", body={"website": site})
         if tw is not None:
             cur = tw.get("campaignDetails") or {}
             want = pp_a2p.build_campaign(a, a.location(lid), site)

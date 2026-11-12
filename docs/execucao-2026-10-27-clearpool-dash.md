@@ -948,3 +948,23 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - **BluVantage**: Ed perguntou no Group DM quem corrigiu o IVR. Conferido ao vivo: "Sequential Call Routing" v19 publicado,
   Ring Vanessa → Fred → Paul → caixa postal, gatilho ativo; nenhuma ligação de entrada depois do conserto. Respondido no DM;
   a resposta à Vanessa espera o teste do Pedro + aprovação.
+
+## 12/11 (~12h UTC) — inbox (Frank: Puddle Jumper, Bonneville, Blissful, West Coast, Smart Chem) + rodada diária
+- **West Coast**: link do Google do Frank (`share.google/…` → kgmid `/g/11x61hrn1n`) resolvido pelo Maps no Chromium →
+  place `ChIJ6QYfYBK1OWoR6ld5NicqvpA` ("West Coast Chemical Company"). `google_review_link` = writereview?placeid=… (backup
+  `backup/west-coast-pool-care/custom-values-20261112-1209.json`) → `pp_mirror --apply` → Review Request **published** com o
+  place da conta; resto da sequência (forms/nps/fix/tags/skip/review_fix) sem mudança. `A2P Verification Number` estava vazio
+  (ALTA 11 no audit) → telefone do negócio (323) 695-6810. Audit 0 ALTA, `pp_ready --place` 0 ERRO, fleet OK.
+  `pp_new_account`: PUT `/locations` com `business` deu 422 "property business should not exist" → script tenta de novo só
+  com `website`; brand website = go.westcoastpoolcare.com, campanha A2P preenchida. Falta o 1º número.
+- **Capital**: "No Response Follow-up" tinha sumido da conta (apagado na tela) → recriado pelo `pp_mirror --apply` (0 contatos)
+  + sequência; audit 0 ALTA, ready 0 ERRO. Número +19163124701 encaminhado e posto como A2P Verification Number.
+- **WP Pools**: compra de número → 400 `NUMBERS_CARD_VERIFICATION_PENDING` (KYC ok, cartão não verificado) → DM ao Frank.
+- Bonneville e Smart Chem: brand APPROVED / campanha VERIFIED (enviados pelo Frank na tela, não pela rodada → sem o aviso do
+  item 8). Nenhum A2P enviado hoje. Contas novas: nenhuma (Puddle Jumper ainda sem o questionário 2.0).
+- **Blissful**: go.blissfulwaterspoolcare.com aponta para sites.ludicrous.cloud mas está ligado à conta GHL antiga (location
+  `qyxBYgM1Z79FCeL0IcaX`, outra agência) → recomendado ao Frank usar `info.` para o site A2P (CNAME no Wix).
+- **Bonneville, lista de clientes**: Frank liberou importar. Anexo do chat do ClickUp não baixa (redirect para login; o
+  conector do Basecamp também não entrega xlsx) → pedido ao Frank para anexar na tarefa 86bcz0y7b. A conta já tem número e
+  A2P aprovado: reler gatilhos antes de importar.
+- Smart Chem "Customize Pipeline & Opportunity Board" (86bd26424): Pool Leads padrão (13 etapas) conferido ao vivo, fechada.
