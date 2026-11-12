@@ -1021,3 +1021,33 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - **Pool Keepers / Skimmer**: o Nathan quer o lead no Skimmer e no GHL. O form do Skimmer é iframe (o site não lê);
   API/webhook só no Enterprise, senão Zapier. Respondi ao Frank no thread; rascunho ao Nathan em "[Aprovar]".
 - Reunião segunda 2:15pm CST com o dono da Pool Duck (Wesley Chapel): agenda do Pedro → "[Aprovar]" com rascunho.
+
+## 12/11 (23h UTC) — auditoria semanal (`docs/weekly-audit-log.md`)
+- Dump das 67 contas (`pp_dump --all`; sem `--all` ele não faz nada) → `pp_audit`, `pp_fleet_check`, `pp_call_check` (2 agências).
+- **BluVantage — 2ª vítima do bug de 11/11**: o `pp_master_cleanup --loc` também apagou o gatilho do "AdWords Call In - New
+  Lead" (linha Weekly +14704708874 está na lista FOREIGN_NUMBERS, que são números da própria BluVantage) → ligação do Google
+  Ads Weekly sem card/conversão/SMS desde 11/11. Gatilho recriado (cópia do da Repairs, só o número; backup), ativo, aponta
+  para o 1º passo. 2 leads sem card (D Rivituso 11/11, (229) 437-8220 12/11) → card criado em Pool Leads/New Lead (origem
+  "Google Ads LP Call - Weekly"; nenhum fluxo ouve New Lead/criação de card; sem tags para não disparar nada). Falta ligação
+  real (item novo na 86bd1b3b5). A trava de 12/11 no `pp_master_cleanup` (pula publicado) já impede repetir.
+- **Review Request sem nome da empresa** (Blue Lagoon, Clean Co, Damon's, JM; publicados pela migração 11/11): usam
+  `{{custom_values.friendly_business_name}}` (templates "NPS Survey - SMS Request" e "NPS - Feedback Request") que essas contas
+  pré-V9 não tinham → custom value "Friendly Business Name" criado com o nome da empresa (backup; chave conferida). Nenhum
+  desses SMS saiu desde 11/11 (conferido nas conversas). `weekly_service_price` falta em 13 contas mas só vai no valor do card.
+- **Capital**: 2 "No Response Follow-up" publicados (o recriado hoje pela rodada diária + o original que a listagem atrasada
+  escondeu) → cópia de hoje para draft e apagada (backup); original ativo. `pp_mirror` agora relê a lista ao vivo antes de criar.
+- Erro meu: `ek_90day.py test` rodado sem querer criou "ZZ TEST First 90 Days" + contato zz test (sem gatilho, só tags,
+  e-mail example.com) → apagados (workflow, contato, tags zz90). Nada saiu.
+- Ao vivo ok: páginas da semana 200 (BluVantage postal/Renovations, Corolla 2 LPs + obrigado, Poolheads 3, West Coast);
+  Homebuyer Postcard (form + workflow + página); Ekahi First 90 Days publicado / Monthly Service Reminder draft; Stay Fresh
+  Quote Sent silencioso; missed-call nativo off (NorTex e contas novas); Pool Duck LWR/Odessa V9 em draft, WC 1 boas-vindas;
+  leads desde 05/11 em 26 contas com tag de origem e card (exceções: BluVantage 2 → corrigido; Southern 2 → 86bd2t1kt; Sparkling
+  Craig Linn = cliente atual, sem card certo); 0 SMS "failed" nas últimas conversas; `pp_call_check` sem ERRO novo.
+- `pp_ready` nas novas: ERRO de review link em West Coast/Capital/Bonneville/Blissful é falso positivo (sem Google conectado;
+  place do workflow = o do g.page do cliente, decodificado). Review Request draft em Smart Chem/WP Pools/Puddle Jumper (1º número).
+- Sobras: Clear Conceptz com 3 cópias publicadas de 5 fluxos (comentado na 86bcz86jw); Sunwave Won Stage move para etapas que
+  não existem (ramos nunca rodam) e "Marketing - IVR" com Assign sem usuário (edição do Davey 11/11); site status Pool Shack/
+  Bluewater 401 (Application Passwords trocadas → 86bd2t1mq).
+- Pool Duck (`pp_audit`): avisos sem usuário (Steve) publicados em LWR, Odessa e WC; WC "Credit Card / ACH update request
+  workflow" publicado com `pool_brain_customer_portal_link` vazio (cliente recebe sem link) → comentado na 86bcz86nd. BurchTech
+  (Pool Keepers, Bluewater): 0 ALTA.

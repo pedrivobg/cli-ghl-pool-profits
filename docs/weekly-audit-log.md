@@ -14,3 +14,13 @@
   contatos novos sem tag = spam de eleição (Sunwave, Reign).
 - **Check-in (rodízio)**: Clear Pool Tucson (Derek), NorTex (Fareed), The Pool Shack (Rob) — rascunhos no e-mail.
 - Tarefas novas: 86bcz86jw (contas no snapshot antigo), 86bcz86m8 (Southern lead sem card), 86bcz86nd (Pool Duck LWR/WC).
+
+## 12/11/2026 (qui)
+
+- **Contas**: 67 da Pool Profits (dump `--all` + `pp_audit` + `pp_fleet_check` + `pp_call_check`), Pool Duck (LWR, Odessa, WC) e
+  BurchTech (Pool Keepers, Bluewater).
+- **Corrigido**: BluVantage AdWords Call In sem gatilho desde 11/11 (recriado + 2 cards); Friendly Business Name em 4 contas
+  (Review Request); Capital No Response duplicado; sobra ZZ TEST na Ekahi (minha). Trava nova no `pp_mirror` (não cria o que
+  já existe ao vivo).
+- **Check-in (rodízio)**: Precision (Dane), Sunwave (Davey), Bahama Blue (Andy) — rascunhos no e-mail.
+- Tarefas novas: 86bd2t1kt (Southern leads sem card), 86bd2t1mq (Application Passwords); comentários em 86bd1b3b5 e 86bcz86jw.
