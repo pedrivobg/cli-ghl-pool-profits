@@ -968,3 +968,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   conector do Basecamp também não entrega xlsx) → pedido ao Frank para anexar na tarefa 86bcz0y7b. A conta já tem número e
   A2P aprovado: reler gatilhos antes de importar.
 - Smart Chem "Customize Pipeline & Opportunity Board" (86bd26424): Pool Leads padrão (13 etapas) conferido ao vivo, fechada.
+
+## 12/11 (~14h20 UTC) — inbox (BluVantage: Vanessa + Frank)
+- **BluVantage**: conferido ao vivo — "Sequential Call Routing" v19 publicado (Ring Vanessa → Fred → Paul → caixa postal).
+  Ligação real 12/11 13:51 UTC (+19542838077 → linha principal) passou pelo passo "Ring Vanessa" (+14042249387) e foi
+  atendida (132 s; o "telemarketer" do e-mail dela). Antes disso (11/11 tarde) as entradas não passavam pelo IVR.
+  Vanessa agradeceu (sem resposta, thread lida); Frank perguntou da ligação de teste → respondido no Group DM com o
+  horário da ligação real. TODO item 0 fechado.

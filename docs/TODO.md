@@ -26,8 +26,8 @@ combinar antes.
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
 ## Você faz
-0. **BluVantage** (urgente): ligação de teste para o 404-334-2495 (deve tocar Vanessa → Fred → Paul) e aprovar a resposta
-   à Vanessa (e-mail "[Aprovar] BluVantage - Call Routing"). Ed perguntou no Group DM; respondi que está no ar.
+0. **BluVantage**: resolvido. Resposta à Vanessa enviada 12/11 14:03 UTC; ligação real 12/11 8:51 ET passou pelo
+   "Sequential Call Routing" (v19) e a Vanessa atendeu (2 min). Ligação de teste sua não é mais necessária.
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
