@@ -26,8 +26,8 @@ combinar antes.
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
 ## Você faz
-0. **BluVantage** (urgente): ligação de teste para o 404-334-2495 (deve tocar Vanessa → Fred → Paul) e aprovar a resposta
-   à Vanessa (e-mail "[Aprovar] BluVantage - Call Routing"). Ed perguntou no Group DM; respondi que está no ar.
+0. **BluVantage**: resposta à Vanessa enviada 12/11. Ligação de teste para o 404-334-2495 (Vanessa → Fred → Paul) segue no
+   "Live tests with Pedro".
 1. **Tokens**: trocar os refresh tokens que mostrei no chat (Pool Profits, Pool Duck, BurchTech, Poolheads antiga) e as
    Application Passwords; depois abrir uma sessão nova → eu testo as variáveis e recrio a auditoria de quinta lá.
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
@@ -51,7 +51,7 @@ combinar antes.
    `new residential client` (duplicada da WC desligada 11/11), avisos = as mesmas pessoas de hoje. Free month: tirado do
    "In Communications" antigo (30 drafts); **faltam os 3 publicados** (Pool Time, Reign, Sparkling Clear) — `pp_referral_offer_fix.py`
    bloqueado pelo classificador; Ed avisado que sai amanhã cedo. Fase 2 LWR + Odessa 12–13/11; WC depois da resposta
-   do dono (via Frank), após 18h ET. Você: aprovar o e-mail ao Matt (preços da Odessa; dono = Matt já gravado).
+   do dono (via Frank), após 18h ET. E-mail ao Matt (preços da Odessa) enviado 12/11; esperar resposta.
 10. **Gate de nota** (Frank 10/11): só 5 recebe o link do Google; 1–4 recebe SMS "what could we have done better?" +
    aviso à equipe (`pp_review_gate.py`). Sem nota em 7 dias → recebe o link, como no V9 (Pedro 11/11: manter).
 10b. **E-mail do processo novo para Ed/Frank/Jonathan**: enviado 11/11. Quando o 1º A2P automático for aprovado → uma

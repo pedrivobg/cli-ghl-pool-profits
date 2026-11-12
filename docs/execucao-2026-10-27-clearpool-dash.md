@@ -968,3 +968,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   conector do Basecamp também não entrega xlsx) → pedido ao Frank para anexar na tarefa 86bcz0y7b. A conta já tem número e
   A2P aprovado: reler gatilhos antes de importar.
 - Smart Chem "Customize Pipeline & Opportunity Board" (86bd26424): Pool Leads padrão (13 etapas) conferido ao vivo, fechada.
+
+## 12/11 (~14h UTC) — inbox (respostas do Pedro + Frank)
+- **Odessa**: e-mail aprovado ao Matt (preços: semanal, chemical-only, green-to-clean, one-time) enviado, cc Frank. Espera resposta.
+- **BluVantage**: conferido ao vivo de novo (v19 publicado, Vanessa → Fred → Paul → caixa postal, gatilho `ivr_incoming_call`
+  ativo). Resposta à Vanessa no thread "Call Routing" no tom pedido pelo Pedro (sem pedir desculpas), reply-all.
+- **Pool Keepers / form do Skimmer**: Pedro pediu confirmar com o Frank antes e chamar de "Pool Profits CRM" (nunca GHL) para
+  o cliente → DM ao Frank (substitui ou fica ao lado do form atual?). Post ao Nathan no Basecamp só depois do OK dele.
+- **WP Pools**: Frank faz a verificação do cartão em call com o cliente e avisa → aí eu compro os números.
