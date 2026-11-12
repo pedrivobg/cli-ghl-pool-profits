@@ -995,3 +995,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - `pp_call_check` entrou no `pp_fleet_migrate` (para em ERRO) e na auditoria de quinta (item 3b).
 - Reações no ClickUp (Pedro 12/11): não reagir em tudo; só de vez em quando, variando. Regra no TODO/inbox-watch; o prompt
   da rotina "GHL Tasks" (http_api, eu não edito) precisa ser colado pelo Pedro: `docs/routine-ghl-tasks-prompt.md`.
+
+## 12/11 (~14h30 UTC) — inbox: Val na tarefa dos dashboards (86bd1zk8p)
+- Val: Meta só NorTex e Pool Duck Wesley Chapel rodam; Google Ads sem check = sem campanha/conta; GA/hello@ = Frank.
+- Status da Meta por API (novo): `GET services /ad-publishing/facebook/integration?locationId` → `{status: connected|disconnected,
+  fbAdAccountId, pages}`; 422 "Access Token not found" = nunca/não conectada; 403 "Access Token expired" = expirada;
+  `…/facebook/ad-accounts` lista as contas (`integrationConnected`). Frota Pool Profits: só Sunwave conectada (act_1204792134236423);
+  Pool Palooza disconnected; Pooly expired; NorTex 422 (Val reconecta). WC (Pool Duck) connected, mas a conta selecionada é
+  "Justin Denham" (act_10150288220048675), não "Pool Duck Wesley Chapel" (act_1065143619806888) → perguntado.
+- GA para o Frank: Corolla, Precision (conectar hello@), Southern e PoolReady SELA (qual propriedade recebe o tráfego).
