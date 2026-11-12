@@ -32,8 +32,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
 3. **Contas novas (processo automático desde 10/11, `docs/new-account-review.md`, SOP em `docs/a2p-sop.md`)**: Smart Chem,
    West Coast e Capital prontas (0 ALTA/0 ERRO, usuário do dono em avisos/tarefas, guia do CRM com o Frank). O **1º número**
-   de cada conta é do Frank/time (Pedro 11/11: não é item seu; a rodada diária avisa o Frank). Mako's Pool, Cool N Clean,
-   Puddle Jumper e Pools of Perfection responderam só o "Training Survey Intake Form": falta o questionário 2.0.
+   de cada conta é do Frank/time (Pedro 11/11: não é item seu; a rodada diária avisa o Frank). Puddle Jumper montada 12/11
+   (falta 1º número, go.<domínio>, link de review). Mako's Pool, Cool N Clean e Pools of Perfection responderam só o "Training Survey Intake Form": falta o questionário 2.0.
 6. **Testes reais** (Pedro faz 12/11 à tarde): ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), lista
    enxugada 12/11 (YardSpring, BluVantage linha principal e NorTex saíram). Depois de cada um: conferir os logs e apagar o teste.
 9. **Contas antigas no modelo (11/11)**: 34 migradas com status mantido (log 11/11). **Para ver com o time** (fluxo próprio
