@@ -61,6 +61,9 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 - Val: Google Ads conectado (Poolheads, Pool Shack, YardSpring) e acesso para o Send Data dos Google Lead Forms.
 - Frank: Stay Fresh (avisos de ligação para o Kris, re-entry, IVR, lista de inativos); Pool Shack (retorno do Rob);
   tags universais; Pool Keepers (o que liga); GBP da Clear Pool no número de rastreamento.
+- Frank (12/11): OK para o filtro de spam do form da Passion (telefone sem +1 / palavras de venda → spam, sem aviso; telefone só EUA)
+  — 6 de 8 submissões em 30 dias eram spam; data da call da Reign → eu monto a tag `pipeline cleanup` (guarda nos fluxos de etapa).
+- Pedro: [Aprovar] NorTex (resposta ao Fareed: Neena não apertou 1; opções linha Meta direta / toque 10→20 s; text-back nativo).
 - Derek (Clear Pool): publicar Review Request?, chave do Pool Brain. Erik (Ekahi) e Jeremy (SwimReady): ajustes por código.
 
 ## Em breve (combinado)

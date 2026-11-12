@@ -1000,3 +1000,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   que veio do Ed → perguntado ao Frank (DM) se algum dos 3 pediu a oferta antes de mudar ao vivo. Blue Lagoon $250: o Frank já
   respondeu a Caila no Basecamp em 06/11 → tarefa 86bcyu05g fechada. IVRs em draft: manter. Live tests 86bd1b3b5 enxugados
   (4 necessários + 4 opcionais; saíram YardSpring, BluVantage linha principal, NorTex).
+
+## 12/11 — Inbox 20h UTC: NorTex ligação da Neena, spam da Passion, limpeza de pipeline (Reign)
+
+- NorTex (Fareed "didn't get any call", Val pediu checagem): `pp_call_check --only NorTex` 0 ERRO (3 linhas no "IVR SPAM
+  Detection", aperta 1 → toca o Fareed 10 s). Neena Kapoor 18:51 UTC na linha Meta: 0 s, no-answer, sem `ivr pressed 1` → o
+  telefone não tocou. "Meta Ads Call - Weekly" rodou (SMS ao Fareed delivered, e-mail, tarefa); ela recebeu o SMS do V9 (número
+  principal) + o text-back nativo (linha Meta). Fareed ligou de volta 19:15 UTC. Desde 31/10: 13 ligações de entrada, 1 contato
+  apertou 1. Resposta ao cliente → [Aprovar] (opções: linha Meta direta, toque 20 s). Nada alterado.
+- Passion Pool Care (spam no form): 8 submissões 13/10–12/11, 2 reais; 3 com telefone estrangeiro (+92/+91) vendendo
+  serviço, 3 suspeitas. Proposta ao Frank (filtro +1 / palavras / telefone só EUA), esperando OK. Nada alterado.
+- Reign (Frank): mover cards antigos sem disparar → proposta de tag `pipeline cleanup` com if/else no início dos fluxos de
+  etapa (No Response, Quote Sent, No-Show, Won, Lost). Monto quando ele disser a data da call.
