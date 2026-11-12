@@ -1012,3 +1012,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   serviço, 3 suspeitas. Proposta ao Frank (filtro +1 / palavras / telefone só EUA), esperando OK. Nada alterado.
 - Reign (Frank): mover cards antigos sem disparar → proposta de tag `pipeline cleanup` com if/else no início dos fluxos de
   etapa (No Response, Quote Sent, No-Show, Won, Lost). Monto quando ele disser a data da call.
+
+## 12/11 (~22h UTC) — inbox watch, 7 itens
+- Pool Palooza (FAQ for AI, 3 itens) e Blue Lagoon (imagens): conversa Frank/cliente, nada para mim → lidos.
+- **Pools of Perfection**: Frank OK para avisos de lead no e-mail do Christopher. Sub-conta ainda não existe (67 contas) e o
+  snapshot não dá para escolher pela API (`/snapshots` 401 com o token Firebase) → "[Passo seu]" ao Pedro: criar na tela com
+  "Snapshot Pool Profits v9"; depois eu faço o resto (tarefa 86bd2p4gc). Respondido no Basecamp interno.
+- **Pool Keepers / Skimmer**: o Nathan quer o lead no Skimmer e no GHL. O form do Skimmer é iframe (o site não lê);
+  API/webhook só no Enterprise, senão Zapier. Respondi ao Frank no thread; rascunho ao Nathan em "[Aprovar]".
+- Reunião segunda 2:15pm CST com o dono da Pool Duck (Wesley Chapel): agenda do Pedro → "[Aprovar]" com rascunho.

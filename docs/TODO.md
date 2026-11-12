@@ -56,6 +56,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
 ## Esperando outros
+- Pedro (12/11): criar a sub-conta Pools of Perfection na tela com o V9 ([Passo seu]); [Aprovar] resposta ao Nathan
+  (Skimmer + GHL) e reunião de segunda 2:15pm CST com o dono da Pool Duck.
 - Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service", usuário do Jorge.
 - Atif: páginas/obrigado de Poolheads, Pool Shack, YardSpring, BluVantage; tirar o número antigo da página Weekly da NorTex.
 - Val: Google Ads conectado (Poolheads, Pool Shack, YardSpring) e acesso para o Send Data dos Google Lead Forms.
