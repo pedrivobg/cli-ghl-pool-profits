@@ -1094,3 +1094,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Corolla/Bahama Blue/Stay Fresh/Pool Shack/Poolheads/BluVantage/Southern (live tests pendentes); linha Weekly da BluVantage
   sem ligação desde o conserto; Clear Conceptz ainda com 3 cópias publicadas; `ps_site status` ainda 401 (variáveis novas
   não estão nesta sessão — só entram numa sessão nova).
+- Relatório da extensão (1ª passada): 5 respostas ao time, nada a cliente (Basecamp em só leitura). Clear Conceptz feito com o
+  OK geral do Pedro ("o que você já pode fazer"): 2 pipelines "Pool Leads" duplicados (2 cargas antigas); draft (backup) nas 3
+  cópias de Current Customer/DND/Review Request do pipeline inexistente, 2 Incoming Call extras (todas no número velho
+  +18179548486) e 2 Website Form Fill só-tag (disparavam junto com o principal); ficam 1 WFF, 1 Incoming Call e 1 de cada
+  por pipeline (gatilhos ativos, conferido). Skimmer: doc nativo lido (Enterprise ou add-on mensal; token de Private
+  Integration com 6 escopos + Location ID; 5 syncs desligados por padrão; casa só por e-mail; registros 2 semanas) → análise e
+  rascunhos ao Pedro decidir. Prompt 2 da extensão: `docs/chrome-prompt-inbox-outage-2.md`.
