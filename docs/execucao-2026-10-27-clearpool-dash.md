@@ -1152,3 +1152,13 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   08/11 piscina verde/taxa de US$95) entram como conversa TYPE_REVIEW **sem contato**: nunca estiveram no CRM (clientes da
   Southern ficam na Skimmer; CRM com 49 contatos, quase só leads) → nada do sistema chegou a eles. Respondido ao Ed com isso +
   proposta: sem nota em 7 dias → 1 lembrete, sem link (espera o OK dele/Pedro). Não mudei nada.
+
+## 13/11 (noite, rotina do inbox): teste do SMS recebido na Sparkling + form da Bonneville no ar
+- Sparkling: SMS do Pedro (20:53 UTC) para a linha Adwords disparou o gatilho (tag `zz inbound sms ok`). O `testcheck` não
+  achava o contato (busca de contatos não acha número +55 / atrasa) → fallback pelas conversas recentes em
+  `pp_sms_alert.py`. Teste apagado (contato, conversa, "ZZ TEST inbound sms"). `apply --all` bloqueado sem OK explícito →
+  "[Aprovar]" ao Pedro. O "aprovado" do `pp_text_alert` (e-mail anterior) ficou substituído (mesmo aviso, já no ar).
+- Bonneville: submissão real "ZZ Test Pedro" no "Main Website Form" → tags new lead/form fill, card 🆕 New Lead, SMS
+  "NEW LEAD - Website Form" ao Justin (delivered), tarefa. Tarefa, card e contato de teste apagados (backup do contato em
+  `backup/bonneville-pool-maintenance/`). Iframe aprovado enviado ao Christopher (reply-all, Frank/Ed).
+- Frank (DM): nota ao Felipe sobre o Skimmer → rascunho "[Aprovar]" ao Pedro (cliente vê).

@@ -160,6 +160,11 @@ def test(a: Agency, loc: str, nm: str, args) -> int:
     if not args.phone:
         sys.exit("--phone obrigatório")
     found = a.call("GET", SERVICES, "/contacts/", params={"locationId": loc, "query": args.phone[-10:]}).get("contacts", [])
+    if not found:  # contact search misses foreign numbers / lags (13/11): fall back to the latest conversations
+        convs = a.call("GET", SERVICES, "/conversations/search", params={
+            "locationId": loc, "limit": 50, "sortBy": "last_message_date"}).get("conversations", [])
+        ids = {c["contactId"] for c in convs if (c.get("phone") or "").endswith(args.phone[-10:]) and c.get("contactId")}
+        found = [a.call("GET", SERVICES, f"/contacts/{i}")["contact"] for i in ids]
     if args.cmd == "testprep":
         for t in ("zz test", TEST_MARK):
             try:

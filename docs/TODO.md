@@ -26,7 +26,7 @@ combinar antes.
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
 ## Você faz
-1. **SMS de teste para a Sparkling** (e-mail "[Passo seu] Teste do alerta de SMS recebido", 13/11): mandar "teste" do seu celular para +1 469-617-2308 e responder "feito" → eu rodo `pp_sms_alert.py testcheck` e `apply --all`. Refresh do snapshot (master ganhou "Inbound SMS - Notify Owner"). ClickUp `86bd349d8`.
+1. **Aprovar** (e-mails 13/11 noite): (a) "[Aprovar] Aviso de SMS recebido em todas as contas" → teste da Sparkling passou; com o OK eu rodo `pp_sms_alert.py apply --all` (55 contas). Refresh do snapshot (master ganhou "Inbound SMS - Notify Owner"). ClickUp `86bd349d8`. (b) "[Aprovar] Poolheads – nota ao Felipe" (Skimmer, pedido do Frank) → posto no Basecamp da Poolheads.
 (12/11: tokens trocados, Refresh do snapshot feito 11/11 e 12/11, Call Recording Poolheads, form da LWR no Lead Ads,
 prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: conferir que as variáveis de token funcionam.)
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
