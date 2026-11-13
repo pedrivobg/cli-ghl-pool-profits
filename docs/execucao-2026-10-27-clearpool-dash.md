@@ -1158,3 +1158,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   com a propriedade do próprio cliente (nomes via `ga-accounts/{id}/properties`); 15 com GA conectado e widget sem propriedade →
   prompt da extensão `docs/chrome-prompt-dashboards-ga-2.md` (propriedade = `googleAnalytics4PropertyId` da conta); Corolla,
   Precision (só a propriedade da agência), Poolheads, Aqua Clear, Big George's → Frank. Comentado na 86bd1zk8p.
+- **Regra nova (Pedro 13/11)**: mensagem que alguém do time (Frank/Val/Ed) já pediu ou aprovou, com contexto claro, vai direto
+  (inclusive a cliente), sem "[Aprovar]" ao Pedro. Em TODO (Regras), CLAUDE.md, `docs/inbox-watch-routine.md` e no prompt da
+  rotina (`docs/routine-ghl-tasks-prompt.md`, item 4 — o Pedro precisa colar de novo na rotina "GHL Tasks").
+- Aprovações do Pedro 20:52–21:09: Bonneville (form + iframe) já feito pela rodada das 21:01 (e-mail ao Christopher 21:04).
+  **SMS recebido → celular do dono em todas as contas**: `pp_sms_alert.py apply --all` (NOT_CLIENT agora exclui Sales, Sample,
+  Billing Only, Master V1, Nathan Taylor's, test inc) → 48 criados + Sparkling = 49 publicados (releitura: published, re-entry,
+  gatilho ativo). 10 sem dono → perguntado ao Frank. Ed avisado no DM. Snapshot: master já tem → Pedro dá Refresh.
+  **Felipe (Poolheads)**: mensagem nova "Skimmer ↔ CRM integration – next steps" postada (10509083188), mas ficou só para a
+  equipe: deixar visível ao cliente pede confirmação do Pedro na tela (a ferramenta perguntou e expirou). Ledger atualizado.

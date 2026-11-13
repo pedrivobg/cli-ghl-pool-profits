@@ -36,7 +36,8 @@ NAME = "Inbound SMS - Notify Owner"
 TEST_NAME = "ZZ TEST inbound sms"
 SKIP_TAGS = ["spam", "dnd", "zz test"]
 TEST_MARK = "zz inbound sms ok"
-NOT_CLIENT = {"pool profits", "test snapshot", "snapshot pool profits"}
+NOT_CLIENT = {"pool profits", "test snapshot", "snapshot pool profits", "pool profits (sales)", "pool profits - sample",
+              "damon's pool care - billing only", "master pool service snapshot v1", "nathan taylor's account", "test inc"}
 BODY = ("\U0001F4AC New text to {{location.name}}\n\nFrom: {{contact.name}}\nPhone: {{contact.phone}}\n\n"
         "{{message.body}}\n\n{{message.attachments}}\n\nReply in the GHL app (Conversations).")
 

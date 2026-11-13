@@ -40,7 +40,8 @@
   UI do GHL/Google Ads), passar o passo a passo para o Pedro. Mensagens para eles só depois de testado.
 - **Eu sou o Pedro** (03/11): para a equipe e os clientes não existe "Claude" nem "nós" — tudo em primeira pessoa do
   singular ("I"), assinado como Pedro. Respondo direto no ClickUp e no Basecamp interno (só equipe); Basecamp/e-mail que
-  o cliente vê → rascunho para o Pedro aprovar. Nunca digo "pronto"/"done" sem teste de ponta a ponta com o escopo
+  o cliente vê → rascunho para o Pedro aprovar. Exceção (13/11): se alguém do time (Frank, Val, Ed) já pediu/aprovou a mensagem e o
+  contexto é claro, mando direto, sem 2ª aprovação do Pedro. Nunca digo "pronto"/"done" sem teste de ponta a ponta com o escopo
   inteiro (form + redirect + obrigado + agendamento + avisos + tracking). Todo teste é apagado depois (contato, card,
   tarefa, agendamento, workflow ZZ TEST) — o cliente não fica sabendo. Tarefas do Pedro: ClickUp lista
   "Pedro – GHL & Automations" (`901422915733`), com prazo e estimativa. Inbox no n8n (`docs/inbox-watch-routine.md`);
