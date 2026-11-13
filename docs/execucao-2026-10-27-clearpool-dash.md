@@ -1130,3 +1130,16 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Clear Conceptz: perguntado ao Frank quem recebe os avisos dos forms.
 - Frank avisado no thread "[Approve] CRM guide e-mail to clients": envio automático ligado e testado; perguntado se o da Pools
   of Perfection sai agora ou depois da call dele com o Christopher (a rodada não reenvia: a conta já está em crm_guide_links).
+
+## 13/11 (13h BRT) — inbox: Lee, Sparkling Clear (SMS direto), Skimmer, Clear Conceptz
+- Lee (Pool Duck Franchising): resposta aprovada pelo Pedro postada no "Re: Tampa Show Workflows" (15 min + aviso de feedback
+  do calendário desligado).
+- **Sparkling Clear / Ed**: SMS direto aos números NÃO avisa o Robert. "Incoming SMS To Pipeline" só ouve a linha Website & GBP
+  (card + tags, sem aviso); Adwords e LSA: nada. Há SMS de lead não lidos (07–10). No V9 o "SMS Customer Reply to pipeline"
+  só pega quem tem a tag `reactivation` e avisa o dono do contato (`userType: assign`, quase sempre vazio) → a falha vale para
+  quase toda a frota (varredura: só Pool Profits, Signature, Simple, Orange Tree, Clean Co, Wrigley's e linhas de anúncio da
+  NorTex/Passion têm aviso próprio). Novo `scripts/pp_text_alert.py`: workflow "New Text - Alert Owner" (Customer Replied SMS,
+  qualquer número, sem spam/dnd, re-entry on → SMS interno ao usuário). Publicação na conta bloqueada pelo classificador sem
+  OK → "[Aprovar]" ao Pedro com o comando e o teste (1 SMS dele para a linha Adwords). Ed e Val respondidos. ClickUp `86bd331nw`.
+- Skimmer (Frank): ok para Poolheads e Pool Keepers; threads internas (não visíveis ao cliente) criadas no Basecamp de cada um
+  com os passos. Clear Conceptz: não é mais cliente (Frank) — nada a fazer.
