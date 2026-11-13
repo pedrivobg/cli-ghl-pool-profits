@@ -8,7 +8,7 @@
 Texts: config/pd_franchise_stage_sms.json (Lee's wording). Sender: the account's default number, Lee's 813-710-4144
 (the SMS step has no "from", like the Tampa Show follow-up).
 - 4 sequences, each started by the card entering its stage (pipeline_stage_updated, Franchise Development):
-  📞 Intro Call Booked → Intro Call Nurture (SMS 24 h later); 👻 Missed Intro Call → 3 SMS (20 min, +24 h, +2 days);
+  📞 Intro Call Booked → Intro Call Nurture (SMS 15 min later; Lee 13/11, was 24 h); 👻 Missed Intro Call → 3 SMS (20 min, +24 h, +2 days);
   🖥️ Webinar → Webinar Nurture (SMS 24 h later); 👻 Missed Webinar → 3 SMS (20 min, +24 h, +2 days).
   Every wait also holds the text until 9 AM–8 PM Eastern (a lead moved at night is not texted at night).
 - Leaving the stage ends the sequence: each sequence starts by removing the contact from the other three, and

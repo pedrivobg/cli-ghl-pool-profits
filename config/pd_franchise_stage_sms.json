@@ -10,7 +10,7 @@
   "sequences": [
     {"key": "intro", "name": "Franchise Dev - Intro Call Nurture", "stage": "Intro Call Booked", "stop_on_reply": false,
      "messages": [
-       {"after": ["hours", 24], "label": "24 h after the move",
+       {"after": ["minutes", 15], "label": "15 min after the move",
         "text": "Hey {{contact.first_name}}, did you know Florida has an estimated 1.59 million residential pools? Keeping them clean and properly maintained is an essential, ongoing service.\n\nI look forward to sharing why Pool Duck is the perfect opportunity for your community and how we can help you launch your operation, build a recurring customer base, and pursue a profitable future in Florida’s thriving pool care market."}
      ]},
     {"key": "missed-intro", "name": "Franchise Dev - Missed Intro Call", "stage": "Missed Intro Call", "stop_on_reply": true,

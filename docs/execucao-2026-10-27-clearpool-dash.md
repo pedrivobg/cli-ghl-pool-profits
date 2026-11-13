@@ -1120,3 +1120,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Teste em cópia ZZ: 5/5 (estrangeiro, SEO, minúsculas, real, vazio). Aplicado (backup), publicado, gatilhos no filtro.
   Teste ao vivo do ramo spam (contato ZZ +92 no fluxo real): tags + card Spam + DND, 0 tarefa → apagado. Ramo de lead real =
   cadeia antiga intacta; envio real fica no Live tests.
+
+## 13/11 (~15h45 UTC) — Pool Duck Franchising: 2 ajustes do Lee (e-mail "Tampa Show Workflows")
+
+- **Intro Call Nurture** `7c34c412-…`: espera 24 h → **15 min** depois do card entrar em Intro Call Booked (janela 9h–20h ET
+  mantida; publicado, gatilho ativo, texto igual). `config/pd_franchise_stage_sms.json` atualizado.
+- "Thank you for your appointment on … Please share your feedback with us" = aviso **nativo de follow-up do calendário**
+  (`notificationType: followup`, SMS ao contato 1 h depois; mensagem com `source: app`, não workflow). Desligado
+  (`PUT services /calendars/{id}/notifications/{nid} {isActive: false}`, conferido) em "Pool Duck: Franchise Introductory
+  Call" (`PRroY8c7Av9mrgx8Ss2G`, nid `6aedf1cead0aadc57f76c41a`) e na cópia [MISSED] (`IiyQDitIIbOyigGsmAKt`, nid
+  `6aee33b5a0de7318d46b28cd`). Follow-up à equipe/números e confirmação/lembrete intocados. Backups em
+  `backup/pool-duck-franchising/` (cal-…-notif-…, wf-7c34c412-…).
+- Resposta ao Lee (cliente vê) foi ao Pedro como "[Aprovar]".
