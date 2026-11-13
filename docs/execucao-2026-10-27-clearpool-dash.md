@@ -1146,3 +1146,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Guia do CRM da Pools of Perfection: Ed mandou segurar (Christopher não responde; site primeiro). `hold` novo em
   `config/crm_guide_email.json` + regra no passo 4 da rodada diária.
 - Monitor de leads (Frank/Val): Ed aprovou 1 (card parado) e 2 (resumo de 3 dias); tarefa `86bd349dt` (18/11).
+- **Southern — review negativo (Ed, DM 13/11)**: Review Request da Southern conferido ao vivo: gate publicado (nota 1–5 por SMS;
+  só 5 recebe o link; 1–4 → "o que podíamos fazer melhor" + aviso; sem nota em 7 dias → link, regra mantida pelo Pedro 11/11).
+  Últimas conversas: 0 pedido de nota / 0 link enviados. Os 2 reviews negativos (Syed Manzoor Hussain 13/11, 1★ capacitor;
+  08/11 piscina verde/taxa de US$95) entram como conversa TYPE_REVIEW **sem contato**: nunca estiveram no CRM (clientes da
+  Southern ficam na Skimmer; CRM com 49 contatos, quase só leads) → nada do sistema chegou a eles. Respondido ao Ed com isso +
+  proposta: sem nota em 7 dias → 1 lembrete, sem link (espera o OK dele/Pedro). Não mudei nada.
