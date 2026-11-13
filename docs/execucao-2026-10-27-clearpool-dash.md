@@ -1109,3 +1109,14 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   nativo off, A2P Verification Number = telefone do negócio (sem número GHL). Audit 0 ALTA, ready 0 ERRO, fleet OK, call 0.
   Telefone: survey (516) 458-4031 vs Frank (914) 273-7946 → perguntado ao Frank (prompt A8). Guia do CRM fica para a rodada
   diária (chave do n8n fora). Snapshot por API: a criação de location aceita `snapshotId` mesmo com `/snapshots` dando 401.
+- **Guia do CRM, teste de ponta a ponta** (conectores voltaram): chave lida do n8n, `pp_crm_guide.py pools-of-perfection` (25
+  mensagens, avisos ao Christopher, sem nome de outro cliente) → `pp_crm_guide_publish.py` → `crm-guide?c=pools-33d2dc4b`
+  abre (200, título certo, print conferido) → e-mail no formato de `config/crm_guide_email.json` mandado a pedro@ como
+  "[TESTE]" (chegou na caixa). Envio ao Christopher fica para quando o Frank quiser (ele ainda não falou com o cliente).
+- **Passion — filtro de spam nos forms** (Frank 12/11, OK dele): `scripts/pc_form_spam.py`. If/else "Spam form fill?" no início
+  do "Website Form Fill To Pipeline" e do "AdWords Form - New Lead": telefone contém +2…+9 (fora dos EUA) ou "Pool Details"
+  com SEO/ranking/Wikipedia/backlink/marketing/business development → tag spam + card em 🚫 Spam (o "Spam Contact" põe
+  dnd/spam + DND), sem aviso/tarefa/follow-up; resto = cadeia original. "website" ficou fora da lista (falso positivo).
+  Teste em cópia ZZ: 5/5 (estrangeiro, SEO, minúsculas, real, vazio). Aplicado (backup), publicado, gatilhos no filtro.
+  Teste ao vivo do ramo spam (contato ZZ +92 no fluxo real): tags + card Spam + DND, 0 tarefa → apagado. Ramo de lead real =
+  cadeia antiga intacta; envio real fica no Live tests.
