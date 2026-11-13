@@ -13,8 +13,7 @@ combinar antes.
   faria, quando combina (pedido recebido/feito, agradecimento): variar `thumbsup`, `white_check_mark`, `saluting_face`.
   No normal, a resposta escrita basta. Nunca reagir no que ainda precisa do Pedro.
 - **E-mail do guia do CRM ao cliente** (`config/crm_guide_email.json`): só envia com `approved_pedro` e `approved_frank` =
-  true. Pedro aprovou 11/11; se o Frank responder "approved" no e-mail "[Approve] CRM guide e-mail to clients" → pôr
-  `approved_frank: true`, commit, e a rodada diária passa a mandar.
+  true. Pedro aprovou 11/11, Frank aprovou 13/11 (`approved_frank: true`): a rodada diária já manda por e-mail.
 - **Nada pode disparar para contato/lead/cliente antigo** (Ed e Pedro 11/11; WC da Pool Duck tem leads reais): não mover
   card, não publicar fluxo novo, não pôr tag que tenha gatilho, não importar lista sem OK. Migração de conta antiga =
   `scripts/pp_fleet_migrate.py` (fluxo existente mantém o status; novo entra draft).

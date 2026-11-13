@@ -1081,3 +1081,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (backup do toque, nome/e-mail/celular), página de privacidade (Atif?), lista de clientes.
 - Pool Palooza "Copy that!" e 2 subtarefas da lista TEMPLATE EDITING (modelo de onboarding): nada a fazer.
 - Rodada diária: sem conta nova nem mudança (WP Pools cartão pendente; 1º número Rosebrook/West Coast/Puddle Jumper).
+
+## 13/11 — Frank aprovou o e-mail do guia do CRM
+- Resposta "Approved." do Frank (13h54 UTC) em "[Approve] CRM guide e-mail to clients" → `config/crm_guide_email.json`
+  `approved_frank: true` (Pedro já tinha aprovado 11/11): a rodada diária passa a mandar o guia por e-mail ao representante
+  do Business Profile, cópia para o Frank. Gmail/n8n/ClickUp fora do ar nesta sessão: thread não marcada como lida e linha
+  do ledger não gravada.
