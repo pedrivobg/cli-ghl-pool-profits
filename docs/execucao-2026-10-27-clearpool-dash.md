@@ -1087,3 +1087,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   `approved_frank: true` (Pedro já tinha aprovado 11/11): a rodada diária passa a mandar o guia por e-mail ao representante
   do Business Profile, cópia para o Frank. Gmail/n8n/ClickUp fora do ar nesta sessão: thread não marcada como lida e linha
   do ledger não gravada.
+
+## 13/11 (tarde) — conectores fora (ClickUp, Gmail, Basecamp, n8n: 502/timeout)
+- Prompt para a extensão do Chrome cobrir o inbox: `docs/chrome-prompt-inbox-outage.md` (relatório volta para mim fazer o GHL).
+- Conferido ao vivo pelo GHL: Pools of Perfection ainda não existe (67 contas); nenhum contato de teste desde 12/11 18h UTC em
+  Corolla/Bahama Blue/Stay Fresh/Pool Shack/Poolheads/BluVantage/Southern (live tests pendentes); linha Weekly da BluVantage
+  sem ligação desde o conserto; Clear Conceptz ainda com 3 cópias publicadas; `ps_site status` ainda 401 (variáveis novas
+  não estão nesta sessão — só entram numa sessão nova).
