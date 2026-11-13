@@ -1152,3 +1152,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   08/11 piscina verde/taxa de US$95) entram como conversa TYPE_REVIEW **sem contato**: nunca estiveram no CRM (clientes da
   Southern ficam na Skimmer; CRM com 49 contatos, quase só leads) → nada do sistema chegou a eles. Respondido ao Ed com isso +
   proposta: sem nota em 7 dias → 1 lembrete, sem link (espera o OK dele/Pedro). Não mudei nada.
+- **Dashboards × conexões (promessa à Val)**: `reports/dash-check.py` (API, todas as contas). Google Ads: 27 conectadas
+  (`googleAdwordsId`), 24 respondem (`/ad-publishing/google/conversions` 200); erro em Next Level (conta 9619764724 da Clean Co),
+  Pool Smart OC, Signature → Val reconecta; sem Ads mas rodando anúncio: Southern, Poolheads → perguntado à Val. GA: 19 widgets
+  com a propriedade do próprio cliente (nomes via `ga-accounts/{id}/properties`); 15 com GA conectado e widget sem propriedade →
+  prompt da extensão `docs/chrome-prompt-dashboards-ga-2.md` (propriedade = `googleAnalytics4PropertyId` da conta); Corolla,
+  Precision (só a propriedade da agência), Poolheads, Aqua Clear, Big George's → Frank. Comentado na 86bd1zk8p.
