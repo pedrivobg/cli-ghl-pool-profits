@@ -1146,3 +1146,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Guia do CRM da Pools of Perfection: Ed mandou segurar (Christopher não responde; site primeiro). `hold` novo em
   `config/crm_guide_email.json` + regra no passo 4 da rodada diária.
 - Monitor de leads (Frank/Val): Ed aprovou 1 (card parado) e 2 (resumo de 3 dias); tarefa `86bd349dt` (18/11).
+
+## 13/11 (~18h UTC) — inbox watch, 2 itens (WP Pools, Bonneville)
+
+- WP Pools (Basecamp, Val → Aubrey: Google Ads em fevereiro): resposta da Val, nada pedido a mim. Lido.
+- **Bonneville, form do site novo** (Christopher Keplinger, e-mail, cliente vê; staging bonneville.pool-profits.com, form próprio
+  `/api/inquiries`): criado **"Main Website Form"** `eV0Jsarv8dTp59rEiZv5` (cópia do form da LP Weekly: estilo, consentimento,
+  Terms/Privacy) com Full Name, Phone (seletor EUA), Email, Pool ZIP Code, "What service do you need?" (Service Requested),
+  observações (Pool Details). Sem página de obrigado no site (404) → mensagem com o (801) 915-8582. Adicionado ao gatilho do
+  "Website Form Fill To Pipeline" publicado (backup `backup/bonneville-pool-maintenance/`). Widget 200 e render ok
+  (link.poolprofits.com). Falta: envio real (Turnstile) pelo Pedro e OK do rascunho com o iframe → e-mail "[Aprovar] Bonneville
+  – form do site + iframe para o Christopher"; ClickUp `86bd35nt4`. Obs.: o "Service Page - Contact Form" da conta usa o campo
+  "Are You A New Customer?" com id da origem (`DUgpS9MwxrFfa0fvQvwk`), que a conta não tem — não mexido.
