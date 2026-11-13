@@ -1130,3 +1130,19 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Clear Conceptz: perguntado ao Frank quem recebe os avisos dos forms.
 - Frank avisado no thread "[Approve] CRM guide e-mail to clients": envio automático ligado e testado; perguntado se o da Pools
   of Perfection sai agora ou depois da call dele com o Christopher (a rodada não reenvia: a conta já está em crm_guide_links).
+
+## 13/11 (tarde, rotina do inbox): SMS recebido → celular do dono; guia da Pools of Perfection segurado
+- Ed (DM): todo cliente tem que receber todo SMS e toda ligação, e o snapshot também. `scripts/pp_sms_alert.py` (novo):
+  workflow "Inbound SMS - Notify Owner" (Customer Replied, canal SMS, qualquer linha, sem tag spam/dnd/zz test → SMS
+  interno ao dono = representante do Business Profile; re-entry on). **Sparkling Clear** publicado (`fdfd1581…`, Robert)
+  e **Snapshot Pool Profits** publicado com `userType: all` (o GHL recusa publicar `user` sem usuário: "missing required
+  attributes: Notification Recipient"; o master não tem usuário). Plano `--all`: 55 contas com dono; 10 sem dono com
+  telefone (Stay Fresh, Blue Lagoon, Ponchos, ABC, Golden View, Leisure, Net Positive, Next Level, Pooly, PoolReady SELA).
+  Teste real pendente: `testprep` feito na Sparkling (contato do Pedro com tag `zz test`, "ZZ TEST inbound sms"
+  `96d377ef…` publicado só para `zz test`, passo = tag `zz inbound sms ok`); Pedro manda SMS para a linha Adwords
+  (+14696172308) → `testcheck` (apaga) → `apply --all`. ClickUp `86bd349d8`.
+- `pp_call_check.py` (todas as contas): 0 erro de toque; IVR em draft como serviço de entrada em Dream Pools (linha
+  principal), Ponchos (3) e Precision (2); ~20 linhas sem IVR/encaminhamento (só app). Proposta ao Pedro antes de mexer.
+- Guia do CRM da Pools of Perfection: Ed mandou segurar (Christopher não responde; site primeiro). `hold` novo em
+  `config/crm_guide_email.json` + regra no passo 4 da rodada diária.
+- Monitor de leads (Frank/Val): Ed aprovou 1 (card parado) e 2 (resumo de 3 dias); tarefa `86bd349dt` (18/11).

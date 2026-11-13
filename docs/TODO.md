@@ -26,6 +26,7 @@ combinar antes.
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
 ## Você faz
+1. **SMS de teste para a Sparkling** (e-mail "[Passo seu] Teste do alerta de SMS recebido", 13/11): mandar "teste" do seu celular para +1 469-617-2308 e responder "feito" → eu rodo `pp_sms_alert.py testcheck` e `apply --all`. Refresh do snapshot (master ganhou "Inbound SMS - Notify Owner"). ClickUp `86bd349d8`.
 (12/11: tokens trocados, Refresh do snapshot feito 11/11 e 12/11, Call Recording Poolheads, form da LWR no Lead Ads,
 prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: conferir que as variáveis de token funcionam.)
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
@@ -34,7 +35,7 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    de cada conta é do Frank/time (Pedro 11/11: não é item seu; a rodada diária avisa o Frank). Mako's Pool, Cool N Clean,
    Puddle Jumper pronta 12/11 (falta 1º número/Frank, DNS do cliente, link de review). Pools of Perfection: criada 13/11 pela API com o V9 (pronta;
    falta número/A2P/link de review). Guia publicado (`crm-guide?c=pools-33d2dc4b`, já em crm_guide_links → a rodada não
-   reenvia): mandar o e-mail ao Christopher (cc Frank) quando o Frank responder se é agora ou depois da call dele. Mako's Pool e Cool N Clean: falta o questionário 2.0.
+   reenvia): **Ed 13/11: segurar** (rascunho do site primeiro, depois falar com ele; `hold` no crm_guide_email.json) → só mandar quando o Ed/Frank liberarem. Mako's Pool e Cool N Clean: falta o questionário 2.0.
 6. **Testes reais** (Pedro faz 12/11 à tarde): ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), lista
    enxugada 12/11 (YardSpring, BluVantage linha principal e NorTex saíram; entrou o envio real das 2 LPs da Corolla). Depois de cada um: conferir os logs e apagar o teste.
 9. **Contas antigas no modelo (11/11)**: 34 migradas com status mantido (log 11/11). **Para ver com o time** (fluxo próprio
@@ -76,6 +77,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 - Derek (Clear Pool): publicar Review Request?, chave do Pool Brain. Erik (Ekahi) e Jeremy (SwimReady): ajustes por código.
 
 ## Em breve (combinado)
+- **Ligações e SMS de todo cliente** (Ed 13/11, `86bd349d8`): depois do teste, `pp_sms_alert.py apply --all` (+ `pp_tags_missing`); dono das contas sem usuário com telefone (Stay Fresh, Blue Lagoon, Ponchos…) → Frank; linhas com IVR em draft (Dream Pools, Ponchos, Precision) e linhas que só tocam no app → proposta ao Pedro antes de mudar encaminhamento.
+- **Monitor de leads** (Frank/Val, Ed aprovou 13/11, `86bd349dt`, 18/11): alerta de card parado 3/4/5 dias + resumo a cada 3 dias dos clientes de Google Ads (tudo interno). 1º resumo no thread no começo da semana.
 - **Dashboard interno** (Val, 06/11 e 09/11): auditoria diária de todas as sub-contas para prever erros (alertas/tarefas
   sem usuário, linhas sem encaminhamento, SMS falhando, gatilhos quebrados) e acompanhar quem não está recebendo leads
   ou não está usando o CRM (0 lead em 3 dias, WON, cards parados). ClickUp: tarefa "Internal dashboard: daily GHL audit".

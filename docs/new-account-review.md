@@ -84,7 +84,8 @@ O n8n (Pedro Inbox Watch, nó "Daily new-accounts item") manda esse item uma vez
 4. Guia do CRM: conta sem entrada em `config/crm_guide_links.json` e com o passo 3 ok → `pp_crm_guide.py` + conferir o JSON +
    `pp_crm_guide_publish.py` + abrir o link → se `config/crm_guide_email.json` tem `approved_pedro` e `approved_frank` = true: e-mail do Gmail do
    Pedro para o representante do Business Profile (cópia Frank) com aquele texto, e DM ao Frank avisando que foi; senão,
-   DM ao Frank (ClickUp, user 94490678) com o link.
+   DM ao Frank (ClickUp, user 94490678) com o link. Chave do guia em `hold` (crm_guide_email.json) → não envia (Ed 13/11:
+   cliente que não responde e-mails recebe o guia só depois do site/da conversa com o Frank).
 5. ClickUp, lista `901417290241`: tarefa "Create GHL Account For Client <nome>" (casar pelo nome; Smart Chem ficou na
    86bcywax9 da lista do Pedro). Um comentário só quando algo mudou desde o último (feito / esperando: Frank conectar
    go.<domínio> ao site "New A2P Verification" + CNAME do cliente; Pedro: 1º número; status do A2P). Fechar só com: audit
