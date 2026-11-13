@@ -1128,3 +1128,5 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Frank avisado no thread com o passo a passo (tag em massa → mover → tirar a tag).
 - Passion: resposta ao Frank no thread (corrigida: Kevin/Beth/Sam têm número dos EUA e passam; só os 3 de fora são pegos).
   Clear Conceptz: perguntado ao Frank quem recebe os avisos dos forms.
+- Frank avisado no thread "[Approve] CRM guide e-mail to clients": envio automático ligado e testado; perguntado se o da Pools
+  of Perfection sai agora ou depois da call dele com o Christopher (a rodada não reenvia: a conta já está em crm_guide_links).
