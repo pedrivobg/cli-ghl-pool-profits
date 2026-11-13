@@ -32,8 +32,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 3. **Contas novas (processo automático desde 10/11, `docs/new-account-review.md`, SOP em `docs/a2p-sop.md`)**: Smart Chem,
    West Coast e Capital prontas (0 ALTA/0 ERRO, usuário do dono em avisos/tarefas, guia do CRM com o Frank). O **1º número**
    de cada conta é do Frank/time (Pedro 11/11: não é item seu; a rodada diária avisa o Frank). Mako's Pool, Cool N Clean,
-   Puddle Jumper pronta 12/11 (falta 1º número/Frank, DNS do cliente, link de review). Pools of Perfection: Pedro cria a
-   sub-conta na tela com o V9 (`86bd2p4gc`, 14/11). Mako's Pool e Cool N Clean: falta o questionário 2.0.
+   Puddle Jumper pronta 12/11 (falta 1º número/Frank, DNS do cliente, link de review). Pools of Perfection: sub-conta criada
+   13/11 (`IQVYaiZoIeGYqq0oIWSH`, ready 0 ERRO; falta número/review link/custom values; site WP novo vazio → form GHL depois; `86bd2p4gc`). Mako's Pool e Cool N Clean: falta o questionário 2.0.
 6. **Testes reais** (Pedro faz 12/11 à tarde): ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), lista
    enxugada 12/11 (YardSpring, BluVantage linha principal e NorTex saíram; entrou o envio real das 2 LPs da Corolla). Depois de cada um: conferir os logs e apagar o teste.
 9. **Contas antigas no modelo (11/11)**: 34 migradas com status mantido (log 11/11). **Para ver com o time** (fluxo próprio
@@ -56,7 +56,7 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
 ## Esperando outros
-- Pedro (12/11): criar a sub-conta Pools of Perfection na tela com o V9 ([Passo seu]); [Aprovar] resposta ao Nathan
+- Pedro (12/11): [Aprovar] resposta ao Nathan
   (Skimmer + GHL) e reunião de segunda 2:15pm CST com o dono da Pool Duck; Application Passwords novas (Pool Shack,
   Bluewater; `86bd2t1mq`); OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
 - Frank (12/11 noite): se o Brett apaga cards de lead da Southern (2 leads do Google Ads sem card, `86bd2t1kt`, 17/11).

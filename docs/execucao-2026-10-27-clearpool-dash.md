@@ -1101,3 +1101,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   por pipeline (gatilhos ativos, conferido). Skimmer: doc nativo lido (Enterprise ou add-on mensal; token de Private
   Integration com 6 escopos + Location ID; 5 syncs desligados por padrão; casa só por e-mail; registros 2 semanas) → análise e
   rascunhos ao Pedro decidir. Prompt 2 da extensão: `docs/chrome-prompt-inbox-outage-2.md`.
+
+## 13/11 (~16h UTC) — inbox watch, 1 item
+- **Pools of Perfection** (Basecamp "Website Info - Internal", Frank): login do WP do site novo (Kinsta) para o time, sem
+  pergunta → sem resposta. Site ainda vazio (Elementor, só `sample-page`); quando as páginas existirem: form do GHL +
+  privacy/terms nos custom values. Sub-conta já existe (`IQVYaiZoIeGYqq0oIWSH`, 68 contas, criada depois da rodada diária):
+  `pp_ready` 0 ERRO (Christopher Carthy, America/New_York), audit ALTA 0, dashboard ok, text-back nativo off; Review Request
+  draft (sem place/link de review), sem número (1ª compra = Frank/time), custom values vazios (logo, preços, links). Status
+  na tarefa `86bd2p4gc` (aberta). Nada alterado no GHL.
