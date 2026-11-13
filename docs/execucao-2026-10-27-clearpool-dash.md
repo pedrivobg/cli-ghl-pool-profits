@@ -1120,3 +1120,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Teste em cópia ZZ: 5/5 (estrangeiro, SEO, minúsculas, real, vazio). Aplicado (backup), publicado, gatilhos no filtro.
   Teste ao vivo do ramo spam (contato ZZ +92 no fluxo real): tags + card Spam + DND, 0 tarefa → apagado. Ramo de lead real =
   cadeia antiga intacta; envio real fica no Live tests.
+- **Reign — tag "pipeline cleanup"** (Frank 12/11, call seg 16/11 3:30pm CST): `scripts/pp_cleanup_tag.py` (genérico, qualquer
+  conta). Filtro "Doesn't Have Tag: pipeline cleanup" nos gatilhos de etapa dos 6 fluxos publicados que mandam algo
+  (In Communications, Lost Lead, Won Customer, Review Request, Adword Call/Form - Conversion; backup). DND Contact e Current
+  Customer ficam sem filtro (não mandam nada; Current Customer em "Recurring Customer" apaga o card — comportamento da conta).
+  Teste com contato ZZ (só e-mail example.com) com a tag, card por todas as etapas + won/lost: 0 envios, 0 tarefas; apagado.
+  Frank avisado no thread com o passo a passo (tag em massa → mover → tirar a tag).
+- Passion: resposta ao Frank no thread (corrigida: Kevin/Beth/Sam têm número dos EUA e passam; só os 3 de fora são pegos).
+  Clear Conceptz: perguntado ao Frank quem recebe os avisos dos forms.
