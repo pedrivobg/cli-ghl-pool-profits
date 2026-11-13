@@ -1101,3 +1101,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   por pipeline (gatilhos ativos, conferido). Skimmer: doc nativo lido (Enterprise ou add-on mensal; token de Private
   Integration com 6 escopos + Location ID; 5 syncs desligados por padrão; casa só por e-mail; registros 2 semanas) → análise e
   rascunhos ao Pedro decidir. Prompt 2 da extensão: `docs/chrome-prompt-inbox-outage-2.md`.
+- **Pools of Perfection criada pela API** (Pedro: "você pode fazer isso já"): `POST services /locations/` com `snapshotId`
+  `9VNEhnNSa4hENGbfSdng` (o V9, lido do `snapshotId` das contas que o questionário criou) → `IQVYaiZoIeGYqq0oIWSH`, fuso NY,
+  snapshot carregado em ~1 min (28 workflows). `pp_new_account --apply` (dashboard, survey de 19/10, perfil), custom values
+  corrigidos (nome amigável, domínio, razão social Pools of Perfection of Armonk Inc. — registro público, área), perfil A2P
+  (rep Christopher Carthy CEO, Corporation), usuário Christopher (admin, `pp_add_user`), sequência do modelo inteira, missed-call
+  nativo off, A2P Verification Number = telefone do negócio (sem número GHL). Audit 0 ALTA, ready 0 ERRO, fleet OK, call 0.
+  Telefone: survey (516) 458-4031 vs Frank (914) 273-7946 → perguntado ao Frank (prompt A8). Guia do CRM fica para a rodada
+  diária (chave do n8n fora). Snapshot por API: a criação de location aceita `snapshotId` mesmo com `/snapshots` dando 401.

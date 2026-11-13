@@ -204,6 +204,8 @@
   corrigido 23/10 com `pp_trigger_ref_fix.py`). O GET do workflow não traz os gatilhos: `Agency.triggers(loc, wid)`.
 - If/else `contact_detail` com `has_value`: campo vazio cai no ramo else (testado 22/10). O "First Request?" do Review
   Request do V9 usa `has_value` no NPS Score → cliente sem nota sai do workflow sem pedido de nota/review (todas as contas).
+- Criar sub-conta com o snapshot pela API: `POST services /locations/` com `snapshotId` (V9 = `9VNEhnNSa4hENGbfSdng`; o
+  `/snapshots` recusa o token, mas a criação aceita o id) — carrega em ~1 min (Pools of Perfection 13/11).
 - Onboarding de cliente: survey `efErcbOr4GAKXzZ28J4S` na sub-conta "Pool Profits" (`GET services
   /surveys/submissions?locationId`); cria a sub-conta em **America/Sao_Paulo** — corrigir o fuso
   (`PUT services /locations/{id} {timezone}`; `pp_timezone_fix.py`) e conferir custom values (`pp_onboarding_fill.py`).
