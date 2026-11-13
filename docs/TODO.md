@@ -1,4 +1,4 @@
-# TODO do Pedro — só o aberto (11/11/2026, revisão da noite)
+# TODO do Pedro — só o aberto (12/11/2026, revisão da noite)
 
 Curto de propósito (as rotinas leem este arquivo). **Regra das tarefas do ClickUp (Pedro 10/11)**: toda tarefa que eu crio
 tem prazo realista e é fechada quando o meu trabalho está feito e testado; se só falta teste real do Pedro, comento, fecho
@@ -33,9 +33,10 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 3. **Contas novas (processo automático desde 10/11, `docs/new-account-review.md`, SOP em `docs/a2p-sop.md`)**: Smart Chem,
    West Coast e Capital prontas (0 ALTA/0 ERRO, usuário do dono em avisos/tarefas, guia do CRM com o Frank). O **1º número**
    de cada conta é do Frank/time (Pedro 11/11: não é item seu; a rodada diária avisa o Frank). Mako's Pool, Cool N Clean,
-   Puddle Jumper e Pools of Perfection responderam só o "Training Survey Intake Form": falta o questionário 2.0.
+   Puddle Jumper pronta 12/11 (falta 1º número/Frank, DNS do cliente, link de review). Pools of Perfection: Pedro cria a
+   sub-conta na tela com o V9 (`86bd2p4gc`, 14/11). Mako's Pool e Cool N Clean: falta o questionário 2.0.
 6. **Testes reais** (Pedro faz 12/11 à tarde): ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), lista
-   enxugada 12/11 (YardSpring, BluVantage linha principal e NorTex saíram). Depois de cada um: conferir os logs e apagar o teste.
+   enxugada 12/11 (YardSpring, BluVantage linha principal e NorTex saíram; entrou o envio real das 2 LPs da Corolla). Depois de cada um: conferir os logs e apagar o teste.
 9. **Contas antigas no modelo (11/11)**: 34 migradas com status mantido (log 11/11). **Para ver com o time** (fluxo próprio
    da conta, não mexi): Damon's, Clean Co, Ponchos, Ekahi, Pooltexx, Wrigley's, BluVantage, Clear Pool; e Pool Palooza, Golden
    View, sub-conta Pool Duck (estrutura diferente). Dados do cliente vazios ficam para depois (Pedro 11/11).
@@ -57,7 +58,10 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 
 ## Esperando outros
 - Pedro (12/11): criar a sub-conta Pools of Perfection na tela com o V9 ([Passo seu]); [Aprovar] resposta ao Nathan
-  (Skimmer + GHL) e reunião de segunda 2:15pm CST com o dono da Pool Duck.
+  (Skimmer + GHL) e reunião de segunda 2:15pm CST com o dono da Pool Duck; Application Passwords novas (Pool Shack,
+  Bluewater; `86bd2t1mq`); OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
+- Frank (12/11 noite): se o Brett apaga cards de lead da Southern (2 leads do Google Ads sem card, `86bd2t1kt`, 17/11).
+  Padrão Skimmer para clientes mandado a ele (Enterprise = API; outros = Zapier só Skimmer→GHL; form do GHL fica no site).
 - Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service", usuário do Jorge.
 - Atif: páginas/obrigado de Poolheads, Pool Shack, YardSpring, BluVantage; tirar o número antigo da página Weekly da NorTex.
 - Val: Google Ads conectado (Poolheads, Pool Shack, YardSpring) e acesso para o Send Data dos Google Lead Forms.

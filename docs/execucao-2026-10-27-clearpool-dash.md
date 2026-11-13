@@ -1051,3 +1051,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Pool Duck (`pp_audit`): avisos sem usuário (Steve) publicados em LWR, Odessa e WC; WC "Credit Card / ACH update request
   workflow" publicado com `pool_brain_customer_portal_link` vazio (cliente recebe sem link) → comentado na 86bcz86nd. BurchTech
   (Pool Keepers, Bluewater): 0 ALTA.
+
+## 12/11 (~00h UTC 13/11) — inbox + revisão da noite
+- Pool Palooza (Todd "yes please"): responde ao Frank (página Catalina Foothills = rascunho do Kyle); nada meu, lido.
+- Frank (Skimmer): respondido no thread com o padrão por plano do Skimmer (Enterprise API nos dois sentidos; Zapier só
+  Skimmer→GHL; form do GHL no site; add-on de Reviews do Skimmer conflita com o nosso). Base: `docs/poolbrain-review-integration.md`.
+- Revisão da noite: Corolla LPs `86bd1pjq7` + duplicada `86bd1q3yp` fechadas (envio real → Live tests `86bd1b3b5`);
+  Southern sem card → perguntado ao Frank (DM), prazo 17/11; dashboards 18/11 (Frank GA/hello@, Meta NorTex); Pool Duck
+  LWR 17/11 (reunião de segunda); WP passwords, Pools of Perfection, YardSpring, Clear Conceptz → 14/11. Puddle Jumper
+  já existe (criada 12/11 17:36 UTC, pronta). E-mail "[Passo seu] O que é seu – 13/11"; 3 [Passo seu] antigos lidos.
