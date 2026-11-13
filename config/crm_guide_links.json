@@ -48,5 +48,10 @@
     "key": "bonneville-c1a3528e",
     "name": "Bonneville Pool Maintenance",
     "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=bonneville-c1a3528e"
+  },
+  "pools-of-perfection": {
+    "key": "pools-33d2dc4b",
+    "name": "Pools of Perfection",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pools-33d2dc4b"
   }
 }
