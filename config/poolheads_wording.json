@@ -1,13 +1,72 @@
 {
  "location": "PeUynYCMm8e6PJMy785O",
- "source": "Poolheads' old GHL account (screenshots sent by Pedro 21/10): the text their IVR 'Business Hours Call Routing' sent after a missed call, verbatim. Here it is SMS 1 of our missed-call follow-up, which the new IVR triggers (tag 'missed call'), so the caller gets it once.",
- "placeholders": {},
+ "source": "Poolheads' old GHL account (screenshots sent by Pedro 21/10): the text their IVR 'Business Hours Call Routing' sent after a missed call, verbatim. Here it is SMS 1 of our missed-call follow-up, which the new IVR triggers (tag 'missed call'), so the caller gets it once. + CRM guide answers sent by Felipe 12/11 (M1 + opt-out line; M3–M7, M19, M21, M22 his text verbatim).",
+ "placeholders": {
+  "[First name]": "{{contact.first_name}}"
+ },
  "messages": [
   {
    "workflow": "Missed New Lead - Initial SMS Follow-up",
    "step": "SMS 1",
-   "by": "Poolheads (old account)",
-   "text": "Hi this is Poolheads, We are sorry we missed your call! We are either with another customer or closed, we will call you right back as soon as we can 😁\n\nOur hours of operation are 9am to 5pm Monday thru Friday"
+   "by": "Poolheads (old account) + CRM guide 12/11: add opt-out",
+   "text": "Hi this is Poolheads, We are sorry we missed your call! We are either with another customer or closed, we will call you right back as soon as we can 😁\n\nOur hours of operation are 9am to 5pm Monday thru Friday\n\nReply STOP to opt out."
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 1",
+   "code": "M3",
+   "by": "Felipe (CRM guide 12/11)",
+   "text": "Hey [First name], this is Felipe at Poolheads. Are you still looking to get help with your pool?"
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 2",
+   "code": "M4",
+   "by": "Felipe (CRM guide 12/11)",
+   "text": "Hi [First name]! Just checking in from Poolheads. Spots are filling up fast this week. Please call or text this number to reserve your time. 🏊"
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 3",
+   "code": "M5",
+   "by": "Felipe (CRM guide 12/11)",
+   "text": "Hi [First name]! We understand now might not be the best time, but if you ever need help with your pool, we're here - Poolheads, (936) 314-9255"
+  },
+  {
+   "workflow": "Quote Sent Follow-up",
+   "step": "SMS 1",
+   "code": "M6",
+   "by": "Felipe (CRM guide 12/11)",
+   "text": "Hi [First name]! Just following up on the quote we sent you from Poolheads. Do you have any questions? We'd love to get the opportunity to work on your pool! 🏊"
+  },
+  {
+   "workflow": "Quote Sent Follow-up",
+   "step": "SMS 2",
+   "code": "M7",
+   "by": "Felipe (CRM guide 12/11)",
+   "text": "Hi [First name], still deciding? Your quote from Poolheads is ready whenever you are. Just reply here or call us at (936) 314-9255 if you have any questions!"
+  },
+  {
+   "workflow": "Reactivation Campaign - SMS",
+   "step": "SMS 1",
+   "code": "M19",
+   "by": "Felipe (CRM guide 12/11)",
+   "text": "Hi [First name]! It’s been a while since we’ve had the pleasure of servicing your pool. We wanted to check in and see if you’ve been considering any pool repairs or service lately.\n\nIf there’s anything we can help with, we’d be happy to assist. Feel free to call or text us at (936) 314-9255. 🏊"
+  },
+  {
+   "workflow": "Reactivation Campaign - SMS",
+   "step": "SMS 3",
+   "code": "M21",
+   "by": "Felipe (CRM guide 12/11)",
+   "text": "Hi [First name]! Just following up on my last message in case you missed it. If you need any help with pool service, repairs, leak detection, or anything else with your pool, we’d be happy to help.\n\nFeel free to call or text us anytime at (936) 314-9255.🏊"
+  },
+  {
+   "workflow": "Reactivation Campaign - Email",
+   "step": "Email 1",
+   "code": "M22",
+   "by": "Felipe (CRM guide 12/11)",
+   "subject": "We miss you, [First name]!",
+   "text": "Hi [First name],\n\nIt’s been a while since we’ve had the pleasure of servicing your pool, and we wanted to check in.\n\nIf you’ve been thinking about any pool service, repairs, leak detection, or other work, we’d love the opportunity to help you again.\n\nFeel free to call or text us anytime at (936) 314-9255. 🏊\n\nThanks,\nPoolheads"
   }
  ]
 }

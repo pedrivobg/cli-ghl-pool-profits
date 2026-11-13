@@ -1060,3 +1060,24 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Southern sem card → perguntado ao Frank (DM), prazo 17/11; dashboards 18/11 (Frank GA/hello@, Meta NorTex); Pool Duck
   LWR 17/11 (reunião de segunda); WP passwords, Pools of Perfection, YardSpring, Clear Conceptz → 14/11. Puddle Jumper
   já existe (criada 12/11 17:36 UTC, pronta). E-mail "[Passo seu] O que é seu – 13/11"; 3 [Passo seu] antigos lidos.
+
+## 13/11 (~12h UTC) — inbox watch, 7 itens (Poolheads)
+- **Calendário Leak Detection** (Frank): a conta antiga só tinha e-mail de confirmação ("Leak Detection Email Scheduled OG",
+  já migrado e editado pelo Felipe 05/11) + SMS pelo workflow "Scheduled Appointment Text Message". Na nova: SMS de
+  confirmação dizia `{{user.first_name}}` (nome do Felipe) → `{{contact.first_name}}` + data/hora; criados remarcação
+  (e-mail = mesmo template, assunto "Rescheduled") + SMS, cancelamento e-mail + SMS, lembrete SMS 1 dia antes
+  (`scripts/ph_leak_calendar.py`; enum é `reschedule`, não `rescheduled`; agendamento pede `assignedUserId` também no PUT).
+  Teste em cópia ZZ TEST: e-mails de confirmação/remarcação/cancelamento chegaram; SMS de confirmação certo (número fictício
+  → DND da operadora bloqueou os outros) → teste com celular no Live tests 86bd1b3b5. Calendário segue inativo até a virada;
+  "[Old account] Scheduled Appointment Text Message" fica draft (senão SMS duplo). Backup `backup/poolheads/calendar-*`.
+- **Skimmer ↔ GHL** (Frank): integração nativa = Enterprise ou add-on pago; token de Private Integration (6 escopos) + Location
+  ID. Recomendado: sync inicial e contact update OFF (viraria todo lead em cliente), lead conversion ON na etapa Won - Weekly,
+  customer sync Skimmer→GHL ON (casa por e-mail; conta bloqueia duplicado), notas ON, sem mapeamento de tags. Token quando o
+  Felipe confirmar o add-on (Private Integrations é tela → passo do Pedro).
+- **Guia do CRM Poolheads** (Felipe): `config/poolheads_wording.json` (M1 + "Reply STOP to opt out"; M3–M7, M19, M21, M22 dele;
+  assunto do win-back sem "free inspection") → `pp_wording --apply` 9/9; `scripts/ph_guide_flows.py`: Quote Sent 3 e 7 dias,
+  re-entry off (No Response/Quote Sent), win-back SMS sem M20 e M21 em 2 semanas, e-mail sem M23/M24 (todos draft; relidos).
+  M2 já não existia no fluxo da conta. Reviews ficam no Skimmer (Review Request draft — não publicar). Ao Frank: George
+  (backup do toque, nome/e-mail/celular), página de privacidade (Atif?), lista de clientes.
+- Pool Palooza "Copy that!" e 2 subtarefas da lista TEMPLATE EDITING (modelo de onboarding): nada a fazer.
+- Rodada diária: sem conta nova nem mudança (WP Pools cartão pendente; 1º número Rosebrook/West Coast/Puddle Jumper).
