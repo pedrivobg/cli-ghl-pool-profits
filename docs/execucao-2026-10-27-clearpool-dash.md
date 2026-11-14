@@ -1167,3 +1167,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   gatilho ativo). 10 sem dono → perguntado ao Frank. Ed avisado no DM. Snapshot: master já tem → Pedro dá Refresh.
   **Felipe (Poolheads)**: mensagem nova "Skimmer ↔ CRM integration – next steps" postada (10509083188), mas ficou só para a
   equipe: deixar visível ao cliente pede confirmação do Pedro na tela (a ferramenta perguntou e expirou). Ledger atualizado.
+
+## 13/11 (~00h UTC 14/11) — inbox + revisão da noite
+- Pool Palooza (Basecamp, Frank → Todd, cliente vê): nada para mim.
+- **Contas inativas** (Frank, DM): Ponchos, ABC, Golden View, Leisure, Net Positive, Next Level, Pooly, PoolReady SELA →
+  `config/inactive_accounts.json`; `pp_sms_alert.py --all` pula essas (plan: só Stay Fresh e Blue Lagoon sem dono → Frank).
+- **Bonneville LPs** (Atif, 86bcwer98): 4 páginas 200; LP Weekly embute `MhkyjjhjdYJGElGbsMV4`, Repair `KehOjHSs73DlVQq5ucMJ`;
+  os 2 forms já com `redirect_url` = página de obrigado de cada uma (sem escrita). Número do Google Ads (Val aprovou comprar):
+  compra bloqueada aqui (ação paga) → [Aprovar] ao Pedro. Linha atual: +13858552344 "Website & GBP" → +18019158582.
+- Revisão da noite: fechadas 86bd2p4gc (Pools of Perfection básica), 86bd35nt4 (form do site da Bonneville: submit real
+  13/11 20:54 conferido e apagado; iframe enviado), 86bd02rg2 (YardSpring), 86bd331nw (duplicada da 86bd349d8), 86bcz0y87
+  (Bonneville número + A2P). Prazos: 86bd2t1mq/86bd1b3b5/86bcz86jw → 16/11 (Pedro); 86bcz0y7b/86bd1xdbu → 17/11 (Frank);
+  86bcyw37n → 19/11.

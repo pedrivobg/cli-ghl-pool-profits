@@ -118,7 +118,8 @@ def run(args) -> int:
     a = Agency()
     locs = select(a.locations(), args.only, args.all, False)
     if args.all:
-        locs = [l for l in locs if (l.get("name") or "").strip().lower() not in NOT_CLIENT]
+        inactive = json.loads((ROOT / "config" / "inactive_accounts.json").read_text())["accounts"]  # Frank 13/11
+        locs = [l for l in locs if (l.get("name") or "").strip().lower() not in NOT_CLIENT and l["id"] not in inactive]
     bad = 0
     for l in locs:
         loc, nm = l["id"], l.get("name", "").strip()
