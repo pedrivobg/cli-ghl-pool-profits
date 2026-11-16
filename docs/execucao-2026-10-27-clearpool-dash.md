@@ -1265,3 +1265,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   link), Frank avisado; post da Sunwave ao David já visível ao cliente → "GHL" trocado por "Pool Profits CRM"; ClickUp:
   prazos/comentários (Pool Duck, Bonneville, Pool Keepers), monitor de leads e dashboard interno em andamento; e-mail
   "[Passo seu] O que é seu – 16/11 tarde" (os 3 anteriores marcados como lidos).
+
+## 16/11 (~20h UTC) — inbox: Poolheads item #3, Pool Smart OC
+- **Poolheads** (Frank, e-mail "[CRM Guide]"): item #3 explicado — ligação já toca o Felipe; faltam lista do Skimmer (1.535
+  contatos vieram da conta antiga com `old account import`, só 40 com `existing customer`), 1º login (nenhum ainda) + app
+  LeadConnector, salvar (936) 314-9255. George: Frank pediu ao Felipe no Basecamp (10515128007) → aí crio o usuário e o
+  Sequential Call Routing 25 s/20 s (hoje em draft).
+- **Pool Smart OC**: Frank não tem certeza se ainda é cliente → tirada de `config/inactive_accounts.json` até ele confirmar
+  (resposta no thread da 86bd1zk8p).
