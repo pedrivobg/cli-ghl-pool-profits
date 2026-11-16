@@ -109,7 +109,9 @@ fora da janela e nunca era captado (3 tarefas que o Frank criou no domingo 15/11
 Além disso: a lista de tarefas atualizadas lia só a 1ª página (100), e a revisão da noite só olhava a lista do Pedro (as
 288 subtarefas de onboarding/Paid Media atribuídas a ele nunca entravam). Correções no n8n (versões 16/11): segunda-feira
 olha 76 h (tarefas, comentários, chat) e o Gmail 4 dias; o endpoint de tarefas pagina (até 8 páginas); a revisão da noite
-cobre todas as listas e as DMs sem resposta. O ledger evita repetir item já tratado.
+cobre todas as listas e as DMs sem resposta; chamadas de comentários em lotes de 15 a cada 12 s (limite ~100/min do
+ClickUp), timeout 14 min. Conferido na rodada de 16/11 15h45 UTC: 287 tarefas em 3 páginas, 0 erro de comentário, 2 itens de
+sexta 13/11 que tinham ficado de fora captados. O ledger evita repetir item já tratado.
 
 ## Cadência (11/11)
 - n8n a cada 15 min no turno (9h–12h45), de hora em hora 13h–19h, + 21h (revisão da noite). Capta **na hora** (sem filtro
