@@ -1194,3 +1194,29 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   checkbox marcado branco → checkbox/radio fora da regra + azul #155eef (conferido no Chromium). Christopher avisado.
 - **Bonneville** (2 LPs) e **Cleverblu** (Home + Service): submissões reais conferidas (card, tags, tarefas/SMS) e apagadas.
   Comentário aprovado da Cleverblu postado no .docx final do Nomar (o PDF foi para a lixeira).
+
+## 16/11 (~12–16h UTC) — revisão geral do ClickUp (Pedro: "várias conversas e tarefas sem resposta")
+- **Causa** (por que ficou parado): o n8n do inbox não roda no fim de semana e olhava só 26 h → na segunda 9h tudo de sexta
+  7h até domingo caía fora (3 tarefas do Frank criadas domingo 15/11 sobre a West Coast); lista de tarefas atualizadas só lia
+  a 1ª página (100); a revisão da noite só via a lista do Pedro (288 subtarefas de onboarding/Paid Media atribuídas a ele
+  nunca entravam); perguntas ao Frank sem resposta só tinham o prazo empurrado. Corrigido no n8n (segunda = 76 h, Gmail 4d,
+  paginação até 8, revisão da noite em todas as listas + DMs sem resposta; publicado) e regras novas no TODO/inbox-watch.
+- **Ed 13/11 "sem nota = sem link"** (nunca feito): `scripts/pp_review_noscore.py` (novo). 1ª tentativa tirou os passos de link
+  do timeout e quebrou o ramo 5 na Snapshot (o Go To do ramo 5 apontava para eles; Test Snapshot recusou com BROKEN_CONNECTION)
+  → Snapshot restaurada do backup na hora; versão certa move os passos para o ramo 5 no lugar do Go To. `--test` na Test
+  Snapshot (cópia ZZ, mensagens → tags, timeout 3 min): 5 → link, 2 → feedback + aviso, sem nota → nada; apagado. Aplicado em
+  44 contas + Snapshot (status mantido; Clear Pool pulada: fluxo próprio em draft). `pp_call_check`: só os IVRs em draft já
+  conhecidos. Ed respondido.
+- **Ed 13/11 ligações**: 6 clientes ativos com linhas só no app (Aqua Clear, Clean Co, GID, Pool Palooza, Pool Keepers,
+  Wrigley's) → proposta ao Pedro; Ed atualizado.
+- **West Coast** (3 tarefas do Frank): sem "West Coast Chemical Company" em nada (só o e-mail real) → fechada; A2P enviado pela
+  rodada de hoje e **recusado** (nome legal ≠ EIN) → pedido ao Frank; import do Skimmer → pedido o export.
+- **BluVantage GBP** (Frank OK 13/11): `scripts/pp_gbp_posts.py` + `config/gbp_posts/bluvantage.json` — 7 posts agendados
+  (18/11–12/12, 10h ET, botão Call now; API Social Planner; rascunho ZZ apagado). 2 posts de reforma → OK do Frank.
+- Dashboards: Pool Smart OC, Signature, Big George's em `config/inactive_accounts.json` (Val/Frank 13/11); Ads da Southern e
+  Poolheads conectados (API ok). Bahama Blue lista: já importada 11/11 (28 conferidos ao vivo) → tarefa fechada.
+- **ClickUp**: `scripts/pp_onboarding_check.py` (novo) nas 22 contas → 144 itens de onboarding fechados (`complete`) e 56 de Paid
+  Media (Southern, Pool Shack, Corolla; fica o "Verify lead routing" da Corolla); 25 abertos com comentário do que falta
+  (Review Request em draft sem link do Google, integrações sem conexão, Poolheads/Sunwave em draft). Templates intocados.
+  Respondidos: Ed (2), Frank (NorTex, lembrete, Poolheads conta antiga), Val/Frank (dashboards), 1 lista única ao Frank com 8
+  pendências. Ledger: 7 linhas.

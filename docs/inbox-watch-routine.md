@@ -88,8 +88,13 @@ End with a 2-line summary in Portuguese.
 
 ## Revisao da noite (item "nightly-tasks-<data>", 21h BRT seg–sex; Pedro 11/11)
 O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rotina separada).
-1. Todas as tarefas abertas da lista `901422915733` + as "Create GHL Account For Client" abertas da `901417290241`: ler
-   descrição/comentários e conferir ao vivo (GHL, ledger, Gmail, Basecamp interno).
+1. **Toda tarefa aberta atribuída ao Pedro em qualquer lista** (16/11: `clickup_filter_tasks` assignees ["me"], todas as
+   páginas — lista `901422915733`, "Create GHL Account For Client" `901417290241`, checklists de onboarding do Frank, Paid
+   Media Launch; os 3 templates — TEMPLATE V2, "Client Template", HQ antigo — ficam como estão) + DMs/threads do Frank,
+   Val e Ed dos últimos 3 dias sem resposta do Pedro: ler descrição/comentários e conferir ao vivo (GHL, ledger, Gmail,
+   Basecamp interno). Checklist de onboarding: `scripts/pp_onboarding_check.py --only <conta>`.
+1b. Pergunta ao time parada há 2 dias úteis → 1 mensagem só com a lista do que falta + item no e-mail do Pedro. Nunca só
+   empurrar o prazo.
 2. Feita e conferida → comentar o que foi checado e fechar. Dá para fazer agora → fazer o escopo todo e testar (nunca
    mandar nada a contato existente) e fechar. Depende de outra pessoa → comentar quem/o quê e prazo realista. Só o
    Pedro → fica aberta com prazo realista e vai no e-mail. Nada vencido sem dono; duplicada → fechar a mais nova com link.
@@ -97,6 +102,14 @@ O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rot
 4. `docs/TODO.md` só com o aberto; log em `docs/execucao-*.md`; commit/push.
 5. UM e-mail "[Passo seu] O que é seu – <data> (revisão da noite)": (a) passos do Pedro, numerados; (b) decisões dele;
    (c) o que foi fechado/adiantado, uma linha cada. Marcar como lidos os [Passo seu] anteriores que ele substitui.
+
+## Buraco do fim de semana (corrigido 16/11)
+O n8n não roda sábado/domingo e olhava só 26 h para trás: na segunda às 9h, tudo de sexta 7h em diante até domingo caía
+fora da janela e nunca era captado (3 tarefas que o Frank criou no domingo 15/11 sobre a West Coast ficaram sem resposta).
+Além disso: a lista de tarefas atualizadas lia só a 1ª página (100), e a revisão da noite só olhava a lista do Pedro (as
+288 subtarefas de onboarding/Paid Media atribuídas a ele nunca entravam). Correções no n8n (versões 16/11): segunda-feira
+olha 76 h (tarefas, comentários, chat) e o Gmail 4 dias; o endpoint de tarefas pagina (até 8 páginas); a revisão da noite
+cobre todas as listas e as DMs sem resposta. O ledger evita repetir item já tratado.
 
 ## Cadência (11/11)
 - n8n a cada 15 min no turno (9h–12h45), de hora em hora 13h–19h, + 21h (revisão da noite). Capta **na hora** (sem filtro

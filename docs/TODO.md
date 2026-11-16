@@ -1,4 +1,4 @@
-# TODO do Pedro — só o aberto (13/11/2026, revisão da noite)
+# TODO do Pedro — só o aberto (16/11/2026, revisão geral do ClickUp)
 
 Curto de propósito (as rotinas leem este arquivo). **Regra das tarefas do ClickUp (Pedro 10/11)**: toda tarefa que eu crio
 tem prazo realista e é fechada quando o meu trabalho está feito e testado; se só falta teste real do Pedro, comento, fecho
@@ -28,7 +28,22 @@ combinar antes.
   mudou → usar o dele. "SIM" para algo que pede texto novo (ex.: boas-vindas de reparo/obra) → usar o padrão já aprovado
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
+- **Pergunta ao time sem resposta** (Pedro 16/11): passou 2 dias úteis → 1 mensagem só ao Frank/Val/Ed com a lista do que
+  falta (não pergunta por pergunta) e o item entra no e-mail do Pedro. Nunca empurrar prazo de tarefa sem cobrar o dono.
+- **Toda tarefa atribuída ao Pedro em qualquer lista** (onboarding do Frank, Paid Media, Create GHL Account) entra na revisão
+  da noite — não só a lista `901422915733`. Tarefa nova do Frank: comentar no mesmo dia (feito / o que falta / de quem).
+
 ## Você faz
+A. **Linhas que só tocam no app** (Ed 13/11 "todo cliente recebe toda ligação"): Aqua Clear (Google Ads +1 928-597-1962),
+   Clean Co (4), GID Pools (3), Pool Palooza (2 GBP), Pool Keepers (Website & GBP +1 805-262-9070), Wrigley's (3). Proposta:
+   encaminhar cada uma para o celular do dono (como as outras contas). Responder "aprovado" no e-mail de 16/11 → eu confirmo
+   o celular de cada uma, faço com backup e rodo `pp_call_check`. ClickUp `86bd349d8`.
+B. **West Coast A2P recusado** (16/11): nome legal ≠ EIN 37-2238084. Pedi ao Frank o nome do EIN letter; o reenvio é pago →
+   seu OK quando o nome chegar. ClickUp `86bd3m8c9`.
+C. **Pool Duck fase 2** (LWR/Odessa, plano de 12–13/11, `86bcxzjfa`): não foi feita. Reunião com o dono hoje 16/11 14h15 CST;
+   depois dela decidir se rodo (cards para Pool Leads etc., nada dispara para contato antigo).
+D. **Poolheads — conta antiga do HighLevel** (Frank 02/11, nunca respondido): entrar na conta antiga para migrar os templates
+   de e-mail; o código chega em info@poolheadscare.com → avisar o Frank na hora (respondido no `86bcwet1g` 16/11).
 0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
    paga). Responder "aprovado" → compro um 385 (ex.: +1 385-365-2440), nome "Google Ads", encaminha para o Justin, passo ao
    Atif para trocar nas LPs. ClickUp `86bd2ha9z`.
@@ -56,7 +71,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    `pp_referral_offer_fix.py config/referral_offer_live.json x --apply`. Fase 2 LWR + Odessa 12–13/11; WC depois da resposta
    do dono (via Frank), após 18h ET. E-mail ao Matt (preços da Odessa) enviado 12/11; esperando resposta.
 10. **Gate de nota** (Frank 10/11): só 5 recebe o link do Google; 1–4 recebe SMS "what could we have done better?" +
-   aviso à equipe (`pp_review_gate.py`). Sem nota em 7 dias → recebe o link, como no V9 (Pedro 11/11: manter).
+   aviso à equipe (`pp_review_gate.py`). Sem nota em 7 dias → **sem link** (Ed 13/11; feito 16/11 em todas + Snapshot,
+   `pp_review_noscore.py`, testado; Clear Pool fica de fora: fluxo próprio em draft).
 10b. **E-mail do processo novo para Ed/Frank/Jonathan**: enviado 11/11. Quando o 1º A2P automático for aprovado → uma
    linha no mesmo thread ("GHL update: one snapshot for every client…") dizendo que está 100% no ar (ClickUp `86bd1ctcg`).
 11. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency

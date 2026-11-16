@@ -148,7 +148,9 @@
   propriedade do próprio cliente (prompt da extensão: `docs/chrome-prompt-dashboards-ga.md`).
 - **Gate de nota** (Frank 10/11): no Review Request o ramo "Low NPS" é só `NPS != 5` (antes `!= 5 e != 4`: o 4 ia para o
   Google) e começa com o SMS "SMS - Ask What Went Wrong" (template "NPS - Feedback Request (below 5)") antes do aviso à
-  equipe (`scripts/pp_review_gate.py`). Conta fora do modelo: `scripts/pp_fleet_check.py` (etapas, CONTENT do pp_mirror,
+  equipe (`scripts/pp_review_gate.py`). **Sem nota em 7 dias = sem link** (Ed 13/11, aplicado 16/11 em todas + Snapshot com
+  `scripts/pp_review_noscore.py`: o Go To do ramo 5 apontava para os passos de link do timeout — os passos vão para o ramo 5,
+  o timeout termina; testado com `--test`). Conta fora do modelo: `scripts/pp_fleet_check.py` (etapas, CONTENT do pp_mirror,
   gate, dashboard).
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
 - Tag usada em passo/gatilho/if-else **tem que existir na conta** (`POST backend /workflow/{loc}/tags/create
