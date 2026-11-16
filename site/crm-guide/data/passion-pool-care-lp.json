@@ -3,14 +3,14 @@
   "generated_at": "2026-11-16",
   "client": {
     "slug": "passion-pool-care-lp",
-    "name": "Passion Pool Care LP",
+    "name": "Passion Pool Care",
     "owner_first": "John",
     "business_phone": "(623) 764-2078",
     "city": "Murfreesboro, TN",
     "location_id": "d03SMzI37dxTBeuoTJ13"
   },
   "prepared_by": "Pedro Garrido · Pool Profits",
-  "meeting_note": "Before we go live, we'll walk through how Passion Pool Care LP will handle every lead, read every message your customers will get, and check off your part of the setup together.",
+  "meeting_note": "Before we go live, we'll walk through how Passion Pool Care will handle every lead, read every message your customers will get, and check off your part of the setup together.",
   "journey": [
     {
       "id": "new",
@@ -159,14 +159,7 @@
           "code": "M1",
           "channel": "sms",
           "when": "Right after a missed call",
-          "text": "Hi [First name]! This is John from Passion Pool Care LP. We're sorry we missed your call. We will be calling you back shortly. Is this the best number to call you back at? 🏊",
-          "editable": true
-        },
-        {
-          "code": "M2",
-          "channel": "sms",
-          "when": "30 minutes after a missed call, if they haven't replied",
-          "text": "Just wanted to make sure you got my last message, [First name]! We'd love to help keep your pool clean. Text or call this line back, please.",
+          "text": "Hey, this is Brad with Passion Pool Care. What kind of service are you looking for?",
           "editable": true
         }
       ]
@@ -187,14 +180,14 @@
           "code": "M4",
           "channel": "sms",
           "when": "3 days after you move the card to “No Response - Follow Up”, if they haven't replied",
-          "text": "Hi [First name]! Just checking in from Passion Pool Care LP. Spots are filling up fast this week for initial pool maintenance estimates. Please call or text this number to reserve your time. 🏊",
+          "text": "Hi [First name]! Just checking in from Passion Pool Care. Spots are filling up fast this week for initial pool maintenance estimates. Please call or text this number to reserve your time. 🏊",
           "editable": true
         },
         {
           "code": "M5",
           "channel": "sms",
           "when": "7 days after you move the card to “No Response - Follow Up”, if they haven't replied",
-          "text": "Hi [First name]! We understand now might not be the best time, but if you ever need pool cleaning or maintenance, we're here - Passion Pool Care LP, +1 629-302-2044",
+          "text": "Hi [First name]! We understand now might not be the best time, but if you ever need pool cleaning or maintenance, we're here - Passion Pool Care, +1 629-302-2044",
           "editable": true
         }
       ]
@@ -208,14 +201,14 @@
           "code": "M6",
           "channel": "sms",
           "when": "1 day after you move the card to “Quote Sent”",
-          "text": "Hi [First name]! Just following up on the quote we sent you from Passion Pool Care LP. Do you have any questions? We'd love to get the opportunity to work on your pool! 🏊",
+          "text": "Hi [First name]! Just following up on the quote we sent you from Passion Pool Care. Do you have any questions? We'd love to get the opportunity to work on your pool! 🏊",
           "editable": true
         },
         {
           "code": "M7",
           "channel": "sms",
           "when": "3 days after you move the card to “Quote Sent”, if they haven't replied",
-          "text": "Hi [First name], still deciding? Your quote from Passion Pool Care LP is ready whenever you are. Just reply here or call us at +1 629-302-2044 if you have any questions!",
+          "text": "Hi [First name], still deciding? Your quote from Passion Pool Care is ready whenever you are. Just reply here or call us at +1 629-302-2044 if you have any questions!",
           "editable": true
         }
       ]
@@ -250,15 +243,15 @@
           "code": "M10",
           "channel": "email",
           "when": "Right after you move the card to “Won - Weekly Pool Service”",
-          "subject": "Welcome to Passion Pool Care LP!",
-          "text": "[First name],\nWelcome aboard! We're thrilled to have you as part of the Passion Pool Care LP family.\nHere's what you can expect from us:\n✅ Consistent, reliable service every visit\n✅ Chemical balancing and water testing\n✅ Equipment inspections included\n✅ Direct communication with your technician\nYour first service will be scheduled shortly. If you have any questions before then, don't hesitate to reach out.\n📞 (623) 764-2078\n📧 passionpoolcare@gmail.com\nLooking forward to keeping your pool crystal clear!\nJohn\nPassion Pool Care LP",
+          "subject": "Welcome to Passion Pool Care!",
+          "text": "[First name],\nWelcome aboard! We're thrilled to have you as part of the Passion Pool Care family.\nHere's what you can expect from us:\n✅ Consistent, reliable service every visit\n✅ Chemical balancing and water testing\n✅ Equipment inspections included\n✅ Direct communication with your technician\nYour first service will be scheduled shortly. If you have any questions before then, don't hesitate to reach out.\n📞 (623) 764-2078\n📧 passionpoolcare@gmail.com\nLooking forward to keeping your pool crystal clear!\nBrad\nPassion Pool Care",
           "editable": true
         },
         {
           "code": "M11",
           "channel": "sms",
           "when": "2 minutes after you move the card to “Won - Weekly Pool Service” (weekdays 9am–5pm)",
-          "text": "Hi [First name]! Welcome to Passion Pool Care LP! 🏊 We're excited to have you on board. Your first service will be scheduled shortly. Questions? Call us at +1 629-302-2044",
+          "text": "Hi [First name]! Welcome to Passion Pool Care! 🏊 We're excited to have you on board. Your first service will be scheduled shortly. Questions? Call us at +1 629-302-2044",
           "editable": true
         }
       ]
@@ -272,42 +265,42 @@
           "code": "M12",
           "channel": "sms",
           "when": "44 days after you move the card to “Won”, for weekly customers (9am–5pm); or 22 days after you move the card to “Won”, for repair / install jobs (9am–5pm); or 59 days after you move the card to “Won”, for construction / remodeling jobs (9am–5pm)",
-          "text": "Hi [First name], thanks again for choosing Passion Pool Care LP! How did we do? Please take 10 seconds to rate your experience here: your rating page We really appreciate your feedback.",
+          "text": "Hi [First name], thanks again for choosing Passion Pool Care! How did we do? Please take 10 seconds to rate your experience here: your rating page We really appreciate your feedback.",
           "editable": true
         },
         {
           "code": "M13",
           "channel": "sms",
           "when": "Right after they answer the rating text, if they rate you 1–4",
-          "text": "Hi [First name], thank you for rating Passion Pool Care LP. We're sorry we didn't earn 5 stars this time. What could we have done better? Just reply to this text. The owner reads every answer and will reach out to make it right.",
+          "text": "Hi [First name], thank you for rating Passion Pool Care. We're sorry we didn't earn 5 stars this time. What could we have done better? Just reply to this text. The owner reads every answer and will reach out to make it right.",
           "editable": true
         },
         {
           "code": "M14",
           "channel": "email",
           "when": "Right after they rate you 5 in the rating text (no rating = no review link)",
-          "text": "A short email from Google's review tool asking them to review Passion Pool Care LP, with a link to your Google review page.",
+          "text": "A short email from Google's review tool asking them to review Passion Pool Care, with a link to your Google review page.",
           "editable": false
         },
         {
           "code": "M15",
           "channel": "sms",
           "when": "Right after they rate you 5 in the rating text (no rating = no review link)",
-          "text": "A short text from Google's review tool asking them to review Passion Pool Care LP, with a link to your Google review page.",
+          "text": "A short text from Google's review tool asking them to review Passion Pool Care, with a link to your Google review page.",
           "editable": false
         },
         {
           "code": "M16",
           "channel": "sms",
           "when": "Right after they leave you a 4 or 5-star Google review",
-          "text": "Hi [First name]! Thank you so much for your kind review! 🌟 We truly appreciate your support. Passion Pool Care LP",
+          "text": "Hi [First name]! Thank you so much for your kind review! 🌟 We truly appreciate your support. Passion Pool Care",
           "editable": true
         },
         {
           "code": "M17",
           "channel": "sms",
           "when": "Right after they leave you a Google review of 3 stars or less",
-          "text": "Hi [First name], we're sorry to hear about your experience with Passion Pool Care LP. We'd love to make it right. Can we give you a call? +1 629-302-2044",
+          "text": "Hi [First name], we're sorry to hear about your experience with Passion Pool Care. We'd love to make it right. Can we give you a call? +1 629-302-2044",
           "editable": true
         }
       ]
@@ -322,7 +315,7 @@
           "channel": "email",
           "when": "2 days after the card moves to “Lost” (weekdays 9am–5pm)",
           "subject": "Mind sharing some quick feedback, [First name]?",
-          "text": "[First name],\nI know you went a different direction with your pool care and as the business owner I wanted to ask you for a favor. Do you mind letting us know why you chose to go with someone else?\nI am always looking for feedback on how I can make my company stronger and will value any feedback you give us.\nIf you have 30 seconds to spare, just reply to this email or give us a call at (623) 764-2078.\nJohn\nPassion Pool Care LP",
+          "text": "[First name],\nI know you went a different direction with your pool care and as the business owner I wanted to ask you for a favor. Do you mind letting us know why you chose to go with someone else?\nI am always looking for feedback on how I can make my company stronger and will value any feedback you give us.\nIf you have 30 seconds to spare, just reply to this email or give us a call at (623) 764-2078.\nBrad\nPassion Pool Care",
           "editable": true
         },
         {
@@ -330,7 +323,7 @@
           "channel": "email",
           "when": "92 days after the card moves to “Lost” (weekdays 9am–5pm)",
           "subject": "How's your pool service going, [First name]?",
-          "text": "[First name],\nYou spoke to my company a while back and were interested in pool service, but we weren't able to earn your business.\nHow has your current company been performing? Are they doing the following:\n- Before & After pics every week\n- Weekly report with chemical readings\n- Sharing the status of your pool equipment\n- Leaving your yard clean\nIf not, ask them why. Our customers know the details about every single visit we make at their pool. If you're feeling left in the dark about what your pool guy is doing, come experience the Passion Pool Care LP difference.\nJohn\nPassion Pool Care LP\n(623) 764-2078",
+          "text": "[First name],\nYou spoke to my company a while back and were interested in pool service, but we weren't able to earn your business.\nHow has your current company been performing? Are they doing the following:\n- Before & After pics every week\n- Weekly report with chemical readings\n- Sharing the status of your pool equipment\n- Leaving your yard clean\nIf not, ask them why. Our customers know the details about every single visit we make at their pool. If you're feeling left in the dark about what your pool guy is doing, come experience the Passion Pool Care difference.\nBrad\nPassion Pool Care\n(623) 764-2078",
           "editable": true
         }
       ]
@@ -344,7 +337,7 @@
           "code": "M20",
           "channel": "sms",
           "when": "Right after you start a win-back campaign",
-          "text": "Hi [First name]! It's been a while since we've had the pleasure of servicing your pool. We'd love to have you back at Passion Pool Care LP! Reply here or call +1 629-302-2044 🏊",
+          "text": "Hi [First name]! It's been a while since we've had the pleasure of servicing your pool. We'd love to have you back at Passion Pool Care! Reply here or call +1 629-302-2044 🏊",
           "editable": true
         },
         {
@@ -358,7 +351,7 @@
           "code": "M22",
           "channel": "sms",
           "when": "7 days after you start a win-back campaign",
-          "text": "Last message from us, [First name]! If you ever need pool service again, we're here. Passion Pool Care LP. Call us at +1 629-302-2044",
+          "text": "Last message from us, [First name]! If you ever need pool service again, we're here. Passion Pool Care. Call us at +1 629-302-2044",
           "editable": true
         },
         {
@@ -366,7 +359,7 @@
           "channel": "email",
           "when": "Right after you start a win-back campaign",
           "subject": "We miss you, [First name]! Here's a free inspection",
-          "text": "[First name],\nIt's been a while since we've had the pleasure of caring for your pool, and we wanted to reach out personally.\nAt Passion Pool Care LP, we pride ourselves on consistent, reliable service, and we'd love to have you back.\nAs a returning customer, we're happy to offer you a complimentary pool inspection on your first visit back. No strings attached.\nReady to get your pool back in top shape?\n📞 Call us: (623) 764-2078\nHope to hear from you soon!\nJohn\nPassion Pool Care LP",
+          "text": "[First name],\nIt's been a while since we've had the pleasure of caring for your pool, and we wanted to reach out personally.\nAt Passion Pool Care, we pride ourselves on consistent, reliable service, and we'd love to have you back.\nAs a returning customer, we're happy to offer you a complimentary pool inspection on your first visit back. No strings attached.\nReady to get your pool back in top shape?\n📞 Call us: (623) 764-2078\nHope to hear from you soon!\nBrad\nPassion Pool Care",
           "editable": true
         },
         {
@@ -374,15 +367,15 @@
           "channel": "email",
           "when": "3 days after you start a win-back campaign",
           "subject": "How's your pool been, [First name]?",
-          "text": "[First name],\nJust checking in to see how your pool has been.\nIf your current service isn't meeting your expectations, we'd love the chance to show you what Passion Pool Care LP can do.\nOur clients enjoy:\n✅ Consistent weekly visits\n✅ Detailed chemical reports\n✅ Equipment inspections every visit\n✅ Direct communication with their technician\nGive us a shot, reply to this email or give us a call for a free estimate.\nJohn\nPassion Pool Care LP\n(623) 764-2078",
+          "text": "[First name],\nJust checking in to see how your pool has been.\nIf your current service isn't meeting your expectations, we'd love the chance to show you what Passion Pool Care can do.\nOur clients enjoy:\n✅ Consistent weekly visits\n✅ Detailed chemical reports\n✅ Equipment inspections every visit\n✅ Direct communication with their technician\nGive us a shot, reply to this email or give us a call for a free estimate.\nBrad\nPassion Pool Care\n(623) 764-2078",
           "editable": true
         },
         {
           "code": "M25",
           "channel": "email",
           "when": "7 days after you start a win-back campaign",
-          "subject": "One last note from Passion Pool Care LP",
-          "text": "[First name],\nThis will be our last follow-up. We don't want to overwhelm your inbox!\nIf you ever need pool service in the future, Passion Pool Care LP will be here. We'd love to earn your business back.\nJohn\nPassion Pool Care LP\n(623) 764-2078",
+          "subject": "One last note from Passion Pool Care",
+          "text": "[First name],\nThis will be our last follow-up. We don't want to overwhelm your inbox!\nIf you ever need pool service in the future, Passion Pool Care will be here. We'd love to earn your business back.\nBrad\nPassion Pool Care\n(623) 764-2078",
           "editable": true
         }
       ]
@@ -432,7 +425,7 @@
       "title": "Save your new business line: (629) 247-6255",
       "why": "Every text your customers get comes from this number, and their replies come back to it.",
       "steps": [
-        "Save (629) 247-6255 in your phone as “Passion Pool Care LP – Leads”.",
+        "Save (629) 247-6255 in your phone as “Passion Pool Care – Leads”.",
         "Use it when you text or call leads from the LeadConnector app, so the whole conversation stays in one place.",
         "Keep your current number as it is: calls to it are not affected."
       ],
@@ -493,7 +486,7 @@
       "steps": [
         "Log in at app.poolprofits.com (see the Team task).",
         "Go to Settings → Integrations → Google and click Connect.",
-        "Sign in with the Google account that manages your Business Profile, allow everything and pick Passion Pool Care LP."
+        "Sign in with the Google account that manages your Business Profile, allow everything and pick Passion Pool Care."
       ],
       "status_hint": "done"
     },
@@ -504,7 +497,7 @@
       "why": "Happy customers get this link in the review request.",
       "steps": [
         "Open https://search.google.com/local/writereview?placeid=ChIJdU2k2kj2Y4gR-wvVG8cYLE0 on your phone.",
-        "Make sure it opens the review box for Passion Pool Care LP.",
+        "Make sure it opens the review box for Passion Pool Care.",
         "If it opens another business (or nothing), tell me."
       ],
       "status_hint": "done"

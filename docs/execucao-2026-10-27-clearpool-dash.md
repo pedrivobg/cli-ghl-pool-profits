@@ -1249,3 +1249,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Guia do CRM (todas as contas): texto do Review Request estava velho ("4 ou 5 recebe o link", "7 dias sem nota → link") →
   `config/crm_guide.json`: só 5 recebe, 1–4 feedback + aviso, sem nota sem link; "Inbound SMS - Notify Owner" descrito;
   `pp_crm_guide.py`: tarefa do A2P aprovado tinha 1 passo (validação pede 2–5) → 2º passo.
+
+## 16/11 (~19h20 UTC) — inbox (Frank: review links, Passion, Sunwave, West Coast)
+- **Review link + Review Request publicado** (links `share.google/…` do Frank → Maps no Chromium → ftid `0x…:0x…` convertido
+  em place id: `ChIJ` = base64url de `0a12 09 <ftid1 LE> 11 <ftid2 LE>`, conferido abrindo `place_id:` no Maps):
+  Rosebrook (`ChIJPUpOerCWD4gRUViJ0KXX9wg`, listing "Rosebrook Swimming Pools"), Pools of Perfection
+  (`ChIJLXZF32e8wokRXZI7YUsnwmA`), WP Pools (`ChIJDXNTeat9GIgRkag0PV9rgrQ`). Backup dos custom values em `backup/<slug>/`,
+  `pp_mirror --apply` → Review Request published; `pp_ready --place` 0 ERRO nas 3; `pp_call_check` sem erro (1 AVISO 503 transitório).
+- **Passion**: Owner First Name John → Brad, Friendly Business Name → "Passion Pool Care" (Legal fica "LP", A2P); nenhum texto
+  com nome fixo. Guia `site/crm-guide/data/passion-pool-care-lp.json` refeito + M1 = texto real do template "New Lead - SMS 1"
+  e o 2º SMS (desligado) removido (códigos mantidos, M2 some). **Não publicado**: precisa de `CRM_GUIDE_ADMIN_KEY` no ambiente.
+- **Sunwave**: pergunta ao David no Basecamp (No Response Follow-up em draft, 1/3/7 dias) — falta deixar visível ao cliente.
+- Puddle Jumper / Smart Chem: Review Request draft até ter GBP (prazo 23/11).
