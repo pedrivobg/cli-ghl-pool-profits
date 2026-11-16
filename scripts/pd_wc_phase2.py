@@ -125,7 +125,7 @@ def copy_workflow(a: Agency, src: dict, new_name: str, fix_steps, fix_trigger, a
 def step_ads(a: Agency, apply: bool) -> None:
     pl = pool_leads(a)
     new_lead = stage_like(pl, "new lead")
-    won = [i for n, i in pl["stages"].items() if n.lower().startswith("won")]
+    won = [i for n, i in pl["stages"].items() if "won" in n.lower()]
 
     def to_pool_leads(tpl):
         for t in tpl:
@@ -148,7 +148,9 @@ def step_ads(a: Agency, apply: bool) -> None:
             print(f"   ! '{name}' not found")
             continue
         wid = copy_workflow(a, src, f"{name} (Pool Leads)", to_pool_leads, lambda t: t, apply)
-        done.append((src, wid))
+        if apply and wid and src.get("status") == "published":  # right away, so a lead never gets two cards
+            put(a, src["id"], "draft", a.workflow(LOC, src["id"])["workflowData"]["templates"])
+            print(f"     theirs → draft: {src['name']}")
     src = wf_by_name(a, CONVERTED)
     if src:
         def won_trigger(t):
@@ -179,7 +181,10 @@ GUARD_TYPES = ("pipeline_stage_updated", "opportunity_status_changed", "contact_
 # their tag-based welcome), Missed New Lead SMS (the native missed-call text is on), appointments/recurring (no calendar).
 KEEP_DRAFT = {"AdWords Call In - New Lead", "AdWords Form - New Lead", "Adword Call - Conversion", "Google Ads SMS - New Lead",
               "IVR - Main Line Menu", "Sequential Call Routing", "Facebook Ads Call - Tag", "Website & GBP Call - Tag",
-              "Won Stage", "Missed New Lead - Initial SMS Follow-up"}
+              "Won Stage", "Missed New Lead - Initial SMS Follow-up",
+              # until the account has its NPS form/link and Google connected for reviews
+              "Review Request", "Review Response - Negative", "Review Response - Positive"}
+ALERT_ALL = {"Inbound SMS - Notify Owner"}  # Ed 13/11 + 16/11: every text alerts, customers included
 
 
 def v9_names() -> dict:
@@ -236,7 +241,7 @@ def step_publish(a: Agency, apply: bool) -> None:
         full = a.workflow(LOC, w["id"])
         tpl = full["workflowData"]["templates"]
         trs = [t for t in a.triggers(LOC, w["id"]) if not t.get("deleted")]
-        unguarded = [t["type"] for t in trs if t.get("type") in GUARD_TYPES and not has_guard(t)]
+        unguarded = [] if w["name"] in ALERT_ALL else [t["type"] for t in trs if t.get("type") in GUARD_TYPES and not has_guard(t)]
         nobody = users_ok(tpl)
         print(f"   {'=' if w['status'] == 'published' else '+'} {w['name']}: {len(tpl)} steps · unguarded {unguarded} · "
               f"no user {nobody}")
@@ -252,6 +257,8 @@ def step_publish(a: Agency, apply: bool) -> None:
                 x = at.get(k)
                 if isinstance(x, dict) and x.get("userType") == "user" and not x.get("selectedUser"):
                     x["selectedUser"] = [debbie]
+            if w["name"] in ALERT_ALL and t["type"] == "internal_notification":
+                at.setdefault("sms", {}).update(userType="user", selectedUser=[debbie])
             if t["type"] == "assign_user" and not (at.get("user_list") or at.get("assigned_to")):
                 at["user_list"] = [debbie]
             if t["type"] == "task-notification" and not at.get("assignedTo"):
@@ -261,6 +268,8 @@ def step_publish(a: Agency, apply: bool) -> None:
 
 
 PB_REPORT = os.environ.get("WC_PB_REPORT", "")
+# Justin in the 16/11 meeting: new customers won from the ads (the other "Customer" cards were existing customers)
+NEW_WINS = ("matos", "oles", "olis", "musser", "douglas bell", "dana moser", "brice", "bryce")
 
 
 def pb_index() -> dict:
@@ -305,7 +314,9 @@ def step_cards(a: Agency, apply: bool) -> None:
         nm = (c.get("name") or x.get("name") or "").split(" - ")[0].strip().lower()
         st = pb.get("p" + dig(c.get("phone"))) or pb.get("e" + (c.get("email") or "").lower()) or pb.get("n" + nm) or ""
         old_stage = names.get(x.get("pipelineStageId"), "?")
-        if old_stage == "Customer":
+        if any(k in nm for k in NEW_WINS):
+            to = "won - weekly"
+        elif old_stage == "Customer":
             to = "won - weekly" if x.get("status") == "won" else "recurring"
         elif old_stage in ("Didn't Sign Up", "Bad Fit"):
             to = "lost"
@@ -335,15 +346,79 @@ def step_cards(a: Agency, apply: bool) -> None:
     print(f"   ✓ moved {moved} cards to Pool Leads (contacts all carry '{GUARD}', so no V9 message fires)")
 
 
+CALL_FLOWS = ("Answered Incoming Call To Pipeline", "Missed Incoming Call To Pipeline")
+SITE_FORMS = ["r0tUEDr6n1bIqmv1RDST", "cS4QIWtJd3IXOtB4Fuza", "oawTezosQbLJGDPJ3P3k", "TcPu80nUo9cmZCFuPSsF"]  # website quote forms (both snapshot copies)
+
+
+def step_calls_forms(a: Agency, apply: bool) -> None:
+    """V9 call flows: main line only + skip existing customers / spam / dnd (customers call the main line to pay).
+    Website Form Fill: the account's website quote forms."""
+    from pp_lead_alerts import guard_nodes
+    for name in CALL_FLOWS:
+        w = wf_by_name(a, name)
+        full = a.workflow(LOC, w["id"])
+        tpl = full["workflowData"]["templates"]
+        trs = [t for t in a.triggers(LOC, w["id"]) if not t.get("deleted")]
+        wrapped = any(t.get("type") == "if_else" for t in tpl)
+        print(f"   {name}: {len(tpl)} steps, guard if/else {'already' if wrapped else 'added'}, trigger → main line only")
+        if not apply:
+            continue
+        backup(f"calls-{name}", {"workflow": full, "triggers": trs})
+        if not wrapped:
+            by = {t["id"]: t for t in tpl}
+            chain = [next(t for t in tpl if not t.get("parentKey"))]
+            while chain[-1].get("next"):
+                chain.append(by[chain[-1]["next"]])
+            if len(chain) != len(tpl):
+                sys.exit(f"{name}: not a linear chain")
+            c, y, n = guard_nodes(None, None, 0, skip=["spam", "dnd", "existing customer"])
+            chain = json.loads(json.dumps(chain))
+            for i, st in enumerate(chain):
+                st.update(order=i, parent=y["id"], parentKey=chain[i - 1]["id"] if i else y["id"])
+                st.pop("next", None)
+                if i:
+                    chain[i - 1]["next"] = st["id"]
+            y["next"] = chain[0]["id"]
+            tpl = [c, y, n, *chain]
+            put(a, w["id"], w["status"], tpl)
+        first = tpl[0]["id"]
+        for t in trs:
+            body = {k: v for k, v in t.items() if k not in ("_id", "date_added", "date_updated", "deleted", "origin_id",
+                                                           "company_id", "belongs_to", "last_conditions_change_at")}
+            conds = [c for c in body.get("conditions") or [] if c.get("field") != "inbound_number"]
+            conds.append({"operator": "contains-any", "field": "inbound_number", "value": [MAIN_LINE],
+                          "title": "In phone number", "type": "multiselect", "id": "inbound-twilio-number"})
+            body.update(conditions=conds, targetActionId=first, workflowId=w["id"], workflow_id=w["id"], location_id=LOC,
+                        actions=[{"workflow_id": w["id"], "type": "add_to_workflow"}])
+            a.call("PUT", BACKEND, f"/workflow/{LOC}/trigger/{t['id']}", body=body)
+        chk = a.workflow(LOC, w["id"])["workflowData"]["templates"]
+        print(f"     ✓ {len(chk)} steps, first = {chk[0]['name']}; triggers {[[c.get('value') for c in t.get('conditions') or []] for t in a.triggers(LOC, w['id'])]}")
+    w = wf_by_name(a, "Website Form Fill To Pipeline")
+    trs = [t for t in a.triggers(LOC, w["id"]) if not t.get("deleted")]
+    print(f"   Website Form Fill To Pipeline: form trigger on {len(SITE_FORMS)} website forms (has {len(trs)} triggers now)")
+    if apply and not trs:
+        tpl = a.workflow(LOC, w["id"])["workflowData"]["templates"]
+        first = next(t["id"] for t in tpl if not t.get("parentKey"))
+        body = {"type": "form_submission", "name": "Form Submitted", "masterType": "highlevel", "schedule_config": {},
+                "conditions": [{"operator": "is-any-of", "field": "form.id", "value": SITE_FORMS, "title": "Form is",
+                                "type": "string"}],
+                "workflowId": w["id"], "workflow_id": w["id"], "location_id": LOC, "targetActionId": first,
+                "actions": [{"workflow_id": w["id"], "type": "add_to_workflow"}]}
+        r = a.call("POST", BACKEND, f"/workflow/{LOC}/trigger", body=body)
+        if r.get("id"):
+            a.call("PUT", BACKEND, f"/workflow/{LOC}/trigger/{r['id']}", body={**body, "id": r["id"]})
+        print(f"     ✓ {[[c.get('value') for c in t.get('conditions') or []] for t in a.triggers(LOC, w['id'])]}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("step", choices=["ads", "guards", "publish", "cards"])
+    ap.add_argument("step", choices=["ads", "guards", "calls_forms", "publish", "cards"])
     ap.add_argument("--apply", action="store_true")
     args = ap.parse_args()
     if os.environ.get("GHL_AGENCY", "").lower() != "poolduck":
         sys.exit("run with GHL_AGENCY=poolduck")
     a = Agency()
-    {"ads": step_ads, "guards": step_guards, "publish": step_publish, "cards": step_cards}.get(args.step, lambda *_: sys.exit("step not written yet"))(a, args.apply)
+    {"ads": step_ads, "guards": step_guards, "publish": step_publish, "cards": step_cards, "calls_forms": step_calls_forms}.get(args.step, lambda *_: sys.exit("step not written yet"))(a, args.apply)
 
 
 if __name__ == "__main__":

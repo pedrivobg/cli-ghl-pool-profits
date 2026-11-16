@@ -40,8 +40,8 @@ A. **Linhas que só tocam no app** (Ed 13/11 "todo cliente recebe toda ligação
    o celular de cada uma, faço com backup e rodo `pp_call_check`. ClickUp `86bd349d8`.
 B. **West Coast A2P recusado** (16/11): nome legal ≠ EIN 37-2238084. Pedi ao Frank o nome do EIN letter; o reenvio é pago →
    seu OK quando o nome chegar. ClickUp `86bd3m8c9`.
-C. **Pool Duck fase 2** (LWR/Odessa, plano de 12–13/11, `86bcxzjfa`): não foi feita. Reunião com o dono hoje 16/11 14h15 CST;
-   depois dela decidir se rodo (cards para Pool Leads etc., nada dispara para contato antigo).
+C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank):
+   respostas do guia (`pool-c81cf184`), NPS form + Review Request, Won welcome. LWR/Odessa: mesma fase 2 depois disso.
 E. **Bonneville xlsx**: está no Basecamp ("Customers (4).xlsx", thread Client List), arquivo do Basecamp/chat não baixa →
    pedido ao Pedro (e-mail 16/11 tarde) para mandar como anexo de e-mail; aí importo (`pp_client_list_import.py`). `86bcz0y7b`.
 D. **Poolheads — conta antiga do HighLevel** (Frank 02/11, nunca respondido): entrar na conta antiga para migrar os templates

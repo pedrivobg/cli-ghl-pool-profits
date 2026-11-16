@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import re
 import sys
 import urllib.request
@@ -100,6 +101,8 @@ class CrmGuide:
         user = next((u for u in self.load("users.json", []) if (u.get("email") or "").lower() == (rep.get("email") or "").lower()), None)
         # alerts go to the representative's user; "Josh" (owner_first_name) for "Joshua" is the same person
         self.owner = (user or {}).get("firstName") or (own if own and rep_first.lower().startswith(own.lower()) else rep_first or own) or "you"
+        if os.environ.get("CRM_GUIDE_OWNER"):  # alerts go to someone other than the A2P representative (Pool Duck WC: Debbie)
+            self.owner = os.environ["CRM_GUIDE_OWNER"]
         self.sheet.cfg["owner"] = self.owner
         self.business = self.v.get("custom_values.friendly_business_name") or self.loc.get("name", "")
         self.published = published

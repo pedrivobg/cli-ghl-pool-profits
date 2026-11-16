@@ -1280,3 +1280,32 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Sequential Call Routing 25 s/20 s (hoje em draft).
 - **Pool Smart OC**: Frank não tem certeza se ainda é cliente → tirada de `config/inactive_accounts.json` até ele confirmar
   (resposta no thread da 86bd1zk8p).
+
+## 16/11 (21h–23h30 UTC) — Pool Duck Wesley Chapel no V9 (pedido do Pedro após a reunião com Justin/Ed)
+- Reunião: Justin quer "começar do zero, do jeito de todas as Pool Duck"; Ed: ligações → Debbie; Steve saiu da empresa;
+  apagar duplicados; cards revistos ao vivo; guia do CRM ao Justin; follow-up quinta 15h (horário dele).
+- **Conta nunca ficou sem captar**: depois do "tudo em draft" da reunião, voltei os 18 fluxos que captam lead (sem as
+  cópias duplicadas) até o V9 entrar; no intervalo só entrou o teste do Frank.
+- **Ligações**: as 4 linhas (principal 606-0773, AdWords 815-7946, LSA 934-7946, Facebook 670-3825) não encaminhavam para
+  ninguém → todas para o celular da Debbie (+1 352-806-9600), backup do twilio-accounts; `pp_call_check` 0 erro.
+- **Steve**: os fluxos do Steve escutavam os forms da 2ª carga do snapshot (0 envios em 90 dias) e avisavam ninguém → apagados.
+- **Duplicados**: 58 nomes carregados 2× (2025 × 26/09/2026) → 60 cópias de 2026 + 3 do Steve apagadas (backup completo em
+  `backup/poolduck-wesley-chapel/deleted-duplicates-20261116-214550/`); nenhum fluxo restante apontava para uma cópia.
+- **Fase 1** (`pd_v9_phase1.py`): `pre-snapshot` em 2.675 contatos, `existing customer` em 1.243 clientes, pipeline Pool Leads,
+  24 fluxos V9 em draft, custom values (Owner First Name = Debbie, A2P number = 606-0773 depois).
+- **Fase 2** (`scripts/pd_wc_phase2.py`, novo): `ads` = cópias "(Pool Leads)" dos 6 fluxos de anúncio/LSA (mesmo gatilho,
+  tags e conversões Google Ads/Meta; card em Pool Leads → New Lead) + conversão "Converted Lead" nas 3 etapas Won (com
+  guarda); originais → draft na hora. `guards` = "Doesn't Have Tag: pre-snapshot" em todo gatilho de etapa/tag/resposta do V9
+  (menos o Inbound SMS, que avisa todo texto). `calls_forms` = ligações do V9 só na linha principal + if/else
+  "não é spam/dnd/existing customer" (cliente liga para pagar); Website Form Fill nos 4 forms do site. `publish` = 14 V9
+  (Answered/Missed Call, Website Form Fill, Contact Created → Debbie, Inbound SMS → Debbie, Quote Sent, No Response, No-Show,
+  Lost, Recurring, Spam, SMS Reply, Reactivation ×2); ficam draft: Won Stage (boas-vindas por tag deles, Ed 11/11), Missed
+  New Lead SMS (texto nativo da Debbie ligado), Review Request/Responses (falta NPS form + Google na reputação), appointments.
+  Avisos de form deles → draft (o V9 faz card + aviso + tarefa). `cards` = 108 cards para Pool Leads: 6 ganhos do anúncio
+  (Matos, Oles, Brice, Musser, Douglas Bell, Dana Moser) → Won Weekly; 21 clientes (reunião + PoolBrain) → Recurring;
+  4 → Lost; Stephen Boucher → In Communication; 76 → New Lead (equipe liga). 0 mensagem para contato depois (conferido).
+- PoolBrain: relatório de clientes (1.340: 537 ativos, 403 inativos, 400 leads) baixado do e-mail; 11 cards em "Lead"
+  eram clientes (8 ativos, 3 inativos) → classificados.
+- Guia do CRM (`crm-guide?c=pool-c81cf184`, `CRM_GUIDE_OWNER=Debbie`, opção nova no `pp_crm_guide.py`) mandado ao Justin
+  (cc Ed, Frank). Ficam no ar fluxos próprios deles que não são de lead: boas-vindas por tag, cartão/ACH, link do form de
+  orçamento, media release, 7x7, Epperson, TAG Orchestrator, avisos de webchat/chat widget.
