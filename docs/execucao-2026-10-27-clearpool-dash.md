@@ -1179,3 +1179,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   13/11 20:54 conferido e apagado; iframe enviado), 86bd02rg2 (YardSpring), 86bd331nw (duplicada da 86bd349d8), 86bcz0y87
   (Bonneville número + A2P). Prazos: 86bd2t1mq/86bd1b3b5/86bcz86jw → 16/11 (Pedro); 86bcz0y7b/86bd1xdbu → 17/11 (Frank);
   86bcyw37n → 19/11.
+
+# 16/11 — Cleverblu: PDF de mudanças do site (Nomar, Basecamp) — parte de GHL
+- Site novo (cleverblu.kinsta.cloud, noindex) usa 3 forms GHL ("Cleverblu - Home Page / Service Page / Hero Quick Quote
+  Form") que NÃO estavam no gatilho do "Website Form Fill To Pipeline" → `pp_forms --only Cleverblu --apply` (6 forms no gatilho).
+- PDF: "contact/quote forms: email Cleverblu directly; must NOT connect to Skimmer" → `pp_lead_email` ganhou a conta
+  Cleverblu (e-mail para info@cleverblu.com após o SMS, com tipo de imóvel/serviço/notas); teste na Test Snapshot chegou, apply ✓.
+- Links Privacy/Terms dos 3 forms (example.com) → cleverblu.com/policy/… (backup em backup/cleverblu-llc/).
+- Falta: envio real de 2 forms (Pedro, "Live tests with Pedro") e resposta ao Nomar ([Aprovar] enviado). ClickUp `86bd3wqtb`.

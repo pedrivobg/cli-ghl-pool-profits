@@ -89,6 +89,15 @@ ACCOUNTS = {
         "feed_forms": ["GOOGLE ADS - FORM"],
     },
 }
+ACCOUNTS["Cleverblu"] = {  # Nomar, 16/11 (website changes PDF): "contact/quote forms: email Cleverblu directly"
+    "to": ["info@cleverblu.com"],
+    "flows": {
+        "Website Form Fill To Pipeline": (
+            "🚨 New website lead: {{contact.name}}", "🚨 NEW LEAD FROM YOUR WEBSITE 🚨",
+            BV_DETAILS + ["Property type: {{contact.property_type}}", "Needs: {{contact.what_do_you_need}}",
+                          "About the pool: {{contact.tell_us_about_your_pool}}", "Form: {{contact.source}}"]),
+    },
+}
 PASSION_LINE = "+16292476255"  # "Website & GBP"
 
 
