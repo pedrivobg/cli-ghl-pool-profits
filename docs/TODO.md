@@ -87,13 +87,14 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
   Bluewater; `86bd2t1mq`); OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
 - Frank (12/11 noite): se o Brett apaga cards de lead da Southern (2 leads do Google Ads sem card, `86bd2t1kt`, 17/11).
   Padrão Skimmer para clientes mandado a ele (Enterprise = API; outros = Zapier só Skimmer→GHL; form do GHL fica no site).
-- Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service", George (Jorge?) como 2º toque 25 s/20 s
+- Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service", George como 2º toque 25 s/20 s (Frank pediu no Basecamp 16/11)
   (nome/e-mail/celular), página de privacidade, lista de clientes; Skimmer add-on → aí crio o token (Private Integrations,
   tela) e mando ao Felipe com o Location ID. Review Request da Poolheads fica draft (reviews no Skimmer). Calendário Leak
   Detection pronto e inativo: ligar na virada.
 - Frank: dono para o alerta de SMS na Stay Fresh e na Blue Lagoon (as outras 8 sem dono estão inativas →
   `config/inactive_accounts.json`, puladas pelo `pp_sms_alert --all`); textos dos 8 posts de GBP da BluVantage (`86bd1xdbu`, 17/11);
   xlsx da Bonneville (`86bcz0y7b`, 17/11).
+- Frank (16/11): Pool Smart OC ainda é cliente? (fora da lista de inativos até ele confirmar; Ads precisa reconectar, `86bd1zk8p`).
 - Val: Google Ads da Bonneville (conversão das 2 LPs novas). LPs/obrigado da Bonneville no ar (Atif 13/11), forms certos e
   redirect conferidos.
 - Atif: páginas/obrigado de Poolheads, Pool Shack, YardSpring, BluVantage; tirar o número antigo da página Weekly da NorTex.

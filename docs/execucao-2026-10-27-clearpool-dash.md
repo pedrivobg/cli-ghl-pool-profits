@@ -1273,3 +1273,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   _index.json`); os outros 9 já estavam em draft quando rodei. Releitura: 137/137 em draft.
 - Efeito: nada dispara na WC (SMS de ligação perdida, cards de ligação/form, avisos, conversões do Google Ads, boas-vindas,
   cartão/ACH). Ligações continuam tocando no app (sem IVR). Republicar = PUT com o status do backup.
+## 16/11 (~20h UTC) — inbox: Poolheads item #3, Pool Smart OC
+- **Poolheads** (Frank, e-mail "[CRM Guide]"): item #3 explicado — ligação já toca o Felipe; faltam lista do Skimmer (1.535
+  contatos vieram da conta antiga com `old account import`, só 40 com `existing customer`), 1º login (nenhum ainda) + app
+  LeadConnector, salvar (936) 314-9255. George: Frank pediu ao Felipe no Basecamp (10515128007) → aí crio o usuário e o
+  Sequential Call Routing 25 s/20 s (hoje em draft).
+- **Pool Smart OC**: Frank não tem certeza se ainda é cliente → tirada de `config/inactive_accounts.json` até ele confirmar
+  (resposta no thread da 86bd1zk8p).
