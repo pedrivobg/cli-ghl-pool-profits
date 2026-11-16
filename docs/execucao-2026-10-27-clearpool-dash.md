@@ -1179,3 +1179,18 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   13/11 20:54 conferido e apagado; iframe enviado), 86bd02rg2 (YardSpring), 86bd331nw (duplicada da 86bd349d8), 86bcz0y87
   (Bonneville número + A2P). Prazos: 86bd2t1mq/86bd1b3b5/86bcz86jw → 16/11 (Pedro); 86bcz0y7b/86bd1xdbu → 17/11 (Frank);
   86bcyw37n → 19/11.
+
+## 16/11 (~14h40 UTC) — inbox: NorTex callback, Poolheads/Bonneville/Cleverblu testes reais
+- **NorTex — texto de missed call depois de ligação atendida** (Fareed via Frank; Pedro aprovou com ajuste: o 1º SMS sai na
+  hora, só os follow-ups conferem o retorno): `scripts/nx_missed_callback.py`. "Missed New Lead - Initial SMS Follow-up":
+  if/else "Still a missed call?" no timeout de 30 min, antes do SMS 2 (sem tag `missed call` = retorno atendido → para).
+  "IVR SPAM Detection", ramo atendido (dialCallStatus = completed): tira `missed call`/`follow-up` + remove_from_workflow
+  (SMS flow + No Response). Passos ivr_* iguais (comparado), publicado, gatilho ativo, pp_call_check NorTex 0 erro. Teste
+  em cópias ZZ (3/3) apagadas. NÃO feito: tirar `ivr pressed 1` no ramo não atendido (o Answered Incoming Call cairia em
+  "Hung up" e mandaria o SMS 1 de novo). Lex Mason e 214-690-2648: tags presas tiradas e removidos das 2 sequências.
+  Falta: 1 ligação real do Pedro (Live tests 86bd1b3b5); Frank avisado no DM.
+- **Poolheads**: submissões reais do Pedro conferidas e apagadas. Form "PoolHeads Home Quote" ganhou o campo opcional
+  "Tell us about your pool"; "PoolHeads Service Quote v2": o CSS da marca (`input {background:#fff !important}`) deixava o
+  checkbox marcado branco → checkbox/radio fora da regra + azul #155eef (conferido no Chromium). Christopher avisado.
+- **Bonneville** (2 LPs) e **Cleverblu** (Home + Service): submissões reais conferidas (card, tags, tarefas/SMS) e apagadas.
+  Comentário aprovado da Cleverblu postado no .docx final do Nomar (o PDF foi para a lixeira).
