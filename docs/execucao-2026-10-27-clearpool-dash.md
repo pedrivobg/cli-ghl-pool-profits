@@ -1179,3 +1179,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   13/11 20:54 conferido e apagado; iframe enviado), 86bd02rg2 (YardSpring), 86bd331nw (duplicada da 86bd349d8), 86bcz0y87
   (Bonneville número + A2P). Prazos: 86bd2t1mq/86bd1b3b5/86bcz86jw → 16/11 (Pedro); 86bcz0y7b/86bd1xdbu → 17/11 (Frank);
   86bcyw37n → 19/11.
+
+## 16/11 (~14h20 UTC) — inbox: Pedro aprovou o número do Google Ads da Bonneville
+- Comprado +1 (385) 503-7952 (Salt Lake City; o exemplo 365-2440 já não estava disponível), nome "Google Ads", encaminha
+  para o Justin (+18019158582), igual à linha principal. Backup do twilio-account antes em
+  `backup/bonneville-pool-maintenance/twilio-before-gads.json`; relido ao vivo; `pp_call_check --quiet`: Bonneville 0 ERRO
+  (único ERRO da frota = Dream Pools IVR em draft, já conhecido).
+- Atif avisado na 86bcwer98 para trocar o número nas 2 LPs + obrigado; ligação de teste entrou no Live tests (86bd1b3b5);
+  86bd2ha9z fechada. Item 0 do TODO removido.

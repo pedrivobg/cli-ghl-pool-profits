@@ -29,9 +29,6 @@ combinar antes.
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
 ## Você faz
-0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
-   paga). Responder "aprovado" → compro um 385 (ex.: +1 385-365-2440), nome "Google Ads", encaminha para o Justin, passo ao
-   Atif para trocar nas LPs. ClickUp `86bd2ha9z`.
 1. **SMS de teste para a Sparkling** (e-mail "[Passo seu] Teste do alerta de SMS recebido", 13/11): mandar "teste" do seu celular para +1 469-617-2308 e responder "feito" → eu rodo `pp_sms_alert.py testcheck` e `apply --all`. Refresh do snapshot (master ganhou "Inbound SMS - Notify Owner"). ClickUp `86bd349d8`.
 (12/11: tokens trocados, Refresh do snapshot feito 11/11 e 12/11, Call Recording Poolheads, form da LWR no Lead Ads,
 prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: conferir que as variáveis de token funcionam.)
