@@ -140,6 +140,13 @@ def run(args) -> int:
             continue
         if args.template:
             user, why = None, "master do snapshot: sem usuários → aviso para todos os usuários da conta"
+        elif args.user:
+            user = next((u for u in a.users(loc) if args.user.lower() in (u.get("name") or "").lower()), None)
+            why = "escolhido pelo Ed" if user else f"usuário '{args.user}' não existe"
+            if not user or not user.get("phone"):
+                print(f"! {nm}: {why if not user else 'usuário sem telefone'} → pulei")
+                bad = 1
+                continue
         else:
             user, why = owner(a, loc)
             if not user:
@@ -202,6 +209,7 @@ def main() -> int:
     p.add_argument("--template", action="store_true", help="snapshot master: no owner user")
     p.add_argument("--draft-template", action="store_true")
     p.add_argument("--phone")
+    p.add_argument("--user", help="name of the user who gets the alert (Ed 16/11: Blue Lagoon = Destiny, Stay Fresh = Kris)")
     p.add_argument("--cleanup", action="store_true", help="testcheck: delete the test even if it did not fire")
     return run(p.parse_args())
 

@@ -53,5 +53,10 @@
     "key": "pools-33d2dc4b",
     "name": "Pools of Perfection",
     "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pools-33d2dc4b"
+  },
+  "passion-pool-care-lp": {
+    "key": "passion-9e71be6d",
+    "name": "Passion Pool Care LP",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=passion-9e71be6d"
   }
 }

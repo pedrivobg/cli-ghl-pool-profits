@@ -1230,3 +1230,22 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - **Bonneville LP Weekly** (Justin no Basecamp: "Weekly Pool/Hot Tub Service"): botão do form `MhkyjjhjdYJGElGbsMV4` →
   "REQUEST MY WEEKLY POOL/HOT TUB SERVICE QUOTE" (backup, redirect conferido). Texto da página → Atif; anúncios e resposta ao
   Justin → Val (comentário na 86bcwer98).
+
+## 16/11 (~17h UTC) — call com Ed/Frank (transcrição colada pelo Pedro)
+- **Alerta de SMS** (Ed): Blue Lagoon → Destiny Taylor, Stay Fresh → Kris Fitzhugh ("Chris" na call). `pp_sms_alert.py --user`
+  (opção nova); os dois publicados e relidos.
+- **Stay Fresh, 11 dias sem resposta** (Ed: só essa conta): `scripts/pp_unanswered_nudge.py` (novo; workflow avulso sem gatilho,
+  SMS interno ao dono, volta para draft). Só 2 conversas esperando (Hemant Shetye 06/11, Robert Davis 10/11) → 2 SMS ao Kris,
+  `delivered` na conversa do celular dele.
+- **Quem não responde** (Ed): `scripts/pp_response_check.py` (novo, só leitura; textos com última mensagem do cliente e leads
+  que nunca saíram de New Lead, 7 dias; ligação fica de fora — com IVR toda ligação vira "completed"; `lastManualMessageDate`
+  conta automação, não serve). Lista curta mandada ao Ed no DM.
+- **Passion (Frank)**: o "IVR" que o Brad/Jonathan ouvem ao atender é o **incoming whisper** do GHL (ligado em Secondary e
+  Website & GBP; Adwords já sem) — a Passion não tem IVR, as 3 linhas encaminham direto para +1 615-624-7624. Desligado nas 2
+  (`POST backend /phone-system/twilio-accounts?locationId {number, forwardingNumber, incomingWhisper: false}`, backup antes;
+  `pp_call_check` 0 erro). "Só um texto": "SMS 2 - Reminder" (30 min sem resposta) tirado do "Missed New Lead - Initial SMS
+  Follow-up" (backup; teste ZZ de 33 min). Texto novo do SMS 1: espera o Frank. Guia do CRM publicado
+  (`crm-guide?c=passion-9e71be6d`).
+- Guia do CRM (todas as contas): texto do Review Request estava velho ("4 ou 5 recebe o link", "7 dias sem nota → link") →
+  `config/crm_guide.json`: só 5 recebe, 1–4 feedback + aviso, sem nota sem link; "Inbound SMS - Notify Owner" descrito;
+  `pp_crm_guide.py`: tarefa do A2P aprovado tinha 1 passo (validação pede 2–5) → 2º passo.

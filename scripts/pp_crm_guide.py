@@ -340,7 +340,8 @@ class CrmGuide:
         approved = a2p.get("campaign") == "VERIFIED"
         add("t-a2p", "Phone", "Texting approved by the phone carriers" if approved else "Check your business details for texting approval",
             "Phone carriers only approve business texting when these match your IRS records exactly.",
-            ([f"Approved: {legal} is registered with the carriers, your texts go out normally."] if approved else
+            ([f"Approved: {legal} is registered with the carriers, your texts go out normally.",
+              "Nothing to do here. If your legal name, EIN or address ever changes, tell me and I'll update it."] if approved else
              [f"Check: {legal or '[legal name missing]'} · EIN ending in {ein[-4:] if ein else '[missing]'} · {addr or '[address missing]'}.",
               f"Contact person: {(rep.get('firstName', '') + ' ' + rep.get('lastName', '')).strip() or '[missing]'}"
               f"{', ' + rep['email'] if rep.get('email') else ''}.",
