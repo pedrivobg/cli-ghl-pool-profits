@@ -1220,3 +1220,13 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (Review Request em draft sem link do Google, integrações sem conexão, Poolheads/Sunwave em draft). Templates intocados.
   Respondidos: Ed (2), Frank (NorTex, lembrete, Poolheads conta antiga), Val/Frank (dashboards), 1 lista única ao Frank com 8
   pendências. Ledger: 7 linhas.
+
+## 16/11 (~17h20 UTC) — inbox: forms do site (Christopher) + LP Weekly da Bonneville
+- **West Coast Pool Care** (`63COocPIEK6XLvRikVK9`): `scripts/wc_site_form.py` copiou o "Main Website Form" da Bonneville
+  (aprovado 13/11) → form `1GLzvZb1i4SIPDLzgyER` (campos novos Service Requested / Pool Details da conta, obrigado com
+  (323) 695-6810, consentimento com o nome da conta); `pp_forms --apply` → gatilho do Website Form Fill (publicado, ativo)
+  com os 4 forms de lead. Widget renderiza (Chromium). Iframe enviado ao Christopher em e-mail próprio (cc Frank); o site
+  hoje usa um form mailto. Bonneville: iframe reenviado limpo (o site ainda usa /api/inquiries). Teste real: quando ele embutir.
+- **Bonneville LP Weekly** (Justin no Basecamp: "Weekly Pool/Hot Tub Service"): botão do form `MhkyjjhjdYJGElGbsMV4` →
+  "REQUEST MY WEEKLY POOL/HOT TUB SERVICE QUOTE" (backup, redirect conferido). Texto da página → Atif; anúncios e resposta ao
+  Justin → Val (comentário na 86bcwer98).
