@@ -1265,3 +1265,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   link), Frank avisado; post da Sunwave ao David já visível ao cliente → "GHL" trocado por "Pool Profits CRM"; ClickUp:
   prazos/comentários (Pool Duck, Bonneville, Pool Keepers), monitor de leads e dashboard interno em andamento; e-mail
   "[Passo seu] O que é seu – 16/11 tarde" (os 3 anteriores marcados como lidos).
+
+## 16/11 (~20h45 UTC) — Pool Duck Wesley Chapel: tudo em draft (Pedro, na reunião com Ed e o dono)
+- Pedido do Pedro: "coloca todos os wf da conta dele em draft para organizarmos sem triggar nada". 15 publicados naquele
+  momento → draft (backup completo de cada um + gatilhos em `backup/poolduck-wesley-chapel/all-draft-20261116-204442/`,
+  lista em `published-before.json`). Às 20h UTC o dump tinha 24 publicados (`dump/poolduck/pool-duck-wesley-chapel/workflows/
+  _index.json`); os outros 9 já estavam em draft quando rodei. Releitura: 137/137 em draft.
+- Efeito: nada dispara na WC (SMS de ligação perdida, cards de ligação/form, avisos, conversões do Google Ads, boas-vindas,
+  cartão/ACH). Ligações continuam tocando no app (sem IVR). Republicar = PUT com o status do backup.
