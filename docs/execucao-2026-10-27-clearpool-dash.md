@@ -1309,3 +1309,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Guia do CRM (`crm-guide?c=pool-c81cf184`, `CRM_GUIDE_OWNER=Debbie`, opção nova no `pp_crm_guide.py`) mandado ao Justin
   (cc Ed, Frank). Ficam no ar fluxos próprios deles que não são de lead: boas-vindas por tag, cartão/ACH, link do form de
   orçamento, media release, 7x7, Epperson, TAG Orchestrator, avisos de webchat/chat widget.
+- 16/11 ~22h45 UTC — revisão da noite feita antes (pedido do Pedro; `nightly-tasks-2026-11-16` no ledger para o item das 21h
+  não repetir): Pool Keepers — Pedro mandou Location ID `hh6X9…` (The Pool Keepers da agência Pool Profits, Nathan é o usuário)
+  + chave privada → chave por e-mail direto ao Nathan, resposta aprovada no Basecamp; perguntado ao Pedro se a conta certa
+  não é a da BurchTech (KjLd…, a viva). ClickUp: Skimmer em andamento, prazos Southern 18/11, Pool Duck 19/11. NorTex: resposta
+  ao Frank (o "aperte 1" toca o app LeadConnector = internet; proposta tocar o celular do Fareed 20 s, espera OK). E-mail
+  "[Passo seu] O que é seu – 16/11 (revisão da noite)"; anteriores e promoções marcados como lidos.

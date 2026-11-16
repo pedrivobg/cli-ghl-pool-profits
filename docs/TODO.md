@@ -82,6 +82,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
 ## Esperando outros
+- Frank: OK para o "aperte 1" da NorTex tocar o celular do Fareed direto (20 s) em vez do app; e-mail/celular do Brad
+  (Passion) para os avisos. Pedro: qual Pool Keepers é a certa para o Skimmer (hh6X9 Pool Profits × KjLd BurchTech).
 - Pedro (13/11): Pools of Perfection criada pela API; resposta ao Nathan (Skimmer nativo) e reunião de segunda aprovadas →
   extensão (prompt 2) posta; Application Passwords novas (Pool Shack,
   Bluewater; `86bd2t1mq`); OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
