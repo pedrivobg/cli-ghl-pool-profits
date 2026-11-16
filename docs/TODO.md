@@ -42,6 +42,8 @@ B. **West Coast A2P recusado** (16/11): nome legal ≠ EIN 37-2238084. Pedi ao F
    seu OK quando o nome chegar. ClickUp `86bd3m8c9`.
 C. **Pool Duck fase 2** (LWR/Odessa, plano de 12–13/11, `86bcxzjfa`): não foi feita. Reunião com o dono hoje 16/11 14h15 CST;
    depois dela decidir se rodo (cards para Pool Leads etc., nada dispara para contato antigo).
+E. **Bonneville xlsx**: está no Basecamp ("Customers (4).xlsx", thread Client List), arquivo do Basecamp/chat não baixa →
+   pedido ao Pedro (e-mail 16/11 tarde) para mandar como anexo de e-mail; aí importo (`pp_client_list_import.py`). `86bcz0y7b`.
 D. **Poolheads — conta antiga do HighLevel** (Frank 02/11, nunca respondido): entrar na conta antiga para migrar os templates
    de e-mail; o código chega em info@poolheadscare.com → avisar o Frank na hora (respondido no `86bcwet1g` 16/11).
 0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
@@ -80,9 +82,6 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
 ## Esperando outros
-- Frank (call 16/11): texto novo do 1º SMS de ligação perdida da Passion ("Hey, this is Brad with Passion Pool Care. What kind
-  of service are you looking for?" — ele manda a versão final) → trocar no template "New Lead - SMS 1 - Initial Outreach" e
-  republicar o guia (`passion-pool-care-lp`). Whisper e 2º SMS já desligados (16/11, testado).
 - Pedro (13/11): Pools of Perfection criada pela API; resposta ao Nathan (Skimmer nativo) e reunião de segunda aprovadas →
   extensão (prompt 2) posta; Application Passwords novas (Pool Shack,
   Bluewater; `86bd2t1mq`); OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.

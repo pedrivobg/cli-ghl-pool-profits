@@ -1261,3 +1261,7 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   e o 2º SMS (desligado) removido (códigos mantidos, M2 some). **Não publicado**: precisa de `CRM_GUIDE_ADMIN_KEY` no ambiente.
 - **Sunwave**: pergunta ao David no Basecamp (No Response Follow-up em draft, 1/3/7 dias) — falta deixar visível ao cliente.
 - Puddle Jumper / Smart Chem: Review Request draft até ter GBP (prazo 23/11).
+- 16/11 tarde: guia da Passion republicado daqui (a rotina não tem `CRM_GUIDE_ADMIN_KEY`; texto novo do Brad conferido no
+  link), Frank avisado; post da Sunwave ao David já visível ao cliente → "GHL" trocado por "Pool Profits CRM"; ClickUp:
+  prazos/comentários (Pool Duck, Bonneville, Pool Keepers), monitor de leads e dashboard interno em andamento; e-mail
+  "[Passo seu] O que é seu – 16/11 tarde" (os 3 anteriores marcados como lidos).
