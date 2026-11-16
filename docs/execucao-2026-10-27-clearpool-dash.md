@@ -1179,3 +1179,19 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   13/11 20:54 conferido e apagado; iframe enviado), 86bd02rg2 (YardSpring), 86bd331nw (duplicada da 86bd349d8), 86bcz0y87
   (Bonneville número + A2P). Prazos: 86bd2t1mq/86bd1b3b5/86bcz86jw → 16/11 (Pedro); 86bcz0y7b/86bd1xdbu → 17/11 (Frank);
   86bcyw37n → 19/11.
+
+## 16/11 (~12h UTC) — inbox (Val: Bonneville; Christopher: Poolheads) + rodada diária
+- **Bonneville LPs** (Val, 86bcwer98): os 2 forms (Weekly `MhkyjjhjdYJGElGbsMV4`, Repair `KehOjHSs73DlVQq5ucMJ`) agora só Full
+  Name, Phone, Email (opcional), Street Address (`address`, obrigatório), ZIP + consentimento; tiradas as perguntas extras (nenhum
+  workflow usava esses campos). Backup em `backup/bonneville-pool-maintenance/`, gravado com `keep_redirect` (redirect mantido),
+  páginas ao vivo conferidas no Chromium. Val respondida. Envio real → [Passo seu] ao Pedro.
+- Basecamp da Bonneville (Val → Justin, LPs para aprovação): nada para mim.
+- **Poolheads site** (Christopher, e-mail): forms do GHL estão no site (home "PoolHeads Home Quote" `E9ZMLZ7YU229zQzjZv88`;
+  contact + serviços "PoolHeads Service Quote v2" `00UuYWT5vZIqwIheNBym`), mas o "Website Form Fill To Pipeline" (publicado)
+  só ouvia os 3 forms antigos → os 2 entraram no gatilho (backup `backup/poolheads/`; relido: ativo, 5 forms). Os 2 testes
+  dele de 15/11 ficaram sem card. Resposta ao Christopher = [Aprovar] ao Pedro (web dev de fora); envio real = [Passo seu]
+  (fluxo avisa o Felipe por SMS). Tarefa 86bd3vfkm.
+- Rodada diária: West Coast A2P enviado (AI review 23/23) + encaminhamento +15626356808 → +13236956810 + custom value; WP Pools
+  de novo `NUMBERS_CARD_VERIFICATION_PENDING`. Puddle Jumper estava sem guia do CRM: `pp_crm_guide` + publicado
+  (`crm-guide?c=puddle-78fdfeaf`, abre 200 sem erro) + e-mail ao Eric (billing@, cc Frank) + DM ao Frank + comentário na
+  86bcz85nw. pp_ready West Coast: só o ERRO falso do link de review (sem Google conectado).

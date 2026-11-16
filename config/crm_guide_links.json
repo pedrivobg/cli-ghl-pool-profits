@@ -53,5 +53,10 @@
     "key": "pools-33d2dc4b",
     "name": "Pools of Perfection",
     "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pools-33d2dc4b"
+  },
+  "puddle-jumper-pool-service-llc": {
+    "key": "puddle-78fdfeaf",
+    "name": "Puddle Jumper Pool Service",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=puddle-78fdfeaf"
   }
 }
