@@ -159,14 +159,7 @@
           "code": "M1",
           "channel": "sms",
           "when": "Right after a missed call",
-          "text": "Hi [First name]! This is John from Passion Pool Care LP. We're sorry we missed your call. We will be calling you back shortly. Is this the best number to call you back at? 🏊",
-          "editable": true
-        },
-        {
-          "code": "M2",
-          "channel": "sms",
-          "when": "30 minutes after a missed call, if they haven't replied",
-          "text": "Just wanted to make sure you got my last message, [First name]! We'd love to help keep your pool clean. Text or call this line back, please.",
+          "text": "Hey, this is Brad with Passion Pool Care. What kind of service are you looking for?",
           "editable": true
         }
       ]
@@ -177,21 +170,21 @@
       "trigger_plain": "You move the card to “No Response - Follow Up” (you called and couldn't reach them)",
       "messages": [
         {
-          "code": "M3",
+          "code": "M2",
           "channel": "sms",
           "when": "1 day after you move the card to “No Response - Follow Up”",
           "text": "Hey [First name], still thinking about getting your pool cleaned? We'd love to help! Give us a call at (623) 764-2078 or text us back.",
           "editable": true
         },
         {
-          "code": "M4",
+          "code": "M3",
           "channel": "sms",
           "when": "3 days after you move the card to “No Response - Follow Up”, if they haven't replied",
           "text": "Hi [First name]! Just checking in from Passion Pool Care LP. Spots are filling up fast this week for initial pool maintenance estimates. Please call or text this number to reserve your time. 🏊",
           "editable": true
         },
         {
-          "code": "M5",
+          "code": "M4",
           "channel": "sms",
           "when": "7 days after you move the card to “No Response - Follow Up”, if they haven't replied",
           "text": "Hi [First name]! We understand now might not be the best time, but if you ever need pool cleaning or maintenance, we're here - Passion Pool Care LP, +1 629-302-2044",
@@ -205,14 +198,14 @@
       "trigger_plain": "You move the card to “Quote Sent”",
       "messages": [
         {
-          "code": "M6",
+          "code": "M5",
           "channel": "sms",
           "when": "1 day after you move the card to “Quote Sent”",
           "text": "Hi [First name]! Just following up on the quote we sent you from Passion Pool Care LP. Do you have any questions? We'd love to get the opportunity to work on your pool! 🏊",
           "editable": true
         },
         {
-          "code": "M7",
+          "code": "M6",
           "channel": "sms",
           "when": "3 days after you move the card to “Quote Sent”, if they haven't replied",
           "text": "Hi [First name], still deciding? Your quote from Passion Pool Care LP is ready whenever you are. Just reply here or call us at +1 629-302-2044 if you have any questions!",
@@ -226,14 +219,14 @@
       "trigger_plain": "You move the card to “No Show” (your tech went out and nobody was home)",
       "messages": [
         {
-          "code": "M8",
+          "code": "M7",
           "channel": "sms",
           "when": "Right after you move the card to “No Show”",
           "text": "Hi [First name], we missed you today! We had a pool service appointment scheduled. Would you like to reschedule? Reply here or call us at +1 629-302-2044 🏊",
           "editable": true
         },
         {
-          "code": "M9",
+          "code": "M8",
           "channel": "sms",
           "when": "1 day after you move the card to “No Show”, if they haven't replied",
           "text": "Hey [First name], just wanted to follow up on your missed appointment. We still have availability this week!",
@@ -247,7 +240,7 @@
       "trigger_plain": "You move the card to one of the “Won” columns",
       "messages": [
         {
-          "code": "M10",
+          "code": "M9",
           "channel": "email",
           "when": "Right after you move the card to “Won - Weekly Pool Service”",
           "subject": "Welcome to Passion Pool Care LP!",
@@ -255,7 +248,7 @@
           "editable": true
         },
         {
-          "code": "M11",
+          "code": "M10",
           "channel": "sms",
           "when": "2 minutes after you move the card to “Won - Weekly Pool Service” (weekdays 9am–5pm)",
           "text": "Hi [First name]! Welcome to Passion Pool Care LP! 🏊 We're excited to have you on board. Your first service will be scheduled shortly. Questions? Call us at +1 629-302-2044",
@@ -269,42 +262,42 @@
       "trigger_plain": "Some time after a job is won, and when someone leaves you a Google review",
       "messages": [
         {
-          "code": "M12",
+          "code": "M11",
           "channel": "sms",
           "when": "44 days after you move the card to “Won”, for weekly customers (9am–5pm); or 22 days after you move the card to “Won”, for repair / install jobs (9am–5pm); or 59 days after you move the card to “Won”, for construction / remodeling jobs (9am–5pm)",
           "text": "Hi [First name], thanks again for choosing Passion Pool Care LP! How did we do? Please take 10 seconds to rate your experience here: your rating page We really appreciate your feedback.",
           "editable": true
         },
         {
-          "code": "M13",
+          "code": "M12",
           "channel": "sms",
           "when": "Right after they answer the rating text, if they rate you 1–4",
           "text": "Hi [First name], thank you for rating Passion Pool Care LP. We're sorry we didn't earn 5 stars this time. What could we have done better? Just reply to this text. The owner reads every answer and will reach out to make it right.",
           "editable": true
         },
         {
-          "code": "M14",
+          "code": "M13",
           "channel": "email",
           "when": "Right after they rate you 5 in the rating text (no rating = no review link)",
           "text": "A short email from Google's review tool asking them to review Passion Pool Care LP, with a link to your Google review page.",
           "editable": false
         },
         {
-          "code": "M15",
+          "code": "M14",
           "channel": "sms",
           "when": "Right after they rate you 5 in the rating text (no rating = no review link)",
           "text": "A short text from Google's review tool asking them to review Passion Pool Care LP, with a link to your Google review page.",
           "editable": false
         },
         {
-          "code": "M16",
+          "code": "M15",
           "channel": "sms",
           "when": "Right after they leave you a 4 or 5-star Google review",
           "text": "Hi [First name]! Thank you so much for your kind review! 🌟 We truly appreciate your support. Passion Pool Care LP",
           "editable": true
         },
         {
-          "code": "M17",
+          "code": "M16",
           "channel": "sms",
           "when": "Right after they leave you a Google review of 3 stars or less",
           "text": "Hi [First name], we're sorry to hear about your experience with Passion Pool Care LP. We'd love to make it right. Can we give you a call? +1 629-302-2044",
@@ -318,7 +311,7 @@
       "trigger_plain": "The card moves to “Lost” (by you, or after the follow-ups get no reply)",
       "messages": [
         {
-          "code": "M18",
+          "code": "M17",
           "channel": "email",
           "when": "2 days after the card moves to “Lost” (weekdays 9am–5pm)",
           "subject": "Mind sharing some quick feedback, [First name]?",
@@ -326,7 +319,7 @@
           "editable": true
         },
         {
-          "code": "M19",
+          "code": "M18",
           "channel": "email",
           "when": "92 days after the card moves to “Lost” (weekdays 9am–5pm)",
           "subject": "How's your pool service going, [First name]?",
@@ -341,28 +334,28 @@
       "trigger_plain": "You ask me to run a campaign to past customers or old leads",
       "messages": [
         {
-          "code": "M20",
+          "code": "M19",
           "channel": "sms",
           "when": "Right after you start a win-back campaign",
           "text": "Hi [First name]! It's been a while since we've had the pleasure of servicing your pool. We'd love to have you back at Passion Pool Care LP! Reply here or call +1 629-302-2044 🏊",
           "editable": true
         },
         {
-          "code": "M21",
+          "code": "M20",
           "channel": "sms",
           "when": "3 days after you start a win-back campaign",
           "text": "Hey [First name], just checking in! We're running some great deals on pool service this month. Interested in getting your pool back in top shape? Just reply here or call us at (623) 764-2078.",
           "editable": true
         },
         {
-          "code": "M22",
+          "code": "M21",
           "channel": "sms",
           "when": "7 days after you start a win-back campaign",
           "text": "Last message from us, [First name]! If you ever need pool service again, we're here. Passion Pool Care LP. Call us at +1 629-302-2044",
           "editable": true
         },
         {
-          "code": "M23",
+          "code": "M22",
           "channel": "email",
           "when": "Right after you start a win-back campaign",
           "subject": "We miss you, [First name]! Here's a free inspection",
@@ -370,7 +363,7 @@
           "editable": true
         },
         {
-          "code": "M24",
+          "code": "M23",
           "channel": "email",
           "when": "3 days after you start a win-back campaign",
           "subject": "How's your pool been, [First name]?",
@@ -378,7 +371,7 @@
           "editable": true
         },
         {
-          "code": "M25",
+          "code": "M24",
           "channel": "email",
           "when": "7 days after you start a win-back campaign",
           "subject": "One last note from Passion Pool Care LP",
@@ -524,7 +517,7 @@
     {
       "id": "t-messages",
       "area": "Messages",
-      "title": "Read every message (M1–M25) and mark it OK or change it",
+      "title": "Read every message (M1–M24) and mark it OK or change it",
       "why": "These are the exact words your customers will get, with your details filled in.",
       "steps": [
         "Go through each message on this page.",
@@ -581,17 +574,17 @@
     },
     {
       "id": "d-review-timing",
-      "question": "Is the rating text (M12) timed right for your customers?",
+      "question": "Is the rating text (M11) timed right for your customers?",
       "suggestion": "Keep it as it is: 44 days after you move the card to “Won”, for weekly customers (9am–5pm); or 22 days after you move the card to “Won”, for repair / install jobs (9am–5pm); or 59 days after you move the card to “Won”, for construction / remodeling jobs (9am–5pm). Tell me if your jobs need more or less time."
     },
     {
       "id": "d-weekend",
-      "question": "Is it OK if follow-up texts (M3–M5, M6–M7) go out on weekends?",
+      "question": "Is it OK if follow-up texts (M2–M4, M5–M6) go out on weekends?",
       "suggestion": "Yes, they're short check-ins. If you'd rather not, I'll hold them to Mon–Fri, 9am–5pm."
     },
     {
       "id": "d-welcome",
-      "question": "Weekly customers get a welcome email and text (M10–M11). Do you want a welcome message for repair and construction jobs too?",
+      "question": "Weekly customers get a welcome email and text (M9–M10). Do you want a welcome message for repair and construction jobs too?",
       "suggestion": "No for now. Their rating request already thanks them."
     }
   ]

@@ -1249,3 +1249,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Guia do CRM (todas as contas): texto do Review Request estava velho ("4 ou 5 recebe o link", "7 dias sem nota → link") →
   `config/crm_guide.json`: só 5 recebe, 1–4 feedback + aviso, sem nota sem link; "Inbound SMS - Notify Owner" descrito;
   `pp_crm_guide.py`: tarefa do A2P aprovado tinha 1 passo (validação pede 2–5) → 2º passo.
+
+## 16/11 — Inbox 18h UTC: Passion (Frank DM)
+- Nome errado: saudação da caixa postal do "Sequential Call Routing" (draft, gatilho IVR inativo) era da BluVantage (MP3 +
+  texto) → `say` com "Passion Pool Care" (backup em `backup/passion-pool-care-lp/`; relido, segue draft). Sem IVR nas linhas.
+- Único SMS de ligação perdida: template "New Lead - SMS 1 - Initial Outreach" = "Hey, this is Brad with Passion Pool Care.
+  What kind of service are you looking for?" (backup; relido; só o "Missed New Lead - Initial SMS Follow-up" usa).
+- Guia do CRM: `pp_crm_guide.py` lê agora `config/crm_guide_overrides.json` (texto próprio / passo tirado por cliente) →
+  Passion com M1 novo e sem o SMS 2. Publicar ficou com o Pedro (`CRM_GUIDE_ADMIN_KEY` fora do ambiente; e-mail [Passo seu]).
+- Perguntado ao Frank: Owner First Name = John e nome "Passion Pool Care LP" nas outras mensagens → trocar para Brad / Passion Pool Care?

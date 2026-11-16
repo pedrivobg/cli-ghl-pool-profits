@@ -32,6 +32,7 @@ from pp_snapshot_guide import lines
 
 CFG = ROOT / "config" / "crm_guide.json"
 OUT = ROOT / "site" / "crm-guide" / "data"
+OVR = ROOT / "config" / "crm_guide_overrides.json"  # {slug: {text: {"auto/step": text}, drop: ["auto/step"]}}
 ICONS = {"phone", "form", "chat", "clock", "quote", "calendar", "trophy", "star", "refresh"}
 AREAS = {"Phone", "Google", "Website", "Team", "Messages", "Billing", "Other"}
 LEGAL_SUFFIX = re.compile(r",?\s+(inc\.?|llc|l\.l\.c\.|corp\.?|co\.|ltd\.?)$", re.I)
@@ -213,6 +214,10 @@ class CrmGuide:
             if m["channel"] == "email":
                 m["subject"] = c.get("subject", "")
             cards.append(m)
+        ov = json.loads(OVR.read_text()).get(self.slug, {}) if OVR.exists() else {}  # client's own texts
+        cards = [c for c in cards if f"{c['auto']}/{c['step']}" not in ov.get("drop", [])]
+        for c in cards:
+            c["text"] = ov.get("text", {}).get(f"{c['auto']}/{c['step']}", c["text"])
         for i, c in enumerate(cards, 1):
             c["code"] = f"M{i}"
         self.cards = cards

@@ -1,0 +1,7 @@
+{
+  "passion-pool-care-lp": {
+    "_why": "Frank 16/11: only one missed-call text, Brad's wording (template 'New Lead - SMS 1 - Initial Outreach'; SMS 2 removed from the workflow)",
+    "text": {"Missed New Lead - Initial SMS Follow-up/SMS 1": "Hey, this is Brad with Passion Pool Care. What kind of service are you looking for?"},
+    "drop": ["Missed New Lead - Initial SMS Follow-up/SMS 2"]
+  }
+}

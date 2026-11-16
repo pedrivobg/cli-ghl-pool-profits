@@ -80,9 +80,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
 ## Esperando outros
-- Frank (call 16/11): texto novo do 1º SMS de ligação perdida da Passion ("Hey, this is Brad with Passion Pool Care. What kind
-  of service are you looking for?" — ele manda a versão final) → trocar no template "New Lead - SMS 1 - Initial Outreach" e
-  republicar o guia (`passion-pool-care-lp`). Whisper e 2º SMS já desligados (16/11, testado).
+- Passion (Frank 16/11): SMS 1 novo e IVR (draft) corrigidos. **Pedro**: publicar o guia (`pp_crm_guide_publish.py
+  passion-pool-care-lp`, precisa da CRM_GUIDE_ADMIN_KEY) → avisar o Frank. Frank: trocar Owner First Name John → Brad?
 - Pedro (13/11): Pools of Perfection criada pela API; resposta ao Nathan (Skimmer nativo) e reunião de segunda aprovadas →
   extensão (prompt 2) posta; Application Passwords novas (Pool Shack,
   Bluewater; `86bd2t1mq`); OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
