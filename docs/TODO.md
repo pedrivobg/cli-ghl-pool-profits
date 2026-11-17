@@ -93,7 +93,14 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
+12. **17/11 noite**: [Aprovar] resposta ao Justin (Pool Duck WC, guia + Terms of Service); Refresh do snapshot (Service
+   Agreement Example); [Passo seu] ligação de teste nas 2 linhas novas da WP Pools.
+13. **Reign LPs** (`86bd2jrc6`): prometido à Val preparar o lado GHL enquanto o Atif desenha (form com ZIP das 8 áreas, tags
+   dos 3 serviços, origem Ads x GBP, etapas Spam/Not Qualified, avisos ao Stephen).
+
 ## Esperando outros
+- Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —
+  3ª linha (Facebook)?; Service Agreement Example na West Coast (ofereci colocar).
 - Frank: e-mail/celular do Brad
   (Passion) para os avisos. Pool Keepers/Skimmer (17/11): a certa é a KjLd (BurchTech); Pedro criou a chave, Location ID + chave novos mandados ao
   Nathan por e-mail e Basecamp pedindo dia/hora da call. Esperando o Nathan trocar no Skimmer → conferir a conexão na KjLd
