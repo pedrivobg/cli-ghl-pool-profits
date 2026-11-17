@@ -1315,3 +1315,16 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   não é a da BurchTech (KjLd…, a viva). ClickUp: Skimmer em andamento, prazos Southern 18/11, Pool Duck 19/11. NorTex: resposta
   ao Frank (o "aperte 1" toca o app LeadConnector = internet; proposta tocar o celular do Fareed 20 s, espera OK). E-mail
   "[Passo seu] O que é seu – 16/11 (revisão da noite)"; anteriores e promoções marcados como lidos.
+
+## 17/11 (~13h UTC) — inbox: Bonneville import, NorTex "aperte 1", regra nova do Pedro
+- **Bonneville** (Pedro aprovou): xlsx da tarefa `86bcz0y7b` → `pp_import_skimmer.py` → 88 contatos (74 ativos `active client`
+  + `existing customer`, 14 `past client`, todos `skimmer import`, 37 `blue wave referral`). Antes: nenhum gatilho publicado
+  usa essas tags (só "Contact Created -> add owner"). Upsert sem tags → tags → nota (rate/origem/outros endereços/telefones).
+  87 novos + o contato do Justin; 0 erro; amostra conferida (tags, nota, dono Justin, 0 conversa). Ids em
+  `backup/bonneville-pool-maintenance/skimmer-import-20261117-1309.json`. Frank avisado no DM; tarefa fechada.
+- **NorTex** (ligação de teste do Pedro 12:54 UTC na 469-238-2660): IVR chegou no "Connect call" (celular do Fareed, 20 s),
+  ligação completed 35 s, ramo atendido (sem caixa postal/`missed call`). Obs.: a tag `ivr pressed 1` não ficou no contato
+  (passo antes do Connect call) — conferir na próxima ligação real. Contato/card do teste apagados (backup
+  `backup/nortex-pools/test-call-20261117-contact.json`); `pp_call_check --only NorTex` 0 ERRO. Frank avisado no DM.
+- **Regra do Pedro** (17/11): não responder Basecamp/e-mail que não me marca ou não é CRM/GHL (Cleverblu/Nomar: rascunho não
+  postado; Poolheads/Felipe "Website Mockup" para o Frank: sem resposta). Gravada no TODO.

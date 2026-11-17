@@ -28,6 +28,8 @@ combinar antes.
   mudou → usar o dele. "SIM" para algo que pede texto novo (ex.: boas-vindas de reparo/obra) → usar o padrão já aprovado
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
+- **Só respondo quando me marcam ou é assunto do CRM/GHL** (Pedro 17/11): mensagem no Basecamp/e-mail do cliente para o
+  Frank/time sobre site, GBP, design etc., sem me marcar → não responder nem mandar "[Aprovar]"; só marcar como lido.
 - **Pergunta ao time sem resposta** (Pedro 16/11): passou 2 dias úteis → 1 mensagem só ao Frank/Val/Ed com a lista do que
   falta (não pergunta por pergunta) e o item entra no e-mail do Pedro. Nunca empurrar prazo de tarefa sem cobrar o dono.
 - **Toda tarefa atribuída ao Pedro em qualquer lista** (onboarding do Frank, Paid Media, Create GHL Account) entra na revisão
@@ -42,8 +44,6 @@ B. **West Coast A2P recusado** (16/11): nome legal ≠ EIN 37-2238084. Pedi ao F
    seu OK quando o nome chegar. ClickUp `86bd3m8c9`.
 C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank):
    respostas do guia (`pool-c81cf184`), NPS form + Review Request, Won welcome. LWR/Odessa: mesma fase 2 depois disso.
-E. **Bonneville xlsx**: está no Basecamp ("Customers (4).xlsx", thread Client List), arquivo do Basecamp/chat não baixa →
-   pedido ao Pedro (e-mail 16/11 tarde) para mandar como anexo de e-mail; aí importo (`pp_client_list_import.py`). `86bcz0y7b`.
 D. **Poolheads — conta antiga do HighLevel** (Frank 02/11, nunca respondido): entrar na conta antiga para migrar os templates
    de e-mail; o código chega em info@poolheadscare.com → avisar o Frank na hora (respondido no `86bcwet1g` 16/11).
 0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
@@ -82,7 +82,7 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
 ## Esperando outros
-- Frank: OK para o "aperte 1" da NorTex tocar o celular do Fareed direto (20 s) em vez do app; e-mail/celular do Brad
+- Frank: e-mail/celular do Brad
   (Passion) para os avisos. Pedro: qual Pool Keepers é a certa para o Skimmer (hh6X9 Pool Profits × KjLd BurchTech).
 - Pedro (13/11): Pools of Perfection criada pela API; resposta ao Nathan (Skimmer nativo) e reunião de segunda aprovadas →
   extensão (prompt 2) posta; Application Passwords novas (Pool Shack,
@@ -95,7 +95,6 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
   Detection pronto e inativo: ligar na virada.
 - Frank: dono para o alerta de SMS na Stay Fresh e na Blue Lagoon (as outras 8 sem dono estão inativas →
   `config/inactive_accounts.json`, puladas pelo `pp_sms_alert --all`); textos dos 8 posts de GBP da BluVantage (`86bd1xdbu`, 17/11);
-  xlsx da Bonneville (`86bcz0y7b`, 17/11).
 - Frank (16/11): Pool Smart OC ainda é cliente? (fora da lista de inativos até ele confirmar; Ads precisa reconectar, `86bd1zk8p`).
 - Val: Google Ads da Bonneville (conversão das 2 LPs novas). LPs/obrigado da Bonneville no ar (Atif 13/11), forms certos e
   redirect conferidos.
@@ -105,7 +104,6 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
   tags universais; Pool Keepers (o que liga); GBP da Clear Pool no número de rastreamento.
 - Frank (12/11): OK para o filtro de spam do form da Passion (telefone sem +1 / palavras de venda → spam, sem aviso; telefone só EUA)
   — 6 de 8 submissões em 30 dias eram spam; data da call da Reign → eu monto a tag `pipeline cleanup` (guarda nos fluxos de etapa).
-- Pedro: [Aprovar] NorTex (resposta ao Fareed: Neena não apertou 1; opções linha Meta direta / toque 10→20 s; text-back nativo).
 - Derek (Clear Pool): publicar Review Request?, chave do Pool Brain. Erik (Ekahi) e Jeremy (SwimReady): ajustes por código.
 
 ## Em breve (combinado)
