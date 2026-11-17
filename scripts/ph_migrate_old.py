@@ -50,8 +50,8 @@ MEDIA = re.compile(r"https://(?:assets\.cdn\.filesafe\.space|storage\.googleapis
 
 def new_agency() -> Agency:
     """The new account lives in the Pool Profits agency: its token is in .env, not in the environment."""
-    env = {k: v for k, v in os.environ.items() if k not in ("GHL_FIREBASE_REFRESH_TOKEN", "GHL_DUMP_DIR")}
-    out = subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0,'scripts'); from _common import load_dotenv; "
+    env = {k: v for k, v in os.environ.items() if k not in ("GHL_FIREBASE_REFRESH_TOKEN", "GHL_DUMP_DIR", "GHL_AGENCY")}
+    out = os.environ.get("PP_FIREBASE_REFRESH_TOKEN") or subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0,'scripts'); from _common import load_dotenv; "
                           "load_dotenv(); import os; print(os.environ['GHL_FIREBASE_REFRESH_TOKEN'])"],
                          capture_output=True, text=True, env=env, cwd=ROOT, check=True).stdout.strip()
     saved = os.environ.get("GHL_FIREBASE_REFRESH_TOKEN")
@@ -113,6 +113,10 @@ def emails(old: Agency, new: Agency, apply: bool) -> None:
     BDIR.mkdir(parents=True, exist_ok=True)
     (BDIR / "email-templates.json").write_text(json.dumps(tpls))
     have = {b["name"].strip(): b for b in new.call("GET", SERVICES, "/emails/builder", params={"locationId": NEW, "limit": 100})["builders"]}
+    if EMAIL_FOLDER in have:  # templates inside the folder are listed only with parentId (17/11: they showed as missing)
+        for b in new.call("GET", SERVICES, "/emails/builder", params={"locationId": NEW, "limit": 100,
+                                                                      "parentId": have[EMAIL_FOLDER]["id"]})["builders"]:
+            have.setdefault(b["name"].strip(), b)
     ids = {(m.group(1), m.group(2) or "") for t in tpls for m in MEDIA.finditer(t["html"])}
     print(f"   {len(tpls)} templates · {len({i for i, _ in ids})} imagens da conta antiga · pasta '{EMAIL_FOLDER}': "
           f"{'existe' if EMAIL_FOLDER in have else 'cria'}")
@@ -363,6 +367,9 @@ def main() -> int:
     parser.add_argument("what", choices=["inventory", "emails", "snippets", "fields", "calendars", "forms", "workflows"])
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
+    if os.environ.get("POOLHEADS_OLD_FIREBASE_REFRESH_TOKEN"):  # cloud env (17/11): both tokens in the environment
+        os.environ.setdefault("PP_FIREBASE_REFRESH_TOKEN", os.environ.get("GHL_FIREBASE_REFRESH_TOKEN", ""))
+        os.environ["GHL_FIREBASE_REFRESH_TOKEN"] = os.environ["POOLHEADS_OLD_FIREBASE_REFRESH_TOKEN"]
     old = Agency()
     if old.location(OLD)["name"].strip() != "Poolheads Pool Service & Repair":
         sys.exit("token da conta antiga não carregado (poolheads-old.env)")

@@ -137,7 +137,7 @@ def subtree(tpl: list[dict], root_id: str) -> list[dict]:
 
 def test(a: Agency, loc: dict) -> int:
     """ZZ TEST copy of the account's (already changed) Review Request score wait, messages swapped for tags, 3-minute
-    timeout: contacts with score 5 / 2 / none. Expected: 5 → the moved link steps run (tags zz link …), 2 → feedback
+    timeout: contacts with score 5 / 4 / 2 / none. Expected: 5 and 4 (Pedro 17/11) → the moved link steps run (tags zz link …), 2 → feedback
     path (zz sms …), none → nothing after the wait. Deleted afterwards."""
     import time
     import uuid
@@ -190,7 +190,7 @@ def test(a: Agency, loc: dict) -> int:
         a.call("PUT", BACKEND, f"/workflow/{lid}/{wid}", body={"name": name, "version": live.get("version", 1),
                "status": "published", "allowMultiple": False, "workflowData": {"templates": tpl2}})
         time.sleep(5)
-        for label in ("score 5", "score 2", "no score"):
+        for label in ("score 5", "score 4", "score 2", "no score"):
             c = a.call("POST", SERVICES, "/contacts/", body={"locationId": lid, "firstName": "ZZ TEST", "lastName": f"noscore {label}",
                        "email": f"zz-noscore-{uuid.uuid4().hex[:6]}@example.com"})["contact"]
             cs[label] = c["id"]
@@ -198,19 +198,19 @@ def test(a: Agency, loc: dict) -> int:
         for cid in cs.values():
             a.call("POST", SERVICES, f"/contacts/{cid}/tags", body={"tags": [go]})
         time.sleep(45)
-        for label, score in (("score 5", "5"), ("score 2", "2")):
+        for label, score in (("score 5", "5"), ("score 4", "4"), ("score 2", "2")):
             a.call("PUT", SERVICES, f"/contacts/{cs[label]}", body={"customFields": [{"id": field, "field_value": score}]})
         got = {}
         for _ in range(24):
             time.sleep(15)
             got = {k: sorted(x for x in a.call("GET", SERVICES, f"/contacts/{v}")["contact"].get("tags") or [] if x.startswith("zz ") and x not in (go, "zz noscore started")) for k, v in cs.items()}
-            if got["score 5"] and got["score 2"] and _ >= 13:  # past the 3-minute timeout
+            if got["score 5"] and got["score 4"] and got["score 2"] and _ >= 13:  # past the 3-minute timeout
                 break
-        ok = (sum(x.startswith("zz link") for x in got["score 5"]) == 2 and not any(x.startswith("zz link") for x in got["score 2"])
+        ok = (sum(x.startswith("zz link") for x in got["score 5"]) == 2 and sum(x.startswith("zz link") for x in got["score 4"]) == 2 and not any(x.startswith("zz link") for x in got["score 2"])
               and got["no score"] == [] and not any("goto" in x for v in got.values() for x in v))
         for k, v in got.items():
             print(f"   {k}: {v}")
-        print(f"{'OK' if ok else 'CHECK'}: 5 → link steps, 2 → feedback, no score → nothing")
+        print(f"{'OK' if ok else 'CHECK'}: 5 and 4 → link steps, 2 → feedback, no score → nothing")
         return 0 if ok else 1
     finally:
         for cid in cs.values():

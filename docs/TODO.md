@@ -28,6 +28,8 @@ combinar antes.
   mudou → usar o dele. "SIM" para algo que pede texto novo (ex.: boas-vindas de reparo/obra) → usar o padrão já aprovado
   (o da Corolla, com nome/telefone/e-mail da conta) e avisar o Frank. Só vai ao Pedro o que for ambíguo ou fora do padrão.
 
+- **Chave do guia do CRM** (Pedro 17/11: automático em qualquer sessão): `CRM_GUIDE_ADMIN_KEY` fora do ambiente → ler do
+  workflow n8n `SlfpWZmKH1d62hB9`, nó "Check admin key", e passar só no comando (nunca gravar/logar). Nunca pedir ao Pedro.
 - **Só respondo quando me marcam ou é assunto do CRM/GHL** (Pedro 17/11): mensagem no Basecamp/e-mail do cliente para o
   Frank/time sobre site, GBP, design etc., sem me marcar → não responder nem mandar "[Aprovar]"; só marcar como lido.
 - **Pergunta ao time sem resposta** (Pedro 16/11): passou 2 dias úteis → 1 mensagem só ao Frank/Val/Ed com a lista do que
@@ -36,16 +38,13 @@ combinar antes.
   da noite — não só a lista `901422915733`. Tarefa nova do Frank: comentar no mesmo dia (feito / o que falta / de quem).
 
 ## Você faz
-A. **Linhas que só tocam no app** (Ed 13/11 "todo cliente recebe toda ligação"): Aqua Clear (Google Ads +1 928-597-1962),
-   Clean Co (4), GID Pools (3), Pool Palooza (2 GBP), Pool Keepers (Website & GBP +1 805-262-9070), Wrigley's (3). Proposta:
-   encaminhar cada uma para o celular do dono (como as outras contas). Responder "aprovado" no e-mail de 16/11 → eu confirmo
-   o celular de cada uma, faço com backup e rodo `pp_call_check`. ClickUp `86bd349d8`.
-B. **West Coast A2P recusado** (16/11): nome legal ≠ EIN 37-2238084. Pedi ao Frank o nome do EIN letter; o reenvio é pago →
-   seu OK quando o nome chegar. ClickUp `86bd3m8c9`.
+B. **West Coast A2P recusado** (16/11, 1ª recusa): nome legal ≠ EIN 37-2238084. Frank pediu ao cliente o nome do EIN letter.
+   Pedro 17/11: reenvio não cobra → reenviar quando o nome chegar, sem novo OK; **a 3ª recusa bloqueia a conta** → antes do
+   reenvio conferir tudo pelo `docs/a2p-sop.md` (endereço hoje é PO BOX 2136 → usar o do EIN letter; tipo "Corporation" →
+   conforme o EIN: LLC etc.; Legal Business Name no perfil + custom value + rodapé do site iguais). Se recusar de novo →
+   avisar o Pedro antes de qualquer coisa. ClickUp `86bd3m8c9`.
 C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank):
    respostas do guia (`pool-c81cf184`), NPS form + Review Request, Won welcome. LWR/Odessa: mesma fase 2 depois disso.
-D. **Poolheads — conta antiga do HighLevel** (Frank 02/11, nunca respondido): entrar na conta antiga para migrar os templates
-   de e-mail; o código chega em info@poolheadscare.com → avisar o Frank na hora (respondido no `86bcwet1g` 16/11).
 0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
    paga). Responder "aprovado" → compro um 385 (ex.: +1 385-365-2440), nome "Google Ads", encaminha para o Justin, passo ao
    Atif para trocar nas LPs. ClickUp `86bd2ha9z`.
@@ -72,8 +71,8 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    vivo de cliente só com OK → perguntado ao Frank (DM 12/11) se algum dos 3 pediu a oferta; com o OK dele →
    `pp_referral_offer_fix.py config/referral_offer_live.json x --apply`. Fase 2 LWR + Odessa 12–13/11; WC depois da resposta
    do dono (via Frank), após 18h ET. E-mail ao Matt (preços da Odessa) enviado 12/11; esperando resposta.
-10. **Gate de nota** (Frank 10/11): só 5 recebe o link do Google; 1–4 recebe SMS "what could we have done better?" +
-   aviso à equipe (`pp_review_gate.py`). Sem nota em 7 dias → **sem link** (Ed 13/11; feito 16/11 em todas + Snapshot,
+10. **Gate de nota** (Pedro 17/11: **4 ou 5** recebe o link do Google; 1–3 recebe SMS "what could we have done better?" +
+   aviso à equipe; `pp_review_gate.py`, aplicado 17/11 em todas + Snapshot; guias novos com o texto 4–5, os antigos ficam). Sem nota em 7 dias → **sem link** (Ed 13/11; feito 16/11 em todas + Snapshot,
    `pp_review_noscore.py`, testado; Clear Pool fica de fora: fluxo próprio em draft).
 10b. **E-mail do processo novo para Ed/Frank/Jonathan**: enviado 11/11. Quando o 1º A2P automático for aprovado → uma
    linha no mesmo thread ("GHL update: one snapshot for every client…") dizendo que está 100% no ar (ClickUp `86bd1ctcg`).
@@ -87,11 +86,10 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
   Nathan por e-mail e Basecamp pedindo dia/hora da call. Esperando o Nathan trocar no Skimmer → conferir a conexão na KjLd
   e tirar a chave antiga da hh6X9 (Private Integrations, tela).
 - Pedro (13/11): Pools of Perfection criada pela API; resposta ao Nathan (Skimmer nativo) e reunião de segunda aprovadas →
-  extensão (prompt 2) posta; Application Passwords novas (Pool Shack,
-  Bluewater; `86bd2t1mq`); OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
+  extensão (prompt 2) posta; OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
 - Frank (12/11 noite): se o Brett apaga cards de lead da Southern (2 leads do Google Ads sem card, `86bd2t1kt`, 17/11).
   Padrão Skimmer para clientes mandado a ele (Enterprise = API; outros = Zapier só Skimmer→GHL; form do GHL fica no site).
-- Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service", George como 2º toque 25 s/20 s (Frank pediu no Basecamp 16/11)
+- Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service" (único que falta antes de cancelar a conta antiga; 5 e-mails + 9 SMS conferidos na nova 17/11 com o token do ambiente), George como 2º toque 25 s/20 s (Frank pediu no Basecamp 16/11)
   (nome/e-mail/celular), página de privacidade, lista de clientes; Skimmer add-on → aí crio o token (Private Integrations,
   tela) e mando ao Felipe com o Location ID. Review Request da Poolheads fica draft (reviews no Skimmer). Calendário Leak
   Detection pronto e inativo: ligar na virada.
@@ -109,7 +107,7 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 - Derek (Clear Pool): publicar Review Request?, chave do Pool Brain. Erik (Ekahi) e Jeremy (SwimReady): ajustes por código.
 
 ## Em breve (combinado)
-- **Ligações e SMS de todo cliente** (Ed 13/11, `86bd349d8`): depois do teste, `pp_sms_alert.py apply --all` (+ `pp_tags_missing`); dono das contas sem usuário com telefone (Stay Fresh, Blue Lagoon, Ponchos…) → Frank; linhas com IVR em draft (Dream Pools, Ponchos, Precision) e linhas que só tocam no app → proposta ao Pedro antes de mudar encaminhamento.
+- **Ligações e SMS de todo cliente** (Ed 13/11, `86bd349d8`): depois do teste, `pp_sms_alert.py apply --all` (+ `pp_tags_missing`); dono das contas sem usuário com telefone (Stay Fresh, Blue Lagoon, Ponchos…) → Frank; linhas com IVR em draft (Dream Pools, Ponchos, Precision) → proposta ao Pedro antes de mudar encaminhamento. Linhas que só tocam no app (Aqua Clear, Clean Co, GID, Pool Palooza, Pool Keepers, Wrigley's) ficam assim (Pedro 17/11: decisão dos clientes).
 - **Monitor de leads** (Frank/Val, Ed aprovou 13/11, `86bd349dt`, 18/11): alerta de card parado 3/4/5 dias + resumo a cada 3 dias dos clientes de Google Ads (tudo interno). 1º resumo no thread no começo da semana.
 - **Dashboard interno** (Val, 06/11 e 09/11): auditoria diária de todas as sub-contas para prever erros (alertas/tarefas
   sem usuário, linhas sem encaminhamento, SMS falhando, gatilhos quebrados) e acompanhar quem não está recebendo leads

@@ -6,7 +6,8 @@ The V9 Review Request already asks for the NPS score (1–5) before the Google l
   "Low NPS Score Detected"  (NPS != 5 AND != 4)  → "Notify Team - Negative Feedback" (SMS to all users)
   "High NPS Score Detected" (else)               → Go To → Email + SMS review request (Google link)
 What this script makes every account match:
-  1. Low branch = NPS != 5 only (a 4 now gets the feedback path, not the Google link).
+  1. Low branch = NPS != 5 AND != 4 (Pedro 17/11: 4 or 5 gets the Google link, 1–3 the feedback path; from 10/11 to
+     17/11 it was != 5 only).
   2. First step of the Low branch = SMS to the customer asking what went wrong (template FEEDBACK_NAME, created in
      the account when missing), then the existing team notification.
 Read-only by default; --apply backs up the workflow (backup/<slug>/review-request-<date>.json) and PUTs it.
@@ -34,6 +35,7 @@ FEEDBACK_TEXT = ("Hi {{contact.first_name}}, thank you for rating {{custom_value
                  "didn't earn 5 stars this time. What could we have done better? Just reply to this text. The owner "
                  "reads every answer and will reach out to make it right.")
 STEP_NAME = "SMS - Ask What Went Wrong"
+HIGH = ("4", "5")  # scores that get the Google link (Pedro 17/11)
 # Snapshot master and the test account are in; the rest of the non-client accounts are not.
 SKIP = (DASH_SKIP - {"Kvdj7o189zlS3caaCNuX", "hmzX5j1dPhOQKX2dH4kf", "OVQ4nVT6Ik0xlcSacRGL"})
 
@@ -82,7 +84,8 @@ def plan(a: Agency, loc: dict, apply: bool) -> str:
             continue
         conds = nps_conditions(low)
         field = conds[0].get("conditionSubType")
-        extra = [c for c in conds if str(c.get("conditionValue")) != "5"]
+        extra = [c for c in conds if str(c.get("conditionValue")) not in HIGH]
+        missing = [v for v in HIGH if v not in {str(c.get("conditionValue")) for c in conds}]
         by_id = {t["id"]: t for t in tpl}
         first = by_id.get((low_node or {}).get("next")) if low_node else None
         chain, cur = [], first
@@ -94,6 +97,8 @@ def plan(a: Agency, loc: dict, apply: bool) -> str:
         todo = []
         if extra:
             todo.append(f"drop NPS != {','.join(str(c.get('conditionValue')) for c in extra)}")
+        if missing:
+            todo.append(f"add NPS != {','.join(missing)}")
         if not has_ask:
             todo.append("add feedback SMS")
         state = f"{w.get('status')}: field {field}, notify {'yes' if has_notify else 'NO'}"
@@ -121,7 +126,15 @@ def plan(a: Agency, loc: dict, apply: bool) -> str:
                     seg["conditions"] = [c for c in seg.get("conditions", [])
                                          if not (c.get("conditionType") == "contact_detail"
                                                  and c.get("conditionOperator") == "!="
-                                                 and str(c.get("conditionValue")) != "5")]
+                                                 and str(c.get("conditionValue")) not in HIGH)]
+                    base = next((c for c in seg["conditions"] if c.get("conditionType") == "contact_detail"
+                                 and c.get("conditionOperator") == "!=" and str(c.get("conditionValue")) == "5"), None)
+                    if base and seg.get("operator", "and") == "and":
+                        for v in missing:
+                            c = copy.deepcopy(base)
+                            c["conditionValue"] = v
+                            c["__conditionId"] = str(uuid.uuid4())
+                            seg["conditions"].append(c)
         if not has_ask:
             bnode = nby[low["id"]]
             old_first = bnode.get("next")
@@ -145,9 +158,9 @@ def plan(a: Agency, loc: dict, apply: bool) -> str:
         chk = a.workflow(lid, w["id"])
         g2, l2, ln2 = find_gate(chk["workflowData"]["templates"])
         b2 = {t["id"]: t for t in chk["workflowData"]["templates"]}
-        ok_cond = [str(c.get("conditionValue")) for c in nps_conditions(l2)] == ["5"]
+        ok_cond = sorted(str(c.get("conditionValue")) for c in nps_conditions(l2)) == sorted(HIGH)
         ok_ask = b2.get(ln2.get("next"), {}).get("name") == STEP_NAME
-        notes.append(state + f" — APPLIED (only !=5: {ok_cond}, feedback SMS first: {ok_ask}, status {chk.get('status')})")
+        notes.append(state + f" — APPLIED (!=4 and !=5: {ok_cond}, feedback SMS first: {ok_ask}, status {chk.get('status')})")
     return " | ".join(notes)
 
 

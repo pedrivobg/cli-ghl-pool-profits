@@ -122,7 +122,7 @@
       "phase": "reviews",
       "title": "Rating first, then the Google review",
       "status_note": "ON once your Google review link is connected",
-      "purpose": "Some time after a job is won, the customer gets a text asking for a quick 1–5 rating. Only a 5 gets your Google review link, by text and email. Anything below 5 gets a text asking what you could have done better, and your team gets an alert so you can make it right. If they don't rate within 7 days, the review link goes out anyway.",
+      "purpose": "Some time after a job is won, the customer gets a text asking for a quick 1–5 rating. A 4 or 5 gets your Google review link, by text and email. A 1–3 gets a text asking what you could have done better, and your team gets an alert so you can make it right. If they don't rate within 7 days, no review link goes out.",
       "flow": [
         {
           "kind": "wait",
@@ -144,7 +144,7 @@
           "kind": "paths",
           "paths": [
             {
-              "label": "Rated 5, or no rating after 7 days",
+              "label": "Rated 4 or 5",
               "items": [
                 {
                   "kind": "step",
@@ -157,7 +157,7 @@
               ]
             },
             {
-              "label": "Rated 1–4",
+              "label": "Rated 1–3",
               "items": [
                 {
                   "kind": "step",

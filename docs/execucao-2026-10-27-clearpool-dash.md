@@ -1328,3 +1328,19 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   `backup/nortex-pools/test-call-20261117-contact.json`); `pp_call_check --only NorTex` 0 ERRO. Frank avisado no DM.
 - **Regra do Pedro** (17/11): não responder Basecamp/e-mail que não me marca ou não é CRM/GHL (Cleverblu/Nomar: rascunho não
   postado; Poolheads/Felipe "Website Mockup" para o Frank: sem resposta). Gravada no TODO.
+
+## 17/11 (~14h UTC) — resposta do Pedro à revisão da noite de 16/11
+- **Regra da nota = 4 ou 5** (Pedro: "a regra deve ser 4 ou 5", sem falar com o Ed): `pp_review_gate.py` agora exige
+  `NPS != 5 E != 4` no ramo Low (acrescenta a condição que faltava; `HIGH = ("4","5")`). Test Snapshot primeiro +
+  `pp_review_noscore.py --test` com nota 4 a mais: 5 e 4 → passos do link, 2 → feedback + aviso, sem nota → nada (ZZ apagado).
+  Aplicado em 42 contas + Snapshot Pool Profits (status mantido, backup por conta). `pp_call_check --quiet`: 0 ERRO.
+  Textos novos: `config/crm_guide.json` (1–3 / 4 ou 5; sem nota = sem link) para os próximos guias (os já enviados ficam),
+  `config/snapshot_guide.json` (PDF). Refresh do snapshot de novo → Pedro.
+- **Bonneville**: o anexo "Customers (4).xlsx" é a mesma lista importada hoje cedo (88/88 já no GHL) → nada a fazer.
+- **Poolheads conta antiga**: token `POOLHEADS_OLD_FIREBASE_REFRESH_TOKEN` do ambiente funciona. `ph_migrate_old.py` lia o
+  token errado na nuvem (só conhecia `poolheads-old.env`) → usa as duas variáveis do ambiente; o plano de e-mails mostrava
+  como faltando os 4 da pasta (listagem sem `parentId`) → corrigido. Conferido: 5 e-mails + 9 SMS já na conta nova (04/11).
+- **West Coast A2P**: reenvio não cobra (Pedro); 3ª recusa bloqueia. Revisão pelo SOP: páginas go. 200, campanha ok,
+  rep Milen CEO; riscos: endereço PO BOX e tipo "Corporation" → usar o do EIN letter quando o Frank mandar o nome.
+- Linhas só no app ficam (decisão dos clientes); Pool Keepers resolvida pelo Pedro; Application Passwords apagadas;
+  chave do guia do CRM: regra no TODO (ler do n8n em qualquer sessão).

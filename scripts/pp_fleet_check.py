@@ -4,7 +4,7 @@
 Live read, nothing written. Per account vs Southern (the model):
   stages     model stages of "Pool Leads" missing in the account (No Response, No Show, Won by service type…)
   workflows  pp_mirror CONTENT workflows missing, or with a different status than the model
-  gate       Review Request asks the NPS score first and sends only 5 to Google (pp_review_gate.py)
+  gate       Review Request asks the NPS score first and sends only 4–5 to Google (pp_review_gate.py)
   dash       "Pool Profits Dashboard" is the default (pp_dashboard.py)
 Accounts with a wording config (pp_wording) or their own setup are flagged, since pp_mirror would overwrite them.
 
