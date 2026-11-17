@@ -1,0 +1,119 @@
+{
+ "location": "uJr8H2qaQM5ffZxeYFqn",
+ "source": "Pool Duck Wesley Chapel (agency Pool Duck, GHL_AGENCY=poolduck). CRM guide answers sent by Justin 17/11 (pool-c81cf184): M1 + 'Reply STOP to opt out' (decision), M3-M7, M10, M11, M16, M18, M19, M21-M24 his text verbatim. M23 subject without 'free inspection' (body now offers a free month). M10: portal link as hyperlink + Terms of Service PDF attached (scripts/pd_wc_guide_extras.py).",
+ "placeholders": {
+  "[First name]": "{{contact.first_name}}"
+ },
+ "messages": [
+  {
+   "workflow": "Missed New Lead - Initial SMS Follow-up",
+   "step": "SMS 1",
+   "code": "M1",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hi [First name]! This is {{custom_values.owner_first_name}} from {{custom_values.friendly_business_name}}. We're sorry we missed your call. We will be calling you back shortly. Is this the best number to call you back at? 🏊\n\nReply STOP to opt out."
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 1",
+   "code": "M3",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hey [First name], still thinking about getting your pool cleaned? We'd love to help! Give us a call at 813-606-0773 or text us back."
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 2",
+   "code": "M4",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hi [First name]! We may still be able to get you on the schedule for next week. Please call 813-606-0773 or text back this number and we'll get you all set up. 🏊"
+  },
+  {
+   "workflow": "No Response Follow-up",
+   "step": "SMS 3",
+   "code": "M5",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hi [First name]! We understand now might not be the best time, but if you ever need pool cleaning or maintenance, we're here - Pool Duck, (813) 606-0773\nwww.PoolDuck.com"
+  },
+  {
+   "workflow": "Quote Sent Follow-up",
+   "step": "SMS 1",
+   "code": "M6",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hi [First name]! Just following up on the quote we sent you from Pool Duck. Do you have any questions? We'd love to get the opportunity to work on your pool! 🏊\nHow soon would you like us to get you on the schedule?"
+  },
+  {
+   "workflow": "Quote Sent Follow-up",
+   "step": "SMS 2",
+   "code": "M7",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hi [First name], still deciding? Pool Duck is ready whenever you are. Just reply here or call us at (813) 606-0773 and we will get you on the schedule."
+  },
+  {
+   "workflow": "Won Stage",
+   "step": "Welcome Email",
+   "code": "M10",
+   "by": "Justin (CRM guide 17/11)",
+   "subject": "Welcome to {{custom_values.friendly_business_name}}!",
+   "text": "[First name],\n\nWelcome aboard! We're thrilled to have you as part of the Pool Duck family.\n\nIn this email you will find your terms of service as well as your personal Pool Duck Portal login instructions.\nYour Pool Duck Portal can be found at: https://poolduck.poolbrain.com\n\nIn order to sign in, you must use this email address that we sent the this email to.\n\nThere you will find the records of each visit, all of your job history, view your billing, update your autopay and more!\n\nHere's what you can expect from us:\n✅ On the way text message\n✅ Consistent, reliable service every visit\n✅ Chemical balancing and water testing\n✅ Equipment inspections included\n✅ Direct communication with your technician\n✅ Post visit email with before and after pictures and chemical readings\n\nIf we haven't already done so, your first service will be scheduled shortly. If you have any questions before then, don't hesitate to reach out.\n\nMy Office Phone: 813-606-0773\nEmail: debbie@poolduck.com\n\nLooking forward to keeping your pool crystal clear!\n\nDebbie\nOffice Manager\nPool Duck"
+  },
+  {
+   "workflow": "Won Stage",
+   "step": "SMS",
+   "code": "M11",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hi [First name]! Welcome to Pool Duck! 🏊 We're excited to have you on board.\n\nYour personal Pool Duck Portal can be found at: https://poolduck.poolbrain.com\n\nIn order to sign in, you must use this email address that we set up service with.\n\nThere you will find the records of each visit, all of your job history, quotes, view your billing, update your autopay and more!\n\nQuestions? Call us at (813) 606-0773"
+  },
+  {
+   "workflow": "Review Response - Positive",
+   "step": "SMS 1",
+   "code": "M16",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hi [First name]! Thank you so much for your kind review! 🌟 We truly appreciate your support.\n-Justin and Michelle"
+  },
+  {
+   "workflow": "Lost Stage",
+   "step": "Email - Lost Customer Feedback",
+   "code": "M18",
+   "by": "Justin (CRM guide 17/11)",
+   "subject": "Mind sharing some quick feedback, [First name]?",
+   "text": "[First name],\n\nI know you went a different direction with your pool care and as the business owner I wanted to ask you for a favor. Do you mind letting us know why you chose to go with someone else?\n\nI am always looking for feedback on how I can make my company stronger and will value any feedback you give us.\n\nIf you have 30 seconds to spare, just reply to this email or give us a call at 813-606-0773.\n\nJustin Denham\nOwner\nPool Duck"
+  },
+  {
+   "workflow": "Lost Stage",
+   "step": "Email - 90 Day Check In",
+   "code": "M19",
+   "by": "Justin (CRM guide 17/11)",
+   "subject": "How's your pool service going, [First name]?",
+   "text": "[First name],\n\nYou spoke to my company a while back and were interested in pool service, but we weren't able to earn your business.\n\nHow has your current company been performing? Are they doing the following:\n- On the text message\n- Before & After pics every week\n- Weekly report with chemical readings\n- Sharing the status of your pool equipment\n- Leaving your yard clean\n- Service history and payment portal\n\nIf not, ask them why. Our customers know the details about every single visit we make at their pool. If you're feeling left in the dark about what your pool guy is doing, come experience the Pool Duck difference.\n\nJustin and Michelle Denham\nOwners\nPool Duck\n813-606-0773"
+  },
+  {
+   "workflow": "Reactivation Campaign - SMS",
+   "step": "SMS 2",
+   "code": "M21",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Hey [First name], just checking in! We're running some great deals on pool service this month. Interested in getting your pool back in top shape? As a returning customer, we're happy to offer you a free month to test our services again. No strings attached. Just reply here or call us at 813-606-0773."
+  },
+  {
+   "workflow": "Reactivation Campaign - SMS",
+   "step": "SMS 3",
+   "code": "M22",
+   "by": "Justin (CRM guide 17/11)",
+   "text": "Last message from us, [First name]! If you ever need pool service again, we're here. Justin and Michelle Denham, Pool Duck. Call us at (813) 606-0773"
+  },
+  {
+   "workflow": "Reactivation Campaign - Email",
+   "step": "Email 1",
+   "code": "M23",
+   "by": "Justin (CRM guide 17/11)",
+   "subject": "We miss you, [First name]!",
+   "text": "[First name],\n\nIt's been a while since we've had the pleasure of caring for your pool, and we wanted to reach out personally to see if we could win you back.\n\nJustin and Michelle have upped our game, with improved service delivery and communication, and we'd love to have you back.\n\nAs a returning customer, we're happy to offer you a free month to test our services again. No strings attached.\n\nReady to get your pool back in top shape?\n\nCall us: 813-606-0773\n\nHope to hear from you soon!\n\nJustin and Michelle\nPool Duck"
+  },
+  {
+   "workflow": "Reactivation Campaign - Email",
+   "step": "Email 2",
+   "code": "M24",
+   "by": "Justin (CRM guide 17/11)",
+   "subject": "How's your pool been, [First name]?",
+   "text": "[First name],\n\nJust checking in to see how your pool has been.\n\nIf your current service isn't meeting your expectations, we'd love the chance to show you what Pool Duck can do.\n\nOur clients enjoy:\n✅ Consistent weekly visits\n✅ Detailed chemical reports\n✅ Equipment inspections every visit\n✅ Direct communication with their technician\n\nGive us a shot again. As a returning customer, we're happy to offer you a free month to test our services again. No strings attached. Reply to this email or give us a call for a free estimate.\n\nDebbie\nPool Duck\n813-606-0773"
+  }
+ ]
+}

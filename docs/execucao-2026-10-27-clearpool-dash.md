@@ -1360,3 +1360,19 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - **17/11 — WP Pools: teste das linhas novas (Pedro ligou)**: (616) 879-8101 e (616) 898-2489 encaminharam e completaram
   (2 s / 16 s); "Answered Incoming Call To Pipeline" disparou e criou o card. Contato e card de teste apagados (backup em
   `backup/wp-pools-ponds-and-spas/`).
+## 17/11 noite — rodada do inbox (20 itens)
+- **Clean Co / Snapshot – Service Agreement** (Ed): template da Clean Co com variáveis (contato, empresa, data;
+  `scripts/pp_service_agreement.py`, backup em `backup/cleanco/`); Snapshot Pool Profits: "Pool Service Agreement (Example)"
+  com faixa EXAMPLE ONLY / não é aconselhamento jurídico. Teste renderizado com ZZ TEST (apagado). Falta Refresh do snapshot
+  (Pedro) e cópia na West Coast (oferecida ao Frank).
+- **Passion** (Frank): 19 workflows → draft (só status; lista em `reports/passion-drafted-2026-11-17.json` para voltar).
+  Ficam: missed-call → SMS do Brad, tags/atribuição sem envio, "Website Webhook Lead To Pipeline" (perguntado ao Frank).
+  call_check 0 erro. Basecamp: respostas ao John (Passion) e Shane (Wrigley's; avisos dele já certos).
+- **Poolheads**: "Pool Customer Type" da conta antiga → 135 contatos na nova (tags `weekly service customer`/`repair-only` +
+  campo + `existing customer`), nenhum gatilho, nada enviado (`reports/poolheads-weekly-class-2026-11-17.json`).
+- **WP Pools**: 2 linhas do Frank nomeadas (Website & GBP +16168798101, Google Adwords +16168982489), encaminhadas para
+  (616) 522-2477; A2P Verification Number = (616) 879-8101; call_check 0 erro. Ligação de teste = Pedro.
+- **Pool Duck WC – guia do CRM** (Justin): 15 textos dele aplicados (`config/pool_duck_wc_wording.json`), follow-ups só
+  seg–sex 8–17h, STOP no missed-call, boas-vindas de reparo no Won Stage (draft), Terms of Service (PDF na mídia) no e-mail
+  M10 (`scripts/pd_wc_guide_extras.py` — rodar de novo depois de qualquer `pp_wording --apply`). Resposta ao Justin em
+  [Aprovar]. M10/M11 só saem quando o Won Stage for publicado (call de quinta).
