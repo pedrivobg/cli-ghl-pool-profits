@@ -133,11 +133,11 @@ def main() -> int:
                     if tk:
                         read_keys(tk)
                         print(f"read {len(tk)} threads in {ch}")
-        if a.task or a.clear_activity:
+        if a.task or a.channel or a.clear_activity:
             cut = time.time() - a.older_hours * 3600
             for b in bundles():
                 tid = b["rootEntityResourceName"].split(":")[-1]
-                if tid in a.task or (a.clear_activity and b["bundleType"] == "activity" and not b.get("hasMention")
+                if tid in a.task or tid in a.channel or (a.clear_activity and b["bundleType"] == "activity" and not b.get("hasMention")
                                      and when(b) < cut):
                     clear_bundle(b)
                     print(f"cleared Inbox {b['bundleType']} {tid}")

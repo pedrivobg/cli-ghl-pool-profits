@@ -1384,5 +1384,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - ClickUp "marcar como lido": API pública não tem; API interna do app (shard frontdoor-prod-us-east-2-2) com o token da
   sessão do Pedro (network secret do ambiente). `scripts/cu_mark_read.py`; Inbox 64 → 8 (atividade antiga limpa), canal e
   thread testados. Regra na rotina via docs/TODO.md e inbox-watch-routine.md.
-- BluVantage (Paul, $10.01): recarga automática da carteira de telefone; transcrição OFF no número (só gravação). Respondi
-  ao Frank + Ed com o caminho do extrato e texto pronto para o Paul.
+- BluVantage (Paul, $10.01): recarga automática da carteira de telefone. 1ª resposta dizia transcrição OFF (campo
+  `transcriptionEnabled` do twilio-accounts veio false), mas o Pedro ligou a transcrição a pedido deles semanas atrás →
+  correção enviada ao Frank + Ed (transcrição = alguns centavos por ligação, entra na mesma carteira).
+- Os 8 do Inbox revisados: todos respondidos (7 tarefas + chats). Pool Shack: pedido do Frank "everyone add findings" não
+  tinha sido capturado (sem menção) → postei o lado do CRM no canal. Tudo marcado lido: Inbox 0, 32 canais sem não lido.
+  n8n "Collect all items": mensagem de canal pedindo ao time (everyone/team/guys/anyone/@here) agora vira item.

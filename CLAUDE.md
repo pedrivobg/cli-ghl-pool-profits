@@ -73,6 +73,8 @@
   `create_update_contact` com `fields` em camelCase (`firstName`, `email`, `phone`,
   `address1`) e valores `{{inboundWebhookRequest.<campo>}}`.
 - Missed-call text back nativo: `enableMissedCallText` via `PUT services /locations/{id}`.
+- `transcriptionEnabled` do `backend /phone-system/twilio-accounts` NÃO diz se a transcrição de ligação está ligada
+  (BluVantage: ligada pelo Pedro, campo false; 17/11). Não afirmar "transcrição desligada" por esse campo.
 - Submissão de form não automatizável (Turnstile no `/forms/submit`); testar gatilhos por
   tag/etapa (`pp_e2e.py`) e conferir submissões reais em `/forms/submissions`.
 - SMS de workflow usam o template (`attributes.template_id`) — o texto vive no template;
