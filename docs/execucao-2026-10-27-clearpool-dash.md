@@ -1402,3 +1402,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (tráfego Meta) mostram o número do Adwords; Free Trial, F1 e calendário sem tag (118/459 contatos desde 01/09 sem
   origem). UTMs chegam certas nas submissões (Meta com utm_*, Google só gclid). [Aprovar] ao Pedro. ClickUp `86bd4kerf`.
 - Pool Duck WC (Justin): já feito na rodada anterior.
+- ClickUp do Pedro (17/11 noite): 101 tarefas abertas → 46 (16 = Aqua Clear Paid Media, perguntado à Val; 5 = LPs da Val).
+  Unidas: 15 "GHL Integrations" → 86bd4kucg (Pedro+Frank+Val); lead monitoring → dashboard interno (86bd0jxy6);
+  Pool Duck WC alertas → V9 (86bcxzjfa); Corolla Paid Media → 86bcyw37n. Fechadas: Ed "todo cliente recebe tudo"
+  (Inbound SMS publicado em 49/50; Passion off a pedido do Frank), Southern Ads sem card (3/3 desde 13/11 com card),
+  Bluewater onboarding (N/A), Cleverblu (passado ao Vik), senhas WP (checagens de status paradas), templates
+  (Client Template, TEMPLATE V2, HQ junho). Pool Keepers checklist de julho: Pedro removido, fica só 86bd02rg9.
+- Captura nova de canal ("everyone/guys") já pegou o pedido da Val (LP Bonneville com erro, 13:13 BRT) e o do Frank
+  (template novo) — rotina disparada 21:23 UTC.
