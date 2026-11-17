@@ -30,7 +30,7 @@ The <routine-fire-payload> block below comes from our n8n inbox watch. n8n alrea
 3. [pedro_reply] items = Pedro answered one of those emails: "feito/done" -> verify it live, clean up tests, confirm to whoever asked, close the ClickUp task; "aprovado" -> post the approved draft exactly where it belongs.
 4. Reply in the same place it was asked (same ClickUp thread/comment, same email thread, internal Basecamp only): short, human. Never say done unless tested. If a client can see it: when someone on the team (Frank, Val, Ed) already asked for or approved that message and the context is clear, post it directly (no second approval from Pedro). Otherwise do NOT post: email Pedro the draft ("[Aprovar] ..."). Always email Pedro first for anything ambiguous, new, or sensitive (complaints, prices, blame).
 5. After an email/Basecamp item is handled (or is only waiting on someone else), mark its Gmail thread read (remove UNREAD) so Pedro only sees what needs him.
-5b. ClickUp has NO mark-as-read API, and reactions do NOT mark anything as read. Do NOT react to every message (Pedro 12/11: it looks automated). React only now and then, the way a person would, when it fits (a request received or done, a thanks), and vary it: thumbsup, white_check_mark, saluting_face. Usually the written reply is enough. Never react to one that still needs Pedro.
+5b. Mark ClickUp items read once handled: `python3 scripts/cu_mark_read.py --channel <id> --thread <parent> --task <task>` (see docs/TODO.md; exit 2 = session token expired → "[Passo seu]" email). Reactions do NOT mark anything as read. Do NOT react to every message (Pedro 12/11: it looks automated). React only now and then, the way a person would, when it fits (a request received or done, a thanks), and vary it: thumbsup, white_check_mark, saluting_face. Usually the written reply is enough. Never react to one that still needs Pedro.
 6. Create/update my ClickUp task (list 901422915733) only for real work; close it when tested.
 7. Ledger "Pedro Inbox Ledger" (wb0SlsU03MQ4xdgv): add a row per item with the same item_id, status done/needs_pedro, short notes.
 8. Commit and push only when files changed (log real changes in docs/execucao-2026-10-27-clearpool-dash.md; no commit for items that changed nothing). Trailer: Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>.
@@ -60,8 +60,8 @@ End with a 2-line summary in Portuguese.
 - `closed`/`fyi` → ledger `auto_closed`/`auto_fyi` + e-mail marcado como lido; nada vai para o Claude.
 - `Fire gate`: urgente/complexo dispara já; medium no máximo 1×/hora (ou 45 min esperando); easy sozinho espera até 2 h
   para ir junto. Itens segurados não entram no ledger e voltam no ciclo seguinte.
-- ClickUp não tem API de "marcar como lido" no chat (nem no Inbox de notificações): responder pela API não muda o
-  "não lido" dele; lá continua manual (botão "Mark all as read" no Chat/Inbox).
+- A API pública do ClickUp não tem "marcar como lido"; desde 17/11 usamos a API interna do app (`scripts/cu_mark_read.py`,
+  seção "Marcar como lido" abaixo).
 
 ## Triagem v3 (10/11)
 - O Frank escreveu "Hey i may start needed help with the a2p verifications" e o n8n fechou como cumprimento (começava com
@@ -102,6 +102,19 @@ O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rot
 4. `docs/TODO.md` só com o aberto; log em `docs/execucao-*.md`; commit/push.
 5. UM e-mail "[Passo seu] O que é seu – <data> (revisão da noite)": (a) passos do Pedro, numerados; (b) decisões dele;
    (c) o que foi fechado/adiantado, uma linha cada. Marcar como lidos os [Passo seu] anteriores que ele substitui.
+
+## Marcar como lido no ClickUp (17/11)
+- API pública (v2/v3): nada de read/unread/Inbox (conferido na referência e no feedback board). O app web usa rotas próprias
+  no shard do workspace `frontdoor-prod-us-east-2-2.clickup.com` (achadas no JS do app e testadas ao vivo):
+  Inbox `…/inbox/v3/workspaces/{ws}/notifications/bundles/{search|read|<id>/clear}`; chat, threads e comentários
+  `…/comment-service/v3/workspaces/{ws}/comments/last_read_at` com chave `view` (canal/DM), `comment` (thread) ou `task`.
+- Autenticação: só o token da sessão do navegador do Pedro (a chave pk_ da API dá "Auth header missing"). Ele fica como
+  network secret do ambiente Default do Claude Code (host acima, `Authorization: Bearer`); o proxy injeta. Teste 17/11:
+  Inbox 64 → 8, canal lido, thread lida (2 → 1).
+- **Renovar o token** (quando o script sai com 2): Chrome → app.clickup.com logado → F12 → aba Network → F5 → filtro
+  `frontdoor` → clicar numa linha → Headers → Request Headers → `authorization` → copiar o que vem depois de "Bearer "
+  (começa com `eyJ`). Depois numa sessão do Claude Code: pedir para salvar o token do ClickUp (formulário seguro do host
+  `frontdoor-prod-us-east-2-2.clickup.com`, prefixo Bearer). Nunca colar no chat.
 
 ## Rotina recusando o disparo (17/11)
 - 15h–17h45 BRT: todo disparo voltou 400 `github_repo_access_denied` (GitHub desconectou do claude.ai; o `git fetch` da

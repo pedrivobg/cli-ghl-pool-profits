@@ -8,6 +8,12 @@ comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha p
 combinar antes.
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
+- **Marcar como lido no ClickUp é obrigatório** (Pedro 17/11: "está ficando uma bagunça"). Depois de responder/resolver um
+  item do ClickUp: `python3 scripts/cu_mark_read.py --channel <canal/DM> --thread <parent do thread> --task <task>` (ids
+  vêm do payload: `cu-chat-<msg>` + `parent=`, `task=`; o canal sai da url `/chat/r/<canal>`). Marca DM/canal, thread e
+  comentários como lidos e tira a tarefa do Inbox (read + clear). No fim da rodada: `--clear-activity --older-hours 24`.
+  Nunca marcar o que ainda precisa do Pedro. Saída 2 = token da sessão do ClickUp expirou → e-mail
+  "[Passo seu] ClickUp: renovar o token" com os passos de `docs/inbox-watch-routine.md` (seção "Marcar como lido").
 - **Arquivo achado em qualquer lugar = eu baixo** (Pedro 17/11, West Coast: a rotina pediu ao Frank para reanexar um xlsx
   que estava no Basecamp, no e-mail e na tarefa). Nunca dizer "não consigo baixar daqui" nem pedir para mandarem em outro
   lugar. Antes, tentar todos os caminhos: (1) **e-mail de notificação do Basecamp** → `get_message` (html) → link
@@ -19,7 +25,7 @@ combinar antes.
   já pediu ou aprovou, vai direto — inclusive para cliente — sem "[Aprovar]" para o Pedro (senão espera ~2 h). Só vai ao
   Pedro o que for ambíguo, novo, sensível (reclamação, preço, culpa) ou sem aprovação de ninguém do time.
 - **Reações no ClickUp: NÃO reagir em toda mensagem** (Pedro 12/11: reagir em tudo com ✅ parece automação). Reação não
-  marca como lido (o ClickUp não tem API para isso; o Pedro usa "Mark all as read"). Só de vez em quando, como uma pessoa
+  marca como lido. Só de vez em quando, como uma pessoa
   faria, quando combina (pedido recebido/feito, agradecimento): variar `thumbsup`, `white_check_mark`, `saluting_face`.
   No normal, a resposta escrita basta. Nunca reagir no que ainda precisa do Pedro.
 - **E-mail do guia do CRM ao cliente** (`config/crm_guide_email.json`): só envia com `approved_pedro` e `approved_frank` =
