@@ -1315,3 +1315,17 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   não é a da BurchTech (KjLd…, a viva). ClickUp: Skimmer em andamento, prazos Southern 18/11, Pool Duck 19/11. NorTex: resposta
   ao Frank (o "aperte 1" toca o app LeadConnector = internet; proposta tocar o celular do Fareed 20 s, espera OK). E-mail
   "[Passo seu] O que é seu – 16/11 (revisão da noite)"; anteriores e promoções marcados como lidos.
+
+## 17/11 (~12h UTC) — inbox: NorTex aperte 1, posts de reforma BluVantage, xlsx Bonneville, West Coast, rodada diária
+- **NorTex** (OK do Fareed via Frank): "IVR SPAM Detection" → passo "Connect call": `users` [Fareed] → `customNumbers`
+  +1 469-616-1122 (celular dele, não é linha da conta), `timeout` 10 → 20 s. Backup em `backup/nortex-pools/`, resto do
+  workflow igual (comparado), publicado, gatilho ativo, `pp_call_check --only NorTex` 0 ERRO. Falta ligação real do Pedro.
+- **BluVantage GBP** (Frank: sem post de review, vai o de reforma): fotos da LP Pool Renovations (webp → jpg, biblioteca de
+  mídia) e 2 posts agendados 05/12 e 16/12 (`config/gbp_posts/bluvantage.json`); 9 agendados. `pp_gbp_posts.py`: f-string
+  que quebrava no Python < 3.12 corrigida.
+- **Bonneville**: xlsx anexado na 86bcz0y7b → `pp_import_skimmer.py`: 88 importáveis (74 ativos, 14 antigos), 55 sem contato.
+  Gatilhos publicados conferidos (só "Contact Created -> add owner"). Importação em massa bloqueada pela permissão da
+  sessão → [Aprovar] ao Pedro.
+- **West Coast**: Frank avisou listing novo do Google (rebrand) → pedi o link quando verificar + nome do EIN (A2P).
+- Cleverblu (selo BBB/fotos do Nomar): para o time do site, nada no GHL.
+- Rodada diária: sem conta nova nem mudança (WP Pools cartão pendente).

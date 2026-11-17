@@ -67,7 +67,7 @@ def main() -> None:
         now = listed(a, lid, acc)
         print(f"\n{loc['name']}: {len(now)} scheduled/published posts")
         for p in sorted(now, key=lambda x: x.get("displayDate") or ""):
-            print(f"   {p.get('status'):10} {p.get("displayDate")} {(p.get('summary') or '')[:60]}")
+            print(f"   {p.get('status'):10} {p.get('displayDate')} {(p.get('summary') or '')[:60]}")
 
 
 if __name__ == "__main__":
