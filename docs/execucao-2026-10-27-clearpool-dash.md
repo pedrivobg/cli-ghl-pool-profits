@@ -1356,3 +1356,7 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   `existing customer`, 31 `past client`, todos `skimmer import`), 0 erro; amostra conferida (tags, nota, dono), 0 conversa.
   2 antigos sem telefone/e-mail fora. Ids em `backup/west-coast-pool-care/skimmer-import-20261117-1707.json`.
   Frank avisado na `86bd3m8cc` (fechada).
+
+- **17/11 — WP Pools: teste das linhas novas (Pedro ligou)**: (616) 879-8101 e (616) 898-2489 encaminharam e completaram
+  (2 s / 16 s); "Answered Incoming Call To Pipeline" disparou e criou o card. Contato e card de teste apagados (backup em
+  `backup/wp-pools-ponds-and-spas/`).
