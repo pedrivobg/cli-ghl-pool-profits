@@ -83,7 +83,9 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 
 ## Esperando outros
 - Frank: e-mail/celular do Brad
-  (Passion) para os avisos. Pedro: qual Pool Keepers é a certa para o Skimmer (hh6X9 Pool Profits × KjLd BurchTech).
+  (Passion) para os avisos. Pool Keepers/Skimmer (17/11): a certa é a KjLd (BurchTech); Pedro criou a chave, Location ID + chave novos mandados ao
+  Nathan por e-mail e Basecamp pedindo dia/hora da call. Esperando o Nathan trocar no Skimmer → conferir a conexão na KjLd
+  e tirar a chave antiga da hh6X9 (Private Integrations, tela).
 - Pedro (13/11): Pools of Perfection criada pela API; resposta ao Nathan (Skimmer nativo) e reunião de segunda aprovadas →
   extensão (prompt 2) posta; Application Passwords novas (Pool Shack,
   Bluewater; `86bd2t1mq`); OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
