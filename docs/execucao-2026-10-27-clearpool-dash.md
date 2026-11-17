@@ -1376,3 +1376,13 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   seg–sex 8–17h, STOP no missed-call, boas-vindas de reparo no Won Stage (draft), Terms of Service (PDF na mídia) no e-mail
   M10 (`scripts/pd_wc_guide_extras.py` — rodar de novo depois de qualquer `pp_wording --apply`). Resposta ao Justin em
   [Aprovar]. M10/M11 só saem quando o Won Stage for publicado (call de quinta).
+
+## 17/11 (~21h UTC) — rotina parada 15h–17h45 BRT, alerta, marcar como lido no ClickUp, BluVantage $10
+- Rotina "GHL Tasks" recusava todo disparo (400 `github_repo_access_denied`: GitHub desconectou do claude.ai). Pedro
+  reconectou; disparo das 20:48 UTC aceito (20 itens). Novo alerta no inbox watch: disparo recusado → e-mail
+  "[URGENTE] Rotina parada" ao Pedro (máx. 1 a cada 2 h).
+- ClickUp "marcar como lido": API pública não tem; API interna do app (shard frontdoor-prod-us-east-2-2) com o token da
+  sessão do Pedro (network secret do ambiente). `scripts/cu_mark_read.py`; Inbox 64 → 8 (atividade antiga limpa), canal e
+  thread testados. Regra na rotina via docs/TODO.md e inbox-watch-routine.md.
+- BluVantage (Paul, $10.01): recarga automática da carteira de telefone; transcrição OFF no número (só gravação). Respondi
+  ao Frank + Ed com o caminho do extrato e texto pronto para o Paul.
