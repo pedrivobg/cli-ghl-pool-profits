@@ -1344,3 +1344,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   rep Milen CEO; riscos: endereço PO BOX e tipo "Corporation" → usar o do EIN letter quando o Frank mandar o nome.
 - Linhas só no app ficam (decisão dos clientes); Pool Keepers resolvida pelo Pedro; Application Passwords apagadas;
   chave do guia do CRM: regra no TODO (ler do n8n em qualquer sessão).
+
+## 17/11 (~15h UTC) — inbox: Poolheads George no app, LPs do Atif
+- **Poolheads / George** (Felipe no Basecamp 10515128007: "receive calls to the app instead"): usuário George Arias
+  (`AiGubuOkSiQF2XYwkVJD`, jorge@poolheadscare.com, +1 346-814-7771, admin com as permissões do Felipe, `pp_add_user.py`).
+  `scripts/ph_george_routing.py --apply` no "Business Hours Call Routing" publicado: "Ring the team" (Felipe app + celular)
+  20 → 25 s; no "Not answered" entra "Ring George" (só o app, 20 s, stepIndex 5) + "George answered?" (`5.dialCallStatus`)
+  → não atendeu = tag `missed call` + caixa postal como antes. Fora do horário intocado. Backup
+  `backup/poolheads/4bdf1654-…-george-20261117-150654.json`; releitura ok, gatilho IVR ativo; `pp_call_check --only Poolheads`
+  0 ERRO (4 linhas no IVR). Respondido ao Felipe (1º login por Forgot password + app). Ligação de teste no Live tests (86bd1b3b5).
+- **LPs Poolheads** (Atif, 86bcwet1g): conferido ao vivo — Weekly sem Tomball/Conroe e "4 communities", espaço ícone/título nos
+  cards de reparo (desktop e celular), passo "We repair the leak" na Leak Detection; os 3 forms GOOGLE ADS com redirect para
+  os obrigado (200). Respondido na thread.
