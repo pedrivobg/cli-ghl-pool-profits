@@ -8,6 +8,13 @@ comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha p
 combinar antes.
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
+- **Arquivo achado em qualquer lugar = eu baixo** (Pedro 17/11, West Coast: a rotina pediu ao Frank para reanexar um xlsx
+  que estava no Basecamp, no e-mail e na tarefa). Nunca dizer "não consigo baixar daqui" nem pedir para mandarem em outro
+  lugar. Antes, tentar todos os caminhos: (1) **e-mail de notificação do Basecamp** → `get_message` (html) → link
+  `https://storage.app.basecamp.com/.../email/download/.../<arquivo>` = assinado, `curl -sSL` baixa sem login (testado
+  17/11); (2) anexo do Gmail → `download_gmail_attachment`; (3) anexo de tarefa ClickUp → `clickup_download_task_attachment`;
+  (4) `Basecamp download_file` (texto/imagem só). Se nada der: **perguntar ao Pedro** (e-mail [Passo seu]), nunca ao time
+  nem ao cliente — para eles o Pedro e eu somos um só.
 - **Aprovação do time vale** (Pedro 13/11): mensagem com contexto claro e sem dúvida, que alguém do time (Frank, Val, Ed)
   já pediu ou aprovou, vai direto — inclusive para cliente — sem "[Aprovar]" para o Pedro (senão espera ~2 h). Só vai ao
   Pedro o que for ambíguo, novo, sensível (reclamação, preço, culpa) ou sem aprovação de ninguém do time.

@@ -40,7 +40,9 @@ OUT = ["First Name", "Last Name", "Company Name", "Phone", "Additional Phones", 
 PLACEHOLDER = re.compile(r"schedule available|\(\d+ jobs?\)", re.I)
 PARTNER_IN_NAME = re.compile(r"blue ?wave", re.I)
 FREEMAIL = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com", "aol.com", "msn.com", "live.com",
-            "comcast.net", "me.com"}
+            "comcast.net", "me.com", "sbcglobal.net", "att.net", "verizon.net", "cox.net", "charter.net",
+            "earthlink.net", "ymail.com", "rocketmail.com", "mac.com", "bellsouth.net", "roadrunner.com",
+            "frontier.com", "frontiernet.net", "protonmail.com", "proton.me", "yahoo.co", "googlemail.com"}
 
 
 def rows_of(path: Path) -> list[dict]:
