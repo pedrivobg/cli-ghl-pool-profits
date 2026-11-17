@@ -1390,3 +1390,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Os 8 do Inbox revisados: todos respondidos (7 tarefas + chats). Pool Shack: pedido do Frank "everyone add findings" não
   tinha sido capturado (sem menção) → postei o lado do CRM no canal. Tudo marcado lido: Inbox 0, 32 canais sem não lido.
   n8n "Collect all items": mensagem de canal pedindo ao time (everyone/team/guys/anyone/@here) agora vira item.
+
+# 17/11 noite (rotina do inbox, 4 itens)
+- **Blue Lagoon** (Pedro aprovou): "IVR SPAM Detection" → draft (backup `backup/blue-lagoon-pool-management/`), linha Google
+  Local LSA encaminhada para a Destiny (+16024007289). As 5 linhas seguem com `inboundCallService` = IVR em draft: conferido
+  na Precision (mesmo caso) que a ligação toca o encaminhamento normal (atendida de 6 min, "Missed Call" disparando, sem
+  meta.ivr). Na 1ª tentativa reverti para published por ~1 min até confirmar isso. `pp_call_check` acusa "IVR em draft"
+  (caso conhecido). Falta: ligação de teste do Pedro → resposta à Caila. ClickUp `86bd4keqw`.
+- **Pool Palooza** (Todd, Basecamp): origem por número + 2 forms nos fluxos dele (TAG Orchestrator / TAG Incoming Calls).
+  O número "GBP" 520-521-0905 é o do site e do rodapé de toda LP (infla `gbp`); free-trial/landing-page/stop-guessing
+  (tráfego Meta) mostram o número do Adwords; Free Trial, F1 e calendário sem tag (118/459 contatos desde 01/09 sem
+  origem). UTMs chegam certas nas submissões (Meta com utm_*, Google só gclid). [Aprovar] ao Pedro. ClickUp `86bd4kerf`.
+- Pool Duck WC (Justin): já feito na rodada anterior.
