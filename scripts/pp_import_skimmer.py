@@ -37,6 +37,7 @@ OUT = ["First Name", "Last Name", "Company Name", "Phone", "Additional Phones", 
        "Address", "City", "State", "Postal Code", "Tags", "Notes"]
 
 
+ACCOUNT_IN_NAME = re.compile(r"\s*-?\s*\(?\s*(?:Account\s*)?#\s*(\d+)\s*\)?", re.I)
 PLACEHOLDER = re.compile(r"schedule available|\(\d+ jobs?\)", re.I)
 PARTNER_IN_NAME = re.compile(r"blue ?wave", re.I)
 FREEMAIL = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com", "aol.com", "msn.com", "live.com",
@@ -100,7 +101,12 @@ def main() -> int:
         emails = [x for x in dict.fromkeys(r.get(f"Email{i}", "").lower() for i in range(1, 5)) if "@" in x]
         loc = "Location" if r.get("LocationAddress") else "Billing"
         company = r.get("CompanyName", "") if r.get("DisplayAsCompany", "").lower() == "true" else ""
-        first, last = title(r.get("FirstName", "")), title(r.get("LastName", ""))
+        first, last = r.get("FirstName", "").strip(), r.get("LastName", "").strip()
+        acct = ACCOUNT_IN_NAME.search(f"{first} {last}")  # West Coast: "AGUINALDO-(Account #1)"
+        if acct:
+            first, last = (ACCOUNT_IN_NAME.sub("", x).strip(" -") for x in (first, last))
+        # names: 3-letter caps too ("JOE", "TSE"); title() keeps them for addresses ("NE", "APT")
+        first, last = (x.title() if x.isupper() and len(x) >= 3 else title(x) for x in (first, last))
         if not first and not last:
             first = title(r.get("FullName", ""))
         if PLACEHOLDER.search(f"{first} {last}"):
@@ -119,7 +125,7 @@ def main() -> int:
         if partner or dealer or "blue wave" in r.get("LeadSource", "").lower():
             tags.append("blue wave referral")
         tags += ["skimmer import"] + [t.strip().lower() for t in r.get("TagList", "").split(",") if t.strip()]
-        notes = []
+        notes = [f"Skimmer account #{acct.group(1)}"] if acct else []
         if r.get("LeadSource"):
             notes.append(f"Lead source: {r['LeadSource']}")
         if r.get("Rate") not in ("", "0", "0.0") and r.get("RateType", "None") != "None":

@@ -1344,3 +1344,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   rep Milen CEO; riscos: endereço PO BOX e tipo "Corporation" → usar o do EIN letter quando o Frank mandar o nome.
 - Linhas só no app ficam (decisão dos clientes); Pool Keepers resolvida pelo Pedro; Application Passwords apagadas;
   chave do guia do CRM: regra no TODO (ler do n8n em qualquer sessão).
+
+## 17/11 (~17h UTC) — West Coast: lista de clientes do Skimmer importada
+- A rotina tinha pedido ao Frank para reanexar o `Customers.xlsx` do Abraham ("não consigo baixar do Basecamp"); Pedro
+  corrigiu: arquivo em qualquer plataforma = eu baixo (regra em `CLAUDE.md` e `docs/TODO.md`). Baixado pelo link assinado
+  `storage.app.basecamp.com/.../email/download/...` do e-mail de notificação (curl, sem login). Comentário ao Frank corrigido.
+- `pp_import_skimmer.py`: ISP (sbcglobal/att/verizon…) não é mais "domínio de parceiro"; "(Account #N)" / "-Account #N" /
+  "(#N)" sai do nome → nota "Skimmer account #N"; nome de 3 letras em caixa alta vira Title Case.
+- Novo `scripts/pp_import_apply.py` (plan lista gatilhos contact_tag/contact_created; --apply = upsert sem tags → tags → nota).
+  Gatilhos: só "Contact Created -> add owner" (assign_user). Pedro OK → 134 novos (103 ativos `active client` +
+  `existing customer`, 31 `past client`, todos `skimmer import`), 0 erro; amostra conferida (tags, nota, dono), 0 conversa.
+  2 antigos sem telefone/e-mail fora. Ids em `backup/west-coast-pool-care/skimmer-import-20261117-1707.json`.
+  Frank avisado na `86bd3m8cc` (fechada).
