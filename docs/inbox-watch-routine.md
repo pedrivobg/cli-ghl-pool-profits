@@ -103,6 +103,14 @@ O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rot
 5. UM e-mail "[Passo seu] O que é seu – <data> (revisão da noite)": (a) passos do Pedro, numerados; (b) decisões dele;
    (c) o que foi fechado/adiantado, uma linha cada. Marcar como lidos os [Passo seu] anteriores que ele substitui.
 
+## Rotina recusando o disparo (17/11)
+- 15h–17h45 BRT: todo disparo voltou 400 `github_repo_access_denied` (GitHub desconectou do claude.ai; o `git fetch` da
+  sessão também dava 403 "reconnect your GitHub account"). O n8n rodava, mas ninguém respondia nada e ninguém sabia.
+- Agora: nó **"Fire failed? (alert Pedro)"** → **"Email Pedro (routine down)"** depois do "Send to Claude": disparo
+  recusado = e-mail "[URGENTE] Rotina parada: N itens sem resposta" na hora (no máximo 1 a cada 2 h enquanto falhar),
+  com a causa e o link para reconectar. Os itens não vão para o ledger, então o próximo disparo manda tudo de novo.
+- Correção é humana: reconectar o GitHub em claude.ai (link no e-mail).
+
 ## Buraco do fim de semana (corrigido 16/11)
 O n8n não roda sábado/domingo e olhava só 26 h para trás: na segunda às 9h, tudo de sexta 7h em diante até domingo caía
 fora da janela e nunca era captado (3 tarefas que o Frank criou no domingo 15/11 sobre a West Coast ficaram sem resposta).
