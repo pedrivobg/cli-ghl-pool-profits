@@ -56,7 +56,7 @@ B. **West Coast A2P recusado** (16/11, 1ª recusa): nome legal ≠ EIN 37-223808
    reenvio conferir tudo pelo `docs/a2p-sop.md` (endereço hoje é PO BOX 2136 → usar o do EIN letter; tipo "Corporation" →
    conforme o EIN: LLC etc.; Legal Business Name no perfil + custom value + rodapé do site iguais). Se recusar de novo →
    avisar o Pedro antes de qualquer coisa. ClickUp `86bd3m8c9`.
-C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank):
+C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank; pauta `docs/poolduck-wc-reuniao-2026-11-19.md`; resposta do guia mandada 17/11):
    respostas do guia (`pool-c81cf184`), NPS form + Review Request, Won welcome. LWR/Odessa: mesma fase 2 depois disso.
 0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
    paga). Responder "aprovado" → compro um 385 (ex.: +1 385-365-2440), nome "Google Ads", encaminha para o Justin, passo ao
@@ -97,6 +97,9 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    Agreement Example); [Passo seu] ligação de teste nas 2 linhas novas da WP Pools.
 13. **Reign LPs** (`86bd2jrc6`): prometido à Val preparar o lado GHL enquanto o Atif desenha (form com ZIP das 8 áreas, tags
    dos 3 serviços, origem Ads x GBP, etapas Spam/Not Qualified, avisos ao Stephen).
+
+14. **[Aprovar] Blue Lagoon – tirar o IVR SPAM Detection** (17/11, Caila no Basecamp): "aprovado" → IVR em draft, LSA
+   encaminha para a Destiny, `pp_call_check`, sua ligação de teste, resposta à Caila (rascunho no e-mail).
 
 ## Esperando outros
 - Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —

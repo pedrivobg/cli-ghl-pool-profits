@@ -1390,3 +1390,16 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Os 8 do Inbox revisados: todos respondidos (7 tarefas + chats). Pool Shack: pedido do Frank "everyone add findings" não
   tinha sido capturado (sem menção) → postei o lado do CRM no canal. Tudo marcado lido: Inbox 0, 32 canais sem não lido.
   n8n "Collect all items": mensagem de canal pedindo ao time (everyone/team/guys/anyone/@here) agora vira item.
+
+## 17/11 (~22h UTC) — inbox: Blue Lagoon IVR, resposta ao Justin, template de onboarding V2
+- **Blue Lagoon** (Caila, Basecamp, cliente vê: "just voicemails, no missed call notifications; remove the spam blocker?"):
+  só leitura. "IVR SPAM Detection" (5 linhas) toca só a Destiny, 10 s, `detectVoicemail: true`; das ~40 ligações de entrada
+  recentes ~20 caíram na caixa postal do celular dela (`machine_start`), ~6 no-answer, ~14 desligaram no "press 1". Com IVR
+  tudo vira "completed": o "Missed Incoming Call To Pipeline" nunca dispara e o ramo sem resposta só grava recado.
+  [Aprovar] ao Pedro: IVR → draft (backup), LSA (+14806910435, sem encaminhamento) → celular da Destiny, `pp_call_check`,
+  ligação de teste do Pedro, depois resposta à Caila. Nada mudado ainda.
+- **Pool Duck WC**: resposta aprovada mandada ao Justin (cc Ed, Frank). Pauta da quinta: `docs/poolduck-wc-reuniao-2026-11-19.md`.
+- **ClickUp TEMPLATE V2 de onboarding** (Frank): "Set Up GoHighLevel" — snapshot V6 → V9 + 3 subtarefas (usuários/avisos
+  ao dono; forms → pipeline/redirect/obrigado a cada lançamento ou mudança de URL; link de review + Review Request).
+- **Bonneville** (Val): erro na LP = URL trocada pelo Atif; LPs e obrigados novos 200, redirects dos 2 forms apontam para
+  os obrigados vivos.
