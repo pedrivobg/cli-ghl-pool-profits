@@ -1422,3 +1422,6 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Pedro para selecionar 880-434-4425; depois `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W`.
 - Avisado à Val: Clear Pool tem "Converted Lead - WON (1)" duplicado; WC já mandava "Converted Lead (Form Fill)" no Won (fluxo
   antigo publicado) → conta nas 2 ações. Teste real = próximo Won vindo de clique no anúncio (upload aparece em até ~24 h).
+- Val (18/11): WC fica com a conversão antiga → "Won -> Google Ads" da WC (`f8973916-…`) voltou para draft (backup em
+  `backup/won-ads/`; 3 gatilhos inativos); "Google AdWords - Converted Lead (Form Fill) (Pool Leads Won)" segue publicado.
+  Ela tira o "(1)" da Clear Pool. LWR segue esperando o [Passo seu] do Pedro (conversões ainda 400).

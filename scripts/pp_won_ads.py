@@ -32,7 +32,7 @@ ACCOUNTS = {  # Val's active Google Ads list (18/11)
                 "SylIOZiJ6YQsZOypUI8Z", "GeeXTPcJXAoVUAmzLxfT", "ghUi89uCpNyNunNpbtAt", "jvu0xE8rfMFiT00he8m7",
                 "KLFYmoVapqQgX3T0AnLn", "NbOZEj2whuSBHyXtZec1", "d03SMzI37dxTBeuoTJ13", "3CozZ1NfujYWEPIYgzx0",
                 "k6nDPHktS2PySJoJuwpG", "FpRTQZR56xwp1Wg5NQCq"],
-    "poolduck": ["uJr8H2qaQM5ffZxeYFqn", "MosKIX4oux96vchwHZ5W"],
+    "poolduck": ["MosKIX4oux96vchwHZ5W"],  # WC (uJr8H2qaQM5ffZxeYFqn) keeps its old conversion (Val 18/11): flow in draft
 }
 
 
