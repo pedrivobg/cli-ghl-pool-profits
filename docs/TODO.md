@@ -79,6 +79,8 @@ contas novas esperam o 1º número (Frank); gate de nota = 4 ou 5 (feito 17/11);
 contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quinta); Reign LPs = lado GHL meu (`86bd2jrc6`).
 
 ## Esperando outros
+- Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por
+  escrito no thread do canal Pool Profits para eu me preparar (ideias do que dá para automatizar).
 - Frank (18/11, `86bd4tugh`): confirmar com a Vanessa (BluVantage) se o card pode ir sozinho de New Lead para In
   Communication em ligação/SMS (a etapa dispara e-mails de nurture) — pedido da Val.
 - Val (18/11, Pedro passou para ela; pedido na `86bd4kucg`): selecionar a conta Google Ads 880-434-4425 na LWR → `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W` e avisar a Val (`86bd4kucg`).
