@@ -1410,3 +1410,14 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (Client Template, TEMPLATE V2, HQ junho). Pool Keepers checklist de julho: Pedro removido, fica só 86bd02rg9.
 - Captura nova de canal ("everyone/guys") já pegou o pedido da Val (LP Bonneville com erro, 13:13 BRT) e o do Frank
   (template novo) — rotina disparada 21:23 UTC.
+
+## 18/11 manhã — Sunwave (gravação/"sem resposta") e canais por cliente (Val)
+- **Sunwave** (`GeeXTPcJXAoVUAmzLxfT`), só leitura: as 5 linhas passam pelos IVRs "Marketing - IVR" / "Customer Service - IVR"
+  (`record: record-from-answer`). Em 30 dias: 33 ligações atendidas gravadas e transcritas; ~110 robocalls na linha
+  Website & GBP (689-312-9063), cada uma de um 689 diferente, sem apertar opção → o IVR repete o menu e desliga (~50 s,
+  ninguém toca). Os SMS sem resposta são spam (empréstimo, eleição, códigos). Ligação atendida também conta como "sem
+  resposta" (não tem SMS/e-mail na conversa). Resposta ao David no Basecamp (pedido da Val) com 8 números locais que
+  desligaram na saudação; ofereci encurtar a saudação e marcar como spam quem desliga no menu (esperando o David).
+- **Canais do ClickUp por cliente** (Val criou 18/11): post "Client info: Basecamp + GHL" nos 22 canais (projeto do
+  Basecamp, sub-conta do GHL, usuários do cliente, linhas e para onde tocam). Updates de GHL de cada cliente vão no canal dele.
+  ClickUp `86bd4t7ar` (fechada).

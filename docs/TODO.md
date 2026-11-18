@@ -99,6 +99,7 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    dos 3 serviços, origem Ads x GBP, etapas Spam/Not Qualified, avisos ao Stephen).
 
 ## Esperando outros
+- David (Sunwave, 18/11): quer saudação mais curta no IVR e tag de spam para quem desliga no menu? (Basecamp "Google ADS - INFO").
 - Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —
   3ª linha (Facebook)?; Service Agreement Example na West Coast (ofereci colocar).
 - Frank: e-mail/celular do Brad
