@@ -1452,3 +1452,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - 18/11 ~15h40 UTC: LWR — Val conectou o Google Ads; Val disse à Connie para manter o Ads (conversão vale) → `pp_won_ads.py apply
   --only MosKIX4oux96vchwHZ5W`: "Won -> Google Ads" publicado, conv 7907855180, 3 gatilhos (`de9c4a00`); 16/16 contas. Respondido
   à Val na `86bd4kucg`. Pool Shack (Frank → Vikkar/Success Team, SEO): sem resposta minha. E-mail do Basecamp LWR marcado lido.
+
+## 18/11 (~15h40 UTC) — inbox watch, 1 item (Basecamp Pool Shack, cliente vê)
+- Frank ao Rob ("Marketing performance and next steps"): time se reúne hoje e traz update. Pedido do Rob = Ads/SEO/site
+  (CPC weekly, ranking Scottsdale/PV, página "Pottery Workshop", "XOXO" no resurfacing, relatório 30–60 dias) → Val/Success
+  Team/Atif; não me marca, sem pedido de CRM → sem resposta; e-mail marcado lido, ledger `done`. Se pedirem os números do
+  CRM (24 oportunidades, 2 legítimas, spam via GBP) na mid-week, eu levanto.
