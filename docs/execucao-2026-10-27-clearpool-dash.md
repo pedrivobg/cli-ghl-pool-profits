@@ -1442,3 +1442,6 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Causa 2 (memória): a revisão de 17/11 leu o TODO com itens já feitos (número da Bonneville, SMS Sparkling, "[Aprovar]
   Justin" enviado 21:27 UTC) e não cruzou com ledger/Gmail. Correção: TODO limpo; passo 6 (checagem de memória) e 7
   (memória de toda rodada) em `docs/inbox-watch-routine.md`; o mesmo texto vai no item da noite e em todo disparo do n8n.
+- 18/11 ~14:20 UTC: item `1a1eefa4f21bfcb3` era a minha própria resposta das 14:05 no thread "[Passo seu] O que é seu".
+  Conferido: o comentário ao Nathan (qui 19/11 10h PT) está no Basecamp (14:04 UTC). Espera o Nathan confirmar → o Pedro
+  manda o link. Ledger = done, thread marcado como lido, TODO atualizado.

@@ -65,7 +65,8 @@ combinar antes.
 21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
 1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11): inclui a chamada
    perdida da Blue Lagoon (ligar para +1 480-400-0140 fora do horário da Destiny e deixar cair; Pedro 18/11: "mais tarde").
-2. **Pool Keepers – call com o Nathan**: Pedro 18/11 = qui 19/11 **10h PT**; a rotina de 18/11 confirma ao Nathan no Basecamp.
+2. **Pool Keepers – call com o Nathan**: proposta qui 19/11 **10h PT** (= 15h BRT) postada no Basecamp 18/11 14:04 UTC; quando o
+   Nathan confirmar, o Pedro manda o convite/link da reunião (ou me passa o link e eu posto).
 3. **Pool Duck WC – follow-up qui 19/11 15h** (Justin/Ed/Frank): pauta em `docs/poolduck-wc-reuniao-2026-11-19.md`.
 4. (opcional, desde 10/11) **API do Claude no n8n**: credenciais "Anthropic Pool Profits" e "GHL Agency Token" → agente do n8n
    para itens fáceis do inbox. Só se o Pedro quiser.
