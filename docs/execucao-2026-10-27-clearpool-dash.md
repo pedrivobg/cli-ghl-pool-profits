@@ -1446,3 +1446,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Conferido: o comentário ao Nathan (qui 19/11 10h PT) está no Basecamp (14:04 UTC). Espera o Nathan confirmar → o Pedro
   manda o link. Ledger = done, thread marcado como lido, TODO atualizado.
 - 18/11 14:37 UTC: chat Pool Profits (Success Team, `80140068651125`): pedido de Google Meet hoje com Ed sobre automação de SEO. Sem resposta no chat (agenda do Pedro); e-mail [Passo seu] com resposta sugerida + push. Ledger needs_pedro.
+- 18/11 ~11h50 BRT: Success Team/Ed pediram Meet sobre automação de SEO → respondi na thread (Pedro): na mid-week de hoje 16h BRT / 1 PM CT. Sparkling: Frank passou login do site ao Atif (sem resposta minha; testar quando o form estiver no ar).
