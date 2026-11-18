@@ -1473,3 +1473,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   forms FORM - GOOGLE ADS - WEEKLY SERVICE / POOL REPAIRS + fluxos de tag (google ads + weekly service / pool repairs), no
   gatilho de AdWords Form - New Lead. Teste ZZ TEST ok (novo/cliente/spam/repetição), apagado. Respondido à Val (thread + tarefa
   `86bd4wxp0`, Atif marcado para pôr os forms); [Passo seu] do teste ao vivo atualizado (SMS + ligação + Send Data).
+
+## 18/11 (~20h UTC) — inbox watch, 3 itens
+- Canal Pool Profits ("use Frank's room?"): logística da mid-week, Frank já mandou o Zoom → sem resposta.
+- Pool Palooza: Atif trocou a meta description → conferido ao vivo (landing-page/stop-guessing = (520) 667-2800, 0× 827-3151) e agradecido. Item fechado.
+- Sparkling: form GHL `imAcS6ivcE08cElD0Xxh` no hero da home e Contact Us (Playwright: carrega, campos ok). Rodapé "Get Your
+  Free Estimate" ainda WPForms em todas as páginas → pedido ao Atif no thread (Frank em cópia); depois, teste de envio pelo site.

@@ -9,10 +9,10 @@ combinar antes.
 
 ## Aberto hoje
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
-- 18/11: Sparkling: Atif com o login do site vai embutir o form GHL; quando avisar, testar submissão pelo site.
+- 18/11: Sparkling: form GHL no hero da home e Contact Us (conferido 20h UTC); falta o Atif trocar o form do rodapé (WPForms
+  "Get Your Free Estimate", todo o site) → depois testar envio pelo site.
 - 18/11: Sparkling Ads (`86bd4wyr5`): WON + fluxos SMS/Lead Form + 2 forms das LPs novas feitos; esperando o Atif pôr os
   forms WEEKLY SERVICE / POOL REPAIRS nas LPs (tarefa `86bd4wxp0`) → testar submissão em cada página.
-- 18/11: Pool Palooza: Atif trocou o número nas 4 LPs (conferido); falta a meta description de landing-page/stop-guessing.
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
 - **Memória de cada rodada é obrigatória** (Pedro 18/11: "se não fica repetindo"; a revisão da noite de 17/11 listou
