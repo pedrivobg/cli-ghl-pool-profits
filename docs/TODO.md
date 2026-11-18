@@ -76,11 +76,10 @@ combinar antes.
 21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
 1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11): inclui a chamada
    perdida da Blue Lagoon (ligar para +1 480-400-0140 fora do horário da Destiny e deixar cair; Pedro 18/11: "mais tarde").
-2. **Pool Keepers – call com o Nathan qui 19/11 10h PT** (= 15h BRT): sem acesso a Google Calendar daqui → mandei ao Pedro (18/11
-   21h20) o e-mail nathan@thepoolkeepers.company para ele criar o convite com Meet. Quando aparecer "Invitation" para o Nathan nos
-   Enviados → postar no Basecamp "Automations – Review" o texto já aprovado no e-mail (convite enviado ao e-mail dele).
-3b. **Sparkling – Google Lead Form**: ligação/SMS/form da LP passaram (18/11 20h40, apagados, postado à Val). Send Data não chegou →
-   Pedro mapeia/ativa o form em Settings → Integrations → Google Ads e manda de novo → conferir contato `adwords lead form` + card.
+2. **Pool Keepers – call com o Nathan qui 19/11 10h PT** (15h BRT): convite + Meet enviados pelo Pedro, link postado no Basecamp 18/11 22:03 UTC.
+   Na call: trocar Location ID/chave no Skimmer (KjLd) e revisar as configurações.
+3b. **Sparkling – Google Lead Form**: ligação/SMS/form da LP ok (postado à Val). 2º Send Data (18/11 ~21h40) também não chegou
+   (gatilho/conta ok do meu lado) → pedi ao Pedro 2 prints: Integrations → Google Ads → Lead Forms e "Lead delivery" do form no Google Ads.
 3c. **Reign – envio real em go.reignpoolservices.com/weekly-pool-service** (ZZ TEST Pedro, ZIP 92881) → conferir card, tags, aviso ao Stephen; apagar.
 3. **Pool Duck WC – follow-up qui 19/11 15h** (Justin/Ed/Frank): pauta em `docs/poolduck-wc-reuniao-2026-11-19.md`.
 4. (opcional, desde 10/11) **API do Claude no n8n**: credenciais "Anthropic Pool Profits" e "GHL Agency Token" → agente do n8n

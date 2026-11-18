@@ -1489,3 +1489,8 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Reign LPs (Atif): `scripts/rg_lp_launch.py` — 3 forms LP no gatilho de "AdWords Form - New Lead" + 3 fluxos "Google Ads LP … - Tags"
   (tags do briefing + ZIP dos 8 alvos → service area zip / outside service area), testado com ZZ TEST e apagado. Comentado em `86bd2jrc6`;
   Val: conversão do passo "Add to Google Ads" ("AdWords - Form Fill - Qualified" não existe na conta) e número das LPs.
+
+## 18/11 (~22h UTC) — inbox watch, 2 itens (resposta do Pedro "convite enviado e teste feito")
+- Pool Keepers: convite + Meet (hxe-xqpz-siq) postados ao Nathan no Basecamp "Automations – Review" (22:03 UTC). Item fechado.
+- Sparkling: 2º Send Data do Google Lead Form também não chegou (nenhum contato desde 16/11; gatilho `google_lead_form_submitted`
+  ativo com adAccountId 2695266803; conversão WON visível) → pedidos 2 prints ao Pedro no thread (resposta marcada não lida).
