@@ -7,6 +7,10 @@ comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha p
 `docs/execucao-*.md` e `docs/TODO-arquivo-2026-11-04.md`. Item fechado sai daqui. Teste que avisa cliente:
 combinar antes.
 
+## Aberto hoje
+- 18/11: Success Team + Ed querem Google Meet com o Pedro hoje de manhã (automação de SEO), chat Pool Profits
+  (`80140068651125`). E-mail "[Passo seu] Google Meet..." enviado; espera o Pedro dar o horário/responder.
+
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
 - **Memória de cada rodada é obrigatória** (Pedro 18/11: "se não fica repetindo"; a revisão da noite de 17/11 listou
   como pendente o que já estava feito — Bonneville, Justin da Pool Duck — porque a rodada da manhã não gravou nada). Toda
