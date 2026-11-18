@@ -1410,3 +1410,15 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (Client Template, TEMPLATE V2, HQ junho). Pool Keepers checklist de julho: Pedro removido, fica só 86bd02rg9.
 - Captura nova de canal ("everyone/guys") já pegou o pedido da Val (LP Bonneville com erro, 13:13 BRT) e o do Frank
   (template novo) — rotina disparada 21:23 UTC.
+
+## 18/11 — "Converted Lead - WON" nas contas com Google Ads ativo (Val, `86bd4kucg`)
+- `scripts/pp_won_ads.py` (novo): workflow "Won -> Google Ads" igual ao da Corolla (1 passo `google_adword` com a conversão
+  "Converted Lead - WON" da conta, gclid do contato, valor 1; 1 gatilho `pipeline_stage_updated` por etapa Won), publicado
+  (só fala com o Google Ads). Os "Adword Call/Form - Conversion" antigos ficaram como estavam.
+- Aplicado e conferido (publicado, gatilhos ativos, id certo) em 15: Simple Pool, Damon's, Pool Palooza ("Quoted - Won"),
+  Wrigley's, Southern, Sunwave (só Weekly), Clear Pool (4 etapas, inclusive a antiga "Won Customer – One Time Repair"), Reign,
+  BluVantage, Precision, Passion, Pool Shack, NorTex, YardSpring, Pool Duck WC (`GHL_AGENCY=poolduck`). Backup em `backup/won-ads/`.
+- LWR: `/ad-publishing/google/conversions` → 400 "No google ads account selected" (só o Lead Ads está ligado) → [Passo seu] ao
+  Pedro para selecionar 880-434-4425; depois `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W`.
+- Avisado à Val: Clear Pool tem "Converted Lead - WON (1)" duplicado; WC já mandava "Converted Lead (Form Fill)" no Won (fluxo
+  antigo publicado) → conta nas 2 ações. Teste real = próximo Won vindo de clique no anúncio (upload aparece em até ~24 h).

@@ -99,6 +99,7 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    dos 3 serviços, origem Ads x GBP, etapas Spam/Not Qualified, avisos ao Stephen).
 
 ## Esperando outros
+- Pedro (18/11, [Passo seu]): selecionar a conta Google Ads 880-434-4425 na LWR → `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W` e avisar a Val (`86bd4kucg`).
 - Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —
   3ª linha (Facebook)?; Service Agreement Example na West Coast (ofereci colocar).
 - Frank: e-mail/celular do Brad
