@@ -1458,3 +1458,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (CPC weekly, ranking Scottsdale/PV, página "Pottery Workshop", "XOXO" no resurfacing, relatório 30–60 dias) → Val/Success
   Team/Atif; não me marca, sem pedido de CRM → sem resposta; e-mail marcado lido, ledger `done`. Se pedirem os números do
   CRM (24 oportunidades, 2 legítimas, spam via GBP) na mid-week, eu levanto.
+
+## 18/11 (~17h20 UTC) — inbox watch, 3 itens
+- Pool Keepers: Nathan confirmou qui 19/11 10h PT no Basecamp (cliente vê) → sem resposta; [Passo seu] ao Pedro (convite/link +
+  rascunho). E-mail lido, ledger needs_pedro.
+- Sparkling (Val, Google Ads US$ 35/dia): conferido LPs (FORM - GOOGLE ADS, linha Adwords), tags adwords, card New Lead, SMS
+  ao Robert, 3 linhas ok. Gap: `/ad-publishing/google/conversions` = [] na conta 2695266803 → passos "Add to Google Ads" sem
+  conversão; Won só "Weekly". Respondido à Val (nomes das conversões); tarefa `86bd4wyr5`; teste ao vivo → [Passo seu] Pedro.
+- Pool Palooza: Atif trocou para (520) 667-2800 nas 4 LPs (conferido ao vivo); 3151 só na meta description → pedido ao Atif.

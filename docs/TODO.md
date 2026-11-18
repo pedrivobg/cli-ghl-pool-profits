@@ -10,6 +10,9 @@ combinar antes.
 ## Aberto hoje
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
 - 18/11: Sparkling: Atif com o login do site vai embutir o form GHL; quando avisar, testar submissão pelo site.
+- 18/11: Sparkling Google Ads (`86bd4wyr5`): esperando a Val mandar os nomes das conversões (o CRM não vê nenhuma na conta
+  269-526-6803) → ligar os 4 passos "Add to Google Ads" + Won reparo; teste ao vivo = [Passo seu] do Pedro de 18/11.
+- 18/11: Pool Palooza: Atif trocou o número nas 4 LPs (conferido); falta a meta description de landing-page/stop-guessing.
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
 - **Memória de cada rodada é obrigatória** (Pedro 18/11: "se não fica repetindo"; a revisão da noite de 17/11 listou
@@ -69,8 +72,9 @@ combinar antes.
 21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
 1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11): inclui a chamada
    perdida da Blue Lagoon (ligar para +1 480-400-0140 fora do horário da Destiny e deixar cair; Pedro 18/11: "mais tarde").
-2. **Pool Keepers – call com o Nathan**: proposta qui 19/11 **10h PT** (= 15h BRT) postada no Basecamp 18/11 14:04 UTC; quando o
-   Nathan confirmar, o Pedro manda o convite/link da reunião (ou me passa o link e eu posto).
+2. **Pool Keepers – call com o Nathan qui 19/11 10h PT** (= 15h BRT): Nathan **confirmou** 18/11 16:44 UTC; falta o Pedro mandar o
+   convite/link (ou responder ao "[Passo seu] Nathan confirmou…" com o link + "aprovado" e eu posto no Basecamp).
+3b. **Sparkling – teste ao vivo do Ads**: ligar para (469) 617-2308 + form da LP Weekly Service ("[Passo seu]" de 18/11).
 3. **Pool Duck WC – follow-up qui 19/11 15h** (Justin/Ed/Frank): pauta em `docs/poolduck-wc-reuniao-2026-11-19.md`.
 4. (opcional, desde 10/11) **API do Claude no n8n**: credenciais "Anthropic Pool Profits" e "GHL Agency Token" → agente do n8n
    para itens fáceis do inbox. Só se o Pedro quiser.
