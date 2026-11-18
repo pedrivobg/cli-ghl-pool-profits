@@ -1479,3 +1479,13 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Pool Palooza: Atif trocou a meta description → conferido ao vivo (landing-page/stop-guessing = (520) 667-2800, 0× 827-3151) e agradecido. Item fechado.
 - Sparkling: form GHL `imAcS6ivcE08cElD0Xxh` no hero da home e Contact Us (Playwright: carrega, campos ok). Rodapé "Get Your
   Free Estimate" ainda WPForms em todas as páginas → pedido ao Atif no thread (Frank em cópia); depois, teste de envio pelo site.
+
+## 18/11 (~21h UTC) — inbox watch, 3 itens
+- Pedro fez o teste da Sparkling: ligação (adwords call + card), SMS (adwords sms + aviso ao Robert + obrigado) e form da LP Weekly
+  (tags + card + SMS ao Robert) ok. Send Data do Google Lead Form não chegou → [Passo seu] (mapear/ativar em Integrations). Testes e o
+  card que o Robert criou ao responder os avisos apagados (backup/sparkling-clear-pool-service). Resultado na tarefa `86bd4wyr5` (Val).
+- Convite do Nathan: sem Google Calendar na sessão → e-mail dele (nathan@thepoolkeepers.company) + passos ao Pedro; Basecamp depois do convite.
+- Sparkling: rodapé com o form GHL conferido; WPForms #337 ainda em 23 páginas → pedido ao Atif no thread.
+- Reign LPs (Atif): `scripts/rg_lp_launch.py` — 3 forms LP no gatilho de "AdWords Form - New Lead" + 3 fluxos "Google Ads LP … - Tags"
+  (tags do briefing + ZIP dos 8 alvos → service area zip / outside service area), testado com ZZ TEST e apagado. Comentado em `86bd2jrc6`;
+  Val: conversão do passo "Add to Google Ads" ("AdWords - Form Fill - Qualified" não existe na conta) e número das LPs.

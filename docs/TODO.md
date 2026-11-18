@@ -9,8 +9,8 @@ combinar antes.
 
 ## Aberto hoje
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
-- 18/11: Sparkling: form GHL no hero da home e Contact Us (conferido 20h UTC); falta o Atif trocar o form do rodapé (WPForms
-  "Get Your Free Estimate", todo o site) → depois testar envio pelo site.
+- 18/11: Sparkling: form GHL no hero, Contact Us e rodapé (conferido 21h UTC). Falta o Atif trocar o WPForms #337 ("Get a Free
+  Quote" no meio de 23 páginas de serviço/location/schedule-service; pedido no thread 21h15) → conferir as páginas + envio real.
 - 18/11: Sparkling Ads (`86bd4wyr5`): WON + fluxos SMS/Lead Form + 2 forms das LPs novas feitos; esperando o Atif pôr os
   forms WEEKLY SERVICE / POOL REPAIRS nas LPs (tarefa `86bd4wxp0`) → testar submissão em cada página.
 
@@ -72,15 +72,18 @@ combinar antes.
 21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
 1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11): inclui a chamada
    perdida da Blue Lagoon (ligar para +1 480-400-0140 fora do horário da Destiny e deixar cair; Pedro 18/11: "mais tarde").
-2. **Pool Keepers – call com o Nathan qui 19/11 10h PT** (= 15h BRT): Nathan **confirmou** 18/11 16:44 UTC; falta o Pedro mandar o
-   convite/link (ou responder ao "[Passo seu] Nathan confirmou…" com o link + "aprovado" e eu posto no Basecamp).
-3b. **Sparkling – teste ao vivo do Ads**: SMS + ligação para (469) 617-2308 + Send Data do Google lead form ("[Passo seu]" de 18/11, atualizado 18h UTC).
+2. **Pool Keepers – call com o Nathan qui 19/11 10h PT** (= 15h BRT): sem acesso a Google Calendar daqui → mandei ao Pedro (18/11
+   21h20) o e-mail nathan@thepoolkeepers.company para ele criar o convite com Meet. Quando aparecer "Invitation" para o Nathan nos
+   Enviados → postar no Basecamp "Automations – Review" o texto já aprovado no e-mail (convite enviado ao e-mail dele).
+3b. **Sparkling – Google Lead Form**: ligação/SMS/form da LP passaram (18/11 20h40, apagados, postado à Val). Send Data não chegou →
+   Pedro mapeia/ativa o form em Settings → Integrations → Google Ads e manda de novo → conferir contato `adwords lead form` + card.
+3c. **Reign – envio real em go.reignpoolservices.com/weekly-pool-service** (ZZ TEST Pedro, ZIP 92881) → conferir card, tags, aviso ao Stephen; apagar.
 3. **Pool Duck WC – follow-up qui 19/11 15h** (Justin/Ed/Frank): pauta em `docs/poolduck-wc-reuniao-2026-11-19.md`.
 4. (opcional, desde 10/11) **API do Claude no n8n**: credenciais "Anthropic Pool Profits" e "GHL Agency Token" → agente do n8n
    para itens fáceis do inbox. Só se o Pedro quiser.
 Contexto que NÃO é passo do Pedro (não pôr no e-mail): West Coast A2P espera o endereço do EIN letter (Frank, `86bd3m8c9`);
 contas novas esperam o 1º número (Frank); gate de nota = 4 ou 5 (feito 17/11); sem nota em 7 dias = sem link (feito 16/11);
-contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quinta); Reign LPs = lado GHL meu (`86bd2jrc6`).
+contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quinta); Reign LPs: CRM ligado 18/11 (`rg_lp_launch.py`); Val responde conversão (só "Converted Lead - WON") e número de ligação das LPs.
 
 ## Esperando outros
 - Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por
