@@ -1410,3 +1410,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (Client Template, TEMPLATE V2, HQ junho). Pool Keepers checklist de julho: Pedro removido, fica só 86bd02rg9.
 - Captura nova de canal ("everyone/guys") já pegou o pedido da Val (LP Bonneville com erro, 13:13 BRT) e o do Frank
   (template novo) — rotina disparada 21:23 UTC.
+
+# 18/11 manhã (rotina do inbox, 2 itens)
+- **Pool Palooza / Atif**: não achava as LPs. São da própria sub-conta (AjePy51fOb6BM1Kk2QQX): funil "F1. Pool Service"
+  (Free Trial LP /free-trial, Landing Page /landing-page) e "F1. Stop Guessing" (/stop-guessing). Ao vivo: 827-3151 aparece
+  11/14/13 vezes; 521-0905 só no rodapé da free-trial; /landing-page-712688-993845 serve a mesma free-trial. Respondido no DM.
+- **Google Ads "Converted Lead - WON" (Val, `86bd4kucg`)**: `GET /ad-publishing/google/conversions` → só Southern
+  (7907989083, UPLOAD); Blissful, Bonneville, Capital, Cleverblu, Poolheads, Rosebrook, Smart Chem, WP Pools vazias (IDs das
+  contas mandados à Val). Modelo para ligar: "Won -> Google Ads" da Corolla (1 passo google_adword, gatilhos pipeline_stage_updated
+  nas etapas Won, gclid do contato). Nada gravado no GHL.

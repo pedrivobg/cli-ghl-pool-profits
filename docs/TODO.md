@@ -116,8 +116,12 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
 - Frank: dono para o alerta de SMS na Stay Fresh e na Blue Lagoon (as outras 8 sem dono estão inativas →
   `config/inactive_accounts.json`, puladas pelo `pp_sms_alert --all`); textos dos 8 posts de GBP da BluVantage (`86bd1xdbu`, 17/11).
 - Frank (16/11): Pool Smart OC ainda é cliente? (fora da lista de inativos até ele confirmar; Ads precisa reconectar, `86bd1zk8p`).
+- Val (18/11, `86bd4kucg`): conversão "Converted Lead - WON" só aparece na Southern (7907989083); as outras 8 vazias → IDs
+  mandados a ela. Quando aparecerem: fluxo "Won -> Google Ads" como o da Corolla (etapas Won, gclid), começando pela Southern.
 - Val: Google Ads da Bonneville (conversão das 2 LPs novas). LPs/obrigado da Bonneville no ar (Atif 13/11), forms certos e
   redirect conferidos.
+- Atif (18/11): trocar 520-827-3151 → (520) 667-2800 na Pool Palooza (F1. Pool Service: Free Trial LP + Landing Page; F1. Stop
+  Guessing) → conferir a tag das ligações.
 - Atif: páginas/obrigado de Poolheads, Pool Shack, YardSpring, BluVantage; tirar o número antigo da página Weekly da NorTex.
 - Val: Google Ads conectado (Poolheads, Pool Shack, YardSpring) e acesso para o Send Data dos Google Lead Forms.
 - Frank: Stay Fresh (avisos de ligação para o Kris, re-entry, IVR, lista de inativos); Pool Shack (retorno do Rob);
