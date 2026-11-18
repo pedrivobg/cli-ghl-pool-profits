@@ -1410,3 +1410,19 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (Client Template, TEMPLATE V2, HQ junho). Pool Keepers checklist de julho: Pedro removido, fica só 86bd02rg9.
 - Captura nova de canal ("everyone/guys") já pegou o pedido da Val (LP Bonneville com erro, 13:13 BRT) e o do Frank
   (template novo) — rotina disparada 21:23 UTC.
+
+# 18/11 manhã (rotina do inbox, 15 itens)
+- **Blissful**: Frank ligou info.blissfulwaterspoolcare.com ao site "New A2P Verification" (SSL, privacy e terms ok). Custom value
+  `service_area` vazio ("pool care for ." na home) → "San Antonio" (survey; backup). `pp_new_account.py -n Blissful --apply
+  --submit`: website da marca + campanha SOP + **A2P enviado** (AI review 23/23). Rodada só com `-n`: o `--scan --apply`
+  compraria um 3º número na WP Pools (Frank 17/11: só 2).
+- **Sparkling** (Frank, canal): form do GHL "Website Contact Form" (`imAcS6ivcE08cElD0Xxh`, `scripts/sp_site_form.py`, design da
+  Bonneville, campos do WPForms do site; campos novos Service Needed / Are You A New Customer? — a conta só tinha 4 campos) →
+  `pp_forms --apply` (Website Form Fill + 5 forms antigos sem ninguém). Filtro de spam: `pc_form_spam.py --loc sparkling`
+  (perfil novo; só telefone ≠ +1), teste ZZ 4/4, aplicado (backup), call check limpo. Embed ao Atif. Envio ao vivo = [Passo seu].
+  Ads da Sparkling: lado GHL pronto (Ads ligado, linha Adwords com IVR, fluxos publicados) → Group DM.
+- **Pool Palooza** (Todd): OK para #1 e #2, nada no GBP. Ack postado; Atif troca 520-827-3151 → 520-667-2800 nas 3 LPs do Meta;
+  fluxo de tag por UTM/gclid na `86bd4kerf` (campo `utm_source` preenchido nos Free Trial fb/ig; condição de gclid a verificar).
+- **Integrações** (Val): 10 contas com Google Ads ligado (conferido pelo `googleAdwordsId`); conversões "import" só na Corolla.
+- **Poolheads** (Felipe, app LeadConnector): [Aprovar] ao Pedro. Rodada diária: guia do CRM da Puddle Jumper publicado e
+  enviado ao Eric (cópia Frank); audit 0 ALTA nas 9; ERRO de review link = falso positivo conhecido.

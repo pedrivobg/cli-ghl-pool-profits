@@ -63,5 +63,10 @@
     "key": "pool-c81cf184",
     "name": "Pool Duck",
     "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pool-c81cf184"
+  },
+  "puddle-jumper-pool-service-llc": {
+    "key": "puddle-85a1bd97",
+    "name": "Puddle Jumper Pool Service",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=puddle-85a1bd97"
   }
 }

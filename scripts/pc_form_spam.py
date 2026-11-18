@@ -15,6 +15,7 @@ if/else "Spam form fill?" (any of):
     python3 scripts/pc_form_spam.py plan
     python3 scripts/pc_form_spam.py test     # ZZ TEST copy with a tag trigger, tags only, test contacts; all deleted after
     python3 scripts/pc_form_spam.py apply
+    python3 scripts/pc_form_spam.py plan|test|apply --loc sparkling   # Sparkling (18/11): phone check only
 """
 from __future__ import annotations
 
@@ -38,6 +39,12 @@ DETAILS = "vgf18SsSqNjwgfNakmPk"  # contact field "Pool Details" (the form's mes
 PIPE, SPAM_STAGE = "upBpvcGQ9jo004msxkLJ", "8108db77"
 KEYWORDS = ["SEO", "seo", "Seo", "Wikipedia", "wikipedia", "backlink", "Backlink", "ranking", "Ranking",
             "marketing", "Marketing", "Business Development", "business development"]
+PROFILES = {  # --loc: Passion (default, 12/11) and Sparkling (Frank 18/11: non-US phones on the site form; no message box)
+    "passion": dict(LOC=LOC, FLOWS=FLOWS, DETAILS=DETAILS, PIPE=PIPE, SPAM_STAGE=SPAM_STAGE, BDIR="passion-pool-care-lp"),
+    "sparkling": dict(LOC="G9jACRTK8rh04j29ZTQf", FLOWS=["Website Form Fill To Pipeline"], DETAILS=None,
+                      PIPE="9C7htZuoGLSvhAmxgDeu", SPAM_STAGE="8f4a8f2a", BDIR="sparkling-clear-pool-service"),
+}
+BDIR = "passion-pool-care-lp"
 NAME = "Spam form fill?"
 TEST_TAG = "zz spam test"
 
@@ -65,7 +72,7 @@ def tag_step(tags: list[str], parent: str, order: int) -> dict:
 def build(chain: list[dict], spam_steps: list[dict]) -> list[dict]:
     """[guard, Spam branch → spam_steps, Lead branch → chain]."""
     c, yes, no = nid(), nid(), nid()
-    conds = [cond("phone", f"+{d}") for d in range(2, 10)] + [cond(DETAILS, k) for k in KEYWORDS]
+    conds = [cond("phone", f"+{d}") for d in range(2, 10)] + ([cond(DETAILS, k) for k in KEYWORDS] if DETAILS else [])
     guard = {"id": c, "order": 0, "name": NAME, "type": "if_else", "cat": "conditions", "nodeType": "condition-node",
              "comments": [], "next": [yes, no],
              "attributes": {"currentRecipeType": "CUSTOM", "operator": "or", "if": True, "conditionName": NAME,
@@ -139,6 +146,9 @@ def test(a: Agency) -> int:
              ("ZZ Test lower", "+16155550102", "cheap seo and backlink services", "zz-spam"),
              ("ZZ Test Real", "+16155550103", "Need my pool closed for the season & reopened in Spring", "zz-lead"),
              ("ZZ Test Empty", "+16155550104", "", "zz-lead")]
+    if not DETAILS:  # phone check only
+        cases = [c for c in cases if c[0] != "ZZ Test SEO" and c[0] != "ZZ Test lower"] + [
+            ("ZZ Test India", "+919876543210", "", "zz-spam")]
     wid, cids, bad = None, [], 0
     try:
         res = a.call("POST", BACKEND, f"/workflow/{LOC}", body={"name": name, "status": "draft"})
@@ -162,7 +172,7 @@ def test(a: Agency) -> int:
         for nm, phone, details, _ in cases:
             c = a.call("POST", SERVICES, "/contacts/", body={"locationId": LOC, "firstName": nm, "phone": phone,
                        "email": f"{nm.lower().replace(' ', '.')}@example.com",
-                       "customFields": [{"id": DETAILS, "field_value": details}] if details else []})["contact"]
+                       "customFields": [{"id": DETAILS, "field_value": details}] if details and DETAILS else []})["contact"]
             cids.append(c["id"])
         time.sleep(3)
         for cid in cids:
@@ -196,7 +206,7 @@ def test(a: Agency) -> int:
 def apply(a: Agency, do: bool) -> int:
     stage = spam_stage(a)
     flows = {w["name"]: w for w in a.workflows(LOC)}
-    bdir = os.path.join(ROOT, "backup", "passion-pool-care-lp")
+    bdir = os.path.join(ROOT, "backup", BDIR)
     os.makedirs(bdir, exist_ok=True)
     bad = 0
     for tag in ("spam", "form spam filter"):
@@ -234,7 +244,9 @@ def apply(a: Agency, do: bool) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("mode", choices=["plan", "test", "apply"])
+    ap.add_argument("--loc", choices=sorted(PROFILES), default="passion")
     args = ap.parse_args()
+    globals().update(PROFILES[args.loc])
     a = Agency()
     if args.mode == "test":
         return test(a)
