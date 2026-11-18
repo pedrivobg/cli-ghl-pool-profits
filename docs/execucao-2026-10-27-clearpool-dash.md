@@ -1473,3 +1473,8 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   forms FORM - GOOGLE ADS - WEEKLY SERVICE / POOL REPAIRS + fluxos de tag (google ads + weekly service / pool repairs), no
   gatilho de AdWords Form - New Lead. Teste ZZ TEST ok (novo/cliente/spam/repetição), apagado. Respondido à Val (thread + tarefa
   `86bd4wxp0`, Atif marcado para pôr os forms); [Passo seu] do teste ao vivo atualizado (SMS + ligação + Send Data).
+
+## 18/11 (~19h UTC) — inbox: Bonneville Ads (Val ao Justin) + e-mail da própria rotina
+- Bonneville: Val avisou o Justin (Basecamp, cliente vê) do lançamento amanhã; sem tag para mim → sem resposta lá. Conferi ao vivo:
+  Ads conectado (921-178-5517), 0 conversões visíveis, passos "Google Ads conversion" das 2 LPs vazios → comentei para a Val na `86bcwer98`.
+- "[pedro_reply]" 1a1efdd04a850437 era a atualização da rotina (não resposta do Pedro): nada feito, thread segue não lida esperando o Pedro.
