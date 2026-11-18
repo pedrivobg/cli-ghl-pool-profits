@@ -1466,3 +1466,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   ao Robert, 3 linhas ok. Gap: `/ad-publishing/google/conversions` = [] na conta 2695266803 → passos "Add to Google Ads" sem
   conversão; Won só "Weekly". Respondido à Val (nomes das conversões); tarefa `86bd4wyr5`; teste ao vivo → [Passo seu] Pedro.
 - Pool Palooza: Atif trocou para (520) 667-2800 nas 4 LPs (conferido ao vivo); 3151 só na meta description → pedido ao Atif.
+
+## 18/11 (~18h UTC) — inbox watch, 3 itens (Sparkling, Val)
+- `scripts/sc_ads_launch.py`: "Converted Lead - WON" (7908347932) em Adword Call/Form - Conversion + gatilho Won - One Time Repair;
+  fluxos novos publicados "AdWords SMS - New Lead" (linha 469-617-2308) e "AdWords Lead Form - New Lead" (Google Lead Form);
+  forms FORM - GOOGLE ADS - WEEKLY SERVICE / POOL REPAIRS + fluxos de tag (google ads + weekly service / pool repairs), no
+  gatilho de AdWords Form - New Lead. Teste ZZ TEST ok (novo/cliente/spam/repetição), apagado. Respondido à Val (thread + tarefa
+  `86bd4wxp0`, Atif marcado para pôr os forms); [Passo seu] do teste ao vivo atualizado (SMS + ligação + Send Data).
