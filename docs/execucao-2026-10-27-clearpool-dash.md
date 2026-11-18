@@ -1433,3 +1433,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - 14h UTC: Pedro escolheu **qui 19/11 10h PT** para a call com o Nathan → proposto no Basecamp "Automations – Review"
   (Pool Keepers). Gravados: app próprio "Pool Profits" (CLAUDE.md), regra "memória de cada rodada" e "Ads = Val" (TODO);
   TODO sem os itens já fechados (Bonneville, Sparkling SMS, Refresh, Justin da Pool Duck).
+
+## 18/11 (~14h UTC) — ClickUp não lido + revisão da noite repetindo coisa feita
+- Causa 1 (não lido): o prompt salvo da rotina ainda diz "ClickUp has NO mark-as-read API" e vence a regra do doc. Correção:
+  `cu_mark_read.py --sweep` (endpoint `last_read_at/delta` lista tudo não lido; marca lido quando o Pedro escreveu por último,
+  "thanks" depois do Pedro, mensagem marcando só outra pessoa ou conversa entre outros; Inbox: limpa tarefas respondidas e
+  atividade sem menção). Rodado: 5 conversas + 7 do Inbox → 0. O texto do n8n em todo disparo manda rodar no fim.
+- Causa 2 (memória): a revisão de 17/11 leu o TODO com itens já feitos (número da Bonneville, SMS Sparkling, "[Aprovar]
+  Justin" enviado 21:27 UTC) e não cruzou com ledger/Gmail. Correção: TODO limpo; passo 6 (checagem de memória) e 7
+  (memória de toda rodada) em `docs/inbox-watch-routine.md`; o mesmo texto vai no item da noite e em todo disparo do n8n.
