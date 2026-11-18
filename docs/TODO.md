@@ -11,7 +11,9 @@ combinar antes.
 - **Marcar como lido no ClickUp é obrigatório** (Pedro 17/11: "está ficando uma bagunça"). Depois de responder/resolver um
   item do ClickUp: `python3 scripts/cu_mark_read.py --channel <canal/DM> --thread <parent do thread> --task <task>` (ids
   vêm do payload: `cu-chat-<msg>` + `parent=`, `task=`; o canal sai da url `/chat/r/<canal>`). Marca DM/canal, thread e
-  comentários como lidos e tira a tarefa do Inbox (read + clear). No fim da rodada: `--clear-activity --older-hours 24`.
+  comentários como lidos e tira a tarefa do Inbox (read + clear). **No fim de toda rodada: `python3 scripts/cu_mark_read.py
+  --sweep`** (marca lido tudo em que o Pedro escreveu por último, um "thanks" depois do Pedro ou conversa entre outros; lista
+  LEFT o que ainda precisa de resposta). O n8n também manda essa linha em todo disparo (18/11).
   Nunca marcar o que ainda precisa do Pedro. Saída 2 = token da sessão do ClickUp expirou → e-mail
   "[Passo seu] ClickUp: renovar o token" com os passos de `docs/inbox-watch-routine.md` (seção "Marcar como lido").
 - **Arquivo achado em qualquer lugar = eu baixo** (Pedro 17/11, West Coast: a rotina pediu ao Frank para reanexar um xlsx
