@@ -8,6 +8,12 @@ comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha p
 combinar antes.
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
+- **Memória de cada rodada é obrigatória** (Pedro 18/11: "se não fica repetindo"; a revisão da noite de 17/11 listou
+  como pendente o que já estava feito — Bonneville, Justin da Pool Duck — porque a rodada da manhã não gravou nada). Toda
+  rodada, mesmo sem código: (1) tira daqui o que fechou e atualiza a linha do que mudou; (2) acrescenta 2–5 linhas no log
+  `docs/execucao-2026-10-27-clearpool-dash.md` (o que fiz, onde postei, o que espera quem); (3) commit + push antes de
+  terminar. Antes de pôr um item no e-mail do Pedro: conferir este TODO, o fim do log, o ledger e a pasta Enviados
+  (`subject:(Aprovar OR "Passo seu") newer_than:3d`) — item já respondido/feito não volta.
 - **Marcar como lido no ClickUp é obrigatório** (Pedro 17/11: "está ficando uma bagunça"). Depois de responder/resolver um
   item do ClickUp: `python3 scripts/cu_mark_read.py --channel <canal/DM> --thread <parent do thread> --task <task>` (ids
   vêm do payload: `cu-chat-<msg>` + `parent=`, `task=`; o canal sai da url `/chat/r/<canal>`). Marca DM/canal, thread e
@@ -33,6 +39,7 @@ combinar antes.
 - **Nada pode disparar para contato/lead/cliente antigo** (Ed e Pedro 11/11; WC da Pool Duck tem leads reais): não mover
   card, não publicar fluxo novo, não pôr tag que tenha gatilho, não importar lista sem OK. Migração de conta antiga =
   `scripts/pp_fleet_migrate.py` (fluxo existente mantém o status; novo entra draft).
+- **Assunto de Google Ads/Meta (configuração, dados) = Val responde** (Pedro 18/11, Sunwave): eu só respondo a parte do CRM.
 - Item de e-mail que o Pedro não respondeu = fica como está até ele decidir.
 - **Regra dos 5 minutos é da resposta, não da captação** (Pedro 11/11): o n8n capta e manda na hora; a rotina nunca
   posta resposta a uma pessoa (ClickUp, e-mail, Basecamp) menos de 5 min depois do `received_at` do item — terminou
@@ -51,6 +58,9 @@ combinar antes.
   da noite — não só a lista `901422915733`. Tarefa nova do Frank: comentar no mesmo dia (feito / o que falta / de quem).
 
 ## Você faz
+A. **Pool Keepers – call com o Nathan qui 19/11 10h PT (15h BRT)** (Pedro 18/11; proposto no Basecamp 18/11):
+   quando ele confirmar, mandar o link da reunião; na call trocar Location ID/chave (KjLd) no Skimmer. ClickUp `86bd02rg9`.
+A6. **Blue Lagoon (opcional)**: ligação perdida de teste no +1 480-400-0140 fora do horário da Destiny (Pedro: "mais tarde").
 B. **West Coast A2P recusado** (16/11, 1ª recusa): nome legal ≠ EIN 37-2238084. Frank pediu ao cliente o nome do EIN letter.
    Pedro 17/11: reenvio não cobra → reenviar quando o nome chegar, sem novo OK; **a 3ª recusa bloqueia a conta** → antes do
    reenvio conferir tudo pelo `docs/a2p-sop.md` (endereço hoje é PO BOX 2136 → usar o do EIN letter; tipo "Corporation" →
@@ -58,10 +68,6 @@ B. **West Coast A2P recusado** (16/11, 1ª recusa): nome legal ≠ EIN 37-223808
    avisar o Pedro antes de qualquer coisa. ClickUp `86bd3m8c9`.
 C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank):
    respostas do guia (`pool-c81cf184`), NPS form + Review Request, Won welcome. LWR/Odessa: mesma fase 2 depois disso.
-0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
-   paga). Responder "aprovado" → compro um 385 (ex.: +1 385-365-2440), nome "Google Ads", encaminha para o Justin, passo ao
-   Atif para trocar nas LPs. ClickUp `86bd2ha9z`.
-1. **SMS de teste para a Sparkling** (e-mail "[Passo seu] Teste do alerta de SMS recebido", 13/11): mandar "teste" do seu celular para +1 469-617-2308 e responder "feito" → eu rodo `pp_sms_alert.py testcheck` e `apply --all`. Refresh do snapshot (master ganhou "Inbound SMS - Notify Owner"). ClickUp `86bd349d8`.
 (12/11: tokens trocados, Refresh do snapshot feito 11/11 e 12/11, Call Recording Poolheads, form da LWR no Lead Ads,
 prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: conferir que as variáveis de token funcionam.)
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
@@ -93,13 +99,13 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
    texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
 
-12. **17/11 noite**: [Aprovar] resposta ao Justin (Pool Duck WC, guia + Terms of Service); Refresh do snapshot (Service
-   Agreement Example); [Passo seu] ligação de teste nas 2 linhas novas da WP Pools.
 13. **Reign LPs** (`86bd2jrc6`): prometido à Val preparar o lado GHL enquanto o Atif desenha (form com ZIP das 8 áreas, tags
    dos 3 serviços, origem Ads x GBP, etapas Spam/Not Qualified, avisos ao Stephen).
 
 ## Esperando outros
-- Pedro (18/11, [Passo seu]): selecionar a conta Google Ads 880-434-4425 na LWR → `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W` e avisar a Val (`86bd4kucg`).
+- Frank (18/11, `86bd4tugh`): confirmar com a Vanessa (BluVantage) se o card pode ir sozinho de New Lead para In
+  Communication em ligação/SMS (a etapa dispara e-mails de nurture) — pedido da Val.
+- Val (18/11, Pedro passou para ela; pedido na `86bd4kucg`): selecionar a conta Google Ads 880-434-4425 na LWR → `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W` e avisar a Val (`86bd4kucg`).
 - Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —
   3ª linha (Facebook)?; Service Agreement Example na West Coast (ofereci colocar).
 - Frank: e-mail/celular do Brad

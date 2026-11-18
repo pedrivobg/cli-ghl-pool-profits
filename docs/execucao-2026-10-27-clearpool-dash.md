@@ -1422,3 +1422,14 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Pedro para selecionar 880-434-4425; depois `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W`.
 - Avisado à Val: Clear Pool tem "Converted Lead - WON (1)" duplicado; WC já mandava "Converted Lead (Form Fill)" no Won (fluxo
   antigo publicado) → conta nas 2 ações. Teste real = próximo Won vindo de clique no anúncio (upload aparece em até ~24 h).
+
+## 18/11 manhã (~13h–14h UTC) — respostas do Pedro ao e-mail da revisão da noite (gravado depois, na rodada das 14h)
+- A rodada das 13h55 não gravou nada no repo → a revisão da noite teria repetido itens (Pedro reclamou). Registro aqui:
+  Bonneville linha "Google Ads" já existia (+1 385-503-7952 → Justin, nada comprado); Sparkling: SMS de teste do Pedro chegou
+  13:34 e o Robert recebeu o aviso (contato de teste apagado); form novo da Sparkling: envio do Pedro caiu como spam (card no
+  Spam, sem aviso) → apagado, Frank/Atif avisados; Refresh do snapshot feito pelo Pedro; Poolheads: post interno errado na
+  lixeira; Felipe recebeu os links do app "Pool Profits"; Sunwave: resposta A postada (No Response off), B não (Ads = Val);
+  LWR Google Ads pedido à Val (`86bd4kucg`); BluVantage etapa automática → Frank confirma com a Vanessa (`86bd4tugh`).
+- 14h UTC: Pedro escolheu **qui 19/11 10h PT** para a call com o Nathan → proposto no Basecamp "Automations – Review"
+  (Pool Keepers). Gravados: app próprio "Pool Profits" (CLAUDE.md), regra "memória de cada rodada" e "Ads = Val" (TODO);
+  TODO sem os itens já fechados (Bonneville, Sparkling SMS, Refresh, Justin da Pool Duck).

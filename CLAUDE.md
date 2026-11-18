@@ -38,6 +38,10 @@
 - **Arquivo em qualquer plataforma = eu baixo** (Pedro 17/11): nunca dizer ao time/cliente que não consigo baixar nem
   pedir reenvio em outro lugar; e-mail de notificação do Basecamp traz link `storage.app.basecamp.com/.../email/download/…`
   que baixa com `curl` sem login. Sem saída → perguntar ao Pedro (detalhe em `docs/TODO.md`, regras da rotina).
+- **App do cliente = "Pool Profits"** (Pedro 18/11): a agência paga o app próprio (é o LeadConnector com a nossa marca; o
+  cliente não precisa saber). Nunca citar "LeadConnector"/"HighLevel" ao cliente/time de cliente. Links: App Store
+  `https://apps.apple.com/us/app/pool-profits/id6744033579`, Google Play
+  `https://play.google.com/store/apps/details?id=com.PoolProfits`; login = o mesmo de app.poolprofits.com.
 - **Testes são nossos** (Pedro, 19/10): para a equipe (Frank, Val, Ed) e os clientes, Pedro e o Claude são
   uma pessoa só. Nunca pedir a eles para testar; testar daqui e, o que precisar de mão humana (ligação,
   UI do GHL/Google Ads), passar o passo a passo para o Pedro. Mensagens para eles só depois de testado.
