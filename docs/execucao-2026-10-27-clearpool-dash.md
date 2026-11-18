@@ -1449,3 +1449,6 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - 18/11 ~11h50 BRT: Success Team/Ed pediram Meet sobre automação de SEO → respondi na thread (Pedro): na mid-week de hoje 16h BRT / 1 PM CT. Sparkling: Frank passou login do site ao Atif (sem resposta minha; testar quando o form estiver no ar).
 - 18/11 ~15h UTC: BluVantage (thread Val/Frank) — Val confirma com a Vanessa amanhã a etapa automática New Lead → In Communication; respondi que ligo e testo no mesmo dia do sim.
 - 18/11 ~15h20 UTC: LWR (Basecamp, cliente vê) — Connie aprova a Val pausar Google Ads e mover verba para o Meta; assunto da Val, sem resposta minha, e-mail lido (nota no TODO da conversão Won Ads).
+- 18/11 ~15h40 UTC: LWR — Val conectou o Google Ads; Val disse à Connie para manter o Ads (conversão vale) → `pp_won_ads.py apply
+  --only MosKIX4oux96vchwHZ5W`: "Won -> Google Ads" publicado, conv 7907855180, 3 gatilhos (`de9c4a00`); 16/16 contas. Respondido
+  à Val na `86bd4kucg`. Pool Shack (Frank → Vikkar/Success Team, SEO): sem resposta minha. E-mail do Basecamp LWR marcado lido.

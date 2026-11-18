@@ -83,7 +83,6 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   escrito no thread do canal Pool Profits para eu me preparar (ideias do que dá para automatizar).
 - Val (18/11, `86bd4tugh`): confirma com a Vanessa (BluVantage) em 19/11 se o card pode ir sozinho de New Lead para In
   Communication em ligação/SMS (a etapa dispara e-mails de nurture). Quando disser sim: ligar e testar no mesmo dia.
-- Val (18/11, Pedro passou para ela; pedido na `86bd4kucg`): selecionar a conta Google Ads 880-434-4425 na LWR → `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W` e avisar a Val (`86bd4kucg`). Connie (18/11) aprovou pausar o Google Ads e passar a verba para o Meta: confirmar com a Val se a conversão ainda vale antes de aplicar.
 - Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —
   3ª linha (Facebook)?; Service Agreement Example na West Coast (ofereci colocar).
 - Frank: e-mail/celular do Brad
