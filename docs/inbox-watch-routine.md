@@ -102,6 +102,17 @@ O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rot
 4. `docs/TODO.md` só com o aberto; log em `docs/execucao-*.md`; commit/push.
 5. UM e-mail "[Passo seu] O que é seu – <data> (revisão da noite)": (a) passos do Pedro, numerados; (b) decisões dele;
    (c) o que foi fechado/adiantado, uma linha cada. Marcar como lidos os [Passo seu] anteriores que ele substitui.
+6. **Antes de pôr QUALQUER item no (a) ou (b) — checagem de memória** (Pedro 18/11: a revisão de 17/11 pediu o número da
+   Bonneville, que existia desde 16/11, o SMS da Sparkling, já feito, e o "[Aprovar] Justin", enviado 3 h antes):
+   - ledger (`wb0SlsU03MQ4xdgv`): linha `done` daquele assunto → não pedir; linha `sent_to_claude` de um `pedro_reply`
+     ("aprovado"/"feito") sem `done` depois → fazer agora, não pedir de novo;
+   - Gmail: `from:pedro@poolprofits.com newer_than:2d` (respostas e e-mails enviados) — se já respondeu/foi enviado, não pedir;
+   - estado ao vivo (GHL/ClickUp): o que o item pede já existe → não pedir; tirar do TODO e contar no (c);
+   - `git log --since=yesterday` / `docs/execucao-*.md`.
+   Item que passou na checagem e ainda é do Pedro: escrever a prova ("conferi às HH:MM: ainda não existe X").
+7. **Memória de toda rodada** (não só a da noite): quem termina um item, na mesma rodada, (1) grava a linha `done` no ledger,
+   (2) tira o item do `docs/TODO.md` (ou atualiza o passo que sobrou), (3) uma linha no `docs/execucao-*.md`, (4) commit.
+   O TODO nunca guarda o que já foi feito — é o que a próxima revisão lê.
 
 ## Marcar como lido no ClickUp (17/11)
 - API pública (v2/v3): nada de read/unread/Inbox (conferido na referência e no feedback board). O app web usa rotas próprias

@@ -60,49 +60,18 @@ combinar antes.
   da noite — não só a lista `901422915733`. Tarefa nova do Frank: comentar no mesmo dia (feito / o que falta / de quem).
 
 ## Você faz
-A. **Pool Keepers – call com o Nathan qui 19/11 10h PT (15h BRT)** (Pedro 18/11; proposto no Basecamp 18/11):
-   quando ele confirmar, mandar o link da reunião; na call trocar Location ID/chave (KjLd) no Skimmer. ClickUp `86bd02rg9`.
-A6. **Blue Lagoon (opcional)**: ligação perdida de teste no +1 480-400-0140 fora do horário da Destiny (Pedro: "mais tarde").
-B. **West Coast A2P recusado** (16/11, 1ª recusa): nome legal ≠ EIN 37-2238084. Frank pediu ao cliente o nome do EIN letter.
-   Pedro 17/11: reenvio não cobra → reenviar quando o nome chegar, sem novo OK; **a 3ª recusa bloqueia a conta** → antes do
-   reenvio conferir tudo pelo `docs/a2p-sop.md` (endereço hoje é PO BOX 2136 → usar o do EIN letter; tipo "Corporation" →
-   conforme o EIN: LLC etc.; Legal Business Name no perfil + custom value + rodapé do site iguais). Se recusar de novo →
-   avisar o Pedro antes de qualquer coisa. ClickUp `86bd3m8c9`.
-C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank):
-   respostas do guia (`pool-c81cf184`), NPS form + Review Request, Won welcome. LWR/Odessa: mesma fase 2 depois disso.
-(12/11: tokens trocados, Refresh do snapshot feito 11/11 e 12/11, Call Recording Poolheads, form da LWR no Lead Ads,
-prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: conferir que as variáveis de token funcionam.)
-2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
-3. **Contas novas (processo automático desde 10/11, `docs/new-account-review.md`, SOP em `docs/a2p-sop.md`)**: Smart Chem,
-   West Coast e Capital prontas (0 ALTA/0 ERRO, usuário do dono em avisos/tarefas, guia do CRM com o Frank). O **1º número**
-   de cada conta é do Frank/time (Pedro 11/11: não é item seu; a rodada diária avisa o Frank). Mako's Pool, Cool N Clean,
-   Puddle Jumper pronta 12/11 (falta 1º número/Frank, DNS do cliente, link de review). Pools of Perfection: criada 13/11 pela API com o V9 (pronta;
-   falta número/A2P/link de review). Guia publicado (`crm-guide?c=pools-33d2dc4b`, já em crm_guide_links → a rodada não
-   reenvia): **Ed 13/11: segurar** (rascunho do site primeiro, depois falar com ele; `hold` no crm_guide_email.json) → só mandar quando o Ed/Frank liberarem. Mako's Pool e Cool N Clean: falta o questionário 2.0.
-6. **Testes reais** (Pedro faz 12/11 à tarde): ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), lista
-   enxugada 12/11 (YardSpring, BluVantage linha principal e NorTex saíram; entrou o envio real das 2 LPs da Corolla). Depois de cada um: conferir os logs e apagar o teste.
-9. **Contas antigas no modelo (11/11)**: 34 migradas com status mantido (log 11/11). **Para ver com o time** (fluxo próprio
-   da conta, não mexi): Damon's, Clean Co, Ponchos, Ekahi, Pooltexx, Wrigley's, BluVantage, Clear Pool; e Pool Palooza, Golden
-   View, sub-conta Pool Duck (estrutura diferente). Dados do cliente vazios ficam para depois (Pedro 11/11).
-9b. **Pool Duck** (respostas do Ed 11/11, thread "Pool Duck Franchisee Accounts"): tudo para a Pool Leads (cards, fluxos de
-   anúncio, conversões do Google Ads, Review Request nas etapas Won; campanha de review da LWR intocada), SMS de missed do V9
-   no lugar do nativo, card de ligação só na linha principal, marcador `missed call` no IVR da LWR, boas-vindas = tag
-   `new residential client` (duplicada da WC desligada 11/11), avisos = as mesmas pessoas de hoje. Free month: tirado do
-   "In Communications" antigo (30 drafts); **3 publicados** (Pool Time, Reign, Sparkling Clear): Pedro 12/11 = mudar texto ao
-   vivo de cliente só com OK → perguntado ao Frank (DM 12/11) se algum dos 3 pediu a oferta; com o OK dele →
-   `pp_referral_offer_fix.py config/referral_offer_live.json x --apply`. Fase 2 LWR + Odessa 12–13/11; WC depois da resposta
-   do dono (via Frank), após 18h ET. E-mail ao Matt (preços da Odessa) enviado 12/11; esperando resposta.
-10. **Gate de nota** (Pedro 17/11: **4 ou 5** recebe o link do Google; 1–3 recebe SMS "what could we have done better?" +
-   aviso à equipe; `pp_review_gate.py`, aplicado 17/11 em todas + Snapshot; guias novos com o texto 4–5, os antigos ficam). Sem nota em 7 dias → **sem link** (Ed 13/11; feito 16/11 em todas + Snapshot,
-   `pp_review_noscore.py`, testado; Clear Pool fica de fora: fluxo próprio em draft).
-10b. **E-mail do processo novo para Ed/Frank/Jonathan**: enviado 11/11. Quando o 1º A2P automático for aprovado → uma
-   linha no mesmo thread ("GHL update: one snapshot for every client…") dizendo que está 100% no ar (ClickUp `86bd1ctcg`).
-11. **API do Claude no n8n** (Pedro vai colocar, 10/11): credenciais "Anthropic Pool Profits" (chave da API) e "GHL Agency
-   Token" (Header Auth com o refresh token do GHL) → eu monto o agente do n8n com ferramentas limitadas (custom value,
-   texto de template de SMS, tag, resposta no ClickUp) para os itens fáceis do inbox, testo na Test Snapshot e ligo.
-
-13. **Reign LPs** (`86bd2jrc6`): prometido à Val preparar o lado GHL enquanto o Atif desenha (form com ZIP das 8 áreas, tags
-   dos 3 serviços, origem Ads x GBP, etapas Spam/Not Qualified, avisos ao Stephen).
+(Revisto 18/11 14h UTC contra ledger, Gmail e estado ao vivo. Saíram por já estarem feitos: número Google Ads da Bonneville
+— linha +1 385-503-7952 → Justin desde 16/11; SMS de teste da Sparkling — feito 18/11; resposta ao Justin — enviada 17/11
+21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
+1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11): inclui a chamada
+   perdida da Blue Lagoon (ligar para +1 480-400-0140 fora do horário da Destiny e deixar cair; Pedro 18/11: "mais tarde").
+2. **Pool Keepers – call com o Nathan**: Pedro 18/11 = qui 19/11 **10h PT**; a rotina de 18/11 confirma ao Nathan no Basecamp.
+3. **Pool Duck WC – follow-up qui 19/11 15h** (Justin/Ed/Frank): pauta em `docs/poolduck-wc-reuniao-2026-11-19.md`.
+4. (opcional, desde 10/11) **API do Claude no n8n**: credenciais "Anthropic Pool Profits" e "GHL Agency Token" → agente do n8n
+   para itens fáceis do inbox. Só se o Pedro quiser.
+Contexto que NÃO é passo do Pedro (não pôr no e-mail): West Coast A2P espera o endereço do EIN letter (Frank, `86bd3m8c9`);
+contas novas esperam o 1º número (Frank); gate de nota = 4 ou 5 (feito 17/11); sem nota em 7 dias = sem link (feito 16/11);
+contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quinta); Reign LPs = lado GHL meu (`86bd2jrc6`).
 
 ## Esperando outros
 - Frank (18/11, `86bd4tugh`): confirmar com a Vanessa (BluVantage) se o card pode ir sozinho de New Lead para In
