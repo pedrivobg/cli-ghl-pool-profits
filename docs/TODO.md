@@ -15,6 +15,10 @@ combinar antes.
   forms WEEKLY SERVICE / POOL REPAIRS nas LPs (tarefa `86bd4wxp0`) → testar submissão em cada página.
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
+- **Resposta ao Pedro no thread dele fica NÃO LIDA** (Pedro 18/11: a rotina responde no thread do [Passo seu]/[Aprovar], mas
+  marca como lido e ele não vê). Ao responder ao Pedro: depois de enviar, marcar a SUA resposta como não lida
+  (Gmail `label_message` messageId=<id da resposta> labelIds ["UNREAD"]). "Marcar o thread como lido" vale só para
+  e-mails de outras pessoas já tratados — nunca para um thread em que a última mensagem é uma resposta minha ao Pedro.
 - **Memória de cada rodada é obrigatória** (Pedro 18/11: "se não fica repetindo"; a revisão da noite de 17/11 listou
   como pendente o que já estava feito — Bonneville, Justin da Pool Duck — porque a rodada da manhã não gravou nada). Toda
   rodada, mesmo sem código: (1) tira daqui o que fechou e atualiza a linha do que mudou; (2) acrescenta 2–5 linhas no log
