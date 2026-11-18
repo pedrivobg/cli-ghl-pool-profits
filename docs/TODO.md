@@ -51,11 +51,10 @@ combinar antes.
   da noite — não só a lista `901422915733`. Tarefa nova do Frank: comentar no mesmo dia (feito / o que falta / de quem).
 
 ## Você faz
-B. **West Coast A2P recusado** (16/11, 1ª recusa): nome legal ≠ EIN 37-2238084. Frank pediu ao cliente o nome do EIN letter.
-   Pedro 17/11: reenvio não cobra → reenviar quando o nome chegar, sem novo OK; **a 3ª recusa bloqueia a conta** → antes do
-   reenvio conferir tudo pelo `docs/a2p-sop.md` (endereço hoje é PO BOX 2136 → usar o do EIN letter; tipo "Corporation" →
-   conforme o EIN: LLC etc.; Legal Business Name no perfil + custom value + rodapé do site iguais). Se recusar de novo →
-   avisar o Pedro antes de qualquer coisa. ClickUp `86bd3m8c9`.
+B. **West Coast A2P recusado** (16/11, 1ª recusa: nome legal ≠ EIN). 17/11 noite: nome legal **MFD Racing, Inc.** (S-Corp, DBA
+   West Coast Pool Care, EIN 37-2238084, Milen) no perfil + custom value (privacy/terms/rodapé do go.) + campanha. Falta o
+   **endereço do EIN letter** (pedido ao Frank no Basecamp interno; hoje PO BOX 2136) → reenviar no mesmo dia, sem novo OK
+   (`pp_a2p.py submit`). 3ª recusa bloqueia → se recusar de novo, avisar o Pedro antes de tudo. ClickUp `86bd3m8c9` (20/11).
 C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank):
    respostas do guia (`pool-c81cf184`), NPS form + Review Request, Won welcome. LWR/Odessa: mesma fase 2 depois disso.
 0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
@@ -99,8 +98,11 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    dos 3 serviços, origem Ads x GBP, etapas Spam/Not Qualified, avisos ao Stephen).
 
 ## Esperando outros
-- Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —
-  3ª linha (Facebook)?; Service Agreement Example na West Coast (ofereci colocar).
+- Pedro (18/11): [Aprovar] Sunwave (Marketing IVR do David desliga quem não aperta tecla; No Response fica off); horário da
+  call com o Nathan (Pool Keepers, qua–sex PT); apagar post interno duplicado no Basecamp Poolheads.
+- Todd (Pool Palooza, 18/11): OK para o fluxo "Lead Source - Tag" por UTM/gclid + troca de número nas 3 páginas do Meta (`86bd4kerf`).
+- Frank (17/11): Passion — avisos de lead de volta (18/11, `pp_passion_alerts_on.py`: 9 publicados, SMS ao lead tirado dos 3
+  AdWords); textos/e-mails a cliente seguem off; WP Pools só 2 linhas por enquanto (3ª quando começar ads); Service Agreement Example na West Coast (ofereci colocar).
 - Frank: e-mail/celular do Brad
   (Passion) para os avisos. Pool Keepers/Skimmer (17/11): a certa é a KjLd (BurchTech); Pedro criou a chave, Location ID + chave novos mandados ao
   Nathan por e-mail e Basecamp pedindo dia/hora da call. Esperando o Nathan trocar no Skimmer → conferir a conexão na KjLd

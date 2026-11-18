@@ -1410,3 +1410,23 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (Client Template, TEMPLATE V2, HQ junho). Pool Keepers checklist de julho: Pedro removido, fica só 86bd02rg9.
 - Captura nova de canal ("everyone/guys") já pegou o pedido da Val (LP Bonneville com erro, 13:13 BRT) e o do Frank
   (template novo) — rotina disparada 21:23 UTC.
+
+## 18/11 (~00h UTC) — rodada do inbox (18 itens) + revisão da noite
+- **Blue Lagoon**: ligação de teste do Pedro (22:32 UTC, +1 480-400-0140) tocou sem IVR e foi atendida (completed, gravada).
+  Caila respondida no Basecamp (Frank pediu); `86bd4keqw` fechada. Caminho "perdida" (card + tarefa) não testado ao vivo:
+  passo opcional do Pedro.
+- **Passion** (Frank: manter avisos, só textos em draft): `scripts/pp_passion_alerts_on.py` republicou 6 fluxos só de aviso/
+  card/tarefa e os 3 "AdWords * - New Lead" sem o par final espera → SMS ao lead (backup em `backup/passion-pool-care/`).
+  Destinatários conferidos (John, +1 615-624-7624, passionpoolcare@gmail.com). Único SMS a cliente: missed-call do Brad.
+- **West Coast A2P**: recusa de 16/11 = "legal company name does not match US EIN" (1 tentativa). Nome legal → MFD Racing,
+  Inc. (perfil, custom value Legal Business Name, campanha `pp_a2p.py campaign --apply`; backup
+  `backup/west-coast-pool-care/a2p-legal-*.json`). Páginas privacy/terms do go. mostram o nome novo. Endereço do EIN letter
+  pedido ao Frank antes do reenvio (PO BOX hoje).
+- **Pool Palooza**: resposta aprovada postada ao Todd (Basecamp).
+- **Poolheads**: instruções da tag `weekly service customer` / Smart List para o Felipe (comentário no "Welcome!"; um post
+  duplicado ficou interno — Basecamp pediu confirmação para mudar a visibilidade).
+- **Sunwave** (só leitura): 70 ligações em 7 dias — 31 atendidas (gravadas), 17 sem atendimento (8 recados), 22 terminaram no
+  menu. "Marketing - IVR": sem tecla → repete → "This call will now be disconnected" (~50 s); 9 desde 12/11, 6 ligaram de
+  volta. Gravação é record-from-answer. [Aprovar] ao Pedro com a proposta (sem tecla → toca a equipe). No Response fica off
+  (o David já usa Reached Out/Lost).
+- ClickUp: prazos com dono (West Coast 20/11, BluVantage GBP 20/11, Pool Keepers 21/11, Pool Palooza 21/11). Ledger 18 linhas.
