@@ -1422,3 +1422,16 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Pedro para selecionar 880-434-4425; depois `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W`.
 - Avisado à Val: Clear Pool tem "Converted Lead - WON (1)" duplicado; WC já mandava "Converted Lead (Form Fill)" no Won (fluxo
   antigo publicado) → conta nas 2 ações. Teste real = próximo Won vindo de clique no anúncio (upload aparece em até ~24 h).
+
+## 18/11 (~14h UTC) — inbox: respostas do Pedro + BluVantage
+- **Sparkling** form novo (`imAcS6ivcE08cElD0Xxh`): envio real do Pedro (+91) → tag spam/form spam filter/dnd, card 🚫 Spam,
+  0 tarefa, 0 mensagem → ok; contato e card apagados (backup). SMS de teste do Pedro (número BR) chegou 13:34 e o
+  "Inbound SMS - Notify Owner" avisou o Robert (delivered) → teste do alerta ok; `plan --all`: todas as contas já têm o
+  fluxo. Contato de teste apagado. Frank avisado no canal.
+- **Poolheads**: app do celular é o "Pool Profits" (white-label; regra no CLAUDE.md). Resposta corrigida postada ao Felipe;
+  post interno errado ("Your weekly service customers…") mandado para a lixeira.
+- **Sunwave**: rascunho A postado (No Response fica off). B não postado: o post das 12:29 já respondeu a gravação.
+- **Bonneville**: a linha "Google Ads" já existia (+1 385-503-7952 → Justin, já na tarefa das LPs) → nada comprado.
+- **LWR Google Ads**: Pedro passou para a Val → pedido na tarefa `86bd4kucg`.
+- **BluVantage**: Val quer o auto-move New Lead → In Communication; o "In Communications" publicado manda e-mails de
+  nurture → Frank confirma com a Vanessa antes (`86bd4tugh`).

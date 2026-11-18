@@ -58,10 +58,6 @@ B. **West Coast A2P recusado** (16/11, 1ª recusa): nome legal ≠ EIN 37-223808
    avisar o Pedro antes de qualquer coisa. ClickUp `86bd3m8c9`.
 C. **Pool Duck**: Wesley Chapel no V9 desde 16/11 (log; `scripts/pd_wc_phase2.py`). Follow-up quinta 19/11 15h (Justin/Ed/Frank):
    respostas do guia (`pool-c81cf184`), NPS form + Review Request, Won welcome. LWR/Odessa: mesma fase 2 depois disso.
-0. **[Aprovar] Bonneville – número do Google Ads** (14/11, Val aprovou comprar): eu não compro número sem o seu OK (ação
-   paga). Responder "aprovado" → compro um 385 (ex.: +1 385-365-2440), nome "Google Ads", encaminha para o Justin, passo ao
-   Atif para trocar nas LPs. ClickUp `86bd2ha9z`.
-1. **SMS de teste para a Sparkling** (e-mail "[Passo seu] Teste do alerta de SMS recebido", 13/11): mandar "teste" do seu celular para +1 469-617-2308 e responder "feito" → eu rodo `pp_sms_alert.py testcheck` e `apply --all`. Refresh do snapshot (master ganhou "Inbound SMS - Notify Owner"). ClickUp `86bd349d8`.
 (12/11: tokens trocados, Refresh do snapshot feito 11/11 e 12/11, Call Recording Poolheads, form da LWR no Lead Ads,
 prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: conferir que as variáveis de token funcionam.)
 2. **Pool Duck snapshot** (ClickUp `86bcxzjfa`, prazo 05/11): revisar `docs/poolduck-snapshot-plan.md` e mandar ao Frank.
@@ -99,7 +95,9 @@ prompt novo da rotina colado — feitos pelo Pedro. Próxima sessão nova: confe
    dos 3 serviços, origem Ads x GBP, etapas Spam/Not Qualified, avisos ao Stephen).
 
 ## Esperando outros
-- Pedro (18/11, [Passo seu]): selecionar a conta Google Ads 880-434-4425 na LWR → `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W` e avisar a Val (`86bd4kucg`).
+- Val (18/11, pedido na tarefa `86bd4kucg`): conectar a conta Google Ads da LWR (Pedro não sabe qual) → `GHL_AGENCY=poolduck pp_won_ads.py apply --only MosKIX4oux96vchwHZ5W` e testar.
+- Frank (18/11): Vanessa ok com os e-mails de nurture do In Communication? → auto-move New Lead → In Communication na BluVantage (`86bd4tugh`).
+- Pedro (18/11): horário da call com o Nathan (Pool Keepers) — qui 10h BRT = 5h PT; confirmar ou trocar.
 - Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —
   3ª linha (Facebook)?; Service Agreement Example na West Coast (ofereci colocar).
 - Frank: e-mail/celular do Brad

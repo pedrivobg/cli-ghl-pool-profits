@@ -35,6 +35,9 @@
   `pp_snapshot_guide.py --for "<cliente>"` (textos em `config/snapshot_guide.json`; nome novo de workflow → descrever lá).
   Revisão do que está NO AR numa conta (ativas, gatilho, tempos, texto real, resposta, próximo passo, linha do tempo
   simulada, decisões): `pp_automation_review.py <slug>` com `config/review/<slug>.json` (Ekahi, 22/10).
+- **App do celular = "Pool Profits"** (Pedro 18/11): a Pool Profits tem app próprio (white-label pago do LeadConnector; o cliente
+  não precisa saber). Sempre indicar este: iPhone https://apps.apple.com/us/app/pool-profits/id6744033579 · Android
+  https://play.google.com/store/apps/details?id=com.PoolProfits — login = e-mail/senha do app.poolprofits.com. Nunca dizer "LeadConnector".
 - **Arquivo em qualquer plataforma = eu baixo** (Pedro 17/11): nunca dizer ao time/cliente que não consigo baixar nem
   pedir reenvio em outro lugar; e-mail de notificação do Basecamp traz link `storage.app.basecamp.com/.../email/download/…`
   que baixa com `curl` sem login. Sem saída → perguntar ao Pedro (detalhe em `docs/TODO.md`, regras da rotina).
