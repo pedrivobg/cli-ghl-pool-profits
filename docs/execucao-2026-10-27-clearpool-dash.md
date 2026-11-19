@@ -1564,3 +1564,5 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   https://poolduck.poolbrain.com (estava vazio). Google Review Link = place da conta (Pedro configurou pela tela).
 - "Won Stage" e "Review Request" (V9) publicados com backup; gatilhos nas 3 etapas Won da Pool Leads com guarda
   `existing customer` / `pre-snapshot`. "6.01 Review Request" (original do Justin) segue draft. Imagens do M10: TODO.
+- 19/11 20:30 UTC: V9 na agência Pool Duck (`Pc35TW2utMIO0z9naKqt`, imported) conferido por API; resposta ao Ed (cc Frank):
+  Sharon escolhe "Snapshot Pool Profits v9", não os V4/V5/Franchisee antigos; eu termino o setup de cada conta nova.

@@ -110,10 +110,10 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   baixar onde vier): subir na mídia da WC (`GHL_AGENCY=poolduck`, location uJr8H2qaQM5ffZxeYFqn), pôr no e-mail M10 do
   "Won Stage" (publicado 19/11; editar o passo **e** o template; manter o Terms of Service e o link do portal) via
   `config/pool_duck_wc_wording.json` + `scripts/pd_wc_guide_extras.py`, testar com ZZ TEST (e-mail do Pedro) e confirmar ao Justin.
-- Pedro + Ed (19/11, "Add Snapshot To Pool Duck"): [Passo seu] mandado — Share do V9 (`9VNEhnNSa4hENGbfSdng`) → Import em
-  portal.poolduck.com; eu confiro `backend /snapshots/{yDnTmXSiDo0egbt77IY2}` (type imported; 19/11 20h UTC ainda não) e confirmo ao Ed
-  (ele pediu 19/11 19:28 "let me know when that is added and I will let her know").
-  Ed (19/11): conta nova nasce à mão (Sharon Burch) → sem form; ela escolhe o V9 na criação.
+- Pool Duck (19/11): V9 importado na agência Pool Duck (`Pc35TW2utMIO0z9naKqt`, conferido 20:22 UTC); Ed respondido no
+  thread "Add Snapshot To Pool Duck". Esperando a Sharon criar a próxima conta → eu faço o resto (dados, linhas/encaminhamento,
+  avisos, link de review, auditoria) e testo antes de entrar lead. Snapshot extra "New PP Snapshot 11/2026" (Pool Profits,
+  16/11, cópia velha do master) → Pedro pode apagar pela tela.
 - Shane (Wrigley's, 19/11): pediu ideias para mais ligações; Ed propôs campanha SMS/e-mail (reativação/promo) + reviews.
   Se o Shane topar: monto a campanha em draft e mando o texto para aprovação.
 - Frank/cliente (19/11): Puddle Jumper — quem da lista importada é cliente ativo (tag `active client`); Frank perguntou ao cliente.
