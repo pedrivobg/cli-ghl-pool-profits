@@ -1509,3 +1509,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - 11 tarefas do Pedro vencendo 18–19/11: comentário com dono/motivo e data nova em todas.
 - Regras novas na revisão da noite (docs/inbox-watch-routine.md): achar o teste do Pedro no CRM antes de pedir; contato de
   teste spam/dnd invalida; seção "(d) Prazos" obrigatória com toda tarefa vencida/hoje/amanhã resolvida antes do e-mail.
+
+## 19/11 (~12h UTC) — inbox watch, 4 itens (3 mockups do Frank + rodada diária)
+- Mockups Smart Chem / Bonneville / West Coast (Frank → cliente, sem me marcar): sem resposta, lidos. Conferi os staging: cada um
+  usa 1 form da própria conta (Smart Chem `AK0x…` Service Page - Contact Form; Bonneville `eV0J…` Main Website Form em 25 páginas;
+  West Coast `1GLz…` Main Website Form) e todos já estão no gatilho do "Website Form Fill To Pipeline" publicado. Teste real no go-live.
+- Rodada diária: nenhuma conta nova, nada mudou; `--apply --submit` em 7 contas (WP Pools fora: 3ª linha espera o Frank). Sem comentário
+  no ClickUp nem e-mail ao Pedro.
