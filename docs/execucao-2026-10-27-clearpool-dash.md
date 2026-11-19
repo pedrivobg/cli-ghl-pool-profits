@@ -1537,3 +1537,7 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - [pedro_reply] "[Passo seu] Bonneville: ligação de teste": a última mensagem é a minha atualização ao Pedro (não um "feito") → thread fica não lido; segue esperando o Pedro (item do TODO inalterado).
 - Basecamp Website Mockup (Justin: tirar Green to Clean → Pool Liner Replacement, tirar endereço de casa): site, não me marca → só lido (é do Frank/web).
 - Basecamp Google Ads (Justin "Should be good now" para a Val): assunto da Val → só lido. Ledger: 3 linhas.
+
+## 19/11 (~16h UTC) — inbox: [pedro_reply] Bonneville (ligação/SMS feitos, lead form mapeado)
+- Conferido ao vivo: ligação 15:34 UTC na linha Ads (missed, tags google ads call, missed-call text, card) e SMS "Test" (Conversations, aviso ao Justin, tags google ads sms, card → In Communication). Contato/card de teste e o contato só-e-mail do meu teste apagados (backup em `backup/bonneville-pool-maintenance/`).
+- Val avisada no thread do `86bcwer98` + pedido do Send Data (Google Ads é dela; regra nova do Pedro no TODO). Resposta ao Pedro no thread, deixada não lida; ledger done.
