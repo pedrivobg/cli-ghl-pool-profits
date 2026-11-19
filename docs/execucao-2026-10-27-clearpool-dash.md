@@ -1518,3 +1518,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   no ClickUp nem e-mail ao Pedro.
 - 19/11 inbox: Basecamp Passion "OpenAI - ADS" (Val → cliente, pagamento falhou no ChatGPT Ads): não marca o Pedro, não é CRM → sem resposta, marcado lido; ledger done.
 - 19/11 inbox: Basecamp Passion "OpenAI - ADS" (john → Val: Visa liberou, budget $750/dia com alarme p/ voltar a 25): não marca o Pedro, não é CRM → sem resposta, marcado lido; ledger done.
+- 19/11 inbox: Basecamp Passion "OpenAI - ADS" (Val → john: campanha ativa, LP pedida): sem resposta, marcado lido. ClickUp `86bc6vqr9` LP ChatGPT Ads (Val): respondi que ligo o form ao CRM com os avisos quando o Atif entregar; TODO em Esperando outros; ledger done.

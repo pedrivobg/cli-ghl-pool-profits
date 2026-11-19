@@ -99,6 +99,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
+- Val/Atif (19/11, `86bc6vqr9`): LP nova da Passion (ChatGPT Ads). Quando o link vier: ligar o form ao CRM com os avisos
+  (SMS 615-624-7624 + passionpoolcare@gmail.com) e tracking, testar ponta a ponta e responder na tarefa.
 - Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por
   escrito no thread do canal Pool Profits para eu me preparar (ideias do que dá para automatizar).
 - Val (18/11, `86bd4tugh`): confirma com a Vanessa (BluVantage) em 19/11 se o card pode ir sozinho de New Lead para In
