@@ -90,6 +90,14 @@ Contexto que NÃO é passo do Pedro (não pôr no e-mail): West Coast A2P espera
 contas novas esperam o 1º número (Frank); gate de nota = 4 ou 5 (feito 17/11); sem nota em 7 dias = sem link (feito 16/11);
 contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quinta); Reign LPs: CRM ligado 18/11 (`rg_lp_launch.py`); Val responde conversão (só "Converted Lead - WON") e número de ligação das LPs.
 
+4. **[Decisão] Blue Lagoon – chamada que cai na caixa postal sem recado conta como "atendida"** (teste do Pedro 19/11 02:53 UTC:
+   14 s, mensagem da caixa postal do CRM, status `completed` → rodou "Answered Incoming Call To Pipeline", nada de SMS de
+   chamada perdida nem aviso à Destiny; é a queixa da Caila). Opções: (a) voltar um "aperte 1" curto (o IVR marca `missed call`
+   quando ninguém atende, como em Bahama Blue/Southern); (b) no fluxo "Answered", só tratar como atendida se a ligação durou
+   mais que X s (a validar se o gatilho aceita duração). Esperando o Pedro escolher; nada mudado.
+5. **Sparkling – Lead Form**: com o app "Google Lead Ads" (sincroniza pela API) o Google Ads não mostra "Send test data" (só
+   existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
+
 ## Esperando outros
 - Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por
   escrito no thread do canal Pool Profits para eu me preparar (ideias do que dá para automatizar).
