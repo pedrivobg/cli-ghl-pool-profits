@@ -100,12 +100,15 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    chamada perdida nem aviso à Destiny; é a queixa da Caila). Opções: (a) voltar um "aperte 1" curto (o IVR marca `missed call`
    quando ninguém atende, como em Bahama Blue/Southern); (b) no fluxo "Answered", só tratar como atendida se a ligação durou
    mais que X s (a validar se o gatilho aceita duração). Esperando o Pedro escolher; nada mudado.
+   19/11 19h: Destiny (Basecamp) — ligação 11:03 AZ do Patrick McCabe encaminhada a 602-400-7289, não tocou, caiu na caixa
+   postal (mesmo caso). [Aprovar] com rascunho (checar DND/silenciar desconhecidos/filtro no aparelho) mandado ao Pedro.
 5. **Sparkling – Lead Form**: com o app "Google Lead Ads" (sincroniza pela API) o Google Ads não mostra "Send test data" (só
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
 - Pedro + Ed (19/11, "Add Snapshot To Pool Duck"): [Passo seu] mandado — Share do V9 (`9VNEhnNSa4hENGbfSdng`) → Import em
-  portal.poolduck.com; eu confiro `backend /snapshots/{yDnTmXSiDo0egbt77IY2}` (type imported; 19/11 19h UTC ainda não) e confirmo ao Ed.
+  portal.poolduck.com; eu confiro `backend /snapshots/{yDnTmXSiDo0egbt77IY2}` (type imported; 19/11 20h UTC ainda não) e confirmo ao Ed
+  (ele pediu 19/11 19:28 "let me know when that is added and I will let her know").
   Ed (19/11): conta nova nasce à mão (Sharon Burch) → sem form; ela escolhe o V9 na criação.
 - Shane (Wrigley's, 19/11): pediu ideias para mais ligações; Ed propôs campanha SMS/e-mail (reativação/promo) + reviews.
   Se o Shane topar: monto a campanha em draft e mando o texto para aprovação.
