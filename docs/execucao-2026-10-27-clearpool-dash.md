@@ -1558,3 +1558,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 ## 19/11 (~20h UTC) — inbox: Blue Lagoon (Destiny) + Pool Duck (Ed) + Skimmer
 - Blue Lagoon "IVR/Spam Calls": ligação 18:03 UTC +1 480-868-7010 → 480-400-0140, 20 s, CRM encaminhou (childCallSid) a +1 602-400-7289, ninguém atendeu, caixa postal; a das 16:55 (mesmo encaminhamento) foi atendida 5m46s. Nada mudado. [Aprovar] ao Pedro com rascunho (aparelho: DND/silenciar desconhecidos/filtro) + lembrete da [Decisão] caixa postal = atendida.
 - Pool Duck: Ed "let me know when added" → V9 ainda não importado (20:05 UTC); espera o Passo seu do Pedro, depois confirmo ao Ed. Skimmer: boas-vindas de Admin (genérico) → só lido. Ledger: 3 linhas.
+
+## 19/11 (~20h UTC) — Pool Duck WC: Won Stage + Review Request publicados (Pedro OK na call)
+- Guia do CRM do Justin respondido 17/11 (todas as mudanças já aplicadas). Custom value "Pool Brain Customer Portal Link" =
+  https://poolduck.poolbrain.com (estava vazio). Google Review Link = place da conta (Pedro configurou pela tela).
+- "Won Stage" e "Review Request" (V9) publicados com backup; gatilhos nas 3 etapas Won da Pool Leads com guarda
+  `existing customer` / `pre-snapshot`. "6.01 Review Request" (original do Justin) segue draft. Imagens do M10: TODO.

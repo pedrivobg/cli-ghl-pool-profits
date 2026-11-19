@@ -106,6 +106,10 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
+- **Justin (Pool Duck WC, call 19/11): imagens para o e-mail de boas-vindas (M10)** — quando chegarem (Basecamp/e-mail/ClickUp;
+  baixar onde vier): subir na mídia da WC (`GHL_AGENCY=poolduck`, location uJr8H2qaQM5ffZxeYFqn), pôr no e-mail M10 do
+  "Won Stage" (publicado 19/11; editar o passo **e** o template; manter o Terms of Service e o link do portal) via
+  `config/pool_duck_wc_wording.json` + `scripts/pd_wc_guide_extras.py`, testar com ZZ TEST (e-mail do Pedro) e confirmar ao Justin.
 - Pedro + Ed (19/11, "Add Snapshot To Pool Duck"): [Passo seu] mandado — Share do V9 (`9VNEhnNSa4hENGbfSdng`) → Import em
   portal.poolduck.com; eu confiro `backend /snapshots/{yDnTmXSiDo0egbt77IY2}` (type imported; 19/11 20h UTC ainda não) e confirmo ao Ed
   (ele pediu 19/11 19:28 "let me know when that is added and I will let her know").
