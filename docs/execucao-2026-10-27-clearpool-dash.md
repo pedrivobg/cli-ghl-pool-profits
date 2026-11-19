@@ -1500,3 +1500,12 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   LPs do Ads (passo1, untitled-page, pool-restoration) ainda com o form base `nr56…` → esperando o Atif (`86bd4wxp0`).
 - Passion "Google ADS" (Val/John, cliente vê) e Felipe (obrigado): sem resposta, lidos. Item pedro_reply era a resposta da própria rotina (22:05).
 - E-mail "[Passo seu] O que é seu – 19/11": Nathan 15h BRT, Pool Duck WC 17h BRT, prints do Lead Form da Sparkling, envio real Reign, Blue Lagoon (opcional). Sweep ClickUp: 0 pendente.
+
+## 19/11 (~02h30 UTC) — resumo da noite repetiu teste feito; prazos sem aviso
+- Reign: envio real do Pedro (18/11 21:41 UTC) conferido (card New Lead, tags, aviso ao Stephen com ZIP, SMS de obrigado) e
+  apagado (backup). O e-mail de 00:07 pediu de novo porque só olhou "página no ar".
+- Blue Lagoon/Passion: número do Pedro era contato spam/DND antigo → testes dele não rodavam o fluxo; contatos apagados (backup).
+- Sparkling Lead Form: prints = form Active + sync Enabled; gatilho `google_lead_form_submitted` sem o filtro adAccountId.
+- 11 tarefas do Pedro vencendo 18–19/11: comentário com dono/motivo e data nova em todas.
+- Regras novas na revisão da noite (docs/inbox-watch-routine.md): achar o teste do Pedro no CRM antes de pedir; contato de
+  teste spam/dnd invalida; seção "(d) Prazos" obrigatória com toda tarefa vencida/hoje/amanhã resolvida antes do e-mail.

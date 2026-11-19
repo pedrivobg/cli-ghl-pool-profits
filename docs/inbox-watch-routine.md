@@ -110,6 +110,17 @@ O n8n manda esse item uma vez por noite para a mesma rotina "GHL Tasks" (sem rot
    - estado ao vivo (GHL/ClickUp): o que o item pede já existe → não pedir; tirar do TODO e contar no (c);
    - `git log --since=yesterday` / `docs/execucao-*.md`.
    Item que passou na checagem e ainda é do Pedro: escrever a prova ("conferi às HH:MM: ainda não existe X").
+   **Teste ao vivo pedido ao Pedro** (Pedro 19/11: o e-mail de 18/11 pediu de novo o envio da Reign, feito às 21:41 UTC):
+   antes de pedir, procurar o próprio teste no CRM — `GET /forms/submissions` da conta desde o pedido, contato "ZZ TEST
+   Pedro"/e-mail ou telefone do Pedro (+55 37 99833-9401), ligação/SMS dele na conversa. Achou → conferir (tags, card,
+   aviso), apagar e contar no (c). "A página está no ar" não é prova de que falta o teste.
+   **Contato de teste do Pedro marcado spam/dnd numa conta invalida o teste** (Blue Lagoon e Passion, 19/11): apagar o
+   contato antigo (backup) antes de pedir ligação/SMS.
+8. **Prazos** (Pedro 19/11: duas tarefas venciam no dia e o e-mail não falou delas): seção obrigatória "(d) Prazos" no
+   e-mail com TODA tarefa do Pedro vencida, de hoje e de amanhã (`clickup_filter_tasks` assignees ["me"], due_date_to =
+   amanhã, include_closed false). Para cada uma, ANTES do e-mail: entregar e fechar; ou, se depende de alguém, comentar
+   quem/o quê e mudar a data (nunca deixar vencer sem data nova e motivo). No e-mail: uma linha por tarefa com o que foi
+   feito (fechada / nova data + motivo / é do Pedro hoje).
 7. **Memória de toda rodada** (não só a da noite): quem termina um item, na mesma rodada, (1) grava a linha `done` no ledger,
    (2) tira o item do `docs/TODO.md` (ou atualiza o passo que sobrou), (3) uma linha no `docs/execucao-*.md`, (4) commit.
    O TODO nunca guarda o que já foi feito — é o que a próxima revisão lê.

@@ -72,13 +72,17 @@ combinar antes.
 (Revisto 18/11 14h UTC contra ledger, Gmail e estado ao vivo. Saíram por já estarem feitos: número Google Ads da Bonneville
 — linha +1 385-503-7952 → Justin desde 16/11; SMS de teste da Sparkling — feito 18/11; resposta ao Justin — enviada 17/11
 21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
-1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11): inclui a chamada
-   perdida da Blue Lagoon (ligar para +1 480-400-0140 fora do horário da Destiny e deixar cair; Pedro 18/11: "mais tarde").
+1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11). Blue Lagoon: a ligação
+   do Pedro de 18/11 23:21 BRT não testou nada — o número dele era contato spam/DND desde 14/09; apagado 19/11 (backup), idem
+   na Passion. Falta 1 ligação nova para +1 480-400-0140 fora do horário da Destiny, deixar cair.
 2. **Pool Keepers – call com o Nathan qui 19/11 10h PT** (15h BRT): convite + Meet enviados pelo Pedro, link postado no Basecamp 18/11 22:03 UTC.
    Na call: trocar Location ID/chave no Skimmer (KjLd) e revisar as configurações.
-3b. **Sparkling – Google Lead Form**: ligação/SMS/form da LP ok (postado à Val). 2º Send Data (18/11 ~21h40) também não chegou
-   (gatilho/conta ok do meu lado) → pedi ao Pedro 2 prints: Integrations → Google Ads → Lead Forms e "Lead delivery" do form no Google Ads.
-3c. **Reign – envio real em go.reignpoolservices.com/weekly-pool-service** (ZZ TEST Pedro, ZIP 92881; pedido no e-mail da noite 19/11) → conferir card, tags, aviso ao Stephen; apagar.
+3b. **Sparkling – Google Lead Form**: prints do Pedro (19/11): form "Get Your Free Pool Quote" Active, sync Enabled. Causa provável:
+   o gatilho filtrava `adAccountId` (o app novo nem sempre manda) → filtro tirado 19/11 (backup). Falta 1 "Send Data" no Google
+   Ads (campanha → Lead form → Edit → Send Data) e eu confiro. GA da Sparkling no CRM aponta para a propriedade "Pool Profits"
+   (487773453, da agência) → falta a propriedade própria do cliente (tarefa 86bd4kucg).
+(Reign: envio real feito pelo Pedro 18/11 21:41 UTC; conferido 19/11 — card New Lead, tags de serviço/ZIP, aviso ao Stephen
+entregue com ZIP 92881, SMS de obrigado; teste apagado.)
 3. **Pool Duck WC – follow-up qui 19/11 15h** (Justin/Ed/Frank): pauta em `docs/poolduck-wc-reuniao-2026-11-19.md`.
 4. (opcional, desde 10/11) **API do Claude no n8n**: credenciais "Anthropic Pool Profits" e "GHL Agency Token" → agente do n8n
    para itens fáceis do inbox. Só se o Pedro quiser.
