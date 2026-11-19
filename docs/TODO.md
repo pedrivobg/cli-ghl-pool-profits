@@ -104,6 +104,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    mais que X s (a validar se o gatilho aceita duração). Esperando o Pedro escolher; nada mudado.
    19/11 19h: Destiny (Basecamp) — ligação 11:03 AZ do Patrick McCabe encaminhada a 602-400-7289, não tocou, caiu na caixa
    postal (mesmo caso). [Aprovar] com rascunho (checar DND/silenciar desconhecidos/filtro no aparelho) mandado ao Pedro.
+   19/11 21h: Frank cobrou no ClickUp → respondi que vi e que volto à Destiny no Basecamp (depois do OK do Pedro).
 5. **Sparkling – Lead Form**: com o app "Google Lead Ads" (sincroniza pela API) o Google Ads não mostra "Send test data" (só
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
