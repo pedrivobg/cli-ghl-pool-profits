@@ -18,6 +18,11 @@ Billing*/Location* address, Status (Active/Inactive), TagList, LeadSource, Custo
 Same phone/e-mail on 2+ rows (one customer, several properties) → one row, other addresses in Notes. Rows with no phone
 and no e-mail go to <stem>-no-phone-no-email.csv (GHL import needs one of them).
 Flags rows to check: no phone, no e-mail, already in GHL (with tags).
+PoolBrain export (Name, Status, Address, City, State, Zip Code, Billing Phone, Billing Email, Gate Code, Access Notes,
+Route Price, Tags, ...; Pool Duck WC 19/11) is converted to the same columns first: Status "Active (routed)" /
+"Active (no route)" → active, "Inactive" → past client, "Lead" → "poolbrain lead"; tag "poolbrain import"; the
+PoolBrain tags (price changes, areas, payment) go to Notes, not to GHL tags. --extra-tags adds tags to every row
+(Pool Duck: "pre-snapshot", the guard of its automations).
 Client data: the output stays out of git.
 """
 from __future__ import annotations
@@ -56,6 +61,39 @@ def rows_of(path: Path) -> list[dict]:
     return [{k: (v or "").strip() for k, v in r.items()} for r in csv.DictReader(open(path, newline="", encoding="utf-8-sig"))]
 
 
+STATES = {"florida": "FL", "iowa": "IA", "new york": "NY", "california": "CA", "illinois": "IL", "ohio": "OH",
+          "maryland": "MD", "connecticut": "CT", "new jersey": "NJ"}
+
+
+def from_poolbrain(src: list[dict]) -> list[dict]:
+    """PoolBrain customer report → the Skimmer column names used below."""
+    out = []
+    for r in src:
+        name = re.sub(r"\s+", " ", r.get("Name", "")).strip(" .")
+        first, _, last = name.partition(" ")
+        st = r.get("Status", "").lower()
+        status = "active" if st.startswith("active") else "inactive" if st == "inactive" else "lead"
+        notes = []
+        if r.get("Route Price") and r.get("Charge Type"):
+            notes.append(f"Rate: ${r['Route Price']} {r['Charge Type']}")
+        if r.get("Gate Code"):
+            notes.append(f"Gate code: {r['Gate Code']}")
+        if r.get("Access Notes"):
+            notes.append(f"Access: {r['Access Notes']}")
+        if r.get("Route Name"):
+            notes.append(f"Route: {r['Route Name']} ({r.get('Route Day') or '?'}, {r.get('Route Tech') or '?'})")
+        if r.get("Tags"):
+            notes.append(f"PoolBrain tags: {r['Tags']}")
+        notes.append(f"PoolBrain status: {r.get('Status')} · created {r.get('Created On') or '?'}")
+        state = r.get("State", "")
+        out.append({"FirstName": first, "LastName": last, "Status": status, "MobilePhone1": r.get("Billing Phone", ""),
+                    "Email1": r.get("Billing Email", ""), "LocationAddress": r.get("Address", ""),
+                    "LocationCity": r.get("City", ""), "LocationState": STATES.get(state.lower(), state)
+                    if len(state) != 2 else state, "LocationZip": r.get("Zip Code", ""),
+                    "CustomerNotes": " | ".join(notes), "_source": "poolbrain import"})
+    return out
+
+
 def phone(v: str) -> str:
     d = re.sub(r"\D", "", v or "")
     if len(d) == 11 and d.startswith("1"):
@@ -73,9 +111,13 @@ def main() -> int:
     p.add_argument("file")
     p.add_argument("--only", required=True, help="sub-account to check the list against")
     p.add_argument("--out", required=True)
+    p.add_argument("--extra-tags", default="", help="comma-separated tags added to every row")
     args = p.parse_args()
     load_dotenv()
     src = rows_of(Path(args.file))
+    if src and "Billing Phone" in src[0] and "Name" in src[0]:
+        src = from_poolbrain(src)
+    extra = [t.strip() for t in args.extra_tags.split(",") if t.strip()]
 
     # e-mail domains on 3+ rows = a partner/dealer's address (Blue Wave Spas referrals), never the customer's
     doms = defaultdict(set)
@@ -91,6 +133,8 @@ def main() -> int:
                 counts[e.split("@")[-1]] += 1
     shared_domains = {d for d, c in counts.items() if c >= 3 and d not in FREEMAIL}
     shared_domains |= {d for d in doms if re.match(r"blu\w*wave", d)}  # typos of the partner's domain
+    if src and src[0].get("_source") == "poolbrain import":
+        shared_domains = set()  # property managers / realtors (Pool Duck WC) are the billing contact
     if shared_domains:
         print(f"   partner e-mail domains (moved to Notes): {', '.join(sorted(shared_domains))}")
 
@@ -121,10 +165,12 @@ def main() -> int:
         dealer = [e for e in emails if e.split("@")[-1] in shared_domains]
         emails = [e for e in emails if e not in dealer]
         status = r.get("Status", "").lower()
-        tags = ["active client", "existing customer"] if status == "active" else ["past client"]
+        tags = (["active client", "existing customer"] if status == "active" else
+                ["poolbrain lead"] if status == "lead" else ["past client"])
         if partner or dealer or "blue wave" in r.get("LeadSource", "").lower():
             tags.append("blue wave referral")
-        tags += ["skimmer import"] + [t.strip().lower() for t in r.get("TagList", "").split(",") if t.strip()]
+        tags += [r.get("_source", "skimmer import")] + extra
+        tags += [t.strip().lower() for t in r.get("TagList", "").split(",") if t.strip()]
         notes = [f"Skimmer account #{acct.group(1)}"] if acct else []
         if r.get("LeadSource"):
             notes.append(f"Lead source: {r['LeadSource']}")
@@ -146,7 +192,7 @@ def main() -> int:
             flags[n].append("no phone (no SMS)")
         if not row["Email"]:
             flags[n].append("no email")
-        if status not in ("active", "inactive"):
+        if status not in ("active", "inactive", "lead"):
             flags[n].append(f"status {r.get('Status')!r}")
         out.append(row)
 
@@ -165,7 +211,7 @@ def main() -> int:
         if addr and row["Address"] != hit["Address"] and f"Also: {addr} " not in hit["Notes"]:
             hit["Notes"] = " | ".join(x for x in (hit["Notes"], f"Also: {addr} ({row['_status']})") if x)
         if row["_status"] == "active" and hit["_status"] != "active":
-            hit["Tags"] = hit["Tags"].replace("past client", "active client, existing customer")
+            hit["Tags"] = re.sub(r"past client|poolbrain lead", "active client, existing customer", hit["Tags"])
             hit["_status"] = "active"
         flags[hit["_line"]].append(f"merged with line {row['_line']} (same phone/email)")
         flags.pop(row["_line"], None)

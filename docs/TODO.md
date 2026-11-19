@@ -88,7 +88,9 @@ combinar antes.
    (487773453, da agência) → falta a propriedade própria do cliente (tarefa 86bd4kucg).
 (Reign: envio real feito pelo Pedro 18/11 21:41 UTC; conferido 19/11 — card New Lead, tags de serviço/ZIP, aviso ao Stephen
 entregue com ZIP 92881, SMS de obrigado; teste apagado.)
-3. **Pool Duck WC – follow-up qui 19/11 15h** (Justin/Ed/Frank): pauta em `docs/poolduck-wc-reuniao-2026-11-19.md`.
+(Pool Duck WC – follow-up 19/11 feito: Won Stage + Review Request aprovados/publicados; aviso de lead novo ao Justin em
+todas as origens e lista do PoolBrain importada no mesmo dia — ver execução 19/11. Matt/Odessa e verba de baixa
+temporada = Ed/Jonathan; encontro presencial 29–31/01.)
 4. (opcional, desde 10/11) **API do Claude no n8n**: credenciais "Anthropic Pool Profits" e "GHL Agency Token" → agente do n8n
    para itens fáceis do inbox. Só se o Pedro quiser.
 Contexto que NÃO é passo do Pedro (não pôr no e-mail): West Coast A2P espera o endereço do EIN letter (Frank, `86bd3m8c9`);

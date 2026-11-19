@@ -1566,3 +1566,16 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   `existing customer` / `pre-snapshot`. "6.01 Review Request" (original do Justin) segue draft. Imagens do M10: TODO.
 - 19/11 20:30 UTC: V9 na agência Pool Duck (`Pc35TW2utMIO0z9naKqt`, imported) conferido por API; resposta ao Ed (cc Frank):
   Sharon escolhe "Snapshot Pool Profits v9", não os V4/V5/Franchisee antigos; eu termino o setup de cada conta nova.
+
+## 19/11 (~21h UTC) — Pool Duck WC: itens da call com Justin/Ed/Frank
+- **Aviso de lead novo ao Justin, toda origem** (`scripts/pd_wc_lead_alerts.py`, backup por workflow): já recebia FB form,
+  Google Ads form/lead form e chat. Somado: "Website Form Fill To Pipeline" (New Lead SMS: Debbie + Justin); "Answered" e
+  "Missed Incoming Call To Pipeline" (linha principal, dentro do "Not spam / not a customer?") → "New Lead SMS - Justin"
+  logo depois do card; chamadas dos números de anúncio (FB, Google Ads, LSA) → if/else no fim (sem spam, dnd, existing
+  customer, pre-snapshot) + "New Lead SMS - Justin". If/else testado num ZZ TEST (ramo lead e ramo cliente; apagado).
+  Ligação repetida de lead que ainda não é cliente avisa de novo (igual aos forms).
+- **Lista de clientes do PoolBrain** (Justin reenviou na call; 1.342 linhas: 538 ativos, 405 inativos, 399 leads):
+  `pp_import_skimmer.py` lê o formato PoolBrain (status → active client + existing customer / past client / poolbrain
+  lead; tags do PoolBrain, rota, valor e gate code na nota) + `--extra-tags pre-snapshot`; `pp_import_apply.py
+  --keep-existing` (quem já está no CRM mantém nome/endereço: só tags + nota). 941 importáveis (326 sem telefone nem
+  e-mail, quase todos leads de Sarasota), 938 já estavam no CRM. Nenhum gatilho publicado ouve essas tags; nada enviado.

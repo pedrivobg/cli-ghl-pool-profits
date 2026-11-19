@@ -8,6 +8,8 @@ Per row: POST services /contacts/upsert WITHOUT tags (matches by phone/e-mail; t
 → POST /contacts/{id}/tags with the Tags column → POST /contacts/{id}/notes with Notes + additional phones/e-mails.
 Before --apply, check that no published workflow fires on these tags or on contact created (except an owner-assign
 step) — the plan lists the account's published contact_tag / contact_created triggers to compare.
+--keep-existing: contacts already in the account (same e-mail or phone) keep their name/address — only the tags and
+the note are added; only the rest go through upsert (Pool Duck WC 19/11: 938 of 941 already there).
 Created ids → backup/<slug>/skimmer-import-<stamp>.json (to undo: delete those ids where "new" is true).
 """
 from __future__ import annotations
@@ -27,7 +29,7 @@ from cli_anything.gohighlevel.utils.agency import SERVICES, match_location, slug
 def body_of(r: dict, loc: str) -> dict:
     b = {"locationId": loc, "firstName": r["First Name"], "lastName": r["Last Name"], "companyName": r["Company Name"],
          "phone": r["Phone"], "email": r["Email"], "address1": r["Address"], "city": r["City"], "state": r["State"],
-         "postalCode": r["Postal Code"], "source": r.get("Source") or "skimmer import"}
+         "postalCode": r["Postal Code"], "source": r.get("Source") or ("poolbrain import" if "poolbrain import" in r.get("Tags", "") else "skimmer import")}
     return {k: v for k, v in b.items() if v}
 
 
@@ -45,6 +47,7 @@ def main() -> int:
     ap.add_argument("csv")
     ap.add_argument("--only", required=True)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--keep-existing", action="store_true")
     args = ap.parse_args()
     load_dotenv()
     a = Agency()
@@ -64,10 +67,25 @@ def main() -> int:
         for r in rows[:3]:
             print("  ", json.dumps(body_of(r, loc["id"])), "|", r["Tags"], "|", note_of(r)[:80])
         return 0
+    index = {}
+    if args.keep_existing:
+        page = 1
+        while True:
+            res = a.call("POST", SERVICES, "/contacts/search", body={"locationId": loc["id"], "pageLimit": 100, "page": page})
+            for c in res.get("contacts", []):
+                for v in (c.get("email"), c.get("phone")):
+                    if v:
+                        index.setdefault(v.lower(), c["id"])
+            if not res.get("contacts") or page * 100 >= res.get("total", 0):
+                break
+            page += 1
+        print(f"   {len(index)} e-mails/phones already in the account")
     done = []
     for i, r in enumerate(rows, 1):
         try:
-            res = a.call("POST", SERVICES, "/contacts/upsert", body=body_of(r, loc["id"]))
+            cid = index.get(r["Email"].lower()) or index.get(r["Phone"].lower()) if index else None
+            res = {"contact": {"id": cid}, "new": False, "kept": True} if cid else \
+                a.call("POST", SERVICES, "/contacts/upsert", body=body_of(r, loc["id"]))
             cid = (res.get("contact") or {}).get("id")
             if not cid:
                 raise RuntimeError(json.dumps(res)[:200])
@@ -76,7 +94,7 @@ def main() -> int:
             n = note_of(r)
             if n:
                 a.call("POST", SERVICES, f"/contacts/{cid}/notes", body={"body": n})
-            done.append({"row": i, "id": cid, "new": bool(res.get("new")), "name": f"{r['First Name']} {r['Last Name']}"})
+            done.append({"row": i, "id": cid, "new": bool(res.get("new")), "kept": bool(res.get("kept")), "name": f"{r['First Name']} {r['Last Name']}"})
         except Exception as e:  # noqa: BLE001
             done.append({"row": i, "error": str(e)[:200], "name": f"{r['First Name']} {r['Last Name']}"})
         time.sleep(0.2)
