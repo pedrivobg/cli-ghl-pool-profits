@@ -1579,6 +1579,8 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   lead; tags do PoolBrain, rota, valor e gate code na nota) + `--extra-tags pre-snapshot`; `pp_import_apply.py
   --keep-existing` (quem já está no CRM mantém nome/endereço: só tags + nota). 941 importáveis (326 sem telefone nem
   e-mail, quase todos leads de Sarasota), 938 já estavam no CRM. Nenhum gatilho publicado ouve essas tags; nada enviado.
+  Resultado: 938 atualizados + 3 novos, 0 erros (backup `skimmer-import-20261119-2107.json` + `-2050`); conversas dos
+  novos vazias.
 
 ## 19/11 (~21h UTC) — inbox: 7 itens (Pool Duck x4, Blue Lagoon, West Coast, BluVantage)
 - Pool Duck: Luis (East Orlando, "glad to be here"), Ed → Sharon (V9), e-mail M10 do ZZ TEST (nenhum ZZ TEST sobrou na WC) e relatório PoolBrain (já importado) → só lidos.
