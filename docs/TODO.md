@@ -12,8 +12,8 @@ combinar antes.
 - 18/11: Sparkling Ads (`86bd4wyr5`): WON + fluxos SMS/Lead Form + 2 forms das LPs novas feitos; esperando o Atif pôr os
   forms WEEKLY SERVICE / POOL REPAIRS nas LPs (tarefa `86bd4wxp0`) → testar submissão em cada página.
 
-- 19/11: Bonneville Ads (`86bcwer98`, Val): fluxos publicados; lead form mapeado + Active (Pedro); ligação e SMS reais conferidos e
-  apagados. Esperando a Val fazer o "Send Data" do lead form → conferir contato/tags/card/avisos, apagar o teste, confirmar à Val.
+- 19/11: Bonneville Ads (`86bcwer98`, Val): fluxos publicados; lead form mapeado + Active; ligação e SMS reais conferidos e
+  apagados. Send Data não existe mais no Google Ads (Val) → campanha ativa; validar no 1º lead real (contato/tags/card/avisos) e confirmar à Val.
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
 - **Google Ads do cliente = sempre a Val** (Pedro 19/11: ele não tem acesso). Nunca pedir ao Pedro passo dentro do Google Ads
@@ -127,8 +127,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Frank: dono para o alerta de SMS na Stay Fresh e na Blue Lagoon (as outras 8 sem dono estão inativas →
   `config/inactive_accounts.json`, puladas pelo `pp_sms_alert --all`); textos dos 8 posts de GBP da BluVantage (`86bd1xdbu`, 17/11).
 - Frank (16/11): Pool Smart OC ainda é cliente? (fora da lista de inativos até ele confirmar; Ads precisa reconectar, `86bd1zk8p`).
-- Bonneville (lança 20/11): CRM testado (WON, lead form mapeado, ligação/SMS). Val: Send Data do lead form, conversão de form fill (se
-  quiser) e URL nova da Weekly (/weekly-pool-hot-tub-service) nos anúncios.
+- Bonneville (ativa 19/11, anúncios em revisão): Val avisa no 1º lead; conversão de form fill (se quiser) e URL nova da Weekly
+  (/weekly-pool-hot-tub-service) nos anúncios.
 - Atif: páginas/obrigado de Poolheads, Pool Shack, YardSpring, BluVantage; tirar o número antigo da página Weekly da NorTex.
 - Val: Google Ads conectado (Poolheads, Pool Shack, YardSpring) e acesso para o Send Data dos Google Lead Forms.
 - Frank: Stay Fresh (avisos de ligação para o Kris, re-entry, IVR, lista de inativos); Pool Shack (retorno do Rob);

@@ -1541,3 +1541,7 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 ## 19/11 (~16h UTC) — inbox: [pedro_reply] Bonneville (ligação/SMS feitos, lead form mapeado)
 - Conferido ao vivo: ligação 15:34 UTC na linha Ads (missed, tags google ads call, missed-call text, card) e SMS "Test" (Conversations, aviso ao Justin, tags google ads sms, card → In Communication). Contato/card de teste e o contato só-e-mail do meu teste apagados (backup em `backup/bonneville-pool-maintenance/`).
 - Val avisada no thread do `86bcwer98` + pedido do Send Data (Google Ads é dela; regra nova do Pedro no TODO). Resposta ao Pedro no thread, deixada não lida; ledger done.
+
+## 19/11 (~16h UTC) — inbox: Reign LPs (Basecamp) + Bonneville (2)
+- Basecamp Reign "Google ADS - Landing Pages" (Val → Stephen, 3 LPs): não me marca; conferi as 3 páginas no ar com os forms já ligados (rg_lp_launch) → sem resposta, lido.
+- [pedro_reply] Bonneville: era a minha própria resposta ao Pedro das 15:48 → nada a fazer. ClickUp `86bcwer98`: Val diz que o Send Data não existe mais e a campanha está ativa → respondi que o 1º lead real é o teste e eu confiro no CRM. Ledger: 3 linhas.
