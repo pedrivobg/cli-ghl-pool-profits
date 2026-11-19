@@ -9,8 +9,6 @@ combinar antes.
 
 ## Aberto hoje
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
-- 18/11: Sparkling: form GHL no hero, Contact Us e rodapé (conferido 21h UTC). Falta o Atif trocar o WPForms #337 ("Get a Free
-  Quote" no meio de 23 páginas de serviço/location/schedule-service; pedido no thread 21h15) → conferir as páginas + envio real.
 - 18/11: Sparkling Ads (`86bd4wyr5`): WON + fluxos SMS/Lead Form + 2 forms das LPs novas feitos; esperando o Atif pôr os
   forms WEEKLY SERVICE / POOL REPAIRS nas LPs (tarefa `86bd4wxp0`) → testar submissão em cada página.
 
@@ -80,7 +78,7 @@ combinar antes.
    Na call: trocar Location ID/chave no Skimmer (KjLd) e revisar as configurações.
 3b. **Sparkling – Google Lead Form**: ligação/SMS/form da LP ok (postado à Val). 2º Send Data (18/11 ~21h40) também não chegou
    (gatilho/conta ok do meu lado) → pedi ao Pedro 2 prints: Integrations → Google Ads → Lead Forms e "Lead delivery" do form no Google Ads.
-3c. **Reign – envio real em go.reignpoolservices.com/weekly-pool-service** (ZZ TEST Pedro, ZIP 92881) → conferir card, tags, aviso ao Stephen; apagar.
+3c. **Reign – envio real em go.reignpoolservices.com/weekly-pool-service** (ZZ TEST Pedro, ZIP 92881; pedido no e-mail da noite 19/11) → conferir card, tags, aviso ao Stephen; apagar.
 3. **Pool Duck WC – follow-up qui 19/11 15h** (Justin/Ed/Frank): pauta em `docs/poolduck-wc-reuniao-2026-11-19.md`.
 4. (opcional, desde 10/11) **API do Claude no n8n**: credenciais "Anthropic Pool Profits" e "GHL Agency Token" → agente do n8n
    para itens fáceis do inbox. Só se o Pedro quiser.

@@ -1494,3 +1494,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Pool Keepers: convite + Meet (hxe-xqpz-siq) postados ao Nathan no Basecamp "Automations – Review" (22:03 UTC). Item fechado.
 - Sparkling: 2º Send Data do Google Lead Form também não chegou (nenhum contato desde 16/11; gatilho `google_lead_form_submitted`
   ativo com adAccountId 2695266803; conversão WON visível) → pedidos 2 prints ao Pedro no thread (resposta marcada não lida).
+
+## 19/11 (~00h UTC) — inbox watch + revisão da noite de 18/11
+- Sparkling: Atif trocou o WPForms → 57 páginas do sitemap com o form GHL, 0 WPForms. Respondido no thread (Atif + Frank); tarefa `86bd4t636` fechada.
+  LPs do Ads (passo1, untitled-page, pool-restoration) ainda com o form base `nr56…` → esperando o Atif (`86bd4wxp0`).
+- Passion "Google ADS" (Val/John, cliente vê) e Felipe (obrigado): sem resposta, lidos. Item pedro_reply era a resposta da própria rotina (22:05).
+- E-mail "[Passo seu] O que é seu – 19/11": Nathan 15h BRT, Pool Duck WC 17h BRT, prints do Lead Form da Sparkling, envio real Reign, Blue Lagoon (opcional). Sweep ClickUp: 0 pendente.
