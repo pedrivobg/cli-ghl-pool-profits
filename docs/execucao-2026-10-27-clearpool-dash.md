@@ -1545,3 +1545,7 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 ## 19/11 (~16h UTC) — inbox: Reign LPs (Basecamp) + Bonneville (2)
 - Basecamp Reign "Google ADS - Landing Pages" (Val → Stephen, 3 LPs): não me marca; conferi as 3 páginas no ar com os forms já ligados (rg_lp_launch) → sem resposta, lido.
 - [pedro_reply] Bonneville: era a minha própria resposta ao Pedro das 15:48 → nada a fazer. ClickUp `86bcwer98`: Val diz que o Send Data não existe mais e a campanha está ativa → respondi que o 1º lead real é o teste e eu confiro no CRM. Ledger: 3 linhas.
+
+## 19/11 (~17h30 UTC) — inbox: Puddle Jumper lista de clientes (Frank) + Blue Lagoon/Bonneville (só lido)
+- Puddle Jumper: "Customer Contact List" do QuickBooks (xlsx do Basecamp, baixado pelo link assinado) limpo com `scripts/pp_import_quickbooks.py` (novo) e importado com `pp_import_apply.py` (agora aceita coluna Source): 1.094 contatos (conta tinha 0), tags `existing customer` + `quickbooks import` (+16 `b2b pool company`), 38 linhas puladas, sub-clientes/mesmo telefone mesclados com as outras propriedades nas notas; 0 conversas (nada enviado). Ids em `backup/puddle-jumper-pool-service-llc/`. Respondido ao Frank no thread do canal; lista não tem status ativo/inativo → perguntei quem está ativo (tag `active client`). Jobber Feedback: 77 notas (75 de 9–10) = primeiros pedidos de review quando o GBP ligar.
+- Blue Lagoon blog post (Caila/Frank, 3 itens) e Bonneville mockup (Frank → Justin): site, não me marcam → só lidos. Ledger: 7 linhas.
