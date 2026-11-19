@@ -122,8 +122,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Frank: dono para o alerta de SMS na Stay Fresh e na Blue Lagoon (as outras 8 sem dono estão inativas →
   `config/inactive_accounts.json`, puladas pelo `pp_sms_alert --all`); textos dos 8 posts de GBP da BluVantage (`86bd1xdbu`, 17/11).
 - Frank (16/11): Pool Smart OC ainda é cliente? (fora da lista de inativos até ele confirmar; Ads precisa reconectar, `86bd1zk8p`).
-- Val: Google Ads da Bonneville (conversão das 2 LPs novas). LPs/obrigado da Bonneville no ar (Atif 13/11), forms certos e
-  redirect conferidos.
+- Bonneville (lança 20/11): WON ligado ("Won -> Google Ads", 19/11). Falta: Pedro liga para (385) 503-7952 ([Passo seu] 19/11) →
+  conferir e apagar o teste; Val: conversão de form fill (se quiser) e URL nova da Weekly (/weekly-pool-hot-tub-service) nos anúncios.
 - Atif: páginas/obrigado de Poolheads, Pool Shack, YardSpring, BluVantage; tirar o número antigo da página Weekly da NorTex.
 - Val: Google Ads conectado (Poolheads, Pool Shack, YardSpring) e acesso para o Send Data dos Google Lead Forms.
 - Frank: Stay Fresh (avisos de ligação para o Kris, re-entry, IVR, lista de inativos); Pool Shack (retorno do Rob);
