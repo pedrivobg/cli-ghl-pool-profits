@@ -27,7 +27,7 @@ from cli_anything.gohighlevel.utils.agency import SERVICES, match_location, slug
 def body_of(r: dict, loc: str) -> dict:
     b = {"locationId": loc, "firstName": r["First Name"], "lastName": r["Last Name"], "companyName": r["Company Name"],
          "phone": r["Phone"], "email": r["Email"], "address1": r["Address"], "city": r["City"], "state": r["State"],
-         "postalCode": r["Postal Code"], "source": "skimmer import"}
+         "postalCode": r["Postal Code"], "source": r.get("Source") or "skimmer import"}
     return {k: v for k, v in b.items() if v}
 
 
