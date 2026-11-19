@@ -1586,3 +1586,6 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Pool Duck: Luis (East Orlando, "glad to be here"), Ed → Sharon (V9), e-mail M10 do ZZ TEST (nenhum ZZ TEST sobrou na WC) e relatório PoolBrain (já importado) → só lidos.
 - Blue Lagoon: Frank cobrou a pergunta da Destiny → respondi no thread do ClickUp; resposta a ela espera o [Aprovar] do Pedro. West Coast (página de pacotes, site) e BluVantage (Frank → Val) → sem resposta. Ledger: 7 linhas.
 - Sweep do ClickUp saiu com 2 (token da sessão expirou) → [Passo seu] "ClickUp: renovar o token" ao Pedro (resposta marcada não lida).
+
+## 19/11 (~22h UTC) — inbox: Sharon (Pool Duck)
+- Sharon: conta do Luis feita sem o V9, a da Cibele com o V9. East Orlando conferida ao vivo: 0 workflows → [Aprovar] ao Pedro (Load Snapshot V9 pela tela + rascunho à Sharon). Thread lido; ledger needs_pedro.

@@ -115,7 +115,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   "Won Stage" (publicado 19/11; editar o passo **e** o template; manter o Terms of Service e o link do portal) via
   `config/pool_duck_wc_wording.json` + `scripts/pd_wc_guide_extras.py`, testar com ZZ TEST (e-mail do Pedro) e confirmar ao Justin.
 - Pool Duck (19/11): V9 importado na agência Pool Duck (`Pc35TW2utMIO0z9naKqt`, conferido 20:22 UTC); Ed respondido no
-  thread "Add Snapshot To Pool Duck". Esperando a Sharon criar a próxima conta → eu faço o resto (dados, linhas/encaminhamento,
+  thread "Add Snapshot To Pool Duck". Sharon (19/11 21:26 UTC): conta do Luis (East Orlando `m2glhRgphyM7uXh4Rc8u`) criada SEM o
+  V9 (0 workflows) → [Aprovar] ao Pedro (Load Snapshot V9 + resposta à Sharon); a da Cibele vem com o V9. Esperando a Sharon criar a próxima conta → eu faço o resto (dados, linhas/encaminhamento,
   avisos, link de review, auditoria) e testo antes de entrar lead. Snapshot extra "New PP Snapshot 11/2026" (Pool Profits,
   16/11, cópia velha do master) → Pedro pode apagar pela tela.
 - Shane (Wrigley's, 19/11): pediu ideias para mais ligações; Ed propôs campanha SMS/e-mail (reativação/promo) + reviews.
