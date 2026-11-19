@@ -1524,3 +1524,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - `pp_won_ads.py apply --only DeSfqW31OleIiU7eUt35`: "Won -> Google Ads" publicado (conv 7909535160, 3 etapas Won), conferido. LPs no ar ok
   (form, redirect, (385) 503-7952); a URL da Weekly mudou hoje para /weekly-pool-hot-tub-service (a antiga dá 404) → avisado à Val no thread, junto
   com a conversão de form fill que não existe na conta (os passos das LPs continuam vazios). Ligação de teste na linha Ads → [Passo seu] ao Pedro.
+- 19/11 inbox: Basecamp Pool Shack (Rob, "Great, thank you" ao update do Frank) → só agradecimento, sem resposta; e-mail lido, ledger done.
