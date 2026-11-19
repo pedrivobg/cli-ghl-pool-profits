@@ -77,6 +77,7 @@ combinar antes.
 (Revisto 18/11 14h UTC contra ledger, Gmail e estado ao vivo. Saíram por já estarem feitos: número Google Ads da Bonneville
 — linha +1 385-503-7952 → Justin desde 16/11; SMS de teste da Sparkling — feito 18/11; resposta ao Justin — enviada 17/11
 21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
+0. **ClickUp: renovar o token da sessão** (sweep 19/11 21h UTC saiu com 2; [Passo seu] mandado). Depois: `cu_mark_read.py --sweep`.
 1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11). Blue Lagoon: a ligação
    do Pedro de 18/11 23:21 BRT não testou nada — o número dele era contato spam/DND desde 14/09; apagado 19/11 (backup), idem
    na Passion. Falta 1 ligação nova para +1 480-400-0140 fora do horário da Destiny, deixar cair.
