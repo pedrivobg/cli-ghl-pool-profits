@@ -1525,3 +1525,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   (form, redirect, (385) 503-7952); a URL da Weekly mudou hoje para /weekly-pool-hot-tub-service (a antiga dá 404) → avisado à Val no thread, junto
   com a conversão de form fill que não existe na conta (os passos das LPs continuam vazios). Ligação de teste na linha Ads → [Passo seu] ao Pedro.
 - 19/11 inbox: Basecamp Pool Shack (Rob, "Great, thank you" ao update do Frank) → só agradecimento, sem resposta; e-mail lido, ledger done.
+
+## 19/11 (~15h30 UTC) — inbox: Bonneville Lead Form + SMS asset (Val, `86bcwer98`) + billing (Basecamp)
+- `scripts/bv_ads_launch.py` (novo): publicados "Google Ads Lead Form - New Lead" (google_lead_form_submitted, adAccountId 9211785517;
+  tags google ads/lead form/new lead/adwords, Landing Page, card New Lead, SMS+e-mail ao Justin, confirmação SMS+e-mail, tag de serviço
+  por Service Requested contém Weekly/Repair/Hot Tub), "Google Ads SMS - New Lead" (customer_reply na linha +13855037952 → tags + card;
+  aviso vem do Inbound SMS - Notify Owner) e "Google Ads Call - Tag" (call_status na linha → tags). Teste ZZ TEST 10/10, apagado.
+  Respondido à Val no thread; [Passo seu] ao Pedro (map fields + Send Data + texto + ligação). Basecamp billing (Val → Justin): sem resposta, lido.

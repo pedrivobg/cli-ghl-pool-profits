@@ -12,6 +12,10 @@ combinar antes.
 - 18/11: Sparkling Ads (`86bd4wyr5`): WON + fluxos SMS/Lead Form + 2 forms das LPs novas feitos; esperando o Atif pôr os
   forms WEEKLY SERVICE / POOL REPAIRS nas LPs (tarefa `86bd4wxp0`) → testar submissão em cada página.
 
+- 19/11: Bonneville Ads (`86bcwer98`, Val): fluxos Lead Form / SMS / Call publicados e testados (ZZ TEST); esperando o Pedro
+  ([Passo seu] no thread da ligação de teste): mapear o lead form em Integrations (serviço → Service Requested) + Active, Send
+  Data, texto e ligação para (385) 503-7952 → conferir card/tags/avisos, apagar testes, confirmar à Val.
+
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
 - **Resposta ao Pedro no thread dele fica NÃO LIDA** (Pedro 18/11: a rotina responde no thread do [Passo seu]/[Aprovar], mas
   marca como lido e ele não vê). Ao responder ao Pedro: depois de enviar, marcar a SUA resposta como não lida
