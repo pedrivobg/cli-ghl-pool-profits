@@ -105,8 +105,10 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 
 ## Esperando outros
 - Pedro + Ed (19/11, "Add Snapshot To Pool Duck"): [Passo seu] mandado — Share do V9 (`9VNEhnNSa4hENGbfSdng`) → Import em
-  portal.poolduck.com; eu confiro `backend /snapshots/{yDnTmXSiDo0egbt77IY2}` (type imported) e confirmo ao Ed. Ed responde se conta
-  nova da Pool Duck nasce à mão ou por form (aí ponho o V9 como padrão).
+  portal.poolduck.com; eu confiro `backend /snapshots/{yDnTmXSiDo0egbt77IY2}` (type imported; 19/11 19h UTC ainda não) e confirmo ao Ed.
+  Ed (19/11): conta nova nasce à mão (Sharon Burch) → sem form; ela escolhe o V9 na criação.
+- Shane (Wrigley's, 19/11): pediu ideias para mais ligações; Ed propôs campanha SMS/e-mail (reativação/promo) + reviews.
+  Se o Shane topar: monto a campanha em draft e mando o texto para aprovação.
 - Frank/cliente (19/11): Puddle Jumper — quem da lista importada é cliente ativo (tag `active client`); Frank perguntou ao cliente.
 - Val/Atif (19/11, `86bc6vqr9`): LP nova da Passion (ChatGPT Ads). Quando o link vier: ligar o form ao CRM com os avisos
   (SMS 615-624-7624 + passionpoolcare@gmail.com) e tracking, testar ponta a ponta e responder na tarefa.
