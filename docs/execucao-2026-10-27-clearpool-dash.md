@@ -1532,3 +1532,8 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   por Service Requested contém Weekly/Repair/Hot Tub), "Google Ads SMS - New Lead" (customer_reply na linha +13855037952 → tags + card;
   aviso vem do Inbound SMS - Notify Owner) e "Google Ads Call - Tag" (call_status na linha → tags). Teste ZZ TEST 10/10, apagado.
   Respondido à Val no thread; [Passo seu] ao Pedro (map fields + Send Data + texto + ligação). Basecamp billing (Val → Justin): sem resposta, lido.
+
+## 19/11 (~15h40 UTC) — inbox: Bonneville (3 itens, nada a postar)
+- [pedro_reply] "[Passo seu] Bonneville: ligação de teste": a última mensagem é a minha atualização ao Pedro (não um "feito") → thread fica não lido; segue esperando o Pedro (item do TODO inalterado).
+- Basecamp Website Mockup (Justin: tirar Green to Clean → Pool Liner Replacement, tirar endereço de casa): site, não me marca → só lido (é do Frank/web).
+- Basecamp Google Ads (Justin "Should be good now" para a Val): assunto da Val → só lido. Ledger: 3 linhas.
