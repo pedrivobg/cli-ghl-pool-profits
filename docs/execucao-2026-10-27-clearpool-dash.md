@@ -1516,3 +1516,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   West Coast `1GLz…` Main Website Form) e todos já estão no gatilho do "Website Form Fill To Pipeline" publicado. Teste real no go-live.
 - Rodada diária: nenhuma conta nova, nada mudou; `--apply --submit` em 7 contas (WP Pools fora: 3ª linha espera o Frank). Sem comentário
   no ClickUp nem e-mail ao Pedro.
+- 19/11 inbox: Basecamp Passion "OpenAI - ADS" (Val → cliente, pagamento falhou no ChatGPT Ads): não marca o Pedro, não é CRM → sem resposta, marcado lido; ledger done.
