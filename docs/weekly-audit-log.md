@@ -24,3 +24,14 @@
   já existe ao vivo).
 - **Check-in (rodízio)**: Precision (Dane), Sunwave (Davey), Bahama Blue (Andy) — rascunhos no e-mail.
 - Tarefas novas: 86bd2t1kt (Southern leads sem card), 86bd2t1mq (Application Passwords); comentários em 86bd1b3b5 e 86bcz86jw.
+
+## 19/11/2026 (qui; concluída sex 20/11 ~19h30 UTC — a sessão reiniciou no meio)
+
+- **Contas**: 67 da Pool Profits (dump `--all` + `pp_audit` + `pp_fleet_check` + `pp_call_check`), Pool Duck (`pp_call_check` 0 ERRO);
+  leads novos 12/11–20/11 em todas as contas de cliente (contatos "new lead" sem card, por contato).
+- **Achados → tarefa 86bd5n0h3**: Sunwave Won Stage → 2 etapas inexistentes + Marketing IVR sem usuário; Pool Smart OC
+  Current Customer/DND ouvem pipeline inexistente; ABC/Leisure Website Form Fill sem usuário; Orange Tree chat widget
+  inexistente; Pool Palooza 3 ligações sem card; Corolla "Bruce Wayne"/"Peter Parker".
+- `pp_call_check`: ERRO só em IVR draft de propósito (Dream Pools, Ponchos, Blue Lagoon desde 17/11).
+- [Aprovar] parados (cliente vê): West Coast Service Agreement, Cleverblu sticker, Pool Shack Rob.
+- **Check-in (rodízio)**: Southern, Stay Fresh, YardSpring — rascunho no e-mail.
