@@ -39,7 +39,8 @@ TEST_MARK = "zz inbound sms ok"
 NOT_CLIENT = {"pool profits", "test snapshot", "snapshot pool profits", "pool profits (sales)", "pool profits - sample",
               "damon's pool care - billing only", "master pool service snapshot v1", "nathan taylor's account", "test inc"}
 BODY = ("\U0001F4AC New text to {{location.name}}\n\nFrom: {{contact.name}}\nPhone: {{contact.phone}}\n\n"
-        "{{message.body}}\n\n{{message.attachments}}\n\nReply in the GHL app (Conversations).")
+        "{{message.body}}\n\n{{message.attachments}}\n\nReply in the Pool Profits app (Conversations).")
+OLD_TAIL = "Reply in the GHL app (Conversations)."  # Pedro 18/11: never "GHL" to clients (Paul/BluVantage saw it 19/11)
 
 
 def stamp() -> str:
@@ -113,10 +114,44 @@ def verify(a: Agency, loc: str, wid: str, want_status: str) -> str:
            f"{[t.get('active') for t in tr]}, passo {[s['name'] for s in steps]})"
 
 
+def rebrand(a: Agency, loc: str, nm: str, write: bool) -> int:
+    """Old alert text said "Reply in the GHL app": swap for the Pool Profits app wording; status kept."""
+    have = existing(a, loc, NAME)
+    if not have:
+        return 0
+    wid = have.get("id") or have.get("_id")
+    live = a.workflow(loc, wid)
+    steps = live["workflowData"]["templates"]
+    hits = [s for s in steps if OLD_TAIL in json.dumps(s.get("attributes") or {})]
+    if not hits:
+        print(f"= {nm}: já sem 'GHL app'")
+        return 0
+    print(f"~ {nm}: {len(hits)} passo(s) com 'GHL app' ({live['status']})")
+    if not write:
+        return 0
+    d = ROOT / "backup" / slugify(nm)
+    d.mkdir(parents=True, exist_ok=True)
+    (d / f"{wid}-rebrand-{stamp()}.json").write_text(json.dumps(live, indent=1))
+    new = json.loads(json.dumps(steps).replace("Reply in the GHL app (Conversations).",
+                                               "Reply in the Pool Profits app (Conversations)."))
+    a.call("PUT", BACKEND, f"/workflow/{loc}/{wid}", body={"name": live["name"], "version": live.get("version", 2),
+           "status": live["status"], "allowMultiple": live.get("allowMultiple", True), "workflowData": {"templates": new}})
+    time.sleep(3)
+    after = a.workflow(loc, wid)
+    ok = OLD_TAIL not in json.dumps(after["workflowData"]) and after["status"] == live["status"]
+    print(f"   {'ok' if ok else 'DIFERENTE'} (status {after['status']}, re-entry {after.get('allowMultiple')})")
+    return 0 if ok else 1
+
+
 def run(args) -> int:
     load_dotenv()
     a = Agency()
     locs = select(a.locations(), args.only, args.all, False)
+    if args.cmd in ("rebrand", "rebrand-plan"):
+        bad = 0
+        for l in locs:
+            bad |= rebrand(a, l["id"], (l.get("name") or "").strip(), args.cmd == "rebrand")
+        return bad
     if args.all:
         inactive = json.loads((ROOT / "config" / "inactive_accounts.json").read_text())["accounts"]  # Frank 13/11
         locs = [l for l in locs if (l.get("name") or "").strip().lower() not in NOT_CLIENT and l["id"] not in inactive]
@@ -203,7 +238,7 @@ def test(a: Agency, loc: str, nm: str, args) -> int:
 
 def main() -> int:
     p = argparse.ArgumentParser()
-    p.add_argument("cmd", choices=["plan", "apply", "testprep", "testcheck"])
+    p.add_argument("cmd", choices=["plan", "apply", "testprep", "testcheck", "rebrand-plan", "rebrand"])
     p.add_argument("--only", nargs="*")
     p.add_argument("--all", action="store_true")
     p.add_argument("--template", action="store_true", help="snapshot master: no owner user")

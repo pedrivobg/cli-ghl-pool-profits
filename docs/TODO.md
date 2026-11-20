@@ -77,16 +77,11 @@ combinar antes.
 (Revisto 18/11 14h UTC contra ledger, Gmail e estado ao vivo. Saíram por já estarem feitos: número Google Ads da Bonneville
 — linha +1 385-503-7952 → Justin desde 16/11; SMS de teste da Sparkling — feito 18/11; resposta ao Justin — enviada 17/11
 21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
-0. **ClickUp: renovar o token da sessão** (sweep 19/11 21h UTC saiu com 2; [Passo seu] mandado). Depois: `cu_mark_read.py --sweep`.
 1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11). Blue Lagoon: a ligação
    do Pedro de 18/11 23:21 BRT não testou nada — o número dele era contato spam/DND desde 14/09; apagado 19/11 (backup), idem
    na Passion. Falta 1 ligação nova para +1 480-400-0140 fora do horário da Destiny, deixar cair.
-2. **Pool Keepers – call com o Nathan qui 19/11 10h PT** (15h BRT): convite + Meet enviados pelo Pedro, link postado no Basecamp 18/11 22:03 UTC.
-   Na call: trocar Location ID/chave no Skimmer (KjLd) e revisar as configurações.
-3b. **Sparkling – Google Lead Form**: prints do Pedro (19/11): form "Get Your Free Pool Quote" Active, sync Enabled. Causa provável:
-   o gatilho filtrava `adAccountId` (o app novo nem sempre manda) → filtro tirado 19/11 (backup). Falta 1 "Send Data" no Google
-   Ads (campanha → Lead form → Edit → Send Data) e eu confiro. GA da Sparkling no CRM aponta para a propriedade "Pool Profits"
-   (487773453, da agência) → falta a propriedade própria do cliente (tarefa 86bd4kucg).
+3b. **Sparkling – Lead Form**: filtro `adAccountId` tirado 19/11; Send Data não existe com o app novo → validação = 1º lead
+   real (eu confiro). GA da Sparkling na propriedade da agência → propriedade própria (86bd4kucg). Nada do Pedro.
 (Reign: envio real feito pelo Pedro 18/11 21:41 UTC; conferido 19/11 — card New Lead, tags de serviço/ZIP, aviso ao Stephen
 entregue com ZIP 92881, SMS de obrigado; teste apagado.)
 (Pool Duck WC – follow-up 19/11 feito: Won Stage + Review Request aprovados/publicados; aviso de lead novo ao Justin em
@@ -105,7 +100,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    mais que X s (a validar se o gatilho aceita duração). Esperando o Pedro escolher; nada mudado.
    19/11 19h: Destiny (Basecamp) — ligação 11:03 AZ do Patrick McCabe encaminhada a 602-400-7289, não tocou, caiu na caixa
    postal (mesmo caso). [Aprovar] com rascunho (checar DND/silenciar desconhecidos/filtro no aparelho) mandado ao Pedro.
-   19/11 21h: Frank cobrou no ClickUp → respondi que vi e que volto à Destiny no Basecamp (depois do OK do Pedro).
+   19/11 21h: Frank cobrou no ClickUp → respondi. 20/11 00:07 UTC: resposta aprovada postada à Destiny (checar DND/silenciar
+   desconhecidos no 602-400-7289); quando ela confirmar → eu faço a ligação de teste.
 5. **Sparkling – Lead Form**: com o app "Google Lead Ads" (sincroniza pela API) o Google Ads não mostra "Send test data" (só
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
@@ -114,11 +110,14 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   baixar onde vier): subir na mídia da WC (`GHL_AGENCY=poolduck`, location uJr8H2qaQM5ffZxeYFqn), pôr no e-mail M10 do
   "Won Stage" (publicado 19/11; editar o passo **e** o template; manter o Terms of Service e o link do portal) via
   `config/pool_duck_wc_wording.json` + `scripts/pd_wc_guide_extras.py`, testar com ZZ TEST (e-mail do Pedro) e confirmar ao Justin.
-- Pool Duck (19/11): V9 importado na agência Pool Duck (`Pc35TW2utMIO0z9naKqt`, conferido 20:22 UTC); Ed respondido no
-  thread "Add Snapshot To Pool Duck". Sharon (19/11 21:26 UTC): conta do Luis (East Orlando `m2glhRgphyM7uXh4Rc8u`) criada SEM o
-  V9 (0 workflows) → [Aprovar] ao Pedro (Load Snapshot V9 + resposta à Sharon); a da Cibele vem com o V9. Esperando a Sharon criar a próxima conta → eu faço o resto (dados, linhas/encaminhamento,
-  avisos, link de review, auditoria) e testo antes de entrar lead. Snapshot extra "New PP Snapshot 11/2026" (Pool Profits,
-  16/11, cópia velha do master) → Pedro pode apagar pela tela.
+- Pool Duck (19/11): V9 importado na agência Pool Duck (`Pc35TW2utMIO0z9naKqt`). East Orlando (Luis, `m2glhRgphyM7uXh4Rc8u`)
+  sem o V9 (0 workflows, conferido 20/11 00h UTC): Pedro aprovou e respondi à Sharon (20/11); **o Load Snapshot V9 fica com o
+  Pedro pela tela** ("fica comigo") → depois eu faço o setup (dados, linhas, avisos, review, auditoria). Cibele: Sharon cria com o
+  V9 e avisa. Snapshot extra "New PP Snapshot 11/2026" → Pedro pode apagar pela tela.
+- Pool Keepers/Skimmer: call com o Nathan feita 19/11; esperando ele trocar Location ID/chave no Skimmer → conferir a conexão na
+  KjLd e tirar a chave antiga da hh6X9 (tarefa 86bd02rg9, prazo 24/11).
+- Paul (BluVantage, via Frank 19/11): "por que recebo isso a cada SMS?" = aviso "Inbound SMS - Notify Owner" (pedido do Ed 13/11).
+  Texto "GHL app" → "Pool Profits app" em todas as contas (20/11). Esperando o Frank/Paul: manter, desligar ou mandar a outra pessoa.
 - Shane (Wrigley's, 19/11): pediu ideias para mais ligações; Ed propôs campanha SMS/e-mail (reativação/promo) + reviews.
   Se o Shane topar: monto a campanha em draft e mando o texto para aprovação.
 - Frank/cliente (19/11): Puddle Jumper — quem da lista importada é cliente ativo (tag `active client`); Frank perguntou ao cliente.
@@ -142,8 +141,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   (nome/e-mail/celular), página de privacidade, lista de clientes; Skimmer add-on → aí crio o token (Private Integrations,
   tela) e mando ao Felipe com o Location ID. Review Request da Poolheads fica draft (reviews no Skimmer). Calendário Leak
   Detection pronto e inativo: ligar na virada.
-- Frank: dono para o alerta de SMS na Stay Fresh e na Blue Lagoon (as outras 8 sem dono estão inativas →
-  `config/inactive_accounts.json`, puladas pelo `pp_sms_alert --all`); textos dos 8 posts de GBP da BluVantage (`86bd1xdbu`, 17/11).
+- Frank (19/11 DM, lista única com 7 perguntas): Passion webhook + Brad, WP Pools 3ª linha, WC Service Agreement, Southern
+  cards, Pool Smart OC, data da Reign. GBP posts: Frank conecta os outros GBPs no Social Planner (`86bd1xdbu`, 24/11).
 - Frank (16/11): Pool Smart OC ainda é cliente? (fora da lista de inativos até ele confirmar; Ads precisa reconectar, `86bd1zk8p`).
 - Bonneville (ativa 19/11, anúncios em revisão): Val avisa no 1º lead; conversão de form fill (se quiser) e URL nova da Weekly
   (/weekly-pool-hot-tub-service) nos anúncios.
