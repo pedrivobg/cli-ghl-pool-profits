@@ -93,12 +93,9 @@ Contexto que NÃO é passo do Pedro (não pôr no e-mail): West Coast A2P espera
 contas novas esperam o 1º número (Frank); gate de nota = 4 ou 5 (feito 17/11); sem nota em 7 dias = sem link (feito 16/11);
 contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quinta); Reign LPs: CRM ligado 18/11 (`rg_lp_launch.py`); Val responde conversão (só "Converted Lead - WON") e número de ligação das LPs.
 
-4. **Blue Lagoon – caixa postal conta como "atendida"**: Pedro escolheu (b) 20/11 (sem IVR, ligação curta = perdida). GHL não
-   filtra duração (gatilho nem if/else); `meta.call.duration` da mensagem: caixa postal sem recado 13–22 s, atendidas 37–346 s →
-   corte < 30 s. Plano: "Answered Incoming Call To Pipeline" → webhook n8n → espera 1 min → lê duração → < 30 s = tag `missed call`.
-   Explicação postada à Caila/Destiny (Basecamp 10532623424, 20/11 15:51, "posto quando estiver no ar"). **Passo do Pedro** (e-mail
-   20/11): credencial "GHL Blue Lagoon" (Private Integration, Header Auth) no n8n + OK para publicar "Missed New Lead - Initial SMS
-   Follow-up" (draft na Blue Lagoon). Depois: montar, testar, ligação de 20 s do Pedro, avisar no Basecamp. Destiny: checar DND no 602-400-7289 (sem resposta).
+4. **Blue Lagoon – caixa postal conta como "atendida"**: Pedro 20/11: sem n8n, só explicar e deixar com elas. Postado no
+   Basecamp "IVR/Spam Calls" (16:03 UTC): opções = voltar o "press 1" (republicar "IVR SPAM Detection" e testar) ou manter off.
+   Esperando Caila/Destiny; não é passo do Pedro. "Missed New Lead - Initial SMS Follow-up" segue em draft.
 5. **Sparkling – Lead Form**: com o app "Google Lead Ads" (sincroniza pela API) o Google Ads não mostra "Send test data" (só
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
