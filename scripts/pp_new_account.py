@@ -46,6 +46,8 @@ F_BUSINESS, F_LEGAL, F_TYPE, F_EIN, F_REP = ("UUc0Lc3Bps8PZm8g5Y1I", "Er4JquP5hS
                                              "fz90PpR2jFrHOTuF67nN", "ZJgSwbkWQIMnN8Hx3T9G")
 BACKEND = pp_a2p.BACKEND
 LINES = ["Website & GBP", "Google Ads", "Facebook Ads"]  # SOP: three numbers per client (main first)
+# fewer lines when the team says so (location id -> how many numbers; Frank 20/11: WP Pools = 2, no Facebook line for now)
+LINE_CAP = {"76DHw4YX0Tycmqcu1Ddb": 2}
 USER_LIKE_LOC = "0FSiPPwFKaeanOv7FUIg"  # Capital Lawn & Pool: its admin's permissions are copied to a new account's owner
 
 
@@ -197,13 +199,13 @@ def process(a: Agency, loc: dict, apply: bool, submit: bool) -> list[str]:
         if not nums and kyc.get("status") != "completed":
             say("   phone: no number; first purchase needs GHL identity check (Persona) — Pedro buys the FIRST one once "
                 f"in Settings → Phone Numbers (area code {target[2:5] or '?'}); I buy the other two")
-        elif len(nums) < len(LINES):
+        elif len(nums) < LINE_CAP.get(lid, len(LINES)):
             avail = a.get(BACKEND, f"/phone-system/numbers/location/{lid}/available",
                           {"countryCode": "US", "firstPart": target[2:5], "smsEnabled": "true", "voiceEnabled": "true",
                            "mmsEnabled": "true", "numberTypes": "local"})
             city = (full.get("city") or "").lower()
             pool = sorted(avail.get("numbers", []), key=lambda n: (n.get("locality") or "").lower() != city)
-            need = len(LINES) - len(nums)
+            need = LINE_CAP.get(lid, len(LINES)) - len(nums)
             picks = pool[:need]
             if not picks:
                 say(f"   phone: no {target[2:5]} numbers available")

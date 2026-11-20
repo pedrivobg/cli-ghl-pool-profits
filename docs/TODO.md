@@ -123,30 +123,29 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Shane (Wrigley's, 19/11): pediu ideias para mais ligações; Ed propôs campanha SMS/e-mail (reativação/promo) + reviews.
   Se o Shane topar: monto a campanha em draft e mando o texto para aprovação.
 - Frank/cliente (19/11): Puddle Jumper — quem da lista importada é cliente ativo (tag `active client`); Frank perguntou ao cliente.
-- Passion (20/11): form do site agora avisa por SMS o escritório +1 615-624-7624 (John deu STOP no celular dele em 18/11); conferir no próximo lead do form. "Inbound SMS - Notify Owner" ainda vai ao John (DND) → perguntar ao Frank se troca para o escritório.
+- Passion (20/11): form do site agora avisa por SMS o escritório +1 615-624-7624 (John deu STOP no celular dele em 18/11); conferir no próximo lead do form. "Inbound SMS - Notify Owner" vai ao John (DND) e ao Brad (20/11).
 - Val/Atif (19/11, `86bc6vqr9`): LP nova da Passion (ChatGPT Ads). Quando o link vier: ligar o form ao CRM com os avisos
   (SMS 615-624-7624 + passionpoolcare@gmail.com) e tracking, testar ponta a ponta e responder na tarefa.
 - Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por
   escrito no thread do canal Pool Profits para eu me preparar (ideias do que dá para automatizar).
 - Val (18/11, `86bd4tugh`): confirma com a Vanessa (BluVantage) em 19/11 se o card pode ir sozinho de New Lead para In
   Communication em ligação/SMS (a etapa dispara e-mails de nurture). Quando disser sim: ligar e testar no mesmo dia.
-- Frank (17/11): Passion — desligar também "Website Webhook Lead To Pipeline"? (19 em draft, lista em reports/); WP Pools —
-  3ª linha (Facebook)?; Service Agreement Example na West Coast (ofereci colocar).
-- Frank: e-mail/celular do Brad
-  (Passion) para os avisos. Pool Keepers/Skimmer (17/11): a certa é a KjLd (BurchTech); Pedro criou a chave, Location ID + chave novos mandados ao
+- WP Pools A2P (Frank 20/11: sem 3ª linha, A2P com (616) 879-8101; `LINE_CAP` no pp_new_account): falta go.wppools.com
+  (GoDaddy, CNAME go → sites.ludicrous.cloud pelo cliente + Frank liga ao site "New A2P Verification") → a rodada diária envia.
+- West Coast: Frank decide se apago os 2 "Pool Service Agreement" do Ed (17/11, texto ainda diz "Clean Co"); o Example está lá.
+- Pool Keepers/Skimmer (17/11): a certa é a KjLd (BurchTech); Pedro criou a chave, Location ID + chave novos mandados ao
   Nathan por e-mail e Basecamp pedindo dia/hora da call. Esperando o Nathan trocar no Skimmer → conferir a conexão na KjLd
   e tirar a chave antiga da hh6X9 (Private Integrations, tela).
 - Pedro (13/11): Pools of Perfection criada pela API; resposta ao Nathan (Skimmer nativo) e reunião de segunda aprovadas →
   extensão (prompt 2) posta; OK para pôr em draft as 2 cópias extras de Website Form Fill/Review Request da Clear Conceptz.
-- Frank (12/11 noite): se o Brett apaga cards de lead da Southern (2 leads do Google Ads sem card, `86bd2t1kt`, 17/11).
+- Frank (12/11 noite): se o Brett apaga cards de lead da Southern (2 leads do Google Ads sem card, `86bd2t1kt`, 17/11) — Frank liga ao cliente (20/11).
   Padrão Skimmer para clientes mandado a ele (Enterprise = API; outros = Zapier só Skimmer→GHL; form do GHL fica no site).
 - Felipe (Poolheads, via Frank): histórico como nota?, webhook "LVB - Meta Service" (único que falta antes de cancelar a conta antiga; 5 e-mails + 9 SMS conferidos na nova 17/11 com o token do ambiente), George como 2º toque 25 s/20 s (Frank pediu no Basecamp 16/11)
   (nome/e-mail/celular), página de privacidade, lista de clientes; Skimmer add-on → aí crio o token (Private Integrations,
   tela) e mando ao Felipe com o Location ID. Review Request da Poolheads fica draft (reviews no Skimmer). Calendário Leak
   Detection pronto e inativo: ligar na virada.
-- Frank (19/11 DM, lista única com 7 perguntas): Passion webhook + Brad, WP Pools 3ª linha, WC Service Agreement, Southern
-  cards, Pool Smart OC, data da Reign. GBP posts: Frank conecta os outros GBPs no Social Planner (`86bd1xdbu`, 24/11).
-- Frank (16/11): Pool Smart OC ainda é cliente? (fora da lista de inativos até ele confirmar; Ads precisa reconectar, `86bd1zk8p`).
+- GBP posts: Frank conecta os outros GBPs no Social Planner (`86bd1xdbu`, 24/11).
+- Frank (16/11): Pool Smart OC ainda é cliente? (fora da lista de inativos até ele confirmar; Ads precisa reconectar, `86bd1zk8p`) — Frank liga ao cliente (20/11).
 - Bonneville (ativa 19/11, anúncios em revisão): Val avisa no 1º lead; conversão de form fill (se quiser) e URL nova da Weekly
   (/weekly-pool-hot-tub-service) nos anúncios.
 - Atif: páginas/obrigado de Poolheads, Pool Shack, YardSpring, BluVantage; tirar o número antigo da página Weekly da NorTex.
@@ -154,7 +153,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Frank: Stay Fresh (avisos de ligação para o Kris, re-entry, IVR, lista de inativos); Pool Shack (retorno do Rob);
   tags universais; Pool Keepers (o que liga); GBP da Clear Pool no número de rastreamento.
 - Frank (12/11): OK para o filtro de spam do form da Passion (telefone sem +1 / palavras de venda → spam, sem aviso; telefone só EUA)
-  — 6 de 8 submissões em 30 dias eram spam; data da call da Reign → eu monto a tag `pipeline cleanup` (guarda nos fluxos de etapa).
+  — 6 de 8 submissões em 30 dias eram spam.
 - Derek (Clear Pool): publicar Review Request?, chave do Pool Brain. Erik (Ekahi) e Jeremy (SwimReady): ajustes por código.
 
 ## Em breve (combinado)

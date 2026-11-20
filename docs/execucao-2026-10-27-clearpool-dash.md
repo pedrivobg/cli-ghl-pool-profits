@@ -1639,3 +1639,6 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Update postado ao Todd no "Google Adwords - Follow Up" (#2 = Atif, feito 18/11).
 - Check-ins (rodízio) postados em Southern, Stay Fresh e YardSpring ("Quick check-in"), mas ficaram só para o time: o
   Basecamp pediu confirmação para mostrar ao cliente e ninguém respondeu → Pedro marca visível (ou eu de novo com OK).
+
+## 20/11 (~21h UTC) — DM do Frank: respostas às 7 perguntas
+- Passion: Brad (user nHQZ7…, (615) 427-9882, bradlydixon@gmail.com) em todo aviso de lead — cópia de cada SMS/e-mail interno logo depois do original em 8 fluxos publicados + Brad no "Inbound SMS - Notify Owner" (`scripts/pp_add_alert_recipient.py`, backup em `backup/passion-pool-care-lp/`); webhook fica ligado. WP Pools: sem 3ª linha (`LINE_CAP` no pp_new_account), A2P espera go.wppools.com (DNS GoDaddy sem CNAME). West Coast: "Pool Service Agreement (Example)" copiado da Snapshot (6b00b686…; variáveis + faixa EXAMPLE); 2 cópias Clean Co do Ed perguntadas ao Frank. Southern/Pool Smart: Frank liga. Reign: tag já montada 12/11. Resposta na DM.
