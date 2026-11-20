@@ -104,6 +104,9 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
+- **Pool Palooza (20/11)**: "Lead Source - Tag (forms & bookings)" publicado; conferir no 1º lead real de Free Trial/F1/agendamento
+  que os campos "Lead Session Source"/"Lead GCLID" vieram preenchidos e a tag bate (adwords/facebook/organic/direct).
+- **Check-ins 20/11** (Southern, Stay Fresh, YardSpring): mensagens postadas mas só visíveis ao time — Pedro deixa visível ao cliente.
 - **Justin (Pool Duck WC, call 19/11): imagens para o e-mail de boas-vindas (M10)** — quando chegarem (Basecamp/e-mail/ClickUp;
   baixar onde vier): subir na mídia da WC (`GHL_AGENCY=poolduck`, location uJr8H2qaQM5ffZxeYFqn), pôr no e-mail M10 do
   "Won Stage" (publicado 19/11; editar o passo **e** o template; manter o Terms of Service e o link do portal) via

@@ -1626,3 +1626,16 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   obrigado) no gatilho do AdWords Form - New Lead + fluxos "Google Ads LP Weekly/Repairs - Tags" publicados. ZZ TEST ok e apagado; forms
   renderizados (Playwright). Comentado na tarefa (Val + Atif). Falta: páginas do Atif → teste de envio; Val decide a conversão "Qualified".
 - Bonneville mockup (Frank → cliente) e Clear Pool Google Ads (Val/Derek): não me marcam → sem resposta, lidos.
+
+## 20/11 (~20h30 UTC) — pendências aprovadas pelo Pedro ("tudo que for CRM está aprovado")
+- Conferido no Basecamp/Gmail: já postados antes (o e-mail da auditoria listou errado como parados) → Sunwave A e B
+  (B saiu em 18/11 com outro texto), Poolheads Felipe (app Pool Profits), Poolheads Christopher, Cleverblu PDF; West Coast
+  Service Agreement = plano do Ed (modelo Clean Co no snapshot; Frank avisa o Abe). Não-CRM (fica com o time): Cleverblu
+  sticker/GA, Pool Shack Rob (ads/SEO).
+- **Pool Palooza #1** (Todd aprovou 18/11, prometido e não feito): `scripts/pz_source_tag.py` → workflow "Lead Source - Tag
+  (forms & bookings)" (9d6a3fdd…) publicado: Free Trial / F1 Mobile / F1 Desktop + agendamento no "Free Onsite Pool Service
+  Quote" → espera 1 min → campos "Lead Session Source" / "Lead GCLID" ← lastAttributionSource → tag adwords / facebook /
+  organic / direct. Teste ZZ TEST (sem atribuição → direct) ok e apagado. Falta conferir 1º lead real com UTM (TODO).
+  Update postado ao Todd no "Google Adwords - Follow Up" (#2 = Atif, feito 18/11).
+- Check-ins (rodízio) postados em Southern, Stay Fresh e YardSpring ("Quick check-in"), mas ficaram só para o time: o
+  Basecamp pediu confirmação para mostrar ao cliente e ninguém respondeu → Pedro marca visível (ou eu de novo com OK).
