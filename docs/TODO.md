@@ -93,15 +93,12 @@ Contexto que NÃO é passo do Pedro (não pôr no e-mail): West Coast A2P espera
 contas novas esperam o 1º número (Frank); gate de nota = 4 ou 5 (feito 17/11); sem nota em 7 dias = sem link (feito 16/11);
 contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quinta); Reign LPs: CRM ligado 18/11 (`rg_lp_launch.py`); Val responde conversão (só "Converted Lead - WON") e número de ligação das LPs.
 
-4. **[Decisão] Blue Lagoon – chamada que cai na caixa postal sem recado conta como "atendida"** (teste do Pedro 19/11 02:53 UTC:
-   14 s, mensagem da caixa postal do CRM, status `completed` → rodou "Answered Incoming Call To Pipeline", nada de SMS de
-   chamada perdida nem aviso à Destiny; é a queixa da Caila). Opções: (a) voltar um "aperte 1" curto (o IVR marca `missed call`
-   quando ninguém atende, como em Bahama Blue/Southern); (b) no fluxo "Answered", só tratar como atendida se a ligação durou
-   mais que X s (a validar se o gatilho aceita duração). Esperando o Pedro escolher; nada mudado. 20/11 13:35: perguntei de novo só "a" ou "b" (recomendei a; o "IVR SPAM Detection" está em draft) — é o único passo dele.
-   19/11 19h: Destiny (Basecamp) — ligação 11:03 AZ do Patrick McCabe encaminhada a 602-400-7289, não tocou, caiu na caixa
-   postal (mesmo caso). [Aprovar] com rascunho (checar DND/silenciar desconhecidos/filtro no aparelho) mandado ao Pedro.
-   19/11 21h: Frank cobrou no ClickUp → respondi. 20/11 00:07 UTC: resposta aprovada postada à Destiny (checar DND/silenciar
-   desconhecidos no 602-400-7289); quando ela confirmar → eu faço a ligação de teste.
+4. **Blue Lagoon – caixa postal conta como "atendida"**: Pedro escolheu (b) 20/11 (sem IVR, ligação curta = perdida). GHL não
+   filtra duração (gatilho nem if/else); `meta.call.duration` da mensagem: caixa postal sem recado 13–22 s, atendidas 37–346 s →
+   corte < 30 s. Plano: "Answered Incoming Call To Pipeline" → webhook n8n → espera 1 min → lê duração → < 30 s = tag `missed call`.
+   Explicação postada à Caila/Destiny (Basecamp 10532623424, 20/11 15:51, "posto quando estiver no ar"). **Passo do Pedro** (e-mail
+   20/11): credencial "GHL Blue Lagoon" (Private Integration, Header Auth) no n8n + OK para publicar "Missed New Lead - Initial SMS
+   Follow-up" (draft na Blue Lagoon). Depois: montar, testar, ligação de 20 s do Pedro, avisar no Basecamp. Destiny: checar DND no 602-400-7289 (sem resposta).
 5. **Sparkling – Lead Form**: com o app "Google Lead Ads" (sincroniza pela API) o Google Ads não mostra "Send test data" (só
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
