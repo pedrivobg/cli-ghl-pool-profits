@@ -1611,3 +1611,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 ## 20/11 (~13h35 UTC) — inbox (2 respostas do Pedro)
 - East Orlando: Pedro consertou o "Contact Created -> add owner" (13:27) → conferido ao vivo (assign_user Luis, gatilho ativo, nenhum ZZ TEST sobrando). Resposta no thread (não lida).
 - Revisão 19/11 ("me confirma o que realmente precisa"): único passo do Pedro = Blue Lagoon (a) "aperte 1" / (b) duração; resto espera Destiny/Atif/Frank/Nathan/1º lead. Resposta no thread (não lida). Ledger: 2 linhas.
+- 20/11 ~13:50 UTC: inbox — Basecamp Corolla/Poolheads (Val cobrando aprovação das LPs dos clientes, não me marca) só marcados como lidos; os 2 [pedro_reply] eram minhas respostas de 13:34 (East Orlando add owner conferido; Blue Lagoon a/b), ficam não lidas. Nada novo.
