@@ -93,9 +93,10 @@ Contexto que NÃO é passo do Pedro (não pôr no e-mail): West Coast A2P espera
 contas novas esperam o 1º número (Frank); gate de nota = 4 ou 5 (feito 17/11); sem nota em 7 dias = sem link (feito 16/11);
 contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quinta); Reign LPs: CRM ligado 18/11 (`rg_lp_launch.py`); Val responde conversão (só "Converted Lead - WON") e número de ligação das LPs.
 
-4. **Blue Lagoon – caixa postal conta como "atendida"**: Pedro 20/11: sem n8n, só explicar e deixar com elas. Postado no
-   Basecamp "IVR/Spam Calls" (16:03 UTC): opções = voltar o "press 1" (republicar "IVR SPAM Detection" e testar) ou manter off.
-   Esperando Caila/Destiny; não é passo do Pedro. "Missed New Lead - Initial SMS Follow-up" segue em draft.
+4. **Blue Lagoon – ligações não chegam no celular**: Destiny 20/11 17:56: celular 602-400-7289 (dela) sem filtro, mas nem registra
+   as ligações (McCabe 11:03, Zaremba 19:16 AZ); CRM encaminhou as duas → caixa postal do CRM. Hipótese: filtro da operadora ou
+   linha 602 encaminhando para a IA "Mae". [Aprovar] ao Pedro (20/11 ~18:00 UTC) com rascunho (operadora + setup da Mae);
+   "aprovado" → postar no Basecamp "IVR/Spam Calls". IVR SPAM Detection segue em draft; "Missed New Lead" em draft.
 5. **Sparkling – Lead Form**: com o app "Google Lead Ads" (sincroniza pela API) o Google Ads não mostra "Send test data" (só
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
