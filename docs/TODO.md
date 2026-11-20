@@ -95,8 +95,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 
 4. **Blue Lagoon – ligações não chegam no celular**: Destiny 20/11 17:56: celular 602-400-7289 (dela) sem filtro, mas nem registra
    as ligações (McCabe 11:03, Zaremba 19:16 AZ); CRM encaminhou as duas → caixa postal do CRM. Hipótese: filtro da operadora ou
-   linha 602 encaminhando para a IA "Mae". [Aprovar] ao Pedro (20/11 ~18:00 UTC) com rascunho (operadora + setup da Mae);
-   "aprovado" → postar no Basecamp "IVR/Spam Calls". IVR SPAM Detection segue em draft; "Missed New Lead" em draft.
+   linha 602 encaminhando para a IA "Mae". Pergunta postada no Basecamp "IVR/Spam Calls" 20/11 19:01 UTC (aprovada) → esperando
+   a Destiny (operadora + lista de bloqueados, setup da Mae). IVR SPAM Detection segue em draft; "Missed New Lead" em draft.
 5. **Sparkling – Lead Form**: com o app "Google Lead Ads" (sincroniza pela API) o Google Ads não mostra "Send test data" (só
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
