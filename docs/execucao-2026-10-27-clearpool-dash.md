@@ -1642,3 +1642,8 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 
 ## 20/11 (~21h UTC) — DM do Frank: respostas às 7 perguntas
 - Passion: Brad (user nHQZ7…, (615) 427-9882, bradlydixon@gmail.com) em todo aviso de lead — cópia de cada SMS/e-mail interno logo depois do original em 8 fluxos publicados + Brad no "Inbound SMS - Notify Owner" (`scripts/pp_add_alert_recipient.py`, backup em `backup/passion-pool-care-lp/`); webhook fica ligado. WP Pools: sem 3ª linha (`LINE_CAP` no pp_new_account), A2P espera go.wppools.com (DNS GoDaddy sem CNAME). West Coast: "Pool Service Agreement (Example)" copiado da Snapshot (6b00b686…; variáveis + faixa EXAMPLE); 2 cópias Clean Co do Ed perguntadas ao Frank. Southern/Pool Smart: Frank liga. Reign: tag já montada 12/11. Resposta na DM.
+
+## 20/11 (~22h UTC) — inbox watch, 1 item (Sparkling LPs do Atif)
+- LPs /weekly-pool-service e /pool-repair no ar com os forms TlEI… (WEEKLY SERVICE) e 0DHV… (POOL REPAIRS), linha 469-617-2308; redirects
+  trocados para /weekly-pool-service-thank-you e /pool-repair-thank-you (`scripts/sc_lp_thanks.py`, backup, conferido). Respondido ao Atif/Val
+  em `86bd4wxp0`; [Passo seu] ao Pedro (envio real nas 2 LPs; Turnstile) — resposta marcada não lida.

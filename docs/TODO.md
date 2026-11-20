@@ -9,8 +9,9 @@ combinar antes.
 
 ## Aberto hoje
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
-- 18/11: Sparkling Ads (`86bd4wyr5`): WON + fluxos SMS/Lead Form + 2 forms das LPs novas feitos; esperando o Atif pôr os
-  forms WEEKLY SERVICE / POOL REPAIRS nas LPs (tarefa `86bd4wxp0`) → testar submissão em cada página.
+- 20/11: Sparkling LPs (`86bd4wxp0`): Atif publicou as 2 LPs + 2 obrigados; forms certos conferidos e redirects trocados
+  (`scripts/sc_lp_thanks.py`). Esperando o envio real do Pedro nas 2 LPs ([Passo seu] 20/11) → conferir tags/card/avisos,
+  apagar testes, confirmar ao Atif/Val na tarefa e fechar.
 
 - 20/11: Clear Pool LPs novas (`86bc6vvha`, Val): forms Weekly `ZxZ4nQ9f…` / Repairs `UgAUSMUp…` (+ Service Needed) no gatilho do
   AdWords Form - New Lead + fluxos de tag feitos (`scripts/cp_lp_launch.py`). Esperando Atif (páginas + 2 URLs de obrigado →
