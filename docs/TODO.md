@@ -122,6 +122,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Shane (Wrigley's, 19/11): pediu ideias para mais ligações; Ed propôs campanha SMS/e-mail (reativação/promo) + reviews.
   Se o Shane topar: monto a campanha em draft e mando o texto para aprovação.
 - Frank/cliente (19/11): Puddle Jumper — quem da lista importada é cliente ativo (tag `active client`); Frank perguntou ao cliente.
+- Passion (20/11): form do site agora avisa por SMS o escritório +1 615-624-7624 (John deu STOP no celular dele em 18/11); conferir no próximo lead do form. "Inbound SMS - Notify Owner" ainda vai ao John (DND) → perguntar ao Frank se troca para o escritório.
 - Val/Atif (19/11, `86bc6vqr9`): LP nova da Passion (ChatGPT Ads). Quando o link vier: ligar o form ao CRM com os avisos
   (SMS 615-624-7624 + passionpoolcare@gmail.com) e tracking, testar ponta a ponta e responder na tarefa.
 - Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por

@@ -1603,3 +1603,7 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Westchase: `pd_v9_phase1.py --apply` (Pool Leads, V9 todo draft, pre-snapshot em 5 contatos; 7 publicados antigos intocados). Ed+Frank respondidos.
 - Passion "OpenAI - ADS": form de Beverly Hills veio da home com oppref/olref (clique do ChatGPT Ads) → DM à Val (ela responde budget/geo). LWR: Ed resolveu; respondi no DM.
 - Rodada diária: nenhuma conta nova, nada mudou (7 contas `--apply --submit`). Ledger: 9 linhas.
+
+## 20/11 (~13h UTC) — inbox (5 itens): Passion form → telefone do escritório
+- Passion (john, Basecamp "Website Mockup", Val pediu no DM): o SMS de lead do form ia para o usuário John (+1 623-764-2078), que mandou STOP em 18/11 (DND) → só chegava o e-mail. `scripts/pc_form_sms_office.py --apply`: "New Lead SMS" de "Website Form Fill To Pipeline" e "Website Webhook Lead To Pipeline" → custom_sms +1 615-624-7624 (o mesmo dos avisos AdWords, entregues), backup em `backup/passion-pool-care-lp/`, status/re-entry mantidos. Respondido ao john (Basecamp) e à Val (DM). Validação = próximo form real. Obs.: "Inbound SMS - Notify Owner" da Passion também vai ao John (DND) → não chega a ninguém.
+- LWR Google Ads (Val→Connie) e Passion "OpenAI - ADS" (Val→john): Ads = Val, sem resposta, lidos. Ledger: 5 linhas.
