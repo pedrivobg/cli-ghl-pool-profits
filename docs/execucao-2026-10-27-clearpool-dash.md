@@ -1595,3 +1595,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Pool Duck: resposta aprovada à Sharon enviada (thread "New Pool Duck Snapshot for GHL"); Load Snapshot V9 na East Orlando fica com o Pedro (0 workflows às 00:05 UTC).
 - BluVantage (Paul via Frank): aviso "Inbound SMS - Notify Owner" dizia "Reply in the GHL app" → `pp_sms_alert.py rebrand` (novo) trocou para "Pool Profits app" em 52 contas + Snapshot (backup `backup/<slug>/<wid>-rebrand-*.json`, status/re-entry/usuário mantidos, releitura ok; `pp_call_check --quiet` sem erro). Conversa da Lindsey Farmer: tudo registrado. Frank respondido com linha pronta para o Paul.
 - ClickUp: token renovado ok (sweep exit 0). 1 DM único ao Frank com 7 perguntas paradas. Prazos 20/11: 86bd4wyr5 → 25/11 (Atif), 86bd1xdbu e 86bd02rg9 → 24/11 (Frank/Nathan) com comentário; Live tests fica com o Pedro. E-mail "[Passo seu] O que é seu – 19/11" enviado. Cleverblu: só lido. Ledger: 7 linhas.
+
+## 20/11 (~12h30 UTC) — inbox (9 itens): Pool Duck East Orlando/Westchase, Passion, LWR, rodada diária
+- East Orlando: V9 carregado pela Sharon (29 wf, 18 publicados). Custom values preenchidos (backup `backup/poolduck-east-orlando/`),
+  missed-call nativo off, "add owner" → Luis, "Inbound SMS - Notify Owner" só Luis (2 usuários com o mesmo celular) e "CRM app",
+  tag `zz test` criada; audit 0 ALTA. 3 ZZ TEST pela API não receberam dono (apagados) → [Passo seu] ao Pedro. Sharon respondida.
+- Westchase: `pd_v9_phase1.py --apply` (Pool Leads, V9 todo draft, pre-snapshot em 5 contatos; 7 publicados antigos intocados). Ed+Frank respondidos.
+- Passion "OpenAI - ADS": form de Beverly Hills veio da home com oppref/olref (clique do ChatGPT Ads) → DM à Val (ela responde budget/geo). LWR: Ed resolveu; respondi no DM.
+- Rodada diária: nenhuma conta nova, nada mudou (7 contas `--apply --submit`). Ledger: 9 linhas.

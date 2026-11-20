@@ -110,10 +110,11 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   baixar onde vier): subir na mídia da WC (`GHL_AGENCY=poolduck`, location uJr8H2qaQM5ffZxeYFqn), pôr no e-mail M10 do
   "Won Stage" (publicado 19/11; editar o passo **e** o template; manter o Terms of Service e o link do portal) via
   `config/pool_duck_wc_wording.json` + `scripts/pd_wc_guide_extras.py`, testar com ZZ TEST (e-mail do Pedro) e confirmar ao Justin.
-- Pool Duck (19/11): V9 importado na agência Pool Duck (`Pc35TW2utMIO0z9naKqt`). East Orlando (Luis, `m2glhRgphyM7uXh4Rc8u`)
-  sem o V9 (0 workflows, conferido 20/11 00h UTC): Pedro aprovou e respondi à Sharon (20/11); **o Load Snapshot V9 fica com o
-  Pedro pela tela** ("fica comigo") → depois eu faço o setup (dados, linhas, avisos, review, auditoria). Cibele: Sharon cria com o
-  V9 e avisa. Snapshot extra "New PP Snapshot 11/2026" → Pedro pode apagar pela tela.
+- Pool Duck (20/11): East Orlando (Luis, `m2glhRgphyM7uXh4Rc8u`): Sharon carregou o V9; custom values, missed-call nativo off,
+  dono/avisos = Luis feitos. Teste do "add owner" pela API não disparou → [Passo seu] ao Pedro (1 contato pela tela). Falta:
+  domínio + privacy/terms (A2P), Google review link, preços. Westchase (`IzfAqV2fqR1mEHAPVglZ`): V9 fase 1 em draft (20/11);
+  publicar quando houver número/avisos da Christine e endereço de A2P (Ed). Cibele: Sharon cria com o V9 e avisa.
+  Snapshot V9 da agência Pool Duck ainda traz "Reply in the GHL app" no Notify Owner (corrigir nas contas novas).
 - Pool Keepers/Skimmer: call com o Nathan feita 19/11; esperando ele trocar Location ID/chave no Skimmer → conferir a conexão na
   KjLd e tirar a chave antiga da hh6X9 (tarefa 86bd02rg9, prazo 24/11).
 - Paul (BluVantage, via Frank 19/11): "por que recebo isso a cada SMS?" = aviso "Inbound SMS - Notify Owner" (pedido do Ed 13/11).
