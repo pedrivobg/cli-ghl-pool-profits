@@ -1619,3 +1619,10 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - 20/11 ~16:20 UTC: inbox — Basecamp Passion "Meta" (John perguntou do aviso do Meta Ads; Val respondeu 16:17: recomendações automáticas, campanhas pausadas) = Meta/Val, não me marca → sem resposta, marcado lido. [pedro_reply] = minha resposta de 16:04 (Blue Lagoon), fica não lida. Ledger: 3 linhas.
 - 20/11 ~18:00 UTC: inbox — Basecamp Blue Lagoon "IVR/Spam Calls" (Destiny: celular sem filtro, ligações nem aparecem; fala da IA "Mae"). Conferido: 19:16 AZ Zaremba 480-980-5124 → 480-400-0140, encaminhada a 602-400-7289 (celular da Destiny), caixa postal do CRM 57 s. [Aprovar] ao Pedro com rascunho (operadora/lista de bloqueados + como a Mae está ligada), resposta não lida; nada mudado. Ledger: needs_pedro.
 - 20/11 ~19:02 UTC: [pedro_reply] "aprovado" Blue Lagoon → rascunho postado no Basecamp "IVR/Spam Calls" (comentário 10533446456: operadora/lista de bloqueados + como a Mae está ligada). Espera a Destiny. Ledger: done.
+
+## 20/11 (~20h UTC) — inbox watch, 4 itens
+- Clear Pool LPs (Val, `86bc6vvha`): `scripts/cp_lp_launch.py` — campo Service Needed, forms "FORM - GOOGLE ADS - WEEKLY POOL SERVICE"
+  `ZxZ4nQ9fAszP8FGBxF3Y` / "… PUMP & HEATER REPAIRS" `UgAUSMUpN8pzIXJLeMR9` (redirect ty-page-2934 até o Atif mandar as páginas de
+  obrigado) no gatilho do AdWords Form - New Lead + fluxos "Google Ads LP Weekly/Repairs - Tags" publicados. ZZ TEST ok e apagado; forms
+  renderizados (Playwright). Comentado na tarefa (Val + Atif). Falta: páginas do Atif → teste de envio; Val decide a conversão "Qualified".
+- Bonneville mockup (Frank → cliente) e Clear Pool Google Ads (Val/Derek): não me marcam → sem resposta, lidos.
