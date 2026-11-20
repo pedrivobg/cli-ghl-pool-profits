@@ -97,7 +97,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    14 s, mensagem da caixa postal do CRM, status `completed` → rodou "Answered Incoming Call To Pipeline", nada de SMS de
    chamada perdida nem aviso à Destiny; é a queixa da Caila). Opções: (a) voltar um "aperte 1" curto (o IVR marca `missed call`
    quando ninguém atende, como em Bahama Blue/Southern); (b) no fluxo "Answered", só tratar como atendida se a ligação durou
-   mais que X s (a validar se o gatilho aceita duração). Esperando o Pedro escolher; nada mudado.
+   mais que X s (a validar se o gatilho aceita duração). Esperando o Pedro escolher; nada mudado. 20/11 13:35: perguntei de novo só "a" ou "b" (recomendei a; o "IVR SPAM Detection" está em draft) — é o único passo dele.
    19/11 19h: Destiny (Basecamp) — ligação 11:03 AZ do Patrick McCabe encaminhada a 602-400-7289, não tocou, caiu na caixa
    postal (mesmo caso). [Aprovar] com rascunho (checar DND/silenciar desconhecidos/filtro no aparelho) mandado ao Pedro.
    19/11 21h: Frank cobrou no ClickUp → respondi. 20/11 00:07 UTC: resposta aprovada postada à Destiny (checar DND/silenciar
@@ -111,7 +111,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   "Won Stage" (publicado 19/11; editar o passo **e** o template; manter o Terms of Service e o link do portal) via
   `config/pool_duck_wc_wording.json` + `scripts/pd_wc_guide_extras.py`, testar com ZZ TEST (e-mail do Pedro) e confirmar ao Justin.
 - Pool Duck (20/11): East Orlando (Luis, `m2glhRgphyM7uXh4Rc8u`): Sharon carregou o V9; custom values, missed-call nativo off,
-  dono/avisos = Luis feitos. Teste do "add owner" pela API não disparou → [Passo seu] ao Pedro (1 contato pela tela). Falta:
+  dono/avisos = Luis feitos; "add owner" consertado pelo Pedro 20/11 13:27 e conferido (Luis). Falta:
   domínio + privacy/terms (A2P), Google review link, preços. Westchase (`IzfAqV2fqR1mEHAPVglZ`): V9 fase 1 em draft (20/11);
   publicar quando houver número/avisos da Christine e endereço de A2P (Ed). Cibele: Sharon cria com o V9 e avisa.
   Snapshot V9 da agência Pool Duck ainda traz "Reply in the GHL app" no Notify Owner (corrigir nas contas novas).

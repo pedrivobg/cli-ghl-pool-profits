@@ -1607,3 +1607,7 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 ## 20/11 (~13h UTC) — inbox (5 itens): Passion form → telefone do escritório
 - Passion (john, Basecamp "Website Mockup", Val pediu no DM): o SMS de lead do form ia para o usuário John (+1 623-764-2078), que mandou STOP em 18/11 (DND) → só chegava o e-mail. `scripts/pc_form_sms_office.py --apply`: "New Lead SMS" de "Website Form Fill To Pipeline" e "Website Webhook Lead To Pipeline" → custom_sms +1 615-624-7624 (o mesmo dos avisos AdWords, entregues), backup em `backup/passion-pool-care-lp/`, status/re-entry mantidos. Respondido ao john (Basecamp) e à Val (DM). Validação = próximo form real. Obs.: "Inbound SMS - Notify Owner" da Passion também vai ao John (DND) → não chega a ninguém.
 - LWR Google Ads (Val→Connie) e Passion "OpenAI - ADS" (Val→john): Ads = Val, sem resposta, lidos. Ledger: 5 linhas.
+
+## 20/11 (~13h35 UTC) — inbox (2 respostas do Pedro)
+- East Orlando: Pedro consertou o "Contact Created -> add owner" (13:27) → conferido ao vivo (assign_user Luis, gatilho ativo, nenhum ZZ TEST sobrando). Resposta no thread (não lida).
+- Revisão 19/11 ("me confirma o que realmente precisa"): único passo do Pedro = Blue Lagoon (a) "aperte 1" / (b) duração; resto espera Destiny/Atif/Frank/Nathan/1º lead. Resposta no thread (não lida). Ledger: 2 linhas.
