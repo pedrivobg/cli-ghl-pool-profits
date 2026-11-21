@@ -34,6 +34,8 @@ from cli_anything.gohighlevel.utils.agency import SERVICES, Agency, match_locati
 
 SKIP = {"Kvdj7o189zlS3caaCNuX", "ry6sFIgFjqY8XLwTVYEj", "hmzX5j1dPhOQKX2dH4kf", "6lzYFANJTxKkAUA8Z18b",
         "XPTb5f0mJ9i1rEuGcbMx", "9RRhRHphfPCXM1glTaqL"}  # snapshot master/old, Test Snapshot, test inc, sample, billing
+# IVRs left in draft on purpose (the line still rings through its forwarding): reported as info, not ERRO.
+INTENTIONAL_DRAFT = {("JJnmzad1jSExS24aAOjq", "IVR SPAM Detection")}  # Blue Lagoon: client asked to drop the IVR (17/11)
 
 
 def digits(n: str) -> str:
@@ -88,6 +90,8 @@ def check(a: Agency, loc: dict, since: str, others: dict[str, str]) -> list[tupl
             wf = call_wfs.get(target) or (wfs.get(target) and a.workflow(lid, target))
             if not wf:
                 out.append(("ERRO", f"{line}: IVR aponta para workflow inexistente ({target})"))
+            elif wf.get("status") != "published" and (lid, wf.get("name")) in INTENTIONAL_DRAFT:
+                out.append(("info", f"{line}: IVR '{wf.get('name')}' em {wf.get('status')} de propósito"))
             elif wf.get("status") != "published":
                 out.append(("ERRO", f"{line}: IVR '{wf.get('name')}' está em {wf.get('status')}"))
             else:

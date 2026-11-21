@@ -105,6 +105,9 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
+- BluVantage (Frank 20/11): etapa "🤝 Vendors" criada; Vanessa escolhe entre Booked Assessment (14 cards) e Scheduled (0) —
+  nenhuma dispara nada. Se ela quiser só uma: mover cards/apagar a outra (sem gatilho publicado).
+- Streamline Results (`86bd5qkpc`): sem sub-conta (questionário não respondido) → rodada diária.
 - **Pool Palooza (20/11)**: "Lead Source - Tag (forms & bookings)" publicado; conferir no 1º lead real de Free Trial/F1/agendamento
   que os campos "Lead Session Source"/"Lead GCLID" vieram preenchidos e a tag bate (adwords/facebook/organic/direct).
 - **Check-ins 20/11** (Southern, Stay Fresh, YardSpring): mensagens postadas mas só visíveis ao time — Pedro deixa visível ao cliente.
@@ -114,7 +117,9 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   `config/pool_duck_wc_wording.json` + `scripts/pd_wc_guide_extras.py`, testar com ZZ TEST (e-mail do Pedro) e confirmar ao Justin.
 - Pool Duck (20/11): East Orlando (Luis, `m2glhRgphyM7uXh4Rc8u`): Sharon carregou o V9; custom values, missed-call nativo off,
   dono/avisos = Luis feitos; "add owner" consertado pelo Pedro 20/11 13:27 e conferido (Luis). Falta:
-  domínio + privacy/terms (A2P), Google review link, preços. Westchase (`IzfAqV2fqR1mEHAPVglZ`): V9 fase 1 em draft (20/11);
+  domínio + privacy/terms (A2P), Google review link, preços. Ed pediu o A2P de (689) 350-4006 (20/11): perfil ok, falta website →
+  site no ar = `GHL_AGENCY=poolduck pp_a2p.py campaign/submit -n "East Orlando"` no mesmo dia; perguntei ao Ed se encaminha
+  para o Luis (321) 948-6198 (hoje sem encaminhamento). Westchase (`IzfAqV2fqR1mEHAPVglZ`): V9 fase 1 em draft (20/11);
   publicar quando houver número/avisos da Christine e endereço de A2P (Ed). Cibele: Sharon cria com o V9 e avisa.
   Snapshot V9 da agência Pool Duck ainda traz "Reply in the GHL app" no Notify Owner (corrigir nas contas novas).
 - Pool Keepers/Skimmer: call com o Nathan feita 19/11; esperando ele trocar Location ID/chave no Skimmer → conferir a conexão na

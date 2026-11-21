@@ -1647,3 +1647,11 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - LPs /weekly-pool-service e /pool-repair no ar com os forms TlEI… (WEEKLY SERVICE) e 0DHV… (POOL REPAIRS), linha 469-617-2308; redirects
   trocados para /weekly-pool-service-thank-you e /pool-repair-thank-you (`scripts/sc_lp_thanks.py`, backup, conferido). Respondido ao Atif/Val
   em `86bd4wxp0`; [Passo seu] ao Pedro (envio real nas 2 LPs; Turnstile) — resposta marcada não lida.
+
+## 21/11 (~00h30 UTC) — inbox (8 itens) + revisão da noite 20/11
+- BluVantage (Frank): etapa "🤝 Vendors" após Routed Customer (`pp_stage_add.py`, backup, ids mantidos, nenhum gatilho); Booked Assessment
+  (14 cards, legado) x Scheduled (0) explicado — nada publicado dispara em nenhuma. Resposta no thread do canal BluVantage.
+- Ed: A2P East Orlando — perfil ok, falta website; respondido (envio no dia do site; encaminhar para o Luis?). Streamline: sem sub-conta, comentado.
+- Pool Palooza (site, Todd/Frank) e BluVantage LPs (Vanessa→Michael/Paul): não me marcam → lidos.
+- Noite: 86bd1b3b5 e 86bd5n0h3 → 24/11 com comentário; auditoria #8 feita (`pp_call_check` INTENTIONAL_DRAFT Blue Lagoon). Testes do
+  Pedro não achados (Sparkling 0 submissões; número dele fora da Blue Lagoon). E-mail [Passo seu] 20/11 (não lido). Sweep: 0 LEFT.
