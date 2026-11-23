@@ -1699,3 +1699,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Para o Pedro: Odessa e Westchase com V9 todo em draft (nenhum fluxo publicado cria card); avisos de form/webchat "Steve"
   publicados sem destinatário (0 forms em 30 dias). Winter Garden (`ioeVVn6TyDMOsiYQCsVl`, criada 20/11) vazia: 0 workflows,
   sem pipeline, sem número.
+- 23/11 (~16h UTC): Basecamp Sparkling "Google Ads": Val respondeu ao Robert (LPs aprovadas; medir visitas/forms + tag por LP no CRM). Não me marca; lado do CRM (tags de serviço por form de LP) já testado 14:22 UTC → sem resposta; lido; ledger done.
