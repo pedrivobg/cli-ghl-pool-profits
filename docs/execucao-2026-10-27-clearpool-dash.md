@@ -1662,3 +1662,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - ClickUp BluVantage (Frank: "can be marked done"): 👍 e lido; espera a Vanessa no Basecamp.
 - Rodada diária: nenhuma conta nova, nada mudou (6 contas `--apply --submit`). Ledger: 11 linhas.
 - Sweep do ClickUp: 401 (token expirou de novo) → resposta no thread "[Passo seu] ClickUp: renovar o token" (não lida).
+- 23/11 (inbox): item pedro_reply "[Passo seu] ClickUp: renovar o token" era o próprio e-mail da rotina de 12:06 UTC (n8n leu como resposta do Pedro); sweep de novo = 401, sem e-mail duplicado; segue esperando o "feito" do Pedro.
