@@ -270,7 +270,7 @@ class CrmGuide:
 
     def pipeline(self) -> list[dict]:
         pipes = self.load("pipelines.json", [], self.model_dir)
-        pipe = next((p for p in pipes if p["name"] == "Pool Leads"), None)
+        pipe = next((p for p in pipes if "pool leads" in (p["name"] or "").lower()), None)
         if not pipe:
             self.flags.append("pipeline Pool Leads não encontrado no modelo")
             return []

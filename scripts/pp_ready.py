@@ -135,7 +135,7 @@ def check(d: Path, model: Path, foreign: dict[str, tuple[str, str]], place_ok: s
             err(f"falta o workflow do modelo: {name}")
 
     stages = lambda p: [s["name"] for s in next((x for x in load(p / "pipelines.json", [])
-                                                if x["name"] == "Pool Leads"), {}).get("stages") or []]
+                                                if "pool leads" in (x["name"] or "").lower()), {}).get("stages") or []]
     if stages(d) != stages(model):
         err(f"etapas da Pool Leads diferentes do modelo: {stages(d)}")
 

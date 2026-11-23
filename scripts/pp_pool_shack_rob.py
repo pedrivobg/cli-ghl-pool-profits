@@ -234,7 +234,7 @@ def put(a: Agency, loc: str, live: dict, tpl: list[dict], status: str | None = N
 def ensure_stop(a: Agency, loc: str, flows: dict[str, dict], extra: str | None, apply: bool, bdir) -> str:
     pipes = a.call("GET", SERVICES, "/opportunities/pipelines",
                    params={"locationId": loc})["pipelines"]
-    pipe = next(p for p in pipes if p["name"] == "Pool Leads")
+    pipe = next(p for p in pipes if "pool leads" in (p["name"] or "").lower())
     stage = {s["name"]: s["id"] for s in pipe["stages"]}
     missing = [n for n in STOP_STAGES if n not in stage]
     if missing:

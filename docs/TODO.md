@@ -102,6 +102,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
+- **Pool Duck (23/11)**: Odessa e Westchase — publicar o V9 (hoje só fluxos antigos; avisos "Steve" sem destinatário) quando o Pedro
+  disser quem recebe os avisos; Winter Garden (criada 20/11, vazia) — carregar o V9 e montar quando o Pedro/Sharon confirmar.
 - BluVantage (Frank 20/11): etapa "🤝 Vendors" criada; Vanessa escolhe entre Booked Assessment (14 cards) e Scheduled (0) —
   nenhuma dispara nada. Se ela quiser só uma: mover cards/apagar a outra (sem gatilho publicado).
 - Streamline Results (`86bd5qkpc`): sem sub-conta (questionário não respondido) → rodada diária.

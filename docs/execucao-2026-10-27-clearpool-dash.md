@@ -1684,3 +1684,18 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Automation" + credencial OAuth2 "Basecamp OAuth" no n8n (Pedro) + workflow `PkZYrNmhEMVNvltr` (webhook POST {bucket_id,
   recording_id} → PUT client_visibility; erro → e-mail [URGENTE]). Testado: os 3 check-ins de 20/11 (Southern, Stay Fresh,
   YardSpring) ficaram visíveis (conferido no Basecamp). Regra no CLAUDE.md e no TODO.
+
+## 23/11 — Pool Duck: leads só na pipeline nova (LWR) + "01. Pool Leads" em todas
+- **LWR** (`scripts/pd_lwr_pipeline_fix.py`, backup em `backup/pool-duck-lakewood-ranch/pipeline-fix-*`): os 6 fluxos de lead
+  publicados (Google Ads form/call/SMS/lead form/comercial, Facebook form) criavam card na antiga "Leads --> Sales Pipeline"
+  (o V9 estava em draft) → card em "01. Pool Leads" / New Lead. 11 cards antigos: 4 testes apagados com os contatos
+  (test@gmail.com, test@test.com, 2× "TEST - Pool Duck setup"); Connie Dashiell e Debra Gill (existing customer) →
+  Recurring; SMS por engano ("Hi Tyler… dental insurance") → Spam; Elana Weinsberg, J Johnson, Debi Gardi, Deberah Pavlisi →
+  New Lead. Antes: "Won -> Google Ads" só ouve as etapas Won (nenhum card foi para lá). Releitura: 19 publicados, 0 usando a
+  pipeline antiga, gatilhos ativos; antiga vazia.
+- **Todas as Pool Duck** (`scripts/pd_pipeline_audit.py`, só leitura): WC, East Orlando, Odessa, Westchase sem fluxo publicado na
+  pipeline antiga e sem card fora da nova. "Pool Leads" → "01. Pool Leads" nas 5 contas com V9 (ids/etapas mantidos, backup).
+  `pp_ready`, `pp_crm_guide`, `pp_pool_shack_rob` passam a achar a pipeline com prefixo (o resto já buscava "pool leads" no nome).
+- Para o Pedro: Odessa e Westchase com V9 todo em draft (nenhum fluxo publicado cria card); avisos de form/webchat "Steve"
+  publicados sem destinatário (0 forms em 30 dias). Winter Garden (`ioeVVn6TyDMOsiYQCsVl`, criada 20/11) vazia: 0 workflows,
+  sem pipeline, sem número.
