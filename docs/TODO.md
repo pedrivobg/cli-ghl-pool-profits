@@ -15,6 +15,11 @@ combinar antes.
 - 19/11: Bonneville Ads (`86bcwer98`, Val): fluxos publicados; lead form mapeado + Active; ligação e SMS reais conferidos e
   apagados. Send Data não existe mais no Google Ads (Val) → campanha ativa; validar no 1º lead real (contato/tags/card/avisos) e confirmar à Val.
 
+- 23/11 URGENTE: Clear Pool Tucson loop de SMS (Frank, chat `80140069937072`): "Inbound SMS - Notify Owner" → celular do Derek
+  (+1 520-346-7665) com auto-resposta de férias → volta como SMS do contato `SppbFBbeEgyBATuQN4X5` → novo aviso. Escrita no GHL
+  bloqueada na rotina → [Passo seu] ao Pedro (tag `owner - no sms alert` no contato + filtro Doesn't Have Tag no gatilho). Depois:
+  conferir que parou, confirmar ao Frank no thread; guarda igual na frota (`pp_sms_alert.py`) se o Pedro aprovar.
+
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
 - **Google Ads do cliente = sempre a Val** (Pedro 19/11: ele não tem acesso). Nunca pedir ao Pedro passo dentro do Google Ads
   (Send Data, conversões, URLs): pedir à Val no ClickUp. Ao Pedro só o lado do CRM (tela do GHL, ligação/SMS de teste).
