@@ -104,6 +104,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 ## Esperando outros
 - **Cleverblu A2P (23/11)**: go.cleverblu.com no ar, privacy corrigida, READY → esperando "aprovado" do Pedro ([Aprovar] Cleverblu)
   para `pp_new_account.py -n "Cleverblu" --apply --submit` (a trava da rotina bloqueou o envio pago); depois avisar o Frank (thread do canal Cleverblu).
+- **Cleverblu – lista do Skimmer (23/11)**: Frank mandou ao Nomar os passos de exportação; quando o arquivo chegar no Basecamp
+  (baixar pelo link do e-mail), importar com `/contacts/upsert` sem tags + tag `active client` só nos ativos; nada dispara.
 - **East Orlando – guia do Luis (23/11)**: aplicado (M1, seg–sex, boas-vindas reparo/obra). Resposta ao Luis em [Aprovar];
   depois que ele logar no app: tocar só no app (tira o "aperte uma tecla"); site/privacy/form e A2P = Ed.
 - **Pool Duck Winter Garden (23/11)**: Pedro carrega o snapshot V9 pela tela (API não tem rota); depois eu ativo (padrão Odessa)
