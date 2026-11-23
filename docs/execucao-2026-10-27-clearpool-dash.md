@@ -1718,3 +1718,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - **Winter Garden** (Cibele, `ioeVVn6TyDMOsiYQCsVl`): vazia; carregar snapshot em conta existente não tem rota na API (4
   tentativas 404) → Pedro: Load Snapshot V9 pela tela; depois eu ativo + guia.
 - Inbox 23/11 (tarde): 3 Basecamp sem ação minha — YardSpring (Val: proposta Search/ChatGPT Ads + 5 ZIPs), Sparkling (Val: verificação de anunciante do Google Ads até 13/12), Cleverblu (Nomar pede ligação ao Frank). Google Ads = Val; marcados lidos, ledger done.
+- Inbox 23/11 (18h UTC): 8 itens sem ação minha — YardSpring (Joe escolheu Search + LSA e mandou dados do LSA → Val), Rosebrook (fotos Dropbox), West Coast e Smart Chem (revisões de site, Frank), Cleverblu (Frank liga ao Nomar; chat do Frank ao Success Team/Vikkar sobre link do QR/GA do site novo). Lidos, ledger done.
