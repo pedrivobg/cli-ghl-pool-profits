@@ -4,6 +4,8 @@ config/pool_duck_wc_wording.json).
 
     GHL_AGENCY=poolduck python3 scripts/pd_wc_guide_extras.py --tos <pdf>            # plan
     GHL_AGENCY=poolduck python3 scripts/pd_wc_guide_extras.py --tos <pdf> --apply
+    GHL_AGENCY=poolduck python3 scripts/pd_wc_guide_extras.py --loc m2glhRgphyM7uXh4Rc8u --apply   # other account:
+        weekday follow-ups (+ STOP on the native text when it is on); M10 only with --tos (East Orlando 23/11)
 
 1. M10 (Won Stage / Welcome Email): portal URL as a hyperlink + Terms of Service PDF attached (media library upload),
    in the step AND its snippet.
@@ -85,10 +87,15 @@ def weekday_waits(tpl: list) -> list[str]:
 
 
 def main() -> int:
+    global LOC, BDIR
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tos", required=True, type=Path)
+    ap.add_argument("--tos", type=Path)
+    ap.add_argument("--loc", default=LOC)
     ap.add_argument("--apply", action="store_true")
     args = ap.parse_args()
+    if args.loc != LOC:
+        LOC = args.loc
+        BDIR = ROOT / "backup" / f"pool-duck-{LOC}"
     a = Agency()
     stamp = time.strftime("%Y%m%d-%H%M%S")
     BDIR.mkdir(parents=True, exist_ok=True)
@@ -99,9 +106,10 @@ def main() -> int:
     won = a.workflow(LOC, ws["Won Stage"]["id"])
     step = next(t for t in won["workflowData"]["templates"] if t["name"] == "Welcome Email")
     sn = snips[step["attributes"]["template_id"]]
-    need_link = LINK not in (step["attributes"]["html"] or "")
-    need_att = not any(x.get("name") == args.tos.name for x in step["attributes"].get("attachments") or [])
-    plan.append(f"M10: link {'add' if need_link else 'ok'}, ToS attachment {'add' if need_att else 'ok'}")
+    need_link = bool(args.tos) and LINK not in (step["attributes"]["html"] or "")
+    need_att = bool(args.tos) and not any(x.get("name") == args.tos.name for x in step["attributes"].get("attachments") or [])
+    if args.tos:
+        plan.append(f"M10: link {'add' if need_link else 'ok'}, ToS attachment {'add' if need_att else 'ok'}")
 
     fu = {}
     for n in ("No Response Follow-up", "Quote Sent Follow-up"):
@@ -114,7 +122,8 @@ def main() -> int:
     L = a.call("GET", SERVICES, f"/locations/{LOC}")
     L = L.get("location", L)
     mct = L.get("missedCallText") or ""
-    plan.append(f"native missed-call text: {'add opt-out' if 'STOP' not in mct else 'ok'}")
+    native_on = bool(L.get("enableMissedCallText"))
+    plan.append(f"native missed-call text: {'off (skip)' if not native_on else 'add opt-out' if 'STOP' not in mct else 'ok'}")
     print("\n".join(plan))
     if not args.apply:
         return 0
@@ -139,7 +148,7 @@ def main() -> int:
         if notes:
             put_wf(a, wf, tpl)
             print(f"   {n}: applied")
-    if "STOP" not in mct:
+    if native_on and "STOP" not in mct:
         a.call("PUT", SERVICES, f"/locations/{LOC}", body={"missedCallText": mct.rstrip() + OPT})
         print("   native missed-call text: applied")
 
@@ -148,8 +157,8 @@ def main() -> int:
     w2 = a.workflow(LOC, won["id"])
     st = next(t for t in w2["workflowData"]["templates"] if t["id"] == step["id"])
     sn2 = next(s for s in a.snippets(LOC) if s["_id"] == sn["_id"])
-    for label, h, at in (("step", st["attributes"]["html"], st["attributes"].get("attachments")),
-                         ("snippet", sn2["template"].get("html"), sn2["template"].get("attachments"))):
+    for label, h, at in ((("step", st["attributes"]["html"], st["attributes"].get("attachments")),
+                          ("snippet", sn2["template"].get("html"), sn2["template"].get("attachments"))) if args.tos else ()):
         good = LINK in (h or "") and any(x.get("name") == args.tos.name for x in at or [])
         ok &= good
         print(f"   {'✓' if good else '✗'} M10 {label}: link + ToS")
@@ -166,7 +175,7 @@ def main() -> int:
               f"re-entry {chk.get('allowMultiple')}, steps {len(wf['workflowData']['templates'])} → {len(tp)}")
     L2 = a.call("GET", SERVICES, f"/locations/{LOC}")
     L2 = L2.get("location", L2)
-    good = "STOP" in (L2.get("missedCallText") or "") and L2.get("enableMissedCallText") == L.get("enableMissedCallText")
+    good = (not native_on or "STOP" in (L2.get("missedCallText") or "")) and L2.get("enableMissedCallText") == L.get("enableMissedCallText")
     ok &= good
     print(f"   {'✓' if good else '✗'} native missed-call text: {L2.get('missedCallText')!r}")
     return 0 if ok else 1

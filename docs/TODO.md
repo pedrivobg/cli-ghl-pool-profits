@@ -102,6 +102,10 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
+- **Cleverblu A2P (23/11)**: go.cleverblu.com no ar, privacy corrigida, READY → esperando "aprovado" do Pedro ([Aprovar] Cleverblu)
+  para `pp_new_account.py -n "Cleverblu" --apply --submit` (a trava da rotina bloqueou o envio pago); depois avisar o Frank (thread do canal Cleverblu).
+- **East Orlando – guia do Luis (23/11)**: aplicado (M1, seg–sex, boas-vindas reparo/obra). Resposta ao Luis em [Aprovar];
+  depois que ele logar no app: tocar só no app (tira o "aperte uma tecla"); site/privacy/form e A2P = Ed.
 - **Pool Duck Winter Garden (23/11)**: Pedro carrega o snapshot V9 pela tela (API não tem rota); depois eu ativo (padrão Odessa)
   e mando o guia à Cibele. Review Request/Won Stage em draft em Odessa/Westchase/LWR até ter NPS link e Google (Westchase).
 - BluVantage (Frank 20/11): etapa "🤝 Vendors" criada; Vanessa escolhe entre Booked Assessment (14 cards) e Scheduled (0) —

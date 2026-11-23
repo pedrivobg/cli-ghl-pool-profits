@@ -1,0 +1,16 @@
+{
+ "location": "m2glhRgphyM7uXh4Rc8u",
+ "source": "Pool Duck East Orlando (agency Pool Duck, GHL_AGENCY=poolduck). CRM guide answers sent by Luis 23/11 (pool-22b6bd8f): M1 his text verbatim + 'Reply STOP to opt out' (decision YES); M2-M25 OK. Weekdays-only follow-ups + repair/construction welcome: scripts/pd_wc_guide_extras.py --loc, scripts/pp_won_welcome.py.",
+ "placeholders": {
+  "[First name]": "{{contact.first_name}}"
+ },
+ "messages": [
+  {
+   "workflow": "Missed New Lead - Initial SMS Follow-up",
+   "step": "SMS 1",
+   "code": "M1",
+   "by": "Luis (CRM guide 23/11)",
+   "text": "Hi [First name]! This is Luis from Pool Duck East Orlando. We're sorry we missed your call. We will be calling you back shortly. How can we assist you today? 🏊\n\nReply STOP to opt out."
+  }
+ ]
+}
