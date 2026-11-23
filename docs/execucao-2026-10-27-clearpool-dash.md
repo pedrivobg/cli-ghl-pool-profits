@@ -1717,3 +1717,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   Matt (`pool-1dc8ccad`), Westchase → Christine (`pool-7739ca34`), East Orlando → Luis (`pool-22b6bd8f`).
 - **Winter Garden** (Cibele, `ioeVVn6TyDMOsiYQCsVl`): vazia; carregar snapshot em conta existente não tem rota na API (4
   tentativas 404) → Pedro: Load Snapshot V9 pela tela; depois eu ativo + guia.
+- Inbox 23/11 (tarde): 3 Basecamp sem ação minha — YardSpring (Val: proposta Search/ChatGPT Ads + 5 ZIPs), Sparkling (Val: verificação de anunciante do Google Ads até 13/12), Cleverblu (Nomar pede ligação ao Frank). Google Ads = Val; marcados lidos, ledger done.
