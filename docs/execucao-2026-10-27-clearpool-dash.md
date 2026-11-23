@@ -1677,3 +1677,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Sparkling LPs (`86bd4wxp0`): envios do Pedro 14:22 UTC conferidos (tags de serviço, card New Lead, aviso ao Robert, SMS de obrigado); 2 ZZ TEST apagados (backup); confirmado à Val/Atif na tarefa (fica com a Val, esperando o Robert).
 - ClickUp token: renovado pelo Pedro, `cu_mark_read --list` ok; sweep rodado.
 - Revisão da noite 20/11: Blue Lagoon ligação de teste dispensada (ligações reais já provaram o CRM); links dos 3 check-ins mandados ao Pedro para deixar visíveis. Respostas ao Pedro marcadas não lidas; ledger 3 linhas.
+- 23/11 (~14h55 UTC): Basecamp West Coast "Website Corrections" (Abraham: imagens do site) não me marca, não é CRM → sem resposta, lido. Os 3 pedro_reply de 14:33–14:34 eram as minhas próprias respostas ao Pedro (já tratadas, ficam não lidas). Ledger 4 linhas; sweep: 1 LEFT (agradecimento, fora do payload).
