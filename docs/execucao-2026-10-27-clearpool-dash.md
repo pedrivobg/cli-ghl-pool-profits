@@ -1671,3 +1671,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   ativos); passos "Qualified" antigos apontam para conversões inexistentes (não enviam nada) → deixados. Respondido no thread. Espera obrigados do Atif.
 - Sparkling (Val, `86bd4wxp0`): só agradecimento; LPs mandadas ao Robert (links 200). Basecamp Poolheads/Reign/Sparkling (Val → clientes): não me marcam → lidos. Ledger: 5 linhas.
 - Sweep do ClickUp: 401 de novo; [Passo seu] do token já enviado hoje (não lido) → sem e-mail duplicado.
+- 23/11 (~13h35 UTC): Basecamp Sparkling "Google Ads": Bob pergunta à Val se dá para medir visitas da LP vs forms preenchidos → assunto de Ads, não me marca → sem resposta (Val responde); lido; ledger done.
