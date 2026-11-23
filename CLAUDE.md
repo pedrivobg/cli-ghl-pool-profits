@@ -223,6 +223,7 @@
   /surveys/submissions?locationId`); cria a sub-conta em **America/Sao_Paulo** — corrigir o fuso
   (`PUT services /locations/{id} {timezone}`; `pp_timezone_fix.py`) e conferir custom values (`pp_onboarding_fill.py`).
 - Tags de origem: `pp_source_audit.py` (contatos sem tag / leads sem origem, por linha) e `pp_source_tags.py`.
+- Gatilho "Note Added" = `type: note_add` (testado 23/11; `contact_note_added`/`note_added` são aceitos mas não testados) e `{{note.body}}` traz o texto da nota (copiar para um campo e ramificar no if/else). Notas da integração Skimmer começam com o evento (`WorkOrderFinished`, `InvoicePaid`, `CustomerMarkedPastDue`…): `docs/pool-keepers-skimmer-plan.md`.
 - E-mail interno de lead: `internal_notification` `{type: "email", email: {userType: "custom_email", to,
   subject, html}}`, um passo por endereço; merge de campo customizado (`{{contact.<fieldKey>}}`) sai
   preenchido (testado). Não fica registrado nas conversas — conferir na caixa (`pp_lead_email.py test`).
