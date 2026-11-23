@@ -38,6 +38,7 @@
 - **Arquivo em qualquer plataforma = eu baixo** (Pedro 17/11): nunca dizer ao time/cliente que não consigo baixar nem
   pedir reenvio em outro lugar; e-mail de notificação do Basecamp traz link `storage.app.basecamp.com/.../email/download/…`
   que baixa com `curl` sem login. Sem saída → perguntar ao Pedro (detalhe em `docs/TODO.md`, regras da rotina).
+- **Basecamp: post novo visível ao cliente** (Pedro 23/11): o conector cria post/mensagem só para o time e o `set_client_visibility` pede confirmação humana (trava em rotina). Depois de criar o post, chamar o webhook n8n "Basecamp - tornar visivel ao cliente" (`PkZYrNmhEMVNvltr`): `curl -sS -X POST https://n8n.valenteai.cloud/webhook/bc-visible-7f3c9a2e4b1d48e6a0c5 -H "Content-Type: application/json" -d '{"bucket_id":<projeto>,"recording_id":<post>}'` → `{"ok":true,"visible_to_clients":true}` (`"visible":false` esconde). Usa a credencial OAuth2 "Basecamp OAuth" do n8n (app 37signals "Pool Profits Automation"); falha → e-mail "[URGENTE] Basecamp" ao Pedro (401 = Reconnect na credencial). Comentário em post que o cliente já vê herda a visibilidade: não precisa.
 - **App do cliente = "Pool Profits"** (Pedro 18/11): a agência paga o app próprio (é o LeadConnector com a nossa marca; o
   cliente não precisa saber). Nunca citar "LeadConnector"/"HighLevel" ao cliente/time de cliente. Links: App Store
   `https://apps.apple.com/us/app/pool-profits/id6744033579`, Google Play

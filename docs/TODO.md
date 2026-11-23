@@ -73,6 +73,8 @@ combinar antes.
 - **Toda tarefa atribuída ao Pedro em qualquer lista** (onboarding do Frank, Paid Media, Create GHL Account) entra na revisão
   da noite — não só a lista `901422915733`. Tarefa nova do Frank: comentar no mesmo dia (feito / o que falta / de quem).
 
+- **Regra – Basecamp: post novo visível ao cliente** (Pedro 23/11): o conector cria post/mensagem só para o time e o `set_client_visibility` pede confirmação humana (trava em rotina). Depois de criar o post, chamar o webhook n8n "Basecamp - tornar visivel ao cliente" (`PkZYrNmhEMVNvltr`): `curl -sS -X POST https://n8n.valenteai.cloud/webhook/bc-visible-7f3c9a2e4b1d48e6a0c5 -H "Content-Type: application/json" -d '{"bucket_id":<projeto>,"recording_id":<post>}'` → `{"ok":true,"visible_to_clients":true}` (`"visible":false` esconde). Usa a credencial OAuth2 "Basecamp OAuth" do n8n (app 37signals "Pool Profits Automation"); falha → e-mail "[URGENTE] Basecamp" ao Pedro (401 = Reconnect na credencial). Comentário em post que o cliente já vê herda a visibilidade: não precisa.
+
 ## Você faz
 (Revisto 18/11 14h UTC contra ledger, Gmail e estado ao vivo. Saíram por já estarem feitos: número Google Ads da Bonneville
 — linha +1 385-503-7952 → Justin desde 16/11; SMS de teste da Sparkling — feito 18/11; resposta ao Justin — enviada 17/11
@@ -163,3 +165,6 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - **Dashboard interno** (Val, 06/11 e 09/11): auditoria diária de todas as sub-contas para prever erros (alertas/tarefas
   sem usuário, linhas sem encaminhamento, SMS falhando, gatilhos quebrados) e acompanhar quem não está recebendo leads
   ou não está usando o CRM (0 lead em 3 dias, WON, cards parados). ClickUp: tarefa "Internal dashboard: daily GHL audit".
+
+- **Basecamp OAuth (23/11)**: conferir ~07/12 (1º vencimento do token, 2 semanas) que o webhook `bc-visible` ainda responde ok
+  (o refresh da 37signals no OAuth2 genérico do n8n não foi testado). Se der 401: Pedro clica Reconnect na credencial.

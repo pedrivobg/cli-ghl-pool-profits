@@ -1678,3 +1678,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - ClickUp token: renovado pelo Pedro, `cu_mark_read --list` ok; sweep rodado.
 - Revisão da noite 20/11: Blue Lagoon ligação de teste dispensada (ligações reais já provaram o CRM); links dos 3 check-ins mandados ao Pedro para deixar visíveis. Respostas ao Pedro marcadas não lidas; ledger 3 linhas.
 - 23/11 (~14h55 UTC): Basecamp West Coast "Website Corrections" (Abraham: imagens do site) não me marca, não é CRM → sem resposta, lido. Os 3 pedro_reply de 14:33–14:34 eram as minhas próprias respostas ao Pedro (já tratadas, ficam não lidas). Ledger 4 linhas; sweep: 1 LEFT (agradecimento, fora do payload).
+
+## 23/11 — Basecamp: tornar post visível ao cliente sem confirmação manual
+- Conector: `set_client_visibility` pede confirmação humana (timeout 230 s em rotina). Solução: app OAuth 37signals "Pool Profits
+  Automation" + credencial OAuth2 "Basecamp OAuth" no n8n (Pedro) + workflow `PkZYrNmhEMVNvltr` (webhook POST {bucket_id,
+  recording_id} → PUT client_visibility; erro → e-mail [URGENTE]). Testado: os 3 check-ins de 20/11 (Southern, Stay Fresh,
+  YardSpring) ficaram visíveis (conferido no Basecamp). Regra no CLAUDE.md e no TODO.
