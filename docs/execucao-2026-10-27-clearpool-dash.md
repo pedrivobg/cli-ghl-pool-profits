@@ -1655,3 +1655,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Pool Palooza (site, Todd/Frank) e BluVantage LPs (Vanessa→Michael/Paul): não me marcam → lidos.
 - Noite: 86bd1b3b5 e 86bd5n0h3 → 24/11 com comentário; auditoria #8 feita (`pp_call_check` INTENTIONAL_DRAFT Blue Lagoon). Testes do
   Pedro não achados (Sparkling 0 submissões; número dele fora da Blue Lagoon). E-mail [Passo seu] 20/11 (não lido). Sweep: 0 LEFT.
+
+## 23/11 (~12h30 UTC) — inbox (11 itens): Basecamp de site + rodada diária
+- Passion "Website Mockup" (john: Tony saiu, experiência, áreas; Frank respondeu), West Coast certs (3), Smart Chem e Bonneville mockups (3),
+  BluVantage (Frank → Vanessa): site/SEO, sem me marcar → só lidos. Passion: nenhum usuário "Tony" no CRM (Brad, John, Johnathan).
+- ClickUp BluVantage (Frank: "can be marked done"): 👍 e lido; espera a Vanessa no Basecamp.
+- Rodada diária: nenhuma conta nova, nada mudou (6 contas `--apply --submit`). Ledger: 11 linhas.
