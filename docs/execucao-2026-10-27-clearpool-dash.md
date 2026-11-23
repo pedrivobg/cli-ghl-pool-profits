@@ -1665,3 +1665,9 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - 23/11 (inbox): item pedro_reply "[Passo seu] ClickUp: renovar o token" era o próprio e-mail da rotina de 12:06 UTC (n8n leu como resposta do Pedro); sweep de novo = 401, sem e-mail duplicado; segue esperando o "feito" do Pedro.
 - 23/11 manhã: Basecamp YardSpring "Google Adwords" (Joe: sem leads, zips 30062/66/67/68/75, budget, LSA) = assunto da Val (Pedro 12/11); sem resposta minha, e-mail lido, ledger done.
 - 23/11 manhã: Basecamp BluVantage "Google Ads - Landing Pages" (Val → Vanessa: segue com as 3 aprovadas, Closing fica para depois) não me marca; conferido ao vivo: Renovations (`ZGvQmo1SSi9U0AzXpqA3`), Winter e Heater embutem os forms e cada um tem "AdWords Form - <serviço>" publicado (tag). Sem resposta, lido, ledger done.
+
+## 23/11 (~13h20 UTC) — inbox (5 itens)
+- Clear Pool LPs (Val, `86bc6vvha`): conversão = só "Converted Lead - WON". Conferido: "Won -> Google Ads" publicado (conv 7907990370, 4 gatilhos Won
+  ativos); passos "Qualified" antigos apontam para conversões inexistentes (não enviam nada) → deixados. Respondido no thread. Espera obrigados do Atif.
+- Sparkling (Val, `86bd4wxp0`): só agradecimento; LPs mandadas ao Robert (links 200). Basecamp Poolheads/Reign/Sparkling (Val → clientes): não me marcam → lidos. Ledger: 5 linhas.
+- Sweep do ClickUp: 401 de novo; [Passo seu] do token já enviado hoje (não lido) → sem e-mail duplicado.
