@@ -1700,3 +1700,20 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   publicados sem destinatário (0 forms em 30 dias). Winter Garden (`ioeVVn6TyDMOsiYQCsVl`, criada 20/11) vazia: 0 workflows,
   sem pipeline, sem número.
 - 23/11 (~16h UTC): Basecamp Sparkling "Google Ads": Val respondeu ao Robert (LPs aprovadas; medir visitas/forms + tag por LP no CRM). Não me marca; lado do CRM (tags de serviço por form de LP) já testado 14:22 UTC → sem resposta; lido; ledger done.
+
+## 23/11 — Pool Duck: V9 ativo em Odessa, Westchase e LWR + guia do CRM para todos
+- `pd_wc_phase2.py` parametrizado por env (PD_LOC/PD_SLUG/PD_MAIN_LINE/PD_ALERT_EMAIL/PD_SITE_FORMS/PD_PUBLISH_ALSO; acha
+  "01. Pool Leads") + `scripts/pd_alert_owner.py` (novo: avisos/dono num usuário; `--only-empty`; fluxos "- Steve" → draft).
+- **Odessa** (Preston): guards (pre-snapshot) → ligações V9 só na linha +1 813-590-1616 com if/else spam/dnd/existing customer →
+  Website Form Fill nos forms do site (TFkJ…, JXzt…, 4aVq…) → 13 V9 publicados; dono/avisos → Preston; Steve ×3 → draft;
+  "Inbound SMS - Notify Owner" criado (cópia da East Orlando, Preston, sem guarda). **Westchase** (Preston): igual (linha
+  +1 813-797-6718, forms fPac…/pDTw…/F45u…; 14 V9 + Won -> Google Ads), guarda tirada do Inbound SMS; custom values Owner
+  First Name = Christine, A2P = linha. **LWR** (Kenton + Pool Duck Service, os mesmos dos avisos de anúncio): guards, ligações
+  só na principal +1 941-588-2227, Website Form Fill nos 2 forms do site, 13 V9 publicados, Inbound SMS criado, Steve → draft,
+  Owner First Name = Connie, A2P = +1 941-588-2227. Ficam draft nas 3: Won Stage (boas-vindas por tag deles), Review Request
+  (Westchase sem Google; NPS Survey Link vazio; LWR tem o gate próprio), Missed New Lead SMS (texto nativo ligado).
+  `pp_call_check` 0 ERRO nas 5 contas.
+- **Guias do CRM** publicados e enviados (cc Ed, Frank; Preston em Odessa/Westchase): LWR → Connie (`pool-3ae714e8`), Odessa →
+  Matt (`pool-1dc8ccad`), Westchase → Christine (`pool-7739ca34`), East Orlando → Luis (`pool-22b6bd8f`).
+- **Winter Garden** (Cibele, `ioeVVn6TyDMOsiYQCsVl`): vazia; carregar snapshot em conta existente não tem rota na API (4
+  tentativas 404) → Pedro: Load Snapshot V9 pela tela; depois eu ativo + guia.

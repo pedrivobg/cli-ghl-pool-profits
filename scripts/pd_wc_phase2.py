@@ -37,10 +37,12 @@ from _common import load_dotenv  # noqa: E402
 load_dotenv()
 from cli_anything.gohighlevel.utils.agency import BACKEND, SERVICES, Agency  # noqa: E402
 
-LOC = "uJr8H2qaQM5ffZxeYFqn"
-MAIN_LINE = "+18136060773"
+# Other Pool Duck accounts (23/11): PD_LOC, PD_SLUG, PD_MAIN_LINE, PD_ALERT_EMAIL, PD_SITE_FORMS (comma list), PD_PUBLISH_ALSO
+# (comma list of KEEP_DRAFT names to publish too). Defaults = Wesley Chapel.
+LOC = os.environ.get("PD_LOC", "uJr8H2qaQM5ffZxeYFqn")
+MAIN_LINE = os.environ.get("PD_MAIN_LINE", "+18136060773")
 GUARD = "pre-snapshot"
-BK = os.path.join(ROOT, "backup", "poolduck-wesley-chapel", f"phase2-{time.strftime('%Y%m%d-%H%M%S')}")
+BK = os.path.join(ROOT, "backup", os.environ.get("PD_SLUG", "poolduck-wesley-chapel"), f"phase2-{time.strftime('%Y%m%d-%H%M%S')}")
 TRIGGER_DROP = ("id", "_id", "date_added", "date_updated", "deleted", "origin_id", "company_id", "workflowId",
                 "workflow_id", "location_id", "actions", "belongs_to", "last_conditions_change_at", "targetActionId")
 ADS = ["Google AdWords - Qualified Lead (Call In)", "Google AdWords - Qualified Lead (Form FIll)",
@@ -58,7 +60,7 @@ def backup(name: str, obj) -> None:
 
 
 def pool_leads(a: Agency) -> dict:
-    p = next(p for p in a.pipelines(LOC) if (p.get("name") or "").lower() == "pool leads")
+    p = next(p for p in a.pipelines(LOC) if "pool leads" in (p.get("name") or "").lower())
     return {"id": p["id"], "stages": {s["name"]: s["id"] for s in p["stages"]}}
 
 
@@ -184,6 +186,7 @@ KEEP_DRAFT = {"AdWords Call In - New Lead", "AdWords Form - New Lead", "Adword C
               "Won Stage", "Missed New Lead - Initial SMS Follow-up",
               # until the account has its NPS form/link and Google connected for reviews
               "Review Request", "Review Response - Negative", "Review Response - Positive"}
+KEEP_DRAFT -= {x.strip() for x in os.environ.get("PD_PUBLISH_ALSO", "").split(",") if x.strip()}
 ALERT_ALL = {"Inbound SMS - Notify Owner"}  # Ed 13/11 + 16/11: every text alerts, customers included
 
 
@@ -234,7 +237,7 @@ def users_ok(tpl: list[dict]) -> list[str]:
 
 def step_publish(a: Agency, apply: bool) -> None:
     names = v9_names()
-    debbie = next(u["id"] for u in a.users(LOC) if (u.get("email") or "").lower() == "debbie@poolduck.com")
+    debbie = next(u["id"] for u in a.users(LOC) if (u.get("email") or "").lower() == os.environ.get("PD_ALERT_EMAIL", "debbie@poolduck.com"))
     for w in sorted(a.workflows(LOC), key=lambda x: x["name"]):
         if w["name"] not in names or names[w["name"]] != "published" or w["name"] in KEEP_DRAFT:
             continue
@@ -347,7 +350,7 @@ def step_cards(a: Agency, apply: bool) -> None:
 
 
 CALL_FLOWS = ("Answered Incoming Call To Pipeline", "Missed Incoming Call To Pipeline")
-SITE_FORMS = ["r0tUEDr6n1bIqmv1RDST", "cS4QIWtJd3IXOtB4Fuza", "oawTezosQbLJGDPJ3P3k", "TcPu80nUo9cmZCFuPSsF"]  # website quote forms (both snapshot copies)
+SITE_FORMS = [x for x in os.environ.get("PD_SITE_FORMS", "r0tUEDr6n1bIqmv1RDST,cS4QIWtJd3IXOtB4Fuza,oawTezosQbLJGDPJ3P3k,TcPu80nUo9cmZCFuPSsF").split(",") if x]  # website quote forms (both snapshot copies)
 
 
 def step_calls_forms(a: Agency, apply: bool) -> None:

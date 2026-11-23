@@ -63,5 +63,25 @@
     "key": "pool-c81cf184",
     "name": "Pool Duck",
     "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pool-c81cf184"
+  },
+  "pool-duck-lakewood-ranch": {
+    "key": "pool-3ae714e8",
+    "name": "Pool Duck Lakewood Ranch",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pool-3ae714e8"
+  },
+  "pool-duck-odessa": {
+    "key": "pool-1dc8ccad",
+    "name": "Pool Duck Odessa",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pool-1dc8ccad"
+  },
+  "pool-duck-westchase": {
+    "key": "pool-7739ca34",
+    "name": "Pool Duck Westchase",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pool-7739ca34"
+  },
+  "pool-duck-east-orlando": {
+    "key": "pool-22b6bd8f",
+    "name": "Pool Duck East Orlando",
+    "url": "https://n8n.valenteai.cloud/webhook/crm-guide?c=pool-22b6bd8f"
   }
 }
