@@ -1672,3 +1672,8 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Sparkling (Val, `86bd4wxp0`): só agradecimento; LPs mandadas ao Robert (links 200). Basecamp Poolheads/Reign/Sparkling (Val → clientes): não me marcam → lidos. Ledger: 5 linhas.
 - Sweep do ClickUp: 401 de novo; [Passo seu] do token já enviado hoje (não lido) → sem e-mail duplicado.
 - 23/11 (~13h35 UTC): Basecamp Sparkling "Google Ads": Bob pergunta à Val se dá para medir visitas da LP vs forms preenchidos → assunto de Ads, não me marca → sem resposta (Val responde); lido; ledger done.
+
+## 23/11 (~14h40 UTC) — inbox (3 pedro_reply)
+- Sparkling LPs (`86bd4wxp0`): envios do Pedro 14:22 UTC conferidos (tags de serviço, card New Lead, aviso ao Robert, SMS de obrigado); 2 ZZ TEST apagados (backup); confirmado à Val/Atif na tarefa (fica com a Val, esperando o Robert).
+- ClickUp token: renovado pelo Pedro, `cu_mark_read --list` ok; sweep rodado.
+- Revisão da noite 20/11: Blue Lagoon ligação de teste dispensada (ligações reais já provaram o CRM); links dos 3 check-ins mandados ao Pedro para deixar visíveis. Respostas ao Pedro marcadas não lidas; ledger 3 linhas.

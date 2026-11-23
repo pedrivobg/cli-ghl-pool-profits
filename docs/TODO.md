@@ -9,10 +9,6 @@ combinar antes.
 
 ## Aberto hoje
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
-- 20/11: Sparkling LPs (`86bd4wxp0`): Atif publicou as 2 LPs + 2 obrigados; forms certos conferidos e redirects trocados
-  (`scripts/sc_lp_thanks.py`). Esperando o envio real do Pedro nas 2 LPs ([Passo seu] 20/11) → conferir tags/card/avisos,
-  apagar testes, confirmar ao Atif/Val na tarefa e fechar.
-
 - 20/11: Clear Pool LPs novas (`86bc6vvha`, Val): forms Weekly `ZxZ4nQ9f…` / Repairs `UgAUSMUp…` (+ Service Needed) no gatilho do
   AdWords Form - New Lead + fluxos de tag feitos (`scripts/cp_lp_launch.py`). Esperando Atif (páginas + 2 URLs de obrigado →
   `apply --thanks-weekly/--thanks-repairs`) → testar envio em cada página. Conversão: só "Converted Lead - WON" (Val 23/11; Won -> Google Ads conferido).
@@ -78,13 +74,11 @@ combinar antes.
   da noite — não só a lista `901422915733`. Tarefa nova do Frank: comentar no mesmo dia (feito / o que falta / de quem).
 
 ## Você faz
-0. **ClickUp: renovar o token** (23/11: 401 de novo no sweep) — passos no thread "[Passo seu] ClickUp: renovar o token".
 (Revisto 18/11 14h UTC contra ledger, Gmail e estado ao vivo. Saíram por já estarem feitos: número Google Ads da Bonneville
 — linha +1 385-503-7952 → Justin desde 16/11; SMS de teste da Sparkling — feito 18/11; resposta ao Justin — enviada 17/11
 21:27 UTC; Refresh do snapshot — feito 18/11; teste das 2 linhas da WP Pools — feito 17/11; plano Pool Duck — WC migrada 16/11.)
-1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5), prazo 21/11). Blue Lagoon: a ligação
-   do Pedro de 18/11 23:21 BRT não testou nada — o número dele era contato spam/DND desde 14/09; apagado 19/11 (backup), idem
-   na Passion. Falta 1 ligação nova para +1 480-400-0140 fora do horário da Destiny, deixar cair.
+1. **Testes reais** (ClickUp [Live tests with Pedro](https://app.clickup.com/t/86bd1b3b5)): Blue Lagoon dispensado 23/11 (ligações reais
+   já provaram o CRM; espera a Destiny). Sparkling feito 23/11.
 3b. **Sparkling – Lead Form**: filtro `adAccountId` tirado 19/11; Send Data não existe com o app novo → validação = 1º lead
    real (eu confiro). GA da Sparkling na propriedade da agência → propriedade própria (86bd4kucg). Nada do Pedro.
 (Reign: envio real feito pelo Pedro 18/11 21:41 UTC; conferido 19/11 — card New Lead, tags de serviço/ZIP, aviso ao Stephen
@@ -111,7 +105,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Streamline Results (`86bd5qkpc`): sem sub-conta (questionário não respondido) → rodada diária.
 - **Pool Palooza (20/11)**: "Lead Source - Tag (forms & bookings)" publicado; conferir no 1º lead real de Free Trial/F1/agendamento
   que os campos "Lead Session Source"/"Lead GCLID" vieram preenchidos e a tag bate (adwords/facebook/organic/direct).
-- **Check-ins 20/11** (Southern, Stay Fresh, YardSpring): mensagens postadas mas só visíveis ao time — Pedro deixa visível ao cliente.
+- **Check-ins 20/11** (Southern, Stay Fresh, YardSpring): só visíveis ao time; links mandados ao Pedro 23/11 (thread revisão da noite 20/11) para ele deixar visível.
 - **Justin (Pool Duck WC, call 19/11): imagens para o e-mail de boas-vindas (M10)** — quando chegarem (Basecamp/e-mail/ClickUp;
   baixar onde vier): subir na mídia da WC (`GHL_AGENCY=poolduck`, location uJr8H2qaQM5ffZxeYFqn), pôr no e-mail M10 do
   "Won Stage" (publicado 19/11; editar o passo **e** o template; manter o Terms of Service e o link do portal) via
