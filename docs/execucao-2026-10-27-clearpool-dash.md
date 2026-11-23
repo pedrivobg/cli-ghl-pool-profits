@@ -1661,3 +1661,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   BluVantage (Frank → Vanessa): site/SEO, sem me marcar → só lidos. Passion: nenhum usuário "Tony" no CRM (Brad, John, Johnathan).
 - ClickUp BluVantage (Frank: "can be marked done"): 👍 e lido; espera a Vanessa no Basecamp.
 - Rodada diária: nenhuma conta nova, nada mudou (6 contas `--apply --submit`). Ledger: 11 linhas.
+- Sweep do ClickUp: 401 (token expirou de novo) → resposta no thread "[Passo seu] ClickUp: renovar o token" (não lida).
