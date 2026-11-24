@@ -109,6 +109,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
+- **Cleverblu – site novo (`86bd66w02`, Success Team 24/11)**: GA4 G-X8ZK57LS47 + link do QR sticker no lançamento; quando o site for ao ar (DNS), eu confiro http/https/www + link (200, UTMs) + GA4 Realtime e mando ao Nomar onde ver (sticker / qr).
 - **Cleverblu A2P**: enviado 24/11 (23/23), brand PENDING → acompanhar aprovação (1–5 dias úteis) e vincular o número.
 - **Cleverblu – lista do Skimmer (23/11)**: Frank mandou ao Nomar os passos de exportação; quando o arquivo chegar no Basecamp
   (baixar pelo link do e-mail), importar com `/contacts/upsert` sem tags + tag `active client` só nos ativos; nada dispara.
