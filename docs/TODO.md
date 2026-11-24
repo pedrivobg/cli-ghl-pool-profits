@@ -108,13 +108,15 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
+- **Ed (25/11)**: OK do plano de SMS ao dono em toda ligação de lead (e-mail "Inbound calls on every tracking line") + BluVantage
+  sim/não + GID/Legion/Pooltexx ainda clientes → aplicar com `pp_line_audit.py` antes/depois, teste ZZ, `pp_call_check`.
+- **Skimmer/Pool Keepers**: e-mail da extensão com a config da integração → proposta em PDF ao Nathan (Pedro aprova antes de postar).
 - **Cleverblu – site novo (`86bd66w02`, Success Team 24/11)**: Success Team lança o site na noite de 24/11 (pedido do Frank por e-mail); GA4 G-X8ZK57LS47 + link do QR sticker no lançamento; quando o site for ao ar (DNS), eu confiro http/https/www + link (200, UTMs) + GA4 Realtime e mando ao Nomar onde ver (sticker / qr).
 - **Cleverblu A2P**: enviado 24/11 (23/23), brand PENDING → acompanhar aprovação (1–5 dias úteis) e vincular o número.
 - **Cleverblu – lista do Skimmer (23/11)**: Frank mandou ao Nomar os passos de exportação; quando o arquivo chegar no Basecamp
   (baixar pelo link do e-mail), importar com `/contacts/upsert` sem tags + tag `active client` só nos ativos; nada dispara.
 - **East Orlando – guia do Luis**: 24/11 ele não recebeu o reset (mandei app.poolprofits.com por engano; certo = portal.poolduck.com). Resposta aprovada enviada 24/11 21:02 UTC (portal.poolduck.com, pergunta com qual e-mail entra no app + passos do GBP) → esperando o Luis. Linha (689) 350-4006 ligada ao usuário "Pool Duck East Orlando" (toca o celular, whisper "press a key"); o usuário Luis Gomez já é só app → trocar conforme a resposta. Site/privacy/form e A2P = Ed.
-- **Pool Duck Winter Garden (23/11)**: Pedro carrega o snapshot V9 pela tela (API não tem rota); depois eu ativo (padrão Odessa)
-  e mando o guia à Cibele. Review Request/Won Stage em draft em Odessa/Westchase/LWR até ter NPS link e Google (Westchase).
+- Pool Duck: Review Request/Won Stage em draft em Odessa/Westchase/LWR até ter NPS link e Google (Westchase).
 - BluVantage (Frank 20/11): etapa "🤝 Vendors" criada; Vanessa escolhe entre Booked Assessment (14 cards) e Scheduled (0) —
   nenhuma dispara nada. Se ela quiser só uma: mover cards/apagar a outra (sem gatilho publicado).
 - Streamline Results (`86bd5qkpc`): sem sub-conta (questionário não respondido) → rodada diária.
