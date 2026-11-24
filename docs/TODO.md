@@ -17,7 +17,7 @@ combinar antes.
 - Snapshot Pool Profits: /contact-us do "New A2P Verification" vem com formId "none" ("Unable to find form" → revisão A2P 14/23, Cleverblu 24/11). Pôr no `pp_new_account` o ajuste para o "Landing Page - Optin Form" da conta (e corrigir no Snapshot).
 - 24/11 Pool Duck Winter Garden: V9 carregado (Pedro), 0 contatos. Esperando o Ed (e-mail 24/11 21h UTC): e-mail/celular da Cibele + número → criar usuário, ligações/avisos (padrão Odessa, `pd_wc_phase2.py` env PD_*), testar, guia. Auditoria 19/11 itens 1–7 (`86bd5n0h3`).
 - 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): `cp_holiday_vm.py on` feito, mas o teste de 13:45 UTC caiu na caixa postal do CELULAR do Derek (atende na hora, saudação antiga) → IVR para no Connect call e a mensagem nunca toca. Teste apagado. 24/11 20h UTC: Frank perguntou → expliquei no thread e pedi a escolha do Derek: (1) sem tocar o Derek até 27/11 (mudar o Connect call do IVR, testar) ou (2) Derek troca a saudação do celular. Frank pediu para falar com o Derek no Basecamp → pergunta 1/2 postada 24/11 21:07 UTC (comentário 10544332203 em "Voicemail and Phone Issues"); esperando o Derek (se 1: mudar o Connect call do IVR SPAM Detection, testar, avisar Frank). Post do loop de SMS (10540190493) voltou a só-time: Pedro torna visível (webhook bloqueado na rotina 24/11). **28/11: `python3 scripts/cp_holiday_vm.py off`** (+ desfazer o (a)) e avisar o Frank.
-- 24/11 **Poolheads Thanksgiving** (Frank, canal Poolheads, thread ClickUp `80140070290502`): no ar e testado (SMS + ligação do Pedro 24/11 23:10 UTC, caminho de Thanksgiving; ramo ZZ TEST/tag/card do teste removidos). Falta: **post ao Felipe** no Basecamp Poolheads (board `10421549481`; `create_message` deu timeout na confirmação → criar sem `visible_to_clients` + webhook bc-visible) e depois confirmar ao Frank no thread. **28/11: `ph_thanksgiving.py off`**.
+- 24/11 **Poolheads Thanksgiving**: no ar, testado, post ao Felipe visível (10544821551), Frank avisado. **28/11: `python3 scripts/ph_thanksgiving.py off`**.
 - 23/11 Frank (DM): BluVantage/Vanessa (`86bd4tugh` 27/11), Smart Chem GBP + form do Chris, Puddle Jumpers GBP, Pool Keepers decisões do Nathan (30/11).
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
@@ -79,7 +79,7 @@ combinar antes.
 - **Toda tarefa atribuída ao Pedro em qualquer lista** (onboarding do Frank, Paid Media, Create GHL Account) entra na revisão
   da noite — não só a lista `901422915733`. Tarefa nova do Frank: comentar no mesmo dia (feito / o que falta / de quem).
 
-- **Regra – Basecamp: post novo visível ao cliente** (Pedro 23/11): o conector cria post/mensagem só para o time e o `set_client_visibility` pede confirmação humana (trava em rotina). Depois de criar o post, chamar o webhook n8n "Basecamp - tornar visivel ao cliente" (`PkZYrNmhEMVNvltr`): `curl -sS -X POST https://n8n.valenteai.cloud/webhook/bc-visible-7f3c9a2e4b1d48e6a0c5 -H "Content-Type: application/json" -d '{"bucket_id":<projeto>,"recording_id":<post>}'` → `{"ok":true,"visible_to_clients":true}` (`"visible":false` esconde). Usa a credencial OAuth2 "Basecamp OAuth" do n8n (app 37signals "Pool Profits Automation"); falha → e-mail "[URGENTE] Basecamp" ao Pedro (401 = Reconnect na credencial). Comentário em post que o cliente já vê herda a visibilidade: não precisa.
+- **Regra – Basecamp: post novo visível ao cliente** (Pedro 23-24/11, sem clique nunca): `create_message` SEM `visible_to_clients` → logo depois, pelo conector n8n (curl é bloqueado na rotina): `execute_workflow {workflowId: "PkZYrNmhEMVNvltr", executionMode: "production", triggerNodeName: "Make visible request", inputs: {webhookData: {method: "POST", body: {bucket_id, recording_id}}}}` → conferir com `get_by_url` (visible_to_clients true). O vigia n8n `60GANo1enQkUUXDP` reaplica a cada 15 min (tabela "Basecamp Visible Posts"). Detalhes no CLAUDE.md.
 
 ## Você faz
 (Revisto 18/11 14h UTC contra ledger, Gmail e estado ao vivo. Saíram por já estarem feitos: número Google Ads da Bonneville
@@ -110,7 +110,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 ## Esperando outros
 - **Ed (25/11)**: OK do plano de SMS ao dono em toda ligação de lead (e-mail "Inbound calls on every tracking line") + BluVantage
   sim/não + GID/Legion/Pooltexx ainda clientes → aplicar com `pp_line_audit.py` antes/depois, teste ZZ, `pp_call_check`.
-- **Skimmer/Pool Keepers**: PDF ao Nathan pronto (`reports/pool-keepers/skimmer-crm-plan-2026-11-24.pdf`, `scripts/pk_skimmer_pdf.py`), esperando ok do Pedro (e-mail 24/11) → postar no thread "Automations – Review" (`10488501104`) com o PDF + avisar Frank. Achados: 0 cards (fluxos de card em draft), initial import ON, sync de contatos cria cliente sem card (lead source fixo "Customer referral").
+- **Skimmer/Pool Keepers**: PDF enviado ao Nathan por e-mail 24/11 (cc Frank; `reports/pool-keepers/The-Pool-Keepers-Skimmer-CRM-Plan.pdf`). Esperando as 5 respostas → montar o lado do CRM em draft (fluxos de lead + automações pelas notas da Skimmer), testar, publicar com OK.
 - **Cleverblu – site novo (`86bd66w02`, Success Team 24/11)**: Success Team lança o site na noite de 24/11 (pedido do Frank por e-mail); GA4 G-X8ZK57LS47 + link do QR sticker no lançamento; quando o site for ao ar (DNS), eu confiro http/https/www + link (200, UTMs) + GA4 Realtime e mando ao Nomar onde ver (sticker / qr).
 - **Cleverblu A2P**: enviado 24/11 (23/23), brand PENDING → acompanhar aprovação (1–5 dias úteis) e vincular o número.
 - **Cleverblu – lista do Skimmer (23/11)**: Frank mandou ao Nomar os passos de exportação; quando o arquivo chegar no Basecamp
@@ -181,5 +181,6 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   sem usuário, linhas sem encaminhamento, SMS falhando, gatilhos quebrados) e acompanhar quem não está recebendo leads
   ou não está usando o CRM (0 lead em 3 dias, WON, cards parados). ClickUp: tarefa "Internal dashboard: daily GHL audit".
 
+- **East Orlando (Luis)**: usuário Pool Duck East Orlando tocando só no app (24/11); conferir as próximas ligações reais (atendidas no app?) e, quando ele criar o Google Business Profile, montar o link de review.
 - **Basecamp OAuth (23/11)**: conferir ~07/12 (1º vencimento do token, 2 semanas) que o webhook `bc-visible` ainda responde ok
   (o refresh da 37signals no OAuth2 genérico do n8n não foi testado). Se der 401: Pedro clica Reconnect na credencial.

@@ -38,7 +38,17 @@
 - **Arquivo em qualquer plataforma = eu baixo** (Pedro 17/11): nunca dizer ao time/cliente que não consigo baixar nem
   pedir reenvio em outro lugar; e-mail de notificação do Basecamp traz link `storage.app.basecamp.com/.../email/download/…`
   que baixa com `curl` sem login. Sem saída → perguntar ao Pedro (detalhe em `docs/TODO.md`, regras da rotina).
-- **Basecamp: post novo visível ao cliente** (Pedro 23/11): o conector cria post/mensagem só para o time e o `set_client_visibility` pede confirmação humana (trava em rotina). Depois de criar o post, chamar o webhook n8n "Basecamp - tornar visivel ao cliente" (`PkZYrNmhEMVNvltr`): `curl -sS -X POST https://n8n.valenteai.cloud/webhook/bc-visible-7f3c9a2e4b1d48e6a0c5 -H "Content-Type: application/json" -d '{"bucket_id":<projeto>,"recording_id":<post>}'` → `{"ok":true,"visible_to_clients":true}` (`"visible":false` esconde). Usa a credencial OAuth2 "Basecamp OAuth" do n8n (app 37signals "Pool Profits Automation"); falha → e-mail "[URGENTE] Basecamp" ao Pedro (401 = Reconnect na credencial). Comentário em post que o cliente já vê herda a visibilidade: não precisa.
+- **Basecamp: post novo visível ao cliente — SEM clique do Pedro, nunca** (Pedro 23/11 e 24/11; vale acima do item 5 do
+  prompt da rotina, que ainda fala em curl). 1) `create_message` **sem** o campo `visible_to_clients` (esse campo e o
+  `set_client_visibility` pedem confirmação humana e travam: nunca usar) → o post nasce só para o time. 2) Logo depois, pelo
+  **conector n8n** (o `curl` para o n8n é bloqueado na rotina; foi isso que deixou posts escondidos em 23-24/11):
+  `execute_workflow {workflowId: "PkZYrNmhEMVNvltr", executionMode: "production", triggerNodeName: "Make visible request",
+  inputs: {webhookData: {method: "POST", body: {bucket_id: <projeto>, recording_id: <post>}}}}`. 3) Conferir com `get_by_url`
+  que `visible_to_clients` = true; senão e-mail ao Pedro. O webhook guarda o post na tabela n8n "Basecamp Visible Posts"
+  (`n0wKfvJQD64aHQaH`) e o vigia "Basecamp - manter visivel ao cliente" (`60GANo1enQkUUXDP`, a cada 15 min, 30 dias)
+  reaplica a visibilidade — algo escondeu o post da Clear Pool às 13:03 de 24/11 e o vigia desfaz isso sozinho (testado:
+  escondido → visível em <1 s). Fora da rotina o curl também funciona. Credencial OAuth2 "Basecamp OAuth"; falha → e-mail
+  "[URGENTE] Basecamp" (401 = Reconnect). Comentário em post que o cliente já vê herda a visibilidade: não precisa.
 - **App do cliente = "Pool Profits"** (Pedro 18/11): a agência paga o app próprio (é o LeadConnector com a nossa marca; o
   cliente não precisa saber). Nunca citar "LeadConnector"/"HighLevel" ao cliente/time de cliente. Links: App Store
   `https://apps.apple.com/us/app/pool-profits/id6744033579`, Google Play

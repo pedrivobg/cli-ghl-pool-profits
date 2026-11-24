@@ -78,12 +78,7 @@ s = []
 s += [p("Skimmer + your CRM: how they work together", H1),
       p("The Pool Keepers · review of the live connection and my recommendations · November 24, 2026", SUB)]
 
-s += [p("Hi Nathan,"),
-      p("Thanks for giving me admin access to Skimmer. I went through every setting of the CRM integration (view only, "
-        "nothing was changed) and checked what is actually happening on the CRM side. Here's where things stand, what I "
-        "recommend, and the few decisions I need from you. Everything on the CRM side I build and test myself; on your "
-        "side it's about 5 minutes of clicks in Skimmer, or we can do them together on a quick call."),
-      ]
+s += [p("Review of every setting of the Skimmer CRM integration (view only, nothing changed) and of what is actually happening on the CRM side, with the recommended changes and the decisions still open.")]
 
 s += [p("1. The short version", H2),
       bullets([
@@ -181,8 +176,7 @@ s += [p("6. Next steps", H2),
           "I build the CRM side, test the full path with test contacts (new lead, card to Won, customer in Skimmer, "
           "activity back in the CRM), delete the tests, and send you a short summary before anything goes live.",
       ]),
-      Spacer(1, 8),
-      p("Pedro")]
+      ]
 
 doc = SimpleDocTemplate(OUT, pagesize=letter, leftMargin=0.75 * inch, rightMargin=0.75 * inch, topMargin=0.7 * inch,
                         bottomMargin=0.8 * inch, title="Skimmer + CRM - The Pool Keepers", author="Pedro, Pool Profits")
