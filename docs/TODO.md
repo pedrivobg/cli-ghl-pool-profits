@@ -15,8 +15,10 @@ combinar antes.
 - 19/11: Bonneville Ads (`86bcwer98`, Val): fluxos publicados; lead form mapeado + Active; ligação e SMS reais conferidos e
   apagados. Send Data não existe mais no Google Ads (Val) → campanha ativa; validar no 1º lead real (contato/tags/card/avisos) e confirmar à Val.
 
-- 23/11 Clear Pool Tucson loop de SMS: corrigido e testado (tag `owner - no sms alert` + filtro, `scripts/cp_sms_loop_fix.py`).
-  Falta: Pedro tornar visível ao Derek o post Basecamp `10540190493` (webhook bloqueado na rotina); guarda na frota só se o Pedro aprovar.
+- 23/11 Clear Pool Tucson loop de SMS: corrigido, testado e post ao Derek visível (webhook ok). Guarda na frota só se o Pedro aprovar (e-mail da noite 23/11, (b)3).
+- 23/11 Pool Shack (Val): 3 conversões x 2 leads = Dane 2x na LP (explicado). Se a Val disser que a campanha usa lead form asset → fluxo Google Lead Form (Val conecta Google Lead Ads).
+- 23/11 Pool Duck Winter Garden: Pedro carrega o V9 pela tela → eu ativo + guia. Auditoria 19/11 itens 1–7 (`86bd5n0h3`): turno de 24/11.
+- 23/11 Frank (DM): BluVantage/Vanessa (`86bd4tugh` 27/11), Smart Chem GBP + form do Chris, Puddle Jumpers GBP, Pool Keepers decisões do Nathan (30/11).
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
 - **Google Ads do cliente = sempre a Val** (Pedro 19/11: ele não tem acesso). Nunca pedir ao Pedro passo dentro do Google Ads
