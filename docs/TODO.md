@@ -18,6 +18,7 @@ combinar antes.
 - 23/11 Clear Pool Tucson loop de SMS: corrigido, testado e post ao Derek visível (webhook ok). Guarda na frota só se o Pedro aprovar (e-mail da noite 23/11, (b)3).
 - 23/11 Pool Shack (Val): 3 conversões x 2 leads = Dane 2x na LP (explicado). Se a Val disser que a campanha usa lead form asset → fluxo Google Lead Form (Val conecta Google Lead Ads).
 - 23/11 Pool Duck Winter Garden: Pedro carrega o V9 pela tela → eu ativo + guia. Auditoria 19/11 itens 1–7 (`86bd5n0h3`): turno de 24/11.
+- 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): IVR SPAM Detection lê o texto do Frank (`cp_holiday_vm.py on`). Esperando ligação de teste do Pedro ([Passo seu]) → conferir, apagar teste, confirmar ao Frank no thread. **28/11: `python3 scripts/cp_holiday_vm.py off`** (volta o MP3 do Derek) e avisar o Frank.
 - 23/11 Frank (DM): BluVantage/Vanessa (`86bd4tugh` 27/11), Smart Chem GBP + form do Chris, Puddle Jumpers GBP, Pool Keepers decisões do Nathan (30/11).
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
