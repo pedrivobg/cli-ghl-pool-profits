@@ -19,7 +19,7 @@ combinar antes.
 - 24/11 Pool Shack Google Lead Form (Val): "Google Ads Lead Form - New Lead" publicado e testado (`scripts/ps_lead_form.py`); Val respondida. Esperando o Pedro mapear + ativar o form em Settings → Integrations ([Passo seu]) → conferir o 1º lead real e confirmar à Val.
 - Snapshot Pool Profits: /contact-us do "New A2P Verification" vem com formId "none" ("Unable to find form" → revisão A2P 14/23, Cleverblu 24/11). Pôr no `pp_new_account` o ajuste para o "Landing Page - Optin Form" da conta (e corrigir no Snapshot).
 - 23/11 Pool Duck Winter Garden: Pedro carrega o V9 pela tela → eu ativo + guia. Auditoria 19/11 itens 1–7 (`86bd5n0h3`): turno de 24/11.
-- 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): IVR SPAM Detection lê o texto do Frank (`cp_holiday_vm.py on`). 1ª ligação do Pedro foi para o número errado que passei (480-428-0655 = Pool Shack; teste lá apagado) → [Passo seu] de novo com (520) 777-9131 → conferir, apagar teste, confirmar ao Frank no thread. **28/11: `python3 scripts/cp_holiday_vm.py off`** (volta o MP3 do Derek) e avisar o Frank.
+- 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): `cp_holiday_vm.py on` feito, mas o teste de 13:45 UTC caiu na caixa postal do CELULAR do Derek (atende na hora, saudação antiga) → IVR para no Connect call e a mensagem nunca toca. Teste apagado. Esperando o Pedro: (a) IVR sem tocar o Derek até 28/11 ou (b) Derek troca a saudação do celular → então confirmar ao Frank. **28/11: `python3 scripts/cp_holiday_vm.py off`** (+ desfazer o (a)) e avisar o Frank.
 - 23/11 Frank (DM): BluVantage/Vanessa (`86bd4tugh` 27/11), Smart Chem GBP + form do Chris, Puddle Jumpers GBP, Pool Keepers decisões do Nathan (30/11).
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
@@ -112,7 +112,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - **Cleverblu A2P**: enviado 24/11 (23/23), brand PENDING → acompanhar aprovação (1–5 dias úteis) e vincular o número.
 - **Cleverblu – lista do Skimmer (23/11)**: Frank mandou ao Nomar os passos de exportação; quando o arquivo chegar no Basecamp
   (baixar pelo link do e-mail), importar com `/contacts/upsert` sem tags + tag `active client` só nos ativos; nada dispara.
-- **East Orlando – guia do Luis**: resposta enviada 24/11; quando ele disser que logou no app: tocar só no app (tira o "aperte uma tecla"); site/privacy/form e A2P = Ed.
+- **East Orlando – guia do Luis**: 24/11 ele não recebeu o reset (mandei app.poolprofits.com por engano; certo = portal.poolduck.com). Rascunho em [Aprovar] (pergunta com qual e-mail entra no app + passos do GBP). Linha (689) 350-4006 ligada ao usuário "Pool Duck East Orlando" (toca o celular, whisper "press a key"); o usuário Luis Gomez já é só app → trocar conforme a resposta. Site/privacy/form e A2P = Ed.
 - **Pool Duck Winter Garden (23/11)**: Pedro carrega o snapshot V9 pela tela (API não tem rota); depois eu ativo (padrão Odessa)
   e mando o guia à Cibele. Review Request/Won Stage em draft em Odessa/Westchase/LWR até ter NPS link e Google (Westchase).
 - BluVantage (Frank 20/11): etapa "🤝 Vendors" criada; Vanessa escolhe entre Booked Assessment (14 cards) e Scheduled (0) —
