@@ -9,22 +9,21 @@ combinar antes.
 
 ## Aberto hoje
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
-- 20/11: Clear Pool LPs novas (`86bc6vvha`, Val): forms Weekly `ZxZ4nQ9f…` / Repairs `UgAUSMUp…` no AdWords Form - New Lead; 24/11 LPs do
-  Atif no ar (form certo + 520-777-1392) e cada form → obrigado próprio (/weekly-pool-service-thank-you, /pump-heater-repair-thank-you).
-  Esperando o Pedro: envio real nas 2 LPs ([Passo seu] 24/11) → conferir card/tags/avisos/SMS, apagar os 2 ZZ TEST, confirmar à Val na tarefa.
 - 19/11: Bonneville Ads (`86bcwer98`, Val): fluxos publicados; lead form mapeado + Active; ligação e SMS reais conferidos e
   apagados. Send Data não existe mais no Google Ads (Val) → campanha ativa; validar no 1º lead real (contato/tags/card/avisos) e confirmar à Val.
 
 - 23/11 Clear Pool Tucson loop de SMS: corrigido, testado e post ao Derek visível (webhook ok). Guarda na frota só se o Pedro aprovar (e-mail da noite 23/11, (b)3).
-- 24/11 Pool Shack Google Lead Form (Val): "Google Ads Lead Form - New Lead" publicado e testado (`scripts/ps_lead_form.py`); Val respondida. Esperando o Pedro mapear + ativar o form em Settings → Integrations ([Passo seu]) → conferir o 1º lead real e confirmar à Val.
+- 24/11 Pool Shack Google Lead Form (Val): fluxo publicado; Pedro já ligou/mapeou (não pedir mais) → conferir o 1º lead real e avisar a Val.
 - Snapshot Pool Profits: /contact-us do "New A2P Verification" vem com formId "none" ("Unable to find form" → revisão A2P 14/23, Cleverblu 24/11). Pôr no `pp_new_account` o ajuste para o "Landing Page - Optin Form" da conta (e corrigir no Snapshot).
-- 23/11 Pool Duck Winter Garden: Pedro carrega o V9 pela tela → eu ativo + guia. Auditoria 19/11 itens 1–7 (`86bd5n0h3`): turno de 24/11.
-- 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): `cp_holiday_vm.py on` feito, mas o teste de 13:45 UTC caiu na caixa postal do CELULAR do Derek (atende na hora, saudação antiga) → IVR para no Connect call e a mensagem nunca toca. Teste apagado. 24/11 20h UTC: Frank perguntou → expliquei no thread e pedi a escolha do Derek: (1) sem tocar o Derek até 27/11 (mudar o Connect call do IVR, testar) ou (2) Derek troca a saudação do celular. Esperando o Frank (não precisa mais do Pedro). **28/11: `python3 scripts/cp_holiday_vm.py off`** (+ desfazer o (a)) e avisar o Frank.
+- 24/11 Pool Duck Winter Garden: V9 carregado (Pedro), 0 contatos. Esperando o Ed (e-mail 24/11 21h UTC): e-mail/celular da Cibele + número → criar usuário, ligações/avisos (padrão Odessa, `pd_wc_phase2.py` env PD_*), testar, guia. Auditoria 19/11 itens 1–7 (`86bd5n0h3`).
+- 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): `cp_holiday_vm.py on` feito, mas o teste de 13:45 UTC caiu na caixa postal do CELULAR do Derek (atende na hora, saudação antiga) → IVR para no Connect call e a mensagem nunca toca. Teste apagado. 24/11 20h UTC: Frank perguntou → expliquei no thread e pedi a escolha do Derek: (1) sem tocar o Derek até 27/11 (mudar o Connect call do IVR, testar) ou (2) Derek troca a saudação do celular. Frank pediu para falar com o Derek no Basecamp → pergunta 1/2 postada 24/11 21:07 UTC (comentário 10544332203 em "Voicemail and Phone Issues"); esperando o Derek (se 1: mudar o Connect call do IVR SPAM Detection, testar, avisar Frank). Post do loop de SMS (10540190493) voltou a só-time: Pedro torna visível (webhook bloqueado na rotina 24/11). **28/11: `python3 scripts/cp_holiday_vm.py off`** (+ desfazer o (a)) e avisar o Frank.
+- 24/11 **Poolheads Thanksgiving** (Frank, canal Poolheads): `scripts/ph_thanksgiving.py on` no ar (qua 25 só 9–12; qui/sex VM de Thanksgiving + SMS em ligação perdida e SMS recebido; sáb normal por data). SMS testado. Falta: ligação do Pedro ([Passo seu] 24/11, contato dele com tag `zz tg test`) → conferir gravação → `ph_thanksgiving.py notest` + tirar a tag + apagar card/tarefa → post ao Felipe no Basecamp + confirmar ao Frank. **28/11: `ph_thanksgiving.py off`**.
 - 23/11 Frank (DM): BluVantage/Vanessa (`86bd4tugh` 27/11), Smart Chem GBP + form do Chris, Puddle Jumpers GBP, Pool Keepers decisões do Nathan (30/11).
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
 - **Google Ads do cliente = sempre a Val** (Pedro 19/11: ele não tem acesso). Nunca pedir ao Pedro passo dentro do Google Ads
   (Send Data, conversões, URLs): pedir à Val no ClickUp. Ao Pedro só o lado do CRM (tela do GHL, ligação/SMS de teste).
+- **Google Lead Form no CRM = feito pelo Pedro, nunca pedir de novo** (Pedro 24/11, Pool Shack: "já fiz várias vezes"). Play + mapear campos ele já fez; a lista de lead forms/Send Data só existe no Google Ads (Val). Validação = Val ou o 1º lead real, que eu confiro sozinho.
 - **Resposta ao Pedro no thread dele fica NÃO LIDA** (Pedro 18/11: a rotina responde no thread do [Passo seu]/[Aprovar], mas
   marca como lido e ele não vê). Ao responder ao Pedro: depois de enviar, marcar a SUA resposta como não lida
   (Gmail `label_message` messageId=<id da resposta> labelIds ["UNREAD"]). "Marcar o thread como lido" vale só para
@@ -113,7 +112,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - **Cleverblu A2P**: enviado 24/11 (23/23), brand PENDING → acompanhar aprovação (1–5 dias úteis) e vincular o número.
 - **Cleverblu – lista do Skimmer (23/11)**: Frank mandou ao Nomar os passos de exportação; quando o arquivo chegar no Basecamp
   (baixar pelo link do e-mail), importar com `/contacts/upsert` sem tags + tag `active client` só nos ativos; nada dispara.
-- **East Orlando – guia do Luis**: 24/11 ele não recebeu o reset (mandei app.poolprofits.com por engano; certo = portal.poolduck.com). Rascunho em [Aprovar] (pergunta com qual e-mail entra no app + passos do GBP). Linha (689) 350-4006 ligada ao usuário "Pool Duck East Orlando" (toca o celular, whisper "press a key"); o usuário Luis Gomez já é só app → trocar conforme a resposta. Site/privacy/form e A2P = Ed.
+- **East Orlando – guia do Luis**: 24/11 ele não recebeu o reset (mandei app.poolprofits.com por engano; certo = portal.poolduck.com). Resposta aprovada enviada 24/11 21:02 UTC (portal.poolduck.com, pergunta com qual e-mail entra no app + passos do GBP) → esperando o Luis. Linha (689) 350-4006 ligada ao usuário "Pool Duck East Orlando" (toca o celular, whisper "press a key"); o usuário Luis Gomez já é só app → trocar conforme a resposta. Site/privacy/form e A2P = Ed.
 - **Pool Duck Winter Garden (23/11)**: Pedro carrega o snapshot V9 pela tela (API não tem rota); depois eu ativo (padrão Odessa)
   e mando o guia à Cibele. Review Request/Won Stage em draft em Odessa/Westchase/LWR até ter NPS link e Google (Westchase).
 - BluVantage (Frank 20/11): etapa "🤝 Vendors" criada; Vanessa escolhe entre Booked Assessment (14 cards) e Scheduled (0) —

@@ -162,6 +162,8 @@
   `scripts/pp_review_noscore.py`: o Go To do ramo 5 apontava para os passos de link do timeout — os passos vão para o ramo 5,
   o timeout termina; testado com `--test`). Conta fora do modelo: `scripts/pp_fleet_check.py` (etapas, CONTENT do pp_mirror,
   gate, dashboard).
+- If/else por data (testado 24/11 na Test Snapshot): `conditionType date_time`, `conditionSubType "day_month"` ("24") e `"month"` **começa em 0** (novembro = "10"); feriado por data sem trocar nada depois (`scripts/ph_thanksgiving.py`).
+- Google Lead Form na tela do CRM (Play + mapear) o Pedro já faz; nunca pedir de novo (24/11). Teste = Val (Google Ads) ou 1º lead real.
 - Labs (`/labs/features`) não aceita o token Firebase ("Auth channel not supported"): ligar no painel.
 - Tag usada em passo/gatilho/if-else **tem que existir na conta** (`POST backend /workflow/{loc}/tags/create
   {tag}`): o passo funciona, mas o construtor mostra "Referenced Tag does not exist" (Frank viu no Won
