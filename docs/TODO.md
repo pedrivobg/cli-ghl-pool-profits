@@ -19,7 +19,7 @@ combinar antes.
 - 24/11 Pool Shack Google Lead Form (Val): "Google Ads Lead Form - New Lead" publicado e testado (`scripts/ps_lead_form.py`); Val respondida. Esperando o Pedro mapear + ativar o form em Settings → Integrations ([Passo seu]) → conferir o 1º lead real e confirmar à Val.
 - Snapshot Pool Profits: /contact-us do "New A2P Verification" vem com formId "none" ("Unable to find form" → revisão A2P 14/23, Cleverblu 24/11). Pôr no `pp_new_account` o ajuste para o "Landing Page - Optin Form" da conta (e corrigir no Snapshot).
 - 23/11 Pool Duck Winter Garden: Pedro carrega o V9 pela tela → eu ativo + guia. Auditoria 19/11 itens 1–7 (`86bd5n0h3`): turno de 24/11.
-- 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): `cp_holiday_vm.py on` feito, mas o teste de 13:45 UTC caiu na caixa postal do CELULAR do Derek (atende na hora, saudação antiga) → IVR para no Connect call e a mensagem nunca toca. Teste apagado. Esperando o Pedro: (a) IVR sem tocar o Derek até 28/11 ou (b) Derek troca a saudação do celular → então confirmar ao Frank. **28/11: `python3 scripts/cp_holiday_vm.py off`** (+ desfazer o (a)) e avisar o Frank.
+- 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): `cp_holiday_vm.py on` feito, mas o teste de 13:45 UTC caiu na caixa postal do CELULAR do Derek (atende na hora, saudação antiga) → IVR para no Connect call e a mensagem nunca toca. Teste apagado. 24/11 20h UTC: Frank perguntou → expliquei no thread e pedi a escolha do Derek: (1) sem tocar o Derek até 27/11 (mudar o Connect call do IVR, testar) ou (2) Derek troca a saudação do celular. Esperando o Frank (não precisa mais do Pedro). **28/11: `python3 scripts/cp_holiday_vm.py off`** (+ desfazer o (a)) e avisar o Frank.
 - 23/11 Frank (DM): BluVantage/Vanessa (`86bd4tugh` 27/11), Smart Chem GBP + form do Chris, Puddle Jumpers GBP, Pool Keepers decisões do Nathan (30/11).
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
@@ -129,8 +129,8 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Pool Duck (20/11): East Orlando (Luis, `m2glhRgphyM7uXh4Rc8u`): Sharon carregou o V9; custom values, missed-call nativo off,
   dono/avisos = Luis feitos; "add owner" consertado pelo Pedro 20/11 13:27 e conferido (Luis). Falta:
   domínio + privacy/terms (A2P), Google review link, preços. Ed pediu o A2P de (689) 350-4006 (20/11): perfil ok, falta website →
-  site no ar = `GHL_AGENCY=poolduck pp_a2p.py campaign/submit -n "East Orlando"` no mesmo dia; perguntei ao Ed se encaminha
-  para o Luis (321) 948-6198 (hoje sem encaminhamento). Westchase (`IzfAqV2fqR1mEHAPVglZ`): V9 fase 1 em draft (20/11);
+  site no ar = `GHL_AGENCY=poolduck pp_a2p.py campaign/submit -n "East Orlando"` no mesmo dia; Ed confirmou 24/11 encaminhar
+  para o Luis (321) 948-6198: já toca pelo usuário "Pool Duck East Orlando" (whisper, 20 s → caixa postal) → conferir na 1ª ligação real (0 ligações até 24/11). Westchase (`IzfAqV2fqR1mEHAPVglZ`): V9 fase 1 em draft (20/11);
   publicar quando houver número/avisos da Christine e endereço de A2P (Ed). Cibele: Sharon cria com o V9 e avisa.
   Snapshot V9 da agência Pool Duck ainda traz "Reply in the GHL app" no Notify Owner (corrigir nas contas novas).
 - Pool Keepers/Skimmer: call com o Nathan feita 19/11; esperando ele trocar Location ID/chave no Skimmer → conferir a conexão na
