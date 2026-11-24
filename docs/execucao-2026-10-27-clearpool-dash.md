@@ -1751,3 +1751,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
   14/10; GID/Legion/Pooltexx ainda clientes?). Nada aplicado.
 - Winter Garden: V9 carregado (18 publicados, sem número nem usuário com celular); pipeline → "01. Pool Leads" (backup).
 - Skimmer/Nathan: esperando o e-mail da extensão "[Skimmer] Config GoHighLevel – Pool Keepers" → proposta em PDF ao Nathan.
+- 24/11 noite (respostas do Pedro): Poolheads Thanksgiving: ligação de teste conferida (gravação aos 21 s = mensagem de Thanksgiving), `ph_thanksgiving.py notest`, tag/card/fluxos do teste limpos, call_check 0 ERRO; post ao Felipe pendente (confirmação do Basecamp sem resposta). Clear Pool: post 10540190493 visível (Pedro). Skimmer: config lida pela extensão + checagem na KjLd → PDF ao Nathan para o Pedro aprovar.

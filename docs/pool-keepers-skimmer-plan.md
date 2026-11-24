@@ -25,3 +25,12 @@ Conta viva = BurchTech `KjLd769fprQ2EaBI9Cro` (1.201 contatos, fluxos próprios)
 - Mensagens de serviço (On My Way, Finished, Invoice, Quote) ficam na Skimmer; o CRM não repete.
 - Escopo do sync GHL → Skimmer (tela Integrations Center → GoHighLevel → Configure, não legível pela extensão): só o estágio
   Won, nunca todos os contatos (senão lead frio vira cliente e recebe SMS de serviço).
+
+## Config real (extensão, 24/11) e o que isso causa
+- Conectado na KjLd (certa). Syncs todos ligados, **initial import ON** (Nathan disse off em 16/11). Gatilho = "Customer
+  Pipeline > New Lead", lead source fixo "Customer referral", work order off, campos de contato/endereço mapeados.
+- A conta tem **0 cards** (todos os fluxos que criam card são os nossos, em draft) → o gatilho por etapa nunca disparou.
+- O sync de contatos criou sozinho um cliente (nota `CustomerAdded … Lead source: Customer referral … Logged by: System`,
+  20/11) para um contato que ganhou endereço + e-mail, sem card.
+- Proposta ao Nathan (PDF `reports/pool-keepers/skimmer-crm-plan-2026-11-24.pdf`): initial import off; gatilho = Pool Leads >
+  Won - Weekly Pool Service; lead source próprio; publicar os fluxos de lead; automações pelas notas (lista acima); 5 decisões.
