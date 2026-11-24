@@ -9,9 +9,9 @@ combinar antes.
 
 ## Aberto hoje
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
-- 20/11: Clear Pool LPs novas (`86bc6vvha`, Val): forms Weekly `ZxZ4nQ9f…` / Repairs `UgAUSMUp…` (+ Service Needed) no gatilho do
-  AdWords Form - New Lead + fluxos de tag feitos (`scripts/cp_lp_launch.py`). Esperando Atif (páginas + 2 URLs de obrigado →
-  `apply --thanks-weekly/--thanks-repairs`) → testar envio em cada página. Conversão: só "Converted Lead - WON" (Val 23/11; Won -> Google Ads conferido).
+- 20/11: Clear Pool LPs novas (`86bc6vvha`, Val): forms Weekly `ZxZ4nQ9f…` / Repairs `UgAUSMUp…` no AdWords Form - New Lead; 24/11 LPs do
+  Atif no ar (form certo + 520-777-1392) e cada form → obrigado próprio (/weekly-pool-service-thank-you, /pump-heater-repair-thank-you).
+  Esperando o Pedro: envio real nas 2 LPs ([Passo seu] 24/11) → conferir card/tags/avisos/SMS, apagar os 2 ZZ TEST, confirmar à Val na tarefa.
 - 19/11: Bonneville Ads (`86bcwer98`, Val): fluxos publicados; lead form mapeado + Active; ligação e SMS reais conferidos e
   apagados. Send Data não existe mais no Google Ads (Val) → campanha ativa; validar no 1º lead real (contato/tags/card/avisos) e confirmar à Val.
 
