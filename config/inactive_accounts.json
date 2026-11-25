@@ -1,5 +1,5 @@
 {
-  "_note": "Client sub-accounts that are no longer active (Frank, ClickUp DM 13/11; Signature, Big George's: Val/Frank on the Dashboards task 13/11). Fleet scripts with --all skip them. Pool Smart OC taken out 16/11: Frank is checking if they're still a client.",
+  "_note": "Client sub-accounts that are no longer active (Frank, ClickUp DM 13/11; Signature, Big George's: Val/Frank on the Dashboards task 13/11). Fleet scripts with --all skip them. Pool Smart OC taken out 16/11: Frank is checking if they're still a client. GID Pools, Legion Pools, Pooltexx (paused/cancelled) and Clear Conceptz (paused) added 25/11 (Frank, e-mail 'Inbound calls on every tracking line').",
   "accounts": {
     "K3iumGB5iA0foE3VgInv": "Ponchos Pool Services",
     "hUIqlgN7022go57bPorL": "ABC Pool Service",
@@ -10,6 +10,10 @@
     "9ZJdNXYci94UX6ZAixwZ": "Pooly",
     "59WDwboGAWQE9Zxilo4f": "PoolReady SELA",
     "DejEGQDNwFL3xDwiR0YF": "Signature Pool Care",
-    "8imEW3QoLkDp42euD3uI": "Big George's Pool Care"
+    "8imEW3QoLkDp42euD3uI": "Big George's Pool Care",
+    "8v9OLKghkGdkLyxmXnjF": "GID Pools",
+    "TReMqKUFpRfbLtAa65Ef": "Legion Pools",
+    "3WwQFxAYXqbxMOy2eYQ4": "Pooltexx LLC",
+    "Mqn589csjlrdliyS0zZi": "Clear Conceptz"
   }
 }

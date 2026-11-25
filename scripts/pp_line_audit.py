@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import time
+from pathlib import Path
 
 from _common import Agency, load_dotenv
 from cli_anything.gohighlevel.utils.agency import BACKEND
@@ -55,7 +56,11 @@ def main() -> int:
     load_dotenv()
     a = Agency()
     out = []
+    inactive_f = Path(__file__).resolve().parents[1] / "config" / "inactive_accounts.json"
+    inactive = json.loads(inactive_f.read_text())["accounts"] if inactive_f.exists() else {}  # Frank 25/11
     for loc in sorted(a.locations(), key=lambda x: x["name"]):
+        if not args.only and loc["id"] in inactive:
+            continue
         n = loc["name"]
         if args.only and args.only.lower() not in n.lower():
             continue

@@ -8,6 +8,7 @@ comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha p
 combinar antes.
 
 ## Aberto hoje
+- 25/11: sub-conta "ABC Pools" (`olefWlhtsz2k8pVA7zcp`, criada 24/11 21:22) com dados de teste (testing@poolprofits.com, 805-555-1234), sem survey nem tarefa → não mexi; perguntar ao Pedro na revisão da noite se é teste (apagar) ou cliente.
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
 - 19/11: Bonneville Ads (`86bcwer98`, Val): fluxos publicados; lead form mapeado + Active; ligação e SMS reais conferidos e
   apagados. Send Data não existe mais no Google Ads (Val) → campanha ativa; validar no 1º lead real (contato/tags/card/avisos) e confirmar à Val.
@@ -110,12 +111,13 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 
 ## Esperando outros
 - **Ed (25/11)**: OK do plano de SMS ao dono em toda ligação de lead (e-mail "Inbound calls on every tracking line") + BluVantage
-  sim/não + GID/Legion/Pooltexx ainda clientes → aplicar com `pp_line_audit.py` antes/depois, teste ZZ, `pp_call_check`.
+  sim/não → aplicar com `pp_line_audit.py` antes/depois, teste ZZ, `pp_call_check`. GID/Legion/Pooltexx/Clear Conceptz = inativas (Frank 25/11, `config/inactive_accounts.json`).
 - **Skimmer/Pool Keepers**: PDF enviado ao Nathan por e-mail 24/11 (cc Frank; `reports/pool-keepers/The-Pool-Keepers-Skimmer-CRM-Plan.pdf`). Esperando as 5 respostas → montar o lado do CRM em draft (fluxos de lead + automações pelas notas da Skimmer), testar, publicar com OK.
 - **Cleverblu – site novo (`86bd66w02`, Success Team 24/11)**: Success Team lança o site na noite de 24/11 (pedido do Frank por e-mail); GA4 G-X8ZK57LS47 + link do QR sticker no lançamento; quando o site for ao ar (DNS), eu confiro http/https/www + link (200, UTMs) + GA4 Realtime e mando ao Nomar onde ver (sticker / qr).
 - **Cleverblu A2P**: enviado 24/11 (23/23), brand PENDING → acompanhar aprovação (1–5 dias úteis) e vincular o número.
 - **Cleverblu – lista do Skimmer (23/11)**: Frank mandou ao Nomar os passos de exportação; quando o arquivo chegar no Basecamp
   (baixar pelo link do e-mail), importar com `/contacts/upsert` sem tags + tag `active client` só nos ativos; nada dispara.
+- **East Orlando – GBP do Luis (25/11)**: Google travou 2 dias (passkey novo) ao conectar o perfil → rascunho (Gmail dele como manager do perfil / "Try another way" / esperar) em [Aprovar] ao Pedro; aprovado → responder a todos no thread do guia.
 - **East Orlando – guia do Luis**: 24/11 ele não recebeu o reset (mandei app.poolprofits.com por engano; certo = portal.poolduck.com). Resposta aprovada enviada 24/11 21:02 UTC (portal.poolduck.com, pergunta com qual e-mail entra no app + passos do GBP) → esperando o Luis. Linha (689) 350-4006 ligada ao usuário "Pool Duck East Orlando" (toca o celular, whisper "press a key"); o usuário Luis Gomez já é só app → trocar conforme a resposta. Site/privacy/form e A2P = Ed.
 - Pool Duck: Review Request/Won Stage em draft em Odessa/Westchase/LWR até ter NPS link e Google (Westchase).
 - BluVantage (Frank 20/11): etapa "🤝 Vendors" criada; Vanessa escolhe entre Booked Assessment (14 cards) e Scheduled (0) —
