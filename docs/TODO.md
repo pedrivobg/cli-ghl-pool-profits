@@ -111,8 +111,9 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
    existe para entrega por webhook). Validação = 1º lead real; eu confiro e aviso. Não é passo do Pedro.
 
 ## Esperando outros
-- **Ed (25/11)**: OK do plano de SMS ao dono em toda ligação de lead (e-mail "Inbound calls on every tracking line") + BluVantage
-  sim/não → aplicar com `pp_line_audit.py` antes/depois, teste ZZ, `pp_call_check`. GID/Legion/Pooltexx/Clear Conceptz = inativas (Frank 25/11, `config/inactive_accounts.json`).
+- **Ed (25/11) — SMS imediato em toda ligação de lead nova: APROVADO** (Ed 25/11 18:39): vai para quem atende o telefone em cada conta
+  (usuários que a linha toca hoje), não só o dono; BluVantage → Vanessa (Paul não). Respondi ao Ed (confirmo quando testado).
+  Falta: montar (fleet), teste ZZ, `pp_line_audit.py` antes/depois, `pp_call_check`, confirmar ao Ed (`86bd349d8`). GID/Legion/Pooltexx/Clear Conceptz = inativas.
 - **Skimmer/Pool Keepers**: PDF enviado ao Nathan por e-mail 24/11 (cc Frank; `reports/pool-keepers/The-Pool-Keepers-Skimmer-CRM-Plan.pdf`). Esperando as 5 respostas → montar o lado do CRM em draft (fluxos de lead + automações pelas notas da Skimmer), testar, publicar com OK. 25/11: call proposta ao Nathan só seg 30/11 8:00 AM CT (11h BRT), Zoom (aprovado pelo Pedro) → esperando ele confirmar; link do Zoom = Pedro.
 - **Cleverblu – site novo (`86bd66w02`, Success Team 24/11)**: Success Team lança o site na noite de 24/11 (pedido do Frank por e-mail); GA4 G-X8ZK57LS47 + link do QR sticker no lançamento; quando o site for ao ar (DNS), eu confiro http/https/www + link (200, UTMs) + GA4 Realtime e mando ao Nomar onde ver (sticker / qr).
 - **Cleverblu A2P**: enviado 24/11 (23/23), brand PENDING → acompanhar aprovação (1–5 dias úteis) e vincular o número.
@@ -148,7 +149,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Passion (20/11): form do site agora avisa por SMS o escritório +1 615-624-7624 (John deu STOP no celular dele em 18/11); conferir no próximo lead do form. "Inbound SMS - Notify Owner" vai ao John (DND) e ao Brad (20/11).
 - Passion LP ChatGPT Ads (`86bc6vqr9`, 24/11): form "PPC - ChatGPT Ads Quote" → fluxo "ChatGPT Ads Form - New Lead" publicado
   e testado (`pc_chatgpt_lp.py`). Falta o envio real do Pedro em go.passionpoolcare.com/pool-care (e-mail da noite 24/11) →
-  conferir card/tags/avisos, apagar, confirmar à Val. Val pediu o OK do John à LP no Basecamp (25/11) — sem resposta minha. Atif trocou as keywords (conferido 25/11). 25/11 Val: conversão de ligação pela OpenAI CAPI na linha +1 629-290-1180 (pixel 2vWucauJLhgQD55Sc9CKnL, `lead_created`, `phone_call`) → plano respondido; esperando a API key da Val → montar: fluxo da linha (origem "ChatGPT Ads - Call", tag chatgpt ads, avisos 615-624-7624 + Brad; hoje só card, sem aviso) + webhook → n8n (hash do telefone 1+10 dígitos, id único por ligação, oppref se houver) → POST bzr.openai.com/v1/events?pid=…; testar com `validate_only`, depois ligação real com a Val.
+  conferir card/tags/avisos, apagar, confirmar à Val. Val pediu o OK do John à LP no Basecamp (25/11) — sem resposta minha. Atif trocou as keywords (conferido 25/11). 25/11: OpenAI CAPI das ligações NO AR (`pc_chatgpt_call.py`, n8n `MaPiK7MgXDfmSHiu`, `docs/chatgpt-ads-capi.md`; validate_only ok, respondido à Val) → falta o Atif pôr +1 629-290-1180 na LP (hoje 629-247-6255) e a ligação real com a Val (conferir card/avisos/evento no ChatGPT Ads).
 - Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por
   escrito no thread do canal Pool Profits para eu me preparar (ideias do que dá para automatizar).
 - Val (18/11, `86bd4tugh`): confirma com a Vanessa (BluVantage) em 19/11 se o card pode ir sozinho de New Lead para In
