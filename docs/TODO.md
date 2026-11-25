@@ -147,7 +147,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - Passion (20/11): form do site agora avisa por SMS o escritório +1 615-624-7624 (John deu STOP no celular dele em 18/11); conferir no próximo lead do form. "Inbound SMS - Notify Owner" vai ao John (DND) e ao Brad (20/11).
 - Passion LP ChatGPT Ads (`86bc6vqr9`, 24/11): form "PPC - ChatGPT Ads Quote" → fluxo "ChatGPT Ads Form - New Lead" publicado
   e testado (`pc_chatgpt_lp.py`). Falta o envio real do Pedro em go.passionpoolcare.com/pool-care (e-mail da noite 24/11) →
-  conferir card/tags/avisos, apagar, confirmar à Val. Val pediu o OK do John à LP no Basecamp (25/11) — sem resposta minha. Atif: keywords da página com cidades da Flórida; Val: linha própria p/ ligação?
+  conferir card/tags/avisos, apagar, confirmar à Val. Val pediu o OK do John à LP no Basecamp (25/11) — sem resposta minha. Atif trocou as keywords (conferido 25/11). Val: linha própria p/ ligação?
 - Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por
   escrito no thread do canal Pool Profits para eu me preparar (ideias do que dá para automatizar).
 - Val (18/11, `86bd4tugh`): confirma com a Vanessa (BluVantage) em 19/11 se o card pode ir sozinho de New Lead para In
