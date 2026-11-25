@@ -18,6 +18,7 @@ combinar antes.
 - 24/11 Pool Duck Winter Garden: V9 carregado (Pedro), 0 contatos. Esperando o Ed (e-mail 24/11 21h UTC): e-mail/celular da Cibele + número → criar usuário, ligações/avisos (padrão Odessa, `pd_wc_phase2.py` env PD_*), testar, guia. Auditoria 19/11 itens 1–7 (`86bd5n0h3`).
 - 24/11 Clear Pool Tucson caixa postal de Thanksgiving (Frank): `cp_holiday_vm.py on` feito, mas o teste de 13:45 UTC caiu na caixa postal do CELULAR do Derek (atende na hora, saudação antiga) → IVR para no Connect call e a mensagem nunca toca. Teste apagado. 24/11 20h UTC: Frank perguntou → expliquei no thread e pedi a escolha do Derek: (1) sem tocar o Derek até 27/11 (mudar o Connect call do IVR, testar) ou (2) Derek troca a saudação do celular. Frank pediu para falar com o Derek no Basecamp → pergunta 1/2 postada 24/11 21:07 UTC (comentário 10544332203 em "Voicemail and Phone Issues"); esperando o Derek (se 1: mudar o Connect call do IVR SPAM Detection, testar, avisar Frank). Post do loop de SMS (10540190493) voltou a só-time: Pedro torna visível (webhook bloqueado na rotina 24/11). **28/11: `python3 scripts/cp_holiday_vm.py off`** (+ desfazer o (a)) e avisar o Frank.
 - 24/11 **Poolheads Thanksgiving**: no ar, testado, post ao Felipe visível (10544821551), Frank avisado. **28/11: `python3 scripts/ph_thanksgiving.py off`**.
+- 24/11 noite: Clear Pool caixa postal — proposto ao Pedro aplicar a opção 1 se o Derek não responder até 25/11 meio-dia AZ (esperando "ok 1"). Auditoria 19/11 itens 1–7 (`86bd5n0h3`) → 26/11 com a auditoria semanal.
 - 23/11 Frank (DM): BluVantage/Vanessa (`86bd4tugh` 27/11), Smart Chem GBP + form do Chris, Puddle Jumpers GBP, Pool Keepers decisões do Nathan (30/11).
 
 ## Regras da rotina (lidas a cada disparo; Pedro 11/11)
@@ -142,8 +143,9 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   Se o Shane topar: monto a campanha em draft e mando o texto para aprovação.
 - Frank/cliente (19/11): Puddle Jumper — quem da lista importada é cliente ativo (tag `active client`); Frank perguntou ao cliente.
 - Passion (20/11): form do site agora avisa por SMS o escritório +1 615-624-7624 (John deu STOP no celular dele em 18/11); conferir no próximo lead do form. "Inbound SMS - Notify Owner" vai ao John (DND) e ao Brad (20/11).
-- Val/Atif (19/11, `86bc6vqr9`): LP nova da Passion (ChatGPT Ads). Quando o link vier: ligar o form ao CRM com os avisos
-  (SMS 615-624-7624 + passionpoolcare@gmail.com) e tracking, testar ponta a ponta e responder na tarefa.
+- Passion LP ChatGPT Ads (`86bc6vqr9`, 24/11): form "PPC - ChatGPT Ads Quote" → fluxo "ChatGPT Ads Form - New Lead" publicado
+  e testado (`pc_chatgpt_lp.py`). Falta o envio real do Pedro em go.passionpoolcare.com/pool-care (e-mail da noite 24/11) →
+  conferir card/tags/avisos, apagar, confirmar à Val. Atif: keywords da página com cidades da Flórida; Val: linha própria p/ ligação?
 - Success Team/Ed (18/11): call sobre automatizar tarefas de SEO — eles retomam amanhã (19/11); pedi a lista das tarefas por
   escrito no thread do canal Pool Profits para eu me preparar (ideias do que dá para automatizar).
 - Val (18/11, `86bd4tugh`): confirma com a Vanessa (BluVantage) em 19/11 se o card pode ir sozinho de New Lead para In
