@@ -102,7 +102,9 @@ def id_leaves(node):
 
 
 # ids of objects the dump does not fetch (documents/contract templates, ad accounts): not checkable here
-UNDUMPED_ID_FIELDS = {"documentCreatedByTemplateId", "adAccountId"}
+# ids that live outside the CRM or are not dumped: Google ad account / Google lead form (Sunwave 26/11), chat widget
+# (Orange Tree 26/11, GET services /chat-widget/{loc})
+UNDUMPED_ID_FIELDS = {"documentCreatedByTemplateId", "adAccountId", "formId", "message.chatWidgetId"}
 
 
 def field_conditions(node):

@@ -219,6 +219,8 @@
   `POST services /medias/files/verify {altId, altType, id: aknId}` → URL pública `assets.cdn.filesafe.space/…`
   (`/medias/upload-file` recusa o token Firebase). IVR tocando áudio: `sayPlayAttributes` com `widgetType: "play"` e
   `audioUrl` (Poolheads, 22/10).
+- Widgets de chat da conta: `GET services /chat-widget/{loc}` → `chatWidgets[{_id, name, default}]` (gatilho `customer_reply` com
+  `message.chatWidgetId`; Orange Tree 26/11: o achado "widget inexistente" era falso).
 - Funis/sites: `GET services /funnels/funnel/list?locationId` (passos com `pages[]`); print de qualquer página sem login
   pelo preview `https://app.gohighlevel.com/v2/preview/<pageId>` (Chromium headless `--screenshot`).
 - Review Request de 13 contas (V9 carregado da conta de origem) lia a nota pelo id `ZIN3A1XVj7dvVTyCL3qX`, campo que a

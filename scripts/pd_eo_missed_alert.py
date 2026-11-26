@@ -23,12 +23,22 @@ LOC = "m2glhRgphyM7uXh4Rc8u"
 OWNER = "BjM7yUTmnomeYqNqnkee"
 FLOW = "Missed Incoming Call To Pipeline"
 NAME = "Missed Call SMS - Owner"
+EMAIL_NAME = "Missed Call Email - Owner"
+OWNER_EMAIL = "poolduck@eastorlando.poolduck.com"  # 26/11: A2P not submitted yet → the SMS alert can fail (30034)
 
 
 def alert() -> dict:
     return {"id": nid(), "name": NAME, "type": "internal_notification", "attributes": {"type": "sms", "sms": {
         "body": "\U0001f4de MISSED CALL - new lead\n\nName: {{contact.name}}\nPhone: {{contact.phone}}\n\nCall them back from the "
                 "Pool Duck app.", "selectedUser": [OWNER], "userType": "user", "attachments": []}}}
+
+
+def email_alert(to: str = OWNER_EMAIL) -> dict:
+    return {"id": nid(), "name": EMAIL_NAME, "type": "internal_notification", "attributes": {"type": "email", "email": {
+        "userType": "custom_email", "to": to, "subject": "Missed call - new lead: {{contact.name}} {{contact.phone}}",
+        "html": "<p>You missed a call on your Pool Duck business line.</p><p><b>Name:</b> {{contact.name}}<br>"
+                "<b>Phone:</b> {{contact.phone}}</p><p>Call them back from the Pool Duck app.</p>",
+        "attachments": []}}}
 
 
 def main() -> int:
@@ -40,11 +50,12 @@ def main() -> int:
     wid = next(w["id"] for w in a.workflows(LOC) if w["name"] == FLOW)
     live = a.workflow(LOC, wid)
     t = json.loads(json.dumps(live["workflowData"]["templates"]))
-    if any(s.get("name") == NAME for s in t):
+    if any(s.get("name") == EMAIL_NAME for s in t):
         print("already there")
         return 0
-    card = next(s for s in t if s["type"] == "create_opportunity")
-    after(t, card, alert())
+    if not any(s.get("name") == NAME for s in t):
+        after(t, next(s for s in t if s["type"] == "create_opportunity"), alert())
+    after(t, next(s for s in t if s.get("name") == NAME), email_alert())
     ids = {s["id"] for s in t}
     for s in t:
         for r in ([s["next"]] if isinstance(s.get("next"), str) else s.get("next") or []) + [x for x in (s.get("parent"), s.get("parentKey")) if x]:

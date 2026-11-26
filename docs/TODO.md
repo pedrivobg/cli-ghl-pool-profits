@@ -190,5 +190,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
   ou não está usando o CRM (0 lead em 3 dias, WON, cards parados). ClickUp: tarefa "Internal dashboard: daily GHL audit".
 
 - **East Orlando (Luis)**: usuário Pool Duck East Orlando tocando só no app (24/11); conferir as próximas ligações reais (atendidas no app?) e, quando ele criar o Google Business Profile, montar o link de review.
+- **A2P – SMS bloqueados (auditoria 26/11, 86bd772rb)**: WP Pools (DNS go.wppools.com → submit), East Orlando (site da franquia/Ed → submit; aviso de ligação perdida também por e-mail), West Coast (brand FAILED, 86bd3m8c9), Cleverblu (conferir o próximo SMS: campanha VERIFIED 25/11 21:34 UTC). Rodar `scripts/pp_sms_failed.py <data>` na auditoria.
+- **Pool Duck WC – pixel do Meta**: "Facebook - Qualified Lead (Form Fill)" publicado com o token no `pixel_id` → rascunho à Val no e-mail da auditoria 26/11 (anúncio = Val).
 - **Basecamp OAuth (23/11)**: conferir ~07/12 (1º vencimento do token, 2 semanas) que o webhook `bc-visible` ainda responde ok
   (o refresh da 37signals no OAuth2 genérico do n8n não foi testado). Se der 401: Pedro clica Reconnect na credencial.
