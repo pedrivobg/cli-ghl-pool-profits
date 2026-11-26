@@ -1770,3 +1770,4 @@ Bonneville. Backups em `backup/west-coast-pool-care/` e `backup/capital-lawn-poo
 - Inbox 26/11 (~12h50 UTC): **Passion LP ChatGPT** (Atif, `86bc6vqr9`): fotos trocadas a pedido do John; Val já respondeu, não é CRM → sem resposta. Página conferida (form "PPC - ChatGPT Ads Quote" e (629) 290-1180 seguem). Ledger done.
 - Inbox 26/11 (~13h UTC, 3 itens): Passion "OpenAI - ADS" — Val: campanha ChatGPT Ads no ar com a LP, John ok → não me marcam/não CRM, só lidos. TODO da LP: segue envio real do form + ligação real. Ledger 3 linhas.
 - 26/11 Inbox: Cleverblu, post de Thanksgiving do Nomar ao time (elogio ao site); nao me marca, nao e CRM → sem resposta, lido.
+- 26/11 inbox: Christopher Keplinger, artigo "Query Fan Out" (SEO/IA) para o grupo todo; não é CRM nem me marca → sem resposta, e-mail lido, ledger done.
