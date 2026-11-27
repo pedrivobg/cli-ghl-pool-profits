@@ -9,8 +9,8 @@
    "workflow": "Missed New Lead - Initial SMS Follow-up",
    "step": "SMS 1",
    "code": "M1",
-   "by": "Luis (CRM guide 23/11)",
-   "text": "Hi [First name]! This is Luis from Pool Duck East Orlando. We're sorry we missed your call. We will be calling you back shortly. How can we assist you today? 🏊\n\nReply STOP to opt out."
+   "by": "Luis (CRM guide 23/11; 27/11: drop our STOP line, the system already appends 'Reply STOP to unsubscribe.')",
+   "text": "Hi [First name]! This is Luis from Pool Duck East Orlando. We're sorry we missed your call. We will be calling you back shortly. How can we assist you today? 🏊"
   }
  ]
 }

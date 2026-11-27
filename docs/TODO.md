@@ -121,7 +121,7 @@ contas antigas para ver com o time e Pool Duck LWR/Odessa (fase 2 depois de quin
 - **Cleverblu A2P**: enviado 24/11 (23/23), brand PENDING → acompanhar aprovação (1–5 dias úteis) e vincular o número.
 - **Cleverblu – lista do Skimmer (23/11)**: Frank mandou ao Nomar os passos de exportação; quando o arquivo chegar no Basecamp
   (baixar pelo link do e-mail), importar com `/contacts/upsert` sem tags + tag `active client` só nos ativos; nada dispara.
-- **East Orlando – GBP do Luis (25/11)**: Google travou 2 dias (passkey) ao conectar o perfil → resposta aprovada enviada 25/11 ~15:45 UTC (Gmail dele como manager / "Try another way" / esperar) → esperando o Luis conectar; aí pôr o link de review (`google_review_link`).
+- **East Orlando – Luis (27/11)**: Google conectado, mas a ficha do Business Profile não vinculada (sem placeId) → esperando o Luis escolher a ficha; aí montar o `google_review_link`. Resposta (M1 com 1 STOP só, toque só app, recusar = 20 s → caixa postal) em [Aprovar] ao Pedro; opção "tirar o usuário Gmail do ring-all" esperando ele.
 - **East Orlando – guia do Luis**: 24/11 ele não recebeu o reset (mandei app.poolprofits.com por engano; certo = portal.poolduck.com). Resposta aprovada enviada 24/11 21:02 UTC (portal.poolduck.com, pergunta com qual e-mail entra no app + passos do GBP) → esperando o Luis. Linha (689) 350-4006 ligada ao usuário "Pool Duck East Orlando" (toca o celular, whisper "press a key"); o usuário Luis Gomez já é só app → trocar conforme a resposta. Site/privacy/form e A2P = Ed.
 - Pool Duck: Review Request/Won Stage em draft em Odessa/Westchase/LWR até ter NPS link e Google (Westchase).
 - BluVantage (Frank 20/11): etapa "🤝 Vendors" criada; Vanessa escolhe entre Booked Assessment (14 cards) e Scheduled (0) —
