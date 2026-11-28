@@ -8,6 +8,7 @@ comento quem/o quê e ajusto o prazo — nada fica vencido sem dono. Uma linha p
 combinar antes.
 
 ## Aberto hoje
+- 28/11: Pool Keepers: Pedro manda o link do Zoom (call seg 30/11 13h BRT) + "aprovado" no aviso ao Nathan (rascunho no thread [Aprovar] 27/11 19:11). 86bd4kucg (integrações GBP/GA/Ads) → 4/12, Frank/Val na tela.
 - 27/11: sub-conta "ABC Pools" (`olefWlhtsz2k8pVA7zcp`) = teste (Pedro 27/11 "apaga"), vazia (0 contatos/usuários/cards; backup/abc-pools). DELETE da sub-conta bloqueado na rotina → Pedro apaga no painel ou responde "apaga a sub-conta ABC Pools" (thread revisão 26/11).
 - 26/11: Corolla site novo no ar (forms do CRM, SSL go ok; testes 17/11 com tags) → conferir card + aviso ao Josh no 1º lead real (`86bcyw37n`, 1/12).
 - 18/11: Success Team + Ed (automação de SEO): propus tratar na mid-week de hoje 16h BRT (1 PM CT); levar ideias.
